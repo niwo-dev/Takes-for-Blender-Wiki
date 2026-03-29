@@ -6,6 +6,7 @@ on:
     paths:
       - 'docs/**'
       - 'mkdocs.yml'
+      - 'index.html'
   workflow_dispatch:
 
 permissions:
@@ -17,11 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
@@ -29,5 +25,18 @@ jobs:
       - name: Install MkDocs
         run: pip install mkdocs-material
 
-      - name: Build and Deploy
-        run: mkdocs gh-deploy --force
+      - name: Build MkDocs into wiki subdirectory
+        run: mkdocs build --strict
+
+      - name: Assemble deploy directory
+        run: |
+          mkdir -p deploy/wiki
+          cp index.html deploy/
+          cp -r site/* deploy/wiki/
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./deploy
+          force_orphan: true

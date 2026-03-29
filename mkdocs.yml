@@ -3,7 +3,7 @@ site_description: >-
   Stage Management, Variant Switching, and Batch Rendering pipeline
   for Product Visualization in Blender 5.1+.
 site_author: Nikolaj Woroschilow
-site_url: https://niwo-dev.github.io/Takes-for-Blender-Wiki/
+site_url: https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/
 
 repo_url: https://github.com/niwo-dev/Takes-for-Blender-Wiki
 repo_name: Takes-for-Blender-Wiki
