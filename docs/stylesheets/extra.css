@@ -1,0 +1,47 @@
+/* ============================================================
+   Takes for Blender — Blender-Native Brand Colors
+   ============================================================ */
+
+/* Blender brand palette */
+:root {
+  --md-primary-fg-color:        #265787;  /* Blender blue */
+  --md-primary-fg-color--light: #3a7bc8;
+  --md-primary-fg-color--dark:  #1a3d5c;
+  --md-accent-fg-color:         #e87d0d;  /* Blender orange */
+  --md-accent-fg-color--light:  #f5a623;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #265787;
+  --md-primary-fg-color--light: #3a7bc8;
+  --md-primary-fg-color--dark:  #1a3d5c;
+  --md-accent-fg-color:         #e87d0d;
+  --md-accent-fg-color--light:  #f5a623;
+}
+
+/* Keyboard shortcut styling — matches Blender manual convention */
+kbd {
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-size: 0.85em;
+}
+
+/* Slightly tighter table cell padding for reference tables */
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+  padding: 0.5em 0.8em;
+}
+
+/* Admonition tweaks — make Tips use Blender orange */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: #e87d0d;
+}
+.md-typeset .tip > .admonition-title,
+.md-typeset .tip > summary {
+  background-color: rgba(232, 125, 13, 0.1);
+}
+.md-typeset .tip > .admonition-title::before,
+.md-typeset .tip > summary::before {
+  background-color: #e87d0d;
+}
