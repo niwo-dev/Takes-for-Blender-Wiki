@@ -59,6 +59,7 @@ nav:
     - Inspector Panel: interface/inspector_panel.md
     - Context Properties: interface/context_properties.md
     - Variant Tree: interface/variant_tree.md
+    - Hotkeys: interface/hotkeys.md
   - Features:
     - features/index.md
     - Takes: features/takes.md
