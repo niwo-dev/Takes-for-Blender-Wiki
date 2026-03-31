@@ -9,6 +9,10 @@ repo_url: https://github.com/niwo-dev/Takes-for-Blender-Wiki
 repo_name: Takes-for-Blender-Wiki
 edit_uri: edit/main/docs/
 
+validation:
+  nav:
+    omitted_files: ignore
+
 copyright: "&copy; 2026 Nikolaj Woroschilow"
 
 extra:
@@ -56,8 +60,6 @@ theme:
     - navigation.top
     - navigation.indexes
     - navigation.footer
-    - navigation.instant
-    - navigation.instant.progress
     - navigation.tracking
     - navigation.tooltip
     - search.suggest
