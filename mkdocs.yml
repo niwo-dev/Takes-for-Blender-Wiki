@@ -13,6 +13,7 @@ copyright: "&copy; 2026 Nikolaj Woroschilow"
 
 theme:
   name: material
+  custom_dir: docs/overrides
   palette:
     # Light mode
     - scheme: default
@@ -35,6 +36,10 @@ theme:
     - navigation.top
     - navigation.indexes
     - navigation.footer
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tooltip
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -76,7 +81,7 @@ nav:
     - Batch Rendering: workflows/batch_rendering.md
   - Preferences: preferences/index.md
   - FAQ: faq.md
-
+  - Brand Guidelines: corporate_identity.md
 
 markdown_extensions:
   - admonition

@@ -3,13 +3,7 @@ hide:
   - navigation
 ---
 
-# Takes for Blender
-
-**Stage Management, Variant Switching, and Batch Rendering pipeline for Product Visualization in Blender 5.1+.**
-
 ---
-
-Takes for Blender is a comprehensive state management addon built for complex product visualization pipelines. It gives you full control over multiple scenes, view layers, materials, cameras, and render settings — all from a single unified interface.
 
 <div class="grid cards" markdown>
 

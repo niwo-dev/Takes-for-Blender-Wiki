@@ -45,3 +45,88 @@ kbd {
 .md-typeset .tip > summary::before {
   background-color: #e87d0d;
 }
+
+/* ============================================================
+   Takes for Blender — Web Upgrades (Hero & SPA)
+   ============================================================ */
+
+/* Modern Typography for Headings */
+h1, h2, h3, h4, h5, h6, .txs-hero h1 {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+
+/* Glassmorphism Navigation Bar */
+.md-header {
+  background-color: rgba(38, 87, 135, 0.4) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  background-color: rgba(18, 18, 18, 0.6) !important;
+}
+
+/* Custom Homepage Hero Section */
+.txs-hero {
+  padding: 4rem 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.txs-hero__inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.txs-hero h1 {
+  font-size: 3.5rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  
+  /* Blender Gradient Mix */
+  background: linear-gradient(90deg, #3a7bc8, #f5a623);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.txs-hero p {
+  font-size: 1.25rem;
+  color: var(--md-default-fg-color--light);
+  margin-bottom: 2rem;
+}
+
+.txs-hero__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.txs-hero__actions .md-button {
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Micro-Animations for the Homepage Feature Grid */
+.md-typeset .grid.cards > ul > li {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-color: rgba(232, 125, 13, 0.3); /* Subtle Orange glow */
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
