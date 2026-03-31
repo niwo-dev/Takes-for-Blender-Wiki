@@ -1,3 +1,7 @@
+---
+icon: material/ghost
+---
+
 # Ruhezustand
 
 Das System des **Ruhezustands** (Referenzzustand) bewahrt automatisch die ursprünglichen Standardwerte der Eigenschaften neben Ihren Animationen auf den einzelnen Ansichtsebenen.

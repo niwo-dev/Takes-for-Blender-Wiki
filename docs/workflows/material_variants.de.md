@@ -1,3 +1,7 @@
+---
+icon: material/palette
+---
+
 # Workflow: Materialvarianten
 
 Dieser Workflow zeigt, wie Sie Produktvarianten für Farbe und Oberfläche mithilfe des Variant Switch-Systems einrichten.

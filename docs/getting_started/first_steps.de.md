@@ -1,3 +1,7 @@
+---
+icon: material/shoe-print
+---
+
 # Erste Schritte
 
 Diese Anleitung führt Sie in weniger als 5 Minuten durch den grundlegenden Arbeitsablauf.

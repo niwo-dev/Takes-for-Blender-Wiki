@@ -1,3 +1,7 @@
+---
+icon: material/file-tree
+---
+
 # Variantenbaum
 
 **Speicherort:** *Eigenschaften-Editor > Registerkarte "Takes" > Variantenumschalter*

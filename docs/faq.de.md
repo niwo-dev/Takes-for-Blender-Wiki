@@ -1,3 +1,7 @@
+---
+icon: material/help-circle
+---
+
 # FAQ
 
 ## Allgemeines

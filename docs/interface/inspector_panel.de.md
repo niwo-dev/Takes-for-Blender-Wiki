@@ -1,3 +1,7 @@
+---
+icon: material/magnify-scan
+---
+
 # Inspektor-Panel
 
 **Speicherort:** *Eigenschaften-Editor > Registerkarte "Takes" > Inspektor*

@@ -1,3 +1,7 @@
+---
+icon: material/play-box-multiple
+---
+
 # Arbeitsablauf: Stapelrendering
 
 Dieser Arbeitsablauf behandelt die Einrichtung und Durchführung eines vollständigen Stapelrenderings über mehrere Ansichtsebenen hinweg mit kaskadierenden Überschreibungen und Smart Output.

@@ -1,3 +1,7 @@
+---
+icon: material/swap-horizontal
+---
+
 # Variant Switch
 
 Das **Variant Switch**-System verwaltet Produktvarianten – unterschiedliche Materialkonfigurationen, Oberflächen oder Farboptionen – mit materialabhängigem Austausch und kaskadierender Zustandsverwaltung.

@@ -1,3 +1,7 @@
+---
+icon: material/palette-swatch
+---
+
 # Render-Voreinstellungen
 
 **Render-Voreinstellungen** sind JSON-basierte Momentaufnahmen der Blender-Rendereinstellungen, die über das Kaskadensystem einzelnen Ansichtsebenen zugewiesen werden können.

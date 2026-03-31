@@ -1,3 +1,7 @@
+---
+icon: material/play-circle
+---
+
 # Arbeitsabläufe
 
 Schritt-für-Schritt-Anleitungen für reale Produktionsszenarien.

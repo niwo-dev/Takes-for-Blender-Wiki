@@ -1,3 +1,7 @@
+---
+icon: material/tune-vertical
+---
+
 # Kontexteigenschaften
 
 **Speicherort:** *Eigenschaften-Editor > Registerkarte "Aufnahmen" > Kontext*

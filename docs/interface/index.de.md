@@ -1,3 +1,7 @@
+---
+icon: material/view-dashboard
+---
+
 # Benutzeroberfläche
 
 Die Benutzeroberfläche von "Takes for Blender" befindet sich in der Seitenleiste des **Eigenschaften-Editors**. Sie besteht aus vier Hauptbereichen, die über die Registerkartenleiste am oberen Rand des Navigationsfensters aufgerufen werden können.

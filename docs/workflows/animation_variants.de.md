@@ -1,3 +1,7 @@
+---
+icon: material/animation-play
+---
+
 # Arbeitsablauf: Animationsvarianten
 
 Dieser Arbeitsablauf zeigt, wie man verschiedene Animationsaufnahmen pro Ansichtsebene einrichtet – zum Beispiel ein Produkt, das sich dreht, neigt und explodiert, jeweils auf einer eigenen Ansichtsebene mit unabhängigen Kameras.

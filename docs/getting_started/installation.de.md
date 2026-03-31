@@ -1,3 +1,7 @@
+---
+icon: material/download
+---
+
 # Installation
 
 ## Voraussetzungen

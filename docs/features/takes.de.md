@@ -1,3 +1,7 @@
+---
+icon: material/movie-open
+---
+
 # Takes
 
 Ein **Take** ist eine benannte Gruppe von Ansichtsebenen, die eine bestimmte Konfiguration Ihrer Szene darstellen – einen Kamerawinkel, eine Beleuchtungskonfiguration, eine Materialvariante oder einen Animationszustand.

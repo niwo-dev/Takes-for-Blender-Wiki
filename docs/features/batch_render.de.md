@@ -1,3 +1,7 @@
+---
+icon: material/image-multiple
+---
+
 # Batch-Rendering
 
 Das **Batch-Rendering**-System automatisiert das Rendern über mehrere Ansichtsebenen hinweg und wendet dabei für jede Ebene kaskadierende Überschreibungen (Kameras, Welten, Aktionen, Voreinstellungen, Varianten) an.

@@ -1,3 +1,7 @@
+---
+icon: material/folder-cog
+---
+
 # Smart Output
 
 Das **Smart Output**-System bietet eine dynamische, tokenbasierte Auflösung von Dateipfaden für die Renderausgabe. Anstatt jeden Render manuell zu benennen, werden Token automatisch durch kontextspezifische Werte ersetzt.

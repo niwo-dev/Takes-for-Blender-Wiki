@@ -1,3 +1,7 @@
+---
+icon: material/cog
+---
+
 # Einstellungen
 
 **Pfad:** *Bearbeiten > Einstellungen > Erweiterungen > Takes for Blender*

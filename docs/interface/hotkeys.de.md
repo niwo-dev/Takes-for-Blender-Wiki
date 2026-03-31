@@ -1,3 +1,7 @@
+---
+icon: material/keyboard
+---
+
 # Tastaturkürzel
 
 Alle Tastenkombinationen sind aktiv, wenn sich der Cursor über der **Seitenleiste des 3D-Ansichtsfensters** (N-Panel) befindet.

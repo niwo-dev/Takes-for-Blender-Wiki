@@ -1,3 +1,7 @@
+---
+icon: material/layers-triple
+---
+
 # Funktionen
 
 Takes for Blender bietet ein umfangreiches Toolset zur Verwaltung komplexer Pipelines für die Produktvisualisierung. Jede Funktion ist so konzipiert, dass sie über das Kaskadensystem mit den anderen zusammenarbeitet.

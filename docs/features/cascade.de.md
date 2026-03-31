@@ -1,3 +1,7 @@
+---
+icon: material/arrow-decision
+---
+
 # Cascade-System
 
 Die **Cascade** ist die Kern-Engine von Takes for Blender. Sie löst Eigenschaftsüberschreibungen über eine 6-stufige Hierarchie auf, sodass jede Ebene eine darüber liegende Ebene überschreiben kann.

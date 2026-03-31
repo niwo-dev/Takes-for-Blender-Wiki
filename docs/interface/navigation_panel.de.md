@@ -1,3 +1,7 @@
+---
+icon: material/compass
+---
+
 # Navigationsbereich
 
 **Position:** *Eigenschaften-Editor > Registerkarte "Takes"*
