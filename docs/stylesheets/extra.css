@@ -2,6 +2,31 @@
    Takes for Blender — Global Web Layout (Grayscale)
    ============================================================ */
 
+/* LIGHT MODE (SLIGHTLY GRAY) */
+[data-md-color-scheme="default"] {
+  --md-hue: 0; /* Strips native hue tint */
+  --md-default-bg-color: #f6f6f6;
+  --md-default-bg-color--light: #ffffff; /* Make cards/codeblocks pop */
+  --md-default-fg-color: #222222;
+  --md-typeset-a-color: #444444;       /* Links in gray */
+  --md-primary-fg-color: #333333;      /* Header bar gray */
+  --md-accent-fg-color: #555555;
+  --md-primary-fg-color--light: #555555;
+}
+
+/* DARK MODE (FULLY GRAYSCALE) */
+[data-md-color-scheme="slate"] {
+  --md-hue: 0; /* Strips native blue/indigo MkDocs slate tint */
+  --md-default-bg-color: #1a1a1a;
+  --md-default-bg-color--light: #242424; /* Clean mid-gray cards */
+  --md-default-bg-color--lighter: #2a2a2a;
+  --md-default-fg-color: #e0e0e0;
+  --md-default-fg-color--light: #bbbbbb;
+  --md-typeset-a-color: #cccccc;       /* Links in gray */
+  --md-primary-fg-color: #111111;      /* Header bar pure dark gray */
+  --md-accent-fg-color: #888888;
+}
+
 /* Keyboard shortcut styling */
 kbd {
   border-radius: 3px;
