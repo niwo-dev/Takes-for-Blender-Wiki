@@ -82,10 +82,10 @@ h1, h2, h3, h4, h5, h6, .txs-hero h1 {
   font-weight: 800;
   
   /* Blender Gradient Mix derived from Official Colors */
-  background: linear-gradient(90deg, #3a7bc8, #f5a623);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: linear-gradient(90deg, #3a7bc8, #f5a623) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
 .txs-hero p {
