@@ -2,6 +2,11 @@
    Takes for Blender — Global Web Layout (Grayscale)
    ============================================================ */
 
+/* Narrower content area for better readability */
+.md-grid {
+  max-width: 1100px;
+}
+
 /* LIGHT MODE (SLIGHTLY GRAY) */
 [data-md-color-scheme="default"] {
   --md-hue: 0; /* Strips native hue tint */
