@@ -62,6 +62,7 @@ theme:
     - navigation.footer
     - navigation.tracking
     - navigation.tooltip
+    - toc.integrate
     - search.suggest
     - search.highlight
     - content.code.copy
