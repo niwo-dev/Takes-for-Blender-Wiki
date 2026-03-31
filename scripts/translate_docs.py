@@ -91,7 +91,7 @@ def translate_markdown(content: str, target_lang: str, translator: deepl.Transla
 
     # Post-process: DeepL converts "..." to „..." (German typographic quotes).
     # MkDocs admonitions require straight quotes.
-    result_text = result_text.replace("\u201e", '"').replace("\u201c", '"')
+    result_text = result_text.replace("\u201e", '"').replace("\u201c", '"').replace("\u201d", '"')
 
     return result_text
 
