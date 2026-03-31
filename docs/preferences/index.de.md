@@ -34,14 +34,14 @@ Wenn diese Option aktiviert ist, schreibt die Debug-Protokollierung in tägliche
 
 | Thema | Unterthemen |
 |-------|-----------|
-| **Kern** | VL-Umschalter, Kaskade |
+| **Kern** | VL-Umschaltung, Kaskade |
 | **UI** | Inspektor |
 | **Ops** | Animation |
-| **Funktionen** | Referenzzustand, Variantenumschalter |
+| **Funktionen** | Referenzzustand, Variantenumschaltung |
 | **Render** | Batch-Render |
 
 Umschaltknöpfe pro Ebene (Debug, Info, Warnung, Fehler) filtern Meldungen, bevor eine Zeichenfolgenformatierung erfolgt.
 
-!!! note "Protokollspeicherort“
+!!! note "Log Location"
     Protokolle werden als `takes_for_blender_YYYY-MM-DD.log` im
     konfigurierten Protokollverzeichnis gespeichert. Dateien, die älter als 7 Tage sind, werden automatisch gelöscht.

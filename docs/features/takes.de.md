@@ -4,7 +4,7 @@ Ein **Take** ist eine benannte Gruppe von Ansichtsebenen, die eine bestimmte Kon
 
 ## Konzept
 
-In Film und Fotografie ist ein "Take“ eine einzelne Version einer Aufnahme. "Takes“ für Blender erweitert dieses Konzept auf das Ansichtsebenensystem von Blender und bietet Ihnen:
+In Film und Fotografie ist ein "Take" eine Version einer Aufnahme. "Takes" für Blender erweitert dieses Konzept auf das Ansichtsebenensystem von Blender und bietet Ihnen:
 
 - **Unabhängige Kamerazuweisungen** pro Ansichtsebene
 - **Unabhängige Umgebungen** pro Ansichtsebene
@@ -18,25 +18,25 @@ Takes sind in einer Hierarchie innerhalb des Takes-Baums organisiert:
 
 | Ebene | Zweck | Beispiel |
 |-------|---------|---------|
-| **Szenengruppe** | Organisation auf oberster Ebene | "Innenraum“, "Außenbereich“ |
-| **Szene** | Blender-Szene | "Küche“, "Badezimmer“ |
-| **VL-Gruppe** | Logische Gruppierung von VLs | "Hero Shots“, "Detail Shots“ |
-| **Ansichtslayer** | Die eigentliche Render-Einheit | "Front 3/4“, "Top Down“ |
-| **VL-Version** | Benannte Snapshots von VL-Einstellungen | "v1 warm“, "v2 cool“ |
+| **Szenengruppe** | Organisation auf oberster Ebene | "Innenraum", "Außenbereich" |
+| **Szene** | Blender-Szene | "Küche", "Badezimmer" |
+| **VL-Gruppe** | Logische Gruppierung von VLs | "Hero Shots", "Detail Shots" |
+| **Ansichtsebene** | Die eigentliche Render-Einheit | "Front 3/4", "Top Down" |
+| **VL-Version** | Benannte Snapshots von VL-Einstellungen | "v1 warm", "v2 cool" |
 
 ## Takes erstellen
 
 ### Eine Ansichtsebene hinzufügen
 
-1. Klicken Sie in der Seitenleiste auf **+**.
-2. Wählen Sie **Ansichtsebene hinzufügen**.
-3. Die neue VL erbt die Einstellungen der aktiven Ansichtsebene.
+1. Klicken Sie in der Baum-Seitenleiste auf **+**.
+2. Wählen Sie **Ansichtslayer hinzufügen**.
+3. Der neue VL erbt die Einstellungen des aktiven Ansichtslayers.
 
-### Ansichtsebenen gruppieren
+### Ansichtslayer gruppieren
 
-1. Wählen Sie eine Ansichtsebene in der Struktur aus.
-2. Drücken Sie ++Strg+g++, um eine VL-Gruppe zu erstellen, die diese enthält.
-3. Ziehen Sie weitere Ansichtsebenen in die Gruppe.
+1. Wählen Sie einen Ansichtslayer in der Baumstruktur aus.
+2. Drücken Sie ++Strg+g++, um eine VL-Gruppe zu erstellen, die diesen enthält.
+3. Ziehen Sie weitere Ansichtslayer in die Gruppe.
 
 ### VL-Versionen
 
@@ -46,6 +46,6 @@ Erstellen Sie benannte Snapshots der Kaskadeneinstellungen einer Ansichtsebene:
 2. Klicken Sie auf **+** → **Version hinzufügen**.
 3. Jede Version speichert ihre eigenen Kamera-, Welt-, Aktions- und Voreinstellungsüberschreibungen.
 
-!!! tip "Schnellwechsel“
-    Wechseln Sie zwischen VL-Versionen, um verschiedene Konfigurationen sofort zu vergleichen,
-    ohne View Layers duplizieren zu müssen.
+!!! tip "Quick Switching"
+    Wechseln Sie zwischen Ansichtsebenen-Versionen, um verschiedene Konfigurationen sofort zu vergleichen,
+    ohne Ansichtsebenen duplizieren zu müssen.

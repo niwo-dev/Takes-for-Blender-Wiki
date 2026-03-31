@@ -5,13 +5,13 @@ Dieses Dokument legt die grundlegenden **Markenrichtlinien** und die **Corporate
 ---
 
 ## 01. Markenphilosophie
-**"Professionell, nativ und leistungsstark.“**
+**"Professionell, nativ und leistungsstark."**
 Takes for Blender ist eine robuste Pipeline für das Stage-Management. Die visuelle Identität muss Stabilität, höchste technische Kompetenz und eine nahtlose native Integration in die eigene Designsprache von Blender vermitteln. Es sollte sich wie ein hochwertiges, direkt vom Hersteller stammendes Engine-Upgrade anfühlen.
 
 ---
 
 ## 02. Farbpalette
-Die Marke verwendet ausschließlich die ikonischen Blender-Farben, die tief gesättigt sind und einen starken Kontrast zu einer modernen Dark-Mode-Hintergrundfläche bilden.
+Die Marke verwendet ausschließlich die ikonischen Blender-Farben, die tief gesättigt sind und einen starken Kontrast zum modernen Dark-Mode-Hintergrund bilden.
 
 ### Kernfarben der Marke
 | Farbe | Hex-Code | Verwendung |
@@ -37,7 +37,7 @@ Die Identität basiert auf einer kontrastreichen Kombination aus einer geometris
 * **Primäre Überschriften (Display):** [**Outfit**](https://fonts.google.com/specimen/Outfit)
   * Verwendung für große Hero-Bereiche, `h1` - `h3`-Tags und Logotext.
   * Schriftstärken: `600 (SemiBold)`, `800 (ExtraBold)`.
-  * *Warum:* Die subtile Geometrie vermittelt einen modernen "3D-Software“-Charakter.
+  * *Warum:* Die subtile Geometrie vermittelt einen modernen "3D-Software"-Charakter.
 * **Fließtext (Benutzeroberfläche/Lesetext):** [**Inter**](https://fonts.google.com/specimen/Inter)
   * Verwendung für alle Absätze, Navigationslinks und UI-Beschriftungen.
   * Schriftstärken: `400 (Regular)`, `500 (Medium)`.
@@ -50,13 +50,13 @@ Die Identität basiert auf einer kontrastreichen Kombination aus einer geometris
 ## 04. UI-Elemente & visuelle Sprache
 
 ### Glassmorphism (Die zentrale Ästhetik)
-Überschriften, schwebende Menüs und hervorgehobene Karten müssen einen dunklen Milchglaseffekt aufweisen.
+Überschriften, schwebende Menüs und hervorgehobene Karten müssen einen dunklen, mattierten Glaseffekt aufweisen.
 * **Hintergrund:** `rgba(38, 87, 135, 0.2)` (Dunkelblau getönt)
 * **Unschärfe:** `backdrop-filter: blur(16px)`
-* **Rand:** 1px obere Kontur `rgba(255, 255, 255, 0.08)`, um das "Licht“ einzufangen.
+* **Rand:** 1px obere Umrandung `rgba(255, 255, 255, 0.08)`, um das "Licht" einzufangen.
 
 ### Der Farbverlauf-Texteffekt
-Große Überschriften (wie "Takes for Blender“) nutzen einen horizontalen Farbverlaufsblock, um den Blick sofort auf sich zu ziehen.
+Große Überschriften (wie "Takes for Blender") nutzen einen horizontalen Farbverlaufsblock, um den Blick sofort auf sich zu ziehen.
 * `linear-gradient(90deg, #3a7bc8 0%, #f5a623 100%)`
 
 ### Formgeometrie & Rahmen
@@ -72,7 +72,7 @@ Große Überschriften (wie "Takes for Blender“) nutzen einen horizontalen Farb
 
 ## 05. Bildsprache & Ikonografie
 
-Das offizielle "Takes for Blender“-Logo kombiniert die ikonische 3D-Filmklappe mit der strengen Originalfarbgebung von Blender und betont dabei die isometrische Struktur gegenüber komplexen Farbverläufen.
+Das offizielle "Takes for Blender"-Logo kombiniert die ikonische 3D-Filmklappe mit der strengen Originalfarbgebung von Blender und betont dabei die isometrische Struktur gegenüber komplexen Farbverläufen.
 
 ### Das Hauptlogo (Flat Render)
 Bei Nicht-SVG-Kontexten oder komplexen Hintergründen wird die einfarbige, flache Vektordarstellung verwendet.

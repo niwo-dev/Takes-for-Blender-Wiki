@@ -1,10 +1,10 @@
 # Erste Schritte
 
-Diese Anleitung führt Sie in weniger als 5 Minuten durch den Kern-Workflow.
+Diese Anleitung führt Sie in weniger als 5 Minuten durch den grundlegenden Arbeitsablauf.
 
 ## Grundlagen
 
-Takes for Blender organisiert Ihre Szene in einer Hierarchie:
+"Takes for Blender" organisiert Ihre Szene in einer Hierarchie:
 
 ```mermaid
 graph TD
@@ -41,7 +41,7 @@ Jeder Ansichtslayer kann eine eigene Kamera haben:
 
 ### 4. Mit Gruppen organisieren
 
-Gruppieren Sie verwandte Ansichtsebenen:
+Gruppieren Sie zusammengehörige Ansichtsebenen:
 
 1. Wählen Sie eine Ansichtsebene in der Baumstruktur aus.
 2. Drücken Sie ++Strg+G++, um eine VL-Gruppe zu erstellen.
