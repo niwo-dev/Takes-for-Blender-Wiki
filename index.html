@@ -399,21 +399,25 @@
 
         /* ─── COMPARISON SECTION ─── */
         .comparison-section { padding: 4rem 2rem 5rem; background: var(--bg-dark); }
-        .comparison-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
-        .comp-card {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border);
-            border-radius: 16px; padding: 2.5rem; text-align: left;
-            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        .comp-table-container { 
+            max-width: 900px; margin: 3rem auto 0;
+            background: rgba(22, 22, 24, 0.4); border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
-        .comp-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.1); }
-        .comp-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
-        .comp-icon { color: var(--text-dim); font-size: 1.6rem; padding: 0.6rem; background: rgba(0,0,0,0.3); border-radius: 12px; border: 1px solid var(--border); }
-        .comp-card h3 { font-size: 1.25rem; color: var(--text-bright); }
-        .comp-sub { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1.5rem; display: block; font-family: 'Outfit', sans-serif; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
-        .comp-card > p { font-size: 0.95rem; color: #a0aab5; line-height: 1.6; margin-bottom: 1.8rem; }
-        .comp-vs { padding-top: 1.5rem; border-top: 1px dashed rgba(255,255,255,0.1); }
-        .comp-vs strong { color: var(--accent-light); display: inline-block; margin-bottom: 0.5rem; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
-        .comp-vs p { font-size: 0.95rem; color: var(--text-bright); margin-bottom: 0; line-height: 1.6; }
+        .comp-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .comp-table th, .comp-table td { padding: 1.5rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .comp-table th { background: rgba(0,0,0,0.3); font-family: 'Outfit', sans-serif; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-weight: 600; }
+        .comp-table th.highlight { color: var(--accent-light); background: rgba(232, 125, 13, 0.08); border-left: 1px solid rgba(232, 125, 13, 0.3); border-right: 1px solid rgba(232, 125, 13, 0.3); }
+        .comp-table td { font-size: 0.95rem; color: #a0aab5; line-height: 1.4; }
+        .comp-table td.highlight { background: rgba(232, 125, 13, 0.04); color: var(--text-bright); border-left: 1px solid rgba(232, 125, 13, 0.3); border-right: 1px solid rgba(232, 125, 13, 0.3); font-weight: 500; }
+        .comp-table tr:last-child td { border-bottom: none; }
+        .td-title { font-weight: 600; color: var(--text-bright); }
+        .td-x { color: var(--text-dim); display:flex; align-items:center; gap:0.6rem; }
+        .td-check { color: var(--text-bright); display:flex; align-items:center; gap:0.6rem; }
+        .highlight.td-check { color: var(--accent-light); }
+        .td-icon { font-size: 1.3rem; }
+
 
         /* ─── CREATOR SECTION ─── */
         .creator-section { padding: 4rem 2rem 6rem; background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(14,14,16,0.3) 100%); }
@@ -527,7 +531,8 @@
             .creator-content .section-label { justify-content: center; }
             .creator-content h2 { font-size: 1.8rem; }
             .creator-signature { margin-left: auto; margin-right: auto; display: block; }
-            .comparison-grid { grid-template-columns: 1fr; }
+            .comp-table-container { overflow-x: auto; }
+            .comp-table th, .comp-table td { padding: 1rem; }
         }
         @media (max-width: 768px) {
             .hero-inner { grid-template-columns: 1fr; text-align: center; }
@@ -768,51 +773,46 @@
 <section id="comparison" class="comparison-section">
     <div class="section-inner">
         <div class="section-label">The Ecosystem</div>
-        <h2 class="section-title">Where Takes fits in your pipeline</h2>
-        <p class="section-subtitle">A quick framework to help you choose the right Blender tools for the job.</p>
+        <h2 class="section-title">Stage Management vs. Context Savers</h2>
+        <p class="section-subtitle">Why traditional "scene state savers" aren't enough for high-end visualization.</p>
 
-        <div class="comparison-grid">
-            <!-- Context Managers -->
-            <div class="comp-card">
-                <div class="comp-header">
-                    <span class="material-symbols-outlined comp-icon">account_tree</span>
-                    <h3>Vs. Context Savers</h3>
-                </div>
-                <span class="comp-sub">e.g., Renderset, Polyviews</span>
-                <p>Context savers manually "store" isolated property states. If a client requests a master lighting change, you have to manually update every single context state one by one.</p>
-                <div class="comp-vs">
-                    <strong>The Takes Advantage</strong>
-                    <p>Takes runs on a Top-Down Cascade Tree. Update your lighting at the root, and all 50 child takes instantly inherit the new setup.</p>
-                </div>
-            </div>
-
-            <!-- Lighting Suites -->
-            <div class="comp-card">
-                <div class="comp-header">
-                    <span class="material-symbols-outlined comp-icon">camera</span>
-                    <h3>Vs. Camera Suites</h3>
-                </div>
-                <span class="comp-sub">e.g., Photographer</span>
-                <p>Photographer is the undisputed standard for physical camera modeling, ISO, depth of field limits, and masterful light mixing.</p>
-                <div class="comp-vs">
-                    <strong>Perfect Companions</strong>
-                    <p>Use Photographer to set up your photorealistic <em>lenses</em>. Assign those cameras to nodes in the Takes tree to effortlessly manage the <em>stage</em>.</p>
-                </div>
-            </div>
-
-            <!-- Batch Renderers -->
-            <div class="comp-card">
-                <div class="comp-header">
-                    <span class="material-symbols-outlined comp-icon">desktop_windows</span>
-                    <h3>Vs. Render Queues</h3>
-                </div>
-                <span class="comp-sub">e.g., Render+</span>
-                <p>Render+ is an incredible tool for taking massive, pre-built scene files and rendering them blindly overnight on a headless farm.</p>
-                <div class="comp-vs">
-                    <strong>The Takes Advantage</strong>
-                    <p>Standalone renderers only render what you configure. Takes gives you the unified UI to <em>build</em> the scene logic, with its own batch renderer synced directly to it.</p>
-                </div>
-            </div>
+        <div class="comp-table-container">
+            <table class="comp-table">
+                <thead>
+                    <tr>
+                        <th width="30%">Architectural Needs</th>
+                        <th width="35%">Standard Context Savers<br><span style="font-size:0.75rem; color:var(--text-dim); text-transform:none;">(E.g., Renderset, Polyviews)</span></th>
+                        <th width="35%" class="highlight">Takes for Blender<br><span style="font-size:0.75rem; color:var(--text-bright); text-transform:none;">(The Stage Standard)</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="td-title">Hierarchy Engine</td>
+                        <td class="td-x">Isolated, flat states</td>
+                        <td class="highlight td-check"><span class="material-symbols-outlined td-icon">account_tree</span> Top-Down Cascade Tree</td>
+                    </tr>
+                    <tr>
+                        <td class="td-title">Animation Overrides</td>
+                        <td class="td-x">Duplicates meshes/collections</td>
+                        <td class="highlight td-check"><span class="material-symbols-outlined td-icon">animation</span> Non-destructive Action Slots</td>
+                    </tr>
+                    <tr>
+                        <td class="td-title">Data Safety</td>
+                        <td class="td-x">Silently loses dangling data</td>
+                        <td class="highlight td-check"><span class="material-symbols-outlined td-icon">shield</span> Inspector Watchlist & Pinning</td>
+                    </tr>
+                    <tr>
+                        <td class="td-title">Global Edits</td>
+                        <td class="td-x">Manual update per variation</td>
+                        <td class="highlight td-check"><span class="material-symbols-outlined td-icon">bolt</span> Auto-inherits from Root Take</td>
+                    </tr>
+                    <tr>
+                        <td class="td-title">Batch Rendering</td>
+                        <td class="td-check">Includes basic queuing</td>
+                        <td class="highlight td-check"><span class="material-symbols-outlined td-icon">desktop_windows</span> Built-in Headless Batch Engine</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
