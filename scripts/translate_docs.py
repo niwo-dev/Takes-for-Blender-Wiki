@@ -15,8 +15,11 @@ auth_key = os.environ.get("DEEPL_API_KEY")
 
 TARGET_LANGUAGES = {
     "de": "DE",
-    # "es": "ES",
-    # "ja": "JA",
+    "es": "ES",
+    "ru": "RU",
+    "zh": "ZH-HANS",
+    "ja": "JA",
+    "vi": "VI",
 }
 
 # Regex for YAML frontmatter block at the top of a file
@@ -95,9 +98,10 @@ def translate_markdown(content: str, target_lang: str, translator: deepl.Transla
 
     result_text = _restore_protected(translated, protected)
 
-    # Post-process: DeepL converts "..." to „..." (German typographic quotes).
-    # MkDocs admonitions require straight quotes.
-    result_text = result_text.replace("\u201e", '"').replace("\u201c", '"').replace("\u201d", '"')
+    # Post-process: replace typographic quotes from all target languages.
+    # MkDocs admonitions require straight ASCII quotes.
+    for ch in '\u201e\u201c\u201d\u00ab\u00bb\u300c\u300d\u300e\u300f\u201a\u2019\u2018':
+        result_text = result_text.replace(ch, '"')
 
     return result_text
 

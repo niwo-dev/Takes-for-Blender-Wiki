@@ -31,6 +31,26 @@ plugins:
           name: Deutsch
           default: false
           build: true
+        - locale: es
+          name: Español
+          default: false
+          build: true
+        - locale: ru
+          name: Русский
+          default: false
+          build: true
+        - locale: zh
+          name: 中文
+          default: false
+          build: true
+        - locale: ja
+          name: 日本語
+          default: false
+          build: true
+        - locale: vi
+          name: Tiếng Việt
+          default: false
+          build: true
 
 theme:
   name: material
