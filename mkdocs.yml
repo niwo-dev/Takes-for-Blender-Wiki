@@ -120,6 +120,7 @@ nav:
     - Material Variants: workflows/material_variants.md
     - Batch Rendering: workflows/batch_rendering.md
   - Preferences: preferences/index.md
+  - Comparisons: comparisons.md
   - FAQ: faq.md
 
 markdown_extensions:
