@@ -41,7 +41,7 @@ kbd {
 }
 
 /* Modern Typography for all Headers */
-h1, h2, h3, h4, h5, h6, .txs-hero h1 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
   font-weight: 600;
 }
@@ -59,52 +59,6 @@ h1, h2, h3, h4, h5, h6, .txs-hero h1 {
 [data-md-color-scheme="default"] .md-header {
   background-color: rgba(255, 255, 255, 0.8) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-/* Custom Homepage Hero Section Structure */
-.txs-hero {
-  padding: 4rem 1rem;
-  text-align: center;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid var(--md-default-fg-color--lightest);
-}
-
-.txs-hero__inner {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* The Premium Visual Gradient (Always remains on Landing Page text) */
-.txs-hero h1 {
-  font-size: 3.5rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  font-weight: 800;
-  
-  /* Blender Gradient Mix derived from Official Colors */
-  background: linear-gradient(90deg, #3a7bc8, #f5a623) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-.txs-hero p {
-  font-size: 1.25rem;
-  color: var(--md-default-fg-color--light);
-  margin-bottom: 2rem;
-}
-
-.txs-hero__actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.txs-hero__actions .md-button {
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  font-family: 'Outfit', sans-serif;
 }
 
 /* Micro-Animations for the Homepage Feature Grid */
