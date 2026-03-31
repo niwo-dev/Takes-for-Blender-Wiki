@@ -209,6 +209,25 @@
             top: 10%; left: 10%;
             filter: blur(40px);
             pointer-events: none;
+            z-index: -2;
+        }
+        .hero-bg-floating {
+            position: absolute; z-index: -1;
+            opacity: 0.5; filter: blur(5px);
+            border-radius: 8px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            pointer-events: none;
+        }
+        .hero-bg-floating img { width: 100%; height: auto; display: block; }
+        .bg-1 { width: 42%; top: 15%; left: -12%; animation: float-bg 7s ease-in-out infinite; }
+        .bg-2 { width: 38%; top: -8%; right: -5%; animation: float-bg 8s ease-in-out infinite 1.5s; }
+        .bg-3 { width: 45%; bottom: -5%; right: -12%; animation: float-bg 9s ease-in-out infinite 0.5s; }
+
+        @keyframes float-bg {
+            0% { transform: translateY(0px) translateX(0px) rotate(-1.5deg); }
+            50% { transform: translateY(-20px) translateX(5px) rotate(1.5deg); }
+            100% { transform: translateY(0px) translateX(0px) rotate(-1.5deg); }
         }
 
         /* ─── STATS BAR ─── */
@@ -545,10 +564,21 @@
                 <a href="wiki/" class="btn-secondary">📖 Read the Docs</a>
             </div>
         </div>
-        <div class="hero-visual">
+        <div class="hero-visual" style="position: relative;">
             <div class="hero-glow"></div>
+            
+            <div class="hero-bg-floating bg-1">
+                <img src="media/landing/hero.png" alt="">
+            </div>
+            <div class="hero-bg-floating bg-2">
+                <img src="media/landing/override.png" alt="">
+            </div>
+            <div class="hero-bg-floating bg-3">
+                <img src="media/landing/render.png" alt="">
+            </div>
+
             <!-- Product UI Mockup with Viewport -->
-            <div class="hero-image-wrapper">
+            <div class="hero-image-wrapper" style="position: relative; z-index: 1;">
                 <img src="media/landing/hero_viewport.png" alt="Takes for Blender Interface with Viewport Setup" id="hero-3d-img">
             </div>
         </div>
