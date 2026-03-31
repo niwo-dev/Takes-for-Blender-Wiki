@@ -1,24 +1,39 @@
 /* ============================================================
-   Takes for Blender — Global Web Layout (Typography & Layout)
+   Takes for Blender — Global Web Layout (Grayscale)
    ============================================================ */
 
-/* Keyboard shortcut styling — matches Blender manual convention */
+/* Keyboard shortcut styling */
 kbd {
   border-radius: 3px;
   padding: 2px 6px;
   font-size: 0.85em;
 }
 
-/* Slightly tighter table cell padding for reference tables */
+/* Slightly tighter table cell padding */
 .md-typeset table:not([class]) td,
 .md-typeset table:not([class]) th {
   padding: 0.5em 0.8em;
 }
 
-/* Modern Typography for Headings */
+/* Modern Typography for all Headers */
 h1, h2, h3, h4, h5, h6, .txs-hero h1 {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
   font-weight: 600;
+}
+
+/* Glassmorphism Navigation Bar (Dark by default) */
+.md-header {
+  background-color: rgba(5, 5, 5, 0.45) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Light mode overrides for structural elements */
+[data-md-color-scheme="default"] .md-header {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Custom Homepage Hero Section Structure */
@@ -34,11 +49,18 @@ h1, h2, h3, h4, h5, h6, .txs-hero h1 {
   margin: 0 auto;
 }
 
+/* The Premium Visual Gradient (Always remains on Landing Page text) */
 .txs-hero h1 {
   font-size: 3.5rem;
   line-height: 1.2;
   margin-bottom: 1rem;
   font-weight: 800;
+  
+  /* Blender Gradient Mix derived from Official Colors */
+  background: linear-gradient(90deg, #3a7bc8, #f5a623);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .txs-hero p {
@@ -74,59 +96,5 @@ h1, h2, h3, h4, h5, h6, .txs-hero h1 {
 
 [data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-}
-
-
-/* ============================================================
-   Takes for Blender — BRAND THEME SPECIFIC (Custom Colors)
-   These rules ONLY apply when data-md-color-primary="custom"
-   ============================================================ */
-
-/* Core Brand Colors */
-[data-md-color-primary="custom"] {
-  --md-primary-fg-color:        #265787;  /* Blender blue */
-  --md-primary-fg-color--light: #3a7bc8;
-  --md-primary-fg-color--dark:  #1a3d5c;
-  --md-accent-fg-color:         #e87d0d;  /* Blender orange */
-  --md-accent-fg-color--light:  #f5a623;
-}
-
-/* Glassmorphism Navigation Bar */
-[data-md-color-primary="custom"] .md-header {
-  background-color: rgba(38, 87, 135, 0.3) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-}
-
-[data-md-color-primary="custom"][data-md-color-scheme="slate"] .md-header {
-  background-color: rgba(18, 18, 18, 0.65) !important;
-}
-
-/* Blender Gradient Mix for Hero Title */
-[data-md-color-primary="custom"] .txs-hero h1 {
-  background: linear-gradient(90deg, #3a7bc8, #f5a623);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Admonition tweaks — make Tips use Blender orange */
-[data-md-color-primary="custom"] .md-typeset .admonition.tip,
-[data-md-color-primary="custom"] .md-typeset details.tip {
-  border-color: #e87d0d;
-}
-[data-md-color-primary="custom"] .md-typeset .tip > .admonition-title,
-[data-md-color-primary="custom"] .md-typeset .tip > summary {
-  background-color: rgba(232, 125, 13, 0.1);
-}
-[data-md-color-primary="custom"] .md-typeset .tip > .admonition-title::before,
-[data-md-color-primary="custom"] .md-typeset .tip > summary::before {
-  background-color: #e87d0d;
-}
-
-/* Add slight orange glow to grid hover borders in brand mode */
-[data-md-color-primary="custom"] .md-typeset .grid.cards > ul > li:hover {
-  border-color: rgba(232, 125, 13, 0.4);
+  border-color: rgba(255, 255, 255, 0.15); /* Neutral/White glow to match grayscale intent */
 }

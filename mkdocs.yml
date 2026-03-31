@@ -39,34 +39,20 @@ theme:
   name: material
   custom_dir: docs/overrides
   palette:
-    # 1. Brand Dark Mode (Default on Load)
-    - scheme: slate
-      primary: custom
-      accent: custom
-      toggle:
-        icon: material/palette
-        name: Switch to Standard Dark Mode
-    # 2. Standard Dark Mode
+    # 1. Standard Dark Mode (Default)
     - scheme: slate
       primary: black
-      accent: indigo
+      accent: black
       toggle:
         icon: material/brightness-4
-        name: Switch to Standard Light Mode
-    # 3. Standard Light Mode
+        name: Switch to Light Pattern
+    # 2. Standard Light Mode
     - scheme: default
       primary: black
-      accent: indigo
+      accent: black
       toggle:
         icon: material/brightness-7
-        name: Switch to Brand Light Mode
-    # 4. Brand Light Mode
-    - scheme: default
-      primary: custom
-      accent: custom
-      toggle:
-        icon: material/flare
-        name: Switch to Brand Dark Mode
+        name: Switch to Dark Pattern
   features:
     - navigation.tabs
     - navigation.sections
