@@ -147,7 +147,7 @@
             text-decoration: none; border: none; cursor: pointer;
             background: linear-gradient(135deg, var(--accent), var(--accent-light));
             color: var(--bg-dark);
-            transition: transform 0.2s, box-shadow 0.3s;
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1.1), box-shadow 0.3s ease;
             position: relative; overflow: hidden;
         }
         .btn-primary::after {
@@ -161,17 +161,12 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 24px rgba(232,125,13,0.35);
         }
-        @keyframes pulse-btn {
-            0%, 100% { box-shadow: 0 0 15px rgba(232, 125, 13, 0.4); transform: scale(1); }
-            50% { box-shadow: 0 0 35px rgba(232, 125, 13, 0.85); transform: scale(1.02); }
-        }
         .btn-glow {
-            animation: pulse-btn 2s infinite ease-in-out;
+            box-shadow: 0 0 18px rgba(232, 125, 13, 0.55);
         }
         .btn-glow:hover {
-            animation: none;
-            box-shadow: 0 0 45px rgba(232, 125, 13, 1);
-            transform: scale(1.04);
+            box-shadow: 0 0 40px rgba(232, 125, 13, 0.9);
+            transform: scale(1.04) translateY(-2px);
         }
         .btn-secondary {
             display: inline-flex; align-items: center; gap: 0.5rem;
