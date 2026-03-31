@@ -22,8 +22,20 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install MkDocs
-        run: pip install mkdocs-material
+      - name: Install MkDocs & Translators
+        run: pip install mkdocs-material mkdocs-static-i18n deepl
+
+      - name: Run Auto-Translator Pipeline (DeepL)
+        env:
+          DEEPL_API_KEY: ${{ secrets.DEEPL_API_KEY }}
+        run: python scripts/translate_docs.py
+        continue-on-error: true
+
+      - name: Auto-Commit Translated Documents
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(i18n): Auto-translate missing documentation [skip ci]"
+          file_pattern: 'docs/*.de.md'
 
       - name: Build MkDocs into wiki subdirectory
         run: mkdocs build --strict

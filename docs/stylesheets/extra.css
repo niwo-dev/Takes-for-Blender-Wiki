@@ -1,23 +1,6 @@
 /* ============================================================
-   Takes for Blender — Blender-Native Brand Colors
+   Takes for Blender — Global Web Layout (Typography & Layout)
    ============================================================ */
-
-/* Blender brand palette */
-:root {
-  --md-primary-fg-color:        #265787;  /* Blender blue */
-  --md-primary-fg-color--light: #3a7bc8;
-  --md-primary-fg-color--dark:  #1a3d5c;
-  --md-accent-fg-color:         #e87d0d;  /* Blender orange */
-  --md-accent-fg-color--light:  #f5a623;
-}
-
-[data-md-color-scheme="slate"] {
-  --md-primary-fg-color:        #265787;
-  --md-primary-fg-color--light: #3a7bc8;
-  --md-primary-fg-color--dark:  #1a3d5c;
-  --md-accent-fg-color:         #e87d0d;
-  --md-accent-fg-color--light:  #f5a623;
-}
 
 /* Keyboard shortcut styling — matches Blender manual convention */
 kbd {
@@ -32,44 +15,13 @@ kbd {
   padding: 0.5em 0.8em;
 }
 
-/* Admonition tweaks — make Tips use Blender orange */
-.md-typeset .admonition.tip,
-.md-typeset details.tip {
-  border-color: #e87d0d;
-}
-.md-typeset .tip > .admonition-title,
-.md-typeset .tip > summary {
-  background-color: rgba(232, 125, 13, 0.1);
-}
-.md-typeset .tip > .admonition-title::before,
-.md-typeset .tip > summary::before {
-  background-color: #e87d0d;
-}
-
-/* ============================================================
-   Takes for Blender — Web Upgrades (Hero & SPA)
-   ============================================================ */
-
 /* Modern Typography for Headings */
 h1, h2, h3, h4, h5, h6, .txs-hero h1 {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
   font-weight: 600;
 }
 
-/* Glassmorphism Navigation Bar */
-.md-header {
-  background-color: rgba(38, 87, 135, 0.4) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-}
-
-[data-md-color-scheme="slate"] .md-header {
-  background-color: rgba(18, 18, 18, 0.6) !important;
-}
-
-/* Custom Homepage Hero Section */
+/* Custom Homepage Hero Section Structure */
 .txs-hero {
   padding: 4rem 1rem;
   text-align: center;
@@ -87,12 +39,6 @@ h1, h2, h3, h4, h5, h6, .txs-hero h1 {
   line-height: 1.2;
   margin-bottom: 1rem;
   font-weight: 800;
-  
-  /* Blender Gradient Mix */
-  background: linear-gradient(90deg, #3a7bc8, #f5a623);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .txs-hero p {
@@ -124,9 +70,63 @@ h1, h2, h3, h4, h5, h6, .txs-hero h1 {
 .md-typeset .grid.cards > ul > li:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  border-color: rgba(232, 125, 13, 0.3); /* Subtle Orange glow */
 }
 
 [data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+
+/* ============================================================
+   Takes for Blender — BRAND THEME SPECIFIC (Custom Colors)
+   These rules ONLY apply when data-md-color-primary="custom"
+   ============================================================ */
+
+/* Core Brand Colors */
+[data-md-color-primary="custom"] {
+  --md-primary-fg-color:        #265787;  /* Blender blue */
+  --md-primary-fg-color--light: #3a7bc8;
+  --md-primary-fg-color--dark:  #1a3d5c;
+  --md-accent-fg-color:         #e87d0d;  /* Blender orange */
+  --md-accent-fg-color--light:  #f5a623;
+}
+
+/* Glassmorphism Navigation Bar */
+[data-md-color-primary="custom"] .md-header {
+  background-color: rgba(38, 87, 135, 0.3) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+[data-md-color-primary="custom"][data-md-color-scheme="slate"] .md-header {
+  background-color: rgba(18, 18, 18, 0.65) !important;
+}
+
+/* Blender Gradient Mix for Hero Title */
+[data-md-color-primary="custom"] .txs-hero h1 {
+  background: linear-gradient(90deg, #3a7bc8, #f5a623);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Admonition tweaks — make Tips use Blender orange */
+[data-md-color-primary="custom"] .md-typeset .admonition.tip,
+[data-md-color-primary="custom"] .md-typeset details.tip {
+  border-color: #e87d0d;
+}
+[data-md-color-primary="custom"] .md-typeset .tip > .admonition-title,
+[data-md-color-primary="custom"] .md-typeset .tip > summary {
+  background-color: rgba(232, 125, 13, 0.1);
+}
+[data-md-color-primary="custom"] .md-typeset .tip > .admonition-title::before,
+[data-md-color-primary="custom"] .md-typeset .tip > summary::before {
+  background-color: #e87d0d;
+}
+
+/* Add slight orange glow to grid hover borders in brand mode */
+[data-md-color-primary="custom"] .md-typeset .grid.cards > ul > li:hover {
+  border-color: rgba(232, 125, 13, 0.4);
 }

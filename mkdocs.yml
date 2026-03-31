@@ -11,24 +11,62 @@ edit_uri: edit/main/docs/
 
 copyright: "&copy; 2026 Nikolaj Woroschilow"
 
+extra:
+  alternate:
+    - name: English
+      link: /Takes-for-Blender-Wiki/wiki/
+      lang: en
+    - name: Deutsch
+      link: /Takes-for-Blender-Wiki/wiki/de/
+      lang: de
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      languages:
+        - locale: en
+          name: English
+          default: true
+          build: true
+        - locale: de
+          name: Deutsch
+          default: false
+          build: true
+
 theme:
   name: material
   custom_dir: docs/overrides
   palette:
-    # Light mode
+    # 1. Standard Light Mode
+    - scheme: default
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to Standard Dark
+    # 2. Standard Dark Mode
+    - scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to Brand Light
+    # 3. Brand Light Mode
     - scheme: default
       primary: custom
       accent: custom
       toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    # Dark mode
+        icon: material/flare
+        name: Switch to Brand Dark
+    # 4. Brand Dark Mode
     - scheme: slate
       primary: custom
       accent: custom
       toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+        icon: material/palette
+        name: Switch to Standard Light
   features:
     - navigation.tabs
     - navigation.sections
