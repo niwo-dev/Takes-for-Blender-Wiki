@@ -1,6 +1,6 @@
-# Stapel-Rendering
+# Stapelrendering
 
-Das **Stapel-Rendering**-System automatisiert das Rendern über mehrere Ansichtsebenen hinweg und wendet dabei für jede Ebene kaskadierende Überschreibungen (Kameras, Welten, Aktionen, Voreinstellungen, Varianten) an.
+Das **Stapelrendering**-System automatisiert das Rendern über mehrere Ansichtsebenen hinweg und wendet dabei für jede Ebene kaskadierende Überschreibungen (Kameras, Welten, Aktionen, Voreinstellungen, Varianten) an.
 
 ## Rendermodi
 

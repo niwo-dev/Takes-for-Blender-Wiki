@@ -23,7 +23,7 @@ Jede Ebene in dieser Hierarchie kann Eigenschaften der darüberliegenden Ebene �
 
 Drücken Sie im 3D-Viewport **++n++**, um die Seitenleiste zu öffnen, und klicken Sie dann auf die Registerkarte **Takes**.
 
-Der **Takes-Baum** zeigt alle Ihre aktuellen Szenen und Ansichts-Layer in einer einheitlichen Liste an.
+Der **Takes-Baum** zeigt alle Ihre aktuellen Szenen und View-Layer in einer einheitlichen Liste an.
 
 ### 2. Eine Ansichtsebene hinzufügen
 
@@ -58,5 +58,5 @@ Rendere alle deine Ansichtsebenen auf einmal:
 ## Was kommt als Nächstes?
 
 - Informieren Sie sich über das [Kaskadensystem](../features/cascade.md), um zu verstehen, wie Überschreibungen funktionieren
-- Richten Sie [Render-Voreinstellungen](../features/render_presets.md) für konsistente Ausgabeeinstellungen ein
+- Richten Sie [Render-Voreinstellungen](../features/render_presets.md) für einheitliche Ausgabeeinstellungen ein
 - Entdecken Sie den [Varianten-Schalter](../features/variant_switch.md) für Materialvariationen

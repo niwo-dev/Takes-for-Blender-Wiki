@@ -4,7 +4,7 @@ Das **Variant Switch**-System verwaltet Produktvarianten – unterschiedliche Ma
 
 ## Konzept
 
-Bei der Produktvisualisierung muss oft dasselbe Produkt in verschiedenen Oberflächen (Gold, Silber, Mattschwarz) oder Konfigurationen dargestellt werden. Variant Switch automatisiert den Prozess des Materialwechsels.
+Bei der Produktvisualisierung muss dasselbe Produkt häufig in verschiedenen Oberflächen (Gold, Silber, Mattschwarz) oder Konfigurationen dargestellt werden. Variant Switch automatisiert den Materialaustauschprozess.
 
 ## Hierarchie
 
@@ -21,7 +21,7 @@ Bei der Produktvisualisierung muss oft dasselbe Produkt in verschiedenen Oberfl�
 
 1. Öffnen Sie das Fenster **Variant Switch**.
 2. Klicken Sie auf **+** oder drücken Sie ++Strg+n++, um ein Produkt hinzuzufügen.
-3. Es wird automatisch ein Standardteil („Basis“) mit einem leeren Pool-Platz erstellt.
+3. Es wird automatisch ein Standardteil („Basis“) mit einem leeren Pool-Slot erstellt.
 
 ### Zustände hinzufügen
 
@@ -37,7 +37,7 @@ Bei der Produktvisualisierung muss oft dasselbe Produkt in verschiedenen Oberfl�
 
 ### Vorschau von Varianten
 
-Klicken Sie auf das **Diamantsymbol** eines beliebigen inaktiven Zustands, um diese Variante sofort im Ansichtsfenster anzuwenden. Der aktive Zustand wird als ausgefüllter Kreis angezeigt.
+Klicken Sie auf das **Rauten-Symbol** eines beliebigen inaktiven Zustands, um diese Variante sofort auf das Ansichtsfenster anzuwenden. Der aktive Zustand wird als ausgefüllter Kreis angezeigt.
 
 ## Variantenmodi
 

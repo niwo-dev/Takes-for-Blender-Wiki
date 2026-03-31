@@ -37,14 +37,14 @@ Anzeigen und Verwalten der Kaskaden-Aktionszuweisung:
 
 ### Compositor-Popover
 
-Weisen Sie einen Compositor-Knotenbaum pro View Layer zu.
+Weisen Sie einen Compositor-Knotenbaum pro Ansichtsebene zu.
 
-### Output-Popover
+### Ausgabe-Popover
 
 Konfigurieren Sie die Render-Ausgabeeinstellungen:
 
 - **Ausgaberegel** — Tag-basierte Regel für den Ausgabepfad.
-- **Render-Voreinstellung** — Render-Einstellungen pro View Layer.
+- **Render-Voreinstellung** — Render-Einstellungen pro Ansichtsebene.
 
 ## Auflösung überschreiben
 
