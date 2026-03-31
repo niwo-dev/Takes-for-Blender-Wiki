@@ -35,7 +35,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(i18n): Auto-translate missing documentation [skip ci]"
-          file_pattern: 'docs/*.de.md'
+          file_pattern: 'docs/**/*.de.md docs/**/*.es.md docs/**/*.ru.md docs/**/*.zh.md docs/**/*.ja.md docs/**/*.vi.md'
 
       - name: Build MkDocs into wiki subdirectory
         run: mkdocs build --strict
