@@ -318,6 +318,15 @@
         .workflow-step p {
             font-size: 0.85rem; color: var(--text-dim); line-height: 1.5;
         }
+        .workflow-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: block;
+        }
 
         /* ─── BENEFITS SECTION ─── */
         .benefits-grid {
@@ -453,11 +462,8 @@
         </div>
         <div class="hero-visual">
             <div class="hero-glow"></div>
-            <!-- placeholder for future screenshot -->
-            <div style="width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#161618,#1c1c1f);border-radius:12px;border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;">
-                <span style="font-size:3rem;">🎬</span>
-                <span style="color:#4a5568;font-size:0.85rem;font-weight:500;">Product Screenshot Coming Soon</span>
-            </div>
+            <!-- Product UI Mockup -->
+            <img src="media/landing/hero.png" alt="Takes for Blender Panel Interface" style="width:100%; border-radius:12px; border:1px solid rgba(255,255,255,0.06); box-shadow:0 20px 60px rgba(0,0,0,0.5);">
         </div>
     </div>
 </section>
@@ -552,14 +558,17 @@
             <div class="workflow-step">
                 <h3>Organize</h3>
                 <p>Create your Takes Tree — group scenes and view layers into a meaningful hierarchy. Add versions for iterations. Tag with colors for quick visual scanning.</p>
+                <img src="media/landing/hero.png" alt="Organize setup" class="workflow-image">
             </div>
             <div class="workflow-step">
                 <h3>Override</h3>
                 <p>Assign cameras, worlds, actions, render presets, and variant states at any cascade level. Global settings flow down. Local overrides stay local. Zero duplication.</p>
+                <img src="media/landing/override.png" alt="Cascade overrides" class="workflow-image">
             </div>
             <div class="workflow-step">
                 <h3>Render</h3>
                 <p>Hit Render. The batch system walks the tree, applies every override, renders each View Layer into its Smart Output path. You get a coffee. It just works.</p>
+                <img src="media/landing/render.png" alt="Batch rendering process" class="workflow-image">
             </div>
         </div>
     </div>
