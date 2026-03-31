@@ -253,14 +253,16 @@
             transition: border-color 0.3s, background 0.3s, transform 0.3s;
             position: relative; overflow: hidden;
         }
-        .feature-card::before {
+        .feature-card::after, .workflow-step::after, .benefit::after {
             content: ''; position: absolute;
             top: 0; left: 0; right: 0; height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
             opacity: 0; transition: opacity 0.3s;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
         }
-        .feature-card:hover::before { opacity: 1; }
-        .feature-card:hover {
+        .feature-card:hover::after, .workflow-step:hover::after, .benefit:hover::after { opacity: 1; }
+        .feature-card:hover, .workflow-step:hover, .benefit:hover {
             border-color: var(--border-hover);
             background: var(--bg-card-hover);
             transform: translateY(-4px);
@@ -299,6 +301,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 14px;
+            transition: border-color 0.3s, background 0.3s, transform 0.3s;
         }
         .workflow-step::before {
             content: counter(step);
@@ -339,9 +342,9 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 14px;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, background 0.3s, transform 0.3s;
+            position: relative;
         }
-        .benefit:hover { border-color: var(--border-hover); }
         .benefit-icon {
             flex-shrink: 0;
             width: 40px; height: 40px;
