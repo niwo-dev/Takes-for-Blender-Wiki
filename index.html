@@ -406,17 +406,20 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
         .comp-table { width: 100%; border-collapse: collapse; text-align: left; }
-        .comp-table th, .comp-table td { padding: 1.5rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .comp-table th { background: rgba(0,0,0,0.3); font-family: 'Outfit', sans-serif; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-weight: 600; }
+        .comp-table th, .comp-table td { padding: 1.2rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .comp-table th { background: rgba(0,0,0,0.3); font-family: 'Outfit', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-weight: 600; text-align: left; }
+        .comp-table th.center { text-align: center; }
         .comp-table th.highlight { color: var(--accent-light); background: rgba(232, 125, 13, 0.08); border-left: 1px solid rgba(232, 125, 13, 0.3); border-right: 1px solid rgba(232, 125, 13, 0.3); }
-        .comp-table td { font-size: 0.95rem; color: #a0aab5; line-height: 1.4; }
+        .comp-table td { font-size: 0.95rem; color: #a0aab5; line-height: 1.4; vertical-align: middle; }
+        .comp-table td.center { text-align: center; }
         .comp-table td.highlight { background: rgba(232, 125, 13, 0.04); color: var(--text-bright); border-left: 1px solid rgba(232, 125, 13, 0.3); border-right: 1px solid rgba(232, 125, 13, 0.3); font-weight: 500; }
         .comp-table tr:last-child td { border-bottom: none; }
-        .td-title { font-weight: 600; color: var(--text-bright); }
-        .td-x { color: var(--text-dim); display:flex; align-items:center; gap:0.6rem; }
-        .td-check { color: var(--text-bright); display:flex; align-items:center; gap:0.6rem; }
-        .highlight.td-check { color: var(--accent-light); }
-        .td-icon { font-size: 1.3rem; }
+        .td-title { font-weight: 500; color: var(--text-bright); }
+        .icon-check { color: var(--accent); font-size: 1.5rem; display: inline-block; vertical-align: middle; }
+        .icon-x { color: rgba(255,255,255,0.15); font-size: 1.5rem; display: inline-block; vertical-align: middle; }
+        .icon-gray { color: var(--text-dim); }
+        .matrix-group td { background: rgba(0,0,0,0.6); font-family: 'Outfit', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); padding: 0.8rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); border-left: none; border-right: none; font-weight: 600; }
+        .comp-table tr.matrix-group:first-child td { border-top: none; }
 
 
         /* ─── CREATOR SECTION ─── */
@@ -777,39 +780,64 @@
         <p class="section-subtitle">Why traditional "scene state savers" aren't enough for high-end visualization.</p>
 
         <div class="comp-table-container">
-            <table class="comp-table">
+            <table class="comp-table matrix-table">
                 <thead>
                     <tr>
-                        <th width="30%">Architectural Needs</th>
-                        <th width="35%">Standard Context Savers<br><span style="font-size:0.75rem; color:var(--text-dim); text-transform:none;">(E.g., Renderset, Polyviews)</span></th>
-                        <th width="35%" class="highlight">Takes for Blender<br><span style="font-size:0.75rem; color:var(--text-bright); text-transform:none;">(The Stage Standard)</span></th>
+                        <th width="40%">Capabilities</th>
+                        <th width="30%" class="center">Standard Context Addons<br><span style="font-size:0.75rem; color:var(--text-dim); text-transform:none;">(E.g., Renderset, Polyviews)</span></th>
+                        <th width="30%" class="highlight center">Takes for Blender<br><span style="font-size:0.75rem; color:var(--text-bright); text-transform:none;">(The Stage Standard)</span></th>
                     </tr>
                 </thead>
                 <tbody>
+                    <tr class="matrix-group"><td colspan="3">Architecture & Workflow</td></tr>
                     <tr>
-                        <td class="td-title">Hierarchy Engine</td>
-                        <td><div class="td-x">Isolated, flat states</div></td>
-                        <td class="highlight"><div class="td-check"><span class="material-symbols-outlined td-icon">account_tree</span> Top-Down Cascade Tree</div></td>
+                        <td class="td-title">Hierarchical State Inheritance (Cascade)</td>
+                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
+                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
                     </tr>
                     <tr>
-                        <td class="td-title">Animation Overrides</td>
-                        <td><div class="td-x">Duplicates meshes/collections</div></td>
-                        <td class="highlight"><div class="td-check"><span class="material-symbols-outlined td-icon">animation</span> Non-destructive Action Slots</div></td>
+                        <td class="td-title">Non-Destructive Animation Swapping</td>
+                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
+                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
                     </tr>
                     <tr>
-                        <td class="td-title">Data Safety</td>
-                        <td><div class="td-x">Silently loses dangling data</div></td>
-                        <td class="highlight"><div class="td-check"><span class="material-symbols-outlined td-icon">shield</span> Inspector Watchlist & Pinning</div></td>
+                        <td class="td-title">Store Nested Variations (Takes Tree)</td>
+                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
+                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
+                    </tr>
+                    
+                    <tr class="matrix-group"><td colspan="3">Data Protection</td></tr>
+                    <tr>
+                        <td class="td-title">Dangling Action Warnings</td>
+                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
+                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
                     </tr>
                     <tr>
-                        <td class="td-title">Global Edits</td>
-                        <td><div class="td-x">Manual update per variation</div></td>
-                        <td class="highlight"><div class="td-check"><span class="material-symbols-outlined td-icon">bolt</span> Auto-inherits from Root Take</div></td>
+                        <td class="td-title">Reference State Tracking & Pinning</td>
+                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
+                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
                     </tr>
                     <tr>
-                        <td class="td-title">Batch Rendering</td>
-                        <td><div class="td-check">Includes basic queuing</div></td>
-                        <td class="highlight"><div class="td-check"><span class="material-symbols-outlined td-icon">desktop_windows</span> Built-in Headless Batch Engine</div></td>
+                        <td class="td-title">Crash-Safe Recovery</td>
+                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
+                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
+                    </tr>
+
+                    <tr class="matrix-group"><td colspan="3">Rendering Features</td></tr>
+                    <tr>
+                        <td class="td-title">Dynamic Output Naming Tokens</td>
+                        <td class="center"><span class="material-symbols-outlined icon-check icon-gray">check_circle</span></td>
+                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
+                    </tr>
+                    <tr>
+                        <td class="td-title">Built-in Batch Rendering Queue</td>
+                        <td class="center"><span class="material-symbols-outlined icon-check icon-gray">check_circle</span></td>
+                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
+                    </tr>
+                    <tr>
+                        <td class="td-title">Headless Background Processing</td>
+                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
+                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
                     </tr>
                 </tbody>
             </table>
