@@ -1,6 +1,6 @@
 # Navigationsbereich
 
-**Position:** *Eigenschaften-Editor > Registerkarte „Takes“*
+**Position:** *Eigenschaften-Editor > Registerkarte "Takes“*
 
 Der Navigationsbereich ist die zentrale Schaltstelle für die Verwaltung Ihrer Takes-Hierarchie. Er enthält den Takes-Baum, Symbole für die Kaskadenüberschreibung und den Zugriff auf das Batch-Rendering.
 
@@ -34,7 +34,7 @@ Der Takes-Baum ist eine einheitliche hierarchische Liste, die Ihre gesamte Proje
 
 Jede Zeile der Ansichtsebene zeigt Symbole für Kaskadenüberschreibungen an. Diese Symbole zeigen auf einen Blick, welche Eigenschaften auf dieser Ebene überschrieben werden:
 
-- **Ghost** — Status „Ruhezustand“
+- **Ghost** — Status "Ruhezustand“
 - **Tag** — Zugewiesenes Farb-Tag
 - **Variante** — Status des aktiven Varianten-Schalters
 - **Aktion** — Zuweisung einer Kaskadenaktion
@@ -44,7 +44,7 @@ Jede Zeile der Ansichtsebene zeigt Symbole für Kaskadenüberschreibungen an. Di
 - **Ausgabe** — Ausgabe-Tag/Regel
 - **Render** — Render-Voreinstellung
 
-!!! tip „Kaskaden-Symbol-Überlauf“
+!!! tip "Kaskaden-Symbol-Überlauf“
     Wenn das Fenster schmal ist, werden die Kaskadensymbole automatisch zu einer Überlauf-Schaltfläche
     **⋯** zusammengefasst. Ein Klick darauf öffnet ein Popover, das alle Symbole vollständig anzeigt.
 
@@ -52,7 +52,7 @@ Jede Zeile der Ansichtsebene zeigt Symbole für Kaskadenüberschreibungen an. Di
 
 Konfigurierbare Einrückungslinien stellen die Hierarchie visuell dar. Tag-Farben können von Baumlinien übernommen werden, um eine schnelle Identifizierung zu ermöglichen.
 
-## Popover „Einstellungen“
+## Popover "Einstellungen“
 
 Klicken Sie auf das **Zahnrad-Symbol**, um die Einstellungen für die Baumdarstellung aufzurufen:
 

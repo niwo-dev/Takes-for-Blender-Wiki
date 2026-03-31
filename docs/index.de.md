@@ -54,7 +54,7 @@ hide:
 | **Render-Voreinstellungen** | JSON-basierte Voreinstellungen für Render-, Kamera-, Welt- und Dateiausgabeeinstellungen – pro Ansichtsebene. |
 | **Inline-Vorschau** | Live-Viewport-Miniaturansichten neben jeder Ansichtsebene in der Baumstruktur. |
 
-!!! tip „Blender-Version“
+!!! tip "Blender-Version“
     Takes for Blender erfordert **Blender 5.1** oder neuer. Es nutzt das in Blender 5.0 eingeführte Slotted-Action-System.
 
 ---

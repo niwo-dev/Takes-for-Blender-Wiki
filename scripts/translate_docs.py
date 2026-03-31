@@ -87,7 +87,13 @@ def translate_markdown(content: str, target_lang: str, translator: deepl.Transla
         print(f"  [!] Translation failed: {e}")
         return content
 
-    return _restore_protected(translated, protected)
+    result_text = _restore_protected(translated, protected)
+
+    # Post-process: DeepL converts "..." to „..." (German typographic quotes).
+    # MkDocs admonitions require straight quotes.
+    result_text = result_text.replace("\u201e", '"').replace("\u201c", '"')
+
+    return result_text
 
 
 def main():

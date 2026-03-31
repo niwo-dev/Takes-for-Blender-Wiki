@@ -53,7 +53,7 @@ Klicken Sie auf ein beliebiges Kaskadensymbol in einer Baumzeile, um dessen Popo
 
 ### Über Kontexteigenschaften
 
-Das Fenster „Kontexteigenschaften“ zeigt alle Überschreibungen für die aktive VL an einem Ort an.
+Das Fenster "Kontexteigenschaften“ zeigt alle Überschreibungen für die aktive VL an einem Ort an.
 
 ## Visuelle Anzeigen
 
@@ -61,6 +61,6 @@ Das Fenster „Kontexteigenschaften“ zeigt alle Überschreibungen für die akt
 - **Abgedunkeltes Symbol** — Der Wert wird von einer übergeordneten Ebene geerbt
 - **Alt+Klick** — Löscht die Überschreibung auf dieser Ebene
 
-!!! tip „Kaskaden-Debugging“
+!!! tip "Kaskaden-Debugging“
     Bewegen Sie den Mauszeiger über ein Kaskadensymbol, um einen Tooltip anzuzeigen, der angibt, von welcher Ebene der
     aktuelle Wert geerbt wird.

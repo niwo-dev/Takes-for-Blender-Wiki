@@ -38,7 +38,7 @@ Für einheitliche Qualität in allen VLs:
 
 ### Vordergrundmodus
 
-1. Öffnen Sie die Seitenleiste „Takes Tree“.
+1. Öffnen Sie die Seitenleiste "Takes Tree“.
 2. Klicken Sie auf die Schaltfläche **Render**.
 3. Die Warteschlange verarbeitet jede VL in der Reihenfolge der Baumstruktur:
     - Wechselt den Szenen-/VL-Kontext
@@ -80,14 +80,14 @@ renders/
 
 ## Tipps
 
-!!! tip „Fertigstellungssignal“
+!!! tip "Fertigstellungssignal“
     Legen Sie unter **Einstellungen > Funktionen** einen Benachrichtigungston fest, um benachrichtigt zu werden,
     wenn Hintergrund-Renderings abgeschlossen sind. Unterstützt Systemtöne und benutzerdefinierte `.wav`-Dateien.
 
-!!! tip „Vorschau vor dem Rendern“
+!!! tip "Vorschau vor dem Rendern“
     Verwenden Sie ++Alt++-Klick auf das Render-Symbol neben einem beliebigen VL, um eine Vorschau
     der zuletzt gerenderten Ausgabe anzuzeigen, ohne erneut zu rendern.
 
-!!! warning „Zuerst speichern“
+!!! warning "Zuerst speichern“
     Hintergrund-Renderings erfordern, dass die `.blend`-Datei gespeichert wird.
     Vordergrund-Renderings arbeiten mit dem aktuellen Speicherstand.

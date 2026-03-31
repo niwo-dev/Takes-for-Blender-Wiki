@@ -1,8 +1,8 @@
 # Kontexteigenschaften
 
-**Speicherort:** *Eigenschaften-Editor > Registerkarte „Aufnahmen“ > Kontext*
+**Speicherort:** *Eigenschaften-Editor > Registerkarte "Aufnahmen“ > Kontext*
 
-Der Bereich „Kontexteigenschaften“ zeigt die Einstellungen für die Kaskadenüberschreibung der aktuell aktiven Ansichtsebene an. Jede Eigenschaftskategorie verfügt über ein eigenes Popover, das über die Kaskadensymbole in der Baumstruktur aufgerufen werden kann.
+Der Bereich "Kontexteigenschaften“ zeigt die Einstellungen für die Kaskadenüberschreibung der aktuell aktiven Ansichtsebene an. Jede Eigenschaftskategorie verfügt über ein eigenes Popover, das über die Kaskadensymbole in der Baumstruktur aufgerufen werden kann.
 
 ## Kaskaden-Popovers
 
@@ -16,9 +16,9 @@ Weisen Sie eine Kamera pro Ansichtsebene zu:
 - **Kamera-Voreinstellung** — Wenden Sie eine gespeicherte Kamera-Voreinstellung an (Brennweite, Sensorgröße usw.).
 - **Neu / Umbenennen** — Erstellen Sie eine neue Kamera oder benennen Sie die zugewiesene um.
 
-!!! note „Camera Guard“
+!!! note "Camera Guard“
     Die Benutzeroberfläche für Kameravoreinstellungen ist deaktiviert, wenn das ausgewählte Objekt nicht die
-    kaskadenaufgelöste Kamera ist. Eine Informationsmeldung zeigt „Weisen Sie eine Kamera in der Kaskade zu.“ an.
+    kaskadenaufgelöste Kamera ist. Eine Informationsmeldung zeigt "Weisen Sie eine Kamera in der Kaskade zu.“ an.
 
 ### Welt-Popover
 

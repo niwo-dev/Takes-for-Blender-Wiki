@@ -4,7 +4,7 @@ Das System des **Ruhezustands** (Referenzzustand) bewahrt automatisch die urspr�
 
 ## Konzept
 
-Wenn Sie ein Objekt auf jeder Ansichtsebene unterschiedlich animieren, benötigen Sie eine „neutrale“ Basislinie – die Standardposition, -rotation, Materialwerte usw. des Objekts. Das System des Ruhezustands verwaltet diese Basislinie automatisch.
+Wenn Sie ein Objekt auf jeder Ansichtsebene unterschiedlich animieren, benötigen Sie eine "neutrale“ Basislinie – die Standardposition, -rotation, Materialwerte usw. des Objekts. Das System des Ruhezustands verwaltet diese Basislinie automatisch.
 
 ## So funktioniert es
 
@@ -40,6 +40,6 @@ Das Ruhezustandssystem deckt alle standardmäßigen animierbaren Datenblöcke ab
 - Szenen (Schwerkraft, Frame-Bereich)
 - Knotenbäume (Shader-Knoten, Compositor)
 
-!!! warning „Shape Keys & Pose Bones“
+!!! warning "Shape Keys & Pose Bones“
     Shape-Key-Werte und Pose-Bone-Transformationen werden vom
     Rest-State-System noch nicht unterstützt. Dies ist für eine zukünftige Version geplant.

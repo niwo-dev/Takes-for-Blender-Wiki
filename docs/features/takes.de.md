@@ -4,7 +4,7 @@ Ein **Take** ist eine benannte Gruppe von Ansichtsebenen, die eine bestimmte Kon
 
 ## Konzept
 
-In Film und Fotografie ist ein „Take“ eine einzelne Version einer Aufnahme. „Takes“ für Blender erweitert dieses Konzept auf das Ansichtsebenensystem von Blender und bietet Ihnen:
+In Film und Fotografie ist ein "Take“ eine einzelne Version einer Aufnahme. "Takes“ für Blender erweitert dieses Konzept auf das Ansichtsebenensystem von Blender und bietet Ihnen:
 
 - **Unabhängige Kamerazuweisungen** pro Ansichtsebene
 - **Unabhängige Umgebungen** pro Ansichtsebene
@@ -18,11 +18,11 @@ Takes sind in einer Hierarchie innerhalb des Takes-Baums organisiert:
 
 | Ebene | Zweck | Beispiel |
 |-------|---------|---------|
-| **Szenengruppe** | Organisation auf oberster Ebene | „Innenraum“, „Außenbereich“ |
-| **Szene** | Blender-Szene | „Küche“, „Badezimmer“ |
-| **VL-Gruppe** | Logische Gruppierung von VLs | „Hero Shots“, „Detail Shots“ |
-| **Ansichtslayer** | Die eigentliche Render-Einheit | „Front 3/4“, „Top Down“ |
-| **VL-Version** | Benannte Snapshots von VL-Einstellungen | „v1 warm“, „v2 cool“ |
+| **Szenengruppe** | Organisation auf oberster Ebene | "Innenraum“, "Außenbereich“ |
+| **Szene** | Blender-Szene | "Küche“, "Badezimmer“ |
+| **VL-Gruppe** | Logische Gruppierung von VLs | "Hero Shots“, "Detail Shots“ |
+| **Ansichtslayer** | Die eigentliche Render-Einheit | "Front 3/4“, "Top Down“ |
+| **VL-Version** | Benannte Snapshots von VL-Einstellungen | "v1 warm“, "v2 cool“ |
 
 ## Takes erstellen
 
@@ -46,6 +46,6 @@ Erstellen Sie benannte Snapshots der Kaskadeneinstellungen einer Ansichtsebene:
 2. Klicken Sie auf **+** → **Version hinzufügen**.
 3. Jede Version speichert ihre eigenen Kamera-, Welt-, Aktions- und Voreinstellungsüberschreibungen.
 
-!!! tip „Schnellwechsel“
+!!! tip "Schnellwechsel“
     Wechseln Sie zwischen VL-Versionen, um verschiedene Konfigurationen sofort zu vergleichen,
     ohne View Layers duplizieren zu müssen.

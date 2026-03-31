@@ -9,7 +9,7 @@
 
 Lade die ZIP-Datei der neuesten Version von der [GitHub Releases](https://github.com/niwo-dev/Takes-for-Blender/releases)-Seite herunter.
 
-!!! warning „Nicht entpacken“
+!!! warning "Nicht entpacken"
     Blender installiert Add-ons direkt aus der `.zip`-Datei. Entpacken Sie diese vor der Installation **nicht**.
 
 ## In Blender installieren
@@ -28,7 +28,7 @@ Sie sollten Folgendes sehen:
 - Das **Navigationspanel** mit den Auswahlfeldern für Takes/Ansichts-Ebenen
 - Den **Takes-Baum**, der Ihre aktuellen Szenen und Ansichts-Ebenen anzeigt
 
-!!! tip „Erster Start“
+!!! tip "Erster Start"
     Beim ersten Start mit den Standardeinstellungen aktiviert das Add-on automatisch
     **Auto-Assign** und **Auto-Rename** für Kaskadenaktionen.
     Das bedeutet, dass Animationsdaten standardmäßig pro Ansichtsebene verwaltet werden.
@@ -43,6 +43,6 @@ So aktualisieren Sie auf eine neuere Version:
 4. Starten Sie Blender neu.
 5. Befolgen Sie die oben genannten Installationsschritte mit dem neuen `.zip`.
 
-!!! note „Einstellungsspeicherung“
+!!! note "Einstellungsspeicherung"
     Ihre Add-on-Einstellungen werden in einer JSON-Datei gespeichert und bleiben bei Updates erhalten,
     solange **Einstellungen automatisch speichern** aktiviert ist (Standard).

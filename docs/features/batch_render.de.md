@@ -6,14 +6,14 @@ Das **Batch-Rendering**-System automatisiert das Rendern über mehrere Ansichtse
 
 Takes for Blender unterstützt zwei Render-Modi:
 
-=== „Vordergrund“
+=== "Vordergrund“
     Rendert innerhalb der aktuellen Blender-Sitzung. Du siehst das Render-Fenster und den Fortschritt in Echtzeit, aber Blender ist während des Renderns gesperrt.
 
  - Klicke auf die Schaltfläche **Render** (:material-image:) in der Seitenleiste.
     - Der Fortschritt wird pro VL mit Statusanzeigen angezeigt.
     - Drücken Sie ++esc++, um abzubrechen.
 
-=== „Hintergrund“
+=== "Hintergrund“
     Rendert in separaten, headless Blender-Unterprozessen. Blender bleibt vollständig interaktiv, während die Rendervorgänge im Hintergrund laufen.
 
  - Klicken Sie auf die Schaltfläche **Desktop** (:material-desktop-classic:) in der Seitenleiste.
@@ -38,7 +38,7 @@ Die Render-Warteschlange zeigt den Status jeder Ansichtsebene an:
 - **Einzelne VL** — Rendert nur die aktive Ansichtsebene (Standard).
 - **Mehrfachauswahl** — Wenn die Mehrfachauswahl aktiviert ist, werden alle ausgewählten Ansichtsebenen gerendert.
 
-!!! tip „Renderreihenfolge“
+!!! tip "Renderreihenfolge“
     Der Batch-Renderer folgt der Reihenfolge in der Baumansicht (von oben nach unten, wie angezeigt),
     nicht der internen Szenen-/VL-Reihenfolge von Blender.
 
@@ -46,7 +46,7 @@ Die Render-Warteschlange zeigt den Status jeder Ansichtsebene an:
 
 Wenn ein Batch-Rendering hängen bleibt:
 
-1. **Alt+Klick** auf die Schaltfläche „Render“, um einen erzwungenen Reset durchzuführen.
+1. **Alt+Klick** auf die Schaltfläche "Render“, um einen erzwungenen Reset durchzuführen.
 2. Dadurch werden alle internen Flags gelöscht und unterdrückte Handler wiederhergestellt.
 
 ## Ausgabe
