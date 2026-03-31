@@ -23,7 +23,7 @@ Jede Ebene in dieser Hierarchie kann Eigenschaften der darüberliegenden Ebene �
 
 Drücken Sie im 3D-Viewport **++n++**, um die Seitenleiste zu öffnen, und klicken Sie dann auf die Registerkarte **Takes**.
 
-Der **Takes-Baum** zeigt alle Ihre aktuellen Szenen und View-Layer in einer einheitlichen Liste an.
+Der **Takes-Baum** zeigt alle Ihre aktuellen Szenen und Ansichtsebenen in einer einheitlichen Liste an.
 
 ### 2. Eine Ansichtsebene hinzufügen
 
@@ -43,7 +43,7 @@ Jede Ansichtsebene kann eine eigene Kamera haben:
 
 Gruppieren Sie verwandte Ansichtsebenen:
 
-1. Wählen Sie eine Ansichtsebene in der Baumstruktur aus.
+1. Wählen Sie eine Ansichtsebene in der Baumansicht aus.
 2. Drücken Sie ++Strg+G++, um eine VL-Gruppe zu erstellen.
 3. Ziehe andere Ansichtsebenen in die Gruppe.
 

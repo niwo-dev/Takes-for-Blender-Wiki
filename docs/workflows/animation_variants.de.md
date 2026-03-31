@@ -8,7 +8,7 @@ Dieser Arbeitsablauf zeigt, wie man verschiedene Animationsaufnahmen pro Ansicht
 
 Erstellen Sie eine Ansichtsebene pro Animationszustand:
 
-1. Öffnen Sie die Aufnahmen-Struktur.
+1. Öffnen Sie den Aufnahmenbaum.
 2. Klicken Sie für jede Animation auf **+** → **Ansichtslayer hinzufügen**.
 3. Benennen Sie sie aussagekräftig: „Drehen“, „Neigen“, „Explodieren“.
 
@@ -41,16 +41,16 @@ Jede Animation benötigt wahrscheinlich einen eigenen Kamerawinkel:
 
 ### 5. Alle Animationen rendern
 
-1. Aktivieren Sie die Mehrfachauswahl in der Seitenleiste.
-2. Wählen Sie alle Animations-View-Layers aus.
-3. Klicken Sie auf die Schaltfläche „Render“.
-4. Smart Output benennt jede Ausgabedatei automatisch nach dem VL-Namen.
+1. Aktivieren Sie die Mehrfachauswahl in der Baum-Seitenleiste.
+2. Wählen Sie alle Animations-Ansichtsebenen aus.
+3. Klicken Sie auf die Schaltfläche „Rendern“.
+4. Smart Output benennt jede Ausgabedatei automatisch nach dem Namen der Ansichtsebene.
 
 ## Ergebnis
 
-Jedes View Layer verfügt über:
+Jede Ansichtsebene verfügt über:
 
-- einen eigenen Kamerawinkel
-- eine eigene Animationsaktion
-- einen eigenen Ausgabedateinamen
-- alles verwaltet über eine einheitliche Baumstruktur
+- Einen eigenen Kamerawinkel
+- Eine eigene Animationsaktion
+- Einen eigenen Ausgabedateinamen
+- Alles wird über eine einheitliche Baumstruktur verwaltet

@@ -8,8 +8,8 @@ Oder klicken Sie auf das **Zahnrad-Symbol** in der Kopfzeile des Navigationsbere
 
 | Einstellung | Standard | Beschreibung |
 |---------|---------|-------------|
-| **Einstellungen automatisch speichern** | Ein | Speichert Einstellungen zwischen Sitzungen als JSON. |
-| **Debug-Protokollierung** | Aus | Aktiviert themenbezogene Protokollierung in täglichen Protokolldateien. |
+| **Einstellungen automatisch speichern** | Ein | Einstellungen zwischen Sitzungen als JSON speichern. |
+| **Debug-Protokollierung** | Aus | Protokollierung nach Themen in täglichen Protokolldateien aktivieren. |
 
 ## Funktionen
 

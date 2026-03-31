@@ -6,7 +6,7 @@ Der Bereich „Kontexteigenschaften“ zeigt die Einstellungen für die Kaskaden
 
 ## Kaskaden-Popovers
 
-Klicken Sie auf ein beliebiges Kaskadensymbol in einer Baumzeile, um das entsprechende Popover zu öffnen. In jedem Popover können Sie eine Überschreibung auf dieser spezifischen Hierarchieebene festlegen oder aufheben.
+Klicken Sie auf ein beliebiges Kaskadensymbol in einer Zeile der Baumstruktur, um das entsprechende Popover zu öffnen. In jedem Popover können Sie eine Überschreibung auf dieser spezifischen Hierarchieebene festlegen oder aufheben.
 
 ### Kamera-Popover
 

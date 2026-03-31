@@ -1,6 +1,6 @@
 # Takes for Blender – Corporate Identity (CI)
 
-Dieses Dokument legt die grundlegenden **Markenrichtlinien** und die **Corporate Identity** fest, die aus dem Premium-Web-UI-Mockup abgeleitet wurden. Es definiert die Regeln für Farben, Typografie und UI-Sprache, um die Konsistenz im Add-on, in der Dokumentation und in allen Marketingmaterialien sicherzustellen.
+Dieses Dokument legt die grundlegenden **Markenrichtlinien** und die **Corporate Identity** fest, die sich aus dem Premium-Web-UI-Mockup ableiten. Es definiert die Regeln für Farben, Typografie und UI-Sprache, um die Konsistenz im Add-on, in der Dokumentation und in allen Marketingmaterialien sicherzustellen.
 
 ---
 
@@ -19,7 +19,7 @@ Die Marke verwendet ausschließlich die ikonischen Blender-Farben, die tief ges�
 | **Blender-Orange** | `#e87d0d` | Primäre Handlungsaufforderungen, aktive Zustände, Hervorhebungen. |
 | **Helles Orange** | `#f5a623` | Gradienten-Spitzen, leuchtende Hover-Effekte. |
 | **Blender-Blau** | `#265787` | Strukturelemente, sekundäre Schaltflächen, aktive Registerkarten. |
-| **Helles Blau** | `#3a7bc8` | Text-Gradienten, Link-Farben. |
+| **Helles Blau** | `#3a7bc8` | Textgradienten, Linkfarben. |
 
 ### Hintergründe & Oberflächen
 | Oberfläche | Hex-Code | Verwendung |
@@ -27,7 +27,7 @@ Die Marke verwendet ausschließlich die ikonischen Blender-Farben, die tief ges�
 | **Deep Base** | `#0a0a0c` | Absoluter Hintergrund von Webseiten (leer). |
 | **Surface Dark** | `#121215` | Standard-Seitenhintergrund und Panel-Grundlagen. |
 | **Oberfläche Float** | `#1e1e24` | Erhabene Karten, Dropdown-Menüs, verschachtelte Panels. |
-| **Rahmen** | `rgba(255,255,255, 0.05)` | Extrem dezente Konturen auf Karten zur Definition von Rändern. |
+| **Rahmen** | `rgba(255,255,255, 0.05)` | Extrem dezente Konturen auf Karten zur Definition von Kanten. |
 
 ---
 
