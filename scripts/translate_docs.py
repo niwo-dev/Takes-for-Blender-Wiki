@@ -56,8 +56,8 @@ def _extract_protected(content: str) -> tuple[str, list[str]]:
     # 6. Markdown links  [text](url)  — protect the URL part
     content = re.sub(r"\]\([^)]+\)", _save, content)
 
-    # 7. Admonition lines  !!! type "title"  — protect the ENTIRE line
-    content = re.sub(r"^(!!!?\s+\w+.*)$", _save, content, flags=re.MULTILINE)
+    # 7. Admonition / details lines  !!! type "title" / ??? type "title"
+    content = re.sub(r"^([!?]{3}\s+\w+.*)$", _save, content, flags=re.MULTILINE)
 
     # 8. Key shortcodes  ++ctrl+n++, ++del++, ++alt++
     content = re.sub(r"\+\+[a-z0-9+]+\+\+", _save, content)
