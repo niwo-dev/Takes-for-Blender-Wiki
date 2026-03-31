@@ -1,6 +1,6 @@
 # Variantenbaum
 
-**Speicherort:** *Eigenschaften-Editor > Registerkarte "Takes“ > Variantenumschalter*
+**Speicherort:** *Eigenschaften-Editor > Registerkarte "Takes" > Variantenumschalter*
 
 Der Variantenbaum verwaltet Produktvarianten – verschiedene Materialkonfigurationen, Farboptionen oder Zustände Ihres Produkts. Er nutzt eine hierarchische Struktur aus Produkten, Zuständen und Teilen.
 
@@ -19,13 +19,13 @@ graph TD
 ```
 
 Produkt
-:   Der Container der obersten Ebene (z. B. "Flasche“, "Uhr“).
+:   Der Container der obersten Ebene (z. B. "Flasche", "Uhr").
 
 Zustand
-:   Eine benannte Variante des Produkts (z. B. "Gold“, "Silber“, "Mattschwarz“).
+:   Eine benannte Variante des Produkts (z. B. "Gold", "Silber", "Mattschwarz").
 
 Teil
-:   Eine Komponente des Produkts, die mit einer Sammlung verknüpft ist (z. B. "Korpus“, "Verschluss“, "Armband“).
+:   Eine Komponente des Produkts, die mit einer Sammlung verknüpft ist (z. B. "Korpus", "Verschluss", "Armband").
     Jedes Teil verfügt über einen Materialpool mit indizierten Slots.
 
 ## Verwendung

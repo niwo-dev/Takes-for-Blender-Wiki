@@ -73,7 +73,7 @@ Wählen Sie Ihren bevorzugten Stil unter **Addon-Einstellungen > Verhaltensoptio
 | `time` | Aktuelle Uhrzeit | `14-30-00` |
 | `sep` | Trennzeichen | `_` |
 
-!!! tip "Spickzettel“
+!!! tip "Spickzettel"
     Klicken Sie auf die Schaltfläche **Syntax-Token** (Buchsymbol) in der Kopfzeile des Ausgabefensters,
     um eine vollständige interaktive Token-Referenz mit allen Kategorien anzuzeigen.
 

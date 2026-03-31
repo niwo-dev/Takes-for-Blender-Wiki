@@ -10,9 +10,9 @@ Bei der Produktvisualisierung muss oft dasselbe Produkt in verschiedenen Oberfl�
 
 | Element | Beschreibung |
 |---------|-------------|
-| **Produkt** | Der Container der obersten Ebene (z. B. "Uhr“, "Flasche“). |
-| **Status** | Eine benannte Variante (z. B. "Gold“, "Silber“). Zum Anzeigen der Vorschau anklicken. |
-| **Teil** | Eine Komponente, die mit einer Sammlung verknüpft ist (z. B. "Gehäuse“, "Armband“). |
+| **Produkt** | Der Container der obersten Ebene (z. B. "Uhr", "Flasche"). |
+| **Status** | Eine benannte Variante (z. B. "Gold", "Silber"). Zum Anzeigen der Vorschau anklicken. |
+| **Teil** | Eine Komponente, die mit einer Sammlung verknüpft ist (z. B. "Gehäuse", "Armband"). |
 | **Pool** | Für jedes Teil verfügbare Material-Slots. |
 
 ## Verwendung
@@ -21,12 +21,12 @@ Bei der Produktvisualisierung muss oft dasselbe Produkt in verschiedenen Oberfl�
 
 1. Öffnen Sie das Fenster **Variant Switch**.
 2. Klicken Sie auf **+** oder drücken Sie ++Strg+n++, um ein Produkt hinzuzufügen.
-3. Es wird automatisch ein Standardteil ("Basis“) mit einem leeren Pool-Slot erstellt.
+3. Es wird automatisch ein Standardteil ("Basis") mit einem leeren Pool-Slot erstellt.
 
 ### Zustände hinzufügen
 
 1. Wählen Sie das Produkt aus.
-2. Fügen Sie einen neuen Zustand hinzu (z. B. "Gold“).
+2. Fügen Sie einen neuen Zustand hinzu (z. B. "Gold").
 3. Jeder Zustand speichert einen Pool-Index pro Teil, der festlegt, welches Material verwendet werden soll.
 
 ### Materialien zuweisen
@@ -43,19 +43,19 @@ Klicken Sie auf das **Rauten-Symbol** eines beliebigen inaktiven Zustands, um di
 
 Variant Switch unterstützt drei Modi:
 
-=== "Swap“
+=== "Swap"
     Direkter Materialaustausch. Der einfachste Modus – Material A wird zu Material B.
 
-=== "Preset“
+=== "Preset"
     Wendet eine Materialvoreinstellung über JSON direkt an. Das Material bleibt dasselbe, aber seine Eigenschaften ändern sich.
 
-=== "Pool“
+=== "Pool"
     Wähle aus einer Materialpalette auf Produktebene aus. Jedes Teil verfügt über einen Pool von Materialien, die nach Zustand indiziert sind.
 
 ## Integration mit Cascade
 
 Variant Switch-Zustände werden als Teil der Cascade aufgelöst. Jede Ansichtsebene (oder eine übergeordnete Ebene) kann festlegen, welcher Variantenzustand aktiv ist, wodurch unterschiedliche Varianten pro Kamerawinkel ermöglicht werden.
 
-!!! tip "Variant Tags“
-    Weisen Sie Zuständen Tags aus der Kategorie "Variant“ zu, um die Organisation
+!!! tip "Variant Tags"
+    Weisen Sie Zuständen Tags aus der Kategorie "Variant" zu, um die Organisation
     und die Auflösung der Smart-Ausgabe über das `{variant_tag}`-Token zu ermöglichen.

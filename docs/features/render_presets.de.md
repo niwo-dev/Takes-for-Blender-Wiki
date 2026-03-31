@@ -33,8 +33,8 @@ Wenn Sie die Render-Einstellungen nach dem Anwenden einer Voreinstellung ändern
 
 - **Übernehmen** – Speichern Sie die Änderungen an der Voreinstellung
 - **Zurücksetzen** — Änderungen verwerfen und die Voreinstellungswerte wiederherstellen
-- **Übernehmen & Synchronisieren** (++Alt++-Klick auf "Übernehmen“) — Speichern und auf alle Ebenen übertragen, die diese Voreinstellung verwenden
+- **Übernehmen & Synchronisieren** (++Alt++-Klick auf "Übernehmen") — Speichern und auf alle Ebenen übertragen, die diese Voreinstellung verwenden
 
-!!! note "Ebenenanzeigen“
+!!! note "Ebenenanzeigen"
     Voreinstellungs-Dropdown-Menüs zeigen ein `[Tier]`-Suffix (z. B. `[Addon]`, `[User]`)
     , um integrierte von benutzerdefinierten Voreinstellungen zu unterscheiden.

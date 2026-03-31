@@ -1,6 +1,6 @@
 # Inspektor-Panel
 
-**Speicherort:** *Eigenschaften-Editor > Registerkarte "Takes“ > Inspektor*
+**Speicherort:** *Eigenschaften-Editor > Registerkarte "Takes" > Inspektor*
 
 Das Inspektor-Panel bietet eine objektbezogene Beobachtungsliste, die anzeigt, welche Objekte vom Kaskadensystem verwaltet werden, sowie deren zugewiesene Aktionen, Slots und Unterdaten (Materialien, Knotenbäume, Shape-Keys).
 
@@ -14,7 +14,7 @@ Verwaltet
 Fixiert
 :   Von der Kaskadenverwaltung ausgenommen. Das Objekt behält seine eigene Aktion unabhängig von Wechseln der Ansichtsebene bei. Fixieren Sie ein Objekt, indem Sie auf das **Fixiersymbol** in seiner Zeile klicken.
 
-!!! warning "Entpinnen“
+!!! warning "Entpinnen"
     Beim Entpinnen eines Objekts, das eine Aktion hat, wird ein Bestätigungsdialog angezeigt,
     da die Aktion durch die Kaskadenzuweisung ersetzt wird.
 
@@ -24,7 +24,7 @@ Die Beobachtungsliste zeigt alle Objekte an, die für die aktuelle Ansichtsebene
 
 | Spalte | Beschreibung |
 |--------|-------------|
-| **Anheften** | Status "Verwaltet/Angeheftet“ umschalten. |
+| **Anheften** | Status "Verwaltet/Angeheftet" umschalten. |
 | **Name** | Objektname (zum Auswählen im Ansichtsfenster anklicken). |
 | **Symbole für Unterdaten** | Kompakte Symbole für jeden animierten Datenblock (Material, Knotenbaum usw.). |
 

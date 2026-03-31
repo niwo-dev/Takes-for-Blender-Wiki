@@ -1,6 +1,6 @@
 # Benutzeroberfläche
 
-Die Benutzeroberfläche von "Takes for Blender“ befindet sich in der Seitenleiste des **Eigenschaften-Editors**. Sie besteht aus vier Hauptbereichen, die über die Registerkartenleiste am oberen Rand des Navigationsfensters aufgerufen werden können.
+Die Benutzeroberfläche von "Takes for Blender" befindet sich in der Seitenleiste des **Eigenschaften-Editors**. Sie besteht aus vier Hauptbereichen, die über die Registerkartenleiste am oberen Rand des Navigationsfensters aufgerufen werden können.
 
 ## Übersicht über die Bereiche
 
@@ -13,13 +13,13 @@ Die Benutzeroberfläche von "Takes for Blender“ befindet sich in der Seitenlei
 
 ## Navigationsregisterkarten
 
-Die Kopfzeile des Navigationsfensters enthält drei Umschaltknöpfe, mit denen zwischen den Ansichten "Kontext“, "Link“ und "Inspektor“ gewechselt werden kann:
+Die Kopfzeile des Navigationsfensters enthält drei Umschaltknöpfe, mit denen zwischen den Ansichten "Kontext", "Link" und "Inspektor" gewechselt werden kann:
 
 - **Kontext** – Der Takes-Baum und Einstellungen pro VL
 - **Link** — Verknüpfung und Verwaltung von Sammlungen
 - **Inspector** — Objekt-Beobachtungsliste und Verwaltung von Aktionen/Slots
 
-!!! tip "Tastaturkürzel“
+!!! tip "Tastaturkürzel"
     Viele Baumoperationen unterstützen Tastaturkürzel:
 
  - ++Strg+n++ — Neues Element hinzufügen (kontextabhängig)

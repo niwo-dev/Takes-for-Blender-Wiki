@@ -18,7 +18,7 @@ Tastenkombinationen, die in mehreren Listen dieselbe Taste verwenden, sind **fok
 | Tastenkombination | Aktion | Anmerkungen |
 |----------|--------|-------|
 | <kbd>DEL</kbd> / <kbd>X</kbd> | **Element löschen** | Entfernt die ausgewählte Szene, Ansichtsebene oder Gruppe. Zeigt einen Bestätigungsdialog an. Im Mehrfachauswahlmodus werden alle ausgewählten Elemente gleichzeitig gelöscht. |
-| <kbd>Ctrl</kbd> + <kbd>N</kbd> | **Hinzufügen** | Öffnet das Menü "Hinzufügen“, um eine neue Szene oder einen neuen Ansichtslayer zu erstellen. |
+| <kbd>Ctrl</kbd> + <kbd>N</kbd> | **Hinzufügen** | Öffnet das Menü "Hinzufügen", um eine neue Szene oder einen neuen Ansichtslayer zu erstellen. |
 | <kbd>F2</kbd> | **Umbenennen** | Öffnet einen Umbenennungsdialog für das ausgewählte Element. |
 | <kbd>Ctrl</kbd> + <kbd>G</kbd> | **Gruppieren** | Gruppiert die ausgewählten Elemente in einer Szenengruppe oder einer VL-Gruppe. |
 | <kbd>Alt</kbd> + <kbd>G</kbd> | **Gruppierung aufheben** | Entfernt das ausgewählte Element aus seiner Gruppe. |
