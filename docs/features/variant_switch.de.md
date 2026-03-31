@@ -20,7 +20,7 @@ Bei der Produktvisualisierung muss oft dasselbe Produkt in verschiedenen Oberfl�
 ### Ein Produkt erstellen
 
 1. Öffnen Sie das Fenster **Variant Switch**.
-2. Klicken Sie auf **+** oder drücken Sie ++Strg+n++, um ein Produkt hinzuzufügen.
+2. Klicken Sie auf **+** oder drücken Sie ++ctrl+n++, um ein Produkt hinzuzufügen.
 3. Es wird automatisch ein Standardteil ("Basis") mit einem leeren Pool-Slot erstellt.
 
 ### Zustände hinzufügen

@@ -16,13 +16,13 @@ Dieser Arbeitsablauf behandelt die Einrichtung und Durchführung eines vollstän
 2. Aktivieren Sie **Smart Output**.
 3. Legen Sie das Verzeichnismuster fest:
 
- ```
+    ```
     //renders/[scene]/[view_layer]/
     ```
 
 4. Legen Sie das Dateinamenmuster fest:
 
- ```
+    ```
     [view_layer]_[camera]_####.[file_format]
     ```
 

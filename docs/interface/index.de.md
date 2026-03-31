@@ -22,10 +22,10 @@ Die Kopfzeile des Navigationsfensters enthält drei Umschaltknöpfe, mit denen z
 !!! tip "Tastaturkürzel"
     Viele Baumoperationen unterstützen Tastaturkürzel:
 
- - ++Strg+n++ — Neues Element hinzufügen (kontextabhängig)
-    - ++Umschalt+d++ — Duplizieren (vollständige Kopie)
-    - ++Alt+d++ — Duplizieren (verknüpfte Kopie)
-    - ++Strg+g++ — Gruppe erstellen
-    - ++Alt+g++ — Gruppierung aufheben
-    - ++Entf++ oder ++x++ — Löschen mit Bestätigung
-    - ++F2++ — Umbenennen
+    - ++ctrl+n++ — Neues Element hinzufügen (kontextabhängig)
+    - ++shift+d++ — Duplizieren (vollständige Kopie)
+    - ++alt+d++ — Duplizieren (verknüpfte Kopie)
+    - ++ctrl+g++ — Gruppe erstellen
+    - ++alt+g++ — Gruppierung aufheben
+    - ++del++ oder ++x++ — Löschen mit Bestätigung
+    - ++f2++ — Umbenennen

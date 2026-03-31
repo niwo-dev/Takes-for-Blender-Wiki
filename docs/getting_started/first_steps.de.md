@@ -44,7 +44,7 @@ Jeder Ansichtslayer kann eine eigene Kamera haben:
 Gruppieren Sie zusammengehörige Ansichtsebenen:
 
 1. Wählen Sie eine Ansichtsebene in der Baumstruktur aus.
-2. Drücken Sie ++Strg+G++, um eine VL-Gruppe zu erstellen.
+2. Drücken Sie ++ctrl+G++, um eine VL-Gruppe zu erstellen.
 3. Ziehe andere Ansichtsebenen in die Gruppe.
 
 ### 5. Stapelrendering

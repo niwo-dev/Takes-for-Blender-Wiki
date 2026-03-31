@@ -35,7 +35,7 @@ Takes sind in einer Hierarchie innerhalb des Takes-Baums organisiert:
 ### Ansichtslayer gruppieren
 
 1. Wählen Sie einen Ansichtslayer in der Baumstruktur aus.
-2. Drücken Sie ++Strg+g++, um eine VL-Gruppe zu erstellen, die diesen enthält.
+2. Drücken Sie ++ctrl+g++, um eine VL-Gruppe zu erstellen, die diesen enthält.
 3. Ziehen Sie weitere Ansichtslayer in die Gruppe.
 
 ### VL-Versionen
