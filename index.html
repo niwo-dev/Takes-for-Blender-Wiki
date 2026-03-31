@@ -188,11 +188,16 @@
             position: relative;
             display: flex; justify-content: center;
         }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
         .hero-visual img {
             width: 100%;
             border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 100px rgba(232,125,13,0.15);
+            animation: float 6s ease-in-out infinite;
         }
         .hero-glow {
             position: absolute;
@@ -472,8 +477,8 @@
         </div>
         <div class="hero-visual">
             <div class="hero-glow"></div>
-            <!-- Product UI Mockup -->
-            <img src="media/landing/hero.png" alt="Takes for Blender Panel Interface" style="width:100%; border-radius:12px; border:1px solid rgba(255,255,255,0.06); box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+            <!-- Product UI Mockup with Viewport -->
+            <img src="media/landing/hero_viewport.png" alt="Takes for Blender Interface with Viewport Setup">
         </div>
     </div>
 </section>
