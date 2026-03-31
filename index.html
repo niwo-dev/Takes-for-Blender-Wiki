@@ -70,12 +70,12 @@
         nav .nav-links {
             display: flex; gap: 2rem; align-items: center;
         }
-        nav .nav-links a {
+        nav .nav-links a:not(.btn-primary) {
             color: var(--text-dim); text-decoration: none;
             font-size: 0.85rem; font-weight: 500;
             transition: color 0.2s;
         }
-        nav .nav-links a:hover { color: var(--text-bright); }
+        nav .nav-links a:not(.btn-primary):hover { color: var(--text-bright); }
 
         /* ─── HERO ─── */
         .hero {
