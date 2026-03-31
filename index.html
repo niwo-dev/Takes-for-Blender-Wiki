@@ -7,6 +7,7 @@
     <meta name="description" content="The ultimate production organizer for Blender 5.1+. Takes, cascade overrides, variant switching, and batch rendering for product visualization.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
     <style>
         :root {
             --accent: #e87d0d;
@@ -293,7 +294,7 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 1.4rem;
             margin-bottom: 1.2rem;
-            filter: grayscale(100%) contrast(1.2);
+            color: var(--text-bright);
         }
         .feature-card h3 {
             font-size: 1.05rem; font-weight: 600;
@@ -372,7 +373,7 @@
             border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
             font-size: 1.2rem;
-            filter: grayscale(100%) contrast(1.2);
+            color: var(--text-bright);
         }
         .benefit h4 {
             font-size: 0.95rem; font-weight: 600;
@@ -526,47 +527,47 @@
 
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">🌳</div>
+                <div class="feature-icon"><span class="material-symbols-outlined">account_tree</span></div>
                 <h3>Takes Tree</h3>
                 <p>A unified hierarchy that shows every Scene, View Layer, Group, and Version in one place. Drag, nest, collapse — your entire project at a glance.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">⬇️</div>
+                <div class="feature-icon"><span class="material-symbols-outlined">south</span></div>
                 <h3>6-Tier Cascade</h3>
                 <p>Override cameras, worlds, compositors, actions, render presets, and variants at Global, Scene, Group, or individual VL level. Inheritance flows down — overrides stay local.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🔄</div>
+                <div class="feature-icon"><span class="material-symbols-outlined">swap_horiz</span></div>
                 <h3>Variant Switch</h3>
                 <p>Swap materials, meshes, or visibility states with a single click. Define products, parts, and variant pools — then render every combination automatically.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🎬</div>
+                <div class="feature-icon"><span class="material-symbols-outlined">movie</span></div>
                 <h3>Batch Render</h3>
                 <p>Render all View Layers in sequence — foreground or background. The queue applies every cascade override, saves to Smart Output paths, and plays a sound when done.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📁</div>
+                <div class="feature-icon"><span class="material-symbols-outlined">folder_open</span></div>
                 <h3>Smart Output</h3>
                 <p>Token-based output paths that resolve at render time. <code>[scene]/[view_layer]/[camera]_####</code> — no more manual folder creation.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🎨</div>
+                <div class="feature-icon"><span class="material-symbols-outlined">palette</span></div>
                 <h3>Render Presets</h3>
                 <p>Capture your entire render config — engine, samples, resolution, color management — as a reusable preset. Assign via cascade, swap instantly.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">👻</div>
+                <div class="feature-icon"><span class="material-symbols-outlined">anchor</span></div>
                 <h3>Rest State</h3>
                 <p>A neutral fallback pose for every object. When no animation exists on a View Layer, objects return to their "rest" position — no keyframe pollution.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🔍</div>
+                <div class="feature-icon"><span class="material-symbols-outlined">search</span></div>
                 <h3>Inspector Panel</h3>
                 <p>See at a glance which objects are managed, pinned, or dangling. The watchlist catches animation data loss before it happens.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">⌨️</div>
+                <div class="feature-icon"><span class="material-symbols-outlined">keyboard</span></div>
                 <h3>Full Hotkey Support</h3>
                 <p>Every tree operation has keyboard shortcuts. Create, duplicate, group, rename, delete — all without leaving the keyboard.</p>
             </div>
@@ -610,42 +611,42 @@
 
         <div class="benefits-grid">
             <div class="benefit">
-                <div class="benefit-icon">⚡</div>
+                <div class="benefit-icon"><span class="material-symbols-outlined">bolt</span></div>
                 <div>
                     <h4>10x Faster Setup</h4>
                     <p>What used to take 30 minutes of manual camera assignment, world overriding, and output path creation now takes 30 seconds with the cascade.</p>
                 </div>
             </div>
             <div class="benefit">
-                <div class="benefit-icon">🛡️</div>
+                <div class="benefit-icon"><span class="material-symbols-outlined">shield</span></div>
                 <div>
                     <h4>Zero Data Loss</h4>
                     <p>The Inspector's dangling action warnings and automatic pinning prevent animation data from ever getting silently destroyed during VL switches.</p>
                 </div>
             </div>
             <div class="benefit">
-                <div class="benefit-icon">🧩</div>
+                <div class="benefit-icon"><span class="material-symbols-outlined">extension</span></div>
                 <div>
                     <h4>Non-Destructive</h4>
                     <p>Pure Blender API. No monkey-patching, no file corruption, no vendor lock-in. Takes works with your existing scenes — just install and organize.</p>
                 </div>
             </div>
             <div class="benefit">
-                <div class="benefit-icon">🌍</div>
+                <div class="benefit-icon"><span class="material-symbols-outlined">public</span></div>
                 <div>
                     <h4>Background Rendering</h4>
                     <p>Fire off batch renders that run in separate Blender processes. Your main session stays fully interactive. Tree thumbnails update live as results come in.</p>
                 </div>
             </div>
             <div class="benefit">
-                <div class="benefit-icon">📐</div>
+                <div class="benefit-icon"><span class="material-symbols-outlined">architecture</span></div>
                 <div>
                     <h4>Blender 5.1 Native</h4>
                     <p>Built on the Slotted Action system. Uses native View Layers, Scenes, and Action Slots — no custom data formats, no compatibility nightmares.</p>
                 </div>
             </div>
             <div class="benefit">
-                <div class="benefit-icon">🎯</div>
+                <div class="benefit-icon"><span class="material-symbols-outlined">tune</span></div>
                 <div>
                     <h4>One Panel, Full Control</h4>
                     <p>Everything lives in the Properties Editor. Takes Tree, cascade overrides, batch render queue, inspector — one tab, zero context switching.</p>
