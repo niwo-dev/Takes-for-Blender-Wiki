@@ -25,6 +25,11 @@
   --md-typeset-a-color: #cccccc;       /* Links in gray */
   --md-primary-fg-color: #111111;      /* Header bar pure dark gray */
   --md-accent-fg-color: #888888;
+  --md-footer-fg-color: #e0e0e0;
+  --md-footer-fg-color--light: #999999;
+  --md-footer-fg-color--lighter: #666666;
+  --md-footer-bg-color: #1a1a1a;
+  --md-footer-bg-color--dark: #111111;
 }
 
 /* Keyboard shortcut styling */
