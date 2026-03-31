@@ -1,3 +1,7 @@
+---
+icon: material/file-tree
+---
+
 # Variant Tree
 
 **Location:** *Properties Editor > Takes tab > Variant Switch*

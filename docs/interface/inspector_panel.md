@@ -1,3 +1,7 @@
+---
+icon: material/magnify-scan
+---
+
 # Inspector Panel
 
 **Location:** *Properties Editor > Takes tab > Inspector*

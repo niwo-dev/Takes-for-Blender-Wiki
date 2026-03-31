@@ -1,3 +1,7 @@
+---
+icon: material/arrow-decision
+---
+
 # Cascade System
 
 The **Cascade** is the core engine of Takes for Blender. It resolves property overrides through a 6-tier hierarchy, allowing any level to override any level above it.

@@ -1,3 +1,7 @@
+---
+icon: material/layers-triple
+---
+
 # Features
 
 Takes for Blender provides a deep toolset for managing complex product visualization pipelines. Each feature is designed to work together through the cascade system.

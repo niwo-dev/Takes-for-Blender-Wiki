@@ -1,3 +1,7 @@
+---
+icon: material/tune-vertical
+---
+
 # Context Properties
 
 **Location:** *Properties Editor > Takes tab > Context*

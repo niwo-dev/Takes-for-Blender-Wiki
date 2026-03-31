@@ -1,3 +1,7 @@
+---
+icon: material/palette-swatch
+---
+
 # Render Presets
 
 **Render Presets** are JSON-based snapshots of Blender's render settings that can be assigned per View Layer through the cascade system.

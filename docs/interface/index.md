@@ -1,3 +1,7 @@
+---
+icon: material/view-dashboard
+---
+
 # Interface
 
 The Takes for Blender interface lives in the **Properties Editor** sidebar. It consists of four main panels accessible via the tab bar at the top of the Navigation Panel.

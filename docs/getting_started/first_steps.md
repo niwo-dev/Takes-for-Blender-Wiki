@@ -1,3 +1,7 @@
+---
+icon: material/shoe-print
+---
+
 # First Steps
 
 This guide walks you through the core workflow in under 5 minutes.

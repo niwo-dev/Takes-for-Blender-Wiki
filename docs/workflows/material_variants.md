@@ -1,3 +1,7 @@
+---
+icon: material/palette
+---
+
 # Workflow: Material Variants
 
 This workflow shows how to set up product color/finish variants using the Variant Switch system.

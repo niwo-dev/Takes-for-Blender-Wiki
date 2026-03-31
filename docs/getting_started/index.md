@@ -1,3 +1,7 @@
+---
+icon: material/rocket-launch
+---
+
 # Getting Started
 
 Welcome to **Takes for Blender**. This section covers everything you need to go from installation to your first Take.

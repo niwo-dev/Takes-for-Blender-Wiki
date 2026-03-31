@@ -1,3 +1,7 @@
+---
+icon: material/swap-horizontal
+---
+
 # Variant Switch
 
 The **Variant Switch** system manages product variants — different material configurations, finishes, or color options — with per-scope material swapping and cascade-aware state management.

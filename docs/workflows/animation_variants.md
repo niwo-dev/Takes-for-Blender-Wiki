@@ -1,3 +1,7 @@
+---
+icon: material/animation-play
+---
+
 # Workflow: Animation Variants
 
 This workflow shows how to set up different animation takes per View Layer — for example, a product spinning, tilting, and exploding, each on its own View Layer with independent cameras.

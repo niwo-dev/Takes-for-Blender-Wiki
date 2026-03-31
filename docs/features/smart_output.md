@@ -1,3 +1,7 @@
+---
+icon: material/folder-cog
+---
+
 # Smart Output
 
 The **Smart Output** system provides dynamic token-based file path resolution for render output. Instead of manually naming each render, tokens are automatically replaced with context-specific values.

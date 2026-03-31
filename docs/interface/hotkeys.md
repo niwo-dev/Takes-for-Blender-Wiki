@@ -1,3 +1,7 @@
+---
+icon: material/keyboard
+---
+
 # Keyboard Shortcuts
 
 All hotkeys are active when the cursor is over the **3D Viewport sidebar** (N-panel).

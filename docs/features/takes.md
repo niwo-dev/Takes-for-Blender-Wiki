@@ -1,3 +1,7 @@
+---
+icon: material/movie-open
+---
+
 # Takes
 
 A **Take** is a named group of View Layers that represent a specific configuration of your scene — a camera angle, a lighting setup, a material variant, or an animation state.

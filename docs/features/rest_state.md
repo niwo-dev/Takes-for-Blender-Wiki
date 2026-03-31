@@ -1,3 +1,7 @@
+---
+icon: material/ghost
+---
+
 # Rest State
 
 The **Rest State** (reference state) system automatically preserves pristine default property values alongside your per-View Layer animations.

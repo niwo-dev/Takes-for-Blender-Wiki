@@ -1,3 +1,7 @@
+---
+icon: material/play-box-multiple
+---
+
 # Workflow: Batch Rendering
 
 This workflow covers setting up and running a full batch render across multiple View Layers with cascade overrides and Smart Output.

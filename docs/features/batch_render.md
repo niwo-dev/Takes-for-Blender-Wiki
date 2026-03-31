@@ -1,3 +1,7 @@
+---
+icon: material/image-multiple
+---
+
 # Batch Render
 
 The **Batch Render** system automates rendering across multiple View Layers, applying cascade overrides (cameras, worlds, actions, presets, variants) for each one.

@@ -1,3 +1,7 @@
+---
+icon: material/compass
+---
+
 # Navigation Panel
 
 **Location:** *Properties Editor > Takes tab*

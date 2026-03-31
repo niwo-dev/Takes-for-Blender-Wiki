@@ -1,3 +1,7 @@
+---
+icon: material/play-circle
+---
+
 # Workflows
 
 Step-by-step tutorials for real production scenarios.
