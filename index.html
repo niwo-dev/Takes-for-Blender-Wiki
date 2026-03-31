@@ -187,17 +187,24 @@
         .hero-visual {
             position: relative;
             display: flex; justify-content: center;
+            perspective: 1200px;
         }
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-12px); }
         }
-        .hero-visual img {
+        .hero-image-wrapper {
+            animation: float 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+            width: 100%;
+        }
+        #hero-3d-img {
             width: 100%;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.08);
             box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 100px rgba(232,125,13,0.15);
-            animation: float 6s ease-in-out infinite;
+            transition: transform 0.1s ease-out;
+            display: block;
         }
         .hero-glow {
             position: absolute;
@@ -478,7 +485,9 @@
         <div class="hero-visual">
             <div class="hero-glow"></div>
             <!-- Product UI Mockup with Viewport -->
-            <img src="media/landing/hero_viewport.png" alt="Takes for Blender Interface with Viewport Setup">
+            <div class="hero-image-wrapper">
+                <img src="media/landing/hero_viewport.png" alt="Takes for Blender Interface with Viewport Setup" id="hero-3d-img">
+            </div>
         </div>
     </div>
 </section>
@@ -785,8 +794,43 @@
         requestAnimationFrame(animate);
     }
     
+    // 3D Tilt Effect for Hero Image
+    function initTiltEffect() {
+        const heroVisual = document.querySelector('.hero-visual');
+        const heroImg = document.getElementById('hero-3d-img');
+        
+        if (heroVisual && heroImg) {
+            heroVisual.addEventListener('mousemove', (e) => {
+                const rect = heroVisual.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Calculate rotation (max 10 degrees)
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; // Invert Y
+                const rotateY = ((x - centerX) / centerX) * 10;
+                
+                heroImg.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            heroVisual.addEventListener('mouseleave', () => {
+                heroImg.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                heroImg.style.transition = 'transform 0.5s ease-out'; // Slower return
+            });
+            
+            heroVisual.addEventListener('mouseenter', () => {
+                heroImg.style.transition = 'transform 0.1s ease-out'; // Fast tracking
+            });
+        }
+    }
+    
     // Start when DOM is ready
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => {
+        init();
+        initTiltEffect();
+    });
 </script>
 
 </body>
