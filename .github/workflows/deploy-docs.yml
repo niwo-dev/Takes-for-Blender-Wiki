@@ -44,6 +44,7 @@ jobs:
         run: |
           mkdir -p deploy/wiki
           cp index.html deploy/
+          cp -r media deploy/
           cp -r site/* deploy/wiki/
 
       - name: Deploy to gh-pages
