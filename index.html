@@ -139,6 +139,13 @@
         .hero-actions {
             display: flex; gap: 1rem; flex-wrap: wrap;
         }
+        #hero-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
         .btn-primary {
             display: inline-flex; align-items: center; gap: 0.5rem;
             padding: 0.85rem 2rem; border-radius: 8px;
@@ -451,6 +458,7 @@
 
 <!-- HERO -->
 <section class="hero">
+    <canvas id="hero-canvas"></canvas>
     <div class="hero-inner">
         <div>
             <div class="hero-badge">✦ Built for Blender 5.1+</div>
@@ -655,6 +663,127 @@
         </div>
     </div>
 </footer>
+
+<script>
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let width, height;
+    let particles = [];
+    
+    // Mouse interaction state
+    let mouse = { x: -1000, y: -1000 };
+    
+    function init() {
+        resize();
+        window.addEventListener('resize', resize);
+        
+        // Track mouse movement over the hero section specifically
+        const hero = document.querySelector('.hero');
+        hero.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+        hero.addEventListener('mouseleave', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        // Create particles
+        const particleCount = Math.min(Math.floor(window.innerWidth / 15), 100);
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        requestAnimationFrame(animate);
+    }
+    
+    function resize() {
+        const hero = document.querySelector('.hero');
+        width = hero.offsetWidth;
+        height = hero.offsetHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+    
+    class Particle {
+        constructor() {
+            this.x = Math.random() * (width || window.innerWidth);
+            this.y = Math.random() * (height || window.innerHeight);
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.baseX = this.x;
+            this.baseY = this.y;
+            this.size = Math.random() * 2 + 1;
+        }
+        
+        update() {
+            // Natural drift
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            // Wrap around
+            if (this.x < 0) this.x = width;
+            if (this.x > width) this.x = 0;
+            if (this.y < 0) this.y = height;
+            if (this.y > height) this.y = 0;
+            
+            // Mouse repulsion
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            let maxDistance = 150;
+            
+            if (distance < maxDistance) {
+                let forceDirectionX = dx / distance;
+                let forceDirectionY = dy / distance;
+                let force = (maxDistance - distance) / maxDistance;
+                
+                // Push particles away from mouse
+                this.x -= forceDirectionX * force * 3;
+                this.y -= forceDirectionY * force * 3;
+            }
+        }
+        
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(232, 125, 13, 0.4)';
+            ctx.fill();
+        }
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+            
+            // Draw connecting lines
+            for (let j = i + 1; j < particles.length; j++) {
+                let dx = particles[i].x - particles[j].x;
+                let dy = particles[i].y - particles[j].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(122, 138, 154, ${0.15 * (1 - distance / 120)})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        requestAnimationFrame(animate);
+    }
+    
+    // Start when DOM is ready
+    document.addEventListener('DOMContentLoaded', init);
+</script>
 
 </body>
 </html>
