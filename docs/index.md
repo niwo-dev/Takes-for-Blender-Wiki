@@ -1,8 +1,9 @@
 ---
+title: Home
 hide:
   - navigation
----
-
+  - toc
+  - title
 ---
 
 <div class="grid cards" markdown>
