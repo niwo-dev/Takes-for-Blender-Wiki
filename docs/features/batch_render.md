@@ -1,7 +1,3 @@
----
-icon: material/image-multiple
----
-
 # Batch Render
 
 The **Batch Render** system automates rendering across multiple View Layers, applying cascade overrides (cameras, worlds, actions, presets, variants) for each one.
@@ -39,7 +35,7 @@ The render queue shows the status of each View Layer:
 
 ## Selection Modes
 
-- **Single VL** — Renders only the active View Layer (default).
+- **Single View Layer** — Renders only the active View Layer (default).
 - **Multi-select** — When multi-select is enabled, renders all selected View Layers.
 
 !!! tip "Render Order"
