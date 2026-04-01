@@ -454,6 +454,31 @@
         .creator-signature strong { color: var(--text-bright); font-family: 'Outfit', sans-serif; font-size: 1.2rem; letter-spacing: 0.5px; }
         .creator-signature span { color: var(--text-dim); font-size: 0.9rem; display: block; margin-top: 0.2rem; }
 
+        /* ─── FAQ SECTION ─── */
+        .faq-section { padding: 4rem 2rem 5rem; background: var(--bg-dark); }
+        .faq-container { max-width: 800px; margin: 3rem auto 0; }
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question {
+            width: 100%; text-align: left; background: none; border: none;
+            padding: 1.5rem 0; font-size: 1.15rem; font-weight: 500;
+            color: var(--text-bright); display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer; font-family: 'Outfit', sans-serif;
+            transition: color 0.2s;
+        }
+        .faq-question:hover { color: var(--accent-light); }
+        .faq-icon {
+            font-size: 1.5rem; transition: transform 0.3s ease; color: var(--text-dim);
+        }
+        .faq-item.active .faq-icon { transform: rotate(45deg); color: var(--accent); }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease;
+            color: var(--text-dim); line-height: 1.6; font-size: 0.95rem;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px; padding-bottom: 1.5rem;
+        }
+
         /* ─── PRICING SECTION ─── */
         .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: stretch; margin-top: 3rem; }
         .pricing-card {
@@ -589,6 +614,7 @@
             <a href="#features">Features</a>
             <a href="#workflow">Workflow</a>
             <a href="#comparison">Compare</a>
+            <a href="#faq">FAQ</a>
             <a href="#creator">About</a>
             <a href="#pricing">Pricing</a>
             <a href="wiki/">Wiki</a>
@@ -866,6 +892,41 @@
     </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq" class="faq-section">
+    <div class="section-inner">
+        <div class="section-label">Questions?</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">Does Takes for Blender duplicate my objects when making variations?<span class="material-symbols-outlined faq-icon">add</span></button>
+                <div class="faq-answer">
+                    <p>No. Standard addons often duplicate geometry or collections to save "states", bloating your file size. Takes uses a non-destructive Override Engine to modify properties and slots dynamically, keeping your scene incredibly lightweight and perfectly synced.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Will it break my rig animations?<span class="material-symbols-outlined faq-icon">add</span></button>
+                <div class="faq-answer">
+                    <p>Absolutely not. The Action Slot system safely stores and swaps animation data in the background. It even features a built-in Warning System so you never accidentally overwrite or delete an unassigned action when switching Views.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can I use this for final rendering directly?<span class="material-symbols-outlined faq-icon">add</span></button>
+                <div class="faq-answer">
+                    <p>Yes. The built-in Batch Render queue natively supports both foreground Modal rendering and headless CLI background processing. You configure your takes, hit Render, and it systematically works through the queue while generating dynamic file names.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Is there a steep learning curve?<span class="material-symbols-outlined faq-icon">add</span></button>
+                <div class="faq-answer">
+                    <p>Takes operates entirely inside the standard Properties editor, so there's zero context switching. Once you understand the basic Cascade logic (top-down inheritance), it behaves exactly as you'd intuitively expect standard Blender to work.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- CREATOR -->
 <section id="creator" class="creator-section">
     <div class="creator-card">
@@ -1133,6 +1194,18 @@
             });
         });
     }
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const item = button.parentElement;
+            // Close others
+            document.querySelectorAll('.faq-item').forEach(other => {
+                if(other !== item) other.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        });
+    });
 
     // Start when DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
