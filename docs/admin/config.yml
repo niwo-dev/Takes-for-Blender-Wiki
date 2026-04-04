@@ -2,6 +2,7 @@ backend:
   name: github
   repo: niwo-dev/Takes-for-Blender-Wiki
   branch: main
+  base_url: https://sveltia-cms-auth.icy-voice-2d22.workers.dev
 
 media_folder: "docs/assets"
 public_folder: "/wiki/assets"
