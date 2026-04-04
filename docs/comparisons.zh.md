@@ -22,7 +22,7 @@ icon: material/scale-balance
 
 ### Takes 再次挑战 Polyviews
 - **Polyviews它何等身段:** 身段小巧苗条还相当之方便轻盈无痛干活利索的取景小切换器（尤其受各位建筑漫游图大佬偏爱 ArchViz）。
-- **Takes 何解超越：** 咱是为极其烧钱还顶上天的天花板级产品摄影图大腕场生出的定制超核特制货级大武器系统！我们走的可绝不仅仅只限这切两枚镜头那么丁点子的小孩儿买卖。我们的触手探深达管控至各维度极广且极渊底之变态色层表皮组合交差法 (multi-material variants)，我们可施法篡下并 [彻底凌驾偷换你的这截底座帧段域 (action overrides)](features/takes.md#action-overrides)，咱们且甚至底配上配了一套神装预警护航法警系统大管家 ([无敌紧盯检核表 Watchlist](interface/inspector_panel.md#the-watchlist)) 它犹如天眼时刻替尔看住防止在你切换瞎点时候被系统悄然生把数据给掉河冲没！此等事故可是那些粗制系统永远治不好的痛心死病。
+- **Takes 何解超越：** 咱是为极其烧钱还顶上天的天花板级产品摄影图大腕场生出的定制超核特制货级大武器系统！我们走的可绝不仅仅只限这切两枚镜头那么丁点子的小孩儿买卖。我们的触手探深达管控至各维度极广且极渊底之变态色层表皮组合交差法 (multi-material variants)，我们可施法篡下并 [彻底凌驾偷换你的这截底座帧段域 (action overrides)](features/takes.md)，咱们且甚至底配上配了一套神装预警护航法警系统大管家 ([无敌紧盯检核表 Watchlist](interface/inspector_panel.md)) 它犹如天眼时刻替尔看住防止在你切换瞎点时候被系统悄然生把数据给掉河冲没！此等事故可是那些粗制系统永远治不好的痛心死病。
 
 ---
 
