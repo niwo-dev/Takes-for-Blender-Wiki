@@ -4,352 +4,83 @@ backend:
   branch: main
   base_url: https://sveltia-cms-auth.icy-voice-2d22.workers.dev
 
-media_folder: "docs/assets"
+media_folder: "docs/en/assets"
 public_folder: "/wiki/assets"
 
+i18n:
+  structure: multiple_folders
+  locales: [en, de, es, ru, zh, ja, vi]
+  default_locale: en
+
 collections:
-  # ── 🇬🇧 English (source) ──
-  - name: "en-root"
-    label: "🇬🇧 English"
-    folder: "docs/en"
+  - name: "pages"
+    label: "Pages"
+    folder: "docs"
+    path: "{{locale}}/{{slug}}"
     create: true
     slug: "{{slug}}"
     extension: "md"
+    i18n: true
     fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+      - {label: "Body", name: "body", widget: "markdown", i18n: true}
 
-  - name: "en-getting-started"
-    label: "🇬🇧 English › Getting Started"
-    folder: "docs/en/getting_started"
+  - name: "getting-started"
+    label: "Getting Started"
+    folder: "docs"
+    path: "{{locale}}/getting_started/{{slug}}"
     create: true
     slug: "{{slug}}"
     extension: "md"
+    i18n: true
     fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+      - {label: "Body", name: "body", widget: "markdown", i18n: true}
 
-  - name: "en-interface"
-    label: "🇬🇧 English › Interface"
-    folder: "docs/en/interface"
+  - name: "interface"
+    label: "Interface"
+    folder: "docs"
+    path: "{{locale}}/interface/{{slug}}"
     create: true
     slug: "{{slug}}"
     extension: "md"
+    i18n: true
     fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+      - {label: "Body", name: "body", widget: "markdown", i18n: true}
 
-  - name: "en-features"
-    label: "🇬🇧 English › Features"
-    folder: "docs/en/features"
+  - name: "features"
+    label: "Features"
+    folder: "docs"
+    path: "{{locale}}/features/{{slug}}"
     create: true
     slug: "{{slug}}"
     extension: "md"
+    i18n: true
     fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+      - {label: "Body", name: "body", widget: "markdown", i18n: true}
 
-  - name: "en-workflows"
-    label: "🇬🇧 English › Workflows"
-    folder: "docs/en/workflows"
+  - name: "workflows"
+    label: "Workflows"
+    folder: "docs"
+    path: "{{locale}}/workflows/{{slug}}"
     create: true
     slug: "{{slug}}"
     extension: "md"
+    i18n: true
     fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+      - {label: "Body", name: "body", widget: "markdown", i18n: true}
 
-  - name: "en-preferences"
-    label: "🇬🇧 English › Preferences"
-    folder: "docs/en/preferences"
+  - name: "preferences"
+    label: "Preferences"
+    folder: "docs"
+    path: "{{locale}}/preferences/{{slug}}"
     create: true
     slug: "{{slug}}"
     extension: "md"
+    i18n: true
     fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  # ── 🇩🇪 Deutsch ──
-  - name: "de-root"
-    label: "🇩🇪 Deutsch"
-    folder: "docs/de"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "de-getting-started"
-    label: "🇩🇪 Deutsch › Getting Started"
-    folder: "docs/de/getting_started"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "de-interface"
-    label: "🇩🇪 Deutsch › Interface"
-    folder: "docs/de/interface"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "de-features"
-    label: "🇩🇪 Deutsch › Features"
-    folder: "docs/de/features"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "de-workflows"
-    label: "🇩🇪 Deutsch › Workflows"
-    folder: "docs/de/workflows"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "de-preferences"
-    label: "🇩🇪 Deutsch › Preferences"
-    folder: "docs/de/preferences"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  # ── 🇪🇸 Español ──
-  - name: "es-root"
-    label: "🇪🇸 Español"
-    folder: "docs/es"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "es-getting-started"
-    label: "🇪🇸 Español › Getting Started"
-    folder: "docs/es/getting_started"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "es-interface"
-    label: "🇪🇸 Español › Interface"
-    folder: "docs/es/interface"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "es-features"
-    label: "🇪🇸 Español › Features"
-    folder: "docs/es/features"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "es-workflows"
-    label: "🇪🇸 Español › Workflows"
-    folder: "docs/es/workflows"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "es-preferences"
-    label: "🇪🇸 Español › Preferences"
-    folder: "docs/es/preferences"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  # ── 🇷🇺 Русский ──
-  - name: "ru-root"
-    label: "🇷🇺 Русский"
-    folder: "docs/ru"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "ru-getting-started"
-    label: "🇷🇺 Русский › Getting Started"
-    folder: "docs/ru/getting_started"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "ru-interface"
-    label: "🇷🇺 Русский › Interface"
-    folder: "docs/ru/interface"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "ru-features"
-    label: "🇷🇺 Русский › Features"
-    folder: "docs/ru/features"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "ru-workflows"
-    label: "🇷🇺 Русский › Workflows"
-    folder: "docs/ru/workflows"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "ru-preferences"
-    label: "🇷🇺 Русский › Preferences"
-    folder: "docs/ru/preferences"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  # ── 🇨🇳 中文 ──
-  - name: "zh-root"
-    label: "🇨🇳 中文"
-    folder: "docs/zh"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "zh-getting-started"
-    label: "🇨🇳 中文 › Getting Started"
-    folder: "docs/zh/getting_started"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "zh-interface"
-    label: "🇨🇳 中文 › Interface"
-    folder: "docs/zh/interface"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "zh-features"
-    label: "🇨🇳 中文 › Features"
-    folder: "docs/zh/features"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "zh-workflows"
-    label: "🇨🇳 中文 › Workflows"
-    folder: "docs/zh/workflows"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "zh-preferences"
-    label: "🇨🇳 中文 › Preferences"
-    folder: "docs/zh/preferences"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  # ── 🇯🇵 日本語 ──
-  - name: "ja-root"
-    label: "🇯🇵 日本語"
-    folder: "docs/ja"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "ja-getting-started"
-    label: "🇯🇵 日本語 › Getting Started"
-    folder: "docs/ja/getting_started"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "ja-interface"
-    label: "🇯🇵 日本語 › Interface"
-    folder: "docs/ja/interface"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "ja-features"
-    label: "🇯🇵 日本語 › Features"
-    folder: "docs/ja/features"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    fields:
-      - {label: "Icon", name: "icon", widget: "string", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+      - {label: "Body", name: "body", widget: "markdown", i18n: true}
