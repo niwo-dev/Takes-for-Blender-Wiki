@@ -1,3 +1,7 @@
+---
+icon: material/palette-swatch
+---
+
 # Takes for Blender – Corporate Identity (CI)
 
 Dieses Dokument legt die grundlegenden **Markenrichtlinien** und die **Corporate Identity** fest, die sich aus dem Premium-Web-UI-Mockup ableiten. Es definiert die Regeln für Farben, Typografie und UI-Sprache, um die Konsistenz im Add-on, in der Dokumentation und in allen Marketingmaterialien sicherzustellen.
