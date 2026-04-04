@@ -124,11 +124,7 @@
       var iconsDiv = document.createElement("div");
       iconsDiv.className = "md-header__icons";
 
-      // Move language selector into icons div if it exists
-      var langSelect = headerInner.querySelector(".md-select");
-      if (langSelect) {
-        iconsDiv.appendChild(langSelect);
-      }
+      // Native language selector remains in its natural DOM position
 
       // Build the palette dropdown widget
       var wrapper = document.createElement("div");
