@@ -2,8 +2,6 @@ backend:
   name: github
   repo: niwo-dev/Takes-for-Blender-Wiki
   branch: main
-  auth_type: pkce
-  app_id: Ov23lifKboxzIQpjRgnD
 
 # Where your uploaded images should be saved in the repository
 media_folder: "docs/assets"
