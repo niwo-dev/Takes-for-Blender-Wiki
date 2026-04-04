@@ -1,0 +1,25 @@
+backend:
+  name: github
+  repo: NIWO/Takes-for-Blender-Wiki
+  branch: main
+
+# Where your uploaded images should be saved in the repository
+media_folder: "docs/assets"
+
+# What string is injected into your markdown (e.g., ![alt](../assets/image.png) )
+public_folder: "../assets"
+
+# Defining your Wiki's content structure
+collections:
+  - name: "pages"
+    label: "Wiki Pages"
+    folder: "docs"
+    create: true
+    slug: "{{slug}}"
+    filter:
+      field: "title"
+    extension: "md"
+    format: "yaml-frontmatter"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
