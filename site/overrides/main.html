@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<style>
+  /* Hide the default palette toggle button */
+  .md-header__button[data-md-component="palette"] { display: none !important; }
+  form[data-md-component="palette"] { display: none !important; }
+  button[data-md-component="palette"] { display: none !important; }
+
+  /* Header layout: center search, push controls right */
+  .md-header__inner {
+    display: flex;
+    align-items: center;
+  }
+  .md-search {
+    margin-left: auto;
+    max-width: 480px;
+  }
+  .md-header__icons {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* Custom palette dropdown */
+  .txs-palette-menu {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .txs-palette-menu__btn {
+    background: none;
+    border: none;
+    color: var(--md-primary-bg-color, #fff);
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+  }
+  .txs-palette-menu__btn:hover { opacity: 0.7; }
+
+  .txs-palette-menu__dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--md-default-bg-color, #fff);
+    border: 1px solid var(--md-default-fg-color--lightest, #ddd);
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    min-width: 160px;
+    z-index: 100;
+    padding: 4px 0;
+    margin-top: 4px;
+  }
+  .txs-palette-menu__dropdown.is-open { display: block; }
+
+  .txs-palette-menu__option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--md-default-fg-color, #333);
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+  }
+  .txs-palette-menu__option:hover {
+    background: var(--md-default-fg-color--lightest, #eee);
+  }
+  .txs-palette-menu__option .check {
+    margin-left: auto;
+    opacity: 0;
+  }
+  .txs-palette-menu__option.is-active .check {
+    opacity: 1;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  {{ super() }}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    // Palette dropdown: Light / Dark / Auto
+    (function() {
+      // SVG icons for each mode
+      var ICONS = {
+        light: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>',
+        dark:  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>',
+        auto:  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/></svg>'
+      };
+
+      var headerInner = document.querySelector(".md-header__inner");
+      if (!headerInner) return;
+
+      // Create icon container div for the right side
+      var iconsDiv = document.createElement("div");
+      iconsDiv.className = "md-header__icons";
+
+      // Move language selector into icons div if it exists
+      var langSelect = headerInner.querySelector(".md-select");
+      if (langSelect) {
+        iconsDiv.appendChild(langSelect);
+      }
+
+      // Build the palette dropdown widget
+      var wrapper = document.createElement("div");
+      wrapper.className = "txs-palette-menu";
+      wrapper.innerHTML = [
+        '<button class="txs-palette-menu__btn" title="Change color scheme" aria-label="Change color scheme">',
+        ICONS.dark,
+        '</button>',
+        '<div class="txs-palette-menu__dropdown">',
+        '  <button class="txs-palette-menu__option" data-scheme="light">',
+        '    ' + ICONS.light.replace(/22/g, "18"),
+        '    Light',
+        '    <span class="check">✓</span>',
+        '  </button>',
+        '  <button class="txs-palette-menu__option" data-scheme="dark">',
+        '    ' + ICONS.dark.replace(/22/g, "18"),
+        '    Dark',
+        '    <span class="check">✓</span>',
+        '  </button>',
+        '  <button class="txs-palette-menu__option" data-scheme="auto">',
+        '    ' + ICONS.auto.replace(/22/g, "18"),
+        '    Auto',
+        '    <span class="check">✓</span>',
+        '  </button>',
+        '</div>'
+      ].join("");
+
+      iconsDiv.appendChild(wrapper);
+      headerInner.appendChild(iconsDiv);
+
+      var btn = wrapper.querySelector(".txs-palette-menu__btn");
+      var dropdown = wrapper.querySelector(".txs-palette-menu__dropdown");
+      var options = wrapper.querySelectorAll(".txs-palette-menu__option");
+
+      // Toggle dropdown
+      btn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        dropdown.classList.toggle("is-open");
+      });
+      document.addEventListener("click", function() {
+        dropdown.classList.remove("is-open");
+      });
+
+      // Apply scheme
+      function applyScheme(scheme) {
+        var resolved = scheme;
+        if (scheme === "auto") {
+          resolved = window.matchMedia("(prefers-color-scheme: dark)").matches ? "slate" : "default";
+        } else {
+          resolved = scheme === "dark" ? "slate" : "default";
+        }
+        document.body.setAttribute("data-md-color-switching", "");
+        document.body.setAttribute("data-md-color-scheme", resolved);
+        document.body.removeAttribute("data-md-color-switching");
+        localStorage.setItem("txs-palette", scheme);
+      }
+
+      function updateActive(scheme) {
+        options.forEach(function(opt) {
+          opt.classList.toggle("is-active", opt.getAttribute("data-scheme") === scheme);
+        });
+        // Update the toggle button icon to match the chosen scheme
+        btn.innerHTML = ICONS[scheme] || ICONS.auto;
+      }
+
+      // Handle clicks
+      options.forEach(function(opt) {
+        opt.addEventListener("click", function(e) {
+          e.stopPropagation();
+          var scheme = opt.getAttribute("data-scheme");
+          applyScheme(scheme);
+          updateActive(scheme);
+          dropdown.classList.remove("is-open");
+        });
+      });
+
+      // Listen for system changes when in auto mode
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
+        if (localStorage.getItem("txs-palette") === "auto") {
+          applyScheme("auto");
+        }
+      });
+
+      // Init on load
+      var saved = localStorage.getItem("txs-palette") || "dark";
+      applyScheme(saved);
+      updateActive(saved);
+    })();
+  </script>
+{% endblock %}
