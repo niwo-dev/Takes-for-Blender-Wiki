@@ -117,20 +117,24 @@ def main():
     md_files = glob.glob(os.path.join(docs_dir, "**", "*.md"), recursive=True)
 
     for md_file in md_files:
-        if any(md_file.endswith(f".{lang}.md") for lang in TARGET_LANGUAGES):
+        # Skip if the file is inside a language folder (e.g. docs/de/...)
+        rel_path = os.path.relpath(md_file, docs_dir)
+        path_parts = rel_path.replace("\\", "/").split("/")
+        if len(path_parts) > 0 and path_parts[0] in TARGET_LANGUAGES:
             continue
 
         base_mtime = os.path.getmtime(md_file)
 
-        for lang_suffix, deepl_target in TARGET_LANGUAGES.items():
-            target_file = md_file[:-3] + f".{lang_suffix}.md"
+        for lang_code, deepl_target in TARGET_LANGUAGES.items():
+            # Build target path: docs/de/...
+            target_file = os.path.join(docs_dir, lang_code, rel_path)
 
             if os.path.exists(target_file):
                 target_mtime = os.path.getmtime(target_file)
                 if target_mtime >= base_mtime:
                     continue
 
-            print(f"Translating {os.path.basename(md_file)} -> {deepl_target} ({lang_suffix})...")
+            print(f"Translating {os.path.basename(md_file)} -> {deepl_target} ({lang_code})...")
 
             with open(md_file, "r", encoding="utf-8") as f:
                 content = f.read()
@@ -138,6 +142,8 @@ def main():
             translated_content = translate_markdown(content, deepl_target, translator)
 
             if translated_content != content:
+                # Ensure the target directory exists before saving
+                os.makedirs(os.path.dirname(target_file), exist_ok=True)
                 with open(target_file, "w", encoding="utf-8") as f:
                     f.write(translated_content)
                 print(f"  [+] Saved {os.path.basename(target_file)}")
