@@ -3,23 +3,67 @@ backend:
   repo: niwo-dev/Takes-for-Blender-Wiki
   branch: main
 
-# Where your uploaded images should be saved in the repository
 media_folder: "docs/assets"
-
-# What string is injected into your markdown (e.g., ![alt](../assets/image.png) )
 public_folder: "/wiki/assets"
 
-# Defining your Wiki's content structure
 collections:
-  - name: "pages"
-    label: "Wiki Pages"
+  - name: "root-pages"
+    label: "Root Pages"
     folder: "docs"
     create: true
+    nested: false
     slug: "{{slug}}"
-    filter:
-      field: "title"
     extension: "md"
-    format: "yaml-frontmatter"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Icon", name: "icon", widget: "string", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "getting-started"
+    label: "Getting Started"
+    folder: "docs/getting_started"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - {label: "Icon", name: "icon", widget: "string", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "interface"
+    label: "Interface"
+    folder: "docs/interface"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - {label: "Icon", name: "icon", widget: "string", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "features"
+    label: "Features"
+    folder: "docs/features"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - {label: "Icon", name: "icon", widget: "string", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "workflows"
+    label: "Workflows"
+    folder: "docs/workflows"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - {label: "Icon", name: "icon", widget: "string", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "preferences"
+    label: "Preferences"
+    folder: "docs/preferences"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - {label: "Icon", name: "icon", widget: "string", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
