@@ -114,19 +114,17 @@ def main():
     translator = deepl.Translator(auth_key)
     docs_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "docs")
 
-    md_files = glob.glob(os.path.join(docs_dir, "**", "*.md"), recursive=True)
+    md_files = glob.glob(os.path.join(docs_dir, "en", "**", "*.md"), recursive=True)
 
     for md_file in md_files:
-        # Skip if the file is inside a language folder (e.g. docs/de/...)
-        rel_path = os.path.relpath(md_file, docs_dir)
-        path_parts = rel_path.replace("\\", "/").split("/")
-        if len(path_parts) > 0 and path_parts[0] in TARGET_LANGUAGES:
-            continue
+        # Get relative path starting after 'docs/en/'
+        # Example: 'features/takes.md'
+        rel_path = os.path.relpath(md_file, os.path.join(docs_dir, "en"))
 
         base_mtime = os.path.getmtime(md_file)
 
         for lang_code, deepl_target in TARGET_LANGUAGES.items():
-            # Build target path: docs/de/...
+            # Build target path: docs/de/features/takes.md
             target_file = os.path.join(docs_dir, lang_code, rel_path)
 
             if os.path.exists(target_file):

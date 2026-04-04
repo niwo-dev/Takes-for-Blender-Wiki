@@ -83,6 +83,21 @@
   .txs-palette-menu__option.is-active .check {
     opacity: 1;
   }
+
+  /* CMS Login button */
+  .txs-login-btn {
+    background: none;
+    border: none;
+    color: var(--md-primary-bg-color, #fff);
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .txs-login-btn:hover { opacity: 1; }
 </style>
 {% endblock %}
 
@@ -142,6 +157,16 @@
       ].join("");
 
       iconsDiv.appendChild(wrapper);
+
+      // CMS Login button
+      var loginBtn = document.createElement("a");
+      loginBtn.className = "txs-login-btn";
+      loginBtn.title = "CMS Login";
+      loginBtn.setAttribute("aria-label", "CMS Login");
+      loginBtn.href = "{{ config.site_url }}admin/";
+      loginBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12H12v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"/></svg>';
+      iconsDiv.appendChild(loginBtn);
+
       headerInner.appendChild(iconsDiv);
 
       var btn = wrapper.querySelector(".txs-palette-menu__btn");

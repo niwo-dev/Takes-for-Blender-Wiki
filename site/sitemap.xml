@@ -25,18 +25,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/comparisons/"/>
     </url>
     <url>
-        <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/corporate_identity.de/</loc>
-        <lastmod>2026-04-04</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="de" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="vi" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/corporate_identity.de/"/>
-    </url>
-    <url>
         <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/corporate_identity/</loc>
         <lastmod>2026-04-04</lastmod>
         <changefreq>daily</changefreq>
@@ -337,30 +325,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/"/>
     </url>
     <url>
-        <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/comparisons/</loc>
-        <lastmod>2026-04-04</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="de" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/comparisons/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/comparisons/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/comparisons/"/>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/comparisons/"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/comparisons/"/>
-        <xhtml:link rel="alternate" hreflang="vi" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/comparisons/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/comparisons/"/>
-    </url>
-    <url>
-        <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/corporate_identity.de/</loc>
-        <lastmod>2026-04-04</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="de" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="vi" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/corporate_identity.de/"/>
-    </url>
-    <url>
         <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/corporate_identity/</loc>
         <lastmod>2026-04-04</lastmod>
         <changefreq>daily</changefreq>
@@ -649,6 +613,18 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/workflows/material_variants/"/>
     </url>
     <url>
+        <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/comparisons/</loc>
+        <lastmod>2026-04-04</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/comparisons/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/comparisons/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/comparisons/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/comparisons/"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/comparisons/"/>
+        <xhtml:link rel="alternate" hreflang="vi" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/comparisons/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/comparisons/"/>
+    </url>
+    <url>
         <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/</loc>
         <lastmod>2026-04-04</lastmod>
         <changefreq>daily</changefreq>
@@ -671,18 +647,6 @@
         <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/comparisons/"/>
         <xhtml:link rel="alternate" hreflang="vi" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/comparisons/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/comparisons/"/>
-    </url>
-    <url>
-        <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/corporate_identity.de/</loc>
-        <lastmod>2026-04-04</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="es" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="de" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="vi" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/corporate_identity.de/"/>
     </url>
     <url>
         <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/corporate_identity/</loc>
@@ -997,18 +961,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/comparisons/"/>
     </url>
     <url>
-        <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/corporate_identity.de/</loc>
-        <lastmod>2026-04-04</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="de" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="vi" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/corporate_identity.de/"/>
-    </url>
-    <url>
         <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/corporate_identity/</loc>
         <lastmod>2026-04-04</lastmod>
         <changefreq>daily</changefreq>
@@ -1319,18 +1271,6 @@
         <xhtml:link rel="alternate" hreflang="ja" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/comparisons/"/>
         <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/comparisons/"/>
         <xhtml:link rel="alternate" hreflang="vi" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/comparisons/"/>
-    </url>
-    <url>
-        <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/corporate_identity.de/</loc>
-        <lastmod>2026-04-04</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="de" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="vi" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/corporate_identity.de/"/>
     </url>
     <url>
         <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/corporate_identity/</loc>
@@ -1645,18 +1585,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/comparisons/"/>
     </url>
     <url>
-        <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/corporate_identity.de/</loc>
-        <lastmod>2026-04-04</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="de" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="vi" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/corporate_identity.de/"/>
-    </url>
-    <url>
         <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/corporate_identity/</loc>
         <lastmod>2026-04-04</lastmod>
         <changefreq>daily</changefreq>
@@ -1967,18 +1895,6 @@
         <xhtml:link rel="alternate" hreflang="ja" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/comparisons/"/>
         <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/comparisons/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/comparisons/"/>
-    </url>
-    <url>
-        <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/corporate_identity.de/</loc>
-        <lastmod>2026-04-04</lastmod>
-        <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="vi" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="de" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/de/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/es/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ja/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/ru/corporate_identity.de/"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/zh/corporate_identity.de/"/>
     </url>
     <url>
         <loc>https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/vi/corporate_identity/</loc>

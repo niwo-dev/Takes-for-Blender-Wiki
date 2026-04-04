@@ -159,6 +159,21 @@
   .txs-palette-menu__option.is-active .check {
     opacity: 1;
   }
+
+  /* CMS Login button */
+  .txs-login-btn {
+    background: none;
+    border: none;
+    color: var(--md-primary-bg-color, #fff);
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .txs-login-btn:hover { opacity: 1; }
 </style>
 
   </head>
@@ -499,25 +514,6 @@
     
   
   Preferences
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../comparisons/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Comparisons
 
       </a>
     </li>
@@ -1593,35 +1589,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../comparisons/" class="md-nav__link">
-        
-  
-  
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3c-1.27 0-2.4.8-2.82 2H3v2h1.95L2 14c-.47 2 1 3 3.5 3s4.06-1 3.5-3L6.05 7h3.12c.33.85.98 1.5 1.83 1.83V20H2v2h20v-2h-9V8.82c.85-.32 1.5-.97 1.82-1.82h3.13L15 14c-.47 2 1 3 3.5 3s4.06-1 3.5-3l-2.95-7H21V5h-6.17C14.4 3.8 13.27 3 12 3m0 2a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-6.5 5.25L7 14H4zm13 0L20 14h-3z"/></svg>
-  
-  <span class="md-ellipsis">
-    
-  
-    Comparisons
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../faq/" class="md-nav__link">
         
   
@@ -1966,6 +1933,16 @@
       ].join("");
 
       iconsDiv.appendChild(wrapper);
+
+      // CMS Login button
+      var loginBtn = document.createElement("a");
+      loginBtn.className = "txs-login-btn";
+      loginBtn.title = "CMS Login";
+      loginBtn.setAttribute("aria-label", "CMS Login");
+      loginBtn.href = "https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/admin/";
+      loginBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12H12v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"/></svg>';
+      iconsDiv.appendChild(loginBtn);
+
       headerInner.appendChild(iconsDiv);
 
       var btn = wrapper.querySelector(".txs-palette-menu__btn");
