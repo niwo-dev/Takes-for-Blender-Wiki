@@ -1,4 +1,4 @@
-backend:
+﻿backend:
   name: github
   repo: niwo-dev/Takes-for-Blender-Wiki
   branch: main
@@ -22,28 +22,28 @@ collections:
         file: "docs/{{locale}}/index.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "FAQ"
         name: "faq"
         file: "docs/{{locale}}/faq.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Comparisons"
         name: "comparisons"
         file: "docs/{{locale}}/comparisons.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Corporate Identity"
         name: "corporate_identity"
         file: "docs/{{locale}}/corporate_identity.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
 
   - name: "getting-started"
@@ -55,21 +55,21 @@ collections:
         file: "docs/{{locale}}/getting_started/first_steps.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Index"
         name: "index"
         file: "docs/{{locale}}/getting_started/index.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Installation"
         name: "installation"
         file: "docs/{{locale}}/getting_started/installation.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
 
   - name: "features"
@@ -81,56 +81,56 @@ collections:
         file: "docs/{{locale}}/features/index.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Takes"
         name: "takes"
         file: "docs/{{locale}}/features/takes.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Cascade"
         name: "cascade"
         file: "docs/{{locale}}/features/cascade.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Rest State"
         name: "rest_state"
         file: "docs/{{locale}}/features/rest_state.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Variant Switch"
         name: "variant_switch"
         file: "docs/{{locale}}/features/variant_switch.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Batch Render"
         name: "batch_render"
         file: "docs/{{locale}}/features/batch_render.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Smart Output"
         name: "smart_output"
         file: "docs/{{locale}}/features/smart_output.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Render Presets"
         name: "render_presets"
         file: "docs/{{locale}}/features/render_presets.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
 
   - name: "interface"
@@ -142,42 +142,42 @@ collections:
         file: "docs/{{locale}}/interface/index.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Navigation Panel"
         name: "navigation_panel"
         file: "docs/{{locale}}/interface/navigation_panel.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Variant Tree"
         name: "variant_tree"
         file: "docs/{{locale}}/interface/variant_tree.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Context Properties"
         name: "context_properties"
         file: "docs/{{locale}}/interface/context_properties.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Inspector Panel"
         name: "inspector_panel"
         file: "docs/{{locale}}/interface/inspector_panel.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Hotkeys"
         name: "hotkeys"
         file: "docs/{{locale}}/interface/hotkeys.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
 
   - name: "workflows"
@@ -189,28 +189,28 @@ collections:
         file: "docs/{{locale}}/workflows/index.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Material Variants"
         name: "material_variants"
         file: "docs/{{locale}}/workflows/material_variants.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Animation Variants"
         name: "animation_variants"
         file: "docs/{{locale}}/workflows/animation_variants.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Batch Rendering"
         name: "batch_rendering"
         file: "docs/{{locale}}/workflows/batch_rendering.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
 
   - name: "preferences"
@@ -222,5 +222,5 @@ collections:
         file: "docs/{{locale}}/preferences/index.md"
         i18n: true
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown", i18n: true}
