@@ -7,7 +7,7 @@ backend:
 media_folder: "docs/assets"
 
 # What string is injected into your markdown (e.g., ![alt](../assets/image.png) )
-public_folder: "../assets"
+public_folder: "/wiki/assets"
 
 # Defining your Wiki's content structure
 collections:
