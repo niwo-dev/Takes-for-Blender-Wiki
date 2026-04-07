@@ -1,0 +1,97 @@
+/* ============================================================
+   Takes for Blender — Global Web Layout (Grayscale)
+   ============================================================ */
+
+/* Narrower content area for better readability */
+.md-grid {
+  max-width: 1100px;
+}
+
+/* LIGHT MODE (SLIGHTLY GRAY) */
+[data-md-color-scheme="default"] {
+  --md-hue: 0; /* Strips native hue tint */
+  --md-default-bg-color: #f6f6f6;
+  --md-default-bg-color--light: #ffffff; /* Make cards/codeblocks pop */
+  --md-default-fg-color: #222222;
+  --md-typeset-a-color: #444444;       /* Links in gray */
+  --md-primary-fg-color: #333333;      /* Header bar gray */
+  --md-accent-fg-color: #555555;
+  --md-primary-fg-color--light: #555555;
+}
+
+/* DARK MODE (FULLY GRAYSCALE) */
+[data-md-color-scheme="slate"] {
+  --md-hue: 0; /* Strips native blue/indigo MkDocs slate tint */
+  --md-default-bg-color: #222222;
+  --md-default-bg-color--light: #2a2a2a;
+  --md-default-bg-color--lighter: #303030;
+  --md-default-fg-color: #e0e0e0;
+  --md-default-fg-color--light: #bbbbbb;
+  --md-typeset-a-color: #cccccc;       /* Links in gray */
+  --md-primary-fg-color: #111111;      /* Header bar pure dark gray */
+  --md-accent-fg-color: #888888;
+  --md-footer-fg-color: #e0e0e0;
+  --md-footer-fg-color--light: #999999;
+  --md-footer-fg-color--lighter: #666666;
+  --md-footer-bg-color: #1a1a1a;
+  --md-footer-bg-color--dark: #111111;
+}
+
+/* Keyboard shortcut styling */
+kbd {
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-size: 0.85em;
+}
+
+/* Slightly tighter table cell padding */
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+  padding: 0.5em 0.8em;
+}
+
+/* Modern Typography for all Headers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+
+/* Header and Footer — flat opaque grayscale, no transparency blending */
+.md-header {
+  background-color: #1a1a1a !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.md-footer {
+  background-color: #1a1a1a !important;
+}
+.md-tabs {
+  background-color: #1a1a1a !important;
+}
+
+[data-md-color-scheme="default"] .md-header {
+  background-color: #333333 !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+[data-md-color-scheme="default"] .md-footer {
+  background-color: #333333 !important;
+}
+[data-md-color-scheme="default"] .md-tabs {
+  background-color: #333333 !important;
+}
+
+/* Micro-Animations for the Homepage Feature Grid */
+.md-typeset .grid.cards > ul > li {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  border-color: rgba(255, 255, 255, 0.15); /* Neutral/White glow to match grayscale intent */
+}
