@@ -560,6 +560,194 @@
         }
         footer a:hover { color: var(--accent); }
 
+        /* ─── EARLY BIRD BANNER ─── */
+        .early-bird-banner {
+            max-width: 1100px;
+            margin: 2.5rem auto 0;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, rgba(232,125,13,0.14), rgba(245,166,35,0.05));
+            border: 1px solid rgba(232,125,13,0.4);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 2rem; flex-wrap: wrap;
+            box-shadow: 0 0 50px rgba(232,125,13,0.1);
+            position: relative; overflow: hidden;
+        }
+        .early-bird-banner::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(232,125,13,0.08), transparent 60%);
+            pointer-events: none;
+        }
+        .eb-text { flex: 1; min-width: 250px; position: relative; }
+        .eb-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem; font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 0.35rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .eb-title .material-symbols-outlined { font-size: 1.3rem; }
+        .eb-sub { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; }
+        .eb-countdown { display: flex; gap: 0.7rem; position: relative; }
+        .eb-unit {
+            background: rgba(0,0,0,0.45);
+            border: 1px solid rgba(232,125,13,0.25);
+            border-radius: 10px;
+            padding: 0.65rem 0.8rem;
+            min-width: 64px; text-align: center;
+        }
+        .eb-unit-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem; font-weight: 800;
+            color: var(--text-bright); line-height: 1;
+        }
+        .eb-unit-label {
+            font-size: 0.65rem; color: var(--text-dim);
+            text-transform: uppercase; letter-spacing: 0.08em;
+            margin-top: 0.35rem;
+        }
+
+        /* ─── TABBED LAYOUT ─── */
+        .tabs-section { padding: 4rem 2rem 2rem; }
+        .tabs-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 240px 1fr;
+            gap: 3rem; align-items: start;
+        }
+        .tabs-nav {
+            position: sticky; top: 6rem;
+            display: flex; flex-direction: column; gap: 0.3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 0.7rem;
+        }
+        .tab-btn {
+            display: flex; align-items: center; gap: 0.7rem;
+            padding: 0.8rem 1rem;
+            background: transparent; border: none;
+            border-left: 3px solid transparent;
+            border-radius: 10px;
+            color: var(--text-dim);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem; font-weight: 500;
+            cursor: pointer; text-align: left; width: 100%;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .tab-btn .material-symbols-outlined {
+            font-size: 1.2rem; color: var(--text-dim);
+            transition: color 0.2s;
+        }
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.04);
+            color: var(--text-bright);
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(232,125,13,0.18), rgba(245,166,35,0.04));
+            color: var(--text-bright);
+            border-left-color: var(--accent);
+        }
+        .tab-btn.active .material-symbols-outlined { color: var(--accent); }
+
+        .tab-panels { min-height: 500px; }
+        .tab-panel { display: none; animation: fadeInUp 0.35s ease; }
+        .tab-panel.active { display: block; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .tab-panel > .panel-head { margin-bottom: 2rem; }
+
+        /* ─── COST SAVINGS ─── */
+        .savings-summary {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem; margin: 1rem 0 2.5rem;
+        }
+        .savings-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem; text-align: center;
+        }
+        .savings-card.you-pay {
+            border-color: rgba(232,125,13,0.45);
+            background: linear-gradient(180deg, rgba(232,125,13,0.08), var(--bg-card));
+            box-shadow: 0 0 30px rgba(232,125,13,0.08);
+        }
+        .sc-label {
+            font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--text-dim);
+            margin-bottom: 0.6rem;
+        }
+        .sc-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.4rem; font-weight: 800;
+            color: var(--text-bright);
+            letter-spacing: -1px; line-height: 1;
+        }
+        .savings-card.you-pay .sc-value {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .savings-card.you-save .sc-value { color: #6fd16f; }
+        .sc-strike {
+            text-decoration: line-through;
+            color: var(--text-dim);
+            font-size: 1rem; margin-right: 0.4rem;
+        }
+        .sc-tag { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.5rem; }
+        .savings-table-container {
+            background: rgba(22,22,24,0.4);
+            border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden;
+        }
+        .savings-table { width: 100%; border-collapse: collapse; }
+        .savings-table th {
+            background: rgba(0,0,0,0.3);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.78rem; letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-dim); font-weight: 600;
+            text-align: left; padding: 1rem 1.5rem;
+        }
+        .savings-table th.right { text-align: right; }
+        .savings-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.92rem; color: var(--text);
+            vertical-align: top;
+        }
+        .savings-table td.right { text-align: right; white-space: nowrap; }
+        .savings-table td .feat-icon {
+            font-size: 1.1rem; color: var(--accent);
+            vertical-align: middle; margin-right: 0.5rem;
+        }
+        .savings-table td .feat-note {
+            display: block; font-size: 0.8rem;
+            color: var(--text-dim); margin-top: 0.25rem;
+        }
+        .savings-table tr:last-child td { border-bottom: none; }
+        .savings-table tfoot td {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700; color: var(--text-bright);
+            background: rgba(232,125,13,0.05);
+            border-top: 1px solid rgba(232,125,13,0.25);
+            font-size: 1rem;
+        }
+        .savings-table tfoot td.right {
+            color: var(--accent-light); font-size: 1.15rem;
+        }
+        .savings-cta {
+            margin-top: 2rem; padding: 1.5rem;
+            text-align: center;
+            background: rgba(232,125,13,0.05);
+            border: 1px dashed rgba(232,125,13,0.3);
+            border-radius: 12px;
+            color: var(--text); font-size: 0.95rem;
+        }
+        .savings-cta strong { color: var(--accent-light); font-family: 'Outfit', sans-serif; }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width: 900px) {
             .creator-card { flex-direction: column; text-align: center; padding: 3rem 2rem; gap: 2.5rem; }
@@ -584,6 +772,20 @@
             .pricing-card.popular { transform: none; }
             .pricing-card.popular:hover { transform: translateY(-4px); }
             .cta h2 { font-size: 2rem; }
+            .tabs-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+            .tabs-nav {
+                position: relative; top: auto;
+                flex-direction: row; overflow-x: auto;
+                padding: 0.5rem; gap: 0.3rem;
+                scrollbar-width: thin;
+            }
+            .tab-btn { white-space: nowrap; flex-shrink: 0; }
+            .tab-btn.active { border-left-color: transparent; border-bottom: 2px solid var(--accent); border-radius: 8px 8px 0 0; }
+            .savings-summary { grid-template-columns: 1fr; }
+            .early-bird-banner { padding: 1.2rem; flex-direction: column; align-items: flex-start; }
+            .eb-countdown { width: 100%; justify-content: space-between; gap: 0.4rem; }
+            .eb-unit { min-width: 0; flex: 1; padding: 0.5rem 0.4rem; }
+            .eb-unit-value { font-size: 1.2rem; }
             nav { width: 95%; max-width: none; top: 1rem; border-radius: 12px; }
             nav .nav-inner { flex-wrap: wrap; padding: 1rem 1.5rem; gap: 0; }
             nav .logo { margin-bottom: 0; }
@@ -613,6 +815,7 @@
         <div class="nav-links">
             <a href="#features">Features</a>
             <a href="#workflow">Workflow</a>
+            <a href="#savings">Savings</a>
             <a href="#comparison">Compare</a>
             <a href="#faq">FAQ</a>
             <a href="#creator">About</a>
@@ -681,14 +884,48 @@
     </div>
 </div>
 
-<!-- FEATURES -->
-<section id="features">
-    <div class="section-inner">
+<!-- EARLY BIRD BANNER -->
+<div class="early-bird-banner">
+    <div class="eb-text">
+        <div class="eb-title">
+            <span class="material-symbols-outlined">schedule</span>
+            Early Bird pricing — limited time
+        </div>
+        <p class="eb-sub">Lifetime licenses at launch-discount rates. Offer ends <strong style="color:var(--text-bright);">1 month after Blender LTS 5.2 releases</strong>. Lock in the lowest price before the timer runs out.</p>
+    </div>
+    <div id="eb-countdown" class="eb-countdown" aria-label="Time remaining">
+        <div class="eb-unit"><div class="eb-unit-value">—</div><div class="eb-unit-label">Days</div></div>
+        <div class="eb-unit"><div class="eb-unit-value">—</div><div class="eb-unit-label">Hours</div></div>
+        <div class="eb-unit"><div class="eb-unit-value">—</div><div class="eb-unit-label">Mins</div></div>
+        <div class="eb-unit"><div class="eb-unit-value">—</div><div class="eb-unit-label">Secs</div></div>
+    </div>
+</div>
+
+<!-- TABBED CONTENT -->
+<section class="tabs-section" id="tabs-section">
+    <div class="tabs-inner">
+        <aside class="tabs-nav" role="tablist" aria-label="Page sections">
+            <button class="tab-btn active" data-tab="features" role="tab"><span class="material-symbols-outlined">grid_view</span>Features</button>
+            <button class="tab-btn" data-tab="workflow" role="tab"><span class="material-symbols-outlined">route</span>Workflow</button>
+            <button class="tab-btn" data-tab="benefits" role="tab"><span class="material-symbols-outlined">stars</span>Why Takes</button>
+            <button class="tab-btn" data-tab="comparison" role="tab"><span class="material-symbols-outlined">compare_arrows</span>Compare</button>
+            <button class="tab-btn" data-tab="savings" role="tab"><span class="material-symbols-outlined">savings</span>Cost Savings</button>
+            <button class="tab-btn" data-tab="faq" role="tab"><span class="material-symbols-outlined">help</span>FAQ</button>
+            <button class="tab-btn" data-tab="creator" role="tab"><span class="material-symbols-outlined">person</span>About</button>
+            <button class="tab-btn" data-tab="pricing" role="tab"><span class="material-symbols-outlined">payments</span>Pricing</button>
+        </aside>
+
+        <div class="tab-panels">
+
+<!-- FEATURES PANEL -->
+<div class="tab-panel active" data-tab="features" role="tabpanel">
+    <div class="panel-head">
         <div class="section-label">Core Features</div>
         <h2 class="section-title">Everything you need. Nothing you don't.</h2>
         <p class="section-subtitle">Takes replaces dozens of manual steps with a single, intelligent pipeline. Organize, override, switch, render — all from one panel.</p>
+    </div>
 
-        <div class="features-grid">
+    <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon"><span class="material-symbols-outlined">account_tree</span></div>
                 <h3>Takes Tree</h3>
@@ -734,18 +971,18 @@
                 <h3>Full Hotkey Support</h3>
                 <p>Every tree operation has keyboard shortcuts. Create, duplicate, group, rename, delete — all without leaving the keyboard.</p>
             </div>
-        </div>
     </div>
-</section>
+</div>
 
-<!-- WORKFLOW -->
-<section id="workflow" class="workflow">
-    <div class="section-inner">
+<!-- WORKFLOW PANEL -->
+<div class="tab-panel" data-tab="workflow" role="tabpanel">
+    <div class="panel-head">
         <div class="section-label">How It Works</div>
         <h2 class="section-title">From setup to render in three steps</h2>
         <p class="section-subtitle">Takes is designed to disappear — set it up once, then let the cascade do the thinking for you.</p>
+    </div>
 
-        <div class="workflow-steps">
+    <div class="workflow-steps">
             <div class="workflow-step">
                 <h3>Organize</h3>
                 <p>Create your Takes Tree — group scenes and view layers into a meaningful hierarchy. Add versions for iterations. Tag with colors for quick visual scanning.</p>
@@ -761,18 +998,18 @@
                 <p>Hit Render. The batch system walks the tree, applies every override, renders each View Layer into its Smart Output path. You get a coffee. It just works.</p>
                 <img src="media/landing/render.png" alt="Batch rendering process" class="workflow-image">
             </div>
-        </div>
     </div>
-</section>
+</div>
 
-<!-- BENEFITS -->
-<section id="benefits">
-    <div class="section-inner">
+<!-- BENEFITS PANEL -->
+<div class="tab-panel" data-tab="benefits" role="tabpanel">
+    <div class="panel-head">
         <div class="section-label">Why Takes</div>
         <h2 class="section-title">Built for studios that ship</h2>
         <p class="section-subtitle">Takes was designed by a product visualization artist who got tired of the same manual pain — every single project.</p>
+    </div>
 
-        <div class="benefits-grid">
+    <div class="benefits-grid">
             <div class="benefit">
                 <div class="benefit-icon"><span class="material-symbols-outlined">bolt</span></div>
                 <div>
@@ -815,18 +1052,18 @@
                     <p>Everything lives in the Properties Editor. Takes Tree, cascade overrides, batch render queue, inspector — one tab, zero context switching.</p>
                 </div>
             </div>
-        </div>
     </div>
-</section>
+</div>
 
-<!-- COMPARISON -->
-<section id="comparison" class="comparison-section">
-    <div class="section-inner">
+<!-- COMPARISON PANEL -->
+<div class="tab-panel" data-tab="comparison" role="tabpanel">
+    <div class="panel-head">
         <div class="section-label">The Ecosystem</div>
         <h2 class="section-title">Stage Management vs. Context Savers</h2>
         <p class="section-subtitle">Why traditional "scene state savers" aren't enough for high-end visualization.</p>
+    </div>
 
-        <div class="comp-table-container">
+    <div class="comp-table-container">
             <table class="comp-table matrix-table">
                 <thead>
                     <tr>
@@ -888,17 +1125,131 @@
                     </tr>
                 </tbody>
             </table>
+    </div>
+</div>
+
+<!-- COST SAVINGS PANEL -->
+<div class="tab-panel" data-tab="savings" role="tabpanel">
+    <div class="panel-head">
+        <div class="section-label">Cost Comparison</div>
+        <h2 class="section-title">One addon. Eight tools' worth of value.</h2>
+        <p class="section-subtitle">If you assembled this workflow from individual addons, you'd buy at least eight separate tools — and still glue them together yourself. Takes covers all of it natively.</p>
+    </div>
+
+    <div class="savings-summary">
+        <div class="savings-card">
+            <div class="sc-label">À la carte</div>
+            <div class="sc-value">$266</div>
+            <div class="sc-tag">Eight separate addons, sold individually</div>
+        </div>
+        <div class="savings-card you-pay">
+            <div class="sc-label">Takes — Early Bird</div>
+            <div class="sc-value"><span class="sc-strike">$69</span>$49</div>
+            <div class="sc-tag">Freelance lifetime license</div>
+        </div>
+        <div class="savings-card you-save">
+            <div class="sc-label">You save</div>
+            <div class="sc-value">$217</div>
+            <div class="sc-tag">≈ 82% off the à la carte total</div>
         </div>
     </div>
-</section>
 
-<!-- FAQ -->
-<section id="faq" class="faq-section">
-    <div class="section-inner">
+    <div class="savings-table-container">
+        <table class="savings-table">
+            <thead>
+                <tr>
+                    <th>If you bought it separately</th>
+                    <th class="right">Typical price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="material-symbols-outlined feat-icon">account_tree</span>Hierarchical project organizer
+                        <span class="feat-note">Replaces: Scene-management addons (Takes Tree)</span>
+                    </td>
+                    <td class="right">$39</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="material-symbols-outlined feat-icon">south</span>Cascade override system
+                        <span class="feat-note">No direct equivalent — closest are context-state addons (Renderset, etc.)</span>
+                    </td>
+                    <td class="right">$59</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="material-symbols-outlined feat-icon">swap_horiz</span>Variant / material switching
+                        <span class="feat-note">Replaces: Mat-Switch, Polyviews, variant addons</span>
+                    </td>
+                    <td class="right">$35</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="material-symbols-outlined feat-icon">movie</span>Batch render queue (foreground + headless)
+                        <span class="feat-note">Replaces: Render+, Renderset batch features</span>
+                    </td>
+                    <td class="right">$45</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="material-symbols-outlined feat-icon">folder_open</span>Smart token-based output paths
+                        <span class="feat-note">Replaces: Output naming addons</span>
+                    </td>
+                    <td class="right">$19</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="material-symbols-outlined feat-icon">palette</span>Render preset library
+                        <span class="feat-note">Replaces: Render-config snapshot addons</span>
+                    </td>
+                    <td class="right">$19</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="material-symbols-outlined feat-icon">anchor</span>Rest-state pose system
+                        <span class="feat-note">No direct equivalent — would require custom rigging utilities</span>
+                    </td>
+                    <td class="right">$25</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="material-symbols-outlined feat-icon">search</span>Inspector / data-loss watchlist
+                        <span class="feat-note">No direct equivalent — typically a manual checklist</span>
+                    </td>
+                    <td class="right">$25</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>À la carte total</td>
+                    <td class="right">$266</td>
+                </tr>
+                <tr>
+                    <td>Takes — Freelance (regular)</td>
+                    <td class="right"><span class="sc-strike">$69</span></td>
+                </tr>
+                <tr>
+                    <td>Takes — Freelance (Early Bird)</td>
+                    <td class="right">$49</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="savings-cta">
+        Skip eight purchases, eight licensing terms, and eight update cycles. <strong>Lock in $49 lifetime</strong> before the Early Bird timer ends — 1 month after Blender LTS 5.2 releases.
+    </div>
+</div>
+
+<!-- FAQ PANEL -->
+<div class="tab-panel" data-tab="faq" role="tabpanel">
+    <div class="panel-head">
         <div class="section-label">Questions?</div>
         <h2 class="section-title">Frequently Asked Questions</h2>
-        
-        <div class="faq-container">
+    </div>
+
+    <div class="faq-container">
             <div class="faq-item">
                 <button class="faq-question">Does Takes for Blender duplicate my objects when making variations?<span class="material-symbols-outlined faq-icon">add</span></button>
                 <div class="faq-answer">
@@ -923,12 +1274,11 @@
                     <p>Takes operates entirely inside the standard Properties editor, so there's zero context switching. Once you understand the basic Cascade logic (top-down inheritance), it behaves exactly as you'd intuitively expect standard Blender to work.</p>
                 </div>
             </div>
-        </div>
     </div>
-</section>
+</div>
 
-<!-- CREATOR -->
-<section id="creator" class="creator-section">
+<!-- CREATOR PANEL -->
+<div class="tab-panel" data-tab="creator" role="tabpanel">
     <div class="creator-card">
         <div class="creator-image">
             <img src="media/landing/niwo.jpg" alt="Niwo - Creator of Takes for Blender">
@@ -943,16 +1293,17 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<!-- PRICING -->
-<section id="pricing" class="pricing">
-    <div class="section-inner">
+<!-- PRICING PANEL -->
+<div class="tab-panel" data-tab="pricing" role="tabpanel">
+    <div class="panel-head">
         <div class="section-label">Pricing</div>
         <h2 class="section-title">Save hours per setup. Pick your plan.</h2>
-        <p class="section-subtitle">Lock in your lifetime license during our Early Bird period before the official release.</p>
+        <p class="section-subtitle">Lock in your lifetime license during the Early Bird period — ends 1 month after Blender LTS 5.2 releases.</p>
+    </div>
 
-        <div class="pricing-grid">
+    <div class="pricing-grid">
             <div class="pricing-card">
                 <div class="pricing-title">Hobbyist</div>
                 <div class="pricing-desc">For students and unpaid personal portfolios.</div>
@@ -997,9 +1348,12 @@
                 </ul>
                 <a href="#cta" class="btn-secondary" style="width:100%; justify-content:center;">Coming Soon</a>
             </div>
-        </div>
     </div>
-</section>
+</div>
+
+        </div><!-- /.tab-panels -->
+    </div><!-- /.tabs-inner -->
+</section><!-- /.tabs-section -->
 
 <!-- CTA -->
 <section id="cta" class="cta">
@@ -1207,10 +1561,63 @@
         });
     });
 
+    // Tab switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    const validTabs = Array.from(tabBtns).map(b => b.dataset.tab);
+
+    function switchTab(tabId, scroll = false) {
+        if (!validTabs.includes(tabId)) return;
+        tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+        tabPanels.forEach(p => p.classList.toggle('active', p.dataset.tab === tabId));
+        if (scroll) {
+            const sec = document.querySelector('.tabs-section');
+            if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    // Hash routes -> tab switch (so nav and external links work)
+    function applyHash() {
+        const h = window.location.hash.replace('#', '');
+        if (validTabs.includes(h)) switchTab(h, true);
+    }
+    window.addEventListener('hashchange', applyHash);
+
+    // Early Bird countdown
+    // RULE: Offer ends 1 month after Blender LTS 5.2 releases.
+    // UPDATE THIS DATE once the official Blender 5.2 LTS release date is announced.
+    const EARLY_BIRD_END = new Date('2026-09-01T23:59:59');
+
+    function updateCountdown() {
+        const cd = document.getElementById('eb-countdown');
+        if (!cd) return;
+        const diff = EARLY_BIRD_END - new Date();
+        if (diff <= 0) {
+            cd.innerHTML = '<div class="eb-unit"><div class="eb-unit-value">—</div><div class="eb-unit-label">Ended</div></div>';
+            return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        cd.innerHTML =
+            '<div class="eb-unit"><div class="eb-unit-value">' + d + '</div><div class="eb-unit-label">Days</div></div>' +
+            '<div class="eb-unit"><div class="eb-unit-value">' + String(h).padStart(2,'0') + '</div><div class="eb-unit-label">Hours</div></div>' +
+            '<div class="eb-unit"><div class="eb-unit-value">' + String(m).padStart(2,'0') + '</div><div class="eb-unit-label">Mins</div></div>' +
+            '<div class="eb-unit"><div class="eb-unit-value">' + String(s).padStart(2,'0') + '</div><div class="eb-unit-label">Secs</div></div>';
+    }
+
     // Start when DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
         init();
         initTiltEffect();
+        applyHash();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
     });
 </script>
 
