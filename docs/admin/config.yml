@@ -1,226 +1,237 @@
-﻿backend:
+backend:
   name: github
   repo: niwo-dev/Takes-for-Blender-Wiki
   branch: main
   base_url: https://sveltia-cms-auth.icy-voice-2d22.workers.dev
 
-media_folder: "docs/en/assets"
+media_folder: "docs/assets"
 public_folder: "/wiki/assets"
-
-i18n:
-  structure: multiple_folders
-  locales: [en, de, es, ru, zh, ja, vi]
-  default_locale: en
 
 collections:
   - name: "root-pages"
     label: "Root Pages"
-    i18n: true
     files:
       - label: "Home"
         name: "index"
-        file: "docs/{{locale}}/index.md"
-        i18n: true
+        file: "docs/index.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
       - label: "FAQ"
         name: "faq"
-        file: "docs/{{locale}}/faq.md"
-        i18n: true
+        file: "docs/faq.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
       - label: "Comparisons"
         name: "comparisons"
-        file: "docs/{{locale}}/comparisons.md"
-        i18n: true
+        file: "docs/comparisons.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
       - label: "Corporate Identity"
         name: "corporate_identity"
-        file: "docs/{{locale}}/corporate_identity.md"
-        i18n: true
+        file: "docs/corporate_identity.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "getting-started"
     label: "Getting Started"
-    i18n: true
     files:
-      - label: "First Steps"
-        name: "first_steps"
-        file: "docs/{{locale}}/getting_started/first_steps.md"
-        i18n: true
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Index"
         name: "index"
-        file: "docs/{{locale}}/getting_started/index.md"
-        i18n: true
+        file: "docs/getting_started/index.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
       - label: "Installation"
         name: "installation"
-        file: "docs/{{locale}}/getting_started/installation.md"
-        i18n: true
+        file: "docs/getting_started/installation.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
-
-  - name: "features"
-    label: "Features"
-    i18n: true
-    files:
-      - label: "Index"
-        name: "index"
-        file: "docs/{{locale}}/features/index.md"
-        i18n: true
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "First Steps"
+        name: "first_steps"
+        file: "docs/getting_started/first_steps.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
-      - label: "Takes"
-        name: "takes"
-        file: "docs/{{locale}}/features/takes.md"
-        i18n: true
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
-      - label: "Cascade"
-        name: "cascade"
-        file: "docs/{{locale}}/features/cascade.md"
-        i18n: true
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
-      - label: "Rest State"
-        name: "rest_state"
-        file: "docs/{{locale}}/features/rest_state.md"
-        i18n: true
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
-      - label: "Variant Switch"
-        name: "variant_switch"
-        file: "docs/{{locale}}/features/variant_switch.md"
-        i18n: true
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
-      - label: "Batch Render"
-        name: "batch_render"
-        file: "docs/{{locale}}/features/batch_render.md"
-        i18n: true
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
-      - label: "Smart Output"
-        name: "smart_output"
-        file: "docs/{{locale}}/features/smart_output.md"
-        i18n: true
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
-      - label: "Render Presets"
-        name: "render_presets"
-        file: "docs/{{locale}}/features/render_presets.md"
-        i18n: true
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "interface"
     label: "Interface"
-    i18n: true
     files:
       - label: "Index"
         name: "index"
-        file: "docs/{{locale}}/interface/index.md"
-        i18n: true
+        file: "docs/interface/index.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
       - label: "Navigation Panel"
         name: "navigation_panel"
-        file: "docs/{{locale}}/interface/navigation_panel.md"
-        i18n: true
+        file: "docs/interface/navigation_panel.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
-      - label: "Variant Tree"
-        name: "variant_tree"
-        file: "docs/{{locale}}/interface/variant_tree.md"
-        i18n: true
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
-      - label: "Context Properties"
-        name: "context_properties"
-        file: "docs/{{locale}}/interface/context_properties.md"
-        i18n: true
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
       - label: "Inspector Panel"
         name: "inspector_panel"
-        file: "docs/{{locale}}/interface/inspector_panel.md"
-        i18n: true
+        file: "docs/interface/inspector_panel.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Context Properties"
+        name: "context_properties"
+        file: "docs/interface/context_properties.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Variant Tree"
+        name: "variant_tree"
+        file: "docs/interface/variant_tree.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
       - label: "Hotkeys"
         name: "hotkeys"
-        file: "docs/{{locale}}/interface/hotkeys.md"
-        i18n: true
+        file: "docs/interface/hotkeys.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "features"
+    label: "Features"
+    files:
+      - label: "Index"
+        name: "index"
+        file: "docs/features/index.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Takes"
+        name: "takes"
+        file: "docs/features/takes.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Cascade"
+        name: "cascade"
+        file: "docs/features/cascade.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "View Layer Versions"
+        name: "vl_versions"
+        file: "docs/features/vl_versions.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Globals Panel"
+        name: "globals"
+        file: "docs/features/globals.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Tags"
+        name: "tags"
+        file: "docs/features/tags.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Rules"
+        name: "rules"
+        file: "docs/features/rules.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Variant Switch"
+        name: "variant_switch"
+        file: "docs/features/variant_switch.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Smart Output"
+        name: "smart_output"
+        file: "docs/features/smart_output.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Render Presets"
+        name: "render_presets"
+        file: "docs/features/render_presets.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Batch Render"
+        name: "batch_render"
+        file: "docs/features/batch_render.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Rest State"
+        name: "rest_state"
+        file: "docs/features/rest_state.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "View Layer Preview"
+        name: "vl_preview"
+        file: "docs/features/vl_preview.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Bookmarks"
+        name: "bookmarks"
+        file: "docs/features/bookmarks.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Pie Menus"
+        name: "pie_menus"
+        file: "docs/features/pie_menus.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Process Monitor"
+        name: "process_monitor"
+        file: "docs/features/process_monitor.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "workflows"
     label: "Workflows"
-    i18n: true
     files:
       - label: "Index"
         name: "index"
-        file: "docs/{{locale}}/workflows/index.md"
-        i18n: true
+        file: "docs/workflows/index.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
-      - label: "Material Variants"
-        name: "material_variants"
-        file: "docs/{{locale}}/workflows/material_variants.md"
-        i18n: true
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
       - label: "Animation Variants"
         name: "animation_variants"
-        file: "docs/{{locale}}/workflows/animation_variants.md"
-        i18n: true
+        file: "docs/workflows/animation_variants.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Material Variants"
+        name: "material_variants"
+        file: "docs/workflows/material_variants.md"
+        fields:
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
       - label: "Batch Rendering"
         name: "batch_rendering"
-        file: "docs/{{locale}}/workflows/batch_rendering.md"
-        i18n: true
+        file: "docs/workflows/batch_rendering.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "preferences"
     label: "Preferences"
-    i18n: true
     files:
       - label: "Index"
         name: "index"
-        file: "docs/{{locale}}/preferences/index.md"
-        i18n: true
+        file: "docs/preferences/index.md"
         fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, i18n: true, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown", i18n: true}
+          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
+          - {label: "Body", name: "body", widget: "markdown"}
