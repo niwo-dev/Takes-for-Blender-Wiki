@@ -67,23 +67,80 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 0.9rem;
         }
-        nav .nav-links {
-            display: flex; gap: 2rem; align-items: center;
+        nav .nav-actions {
+            display: flex; align-items: center; gap: 0.6rem;
         }
-        nav .nav-links a:not(.btn-primary) {
-            color: var(--text-dim); text-decoration: none;
-            font-size: 0.85rem; font-weight: 500;
-            transition: color 0.2s;
-            white-space: nowrap;
+        .nav-menu-toggle {
+            display: flex; align-items: center; justify-content: center;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-bright);
+            padding: 0.55rem 0.7rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
         }
-        nav .nav-links a:not(.btn-primary):hover { color: var(--text-bright); }
+        .nav-menu-toggle:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--text-dim);
+        }
+        .nav-menu-toggle .material-symbols-outlined { font-size: 1.3rem; }
+        .nav-menu-toggle.open {
+            background: rgba(232,125,13,0.12);
+            border-color: rgba(232,125,13,0.35);
+            color: var(--accent);
+        }
 
-        .mobile-toggle {
-            display: none; background: none; border: none; color: var(--text-bright);
-            cursor: pointer; padding: 0.4rem; border-radius: 8px;
-            display: none; align-items: center; justify-content: center;
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 0.6rem);
+            right: 1rem;
+            min-width: 240px;
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            background: rgba(22, 22, 24, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+            padding: 0.5rem;
+            display: flex; flex-direction: column;
+            gap: 0.15rem;
+            opacity: 0; pointer-events: none;
+            transform: translateY(-8px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 99;
         }
-        .mobile-toggle:hover { background: rgba(255,255,255,0.05); }
+        .nav-dropdown.open {
+            opacity: 1; pointer-events: auto;
+            transform: translateY(0);
+        }
+        .nav-dropdown a {
+            display: flex; align-items: center; gap: 0.7rem;
+            padding: 0.7rem 0.9rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem; font-weight: 500;
+            border-radius: 8px;
+            border-left: 2px solid transparent;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .nav-dropdown a .material-symbols-outlined {
+            font-size: 1.2rem; color: var(--text-dim);
+            transition: color 0.2s;
+        }
+        .nav-dropdown a:hover {
+            background: rgba(255,255,255,0.04);
+            color: var(--text-bright);
+            border-left-color: var(--accent);
+        }
+        .nav-dropdown a:hover .material-symbols-outlined { color: var(--accent); }
+        .nav-dropdown-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 0.4rem 0.4rem;
+        }
+
+        /* ─── COST SAVINGS SECTION ─── */
+        .savings-section { padding: 4rem 2rem 5rem; background: var(--bg-dark); }
 
         /* ─── HERO ─── */
         .hero {
@@ -607,56 +664,130 @@
             margin-top: 0.35rem;
         }
 
-        /* ─── TABBED LAYOUT ─── */
-        .tabs-section { padding: 4rem 2rem 2rem; }
-        .tabs-inner {
-            max-width: 1100px; margin: 0 auto;
-            display: grid; grid-template-columns: 240px 1fr;
-            gap: 3rem; align-items: start;
+        /* ─── IN-SECTION FEATURE SIDEBAR ─── */
+        .feature-tabs {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            align-items: start;
         }
-        .tabs-nav {
+        .feat-tabs-nav {
             position: sticky; top: 6rem;
-            display: flex; flex-direction: column; gap: 0.3rem;
+            display: flex; flex-direction: column;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 0.7rem;
+            max-height: calc(100vh - 7rem);
+            overflow-y: auto;
+            scrollbar-width: thin;
         }
-        .tab-btn {
-            display: flex; align-items: center; gap: 0.7rem;
-            padding: 0.8rem 1rem;
+        .feat-group {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.7rem; font-weight: 700;
+            color: var(--text-dim);
+            text-transform: uppercase; letter-spacing: 0.12em;
+            padding: 0.9rem 0.7rem 0.4rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 0.4rem;
+        }
+        .feat-group:first-child {
+            border-top: none; margin-top: 0; padding-top: 0.3rem;
+        }
+        .feat-btn {
+            display: flex; align-items: center; gap: 0.6rem;
+            padding: 0.55rem 0.8rem;
             background: transparent; border: none;
-            border-left: 3px solid transparent;
-            border-radius: 10px;
+            border-left: 2px solid transparent;
+            border-radius: 8px;
             color: var(--text-dim);
             font-family: 'Inter', sans-serif;
-            font-size: 0.9rem; font-weight: 500;
+            font-size: 0.85rem; font-weight: 500;
             cursor: pointer; text-align: left; width: 100%;
             transition: background 0.2s, color 0.2s, border-color 0.2s;
         }
-        .tab-btn .material-symbols-outlined {
-            font-size: 1.2rem; color: var(--text-dim);
+        .feat-btn .material-symbols-outlined {
+            font-size: 1.05rem; color: var(--text-dim);
             transition: color 0.2s;
         }
-        .tab-btn:hover {
+        .feat-btn:hover {
             background: rgba(255,255,255,0.04);
             color: var(--text-bright);
         }
-        .tab-btn.active {
+        .feat-btn.active {
             background: linear-gradient(135deg, rgba(232,125,13,0.18), rgba(245,166,35,0.04));
             color: var(--text-bright);
             border-left-color: var(--accent);
         }
-        .tab-btn.active .material-symbols-outlined { color: var(--accent); }
+        .feat-btn.active .material-symbols-outlined { color: var(--accent); }
+        .feat-btn .feat-new {
+            display: inline-block;
+            background: var(--accent); color: var(--bg-dark);
+            font-size: 0.55rem; font-weight: 800;
+            padding: 0.1rem 0.35rem; border-radius: 6px;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            margin-left: auto;
+        }
 
-        .tab-panels { min-height: 500px; }
-        .tab-panel { display: none; animation: fadeInUp 0.35s ease; }
-        .tab-panel.active { display: block; }
+        .feat-content { min-height: 400px; }
+        .feat-detail { display: none; animation: fadeInUp 0.35s ease; }
+        .feat-detail.active { display: block; }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(8px); }
             to   { opacity: 1; transform: translateY(0); }
         }
-        .tab-panel > .panel-head { margin-bottom: 2rem; }
+        .feat-detail-header {
+            display: flex; align-items: center; gap: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+        .feat-detail-icon {
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, rgba(232,125,13,0.2), rgba(245,166,35,0.05));
+            border: 1px solid rgba(232,125,13,0.3);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: var(--accent);
+            flex-shrink: 0;
+        }
+        .feat-detail-title-block { flex: 1; }
+        .feat-detail h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem; font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.01em;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .feat-detail-tag {
+            font-size: 0.75rem; color: var(--text-dim);
+            text-transform: uppercase; letter-spacing: 0.08em;
+            font-family: 'Outfit', sans-serif; font-weight: 600;
+        }
+        .feat-detail-lead {
+            font-size: 1.05rem; color: var(--text);
+            line-height: 1.65; margin: 0 0 1.3rem;
+        }
+        .feat-detail-list { list-style: none; padding: 0; }
+        .feat-detail-list li {
+            display: flex; gap: 0.7rem; align-items: flex-start;
+            padding: 0.7rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text); font-size: 0.92rem; line-height: 1.5;
+        }
+        .feat-detail-list li:first-child { border-top: none; padding-top: 0.2rem; }
+        .feat-detail-list li .material-symbols-outlined {
+            font-size: 1.1rem; color: var(--accent);
+            flex-shrink: 0; margin-top: 0.1rem;
+        }
+        .feat-new-badge {
+            display: inline-block;
+            background: var(--accent); color: var(--bg-dark);
+            font-size: 0.6rem; font-weight: 800;
+            padding: 0.2rem 0.5rem; border-radius: 6px;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            vertical-align: middle;
+        }
 
         /* ─── COST SAVINGS ─── */
         .savings-summary {
@@ -772,30 +903,22 @@
             .pricing-card.popular { transform: none; }
             .pricing-card.popular:hover { transform: translateY(-4px); }
             .cta h2 { font-size: 2rem; }
-            .tabs-inner { grid-template-columns: 1fr; gap: 1.5rem; }
-            .tabs-nav {
-                position: relative; top: auto;
-                flex-direction: row; overflow-x: auto;
-                padding: 0.5rem; gap: 0.3rem;
-                scrollbar-width: thin;
+            .feature-tabs { grid-template-columns: 1fr; gap: 1.5rem; }
+            .feat-tabs-nav {
+                position: relative; top: auto; max-height: none;
+                padding: 0.5rem;
             }
-            .tab-btn { white-space: nowrap; flex-shrink: 0; }
-            .tab-btn.active { border-left-color: transparent; border-bottom: 2px solid var(--accent); border-radius: 8px 8px 0 0; }
+            .feat-detail-header { gap: 0.8rem; }
+            .feat-detail-icon { width: 48px; height: 48px; font-size: 1.5rem; }
+            .feat-detail h3 { font-size: 1.3rem; }
             .savings-summary { grid-template-columns: 1fr; }
             .early-bird-banner { padding: 1.2rem; flex-direction: column; align-items: flex-start; }
             .eb-countdown { width: 100%; justify-content: space-between; gap: 0.4rem; }
             .eb-unit { min-width: 0; flex: 1; padding: 0.5rem 0.4rem; }
             .eb-unit-value { font-size: 1.2rem; }
             nav { width: 95%; max-width: none; top: 1rem; border-radius: 12px; }
-            nav .nav-inner { flex-wrap: wrap; padding: 1rem 1.5rem; gap: 0; }
-            nav .logo { margin-bottom: 0; }
-            .mobile-toggle { display: flex; }
-            nav .nav-links {
-                display: none; width: 100%; flex-direction: column; align-items: flex-start;
-                gap: 1.5rem; padding-top: 1.5rem; margin-top: 1rem;
-                border-top: 1px solid rgba(255,255,255,0.05);
-            }
-            nav.open .nav-links { display: flex; }
+            nav .nav-inner { padding: 0.8rem 1.2rem; }
+            .nav-dropdown { right: 0.6rem; left: 0.6rem; min-width: 0; }
             footer .footer-inner { flex-direction: column; gap: 1rem; }
         }
     </style>
@@ -809,20 +932,24 @@
             <div class="logo-icon">◆</div>
             TAKES
         </a>
-        <button class="mobile-toggle" aria-label="Toggle menu">
-            <span class="material-symbols-outlined">menu</span>
-        </button>
-        <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#workflow">Workflow</a>
-            <a href="#savings">Savings</a>
-            <a href="#comparison">Compare</a>
-            <a href="#faq">FAQ</a>
-            <a href="#creator">About</a>
-            <a href="#pricing">Pricing</a>
-            <a href="wiki/">Wiki</a>
+        <div class="nav-actions">
+            <button class="nav-menu-toggle" aria-label="Open menu" aria-expanded="false">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
             <a href="#cta" class="btn-primary btn-glow" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">Coming Soon</a>
         </div>
+    </div>
+    <div class="nav-dropdown" role="menu" aria-hidden="true">
+        <a href="#features" role="menuitem"><span class="material-symbols-outlined">grid_view</span>Features</a>
+        <a href="#workflow" role="menuitem"><span class="material-symbols-outlined">route</span>Workflow</a>
+        <a href="#benefits" role="menuitem"><span class="material-symbols-outlined">stars</span>Why Takes</a>
+        <a href="#comparison" role="menuitem"><span class="material-symbols-outlined">compare_arrows</span>Compare</a>
+        <a href="#savings" role="menuitem"><span class="material-symbols-outlined">savings</span>Cost Savings</a>
+        <a href="#faq" role="menuitem"><span class="material-symbols-outlined">help</span>FAQ</a>
+        <a href="#creator" role="menuitem"><span class="material-symbols-outlined">person</span>About</a>
+        <a href="#pricing" role="menuitem"><span class="material-symbols-outlined">payments</span>Pricing</a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="wiki/" role="menuitem"><span class="material-symbols-outlined">menu_book</span>Documentation</a>
     </div>
 </nav>
 
@@ -870,16 +997,16 @@
             <div class="stat-label">Cascade Tiers</div>
         </div>
         <div>
-            <div class="stat-number">2</div>
-            <div class="stat-label">Render Modes</div>
+            <div class="stat-number">16</div>
+            <div class="stat-label">Production Features</div>
+        </div>
+        <div>
+            <div class="stat-number">4</div>
+            <div class="stat-label">Preset Storage Tiers</div>
         </div>
         <div>
             <div class="stat-number">∞</div>
             <div class="stat-label">View Layer Versions</div>
-        </div>
-        <div>
-            <div class="stat-number">0</div>
-            <div class="stat-label">Manual Steps Left</div>
         </div>
     </div>
 </div>
@@ -901,134 +1028,353 @@
     </div>
 </div>
 
-<!-- TABBED CONTENT -->
-<section class="tabs-section" id="tabs-section">
-    <div class="tabs-inner">
-        <aside class="tabs-nav" role="tablist" aria-label="Page sections">
-            <button class="tab-btn active" data-tab="features" role="tab"><span class="material-symbols-outlined">grid_view</span>Features</button>
-            <button class="tab-btn" data-tab="workflow" role="tab"><span class="material-symbols-outlined">route</span>Workflow</button>
-            <button class="tab-btn" data-tab="benefits" role="tab"><span class="material-symbols-outlined">stars</span>Why Takes</button>
-            <button class="tab-btn" data-tab="comparison" role="tab"><span class="material-symbols-outlined">compare_arrows</span>Compare</button>
-            <button class="tab-btn" data-tab="savings" role="tab"><span class="material-symbols-outlined">savings</span>Cost Savings</button>
-            <button class="tab-btn" data-tab="faq" role="tab"><span class="material-symbols-outlined">help</span>FAQ</button>
-            <button class="tab-btn" data-tab="creator" role="tab"><span class="material-symbols-outlined">person</span>About</button>
-            <button class="tab-btn" data-tab="pricing" role="tab"><span class="material-symbols-outlined">payments</span>Pricing</button>
-        </aside>
-
-        <div class="tab-panels">
-
-<!-- FEATURES PANEL -->
-<div class="tab-panel active" data-tab="features" role="tabpanel">
-    <div class="panel-head">
+<!-- FEATURES -->
+<section id="features">
+    <div class="section-inner">
         <div class="section-label">Core Features</div>
         <h2 class="section-title">Everything you need. Nothing you don't.</h2>
-        <p class="section-subtitle">Takes replaces dozens of manual steps with a single, intelligent pipeline. Organize, override, switch, render — all from one panel.</p>
-    </div>
+        <p class="section-subtitle">Sixteen production-tested tools, all wired into a single cascade. Pick a feature on the left to dive in.</p>
 
-    <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><span class="material-symbols-outlined">account_tree</span></div>
-                <h3>Takes Tree</h3>
-                <p>A unified hierarchy that shows every Scene, View Layer, Group, and Version in one place. Drag, nest, collapse — your entire project at a glance.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><span class="material-symbols-outlined">south</span></div>
-                <h3>6-Tier Cascade</h3>
-                <p>Override cameras, worlds, compositors, actions, render presets, and variants at Global, Scene, Group, or individual VL level. Inheritance flows down — overrides stay local.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><span class="material-symbols-outlined">swap_horiz</span></div>
-                <h3>Variant Switch</h3>
-                <p>Swap materials, meshes, or visibility states with a single click. Define products, parts, and variant pools — then render every combination automatically.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><span class="material-symbols-outlined">movie</span></div>
-                <h3>Batch Render</h3>
-                <p>Render all View Layers in sequence — foreground or background. The queue applies every cascade override, saves to Smart Output paths, and plays a sound when done.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><span class="material-symbols-outlined">folder_open</span></div>
-                <h3>Smart Output</h3>
-                <p>Token-based output paths that resolve at render time. <code>[scene]/[view_layer]/[camera]_####</code> — no more manual folder creation.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><span class="material-symbols-outlined">palette</span></div>
-                <h3>Render Presets</h3>
-                <p>Capture your entire render config — engine, samples, resolution, color management — as a reusable preset. Assign via cascade, swap instantly.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><span class="material-symbols-outlined">anchor</span></div>
-                <h3>Rest State</h3>
-                <p>A neutral fallback pose for every object. When no animation exists on a View Layer, objects return to their "rest" position — no keyframe pollution.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><span class="material-symbols-outlined">search</span></div>
-                <h3>Inspector Panel</h3>
-                <p>See at a glance which objects are managed, pinned, or dangling. The watchlist catches animation data loss before it happens.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><span class="material-symbols-outlined">keyboard</span></div>
-                <h3>Full Hotkey Support</h3>
-                <p>Every tree operation has keyboard shortcuts. Create, duplicate, group, rename, delete — all without leaving the keyboard.</p>
-            </div>
-    </div>
-</div>
+        <div class="feature-tabs">
+            <aside class="feat-tabs-nav" role="tablist" aria-label="Features">
+                <div class="feat-group">Core</div>
+                <button class="feat-btn active" data-feat="takes"><span class="material-symbols-outlined">account_tree</span>Takes Tree</button>
+                <button class="feat-btn" data-feat="cascade"><span class="material-symbols-outlined">south</span>6-Tier Cascade</button>
+                <button class="feat-btn" data-feat="vl_versions"><span class="material-symbols-outlined">history</span>VL Versions</button>
+                <button class="feat-btn" data-feat="globals"><span class="material-symbols-outlined">public</span>Globals Panel</button>
+                <div class="feat-group">Automation</div>
+                <button class="feat-btn" data-feat="tags"><span class="material-symbols-outlined">label</span>Tags</button>
+                <button class="feat-btn" data-feat="rules"><span class="material-symbols-outlined">rule</span>Rules</button>
+                <button class="feat-btn" data-feat="variant"><span class="material-symbols-outlined">swap_horiz</span>Variant Switch</button>
+                <button class="feat-btn" data-feat="smart_output"><span class="material-symbols-outlined">folder_open</span>Smart Output</button>
+                <div class="feat-group">Production</div>
+                <button class="feat-btn" data-feat="render_presets"><span class="material-symbols-outlined">palette</span>Render Presets</button>
+                <button class="feat-btn" data-feat="batch"><span class="material-symbols-outlined">movie</span>Batch Render</button>
+                <button class="feat-btn" data-feat="rest_state"><span class="material-symbols-outlined">anchor</span>Rest State</button>
+                <button class="feat-btn" data-feat="vl_preview"><span class="material-symbols-outlined">preview</span>VL Preview</button>
+                <div class="feat-group">Extras</div>
+                <button class="feat-btn" data-feat="bookmarks"><span class="material-symbols-outlined">bookmark</span>Bookmarks</button>
+                <button class="feat-btn" data-feat="pie_menus"><span class="material-symbols-outlined">radio_button_checked</span>Pie Menus</button>
+                <button class="feat-btn" data-feat="process_monitor"><span class="material-symbols-outlined">monitoring</span>Process Monitor</button>
+                <button class="feat-btn" data-feat="op_guards"><span class="material-symbols-outlined">verified_user</span>Op. Guards<span class="feat-new">New</span></button>
+            </aside>
 
-<!-- WORKFLOW PANEL -->
-<div class="tab-panel" data-tab="workflow" role="tabpanel">
-    <div class="panel-head">
+            <div class="feat-content">
+                <div class="feat-detail active" data-feat="takes">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">account_tree</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Takes Tree</h3>
+                            <div class="feat-detail-tag">Core · Hierarchy</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">A unified hierarchy that shows every Scene, Scene Group, View Layer, VL Group, and Version in a single tree — your entire project at a glance.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">drag_pan</span>Drag, nest, and collapse to navigate large projects</li>
+                        <li><span class="material-symbols-outlined">palette</span>Color-tagged for quick visual scanning</li>
+                        <li><span class="material-symbols-outlined">keyboard</span>Keyboard shortcuts for every CRUD operation (create, duplicate, group, rename, delete)</li>
+                        <li><span class="material-symbols-outlined">sync</span>Auto-syncs with Blender's native scene graph at 4 Hz</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="cascade">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">south</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>6-Tier Cascade</h3>
+                            <div class="feat-detail-tag">Core · Override Engine</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Override cameras, worlds, compositors, actions, render presets, and variants at any of six levels — Global → Scene Group → Scene → VL Group → View Layer → VL Version.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">arrow_downward</span>Inheritance flows down; local overrides stay local</li>
+                        <li><span class="material-symbols-outlined">warning</span>Visual alert system for broken references at every tier</li>
+                        <li><span class="material-symbols-outlined">backspace</span>Alt+Click to clear an override at any tier</li>
+                        <li><span class="material-symbols-outlined">shield</span>String-based references survive undo/redo without crashes</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="vl_versions">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">history</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>View Layer Versions</h3>
+                            <div class="feat-detail-tag">Core · Snapshots</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Named cascade snapshots beneath each View Layer — switch entire setup permutations with one click and render every version automatically.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">all_inclusive</span>Unlimited versions per View Layer</li>
+                        <li><span class="material-symbols-outlined">layers</span>Each version stores its own action, camera, world, compositor, and preset overrides</li>
+                        <li><span class="material-symbols-outlined">content_copy</span>One-click duplication for A/B variants</li>
+                        <li><span class="material-symbols-outlined">queue_play_next</span>Render every version automatically via the batch queue</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="globals">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">public</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Globals Panel</h3>
+                            <div class="feat-detail-tag">Core · Project Console</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">A project-wide control centre — settings, presets overview, rules, tags, and variants in a single, mode-switchable console.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">tune</span>Five global modes: Settings, Presets, Rules, Tags, Variants</li>
+                        <li><span class="material-symbols-outlined">center_focus_strong</span>Single source of truth for cross-scene project state</li>
+                        <li><span class="material-symbols-outlined">checklist</span>Master toggles and bulk operations</li>
+                        <li><span class="material-symbols-outlined">radio_button_checked</span>Custom slot configuration for the navigation pie menu</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="tags">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">label</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Tags</h3>
+                            <div class="feat-detail-tag">Automation · Labels</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">A universal labelling system for organisation and automation — tag anything in Blender and use those tags to drive cascade rules.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">add_circle</span>Tag any object, scene, view layer, or variant</li>
+                        <li><span class="material-symbols-outlined">filter_alt</span>Filter the tree view by tag</li>
+                        <li><span class="material-symbols-outlined">link</span>Tags feed the Rules engine for cascade-driven automation</li>
+                        <li><span class="material-symbols-outlined">touch_app</span>Bulk apply / remove via context menus</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="rules">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">rule</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Rules</h3>
+                            <div class="feat-detail-tag">Automation · Tag-Driven Presets</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Tag-driven preset bundles applied through the cascade automatically — bind a tag to a preset combination once, apply across the entire project.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">link</span>One-time bind: tag → preset bundle</li>
+                        <li><span class="material-symbols-outlined">south</span>Rules respect cascade tier hierarchy</li>
+                        <li><span class="material-symbols-outlined">warning</span>Visual alerts for broken or missing-preset rules</li>
+                        <li><span class="material-symbols-outlined">layers</span>Layer multiple rules for compound automation logic</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="variant">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">swap_horiz</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Variant Switch</h3>
+                            <div class="feat-detail-tag">Automation · Material & Visibility</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Per-scope material and visibility swapping with product / parts / variants pools — define everything once, render every combination automatically.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">account_tree</span>Define products, parts, and variant pools in one tree</li>
+                        <li><span class="material-symbols-outlined">visibility</span>Dual-hierarchy: Parts (visibility) + Materials (surface)</li>
+                        <li><span class="material-symbols-outlined">grid_view</span>Per-scope cascade application</li>
+                        <li><span class="material-symbols-outlined">queue_play_next</span>Render every combination via the batch queue</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="smart_output">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">folder_open</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Smart Output</h3>
+                            <div class="feat-detail-tag">Automation · Token Paths</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Token-based output paths that resolve at render time — no more manual folder creation, no more "PNG.png" double extensions.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">code</span>20+ tokens: <code>[scene]</code>, <code>[view_layer]</code>, <code>[camera]</code>, <code>[preset]</code>, <code>[variant]</code>, <code>[timestamp]</code>, …</li>
+                        <li><span class="material-symbols-outlined">tune</span>Parameterized variants with <code>[variant:N]</code> indexing</li>
+                        <li><span class="material-symbols-outlined">toggle_on</span>Optional standard + compositor output toggles</li>
+                        <li><span class="material-symbols-outlined">keyboard</span>Optional F12 / Ctrl+F12 integration</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="render_presets">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">palette</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Render Presets</h3>
+                            <div class="feat-detail-tag">Production · 4-Tier Storage</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Capture render config — engine, samples, resolution, color, camera, world, material — as a reusable preset, with four storage tiers that scale from solo to studio.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">storage</span>Four tiers: Default (bundled), Local, Shared (network), Project (in .blend)</li>
+                        <li><span class="material-symbols-outlined">lock</span>Shared folder lock for studio safety</li>
+                        <li><span class="material-symbols-outlined">cloud_download</span>Template seeding on first install</li>
+                        <li><span class="material-symbols-outlined">edit</span>Display name editing independent of filename</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="batch">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">movie</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Batch Render</h3>
+                            <div class="feat-detail-tag">Production · Render Queue</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Render every View Layer in sequence — foreground or background — with the cascade applied to each, Smart Output paths resolved per-VL, and a sound notification on completion.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">play_arrow</span>Foreground modal + headless background (CLI worker) modes</li>
+                        <li><span class="material-symbols-outlined">schedule</span>Pre-render ETA estimate from average sample times</li>
+                        <li><span class="material-symbols-outlined">skip_next</span>Skip-completed toggle with auto-revert</li>
+                        <li><span class="material-symbols-outlined">music_note</span>6 bundled completion sounds (or bring your own .wav)</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="rest_state">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">anchor</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Rest State</h3>
+                            <div class="feat-detail-tag">Production · Auto-Mirror</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">A neutral fallback pose stored in a Reference Action — objects automatically return to baseline when no animation exists on the active View Layer.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">sync_alt</span>Auto-mirror keyframes to the reference action</li>
+                        <li><span class="material-symbols-outlined">push_pin</span>Per-object pinning to opt out of mirror logic</li>
+                        <li><span class="material-symbols-outlined">edit</span>Survives renames, slot changes, and material swaps</li>
+                        <li><span class="material-symbols-outlined">animation</span>Native Blender 5.x slot-action integration</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="vl_preview">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">preview</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>View Layer Preview</h3>
+                            <div class="feat-detail-tag">Production · Inline Thumbnails</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Inline rendered thumbnails next to each View Layer — see what you're switching to at a glance, no more guessing from cryptic names.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">refresh</span>Live thumbnail updates as renders complete</li>
+                        <li><span class="material-symbols-outlined">folder</span>Custom thumbnail output paths</li>
+                        <li><span class="material-symbols-outlined">layers</span>Per-tier preview capture</li>
+                        <li><span class="material-symbols-outlined">south</span>Cascade-aware thumbnail generation</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="bookmarks">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">bookmark</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Bookmarks</h3>
+                            <div class="feat-detail-tag">Extras · Property Pointers</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Quick-access pointers to any animatable property anywhere in Blender — bookmark a property once, jump back to it instantly.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">touch_app</span>One-click bookmark from any property</li>
+                        <li><span class="material-symbols-outlined">flight_takeoff</span>Path-resolved navigation jumps you back</li>
+                        <li><span class="material-symbols-outlined">share</span>Shared across the project via cascade</li>
+                        <li><span class="material-symbols-outlined">save</span>Export bookmarks to render presets</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="pie_menus">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">radio_button_checked</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Pie Menus</h3>
+                            <div class="feat-detail-tag">Extras · Custom Hotkey</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">A configurable navigation pie menu — Ctrl+Shift+C — for one-button access to common operations across the addon.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">edit</span>Customizable slots per artist preference</li>
+                        <li><span class="material-symbols-outlined">switch_account</span>Quick switch between Context, Inspector, and Globals</li>
+                        <li><span class="material-symbols-outlined">splitscreen</span>Includes "Split View" for side-by-side comparison</li>
+                        <li><span class="material-symbols-outlined">restart_alt</span>Reset to factory defaults from preferences</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="process_monitor">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">monitoring</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Process Monitor</h3>
+                            <div class="feat-detail-tag">Extras · Diagnostics</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Runtime diagnostics — process tree, debug console, and View Layer Switch profiler — so you can bisect viewport lag instead of guessing.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">account_tree</span>Hierarchical process groups (6 feature groups)</li>
+                        <li><span class="material-symbols-outlined">toggle_off</span>Disable handlers individually for surgical debugging</li>
+                        <li><span class="material-symbols-outlined">restart_alt</span>Auto-restart watchdog (Alt+Click)</li>
+                        <li><span class="material-symbols-outlined">speed</span>Built-in VL switch performance profiler</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="op_guards">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">verified_user</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Operation Guards <span class="feat-new-badge">New in 0.7.0</span></h3>
+                            <div class="feat-detail-tag">Extras · Granular Safety</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">A category-based confirmation system that prevents accidental destructive operations — replaces the old monolithic "Protected Mode" with surgical opt-in safety.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">category</span>Six categories: Tree Context, Inspector, Globals, Batch Render, System, Data Integrity</li>
+                        <li><span class="material-symbols-outlined">toggle_on</span>Master toggle for the entire system</li>
+                        <li><span class="material-symbols-outlined">tune</span>Granular per-operator opt-in</li>
+                        <li><span class="material-symbols-outlined">workspaces</span>Independent scene-group vs view-layer-group deletion guards</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WORKFLOW -->
+<section id="workflow" class="workflow">
+    <div class="section-inner">
         <div class="section-label">How It Works</div>
         <h2 class="section-title">From setup to render in three steps</h2>
         <p class="section-subtitle">Takes is designed to disappear — set it up once, then let the cascade do the thinking for you.</p>
-    </div>
 
-    <div class="workflow-steps">
+        <div class="workflow-steps">
             <div class="workflow-step">
                 <h3>Organize</h3>
-                <p>Create your Takes Tree — group scenes and view layers into a meaningful hierarchy. Add versions for iterations. Tag with colors for quick visual scanning.</p>
+                <p>Build your Takes Tree — group scenes and view layers into a meaningful hierarchy. Add versions for iterations. Tag for filtering and rule automation.</p>
                 <img src="media/landing/hero.png" alt="Organize setup" class="workflow-image">
             </div>
             <div class="workflow-step">
                 <h3>Override</h3>
-                <p>Assign cameras, worlds, actions, render presets, and variant states at any cascade level. Global settings flow down. Local overrides stay local. Zero duplication.</p>
+                <p>Assign cameras, worlds, actions, render presets, and variant states at any cascade tier. Globals flow down. Local overrides stay local. Zero duplication.</p>
                 <img src="media/landing/override.png" alt="Cascade overrides" class="workflow-image">
             </div>
             <div class="workflow-step">
                 <h3>Render</h3>
-                <p>Hit Render. The batch system walks the tree, applies every override, renders each View Layer into its Smart Output path. You get a coffee. It just works.</p>
+                <p>Hit Render. The batch queue walks the tree, applies every override, renders each View Layer into its Smart Output path. You get a coffee. It just works.</p>
                 <img src="media/landing/render.png" alt="Batch rendering process" class="workflow-image">
             </div>
+        </div>
     </div>
-</div>
+</section>
 
-<!-- BENEFITS PANEL -->
-<div class="tab-panel" data-tab="benefits" role="tabpanel">
-    <div class="panel-head">
+<!-- BENEFITS -->
+<section id="benefits">
+    <div class="section-inner">
         <div class="section-label">Why Takes</div>
         <h2 class="section-title">Built for studios that ship</h2>
         <p class="section-subtitle">Takes was designed by a product visualization artist who got tired of the same manual pain — every single project.</p>
-    </div>
 
-    <div class="benefits-grid">
+        <div class="benefits-grid">
             <div class="benefit">
                 <div class="benefit-icon"><span class="material-symbols-outlined">bolt</span></div>
                 <div>
-                    <h4>10x Faster Setup</h4>
-                    <p>What used to take 30 minutes of manual camera assignment, world overriding, and output path creation now takes 30 seconds with the cascade.</p>
+                    <h4>10× Faster Setup</h4>
+                    <p>What used to take 30 minutes of camera assignment, world overriding, and output path creation now takes 30 seconds with the cascade.</p>
                 </div>
             </div>
             <div class="benefit">
                 <div class="benefit-icon"><span class="material-symbols-outlined">shield</span></div>
                 <div>
                     <h4>Zero Data Loss</h4>
-                    <p>The Inspector's dangling action warnings and automatic pinning prevent animation data from ever getting silently destroyed during VL switches.</p>
+                    <p>Operation Guards, Inspector watchlists, dangling-action warnings, and automatic pinning prevent animation data from ever silently disappearing.</p>
                 </div>
             </div>
             <div class="benefit">
                 <div class="benefit-icon"><span class="material-symbols-outlined">extension</span></div>
                 <div>
                     <h4>Non-Destructive</h4>
-                    <p>Pure Blender API. No monkey-patching, no file corruption, no vendor lock-in. Takes works with your existing scenes — just install and organize.</p>
+                    <p>Pure Blender API. No monkey-patching, no file corruption, no vendor lock-in. Takes works with your existing scenes — install and organize.</p>
                 </div>
             </div>
             <div class="benefit">
@@ -1039,10 +1385,10 @@
                 </div>
             </div>
             <div class="benefit">
-                <div class="benefit-icon"><span class="material-symbols-outlined">architecture</span></div>
+                <div class="benefit-icon"><span class="material-symbols-outlined">groups</span></div>
                 <div>
-                    <h4>Blender 5.1 Native</h4>
-                    <p>Built on the Slotted Action system. Uses native View Layers, Scenes, and Action Slots — no custom data formats, no compatibility nightmares.</p>
+                    <h4>Studio-Ready</h4>
+                    <p>Four-tier preset storage (Default / Local / Shared / Project), shared folder locks, and project-mode preferences that travel with the .blend file.</p>
                 </div>
             </div>
             <div class="benefit">
@@ -1052,18 +1398,18 @@
                     <p>Everything lives in the Properties Editor. Takes Tree, cascade overrides, batch render queue, inspector — one tab, zero context switching.</p>
                 </div>
             </div>
+        </div>
     </div>
-</div>
+</section>
 
-<!-- COMPARISON PANEL -->
-<div class="tab-panel" data-tab="comparison" role="tabpanel">
-    <div class="panel-head">
+<!-- COMPARISON -->
+<section id="comparison" class="comparison-section">
+    <div class="section-inner">
         <div class="section-label">The Ecosystem</div>
         <h2 class="section-title">Stage Management vs. Context Savers</h2>
         <p class="section-subtitle">Why traditional "scene state savers" aren't enough for high-end visualization.</p>
-    </div>
 
-    <div class="comp-table-container">
+        <div class="comp-table-container">
             <table class="comp-table matrix-table">
                 <thead>
                     <tr>
@@ -1074,182 +1420,100 @@
                 </thead>
                 <tbody>
                     <tr class="matrix-group"><td colspan="3">Architecture & Workflow</td></tr>
-                    <tr>
-                        <td class="td-title">Hierarchical State Inheritance (Cascade)</td>
-                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
-                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
-                    </tr>
-                    <tr>
-                        <td class="td-title">Non-Destructive Animation Swapping</td>
-                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
-                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
-                    </tr>
-                    <tr>
-                        <td class="td-title">Store Nested Variations (Takes Tree)</td>
-                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
-                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
-                    </tr>
-                    
-                    <tr class="matrix-group"><td colspan="3">Data Protection</td></tr>
-                    <tr>
-                        <td class="td-title">Dangling Action Warnings</td>
-                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
-                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
-                    </tr>
-                    <tr>
-                        <td class="td-title">Reference State Tracking & Pinning</td>
-                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
-                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
-                    </tr>
-                    <tr>
-                        <td class="td-title">Crash-Safe Recovery</td>
-                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
-                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
-                    </tr>
+                    <tr><td class="td-title">Hierarchical State Inheritance (6-Tier Cascade)</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Non-Destructive Animation Swapping</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Store Nested Variations (Takes Tree)</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Tag-Driven Automation Rules</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Centralized Globals Console</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
 
-                    <tr class="matrix-group"><td colspan="3">Rendering Features</td></tr>
-                    <tr>
-                        <td class="td-title">Dynamic Output Naming Tokens</td>
-                        <td class="center"><span class="material-symbols-outlined icon-check icon-gray">check_circle</span></td>
-                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
-                    </tr>
-                    <tr>
-                        <td class="td-title">Built-in Batch Rendering Queue</td>
-                        <td class="center"><span class="material-symbols-outlined icon-check icon-gray">check_circle</span></td>
-                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
-                    </tr>
-                    <tr>
-                        <td class="td-title">Headless Background Processing</td>
-                        <td class="center"><span class="material-symbols-outlined icon-x">close</span></td>
-                        <td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td>
-                    </tr>
+                    <tr class="matrix-group"><td colspan="3">Data Protection</td></tr>
+                    <tr><td class="td-title">Dangling Action Warnings</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Reference State Tracking & Pinning</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Granular Operation Guards</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Crash-Safe Recovery</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+
+                    <tr class="matrix-group"><td colspan="3">Rendering & Output</td></tr>
+                    <tr><td class="td-title">Dynamic Output Naming Tokens</td><td class="center"><span class="material-symbols-outlined icon-check icon-gray">check_circle</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Built-in Batch Rendering Queue</td><td class="center"><span class="material-symbols-outlined icon-check icon-gray">check_circle</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Headless Background Processing</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Multi-Tier Preset Storage (Local / Shared / Project)</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Inline View Layer Thumbnails</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
                 </tbody>
             </table>
+        </div>
     </div>
-</div>
+</section>
 
-<!-- COST SAVINGS PANEL -->
-<div class="tab-panel" data-tab="savings" role="tabpanel">
-    <div class="panel-head">
+<!-- COST SAVINGS -->
+<section id="savings" class="savings-section">
+    <div class="section-inner">
         <div class="section-label">Cost Comparison</div>
-        <h2 class="section-title">One addon. Eight tools' worth of value.</h2>
-        <p class="section-subtitle">If you assembled this workflow from individual addons, you'd buy at least eight separate tools — and still glue them together yourself. Takes covers all of it natively.</p>
-    </div>
+        <h2 class="section-title">One addon. A dozen tools' worth of value.</h2>
+        <p class="section-subtitle">If you assembled this workflow from individual addons, you'd buy at least twelve separate tools — and still glue them together yourself. Takes covers all of it natively.</p>
 
-    <div class="savings-summary">
-        <div class="savings-card">
-            <div class="sc-label">À la carte</div>
-            <div class="sc-value">$266</div>
-            <div class="sc-tag">Eight separate addons, sold individually</div>
+        <div class="savings-summary">
+            <div class="savings-card">
+                <div class="sc-label">À la carte</div>
+                <div class="sc-value">$374</div>
+                <div class="sc-tag">Twelve separate addons, sold individually</div>
+            </div>
+            <div class="savings-card you-pay">
+                <div class="sc-label">Takes — Early Bird</div>
+                <div class="sc-value"><span class="sc-strike">$69</span>$49</div>
+                <div class="sc-tag">Freelance lifetime license</div>
+            </div>
+            <div class="savings-card you-save">
+                <div class="sc-label">You save</div>
+                <div class="sc-value">$325</div>
+                <div class="sc-tag">≈ 87% off the à la carte total</div>
+            </div>
         </div>
-        <div class="savings-card you-pay">
-            <div class="sc-label">Takes — Early Bird</div>
-            <div class="sc-value"><span class="sc-strike">$69</span>$49</div>
-            <div class="sc-tag">Freelance lifetime license</div>
+
+        <div class="savings-table-container">
+            <table class="savings-table">
+                <thead>
+                    <tr>
+                        <th>If you bought it separately</th>
+                        <th class="right">Typical price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="material-symbols-outlined feat-icon">account_tree</span>Hierarchical project organizer (Takes Tree)<span class="feat-note">Replaces: scene-management addons</span></td><td class="right">$39</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">south</span>6-Tier cascade override system<span class="feat-note">No direct equivalent — closest are context-state addons (Renderset, etc.)</span></td><td class="right">$59</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">swap_horiz</span>Variant / material switching<span class="feat-note">Replaces: Mat-Switch, Polyviews, variant addons</span></td><td class="right">$35</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">movie</span>Batch render queue (foreground + headless)<span class="feat-note">Replaces: Render+, Renderset batch features</span></td><td class="right">$45</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">folder_open</span>Smart token-based output paths<span class="feat-note">Replaces: output-naming addons</span></td><td class="right">$19</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">palette</span>4-tier render preset library<span class="feat-note">Replaces: render-config snapshot addons</span></td><td class="right">$29</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">anchor</span>Rest-state pose system<span class="feat-note">No direct equivalent — would require custom rigging utilities</span></td><td class="right">$25</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">rule</span>Tag-driven automation rules (Tags + Rules)<span class="feat-note">No direct equivalent — typically a manual checklist</span></td><td class="right">$39</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">public</span>Project-wide globals console<span class="feat-note">Replaces: per-scene config UIs</span></td><td class="right">$25</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">bookmark</span>Property bookmarks system<span class="feat-note">No direct equivalent — manual outliner navigation</span></td><td class="right">$19</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">radio_button_checked</span>Pie menu / hotkey customization<span class="feat-note">Replaces: pie menu builder addons</span></td><td class="right">$15</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">monitoring</span>Process monitor / diagnostics<span class="feat-note">No direct equivalent — typically external profilers</span></td><td class="right">$25</td></tr>
+                </tbody>
+                <tfoot>
+                    <tr><td>À la carte total</td><td class="right">$374</td></tr>
+                    <tr><td>Takes — Freelance (regular)</td><td class="right"><span class="sc-strike">$69</span></td></tr>
+                    <tr><td>Takes — Freelance (Early Bird)</td><td class="right">$49</td></tr>
+                </tfoot>
+            </table>
         </div>
-        <div class="savings-card you-save">
-            <div class="sc-label">You save</div>
-            <div class="sc-value">$217</div>
-            <div class="sc-tag">≈ 82% off the à la carte total</div>
+
+        <div class="savings-cta">
+            Skip twelve purchases, twelve licensing terms, and twelve update cycles. <strong>Lock in $49 lifetime</strong> before the Early Bird timer ends — 1 month after Blender LTS 5.2 releases.
         </div>
     </div>
+</section>
 
-    <div class="savings-table-container">
-        <table class="savings-table">
-            <thead>
-                <tr>
-                    <th>If you bought it separately</th>
-                    <th class="right">Typical price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <span class="material-symbols-outlined feat-icon">account_tree</span>Hierarchical project organizer
-                        <span class="feat-note">Replaces: Scene-management addons (Takes Tree)</span>
-                    </td>
-                    <td class="right">$39</td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="material-symbols-outlined feat-icon">south</span>Cascade override system
-                        <span class="feat-note">No direct equivalent — closest are context-state addons (Renderset, etc.)</span>
-                    </td>
-                    <td class="right">$59</td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="material-symbols-outlined feat-icon">swap_horiz</span>Variant / material switching
-                        <span class="feat-note">Replaces: Mat-Switch, Polyviews, variant addons</span>
-                    </td>
-                    <td class="right">$35</td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="material-symbols-outlined feat-icon">movie</span>Batch render queue (foreground + headless)
-                        <span class="feat-note">Replaces: Render+, Renderset batch features</span>
-                    </td>
-                    <td class="right">$45</td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="material-symbols-outlined feat-icon">folder_open</span>Smart token-based output paths
-                        <span class="feat-note">Replaces: Output naming addons</span>
-                    </td>
-                    <td class="right">$19</td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="material-symbols-outlined feat-icon">palette</span>Render preset library
-                        <span class="feat-note">Replaces: Render-config snapshot addons</span>
-                    </td>
-                    <td class="right">$19</td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="material-symbols-outlined feat-icon">anchor</span>Rest-state pose system
-                        <span class="feat-note">No direct equivalent — would require custom rigging utilities</span>
-                    </td>
-                    <td class="right">$25</td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="material-symbols-outlined feat-icon">search</span>Inspector / data-loss watchlist
-                        <span class="feat-note">No direct equivalent — typically a manual checklist</span>
-                    </td>
-                    <td class="right">$25</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td>À la carte total</td>
-                    <td class="right">$266</td>
-                </tr>
-                <tr>
-                    <td>Takes — Freelance (regular)</td>
-                    <td class="right"><span class="sc-strike">$69</span></td>
-                </tr>
-                <tr>
-                    <td>Takes — Freelance (Early Bird)</td>
-                    <td class="right">$49</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-
-    <div class="savings-cta">
-        Skip eight purchases, eight licensing terms, and eight update cycles. <strong>Lock in $49 lifetime</strong> before the Early Bird timer ends — 1 month after Blender LTS 5.2 releases.
-    </div>
-</div>
-
-<!-- FAQ PANEL -->
-<div class="tab-panel" data-tab="faq" role="tabpanel">
-    <div class="panel-head">
+<!-- FAQ -->
+<section id="faq" class="faq-section">
+    <div class="section-inner">
         <div class="section-label">Questions?</div>
         <h2 class="section-title">Frequently Asked Questions</h2>
-    </div>
 
-    <div class="faq-container">
+        <div class="faq-container">
+
+<!-- FAQ ITEMS / SECTION CLOSE / CREATOR / PRICING (REPLACES OLD TAB PANELS) -->
             <div class="faq-item">
                 <button class="faq-question">Does Takes for Blender duplicate my objects when making variations?<span class="material-symbols-outlined faq-icon">add</span></button>
                 <div class="faq-answer">
@@ -1269,16 +1533,23 @@
                 </div>
             </div>
             <div class="faq-item">
+                <button class="faq-question">Do my settings travel with the .blend file?<span class="material-symbols-outlined faq-icon">add</span></button>
+                <div class="faq-answer">
+                    <p>Yes — Project preferences mode stores addon settings in a presets folder next to your .blend file, and the addon auto-loads them on open. Combined with Shared (network) and Local tiers, your config moves with the project across machines and operating systems.</p>
+                </div>
+            </div>
+            <div class="faq-item">
                 <button class="faq-question">Is there a steep learning curve?<span class="material-symbols-outlined faq-icon">add</span></button>
                 <div class="faq-answer">
                     <p>Takes operates entirely inside the standard Properties editor, so there's zero context switching. Once you understand the basic Cascade logic (top-down inheritance), it behaves exactly as you'd intuitively expect standard Blender to work.</p>
                 </div>
             </div>
+        </div>
     </div>
-</div>
+</section>
 
-<!-- CREATOR PANEL -->
-<div class="tab-panel" data-tab="creator" role="tabpanel">
+<!-- CREATOR -->
+<section id="creator" class="creator-section">
     <div class="creator-card">
         <div class="creator-image">
             <img src="media/landing/niwo.jpg" alt="Niwo - Creator of Takes for Blender">
@@ -1293,17 +1564,16 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- PRICING PANEL -->
-<div class="tab-panel" data-tab="pricing" role="tabpanel">
-    <div class="panel-head">
+<!-- PRICING -->
+<section id="pricing" class="pricing">
+    <div class="section-inner">
         <div class="section-label">Pricing</div>
         <h2 class="section-title">Save hours per setup. Pick your plan.</h2>
         <p class="section-subtitle">Lock in your lifetime license during the Early Bird period — ends 1 month after Blender LTS 5.2 releases.</p>
-    </div>
 
-    <div class="pricing-grid">
+        <div class="pricing-grid">
             <div class="pricing-card">
                 <div class="pricing-title">Hobbyist</div>
                 <div class="pricing-desc">For students and unpaid personal portfolios.</div>
@@ -1348,12 +1618,10 @@
                 </ul>
                 <a href="#cta" class="btn-secondary" style="width:100%; justify-content:center;">Coming Soon</a>
             </div>
+        </div>
     </div>
-</div>
+</section>
 
-        </div><!-- /.tab-panels -->
-    </div><!-- /.tabs-inner -->
-</section><!-- /.tabs-section -->
 
 <!-- CTA -->
 <section id="cta" class="cta">
@@ -1529,23 +1797,46 @@
         }
     }
     
-    // Mobile Navigation Toggle
-    const mobileToggle = document.querySelector('.mobile-toggle');
-    const nav = document.querySelector('nav');
-    const toggleIcon = mobileToggle.querySelector('span');
+    // Nav dropdown (hamburger)
+    const navMenuToggle = document.querySelector('.nav-menu-toggle');
+    const navDropdown = document.querySelector('.nav-dropdown');
+    const navToggleIcon = navMenuToggle ? navMenuToggle.querySelector('span') : null;
 
-    if(mobileToggle) {
-        mobileToggle.addEventListener('click', () => {
-            nav.classList.toggle('open');
-            toggleIcon.textContent = nav.classList.contains('open') ? 'close' : 'menu';
+    function closeNavDropdown() {
+        navDropdown.classList.remove('open');
+        navMenuToggle.classList.remove('open');
+        navMenuToggle.setAttribute('aria-expanded', 'false');
+        navDropdown.setAttribute('aria-hidden', 'true');
+        if (navToggleIcon) navToggleIcon.textContent = 'menu';
+    }
+    function openNavDropdown() {
+        navDropdown.classList.add('open');
+        navMenuToggle.classList.add('open');
+        navMenuToggle.setAttribute('aria-expanded', 'true');
+        navDropdown.setAttribute('aria-hidden', 'false');
+        if (navToggleIcon) navToggleIcon.textContent = 'close';
+    }
+
+    if (navMenuToggle && navDropdown) {
+        navMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (navDropdown.classList.contains('open')) closeNavDropdown();
+            else openNavDropdown();
         });
-
-        // Close menu when a link is clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('open');
-                toggleIcon.textContent = 'menu';
-            });
+        document.addEventListener('click', (e) => {
+            if (navDropdown.classList.contains('open') &&
+                !navDropdown.contains(e.target) &&
+                !navMenuToggle.contains(e.target)) {
+                closeNavDropdown();
+            }
+        });
+        navDropdown.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeNavDropdown);
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navDropdown.classList.contains('open')) {
+                closeNavDropdown();
+            }
         });
     }
 
@@ -1553,7 +1844,6 @@
     document.querySelectorAll('.faq-question').forEach(button => {
         button.addEventListener('click', () => {
             const item = button.parentElement;
-            // Close others
             document.querySelectorAll('.faq-item').forEach(other => {
                 if(other !== item) other.classList.remove('active');
             });
@@ -1561,31 +1851,17 @@
         });
     });
 
-    // Tab switching
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-    const validTabs = Array.from(tabBtns).map(b => b.dataset.tab);
+    // In-section feature tabs
+    const featBtns = document.querySelectorAll('.feat-btn');
+    const featDetails = document.querySelectorAll('.feat-detail');
 
-    function switchTab(tabId, scroll = false) {
-        if (!validTabs.includes(tabId)) return;
-        tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
-        tabPanels.forEach(p => p.classList.toggle('active', p.dataset.tab === tabId));
-        if (scroll) {
-            const sec = document.querySelector('.tabs-section');
-            if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }
-
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    featBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.feat;
+            featBtns.forEach(b => b.classList.toggle('active', b.dataset.feat === id));
+            featDetails.forEach(d => d.classList.toggle('active', d.dataset.feat === id));
+        });
     });
-
-    // Hash routes -> tab switch (so nav and external links work)
-    function applyHash() {
-        const h = window.location.hash.replace('#', '');
-        if (validTabs.includes(h)) switchTab(h, true);
-    }
-    window.addEventListener('hashchange', applyHash);
 
     // Early Bird countdown
     // RULE: Offer ends 1 month after Blender LTS 5.2 releases.
@@ -1615,7 +1891,6 @@
     document.addEventListener('DOMContentLoaded', () => {
         init();
         initTiltEffect();
-        applyHash();
         updateCountdown();
         setInterval(updateCountdown, 1000);
     });
