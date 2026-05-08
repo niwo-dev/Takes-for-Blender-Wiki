@@ -24,14 +24,15 @@ The panel header displays the addon version and provides quick-access buttons:
 
 ## :material-file-tree: The Takes Tree
 
-The Takes Tree is a unified hierarchical list showing your entire project structure:
+The Takes Tree is a unified hierarchical list showing your entire project structure. The cascade has six tiers — five live in the tree, plus an implicit **Global** root that you edit from the [Globals](../features/globals.md) panel:
 
 ```
-📁 Scene Group
-  🎬 Scene
-    📂 View Layer Group
-      🔲 View Layer
-        📌 View Layer Version
+🌐 Global                       ← edited in the Globals panel
+└─ 📁 Scene Group
+   └─ 🎬 Scene
+      └─ 📂 View Layer Group
+         └─ 🔲 View Layer
+            └─ 📌 View Layer Version
 ```
 
 ### Row Elements

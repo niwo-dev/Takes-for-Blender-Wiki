@@ -8,7 +8,7 @@ The **Cascade** is the core engine of Takes for Blender. It resolves property ov
 
 ## :material-cog-sync: How It Works
 
-When you switch to a View Layer, the cascade resolves each property (camera, world, action, compositor, presets) by walking the hierarchy **top-down** and using the **first non-empty value** it finds:
+When you switch to a View Layer, the cascade resolves each property (camera, world, action, compositor, presets) by walking the hierarchy from the **most specific tier upward** and using the **first non-empty value** it finds. View Layer Version wins over View Layer, View Layer wins over View Layer Group, and so on up to Global as the final fallback:
 
 ```mermaid
 graph LR
@@ -20,6 +20,8 @@ graph LR
 
     style Version fill:#e87d0d,color:#fff
 ```
+
+The arrow direction shows hierarchy (Global is the parent, View Layer Version is the leaf). Resolution priority runs in the **opposite** direction — leaf wins over root.
 
 ## :material-stairs: Override Tiers
 

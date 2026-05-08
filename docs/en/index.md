@@ -48,7 +48,7 @@ hide:
 | Feature | Description |
 |---------|-------------|
 | **Takes Tree** | Unified hierarchy: Scene Groups → Scenes → View Layer Groups → View Layers → Versions. |
-| **6-Tier Cascade** | Override resolution from Global down to Version level for cameras, worlds, actions, and more. |
+| **6-Tier Cascade** | Property override resolution across six tiers — Global, Scene Group, Scene, View Layer Group, View Layer, View Layer Version. The most specific tier with a value wins. |
 | **Tags & Rules** | Universal labelling system with tag-driven preset bundles applied through the cascade. |
 | **Globals Panel** | Project-wide control centre — settings, presets overview, rules, tags, variants. |
 | **Variant Switch** | Product variant system with per-scope material swapping, preset injection, and pool management. |

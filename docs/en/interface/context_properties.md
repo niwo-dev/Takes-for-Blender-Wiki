@@ -52,13 +52,15 @@ Configure render output settings:
 
 ## :material-stairs: Override Resolution
 
-Overrides are resolved top-down through the cascade hierarchy. The first non-empty value wins:
+Overrides are resolved from the **most specific tier upward**. The first non-empty value wins, so a value set on the View Layer Version overrides everything else; a value set on the View Layer overrides everything except the Version; and so on, with Global as the final fallback.
+
+Resolution priority (highest → lowest):
 
 ```
-Global → Scene Group → Scene → View Layer Group → View Layer → View Layer Version
+View Layer Version → View Layer → View Layer Group → Scene → Scene Group → Global
 ```
 
-An icon appears **bright** when a value is set at that level, and **dimmed** when inherited from a parent level.
+An icon appears **bright** when a value is set at that level, and **dimmed** when inherited from a higher tier in the hierarchy.
 
 ## :material-keyboard: Hotkeys
 

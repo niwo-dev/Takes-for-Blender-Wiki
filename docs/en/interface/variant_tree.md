@@ -4,9 +4,9 @@ icon: material/file-tree
 
 # Variant Tree
 
-**Location:** *3D Viewport > Sidebar (++n++) > Takes tab > Variant Switch*
+**Location:** *3D Viewport > Sidebar (++n++) > Takes tab > [Globals](../features/globals.md) > **Variants** mode*.
 
-The Variant Tree manages product variants — different material configurations, color options, or states of your product. It uses a hierarchical structure of Products, States, and Parts.
+The Variant Tree manages product variants — different material configurations, color options, or states of your product. It uses a hierarchical structure of Products, States, and Parts. The tree is one of five modes inside the Globals panel; switch to it via the Globals header's **Variants** mode button.
 
 ## :material-source-branch: Hierarchy
 

@@ -42,10 +42,10 @@ If [Tags](tags.md) are the labels, Rules are the *programmable* tags: each one c
 
 In the Context panel, every tier (Scene / View Layer / View Layer Group / Scene Group / Global) shows a **rule icon** (system gear). Click it to choose a rule from the tag library — every preset in the rule is applied to the cascade at that tier.
 
-The cascade order is the standard one — first non-empty preset wins, top-down:
+Resolution follows the standard cascade rule — the most specific tier with a value wins, and the rest fall back to the parent:
 
 ```
-Global → Scene Group → Scene → View Layer Group → View Layer → View Layer Version
+View Layer Version → View Layer → View Layer Group → Scene → Scene Group → Global
 ```
 
 Rules are evaluated as part of cascade resolution, on every View Layer switch, batch render, and cascade sync.

@@ -18,12 +18,13 @@ In film and photography, a "take" is one version of a shot. Takes for Blender ex
 
 ## :material-file-tree: Organization
 
-Takes are organized in a hierarchy within the Takes Tree:
+Takes are organized in a six-tier cascade. The **Global** tier is edited in the [Globals](globals.md) panel; the remaining five tiers all live inside the Takes Tree:
 
 | Level | Purpose | Example |
 |-------|---------|---------|
-| **Scene Group** | Top-level organization | "Interior", "Exterior" |
-| **Scene** | Blender scene | "Kitchen", "Bathroom" |
+| **Global** | Project-wide defaults | Default camera, default world |
+| **Scene Group** | Folder-level organization for scenes | "Interior", "Exterior" |
+| **Scene** | A Blender scene | "Kitchen", "Bathroom" |
 | **View Layer Group** | Logical grouping of View Layers | "Hero Shots", "Detail Shots" |
 | **View Layer** | The actual render unit | "Front 3/4", "Top Down" |
 | **View Layer Version** | Named snapshots of View Layer settings | "v1 warm", "v2 cool" |
