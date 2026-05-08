@@ -8,7 +8,7 @@ icon: material/tune-vertical
 
 The Context Properties panel shows the cascade override settings for the currently active View Layer. Each property category has its own popover accessible via the cascade icons in the tree.
 
-## Cascade Popovers
+## :material-arrow-decision: Cascade Popovers
 
 Click any cascade icon on a tree row to open its popover. Each popover allows you to set or clear an override at that specific hierarchy level.
 
@@ -50,17 +50,17 @@ Configure render output settings:
 - **Output rule** — Tag-based output path rule.
 - **Render preset** — Per-View Layer render settings.
 
-## Override Resolution
+## :material-stairs: Override Resolution
 
 Overrides are resolved top-down through the cascade hierarchy. The first non-empty value wins:
 
 ```
-Global → Scene Group → Scene → VL Group → View Layer → VL Version
+Global → Scene Group → Scene → View Layer Group → View Layer → View Layer Version
 ```
 
 An icon appears **bright** when a value is set at that level, and **dimmed** when inherited from a parent level.
 
-## Hotkeys
+## :material-keyboard: Hotkeys
 
 Cascade icons in the Context panel respond to modifier-clicks:
 

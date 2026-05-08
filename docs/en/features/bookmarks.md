@@ -6,7 +6,7 @@ icon: material/bookmark-multiple
 
 **Bookmarks** are quick-access pointers to animatable properties scattered across Blender's UI. Bookmark a property once and it shows up as an editable row inside the Inspector's Channels view, no matter where the original control lives.
 
-## What Gets Bookmarked
+## :material-format-list-bulleted: What Gets Bookmarked
 
 Any animatable property — anywhere a right-click menu offers *"Bookmark Property"*:
 
@@ -17,27 +17,27 @@ Any animatable property — anywhere a right-click menu offers *"Bookmark Proper
 - Custom properties (`["MyProperty"]`).
 - Shape keys, particle settings, and other RNA paths.
 
-## Adding a Bookmark
+## :material-bookmark-plus: Adding a Bookmark
 
 1. Right-click any animatable property in any panel (Properties, N-panel, Geometry Nodes, etc.).
 2. Choose **Bookmark Property**.
 3. The bookmark appears in the Inspector's **Channels** view, grouped by target type.
 
-## Removing a Bookmark
+## :material-bookmark-remove: Removing a Bookmark
 
 In the Inspector Channels view, click the **×** / Remove button on the bookmark row.
 
-## Where Bookmarks Live
+## :material-database: Where Bookmarks Live
 
 - **Scope:** per-Scene (stored as `scene.tks_bookmarked_properties`).
 - **Persistence:** saved with the `.blend`.
 - **Visibility:** shown wherever the target object / material / world is currently active.
 
-## Bookmark Presets
+## :material-palette-swatch: Bookmark Presets
 
 Bookmark sets can be saved as a **Bookmark preset** (one of the 9 preset categories — see [Render Presets](render_presets.md)). Use this to share a curated channel layout across scenes or with collaborators.
 
-## Hotkeys
+## :material-keyboard: Hotkeys
 
 | Shortcut | Action |
 |----------|--------|

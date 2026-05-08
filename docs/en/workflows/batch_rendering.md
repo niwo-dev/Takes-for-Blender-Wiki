@@ -6,13 +6,13 @@ icon: material/play-box-multiple
 
 This workflow covers setting up and running a full batch render across multiple View Layers with cascade overrides and Smart Output.
 
-## Prerequisites
+## :material-clipboard-check-outline: Prerequisites
 
 - Scene with multiple View Layers configured
 - Cascade overrides assigned (cameras, worlds, presets)
 - Smart Output patterns defined
 
-## Setup Smart Output
+## :material-folder-cog: Setup Smart Output
 
 ### 1. Define Output Pattern
 
@@ -32,40 +32,40 @@ This workflow covers setting up and running a full batch render across multiple 
 
 ### 2. Assign Render Presets
 
-For consistent quality across all VLs:
+For consistent quality across all View Layers:
 
 1. Configure your render settings (engine, samples, resolution).
 2. Save as a render preset via the cascade popover.
-3. Assign it at the **Global** level for all VLs, or per VL Group for different quality tiers.
+3. Assign it at the **Global** level for all View Layers, or per View Layer Group for different quality tiers.
 
-## Running the Batch
+## :material-play-circle: Running the Batch
 
 ### Foreground Mode
 
 1. Open the Takes Tree sidebar.
 2. Click the **Render** button.
-3. The queue processes each VL in tree order:
-    - Switches scene/VL context
+3. The queue processes each View Layer in tree order:
+    - Switches scene/View Layer context
     - Applies cascade overrides (camera, world, action, variants)
     - Applies render preset
     - Renders and saves to the Smart Output path
-4. Progress shows per-VL in the render queue list.
+4. Progress shows per-View Layer in the render queue list.
 
 ### Background Mode
 
 1. Click the **Desktop** button instead.
 2. Blender stays interactive while renders run in background processes.
-3. Tree view thumbnails update as each VL completes.
+3. Tree view thumbnails update as each View Layer completes.
 
-## Monitoring Progress
+## :material-progress-clock: Monitoring Progress
 
 The render queue sidebar shows:
 
-- Per-VL progress bar
+- Per-View Layer progress bar
 - Status indicator (Pending, Rendering, Saving, Done, Failed, Cancelled)
 - Failed items show a tooltip with the error reason
 
-## Output Structure
+## :material-file-tree: Output Structure
 
 With the patterns above, your output folder looks like:
 
@@ -82,14 +82,14 @@ renders/
     └── ...
 ```
 
-## Tips
+## :material-lightbulb-on: Tips
 
 !!! tip "Completion Sound"
     Set a notification sound in **Preferences > Features** to be alerted
     when background renders finish. Supports system beeps and custom `.wav` files.
 
 !!! tip "Preview Before Render"
-    Use ++alt++-click on the render icon next to any VL to preview
+    Use ++alt++-click on the render icon next to any View Layer to preview
     its last rendered output without re-rendering.
 
 !!! warning "Save First"

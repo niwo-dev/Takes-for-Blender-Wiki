@@ -8,7 +8,7 @@ icon: material/compass
 
 The Navigation Panel is the primary control center for managing your Takes hierarchy. It contains the Takes Tree, cascade override icons, and access to batch rendering.
 
-## Header Controls
+## :material-page-layout-header: Header Controls
 
 The panel header displays the addon version and provides quick-access buttons:
 
@@ -22,16 +22,16 @@ The panel header displays the addon version and provides quick-access buttons:
 | **Help** | Opens the documentation (this wiki). |
 | **Settings** | Tree visibility and design options. |
 
-## The Takes Tree
+## :material-file-tree: The Takes Tree
 
 The Takes Tree is a unified hierarchical list showing your entire project structure:
 
 ```
 📁 Scene Group
   🎬 Scene
-    📂 VL Group
+    📂 View Layer Group
       🔲 View Layer
-        📌 VL Version
+        📌 View Layer Version
 ```
 
 ### Row Elements
@@ -56,7 +56,7 @@ Each View Layer row displays cascade override icons. These icons show at a glanc
 
 Configurable indent lines show the hierarchy visually. Tag colors can be inherited by tree lines for quick identification.
 
-## Settings Popover
+## :material-tune: Settings Popover
 
 Click the **gear icon** to access tree display settings:
 
@@ -65,16 +65,16 @@ Click the **gear icon** to access tree display settings:
 | **Show Tag Color** | Color tree indent lines by tag assignment. |
 | **Line Width** | Thin / Medium / Wide indent lines. |
 | **Icon Visibility** | Toggle individual cascade icons on/off. |
-| **Preview Size** | Thumbnail size for inline VL previews (24/32/40 px). |
+| **Preview Size** | Thumbnail size for inline View Layer previews (24/32/40 px). |
 
-## Warnings
+## :material-alert-outline: Warnings
 
 The Navigation Panel shows warnings when issues are detected:
 
 - **Missing Preset** — A cascade preset reference points to a deleted JSON file.
 - **Dangling Action** — An action is about to be lost because Auto-Assign is disabled.
 
-## Hotkeys
+## :material-keyboard: Hotkeys
 
 | Shortcut | Action |
 |----------|--------|

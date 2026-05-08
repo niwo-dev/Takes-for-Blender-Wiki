@@ -6,11 +6,11 @@ icon: material/earth
 
 The **Globals** panel is the project-wide control centre. It collects everything that's not tied to a specific Scene or View Layer: project settings, the preset library, automation rules, the tag library, and the Variant Switch tree.
 
-## Where to Find It
+## :material-map-marker: Where to Find It
 
 *3D Viewport > Sidebar (++n++) > **Takes** tab > **Globals***.
 
-## Modes
+## :material-shape: Modes
 
 The header has a row of mode buttons. Each switches the panel body to a different view:
 
@@ -22,7 +22,7 @@ The header has a row of mode buttons. Each switches the panel body to a differen
 | **Rules** | gear (system) | Automation rules — see [Rules](rules.md). |
 | **Tags** | colour mod | The full tag library — see [Tags](tags.md). |
 
-## Settings Mode — Reference State
+## :material-ghost: Settings Mode — Reference State
 
 | Control | Description |
 |---------|-------------|
@@ -31,7 +31,7 @@ The header has a row of mode buttons. Each switches the panel body to a differen
 
 See [Rest State](rest_state.md) for the full feature description.
 
-## Presets Mode — Overview
+## :material-palette-swatch: Presets Mode — Overview
 
 A 2×4 grid showing every preset category with its current assignment, dirty indicator, and revert button:
 
@@ -41,19 +41,19 @@ A 2×4 grid showing every preset category with its current assignment, dirty ind
 
 Click any preset to open its picker. ++alt++-click on the icon to clear. See [Render Presets](render_presets.md).
 
-## Variants Mode
+## :material-swap-horizontal: Variants Mode
 
 Delegates to the [Variant Switch](variant_switch.md) tree (Products → States → Parts → Material Pools).
 
-## Rules / Tags Modes
+## :material-tag-multiple: Rules / Tags Modes
 
 Dedicated panels for the [Rules](rules.md) and [Tags](tags.md) features.
 
-## Version Warning
+## :material-alert-outline: Version Warning
 
 If your Blender build is below 5.0 (the minimum for slotted actions), the Globals panel surfaces a banner with a link to the upgrade guide. The banner disappears once you're on a supported build.
 
-## Hotkeys
+## :material-keyboard: Hotkeys
 
 The Globals panel shares the generic tree hotkeys with every other tree-based panel:
 

@@ -10,7 +10,7 @@ The preferences are organised into four top-level tabs — **Workflow**, **UI**,
 
 ---
 
-## Workflow Tab
+## :material-cog-play: Workflow Tab
 
 ### Render
 
@@ -28,12 +28,12 @@ The preferences are organised into four top-level tabs — **Workflow**, **UI**,
 |---------|------|---------|-------------|
 | **Auto-create Reference Action** | bool | On | Creates the *Reference State* action when a new scene is created. |
 | **Auto-mirror Keyframes to Reference** | bool | On | Mirrors unkeyed values into the Reference Action on keyframe insert. |
-| **Auto-assign VL Actions** | bool | On | Creates and assigns View Layer actions automatically when a VL is added. |
-| **Auto-rename Actions on Hierarchy Change** | bool | Off | Regenerates action names from the naming templates when scenes / VLs are renamed. |
+| **Auto-assign View Layer Actions** | bool | On | Creates and assigns View Layer actions automatically when a View Layer is added. |
+| **Auto-rename Actions on Hierarchy Change** | bool | Off | Regenerates action names from the naming templates when scenes / View Layers are renamed. |
 | **Auto-rename Slots on Target Rename** | bool | On | Keeps slot names in sync with their target object/data. |
 | **Auto-rename Thumbnails on Name Change** | bool | On | Renames preview PNGs alongside their source. |
 | **Auto Fake User on Actions** | bool | On | Sets Fake User on actions to protect them from auto-purge. |
-| **Auto-snap on Keyframe Clear** | bool | On | Snaps the VL action selection to the nearest keyframe when one is cleared. |
+| **Auto-snap on Keyframe Clear** | bool | On | Snaps the View Layer action selection to the nearest keyframe when one is cleared. |
 | **Preset Changes** | enum | MANUAL | Policy when render/output/camera presets are edited live: **MANUAL** (warn), **DROP_REAPPLY** (discard), **ALWAYS_SYNC** (write back to preset). |
 
 ### Naming
@@ -54,9 +54,9 @@ The naming sub-tab holds editable templates for every named entity the addon cre
 |------|------------------|
 | Scene | `{scenegroup}{sep}{scene}` |
 | View Layer | `{scenegroup}{sep}{scene}{sep}{vlgroup}{sep}{viewlayer}` |
-| VL Version | `{scenegroup}{sep}{scene}{sep}{vlgroup}{sep}{viewlayer}{sep}{version}` |
+| View Layer Version | `{scenegroup}{sep}{scene}{sep}{vlgroup}{sep}{viewlayer}{sep}{version}` |
 | Scene Group | `{scenegroup}` |
-| VL Group | `{scenegroup}{sep}{scene}{sep}{vlgroup}` |
+| View Layer Group | `{scenegroup}{sep}{scene}{sep}{vlgroup}` |
 
 #### Camera & Compositor Templates
 
@@ -64,8 +64,8 @@ The naming sub-tab holds editable templates for every named entity the addon cre
 |------|------------------|
 | Scene Camera | `{scene}{sep}Cam` |
 | Scene Compositor | `{scene}{sep}Comp` |
-| VL Camera | `{scene}{sep}{viewlayer}{sep}Cam` |
-| VL Compositor | `{scene}{sep}{viewlayer}{sep}Comp` |
+| View Layer Camera | `{scene}{sep}{viewlayer}{sep}Cam` |
+| View Layer Compositor | `{scene}{sep}{viewlayer}{sep}Comp` |
 | Global Action | `Global{sep}Action` |
 | Global Camera | `Global{sep}Cam` |
 | Global Compositor | `Global{sep}Comp` |
@@ -104,7 +104,7 @@ A read-only summary of the addon's registered keymaps. To edit a binding, use *E
 
 ---
 
-## UI Tab
+## :material-view-dashboard: UI Tab
 
 ### Confirmations
 
@@ -112,7 +112,7 @@ Every confirmation dialog can be disabled. All default to **on**. Categorised:
 
 | Category | Settings |
 |----------|----------|
-| Tree | Delete Selected Item, Delete Scene, Delete View Layer, Delete Scene Group, Delete VL Group, Delete Version. |
+| Tree | Delete Selected Item, Delete Scene, Delete View Layer, Delete Scene Group, Delete View Layer Group, Delete Version. |
 | Inspector | Rename Action, Remove from Watchlist, Delete Action, Delete Slot, Delete Keyframe. |
 | Globals | Delete Tag, Delete Tag/Variant Group, Delete Variant, Delete Bookmark. |
 | Batch Render | Start Batch Render, Overwrite Existing Files. |
@@ -123,7 +123,7 @@ Every confirmation dialog can be disabled. All default to **on**. Categorised:
 
 Master and per-list row-height overrides. Range 5–30. The **Default List Rows** master propagates to every list that hasn't been overridden:
 
-Objects, Actions, Slots, Scenes, View Layers, Takes Tree, Scene Groups, VL Groups, VL Versions, Tags, VSW Products, Process Monitor, Debug Log, Profiler, Batch Queue, Preferences Setup.
+Objects, Actions, Slots, Scenes, View Layers, Takes Tree, Scene Groups, View Layer Groups, View Layer Versions, Tags, Variant Switch Products, Process Monitor, Debug Log, Profiler, Batch Queue, Preferences Setup.
 
 ### Columns
 
@@ -148,11 +148,11 @@ All default to **on**.
 | **Show Tag Color** | bool | On | Tints tree connection lines by tag colour. |
 | **Tree Line Width** | enum | MEDIUM | THIN / MEDIUM / WIDE. |
 | **Tree Line Color** | colour | grey | RGBA colour for connection lines. |
-| **Active VL Color** | colour | gold | RGBA colour for the active View Layer highlight. |
+| **Active View Layer Color** | colour | gold | RGBA colour for the active View Layer highlight. |
 
 ---
 
-## Data Tab
+## :material-database: Data Tab
 
 ### Storage
 
@@ -187,7 +187,7 @@ Per-type overrides: Render, Output, File Output, View Layer, Color Management, C
 
 ---
 
-## Debug Tab
+## :material-bug: Debug Tab
 
 ### Settings
 
@@ -205,7 +205,7 @@ Nine collapsible topic groups, each with a master toggle and per-subtopic toggle
 
 | Topic | Subtopics |
 |-------|-----------|
-| **CORE** | Init/Reloads, File Handlers, Addon Prefs, VL Switch, Cascade Overrides, Inspector, Lock System, Process Monitor, Reference State, Slot Processing, List Sync, Undo Handlers, Watchlist, Group Processing |
+| **CORE** | Init/Reloads, File Handlers, Addon Prefs, View Layer Switch, Cascade Overrides, Inspector, Lock System, Process Monitor, Reference State, Slot Processing, List Sync, Undo Handlers, Watchlist, Group Processing |
 | **UI** | Tree Drawing, Tree Syncing, Context State, Panel Drawing, Popovers Logic, Inspector Logic |
 | **DATA** | Schema Migration, Pointer Healing, Undo Protection, Property Scanning |
 | **OPS** | General Buttons, Creation Tools, Smart Renaming, Animation/Slots, Groups |
@@ -224,7 +224,7 @@ Modifier-clicks on group toggles:
 
 ---
 
-## Hidden / Advanced
+## :material-incognito: Hidden / Advanced
 
 A handful of preferences only surface as side-effects:
 
@@ -238,7 +238,7 @@ A handful of preferences only surface as side-effects:
 
 ---
 
-## Resetting Preferences
+## :material-restore: Resetting Preferences
 
 The fastest way back to defaults: in *Preferences > Data > Addon*, switch *Save Mode* to **ADDON** then re-enable the addon. Your custom config files in PROJECT / SHARED / LOCAL remain untouched.
 

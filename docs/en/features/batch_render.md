@@ -2,7 +2,7 @@
 
 The **Batch Render** system automates rendering across multiple View Layers, applying cascade overrides (cameras, worlds, actions, presets, variants) for each one.
 
-## Render Modes
+## :material-shape: Render Modes
 
 Takes for Blender supports two render modes:
 
@@ -10,17 +10,17 @@ Takes for Blender supports two render modes:
     Renders inside the current Blender session. You see the render window and progress in real-time, but Blender is locked during rendering.
 
     - Click the **Render** button (:material-image:) in the tree sidebar.
-    - Progress shows per-VL with status indicators.
+    - Progress shows per-View Layer with status indicators.
     - Press ++esc++ to cancel.
 
 === "Background"
     Renders in separate headless Blender subprocesses. Blender stays fully interactive while renders run in the background.
 
     - Click the **Desktop** button (:material-desktop-classic:) in the sidebar.
-    - Tree view updates progressively as each VL completes.
+    - Tree view updates progressively as each View Layer completes.
     - A completion sound plays when all tasks finish.
 
-## Render Queue
+## :material-format-list-checkbox: Render Queue
 
 The render queue shows the status of each View Layer:
 
@@ -33,36 +33,36 @@ The render queue shows the status of each View Layer:
 | **Failed** | Error occurred (hover for details). |
 | **Cancelled** | Skipped due to batch cancellation. |
 
-## Selection Modes
+## :material-checkbox-multiple-marked-outline: Selection Modes
 
 - **Single View Layer** — Renders only the active View Layer (default).
 - **Multi-select** — When multi-select is enabled, renders all selected View Layers.
 
 !!! tip "Render Order"
     The batch renderer follows the tree view order (top-to-bottom as displayed),
-    not Blender's internal scene/VL order.
+    not Blender's internal scene/View Layer order.
 
-## Recovery
+## :material-restore: Recovery
 
 If a batch render gets stuck:
 
 1. **Alt+Click** the Render button to force-reset.
 2. This clears all internal flags and restores suppressed handlers.
 
-## Output
+## :material-export: Output
 
 Output paths are resolved via the [Smart Output](smart_output.md) token system. Each View Layer's output is named automatically based on the configured pattern.
 
-## Hotkeys
+## :material-keyboard: Hotkeys
 
 The render-toggle icon next to each View Layer accepts modifier-clicks:
 
 | Shortcut | Action |
 |----------|--------|
-| Click | Toggle the VL's enabled state in the queue. |
-| ++alt++ + click | **Preview** the VL immediately (single-frame snapshot). |
-| ++ctrl++ + click | **Render & save** the VL through the queue. |
-| ++shift++ + click | Toggle **all** VLs in the current scene. |
+| Click | Toggle the View Layer's enabled state in the queue. |
+| ++alt++ + click | **Preview** the View Layer immediately (single-frame snapshot). |
+| ++ctrl++ + click | **Render & save** the View Layer through the queue. |
+| ++shift++ + click | Toggle **all** View Layers in the current scene. |
 
 While a batch render is running:
 

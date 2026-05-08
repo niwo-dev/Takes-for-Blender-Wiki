@@ -6,11 +6,11 @@ icon: material/swap-horizontal
 
 The **Variant Switch** system manages product variants — different material configurations, finishes, or color options — with per-scope material swapping and cascade-aware state management.
 
-## Concept
+## :material-lightbulb-outline: Concept
 
 In product visualization, you often need to render the same product in multiple finishes (Gold, Silver, Matte Black) or configurations. Variant Switch automates the material swapping process.
 
-## Hierarchy
+## :material-source-branch: Hierarchy
 
 | Element | Description |
 |---------|-------------|
@@ -19,7 +19,7 @@ In product visualization, you often need to render the same product in multiple 
 | **Part** | A component linked to a collection (e.g., "Body", "Strap"). |
 | **Pool** | Material slots available for each part. |
 
-## Usage
+## :material-cursor-default-click: Usage
 
 ### Creating a Product
 
@@ -43,7 +43,7 @@ In product visualization, you often need to render the same product in multiple 
 
 Click the **diamond icon** on any inactive State to immediately apply that variant to the viewport. The active state shows as a filled circle.
 
-## Variant Modes
+## :material-shape: Variant Modes
 
 Variant Switch supports three modes:
 
@@ -56,7 +56,7 @@ Variant Switch supports three modes:
 === "Pool"
     Pick from a product-level material palette. Each Part has a pool of materials indexed per State.
 
-## Integration with Cascade
+## :material-arrow-decision: Integration with Cascade
 
 Variant Switch states are resolved as part of the cascade. Each View Layer (or higher tier) can specify which variant state is active, enabling different variants per camera angle.
 
@@ -64,7 +64,7 @@ Variant Switch states are resolved as part of the cascade. Each View Layer (or h
     Assign tags from the "Variant" category to states for organization
     and Smart Output resolution via the `{variant_tag}` token.
 
-## Hotkeys
+## :material-keyboard: Hotkeys
 
 When the Variant Tree is focused:
 

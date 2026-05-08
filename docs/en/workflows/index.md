@@ -28,7 +28,7 @@ Step-by-step tutorials for real production scenarios.
 
     ---
 
-    Render every variant and angle in one go — foreground or background, with Smart Output naming and the cascade applied per VL.
+    Render every variant and angle in one go — foreground or background, with Smart Output naming and the cascade applied per View Layer.
 
     [:octicons-arrow-right-24: Batch Rendering](batch_rendering.md)
 

@@ -6,7 +6,7 @@ icon: material/movie-open
 
 A **Take** is a named group of View Layers that represent a specific configuration of your scene — a camera angle, a lighting setup, a material variant, or an animation state.
 
-## Concept
+## :material-lightbulb-outline: Concept
 
 In film and photography, a "take" is one version of a shot. Takes for Blender extends this concept to Blender's View Layer system, giving you:
 
@@ -16,7 +16,7 @@ In film and photography, a "take" is one version of a shot. Takes for Blender ex
 - **Independent render presets** per View Layer
 - **Independent animation actions** per View Layer
 
-## Organization
+## :material-file-tree: Organization
 
 Takes are organized in a hierarchy within the Takes Tree:
 
@@ -24,25 +24,25 @@ Takes are organized in a hierarchy within the Takes Tree:
 |-------|---------|---------|
 | **Scene Group** | Top-level organization | "Interior", "Exterior" |
 | **Scene** | Blender scene | "Kitchen", "Bathroom" |
-| **VL Group** | Logical grouping of VLs | "Hero Shots", "Detail Shots" |
+| **View Layer Group** | Logical grouping of View Layers | "Hero Shots", "Detail Shots" |
 | **View Layer** | The actual render unit | "Front 3/4", "Top Down" |
-| **VL Version** | Named snapshots of VL settings | "v1 warm", "v2 cool" |
+| **View Layer Version** | Named snapshots of View Layer settings | "v1 warm", "v2 cool" |
 
-## Creating Takes
+## :material-plus-circle: Creating Takes
 
 ### Add a View Layer
 
 1. Click **+** in the tree sidebar.
 2. Choose **Add View Layer**.
-3. The new VL inherits from the active View Layer.
+3. The new View Layer inherits from the active View Layer.
 
 ### Group View Layers
 
 1. Select a View Layer in the tree.
-2. Press ++ctrl+g++ to create a VL Group containing it.
+2. Press ++ctrl+g++ to create a View Layer Group containing it.
 3. Drag other View Layers into the group.
 
-### VL Versions
+### View Layer Versions
 
 Create named snapshots of a View Layer's cascade settings:
 
@@ -51,10 +51,10 @@ Create named snapshots of a View Layer's cascade settings:
 3. Each version stores its own camera, world, action, and preset overrides.
 
 !!! tip "Quick Switching"
-    Switch between VL Versions to instantly compare different configurations
+    Switch between View Layer Versions to instantly compare different configurations
     without duplicating View Layers.
 
-## Hotkeys (Takes Tree)
+## :material-keyboard: Hotkeys (Takes Tree)
 
 When the Takes Tree is focused (mouse over the N-panel sidebar):
 
@@ -64,7 +64,7 @@ When the Takes Tree is focused (mouse over the N-panel sidebar):
 | ++shift+a++ | Add menu (full add options) |
 | ++f2++ | Rename the selected item |
 | ++del++ / ++x++ | Delete (with confirmation) |
-| ++ctrl+g++ | Group the selection (Scene Group / VL Group) |
+| ++ctrl+g++ | Group the selection (Scene Group / View Layer Group) |
 | ++alt+g++ | Ungroup |
 | ++ctrl+t++ | Retarget (move under another parent) |
 | ++shift+d++ | Duplicate (full copy) |

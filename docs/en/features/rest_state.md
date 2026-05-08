@@ -6,25 +6,25 @@ icon: material/ghost
 
 The **Rest State** (reference state) system automatically preserves pristine default property values alongside your per-View Layer animations.
 
-## Concept
+## :material-lightbulb-outline: Concept
 
 When you animate an object differently on each View Layer, you need a "neutral" baseline — the object's default position, rotation, material values, etc. The Rest State system maintains this baseline automatically.
 
-## How It Works
+## :material-cog-sync: How It Works
 
 1. A shared **Reference Action** (`Reference_State`) stores the default values for all animated properties at frame 0.
 2. When you add a keyframe on any View Layer, the Rest State system automatically mirrors that property's current default value into the Reference Action.
-3. When switching View Layers, objects without animation on the target VL snap back to their Rest State values.
+3. When switching View Layers, objects without animation on the target View Layer snap back to their Rest State values.
 
 ```mermaid
 graph LR
     K[Keyframe Added] --> M[Mirror to Reference]
-    VL[VL Switch] --> C{Has Cascade Action?}
+    Switch[View Layer Switch] --> C{Has Cascade Action?}
     C -->|Yes| A[Apply Action]
     C -->|No| R[Snap to Rest State]
 ```
 
-## Controls
+## :material-tune: Controls
 
 | Control | Location | Description |
 |---------|----------|-------------|
@@ -32,7 +32,7 @@ graph LR
 | **Reference Action picker** | *Globals > Settings > Reference State > Reference Action*. | Selects which Action stores the rest baseline. The **+** button creates a fresh one. |
 | **Set Reference Default** | Property right-click menu → *Set Reference Default*. | Records the property's current value as its rest baseline. |
 
-## Native Hotkeys That Drive Rest State
+## :material-keyboard: Native Hotkeys That Drive Rest State
 
 The Rest State system reacts to Blender's standard keyframe shortcuts — no addon-specific binding is required:
 
@@ -41,7 +41,7 @@ The Rest State system reacts to Blender's standard keyframe shortcuts — no add
 | ++i++ (Insert Keyframe) | If **Auto-Mirror** is on, the unkeyed value is mirrored into the Reference Action **before** the keyframe is committed, preserving the rest baseline. |
 | ++alt+i++ (Delete Keyframe) | After Blender removes the keyframe, the property snaps back to its Reference value automatically. |
 
-## Supported Datablocks
+## :material-database-check: Supported Datablocks
 
 The Rest State system covers all standard animatable datablocks:
 

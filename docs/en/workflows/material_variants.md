@@ -6,11 +6,11 @@ icon: material/palette
 
 This workflow shows how to set up product color/finish variants using the Variant Switch system.
 
-## Scenario
+## :material-script-text-outline: Scenario
 
 You have a product (e.g., a water bottle) that needs to be rendered in three finishes: Matte Black, Brushed Aluminum, and Rose Gold.
 
-## Setup
+## :material-cog-outline: Setup
 
 ### 1. Create the Product
 
@@ -44,11 +44,11 @@ Add a State for each variant:
 2. Add State "Aluminum" → set pool index 2 for all parts.
 3. Add State "Rose Gold" → set pool index 3 for all parts.
 
-## Previewing
+## :material-eye: Previewing
 
 Click the **diamond icon** on any State to instantly see that variant in the viewport.
 
-## Rendering All Variants
+## :material-image-multiple: Rendering All Variants
 
 ### Option A: Manual
 
@@ -58,12 +58,12 @@ Click the **diamond icon** on any State to instantly see that variant in the vie
 ### Option B: Cascade Integration
 
 1. Create a View Layer per variant.
-2. In each VL's cascade, assign the matching Variant Switch state.
-3. Batch Render all VLs in one go.
+2. In each View Layer's cascade, assign the matching Variant Switch state.
+3. Batch Render all View Layers in one go.
 
 ### Option C: Combined with Camera Angles
 
-Create a VL for each combination (variant × angle):
+Create a View Layer for each combination (variant × angle):
 
 | View Layer | Variant | Camera |
 |------------|---------|--------|

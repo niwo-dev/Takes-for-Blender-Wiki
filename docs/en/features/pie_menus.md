@@ -6,13 +6,13 @@ icon: material/dots-circle
 
 The addon registers one configurable pie menu — the **Navigation Pie** — for fast switching between the side-panel views without taking your hand off the mouse.
 
-## Default Binding
+## :material-keyboard: Default Binding
 
 | Shortcut | Action |
 |----------|--------|
 | ++ctrl+shift+c++ | Open the **Takes Navigation** pie menu (in the 3D Viewport). |
 
-## Default Slot Layout
+## :material-view-grid: Default Slot Layout
 
 ```
        N: Rules
@@ -22,7 +22,7 @@ SW: Batch Render  SE: Channels
        S: Slotted Mode
 ```
 
-## Available Slot Actions
+## :material-format-list-bulleted: Available Slot Actions
 
 Each of the 8 directions can be assigned one of:
 
@@ -38,11 +38,11 @@ Each of the 8 directions can be assigned one of:
 | **Channels** | Inspector → Channels view. |
 | **None** | Empty slot. |
 
-## Reassigning Slots
+## :material-pencil: Reassigning Slots
 
 *Edit > Preferences > Add-ons > Takes for Blender > Workflow > Pie Menu* — eight enum dropdowns, one per direction. Changing a slot auto-deduplicates: if you assign the same action to two slots, the previously-assigned slot is reset.
 
-## Changing the Keybinding
+## :material-keyboard-settings: Changing the Keybinding
 
 Pie menus are normal Blender keymap entries.
 

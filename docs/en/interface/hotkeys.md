@@ -10,7 +10,7 @@ Hotkeys that share a key across lists are **focus-aware** — only the visible/a
 
 ---
 
-## Pie Menu
+## :material-dots-circle: Pie Menu
 
 | Shortcut | Action | Notes |
 |----------|--------|-------|
@@ -18,7 +18,7 @@ Hotkeys that share a key across lists are **focus-aware** — only the visible/a
 
 ---
 
-## Tree, Tags, Variants — Generic Edit Shortcuts
+## :material-file-tree: Tree, Tags, Variants — Generic Edit Shortcuts
 
 These run against the **active list** (Takes Tree, Tag Library, or Variant Tree, depending on what currently has focus).
 
@@ -28,7 +28,7 @@ These run against the **active list** (Takes Tree, Tag Library, or Variant Tree,
 | ++f2++ | **Rename** | Opens the rename dialog. |
 | ++ctrl+n++ | **New (smart)** | Adds a new item appropriate to the current selection. |
 | ++shift+a++ | **Add Menu** | Opens the full add menu. |
-| ++ctrl+g++ | **Group** | Wraps the selection in a Scene Group, VL Group, or Tag Group. |
+| ++ctrl+g++ | **Group** | Wraps the selection in a Scene Group, View Layer Group, or Tag Group. |
 | ++alt+g++ | **Ungroup** | Removes the selection from its group. |
 | ++ctrl+t++ | **Retarget** | Move the selected item to another parent. |
 | ++shift+d++ | **Duplicate (full copy)** | Independent copy. |
@@ -36,7 +36,7 @@ These run against the **active list** (Takes Tree, Tag Library, or Variant Tree,
 
 ---
 
-## Multi-Select Mode
+## :material-checkbox-multiple-marked-outline: Multi-Select Mode
 
 Multi-select is activated by clicking the **☐** icon in the stats row of any list. While active:
 
@@ -49,7 +49,7 @@ Multi-select is activated by clicking the **☐** icon in the stats row of any l
 
 ---
 
-## Cascade Icons (Tree Rows)
+## :material-arrow-decision: Cascade Icons (Tree Rows)
 
 Each cascade icon on a tree row supports modifier-clicks:
 
@@ -62,27 +62,27 @@ Each cascade icon on a tree row supports modifier-clicks:
 
 ---
 
-## Render Queue / VL Render Toggle
+## :material-image-multiple: Render Queue / View Layer Render Toggle
 
 The render-toggle icon next to each View Layer accepts modifiers:
 
 | Shortcut | Action |
 |----------|--------|
-| Click | Toggle the VL's enabled state in the queue. |
-| ++alt++ + click | **Preview** the VL immediately (single-frame snapshot). |
-| ++ctrl++ + click | **Render & save** the VL through the queue. |
-| ++shift++ + click | Toggle **all** VLs in the current scene. |
+| Click | Toggle the View Layer's enabled state in the queue. |
+| ++alt++ + click | **Preview** the View Layer immediately (single-frame snapshot). |
+| ++ctrl++ + click | **Render & save** the View Layer through the queue. |
+| ++shift++ + click | Toggle **all** View Layers in the current scene. |
 
 The "Render All Previews" button:
 
 | Shortcut | Action |
 |----------|--------|
-| Click | Render previews for the selected / multi-selected VLs. |
-| ++alt++ + click | Render previews for **every** VL across all scenes. |
+| Click | Render previews for the selected / multi-selected View Layers. |
+| ++alt++ + click | Render previews for **every** View Layer across all scenes. |
 
 ---
 
-## Batch Render Modal
+## :material-progress-clock: Batch Render Modal
 
 While a batch render is running:
 
@@ -93,7 +93,7 @@ While a batch render is running:
 
 ---
 
-## Datablock Pickers (Action / Camera / World / Compositor)
+## :material-database-eye: Datablock Pickers (Action / Camera / World / Compositor)
 
 | Shortcut | Action |
 |----------|--------|
@@ -103,7 +103,7 @@ While a batch render is running:
 
 ---
 
-## Logging Topics (Preferences)
+## :material-bug: Logging Topics (Preferences)
 
 In *Preferences > Debug > Topics*:
 
@@ -115,7 +115,7 @@ In *Preferences > Debug > Topics*:
 
 ---
 
-## Rename Dialogs
+## :material-rename-box: Rename Dialogs
 
 Rename dialogs use Blender's standard text-entry behavior:
 
@@ -127,7 +127,7 @@ Rename dialogs use Blender's standard text-entry behavior:
 
 ---
 
-## Native Blender Shortcuts the Addon Reacts To
+## :material-link-variant: Native Blender Shortcuts the Addon Reacts To
 
 Some Blender shortcuts trigger Takes behavior even though the addon doesn't bind them:
 

@@ -6,33 +6,33 @@ icon: material/arrow-decision
 
 The **Cascade** is the core engine of Takes for Blender. It resolves property overrides through a 6-tier hierarchy, allowing any level to override any level above it.
 
-## How It Works
+## :material-cog-sync: How It Works
 
 When you switch to a View Layer, the cascade resolves each property (camera, world, action, compositor, presets) by walking the hierarchy **top-down** and using the **first non-empty value** it finds:
 
 ```mermaid
 graph LR
-    G[Global] --> SG[Scene Group]
-    SG --> S[Scene]
-    S --> VLG[VL Group]
-    VLG --> VL[View Layer]
-    VL --> VLV[VL Version]
-    
-    style VLV fill:#e87d0d,color:#fff
+    Global[Global] --> SceneGrp[Scene Group]
+    SceneGrp --> Scene[Scene]
+    Scene --> LayerGroup[View Layer Group]
+    LayerGroup --> Layer[View Layer]
+    Layer --> Version[View Layer Version]
+
+    style Version fill:#e87d0d,color:#fff
 ```
 
-## Override Tiers
+## :material-stairs: Override Tiers
 
 | Tier | Scope | Example Use |
 |------|-------|-------------|
-| **Global** | All scenes, all VLs | Default camera, global world |
+| **Global** | All scenes, all View Layers | Default camera, global world |
 | **Scene Group** | All scenes in the group | Shared exterior lighting |
-| **Scene** | All VLs in the scene | Scene-specific compositor |
-| **VL Group** | All VLs in the group | Shared camera angle |
-| **View Layer** | Single VL | Per-shot camera, action, world |
-| **VL Version** | Named snapshot | Version-specific tweaks |
+| **Scene** | All View Layers in the scene | Scene-specific compositor |
+| **View Layer Group** | All View Layers in the group | Shared camera angle |
+| **View Layer** | Single View Layer | Per-shot camera, action, world |
+| **View Layer Version** | Named snapshot | Version-specific tweaks |
 
-## Cascade Properties
+## :material-format-list-bulleted-type: Cascade Properties
 
 The following properties participate in the cascade:
 
@@ -49,7 +49,7 @@ The following properties participate in the cascade:
 | **Camera Rule** | Tag-based camera selection rule. |
 | **World Rule** | Tag-based world selection rule. |
 
-## Setting Overrides
+## :material-pencil: Setting Overrides
 
 ### Via Cascade Icons
 
@@ -57,9 +57,9 @@ Click any cascade icon on a tree row to open its popover. Set a value to create 
 
 ### Via Context Properties
 
-The Context Properties panel shows all overrides for the active VL in one place.
+The Context Properties panel shows all overrides for the active View Layer in one place.
 
-## Visual Indicators
+## :material-eye-outline: Visual Indicators
 
 - **Bright icon** — A value is explicitly set at this tier
 - **Dimmed icon** — The value is inherited from a parent tier
@@ -69,7 +69,7 @@ The Context Properties panel shows all overrides for the active VL in one place.
     Hover over a cascade icon to see a tooltip showing which tier the
     current value is inherited from.
 
-## Hotkeys
+## :material-keyboard: Hotkeys
 
 Cascade icons on tree rows and in the Context panel respond to modifier-clicks:
 

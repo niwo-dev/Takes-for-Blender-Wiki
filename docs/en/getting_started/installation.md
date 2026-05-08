@@ -4,26 +4,26 @@ icon: material/download
 
 # Installation
 
-## Requirements
+## :material-check-circle-outline: Requirements
 
 - **Blender 5.1** or newer
 - Windows, macOS, or Linux
 
-## Download
+## :material-download: Download
 
 Download the latest release ZIP from the [GitHub Releases](https://github.com/niwo-dev/Takes-for-Blender/releases) page.
 
 !!! warning "Do Not Unzip"
     Blender installs addons directly from the `.zip` file. Do **not** extract it before installing.
 
-## Install in Blender
+## :material-puzzle-plus: Install in Blender
 
 1. Open Blender and go to **Edit > Preferences > Add-ons**.
 2. Click **Install from Disk...** (top-right dropdown).
 3. Navigate to the downloaded `.zip` file and select it.
 4. Enable the addon by checking the box next to **Takes for Blender**.
 
-## Verify Installation
+## :material-check-all: Verify Installation
 
 After activation, a new **Takes** tab appears in the **3D Viewport sidebar** — press ++n++ in the 3D Viewport to toggle the sidebar if hidden, then click the **Takes** tab.
 
@@ -37,7 +37,7 @@ You should see:
     **Auto-Assign** and **Auto-Rename** for cascade actions.
     This means animation data is managed per-View Layer out of the box.
 
-## Updating
+## :material-update: Updating
 
 To update to a newer version:
 

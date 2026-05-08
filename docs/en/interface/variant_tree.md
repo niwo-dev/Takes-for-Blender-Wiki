@@ -8,7 +8,7 @@ icon: material/file-tree
 
 The Variant Tree manages product variants — different material configurations, color options, or states of your product. It uses a hierarchical structure of Products, States, and Parts.
 
-## Hierarchy
+## :material-source-branch: Hierarchy
 
 ```mermaid
 graph TD
@@ -32,7 +32,7 @@ Part
 :   A component of the product linked to a collection (e.g., "Body", "Cap", "Strap").
     Each part has a material pool with indexed slots.
 
-## Usage
+## :material-cursor-default-click: Usage
 
 ### Switching Variants
 
@@ -50,11 +50,11 @@ Each Part has a material pool — a list of materials that can be swapped in:
 
 Each Part is linked to a Blender collection. All objects in that collection (and child collections) receive the material swap.
 
-## Variant Tags
+## :material-tag: Variant Tags
 
 States can be tagged with the **Variant** tag category for organization and Smart Output token resolution via `{variant_tag}`.
 
-## Hotkeys
+## :material-keyboard: Hotkeys
 
 | Shortcut | Action |
 |----------|--------|

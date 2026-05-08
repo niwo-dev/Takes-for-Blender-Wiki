@@ -43,11 +43,11 @@ hide:
 
 </div>
 
-## Key Capabilities
+## :material-star-circle: Key Capabilities
 
 | Feature | Description |
 |---------|-------------|
-| **Takes Tree** | Unified hierarchy: Scene Groups → Scenes → VL Groups → View Layers → Versions. |
+| **Takes Tree** | Unified hierarchy: Scene Groups → Scenes → View Layer Groups → View Layers → Versions. |
 | **6-Tier Cascade** | Override resolution from Global down to Version level for cameras, worlds, actions, and more. |
 | **Tags & Rules** | Universal labelling system with tag-driven preset bundles applied through the cascade. |
 | **Globals Panel** | Project-wide control centre — settings, presets overview, rules, tags, variants. |
@@ -55,8 +55,8 @@ hide:
 | **Rest State** | Auto-mirroring reference action system that preserves pristine default keyframes across animations. |
 | **Batch Render** | Modal render engine (foreground or background) with a Smart Output token system for file naming. |
 | **Render Presets** | 9 JSON-based preset categories (render, output, view layer, color, camera, world, material, file output, bookmarks) with 4-tier storage. |
-| **VL Preview** | Live viewport thumbnails next to each View Layer in the tree. |
-| **Process Monitor** | Runtime diagnostics — process tree, debug console, VL Switch profiler. |
+| **View Layer Preview** | Live viewport thumbnails next to each View Layer in the tree. |
+| **Process Monitor** | Runtime diagnostics — process tree, debug console, View Layer Switch profiler. |
 | **Pie Menu** | Configurable navigation pie menu (++ctrl+shift+c++). |
 
 !!! tip "Blender Version"

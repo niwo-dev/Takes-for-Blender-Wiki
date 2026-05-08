@@ -8,7 +8,7 @@ A **Rule** is an automation tag — a single named entity that bundles a set of 
 
 If [Tags](tags.md) are the labels, Rules are the *programmable* tags: each one carries presets for render, output, camera, world, and so on, ready to be applied with one click.
 
-## Rule Types
+## :material-shape: Rule Types
 
 | Type | Drives |
 |------|--------|
@@ -17,7 +17,7 @@ If [Tags](tags.md) are the labels, Rules are the *programmable* tags: each one c
 | **STUDIO Rule** | World preset. |
 | **MATERIAL Rule** | Material preset (used by Variant Switch). |
 
-## Creating a Rule
+## :material-plus-circle: Creating a Rule
 
 1. Open *Globals > **Rules** mode*.
 2. Pick a category (OUTPUT / CAMERA / STUDIO / MATERIAL).
@@ -38,26 +38,26 @@ If [Tags](tags.md) are the labels, Rules are the *programmable* tags: each one c
 | **Camera Preset** | Lens, sensor, DOF. |
 | **Camera Object** | Which camera in the scene. |
 
-## Assigning a Rule
+## :material-link-variant: Assigning a Rule
 
-In the Context panel, every tier (Scene / VL / VL Group / Scene Group / Global) shows a **rule icon** (system gear). Click it to choose a rule from the tag library — every preset in the rule is applied to the cascade at that tier.
+In the Context panel, every tier (Scene / View Layer / View Layer Group / Scene Group / Global) shows a **rule icon** (system gear). Click it to choose a rule from the tag library — every preset in the rule is applied to the cascade at that tier.
 
 The cascade order is the standard one — first non-empty preset wins, top-down:
 
 ```
-Global → Scene Group → Scene → VL Group → View Layer → VL Version
+Global → Scene Group → Scene → View Layer Group → View Layer → View Layer Version
 ```
 
-Rules are evaluated as part of cascade resolution, on every VL switch, batch render, and cascade sync.
+Rules are evaluated as part of cascade resolution, on every View Layer switch, batch render, and cascade sync.
 
-## Editing a Rule
+## :material-pencil: Editing a Rule
 
 1. Open *Globals > Rules*.
 2. Select the rule.
 3. Re-pick presets from the *Preset Rules for: <name>* panel.
 4. The change propagates to every tier already using the rule on the next sync.
 
-## Hotkeys (Rules Panel)
+## :material-keyboard: Hotkeys (Rules Panel)
 
 | Shortcut | Action |
 |----------|--------|

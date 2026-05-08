@@ -6,13 +6,13 @@ icon: material/folder-cog
 
 The **Smart Output** system provides dynamic token-based file path resolution for render output. Instead of manually naming each render, tokens are automatically replaced with context-specific values.
 
-## Enabling Smart Output
+## :material-toggle-switch: Enabling Smart Output
 
 1. Go to the **Output** panel in Blender's Properties editor (the printer-icon tab in the regular Properties window — Smart Output replaces the standard output path here).
 2. Enable the **Smart Output** toggle.
 3. Set your **Directory Pattern** and **File Name Pattern** using tokens.
 
-## Token Syntax
+## :material-code-tags: Token Syntax
 
 Tokens are wrapped in configurable brackets. The default style uses square brackets:
 
@@ -36,7 +36,7 @@ Choose your preferred style in **Addon Preferences > Behavior Options > Syntax B
 | Dollar | `$token$` | `$view_layer$_####` |
 | Hash | `#token#` | `#view_layer#_####` |
 
-## Available Tokens
+## :material-format-list-bulleted: Available Tokens
 
 The full token registry is below. Tokens written here use curly braces for readability — switch to your configured bracket style at runtime.
 
@@ -46,9 +46,9 @@ The full token registry is below. Tokens written here use curly braces for reada
 |-------|-------------|
 | `{scene}` | Active scene name |
 | `{view_layer}` / `{viewlayer}` | Active View Layer name |
-| `{version}` | Active VL Version name |
+| `{version}` | Active View Layer Version name |
 | `{scenegroup}` | Scene Group name |
-| `{vlgroup}` | VL Group name |
+| `{vlgroup}` | View Layer Group name |
 | `{group}` | Node group / parent name |
 | `{camera}` | Active camera name |
 | `{marker}` | Current timeline marker |
@@ -158,7 +158,7 @@ The full token registry is below. Tokens written here use curly braces for reada
     Click the **Syntax Tokens** button (book icon) in the Output panel header
     for an interactive in-Blender token picker with live preview.
 
-## Separators
+## :material-minus: Separators
 
 The separator tokens give you stable spacing without hardcoding characters:
 
@@ -173,6 +173,6 @@ The separator tokens give you stable spacing without hardcoding characters:
 
 Use `{sep}` everywhere for the configurable, project-wide character; use `{sep1}`–`{sep5}` for fixed semantic delimiters (folders vs. fields vs. versions).
 
-## Frame Numbers
+## :material-numeric: Frame Numbers
 
 Use Blender's native `####` syntax for padded frame numbers. Smart Output preserves this and shows a live preview with the current frame number substituted.

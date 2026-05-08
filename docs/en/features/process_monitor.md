@@ -6,7 +6,7 @@ icon: material/monitor-dashboard
 
 The **Process Monitor** is a runtime diagnostics view added in v0.6.6. It shows what the addon's background processes are doing in real time — useful when you're troubleshooting viewport lag, suspicious cascade behaviour, or just want to see which subsystems are active.
 
-## Where to Find It
+## :material-map-marker: Where to Find It
 
 *3D Viewport > Sidebar (++n++) > **Takes** tab > **Navigation** panel header > Monitor switcher.*
 
@@ -16,15 +16,15 @@ The header has a 3-way switcher:
 |-----|-------|
 | **Process Monitor** | Live process tree (the focus of this page). |
 | **Debug Console** | Recent log lines (filtered by *Preferences > Debug > Topics*). |
-| **VL Switch Profiler** | Per-step timing for the most recent View Layer switch. |
+| **View Layer Switch Profiler** | Per-step timing for the most recent View Layer switch. |
 
-## Process Tree Hierarchy
+## :material-file-tree: Process Tree Hierarchy
 
 Processes are grouped into 6 feature buckets. Each bucket has a master toggle and a chevron to expand/collapse:
 
 | Group | Tracks |
 |-------|--------|
-| **Core** | VL Switch, Cascade overrides, Lock System, Slot Processing. |
+| **Core** | View Layer Switch, Cascade overrides, Lock System, Slot Processing. |
 | **UI Sync** | Tree drawing, list syncing, panel redraws. |
 | **Reference State** | Auto-mirror, snap-back, rest cache. |
 | **Variant Switch** | Material swap, pool resolution. |
@@ -33,17 +33,17 @@ Processes are grouped into 6 feature buckets. Each bucket has a master toggle an
 
 A row turns red when a process logs an error, amber on warnings, green when idle. Click a row to drill into its log lines in the Debug Console.
 
-## Master Toggles
+## :material-toggle-switch: Master Toggles
 
 Each group has a master switch. Disabling a group **suspends** its handlers (where safe) so you can isolate causes of viewport lag without restarting Blender. Re-enable to restore normal behaviour.
 
-## When to Use It
+## :material-help-circle-outline: When to Use It
 
 - The viewport is stuttering and you want to see which feature group is firing during scrub.
-- A VL switch feels slow — open the **VL Switch Profiler** tab to see per-step times.
+- A View Layer switch feels slow — open the **View Layer Switch Profiler** tab to see per-step times.
 - A bug report asks for a log — flip on *Preferences > Debug > Enable Logging*, reproduce the issue, then copy lines from the Debug Console.
 
-## Hotkeys
+## :material-keyboard: Hotkeys
 
 The Process Monitor list shares the generic list hotkeys:
 

@@ -8,7 +8,7 @@ icon: material/magnify-scan
 
 The Inspector Panel provides a per-object watchlist showing which objects are managed by the cascade system, their assigned actions, slots, and sub-data (materials, node trees, shape keys).
 
-## Managed vs. Pinned
+## :material-pin: Managed vs. Pinned
 
 Objects in the watchlist have one of two states:
 
@@ -22,7 +22,7 @@ Pinned
     Unpinning an object that has an action will show a confirmation dialog,
     because the action will be replaced by the cascade assignment.
 
-## Watchlist
+## :material-eye-outline: Watchlist
 
 The watchlist shows all objects relevant to the current View Layer:
 
@@ -41,7 +41,7 @@ In compact mode, sub-data icons appear as a row of small type-aware icons next t
 
 Click any sub-data icon to open a popover for per-datablock action and slot management.
 
-## Filters
+## :material-filter-variant: Filters
 
 Filter the watchlist using the header buttons:
 
@@ -50,7 +50,7 @@ Filter the watchlist using the header buttons:
 
 Filter icons are disabled (grayed out) when their count is zero.
 
-## Actions & Slots
+## :material-play-box-multiple: Actions & Slots
 
 Select an object in the watchlist to see its action and slot details in the lower section of the Inspector:
 
@@ -58,7 +58,7 @@ Select an object in the watchlist to see its action and slot details in the lowe
 - **Slots list** — Shows all slots within the active action
 - **Inline rename** — Double-click an action or slot name to rename it
 
-## Hotkeys
+## :material-keyboard: Hotkeys
 
 When the Inspector is focused:
 
