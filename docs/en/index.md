@@ -62,6 +62,17 @@ hide:
 !!! tip "Blender Version"
     Takes for Blender requires **Blender 5.1** or newer. It uses the Slotted Action system introduced in Blender 5.0.
 
+??? info "Need another language?"
+    The wiki is published in **English, German, Spanish, Russian, Chinese, Japanese, and Vietnamese** — pick one from the language switcher in the header.
+
+    For any other language, your browser can translate the page in place:
+
+    - **Chrome / Edge / Brave** — right-click anywhere on the page → *Translate to…*. Or click the small **translate icon** that appears in the address bar.
+    - **Firefox** — right-click → *Translate Page* (built in since version 118; otherwise install the official "Firefox Translations" add-on).
+    - **Safari** — click the **translate icon** in the address bar (macOS Big Sur and later, iOS 14+).
+
+    Browser translation is private (the text is processed locally where supported), free, and covers 100+ languages.
+
 ---
 
 *Created by Nikolaj Woroschilow*
