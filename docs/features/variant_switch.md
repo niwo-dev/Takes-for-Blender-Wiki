@@ -56,7 +56,7 @@ Variant Switch supports three modes:
 === "Pool"
     Pick from a product-level material palette. Each Part has a pool of materials indexed per State.
 
-## :material-arrow-decision: Integration with Cascade
+## :material-arrow-decision: Cascade Integration
 
 Variant Switch states are resolved as part of the cascade. Each View Layer (or higher tier) can specify which variant state is active, enabling different variants per camera angle.
 

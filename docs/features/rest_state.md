@@ -32,9 +32,9 @@ graph LR
 | **Reference Action picker** | *Globals > Settings > Reference State > Reference Action*. | Selects which Action stores the rest baseline. The **+** button creates a fresh one. |
 | **Set Reference Default** | Property right-click menu → *Set Reference Default*. | Records the property's current value as its rest baseline. |
 
-## :material-keyboard: Native Hotkeys That Drive Rest State
+## :material-keyboard: Native Hotkeys
 
-The Rest State system reacts to Blender's standard keyframe shortcuts — no addon-specific binding is required:
+*Blender's standard keyframe shortcuts drive Rest State automatically — no addon-specific binding required.*
 
 | Shortcut | Behavior |
 |----------|----------|

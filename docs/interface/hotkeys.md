@@ -18,9 +18,9 @@ Hotkeys that share a key across lists are **focus-aware** — only the visible/a
 
 ---
 
-## :material-file-tree: Tree, Tags, Variants — Generic Edit Shortcuts
+## :material-file-tree: Tree Edits
 
-These run against the **active list** (Takes Tree, Tag Library, or Variant Tree, depending on what currently has focus).
+*Generic create / rename / delete shortcuts. They target the active list — Takes Tree, Tag Library, or Variant Tree — depending on what has focus.*
 
 | Shortcut | Action | Notes |
 |----------|--------|-------|
@@ -36,9 +36,9 @@ These run against the **active list** (Takes Tree, Tag Library, or Variant Tree,
 
 ---
 
-## :material-checkbox-multiple-marked-outline: Multi-Select Mode
+## :material-checkbox-multiple-marked-outline: Multi-Select
 
-Multi-select is activated by clicking the **☐** icon in the stats row of any list. While active:
+*Activated by clicking the **☐** icon in the stats row of any list.*
 
 | Shortcut | Action | Notes |
 |----------|--------|-------|
@@ -49,9 +49,9 @@ Multi-select is activated by clicking the **☐** icon in the stats row of any l
 
 ---
 
-## :material-arrow-decision: Cascade Icons (Tree Rows)
+## :material-arrow-decision: Cascade Icons
 
-Each cascade icon on a tree row supports modifier-clicks:
+*Modifier-clicks on the cascade icons next to each tree row.*
 
 | Shortcut | Action |
 |----------|--------|
@@ -62,9 +62,9 @@ Each cascade icon on a tree row supports modifier-clicks:
 
 ---
 
-## :material-image-multiple: Render Queue / View Layer Render Toggle
+## :material-image-multiple: Render Queue
 
-The render-toggle icon next to each View Layer accepts modifiers:
+*Modifier-clicks on the render-toggle icon next to each View Layer.*
 
 | Shortcut | Action |
 |----------|--------|
@@ -82,9 +82,9 @@ The "Render All Previews" button:
 
 ---
 
-## :material-progress-clock: Batch Render Modal
+## :material-progress-clock: Batch Render
 
-While a batch render is running:
+*While a batch render is running.*
 
 | Shortcut | Action |
 |----------|--------|
@@ -93,7 +93,9 @@ While a batch render is running:
 
 ---
 
-## :material-database-eye: Datablock Pickers (Action / Camera / World / Compositor)
+## :material-database-eye: Datablock Pickers
+
+*Action, Camera, World, and Compositor pickers.*
 
 | Shortcut | Action |
 |----------|--------|
@@ -103,9 +105,9 @@ While a batch render is running:
 
 ---
 
-## :material-bug: Logging Topics (Preferences)
+## :material-bug: Logging Topics
 
-In *Preferences > Debug > Topics*:
+*Modifier-clicks in *Preferences > Debug > Topics*.*
 
 | Shortcut | Action |
 |----------|--------|
@@ -127,9 +129,9 @@ Rename dialogs use Blender's standard text-entry behavior:
 
 ---
 
-## :material-link-variant: Native Blender Shortcuts the Addon Reacts To
+## :material-link-variant: Blender-Native Keys
 
-Some Blender shortcuts trigger Takes behavior even though the addon doesn't bind them:
+*Standard Blender shortcuts that trigger Takes behaviour even though the addon doesn't bind them.*
 
 | Shortcut | What it does | Why it matters |
 |----------|--------------|----------------|

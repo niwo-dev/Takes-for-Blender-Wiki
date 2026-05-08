@@ -8,7 +8,9 @@ icon: material/source-branch
 
 A View Layer Version stores its own value for every cascade property (camera, world, action, compositor, render preset, output rule, etc.) and inherits everything else from its parent View Layer.
 
-## :material-help-circle-outline: When to Use Versions vs. View Layers
+## :material-help-circle-outline: When to Use
+
+*Versions vs. a fresh View Layer.*
 
 | Use a View Layer Version when… | Use a new View Layer when… |
 |------------------------|----------------------------|

@@ -55,7 +55,7 @@ Create named snapshots of a View Layer's cascade settings:
     Switch between View Layer Versions to instantly compare different configurations
     without duplicating View Layers.
 
-## :material-keyboard: Hotkeys (Takes Tree)
+## :material-keyboard: Hotkeys
 
 When the Takes Tree is focused (mouse over the N-panel sidebar):
 

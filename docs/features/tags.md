@@ -28,7 +28,7 @@ Tags are the addon's universal labelling system. They serve two purposes:
 | **VARIANT** | Data-scoped | Tags variant States. Available as `{variant_tag}` in Smart Output. |
 | **CUSTOM** | Data-scoped | Cross-cutting labels. |
 
-## :material-view-grid-outline: Anatomy of the Tag Panel
+## :material-view-grid-outline: Panel Anatomy
 
 - **Tree view** of all tags grouped by category.
 - **+** / **−** to add or remove a tag.
@@ -54,14 +54,14 @@ Tags are the addon's universal labelling system. They serve two purposes:
 | Object / collection | Custom tags via the per-object UI. |
 | Cascade Rule (auto presets) | Select a tag in *Globals > Rules* mode (see [Rules](rules.md)). |
 
-## :material-folder-cog: Smart Output Integration
+## :material-folder-cog: Smart Output
 
 Tag names feed several Smart Output tokens:
 
 - `{variant_tag}` — the active variant's tag name.
 - `{preset}` — the active render preset name (often resolved through a tag rule).
 
-## :material-keyboard: Hotkeys (Tag Tree)
+## :material-keyboard: Hotkeys
 
 | Shortcut | Action |
 |----------|--------|

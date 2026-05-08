@@ -22,7 +22,9 @@ The header has a row of mode buttons. Each switches the panel body to a differen
 | **Rules** | gear (system) | Automation rules — see [Rules](rules.md). |
 | **Tags** | colour mod | The full tag library — see [Tags](tags.md). |
 
-## :material-ghost: Settings Mode — Reference State
+## :material-ghost: Settings Mode
+
+*Reference State controls.*
 
 | Control | Description |
 |---------|-------------|
@@ -31,7 +33,9 @@ The header has a row of mode buttons. Each switches the panel body to a differen
 
 See [Rest State](rest_state.md) for the full feature description.
 
-## :material-palette-swatch: Presets Mode — Overview
+## :material-palette-swatch: Presets Mode
+
+*Overview of all preset categories with their assignments and dirty state.*
 
 A 2×4 grid showing every preset category with its current assignment, dirty indicator, and revert button:
 
@@ -45,7 +49,7 @@ Click any preset to open its picker. ++alt++-click on the icon to clear. See [Re
 
 Delegates to the [Variant Switch](variant_switch.md) tree (Products → States → Parts → Material Pools).
 
-## :material-tag-multiple: Rules / Tags Modes
+## :material-tag-multiple: Rules & Tags
 
 Dedicated panels for the [Rules](rules.md) and [Tags](tags.md) features.
 

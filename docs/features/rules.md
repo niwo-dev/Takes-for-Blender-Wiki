@@ -57,7 +57,7 @@ Rules are evaluated as part of cascade resolution, on every View Layer switch, b
 3. Re-pick presets from the *Preset Rules for: <name>* panel.
 4. The change propagates to every tier already using the rule on the next sync.
 
-## :material-keyboard: Hotkeys (Rules Panel)
+## :material-keyboard: Hotkeys
 
 | Shortcut | Action |
 |----------|--------|

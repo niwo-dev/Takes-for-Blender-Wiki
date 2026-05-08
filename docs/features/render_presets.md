@@ -43,7 +43,7 @@ When you modify render settings after applying a preset, a **dirty indicator** a
     Preset dropdowns show a `[Tier]` suffix (e.g., `[Addon]`, `[User]`)
     to distinguish built-in from user-created presets.
 
-## :material-format-list-bulleted: Preset Types — In Detail
+## :material-format-list-bulleted: All Categories
 
 The full set of preset categories accessible from *Globals > Presets mode* is broader than the four above:
 
@@ -61,7 +61,7 @@ The full set of preset categories accessible from *Globals > Presets mode* is br
 
 Each category can be assigned independently through the cascade (Global → Scene Group → Scene → View Layer Group → View Layer → View Layer Version) and via Tag-driven Rules (see [Rules](rules.md)).
 
-## :material-folder-multiple: Preset Storage Tiers
+## :material-folder-multiple: Storage Tiers
 
 Presets live in one of four storage tiers, configurable per type in *Preferences > Data > Presets*:
 
