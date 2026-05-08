@@ -7,6 +7,12 @@
   max-width: 1100px;
 }
 
+/* Brand accent — matches the addon's landing page orange. */
+:root {
+  --tks-accent: #e87d0d;
+  --tks-accent-light: #f5a623;
+}
+
 /* LIGHT MODE (SLIGHTLY GRAY) */
 [data-md-color-scheme="default"] {
   --md-hue: 0; /* Strips native hue tint */
@@ -15,7 +21,8 @@
   --md-default-fg-color: #222222;
   --md-typeset-a-color: #444444;       /* Links in gray */
   --md-primary-fg-color: #333333;      /* Header bar gray */
-  --md-accent-fg-color: #555555;
+  --md-accent-fg-color: var(--tks-accent);
+  --md-accent-fg-color--transparent: rgba(232, 125, 13, 0.1);
   --md-primary-fg-color--light: #555555;
 }
 
@@ -29,7 +36,8 @@
   --md-default-fg-color--light: #bbbbbb;
   --md-typeset-a-color: #cccccc;       /* Links in gray */
   --md-primary-fg-color: #111111;      /* Header bar pure dark gray */
-  --md-accent-fg-color: #888888;
+  --md-accent-fg-color: var(--tks-accent-light);
+  --md-accent-fg-color--transparent: rgba(245, 166, 35, 0.12);
   --md-footer-fg-color: #e0e0e0;
   --md-footer-fg-color--light: #999999;
   --md-footer-fg-color--lighter: #666666;
