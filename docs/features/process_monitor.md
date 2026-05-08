@@ -8,15 +8,17 @@ The **Process Monitor** is a runtime diagnostics view added in v0.6.6. It shows 
 
 ## :material-map-marker: Where to Find It
 
-*3D Viewport > Sidebar (++n++) > **Takes** tab > **Navigation** panel header > Monitor switcher.*
+The diagnostic panel is hidden by default. To reveal it, **Alt+Click the Settings gear icon** in the Navigation panel header (a regular click on the gear opens addon preferences).
 
-The header has a 3-way switcher:
+Once open, the panel itself has a 3-way switcher in its header for picking the view:
 
-| Tab | Shows |
-|-----|-------|
-| **Process Monitor** | Live process tree (the focus of this page). |
-| **Debug Console** | Recent log lines (filtered by *Preferences > Debug > Topics*). |
-| **View Layer Switch Profiler** | Per-step timing for the most recent View Layer switch. |
+| Mode | Icon | Shows |
+|------|------|-------|
+| **Process Monitor** | F-curve | Live process tree (the focus of this page). |
+| **Debug Console** | Console | Recent log lines (filtered by *Preferences > Debug > Topics*). |
+| **View Layer Switch Profiler** | Time | Per-step timing for the most recent View Layer switch. |
+
+Alt+Click the gear again to hide the panel.
 
 ## :material-file-tree: Process Tree Hierarchy
 

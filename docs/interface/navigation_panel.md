@@ -10,17 +10,34 @@ The Navigation Panel is the primary control center for managing your Takes hiera
 
 ## :material-page-layout-header: Header Controls
 
-The panel header displays the addon version and provides quick-access buttons:
+The header has two rows. The top row carries shared toggles, warning indicators, and quick-access buttons; the bottom row is the panel switcher (Context / Inspector / Batch Render / Globals).
+
+**Top row — left side:**
 
 | Control | Description |
 |---------|-------------|
-| **Lock** | Locks the panel to prevent accidental state changes. |
 | **Autokey** | Toggles Blender's auto-keying across all scenes simultaneously. |
-| **Timeline Sync** | Synchronizes playhead position across scenes. |
-| **Warnings** | Shows active warnings (missing presets, dangling actions). |
-| **Globals** | Opens the global cascade settings. |
+| **Timeline Sync** | Keeps the playhead in sync across scenes. |
+
+**Top row — right side:**
+
+| Control | Description |
+|---------|-------------|
+| **Warning indicators** | Conditional badges that appear when an issue is detected — preset dirty, missing preset, reference drift, slot mismatch, pending preview rename, cascade drift. Each one toggles its own warning sub-panel below the header. |
+| **Save** | Appears in red when there are unsaved preference changes; click to save. |
 | **Help** | Opens the documentation (this wiki). |
-| **Settings** | Tree visibility and design options. |
+| **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). |
+
+**Bottom row (panel switcher):**
+
+| Tab | Shows |
+|-----|-------|
+| **Globals** (world icon) | Project-wide settings, presets, rules, tags, Variant Switch — see [Globals Panel](../features/globals.md). |
+| **Context** | The Takes Tree and per–View Layer cascade. |
+| **Inspector** | Watchlist of managed/pinned objects, actions, slots, channels. |
+| **Batch Render** | Render queue and modal/background controls. |
+
+Tabs are configured under *Preferences > UI* — disabled tabs are hidden from the switcher.
 
 ## :material-file-tree: The Takes Tree
 
@@ -57,16 +74,19 @@ Each View Layer row displays cascade override icons. These icons show at a glanc
 
 Configurable indent lines show the hierarchy visually. Tag colors can be inherited by tree lines for quick identification.
 
-## :material-tune: Settings Popover
+## :material-tune: Tree Display Settings
 
-Click the **gear icon** to access tree display settings:
+*Live behind the down-arrow icon (⌄) in the side column next to the tree, not under the header gear.*
+
+Click the **down-arrow** next to the up/down move buttons in the Context tree's right-hand column to open the **Icon Visibility** popover:
 
 | Setting | Description |
 |---------|-------------|
-| **Show Tag Color** | Color tree indent lines by tag assignment. |
-| **Line Width** | Thin / Medium / Wide indent lines. |
-| **Icon Visibility** | Toggle individual cascade icons on/off. |
-| **Preview Size** | Thumbnail size for inline View Layer previews (24/32/40 px). |
+| **Refresh Tree** | Force a full rebuild of the Takes Tree. |
+| **Collection Visibility** | Copy / paste the collection-visibility set of the active View Layer. |
+| **Previews** | Master toggle, viewport-snapshot button, render button, refresh, size, background colour, transparent background. See [View Layer Preview](../features/vl_preview.md). |
+| **Cascade Icon Visibility** | Per-icon show/hide toggles (Tag, Variant, Action, Compositor, World, Camera, Output Rule). |
+| **Pin** toggles | Force certain icons to always render (skip the overflow `⋯`). |
 
 ## :material-alert-outline: Warnings
 

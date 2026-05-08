@@ -76,7 +76,9 @@ Presets live in one of four storage tiers, configurable per type in *Preferences
 
 ## :material-stethoscope: Preset Health
 
-Open the **Preset Health** view from *Globals > Presets mode* to scan for stale or missing preset references across every cascade tier (View Layer, Scene, Global, Scene Group, View Layer Group, and Rule Tags). Missing presets are surfaced with file paths so you can re-import or re-create them.
+When the addon detects stale or missing preset references — a JSON file that no longer exists, a stored key that points nowhere — a **broken-link badge** (UNLINKED icon) appears in the Navigation panel's warning row. Click the badge to expand the warning sub-panel; it lists every missing preset with its tier (View Layer, Scene, Global, Scene Group, View Layer Group, or Rule Tag) and file path so you can re-import or re-create them.
+
+The badge disappears as soon as every reference resolves again.
 
 ## :material-keyboard: Hotkeys
 

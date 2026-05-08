@@ -8,7 +8,7 @@ icon: material/image-multiple
 
 ## :material-map-marker: Where to Find It
 
-The Context panel header has an **Image** toggle button — click it to show / hide thumbnails. The same button has a settings popover (gear) for size, background, and re-render controls.
+In the **Context** panel, click the **down-arrow icon (⌄)** in the side column next to the up/down move buttons. The popover that opens has a **Previews** section with a master toggle, the size enum, the background colour picker, and the render / refresh buttons.
 
 ## :material-tune: Settings
 
@@ -21,10 +21,15 @@ The Context panel header has an **Image** toggle button — click it to show / h
 
 ## :material-image-sync: Rendering Previews
 
+The Previews row in the Icon Visibility popover has three render buttons:
+
 | Button | Action |
 |--------|--------|
-| **Render All Previews** | Renders previews for the selected / multi-selected View Layers. ++alt++ + click renders previews for **every** View Layer across **all** scenes. |
-| **Refresh All Previews** | Reloads thumbnails from disk without re-rendering — useful if you've manually edited a PNG or restored the file. |
+| **Viewport** (eye icon) | Snapshot from the active viewport — fastest, no rendering required. |
+| **Render** (still-image icon) | Run a real render in the background and save the result as a thumbnail. |
+| **Refresh** (refresh icon) | Reload thumbnails from disk without re-rendering — useful if you've manually edited a PNG or restored the file. |
+
+++alt++ + click on the render button targets every View Layer across every scene; a regular click only renders the selection.
 
 While rendering, a progress bar shows `Preview 1/N: <Scene> / <ViewLayer>`. The active scene & View Layer are restored when the run finishes.
 
@@ -42,7 +47,7 @@ Spaces and path separators in scene / View Layer names are replaced with undersc
 
 | Shortcut | Action |
 |----------|--------|
-| Click on **Render All Previews** | Render selected View Layer(s). |
-| ++alt++ + click on **Render All Previews** | Render every View Layer across every scene. |
+| Click on **Viewport** / **Render** | Render previews for the selected View Layer(s). |
+| ++alt++ + click on **Viewport** / **Render** | Render previews for every View Layer across every scene. |
 
 See [Keyboard Shortcuts](../interface/hotkeys.md).
