@@ -28,9 +28,18 @@ graph LR
 
 | Control | Location | Description |
 |---------|----------|-------------|
-| **Auto-Mirror** | Navigation header / Globals | Toggle automatic reference mirroring on keyframe insert. |
-| **Set Reference Default** | Right-click menu / ++shift+alt+i++ | Manually set the current value as the Rest State default. |
-| **Revert to Rest** | ++alt+i++ | Snap the selected property back to its Rest State value. |
+| **Auto-Mirror** | *Globals > Settings > Reference State*, or the Navigation header toggle. | Mirrors unkeyed property values into the Reference Action automatically. |
+| **Reference Action picker** | *Globals > Settings > Reference State > Reference Action*. | Selects which Action stores the rest baseline. The **+** button creates a fresh one. |
+| **Set Reference Default** | Property right-click menu → *Set Reference Default*. | Records the property's current value as its rest baseline. |
+
+## Native Hotkeys That Drive Rest State
+
+The Rest State system reacts to Blender's standard keyframe shortcuts — no addon-specific binding is required:
+
+| Shortcut | Behavior |
+|----------|----------|
+| ++i++ (Insert Keyframe) | If **Auto-Mirror** is on, the unkeyed value is mirrored into the Reference Action **before** the keyframe is committed, preserving the rest baseline. |
+| ++alt+i++ (Delete Keyframe) | After Blender removes the keyframe, the property snaps back to its Reference value automatically. |
 
 ## Supported Datablocks
 

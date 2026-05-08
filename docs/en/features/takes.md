@@ -53,3 +53,22 @@ Create named snapshots of a View Layer's cascade settings:
 !!! tip "Quick Switching"
     Switch between VL Versions to instantly compare different configurations
     without duplicating View Layers.
+
+## Hotkeys (Takes Tree)
+
+When the Takes Tree is focused (mouse over the N-panel sidebar):
+
+| Shortcut | Action |
+|----------|--------|
+| ++ctrl+n++ | Add (smart — picks the right item type for the current selection) |
+| ++shift+a++ | Add menu (full add options) |
+| ++f2++ | Rename the selected item |
+| ++del++ / ++x++ | Delete (with confirmation) |
+| ++ctrl+g++ | Group the selection (Scene Group / VL Group) |
+| ++alt+g++ | Ungroup |
+| ++ctrl+t++ | Retarget (move under another parent) |
+| ++shift+d++ | Duplicate (full copy) |
+| ++alt+d++ | Duplicate (linked) |
+| ++ctrl+i++ | Invert multi-selection |
+
+A complete hotkey reference is on the [Keyboard Shortcuts](../interface/hotkeys.md) page.

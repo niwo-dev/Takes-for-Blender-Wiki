@@ -13,7 +13,7 @@ import deepl
 
 auth_key = os.environ.get("DEEPL_API_KEY")
 
-TARGET_LANGUAGES = {
+ALL_LANGUAGES = {
     "de": "DE",
     "es": "ES",
     "ru": "RU",
@@ -21,6 +21,17 @@ TARGET_LANGUAGES = {
     "ja": "JA",
     "vi": "VI",
 }
+
+# Optional: restrict to a subset via TRANSLATE_LANGUAGES="de,es"
+_subset = os.environ.get("TRANSLATE_LANGUAGES", "").strip()
+if _subset:
+    _wanted = {code.strip().lower() for code in _subset.split(",") if code.strip()}
+    TARGET_LANGUAGES = {k: v for k, v in ALL_LANGUAGES.items() if k in _wanted}
+    if not TARGET_LANGUAGES:
+        print(f"WARNING: TRANSLATE_LANGUAGES='{_subset}' matched none of {list(ALL_LANGUAGES)}; aborting.")
+        TARGET_LANGUAGES = {}
+else:
+    TARGET_LANGUAGES = ALL_LANGUAGES
 
 # Regex for YAML frontmatter block at the top of a file
 RE_FRONTMATTER = re.compile(r"\A(---\n.*?\n---\n)", re.DOTALL)
@@ -109,6 +120,10 @@ def translate_markdown(content: str, target_lang: str, translator: deepl.Transla
 def main():
     if not auth_key:
         print("WARNING: DEEPL_API_KEY missing. Skipping translation pipeline.")
+        return
+
+    if not TARGET_LANGUAGES:
+        print("WARNING: No target languages selected. Skipping translation pipeline.")
         return
 
     translator = deepl.Translator(auth_key)

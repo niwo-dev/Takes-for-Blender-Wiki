@@ -107,13 +107,25 @@ nav:
     - Hotkeys: interface/hotkeys.md
   - Features:
     - features/index.md
-    - Takes: features/takes.md
-    - Cascade System: features/cascade.md
-    - Variant Switch: features/variant_switch.md
-    - Batch Render: features/batch_render.md
-    - Render Presets: features/render_presets.md
-    - Rest State: features/rest_state.md
-    - Smart Output: features/smart_output.md
+    - Core:
+      - Takes: features/takes.md
+      - Cascade System: features/cascade.md
+      - VL Versions: features/vl_versions.md
+      - Globals Panel: features/globals.md
+    - Automation:
+      - Tags: features/tags.md
+      - Rules: features/rules.md
+      - Variant Switch: features/variant_switch.md
+      - Smart Output: features/smart_output.md
+    - Production:
+      - Render Presets: features/render_presets.md
+      - Batch Render: features/batch_render.md
+      - Rest State: features/rest_state.md
+      - VL Preview: features/vl_preview.md
+    - Extras:
+      - Bookmarks: features/bookmarks.md
+      - Pie Menus: features/pie_menus.md
+      - Process Monitor: features/process_monitor.md
   - Workflows:
     - workflows/index.md
     - Animation Variants: workflows/animation_variants.md

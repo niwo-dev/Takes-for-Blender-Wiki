@@ -4,7 +4,7 @@ icon: material/tune-vertical
 
 # Context Properties
 
-**Location:** *Properties Editor > Takes tab > Context*
+**Location:** *3D Viewport > Sidebar (++n++) > Takes tab > Context*
 
 The Context Properties panel shows the cascade override settings for the currently active View Layer. Each property category has its own popover accessible via the cascade icons in the tree.
 
@@ -59,3 +59,16 @@ Global → Scene Group → Scene → VL Group → View Layer → VL Version
 ```
 
 An icon appears **bright** when a value is set at that level, and **dimmed** when inherited from a parent level.
+
+## Hotkeys
+
+Cascade icons in the Context panel respond to modifier-clicks:
+
+| Shortcut | Action |
+|----------|--------|
+| Click | Open the cascade popover. |
+| ++alt++ + click | Clear the override at this tier. |
+| ++shift++ + click | Toggle this property across all items of the same type in the active scene. |
+| ++ctrl+shift++ + click | Toggle this property globally across every scene and group. |
+
+Datablock pickers (Camera / World / Action / Compositor) accept ++alt++-click to clear. See [Keyboard Shortcuts](hotkeys.md) for the full reference.

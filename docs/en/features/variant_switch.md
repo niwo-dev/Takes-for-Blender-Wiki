@@ -63,3 +63,24 @@ Variant Switch states are resolved as part of the cascade. Each View Layer (or h
 !!! tip "Variant Tags"
     Assign tags from the "Variant" category to states for organization
     and Smart Output resolution via the `{variant_tag}` token.
+
+## Hotkeys
+
+When the Variant Tree is focused:
+
+| Shortcut | Action |
+|----------|--------|
+| ++ctrl+n++ | Add (smart — Product, State, or Part depending on selection) |
+| ++shift+a++ | Add menu (full options) |
+| ++f2++ | Rename the selected item |
+| ++del++ / ++x++ | Remove (enforces minimum 1 State and 1 Part per Product) |
+| ++ctrl+i++ | Invert multi-selection |
+
+Cascade icons on State / Part rows accept the same modifier-clicks as the Takes Tree:
+
+| Shortcut | Action |
+|----------|--------|
+| ++alt++ + click | Clear the variant override at this tier. |
+| ++shift++ + click | Toggle this variant across all View Layers in the active scene. |
+
+See the [Keyboard Shortcuts](../interface/hotkeys.md) page for the full reference.

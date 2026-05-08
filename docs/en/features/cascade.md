@@ -68,3 +68,18 @@ The Context Properties panel shows all overrides for the active VL in one place.
 !!! tip "Cascade Debugging"
     Hover over a cascade icon to see a tooltip showing which tier the
     current value is inherited from.
+
+## Hotkeys
+
+Cascade icons on tree rows and in the Context panel respond to modifier-clicks:
+
+| Shortcut | Action |
+|----------|--------|
+| Click | Open the popover for this property. |
+| ++alt++ + click | Clear the override at this tier (revert to inherited value). |
+| ++shift++ + click | Toggle the same property across **all items of the same type** in the active scene. |
+| ++ctrl+shift++ + click | Toggle the same property **globally** across every scene and group. |
+
+Datablock pickers (Camera, World, Compositor, Action) follow the same convention — ++alt++ + click clears the assignment.
+
+See the full reference on the [Keyboard Shortcuts](../interface/hotkeys.md) page.

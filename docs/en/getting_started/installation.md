@@ -25,7 +25,7 @@ Download the latest release ZIP from the [GitHub Releases](https://github.com/ni
 
 ## Verify Installation
 
-After activation, a new **Takes** tab appears in the **Properties Editor** sidebar (++n++ to toggle the sidebar if hidden).
+After activation, a new **Takes** tab appears in the **3D Viewport sidebar** — press ++n++ in the 3D Viewport to toggle the sidebar if hidden, then click the **Takes** tab.
 
 You should see:
 

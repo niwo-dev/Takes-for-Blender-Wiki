@@ -49,11 +49,15 @@ hide:
 |---------|-------------|
 | **Takes Tree** | Unified hierarchy: Scene Groups → Scenes → VL Groups → View Layers → Versions. |
 | **6-Tier Cascade** | Override resolution from Global down to Version level for cameras, worlds, actions, and more. |
+| **Tags & Rules** | Universal labelling system with tag-driven preset bundles applied through the cascade. |
+| **Globals Panel** | Project-wide control centre — settings, presets overview, rules, tags, variants. |
 | **Variant Switch** | Product variant system with per-scope material swapping, preset injection, and pool management. |
 | **Rest State** | Auto-mirroring reference action system that preserves pristine default keyframes across animations. |
 | **Batch Render** | Modal render engine (foreground or background) with a Smart Output token system for file naming. |
-| **Render Presets** | JSON-based presets for render, camera, world, and file output settings — per View Layer. |
-| **Inline Previews** | Live viewport thumbnails next to each View Layer in the tree. |
+| **Render Presets** | 9 JSON-based preset categories (render, output, view layer, color, camera, world, material, file output, bookmarks) with 4-tier storage. |
+| **VL Preview** | Live viewport thumbnails next to each View Layer in the tree. |
+| **Process Monitor** | Runtime diagnostics — process tree, debug console, VL Switch profiler. |
+| **Pie Menu** | Configurable navigation pie menu (++ctrl+shift+c++). |
 
 !!! tip "Blender Version"
     Takes for Blender requires **Blender 5.1** or newer. It uses the Slotted Action system introduced in Blender 5.0.

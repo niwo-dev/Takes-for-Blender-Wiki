@@ -42,3 +42,50 @@ When you modify render settings after applying a preset, a **dirty indicator** a
 !!! note "Tier Indicators"
     Preset dropdowns show a `[Tier]` suffix (e.g., `[Addon]`, `[User]`)
     to distinguish built-in from user-created presets.
+
+## Preset Types — In Detail
+
+The full set of preset categories accessible from *Globals > Presets mode* is broader than the four above:
+
+| Type | What It Captures |
+|------|-----------------|
+| **Render** | Engine, samples, resolution, color management, film settings. |
+| **Output** | Output container, dimensions, frame range, FPS. |
+| **File Output** | Output format, color depth, compression, Smart Output paths. |
+| **View Layer** | Active passes, light groups, holdouts, layer overrides. |
+| **Color Management** | View transform, look, exposure, gamma. |
+| **Camera** | Focal length, sensor size, DOF, clip distances. |
+| **World** | Environment lighting, background color, AO settings. |
+| **Material** | Per-material shader values (used by Variant Switch). |
+| **Bookmark** | Saved sets of bookmarked properties. |
+
+Each category can be assigned independently through the cascade (Global → Scene Group → Scene → VL Group → View Layer → VL Version) and via Tag-driven Rules (see [Rules](rules.md)).
+
+## Preset Storage Tiers
+
+Presets live in one of four storage tiers, configurable per type in *Preferences > Data > Presets*:
+
+| Tier | Location | When to use |
+|------|----------|-------------|
+| **Addon** | Bundled with the addon. | Defaults — read-only by convention. |
+| **Project** | Saved next to the `.blend`. | Per-project presets that travel with the file. |
+| **Shared** | Team folder (path in *Preferences > Data > Storage*). | Studio-wide standards. |
+| **Local** | Personal user folder. | Your own work-in-progress presets. |
+
+`Lock Shared Folder` (default **on**) prevents the addon from overwriting team presets — toggle in *Preferences > Data > Storage*.
+
+## Preset Health
+
+Open the **Preset Health** view from *Globals > Presets mode* to scan for stale or missing preset references across every cascade tier (VL, Scene, Global, Scene Group, VL Group, and Rule Tags). Missing presets are surfaced with file paths so you can re-import or re-create them.
+
+## Hotkeys
+
+Preset selectors and dirty-state controls follow the cascade convention:
+
+| Shortcut | Action |
+|----------|--------|
+| Click on a preset selector | Open the preset picker. |
+| ++alt++ + click on the preset icon | Clear the preset assignment at this tier. |
+| ++alt++ + click **Accept** | Save changes to the preset and propagate to all tiers using it (Sync). |
+
+See [Keyboard Shortcuts](../interface/hotkeys.md) for the complete reference.

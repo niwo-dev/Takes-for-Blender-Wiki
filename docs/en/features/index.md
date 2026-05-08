@@ -6,12 +6,37 @@ icon: material/layers-triple
 
 Takes for Blender provides a deep toolset for managing complex product visualization pipelines. Each feature is designed to work together through the cascade system.
 
+## Core
+
 | Feature | Description |
 |---------|-------------|
-| [**Takes**](takes.md) | View Layer groups with hierarchical organization. |
+| [**Takes**](takes.md) | Hierarchical organisation of Scenes, View Layers, and Versions. |
 | [**Cascade System**](cascade.md) | 6-tier property override resolution engine. |
+| [**VL Versions**](vl_versions.md) | Named cascade-override snapshots beneath each View Layer. |
+| [**Globals Panel**](globals.md) | Project-wide control centre — settings, presets overview, rules, tags, variants. |
+
+## Automation
+
+| Feature | Description |
+|---------|-------------|
+| [**Tags**](tags.md) | Universal labelling system for organisation and automation. |
+| [**Rules**](rules.md) | Tag-driven preset bundles applied through the cascade. |
 | [**Variant Switch**](variant_switch.md) | Per-scope material swapping and product variants. |
-| [**Batch Render**](batch_render.md) | Automated multi-VL rendering with queue management. |
-| [**Render Presets**](render_presets.md) | JSON-based presets for render, camera, world, and output settings. |
-| [**Rest State**](rest_state.md) | Auto-mirroring reference action for preserving default keyframes. |
 | [**Smart Output**](smart_output.md) | Dynamic token-based file path resolution. |
+
+## Production
+
+| Feature | Description |
+|---------|-------------|
+| [**Render Presets**](render_presets.md) | JSON-based presets for render, output, view layer, color, camera, world, material, bookmarks. |
+| [**Batch Render**](batch_render.md) | Foreground & background multi-VL rendering with queue management. |
+| [**Rest State**](rest_state.md) | Auto-mirroring reference action for preserving default keyframes. |
+| [**VL Preview**](vl_preview.md) | Inline rendered thumbnails next to each View Layer. |
+
+## Extras
+
+| Feature | Description |
+|---------|-------------|
+| [**Bookmarks**](bookmarks.md) | Quick-access pointers to animatable properties anywhere in Blender. |
+| [**Pie Menus**](pie_menus.md) | Configurable navigation pie menu (++ctrl+shift+c++). |
+| [**Process Monitor**](process_monitor.md) | Runtime diagnostics — process tree, debug console, VL Switch profiler. |

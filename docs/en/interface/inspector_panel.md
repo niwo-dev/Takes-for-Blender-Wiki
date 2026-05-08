@@ -4,7 +4,7 @@ icon: material/magnify-scan
 
 # Inspector Panel
 
-**Location:** *Properties Editor > Takes tab > Inspector*
+**Location:** *3D Viewport > Sidebar (++n++) > Takes tab > Inspector*
 
 The Inspector Panel provides a per-object watchlist showing which objects are managed by the cascade system, their assigned actions, slots, and sub-data (materials, node trees, shape keys).
 
@@ -57,3 +57,22 @@ Select an object in the watchlist to see its action and slot details in the lowe
 - **Actions list** — Shows all actions referencing this object
 - **Slots list** — Shows all slots within the active action
 - **Inline rename** — Double-click an action or slot name to rename it
+
+## Hotkeys
+
+When the Inspector is focused:
+
+| Shortcut | Action |
+|----------|--------|
+| ++f2++ | Rename the selected action or slot. |
+| ++del++ / ++x++ | Delete (action, slot, or watchlist entry — confirmation toggleable in *Preferences > UI > Confirmations*). |
+| ++ctrl+i++ | Invert multi-selection. |
+
+Datablock pickers (Action / Camera / World) follow the cascade convention:
+
+| Shortcut | Action |
+|----------|--------|
+| ++alt++ + click | Clear the assigned datablock. |
+| ++alt++ + click on **Find Action** | Show Scene & World datablocks instead of Object datablocks. |
+
+See [Keyboard Shortcuts](hotkeys.md) for the full reference.

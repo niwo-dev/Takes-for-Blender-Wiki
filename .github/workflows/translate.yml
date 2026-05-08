@@ -1,0 +1,41 @@
+name: Translate Docs (Manual)
+
+# Manual-only DeepL translation pipeline.
+# Runs scripts/translate_docs.py against docs/en/ and commits the output.
+# Trigger from the GitHub Actions tab via "Run workflow", never on push.
+
+on:
+  workflow_dispatch:
+    inputs:
+      languages:
+        description: 'Comma-separated target codes (de,es,ru,zh,ja,vi). Leave blank for all.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install translator deps
+        run: pip install deepl
+
+      - name: Run DeepL translator
+        env:
+          DEEPL_API_KEY: ${{ secrets.DEEPL_API_KEY }}
+          TRANSLATE_LANGUAGES: ${{ github.event.inputs.languages }}
+        run: python scripts/translate_docs.py
+
+      - name: Commit translated documents
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(i18n): Manual DeepL translation run"
+          file_pattern: 'docs/de/**/*.md docs/es/**/*.md docs/ru/**/*.md docs/zh/**/*.md docs/ja/**/*.md docs/vi/**/*.md'

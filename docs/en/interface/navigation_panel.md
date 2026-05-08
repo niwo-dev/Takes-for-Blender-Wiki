@@ -4,7 +4,7 @@ icon: material/compass
 
 # Navigation Panel
 
-**Location:** *Properties Editor > Takes tab*
+**Location:** *3D Viewport > Sidebar (++n++) > Takes tab*
 
 The Navigation Panel is the primary control center for managing your Takes hierarchy. It contains the Takes Tree, cascade override icons, and access to batch rendering.
 
@@ -73,3 +73,19 @@ The Navigation Panel shows warnings when issues are detected:
 
 - **Missing Preset** — A cascade preset reference points to a deleted JSON file.
 - **Dangling Action** — An action is about to be lost because Auto-Assign is disabled.
+
+## Hotkeys
+
+| Shortcut | Action |
+|----------|--------|
+| ++ctrl+shift+c++ | Open the [Navigation Pie Menu](../features/pie_menus.md). |
+| ++ctrl+n++ | Add a new tree item (smart). |
+| ++shift+a++ | Open the full add menu. |
+| ++f2++ | Rename the selected item. |
+| ++del++ / ++x++ | Delete (with confirmation). |
+| ++ctrl+g++ / ++alt+g++ | Group / ungroup the selection. |
+| ++ctrl+t++ | Retarget. |
+| ++shift+d++ / ++alt+d++ | Duplicate (full / linked). |
+| ++ctrl+i++ | Invert multi-selection. |
+
+Cascade icons accept ++alt++-click to clear, ++shift++-click for scene-wide toggle, and ++ctrl+shift++-click for global toggle. The full reference lives at [Keyboard Shortcuts](hotkeys.md).

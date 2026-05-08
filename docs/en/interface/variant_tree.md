@@ -4,7 +4,7 @@ icon: material/file-tree
 
 # Variant Tree
 
-**Location:** *Properties Editor > Takes tab > Variant Switch*
+**Location:** *3D Viewport > Sidebar (++n++) > Takes tab > Variant Switch*
 
 The Variant Tree manages product variants — different material configurations, color options, or states of your product. It uses a hierarchical structure of Products, States, and Parts.
 
@@ -53,3 +53,16 @@ Each Part is linked to a Blender collection. All objects in that collection (and
 ## Variant Tags
 
 States can be tagged with the **Variant** tag category for organization and Smart Output token resolution via `{variant_tag}`.
+
+## Hotkeys
+
+| Shortcut | Action |
+|----------|--------|
+| ++ctrl+n++ | Smart add (Product, State, or Part depending on selection). |
+| ++shift+a++ | Full add menu. |
+| ++f2++ | Rename the selected Product / State / Part. |
+| ++del++ / ++x++ | Remove the selected item (enforces minimum 1 State and 1 Part per Product). |
+| ++ctrl+i++ | Invert multi-selection. |
+| ++alt++ + click on a cascade icon | Clear the variant override at this tier. |
+
+See the full reference at [Keyboard Shortcuts](hotkeys.md).

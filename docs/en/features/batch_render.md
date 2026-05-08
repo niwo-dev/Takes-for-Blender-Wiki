@@ -52,3 +52,23 @@ If a batch render gets stuck:
 ## Output
 
 Output paths are resolved via the [Smart Output](smart_output.md) token system. Each View Layer's output is named automatically based on the configured pattern.
+
+## Hotkeys
+
+The render-toggle icon next to each View Layer accepts modifier-clicks:
+
+| Shortcut | Action |
+|----------|--------|
+| Click | Toggle the VL's enabled state in the queue. |
+| ++alt++ + click | **Preview** the VL immediately (single-frame snapshot). |
+| ++ctrl++ + click | **Render & save** the VL through the queue. |
+| ++shift++ + click | Toggle **all** VLs in the current scene. |
+
+While a batch render is running:
+
+| Shortcut | Action |
+|----------|--------|
+| ++esc++ | Cancel the batch render. The status line shows `(ESC to cancel)` while running. |
+| ++alt++ + click on the **Render** button | Force-reset a stuck render state. |
+
+See [Keyboard Shortcuts](../interface/hotkeys.md) for the full reference.
