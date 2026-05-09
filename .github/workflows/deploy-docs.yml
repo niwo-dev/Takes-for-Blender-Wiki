@@ -26,12 +26,15 @@ jobs:
 
       # The addon repo is the single source of truth for UI strings.
       # We shallow-clone it and run its manifest extractor in-place.
+      # The addon repo is private, so we need a PAT secret with
+      # `Contents: Read` permission on niwo-dev/Takes-for-Blender.
       - name: Checkout addon source
         uses: actions/checkout@v4
         with:
           repository: niwo-dev/Takes-for-Blender
           path: .addon-src
           ref: main
+          token: ${{ secrets.ADDON_REPO_READ_TOKEN }}
 
       - uses: actions/setup-python@v5
         with:
