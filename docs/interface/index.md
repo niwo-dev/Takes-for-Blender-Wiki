@@ -18,12 +18,16 @@ The Takes for Blender interface lives in the **3D Viewport sidebar** (press ++n+
 
 ## :material-tab: Panel Switcher
 
-The Navigation Panel's bottom row is a switcher of buttons — click one to make that panel the visible body. Tabs that aren't enabled in *Preferences > UI* are hidden:
+The Navigation Panel's bottom row is a switcher of buttons — clicking one is **exclusive**: it shows that panel and hides the others.
 
-- **Globals** (world icon) — settings, presets, rules, tags, variants.
-- **Context** — the Takes Tree and per-cascade properties.
-- **Inspector** — watchlist, channels, actions, slots.
-- **Batch Render** — queue + render controls.
+| Tab | Icon | Shows |
+|-----|------|-------|
+| **Globals** | world (icon-only, no text label) | Project-wide settings, presets, automation rules, tags, Variant Switch. |
+| **Context** | scene | Takes Tree and per–View Layer cascade properties. |
+| **Inspector** | preset | Watchlist, channels, actions, slots. |
+| **Batch Render** | render-still | Render queue and modal / background controls. |
+
+A **link toggle** (🔗 / 🔓) sits between Context and Inspector. Switch it on to keep both panels open at once — clicking Context will also reveal Inspector and vice versa. Switch it off and the switcher returns to one-at-a-time mode.
 
 Tree, list, and cascade-icon shortcuts work consistently across these panels — see [Keyboard Shortcuts](hotkeys.md) for the full reference.
 

@@ -30,17 +30,19 @@ The header has two rows. The top row carries shared toggles, warning indicators,
 
 **Bottom row (panel switcher):**
 
+Clicking a tab is **exclusive** — it shows that panel and hides the others.
+
 <!-- Tab labels are pulled from the addon's manifest so they auto-update if a
      panel's bl_label changes. -->
 
 | Tab | Shows |
 |-----|-------|
-| **{{ panel('TKS_PT_Globals').bl_label }}** (world icon) | Project-wide settings, presets, rules, tags, Variant Switch — see [Globals Panel](../features/globals.md). |
+| **{{ panel('TKS_PT_Globals').bl_label }}** (world icon, no text label) | Project-wide settings, presets, rules, tags, Variant Switch — see [Globals Panel](../features/globals.md). |
 | **{{ panel('TKS_PT_Context').bl_label }}** | The Takes Tree and per–View Layer cascade. |
 | **{{ panel('TKS_PT_Inspector').bl_label }}** | Watchlist of managed/pinned objects, actions, slots, channels. |
 | **{{ panel('TKS_PT_BatchRender').bl_label }}** | Render queue and modal/background controls. |
 
-Tabs are configured under *Preferences > UI* — disabled tabs are hidden from the switcher.
+A **link toggle** (🔗 / 🔓) sits between Context and Inspector. With it on, clicking either reveals both at once; with it off, the switcher returns to one-at-a-time mode.
 
 ## :material-file-tree: The Takes Tree
 
