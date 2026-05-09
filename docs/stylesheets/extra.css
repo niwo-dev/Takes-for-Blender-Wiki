@@ -144,15 +144,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Sidebar navigation — active item, scroll-spy highlight, hover/focus.
-   Material's defaults bleed through with the indigo/blue tint here in slate
-   mode; pin every state to the brand orange in both schemes. */
-.md-nav__link--active,
-.md-nav__link--active code,
-.md-nav__item--active > .md-nav__link,
-.md-nav__item--active > .md-nav__link code,
-.md-nav__link:hover,
-.md-nav__link:focus,
-.md-nav__link:focus-visible {
+   Both schemes get an explicit prefix: Material's `.md-nav__item--active >
+   .md-nav__link` has specificity 0,2,0 — without the scheme prefix mine ties
+   on specificity and only wins by source order, which can flip depending on
+   plugin ordering. With the prefix mine is 0,3,0 in both modes and always
+   wins. */
+[data-md-color-scheme="default"] .md-nav__link--active,
+[data-md-color-scheme="default"] .md-nav__link--active code,
+[data-md-color-scheme="default"] .md-nav__item--active > .md-nav__link,
+[data-md-color-scheme="default"] .md-nav__item--active > .md-nav__link code,
+[data-md-color-scheme="default"] .md-nav__link:hover,
+[data-md-color-scheme="default"] .md-nav__link:focus,
+[data-md-color-scheme="default"] .md-nav__link:focus-visible {
   color: var(--tks-accent);
 }
 [data-md-color-scheme="slate"] .md-nav__link--active,
