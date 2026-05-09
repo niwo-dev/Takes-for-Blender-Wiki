@@ -6,7 +6,13 @@ on:
     paths:
       - 'docs/**'
       - 'mkdocs.yml'
+      - 'macros.py'
       - 'index.html'
+  schedule:
+    # Daily catch-up in case the addon repo's notify webhook is missed
+    - cron: '0 3 * * *'
+  repository_dispatch:
+    types: [addon-updated]
   workflow_dispatch:
 
 permissions:
@@ -18,12 +24,37 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # The addon repo is the single source of truth for UI strings.
+      # We shallow-clone it and run its manifest extractor in-place.
+      - name: Checkout addon source
+        uses: actions/checkout@v4
+        with:
+          repository: niwo-dev/Takes-for-Blender
+          path: .addon-src
+          ref: main
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Install MkDocs
-        run: pip install mkdocs-material mkdocs-static-i18n
+      - name: Install MkDocs + macros plugin
+        run: pip install mkdocs-material mkdocs-macros-plugin
+
+      - name: Generate UI manifest from addon source
+        run: |
+          mkdir -p docs/_data
+          python .addon-src/dev/build/manifest_extractor.py \
+            --addon-root .addon-src \
+            --out docs/_data/ui_manifest.json
+          echo "manifest counts:"
+          python -c "import json; m=json.load(open('docs/_data/ui_manifest.json')); print(m['_meta']['counts'])"
+
+      - name: Verify wiki against manifest (string drift)
+        run: |
+          python .addon-src/dev/build/verify_wiki.py \
+            --wiki docs \
+            --manifest docs/_data/ui_manifest.json \
+            --out /tmp/verify_findings.json
 
       - name: Build MkDocs into wiki subdirectory
         run: mkdocs build --strict

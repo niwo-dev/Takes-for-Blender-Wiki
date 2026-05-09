@@ -30,12 +30,15 @@ The header has two rows. The top row carries shared toggles, warning indicators,
 
 **Bottom row (panel switcher):**
 
+<!-- Tab labels are pulled from the addon's manifest so they auto-update if a
+     panel's bl_label changes. -->
+
 | Tab | Shows |
 |-----|-------|
-| **Globals** (world icon) | Project-wide settings, presets, rules, tags, Variant Switch — see [Globals Panel](../features/globals.md). |
-| **Context** | The Takes Tree and per–View Layer cascade. |
-| **Inspector** | Watchlist of managed/pinned objects, actions, slots, channels. |
-| **Batch Render** | Render queue and modal/background controls. |
+| **{{ panel('TKS_PT_Globals').bl_label }}** (world icon) | Project-wide settings, presets, rules, tags, Variant Switch — see [Globals Panel](../features/globals.md). |
+| **{{ panel('TKS_PT_Context').bl_label }}** | The Takes Tree and per–View Layer cascade. |
+| **{{ panel('TKS_PT_Inspector').bl_label }}** | Watchlist of managed/pinned objects, actions, slots, channels. |
+| **{{ panel('TKS_PT_BatchRender').bl_label }}** | Render queue and modal/background controls. |
 
 Tabs are configured under *Preferences > UI* — disabled tabs are hidden from the switcher.
 

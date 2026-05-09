@@ -14,7 +14,7 @@ Hotkeys that share a key across lists are **focus-aware** — only the visible/a
 
 | Shortcut | Action | Notes |
 |----------|--------|-------|
-| ++ctrl+shift+c++ | **Open Navigation Pie Menu** | 8 configurable slots — defaults: West Tree View, East Watchlist, South Slotted Mode, North Rules, NW Variants, NE Tags, SW Batch Render, SE Channels. Reassign each slot in *Preferences > Workflow > Pie Menu*. |
+| {{ keys('wm.call_menu_pie') }} | **Open Navigation Pie Menu** | 8 configurable slots — defaults: West Tree View, East Watchlist, South Slotted Mode, North Rules, NW Variants, NE Tags, SW Batch Render, SE Channels. Reassign each slot in *Preferences > Workflow > Pie Menu*. |
 
 ---
 
@@ -22,17 +22,20 @@ Hotkeys that share a key across lists are **focus-aware** — only the visible/a
 
 *Generic create / rename / delete shortcuts. They target the active list — Takes Tree, Tag Library, or Variant Tree — depending on what has focus.*
 
+<!-- The shortcut column is generated from the addon's keymap manifest.
+     If a binding changes in the addon source, this table updates on the
+     next deploy. -->
+
 | Shortcut | Action | Notes |
 |----------|--------|-------|
-| ++del++ / ++x++ | **Delete** | Confirmation dialog by default (toggleable in *Preferences > UI > Confirmations*). In multi-select, deletes all selected items at once. |
-| ++f2++ | **Rename** | Opens the rename dialog. |
-| ++ctrl+n++ | **New (smart)** | Adds a new item appropriate to the current selection. |
-| ++shift+a++ | **Add Menu** | Opens the full add menu. |
-| ++ctrl+g++ | **Group** | Wraps the selection in a Scene Group, View Layer Group, or Tag Group. |
-| ++alt+g++ | **Ungroup** | Removes the selection from its group. |
-| ++ctrl+t++ | **Retarget** | Move the selected item to another parent. |
-| ++shift+d++ | **Duplicate (full copy)** | Independent copy. |
-| ++alt+d++ | **Duplicate (linked)** | Shared reference. |
+| {{ keys('tks.global_delete') }} | **Delete** | Confirmation dialog by default (toggleable in *Preferences > UI > Confirmations*). In multi-select, deletes all selected items at once. |
+| {{ keys('tks.global_rename') }} | **Rename** | Opens the rename dialog. |
+| {{ keys('tks.global_new') }} | **New (smart)** | Adds a new item appropriate to the current selection. |
+| {{ keys('tks.global_add_menu') }} | **Add Menu** | Opens the full add menu. |
+| {{ keys('tks.global_group') }} | **Group** | Wraps the selection in a Scene Group, View Layer Group, or Tag Group. |
+| {{ keys('tks.global_ungroup') }} | **Ungroup** | Removes the selection from its group. |
+| {{ keys('tks.global_retarget') }} | **Retarget** | Move the selected item to another parent. |
+| {{ keys('tks.global_duplicate') }} | **Duplicate** | Two bindings: full copy and linked copy. |
 
 ---
 

@@ -1,0 +1,15 @@
+# Local mkdocs build output
+site/
+
+# Generated at deploy time from the addon source — never committed
+docs/_data/ui_manifest.json
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

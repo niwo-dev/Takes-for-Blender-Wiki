@@ -142,3 +142,33 @@ h1, h2, h3, h4, h5, h6 {
 [data-md-color-scheme="slate"] .md-typeset a:focus {
   color: #ffffff;
 }
+
+/* Sidebar navigation — active item, scroll-spy highlight, hover/focus.
+   Material's defaults bleed through with the indigo/blue tint here in slate
+   mode; pin every state to the brand orange in both schemes. */
+.md-nav__link--active,
+.md-nav__link--active code,
+.md-nav__item--active > .md-nav__link,
+.md-nav__item--active > .md-nav__link code,
+.md-nav__link:hover,
+.md-nav__link:focus,
+.md-nav__link:focus-visible {
+  color: var(--tks-accent);
+}
+[data-md-color-scheme="slate"] .md-nav__link--active,
+[data-md-color-scheme="slate"] .md-nav__link--active code,
+[data-md-color-scheme="slate"] .md-nav__item--active > .md-nav__link,
+[data-md-color-scheme="slate"] .md-nav__item--active > .md-nav__link code,
+[data-md-color-scheme="slate"] .md-nav__link:hover,
+[data-md-color-scheme="slate"] .md-nav__link:focus,
+[data-md-color-scheme="slate"] .md-nav__link:focus-visible {
+  color: var(--tks-accent-light);
+}
+
+/* Search highlight + selected result also use --md-accent-fg-color in
+   Material, but make any leftover defaults explicit here too. */
+.md-search-result__link:focus,
+.md-search-result__link:hover,
+.md-search-result__link[data-md-state="active"] {
+  background-color: var(--md-accent-fg-color--transparent);
+}

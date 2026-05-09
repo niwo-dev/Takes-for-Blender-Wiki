@@ -19,6 +19,9 @@ extra:
 
 plugins:
   - search
+  - macros:
+      module_name: macros
+      on_error_fail: true
 
 theme:
   name: material
