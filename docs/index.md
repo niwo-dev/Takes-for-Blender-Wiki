@@ -47,17 +47,17 @@ hide:
 
 | Feature | Description |
 |---------|-------------|
-| **Takes Tree** | Unified hierarchy: Scene Groups → Scenes → View Layer Groups → View Layers → Versions. |
-| **6-Tier Cascade** | Property override resolution across six tiers — Global, Scene Group, Scene, View Layer Group, View Layer, View Layer Version. The most specific tier with a value wins. |
-| **Tags & Rules** | Universal labelling system with tag-driven preset bundles applied through the cascade. |
-| **Globals Panel** | Project-wide control centre — settings, presets overview, rules, tags, variants. |
-| **Variant Switch** | Product variant system with per-scope material swapping, preset injection, and pool management. |
-| **Rest State** | Auto-mirroring reference action system that preserves pristine default keyframes across animations. |
-| **Batch Render** | Modal render engine (foreground or background) with a Smart Output token system for file naming. |
-| **Render Presets** | 9 JSON-based preset categories (render, output, view layer, color, camera, world, material, file output, bookmarks) with 4-tier storage. |
-| **View Layer Preview** | Live viewport thumbnails next to each View Layer in the tree. |
-| **Process Monitor** | Runtime diagnostics — process tree, debug console, View Layer Switch profiler. |
-| **Pie Menu** | Configurable navigation pie menu (++ctrl+shift+c++). |
+| :material-movie-open: **Takes Tree** | Unified hierarchy: Scene Groups → Scenes → View Layer Groups → View Layers → Versions. |
+| :material-arrow-decision: **6-Tier Cascade** | Property override resolution across six tiers — Global, Scene Group, Scene, View Layer Group, View Layer, View Layer Version. The most specific tier with a value wins. |
+| :material-tag-multiple: **Tags & Rules** | Universal labelling system with tag-driven preset bundles applied through the cascade. |
+| :material-earth: **Globals Panel** | Project-wide control centre — settings, presets overview, rules, tags, variants. |
+| :material-swap-horizontal: **Variant Switch** | Product variant system with per-scope material swapping, preset injection, and pool management. |
+| :material-ghost: **Rest State** | Auto-mirroring reference action system that preserves pristine default keyframes across animations. |
+| :material-play-box-multiple: **Batch Render** | Modal render engine (foreground or background) with a Smart Output token system for file naming. |
+| :material-palette-swatch: **Render Presets** | 9 JSON-based preset categories (render, output, view layer, color, camera, world, material, file output, bookmarks) with 4-tier storage. |
+| :material-image-multiple: **View Layer Preview** | Live viewport thumbnails next to each View Layer in the tree. |
+| :material-monitor-dashboard: **Process Monitor** | Runtime diagnostics — process tree, debug console, View Layer Switch profiler. |
+| :material-dots-circle: **Pie Menu** | Configurable navigation pie menu (++ctrl+shift+c++). |
 
 !!! tip "Blender Version"
     Takes for Blender requires **Blender 5.1** or newer. It uses the Slotted Action system introduced in Blender 5.0.
