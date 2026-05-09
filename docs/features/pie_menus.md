@@ -14,13 +14,13 @@ The addon registers one configurable pie menu — the **Navigation Pie** — for
 
 ## :material-view-grid: Default Slot Layout
 
-```
-       N: Rules
-NW: Variants    NE: Tags
-W: Tree View       E: Watchlist
-SW: Batch Render  SE: Channels
-       S: Slotted Mode
-```
+*Each cell shows the slot's compass direction and the action assigned to it. The mouse cursor in the centre is where the pie opens — you flick the cursor toward the direction you want.*
+
+|   |   |   |
+|:-:|:-:|:-:|
+| **NW**<br>Variants     | **N**<br>Rules        | **NE**<br>Tags      |
+| **W**<br>Tree View     | :material-cursor-default-click:{ .lg .middle } | **E**<br>Watchlist  |
+| **SW**<br>Batch Render | **S**<br>Slotted Mode | **SE**<br>Channels  |
 
 ## :material-format-list-bulleted: Available Slot Actions
 
