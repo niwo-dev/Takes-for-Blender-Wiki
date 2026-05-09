@@ -102,7 +102,13 @@ nav:
     - Animation Variants: workflows/animation_variants.md
     - Material Variants: workflows/material_variants.md
     - Batch Rendering: workflows/batch_rendering.md
-  - Preferences: preferences/index.md
+  - Preferences:
+    - preferences/index.md
+    - Workflow: preferences/workflow.md
+    - UI: preferences/ui.md
+    - Data: preferences/data.md
+    - Debug: preferences/debug.md
+    - Advanced: preferences/advanced.md
   - FAQ: faq.md
 
 markdown_extensions:
