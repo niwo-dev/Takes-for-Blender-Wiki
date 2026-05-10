@@ -1353,49 +1353,114 @@
     <div class="section-inner">
         <div class="section-label">Why Takes</div>
         <h2 class="section-title">Built for studios that ship</h2>
-        <p class="section-subtitle">Takes was designed by a product visualization artist who got tired of the same manual pain — every single project.</p>
+        <p class="section-subtitle">Takes was designed by a product visualization artist who got tired of the same manual pain — every single project. Pick a benefit on the left to dive in.</p>
 
-        <div class="benefits-grid">
-            <div class="benefit">
-                <div class="benefit-icon"><span class="material-symbols-outlined">bolt</span></div>
-                <div>
-                    <h4>10× Faster Setup</h4>
-                    <p>What used to take 30 minutes of camera assignment, world overriding, and output path creation now takes 30 seconds with the cascade.</p>
+        <div class="feature-tabs">
+            <aside class="feat-tabs-nav" role="tablist" aria-label="Benefits">
+                <button class="feat-btn active" data-feat="b-speed"><span class="material-symbols-outlined">bolt</span>10× Faster Setup</button>
+                <button class="feat-btn" data-feat="b-safety"><span class="material-symbols-outlined">shield</span>Zero Data Loss</button>
+                <button class="feat-btn" data-feat="b-nondestructive"><span class="material-symbols-outlined">extension</span>Non-Destructive</button>
+                <button class="feat-btn" data-feat="b-background"><span class="material-symbols-outlined">public</span>Background Rendering</button>
+                <button class="feat-btn" data-feat="b-studio"><span class="material-symbols-outlined">groups</span>Studio-Ready</button>
+                <button class="feat-btn" data-feat="b-onepanel"><span class="material-symbols-outlined">tune</span>One Panel, Full Control</button>
+            </aside>
+
+            <div class="feat-content">
+                <div class="feat-detail active" data-feat="b-speed">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">bolt</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>10× Faster Setup</h3>
+                            <div class="feat-detail-tag">Speed · Cascade Inheritance</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">What used to take 30 minutes of manual camera assignment, world overriding, and output path creation now takes 30 seconds with the cascade.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">south</span>Set cameras, worlds, and presets once at Global — every scene inherits them automatically</li>
+                        <li><span class="material-symbols-outlined">edit</span>Override only what differs at the local tier; everything else flows down</li>
+                        <li><span class="material-symbols-outlined">folder_open</span>Smart Output paths resolve from tokens — no manual folder structure</li>
+                        <li><span class="material-symbols-outlined">rule</span>Rules + Tags automate preset assignment based on object metadata</li>
+                    </ul>
                 </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon"><span class="material-symbols-outlined">shield</span></div>
-                <div>
-                    <h4>Zero Data Loss</h4>
-                    <p>Operation Guards, Inspector watchlists, dangling-action warnings, and automatic pinning prevent animation data from ever silently disappearing.</p>
+                <div class="feat-detail" data-feat="b-safety">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">shield</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Zero Data Loss</h3>
+                            <div class="feat-detail-tag">Safety · Multi-Layer Guards</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Operation Guards, Inspector watchlists, dangling-action warnings, and automatic pinning prevent animation data from ever silently disappearing.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">verified_user</span>Operation Guards prompt before destructive operations — six categories, granular opt-in</li>
+                        <li><span class="material-symbols-outlined">search</span>Inspector watchlist surfaces orphaned actions and broken slot bindings</li>
+                        <li><span class="material-symbols-outlined">warning</span>Dangling-action warnings catch deletions before you save</li>
+                        <li><span class="material-symbols-outlined">push_pin</span>Auto-pinning preserves animation continuity across VL switches</li>
+                    </ul>
                 </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon"><span class="material-symbols-outlined">extension</span></div>
-                <div>
-                    <h4>Non-Destructive</h4>
-                    <p>Pure Blender API. No monkey-patching, no file corruption, no vendor lock-in. Takes works with your existing scenes — install and organize.</p>
+                <div class="feat-detail" data-feat="b-nondestructive">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">extension</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Non-Destructive</h3>
+                            <div class="feat-detail-tag">Architecture · Pure Blender API</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Pure Blender API. No monkey-patching, no file corruption, no vendor lock-in. Takes works with your existing scenes — install, organize, ship.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">code</span>Built on native Scene, View Layer, Action Slot, and PropertyGroup primitives</li>
+                        <li><span class="material-symbols-outlined">power_settings_new</span>Disabling the addon leaves your .blend file fully readable</li>
+                        <li><span class="material-symbols-outlined">undo</span>String-based cascade references survive undo/redo without crashes</li>
+                        <li><span class="material-symbols-outlined">share</span>Standard Blender users can open and render your projects without the addon</li>
+                    </ul>
                 </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon"><span class="material-symbols-outlined">public</span></div>
-                <div>
-                    <h4>Background Rendering</h4>
-                    <p>Fire off batch renders that run in separate Blender processes. Your main session stays fully interactive. Tree thumbnails update live as results come in.</p>
+                <div class="feat-detail" data-feat="b-background">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">public</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Background Rendering</h3>
+                            <div class="feat-detail-tag">Productivity · Headless Workers</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Fire off batch renders that run in separate Blender processes. Your main session stays fully interactive. Tree thumbnails update live as results come in.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">terminal</span>Headless CLI worker spawns a dedicated Blender process per batch</li>
+                        <li><span class="material-symbols-outlined">play_arrow</span>Foreground modal mode for direct viewport feedback</li>
+                        <li><span class="material-symbols-outlined">schedule</span>Pre-render ETA estimate from average sample times</li>
+                        <li><span class="material-symbols-outlined">preview</span>VL Preview thumbnails populate as each frame completes</li>
+                    </ul>
                 </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon"><span class="material-symbols-outlined">groups</span></div>
-                <div>
-                    <h4>Studio-Ready</h4>
-                    <p>Four-tier preset storage (Default / Local / Shared / Project), shared folder locks, and project-mode preferences that travel with the .blend file.</p>
+                <div class="feat-detail" data-feat="b-studio">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">groups</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Studio-Ready</h3>
+                            <div class="feat-detail-tag">Teams · 4-Tier Storage</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Four-tier preset storage (Default / Local / Shared / Project), shared folder locks, and project-mode preferences that travel with the .blend file.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">storage</span>Default tier ships bundled templates that seed on first install</li>
+                        <li><span class="material-symbols-outlined">person</span>Local tier for per-machine artist preferences</li>
+                        <li><span class="material-symbols-outlined">cloud</span>Shared tier mounts a network drive for cross-team consistency, with a folder lock toggle</li>
+                        <li><span class="material-symbols-outlined">folder_zip</span>Project tier embeds preferences in the .blend's presets folder — configs travel with the file</li>
+                    </ul>
                 </div>
-            </div>
-            <div class="benefit">
-                <div class="benefit-icon"><span class="material-symbols-outlined">tune</span></div>
-                <div>
-                    <h4>One Panel, Full Control</h4>
-                    <p>Everything lives in the Properties Editor. Takes Tree, cascade overrides, batch render queue, inspector — one tab, zero context switching.</p>
+                <div class="feat-detail" data-feat="b-onepanel">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">tune</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>One Panel, Full Control</h3>
+                            <div class="feat-detail-tag">UX · Zero Context Switching</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Everything lives in the Properties Editor. Takes Tree, cascade overrides, batch render queue, inspector — one tab, zero context switching.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">dashboard</span>Single Properties Editor tab houses every Takes UI</li>
+                        <li><span class="material-symbols-outlined">radio_button_checked</span>Pie menu (Ctrl+Shift+C) for one-button switching between Context, Inspector, Globals</li>
+                        <li><span class="material-symbols-outlined">keyboard</span>All operations have keyboard shortcuts</li>
+                        <li><span class="material-symbols-outlined">monitoring</span>Process Monitor docks alongside for runtime diagnostics</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1851,15 +1916,16 @@
         });
     });
 
-    // In-section feature tabs
-    const featBtns = document.querySelectorAll('.feat-btn');
-    const featDetails = document.querySelectorAll('.feat-detail');
-
-    featBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const id = btn.dataset.feat;
-            featBtns.forEach(b => b.classList.toggle('active', b.dataset.feat === id));
-            featDetails.forEach(d => d.classList.toggle('active', d.dataset.feat === id));
+    // In-section feature tabs (scoped per .feature-tabs container)
+    document.querySelectorAll('.feature-tabs').forEach(scope => {
+        const btns = scope.querySelectorAll('.feat-btn');
+        const details = scope.querySelectorAll('.feat-detail');
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.dataset.feat;
+                btns.forEach(b => b.classList.toggle('active', b.dataset.feat === id));
+                details.forEach(d => d.classList.toggle('active', d.dataset.feat === id));
+            });
         });
     });
 
