@@ -672,21 +672,19 @@
         .feature-tabs {
             display: grid;
             grid-template-columns: 240px 1fr;
-            gap: 2.5rem;
+            gap: 0;
             margin-top: 2.5rem;
-            align-items: start;
-        }
-        .feat-tabs-nav {
-            position: sticky; top: 6rem;
-            display: flex; flex-direction: column;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 0;
-            max-height: calc(100vh - 7rem);
             overflow: hidden;
-            overflow-y: auto;
-            scrollbar-width: thin;
+        }
+        .feat-tabs-nav {
+            display: flex; flex-direction: column;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
         }
         /* Simple sidebar row (Benefits) */
         .feat-btn {
@@ -785,7 +783,11 @@
             text-transform: uppercase; letter-spacing: 0.05em;
         }
 
-        .feat-content { min-height: 400px; }
+        .feat-content {
+            min-height: 400px;
+            padding: 2rem;
+            border-left: 1px solid var(--border);
+        }
         .feat-detail { display: none; animation: fadeInUp 0.35s ease; }
         .feat-detail.active { display: block; }
         @keyframes fadeInUp {
@@ -958,10 +960,15 @@
             .pricing-card.popular { transform: none; }
             .pricing-card.popular:hover { transform: translateY(-4px); }
             .cta h2 { font-size: 2rem; }
-            .feature-tabs { grid-template-columns: 1fr; gap: 1.5rem; }
+            .feature-tabs { grid-template-columns: 1fr; }
             .feat-tabs-nav {
                 position: relative; top: auto; max-height: none;
                 padding: 0;
+            }
+            .feat-content {
+                border-left: none;
+                border-top: 1px solid var(--border);
+                padding: 1.5rem;
             }
             .feat-detail-header { gap: 0.8rem; }
             .feat-detail-icon { width: 48px; height: 48px; font-size: 1.5rem; }
