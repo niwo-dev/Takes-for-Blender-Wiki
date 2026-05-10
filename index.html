@@ -682,47 +682,37 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 0.7rem;
+            padding: 0;
             max-height: calc(100vh - 7rem);
+            overflow: hidden;
             overflow-y: auto;
             scrollbar-width: thin;
         }
-        .feat-group {
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.7rem; font-weight: 700;
-            color: var(--text-dim);
-            text-transform: uppercase; letter-spacing: 0.12em;
-            padding: 0.9rem 0.7rem 0.4rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            margin-top: 0.4rem;
-        }
-        .feat-group:first-child {
-            border-top: none; margin-top: 0; padding-top: 0.3rem;
-        }
+        /* Simple sidebar row (Benefits) */
         .feat-btn {
-            display: flex; align-items: center; gap: 0.6rem;
-            padding: 0.55rem 0.8rem;
+            display: flex; align-items: center; gap: 0.7rem;
+            padding: 0.95rem 1.1rem;
             background: transparent; border: none;
-            border-left: 2px solid transparent;
-            border-radius: 8px;
+            border-radius: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
             color: var(--text-dim);
             font-family: 'Inter', sans-serif;
-            font-size: 0.85rem; font-weight: 500;
+            font-size: 0.9rem; font-weight: 500;
             cursor: pointer; text-align: left; width: 100%;
-            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            transition: background 0.2s, color 0.2s;
         }
+        .feat-tabs-nav .feat-btn:last-child { border-bottom: none; }
         .feat-btn .material-symbols-outlined {
-            font-size: 1.05rem; color: var(--text-dim);
+            font-size: 1.1rem; color: var(--text-dim);
             transition: color 0.2s;
         }
         .feat-btn:hover {
-            background: rgba(255,255,255,0.04);
+            background: rgba(255,255,255,0.03);
             color: var(--text-bright);
         }
         .feat-btn.active {
-            background: linear-gradient(135deg, rgba(232,125,13,0.18), rgba(245,166,35,0.04));
+            background: linear-gradient(135deg, rgba(232,125,13,0.12), rgba(245,166,35,0.03));
             color: var(--text-bright);
-            border-left-color: var(--accent);
         }
         .feat-btn.active .material-symbols-outlined { color: var(--accent); }
         .feat-btn .feat-new {
@@ -734,26 +724,26 @@
             margin-left: auto;
         }
 
-        /* Rich sidebar item: icon block + title + tag (as in feature detail header) */
+        /* Rich sidebar row: icon block + title + tag */
         .feat-btn-rich {
-            display: flex; align-items: center; gap: 0.85rem;
-            padding: 0.8rem 0.9rem;
+            display: flex; align-items: center; gap: 0.95rem;
+            padding: 1rem 1.1rem;
             background: transparent; border: none;
-            border-left: 3px solid transparent;
-            border-radius: 10px;
+            border-radius: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
             cursor: pointer; text-align: left; width: 100%;
             font-family: 'Inter', sans-serif;
             color: var(--text-dim);
-            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            transition: background 0.2s, color 0.2s;
         }
+        .feat-tabs-nav .feat-btn-rich:last-child { border-bottom: none; }
         .feat-btn-rich:hover {
-            background: rgba(255,255,255,0.04);
+            background: rgba(255,255,255,0.03);
             color: var(--text-bright);
         }
         .feat-btn-rich.active {
-            background: linear-gradient(135deg, rgba(232,125,13,0.18), rgba(245,166,35,0.04));
+            background: linear-gradient(135deg, rgba(232,125,13,0.12), rgba(245,166,35,0.03));
             color: var(--text-bright);
-            border-left-color: var(--accent);
         }
         .feat-btn-icon {
             flex-shrink: 0;
@@ -971,7 +961,7 @@
             .feature-tabs { grid-template-columns: 1fr; gap: 1.5rem; }
             .feat-tabs-nav {
                 position: relative; top: auto; max-height: none;
-                padding: 0.5rem;
+                padding: 0;
             }
             .feat-detail-header { gap: 0.8rem; }
             .feat-detail-icon { width: 48px; height: 48px; font-size: 1.5rem; }
