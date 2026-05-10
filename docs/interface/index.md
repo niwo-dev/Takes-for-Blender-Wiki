@@ -13,7 +13,7 @@ The Takes for Blender interface lives in the **3D Viewport sidebar** (press ++n+
 | [**Navigation Panel**](navigation_panel.md) | Persistent header with shared toggles, warning indicators, and the panel switcher. |
 | [**Context Properties**](context_properties.md) | The Takes Tree and per–View Layer cascade overrides — cameras, worlds, compositors, actions, presets. |
 | [**Inspector Panel**](inspector_panel.md) | Watchlist of managed / pinned objects with their actions, slots, channels, and sub-data. |
-| **Batch Render** | Render queue and modal / background render controls. See [Batch Render](../features/batch_render.md). |
+| [**Batch Render**](../features/batch_render.md) | Render queue and modal / background render controls. |
 | [**Globals Panel**](../features/globals.md) | Project-wide settings, presets, automation rules, tags, and the [Variant Tree](variant_tree.md). |
 
 ## :material-tab: Panel Switcher
