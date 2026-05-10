@@ -664,6 +664,10 @@
             margin-top: 0.35rem;
         }
 
+        /* ─── FEATURE SUB-SECTIONS (Core / Automation / Production / Extras) ─── */
+        .feat-section { padding: 4rem 2rem; }
+        .feat-section + .feat-section { padding-top: 1rem; }
+
         /* ─── IN-SECTION FEATURE SIDEBAR ─── */
         .feature-tabs {
             display: grid;
@@ -728,6 +732,67 @@
             padding: 0.1rem 0.35rem; border-radius: 6px;
             text-transform: uppercase; letter-spacing: 0.05em;
             margin-left: auto;
+        }
+
+        /* Rich sidebar item: icon block + title + tag (as in feature detail header) */
+        .feat-btn-rich {
+            display: flex; align-items: center; gap: 0.85rem;
+            padding: 0.8rem 0.9rem;
+            background: transparent; border: none;
+            border-left: 3px solid transparent;
+            border-radius: 10px;
+            cursor: pointer; text-align: left; width: 100%;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dim);
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .feat-btn-rich:hover {
+            background: rgba(255,255,255,0.04);
+            color: var(--text-bright);
+        }
+        .feat-btn-rich.active {
+            background: linear-gradient(135deg, rgba(232,125,13,0.18), rgba(245,166,35,0.04));
+            color: var(--text-bright);
+            border-left-color: var(--accent);
+        }
+        .feat-btn-icon {
+            flex-shrink: 0;
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem; color: var(--text-bright);
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .feat-btn-rich.active .feat-btn-icon {
+            background: linear-gradient(135deg, rgba(232,125,13,0.22), rgba(245,166,35,0.05));
+            border-color: rgba(232,125,13,0.35);
+            color: var(--accent);
+        }
+        .feat-btn-text { flex: 1; min-width: 0; }
+        .feat-btn-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem; font-weight: 700;
+            color: inherit;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .feat-btn-tag {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.65rem; font-weight: 600;
+            color: var(--text-dim);
+            text-transform: uppercase; letter-spacing: 0.08em;
+            line-height: 1;
+        }
+        .feat-btn-rich.active .feat-btn-tag { color: var(--accent); }
+        .feat-btn-rich .feat-new {
+            display: inline-block;
+            background: var(--accent); color: var(--bg-dark);
+            font-size: 0.55rem; font-weight: 800;
+            padding: 0.12rem 0.4rem; border-radius: 6px;
+            text-transform: uppercase; letter-spacing: 0.05em;
         }
 
         .feat-content { min-height: 400px; }
@@ -1028,292 +1093,323 @@
     </div>
 </div>
 
-<!-- FEATURES -->
-<section id="features">
+<!-- FEATURES — CORE -->
+<section id="features" class="feat-section">
     <div class="section-inner">
-        <div class="section-label">Core Features</div>
-        <h2 class="section-title">Everything you need. Nothing you don't.</h2>
-        <p class="section-subtitle">Sixteen production-tested tools, all wired into a single cascade. Pick a feature on the left to dive in.</p>
+        <div class="section-label">Core</div>
+        <h2 class="section-title">The foundation</h2>
+        <p class="section-subtitle">The four building blocks that hold everything else together — your project tree, the cascade, version snapshots, and the global console.</p>
 
         <div class="feature-tabs">
-            <aside class="feat-tabs-nav" role="tablist" aria-label="Features">
-                <div class="feat-group">Core</div>
-                <button class="feat-btn active" data-feat="takes"><span class="material-symbols-outlined">account_tree</span>Takes Tree</button>
-                <button class="feat-btn" data-feat="cascade"><span class="material-symbols-outlined">south</span>6-Tier Cascade</button>
-                <button class="feat-btn" data-feat="vl_versions"><span class="material-symbols-outlined">history</span>VL Versions</button>
-                <button class="feat-btn" data-feat="globals"><span class="material-symbols-outlined">public</span>Globals Panel</button>
-                <div class="feat-group">Automation</div>
-                <button class="feat-btn" data-feat="tags"><span class="material-symbols-outlined">label</span>Tags</button>
-                <button class="feat-btn" data-feat="rules"><span class="material-symbols-outlined">rule</span>Rules</button>
-                <button class="feat-btn" data-feat="variant"><span class="material-symbols-outlined">swap_horiz</span>Variant Switch</button>
-                <button class="feat-btn" data-feat="smart_output"><span class="material-symbols-outlined">folder_open</span>Smart Output</button>
-                <div class="feat-group">Production</div>
-                <button class="feat-btn" data-feat="render_presets"><span class="material-symbols-outlined">palette</span>Render Presets</button>
-                <button class="feat-btn" data-feat="batch"><span class="material-symbols-outlined">movie</span>Batch Render</button>
-                <button class="feat-btn" data-feat="rest_state"><span class="material-symbols-outlined">anchor</span>Rest State</button>
-                <button class="feat-btn" data-feat="vl_preview"><span class="material-symbols-outlined">preview</span>VL Preview</button>
-                <div class="feat-group">Extras</div>
-                <button class="feat-btn" data-feat="bookmarks"><span class="material-symbols-outlined">bookmark</span>Bookmarks</button>
-                <button class="feat-btn" data-feat="pie_menus"><span class="material-symbols-outlined">radio_button_checked</span>Pie Menus</button>
-                <button class="feat-btn" data-feat="process_monitor"><span class="material-symbols-outlined">monitoring</span>Process Monitor</button>
-                <button class="feat-btn" data-feat="op_guards"><span class="material-symbols-outlined">verified_user</span>Op. Guards<span class="feat-new">New</span></button>
+            <aside class="feat-tabs-nav" role="tablist" aria-label="Core features">
+                <button class="feat-btn-rich active" data-feat="takes" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">account_tree</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Takes Tree</div>
+                        <div class="feat-btn-tag">Core · Hierarchy</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="cascade" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">south</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">6-Tier Cascade</div>
+                        <div class="feat-btn-tag">Core · Override Engine</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="vl_versions" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">history</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">VL Versions</div>
+                        <div class="feat-btn-tag">Core · Snapshots</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="globals" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">public</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Globals Panel</div>
+                        <div class="feat-btn-tag">Core · Project Console</div>
+                    </div>
+                </button>
             </aside>
 
             <div class="feat-content">
                 <div class="feat-detail active" data-feat="takes">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">account_tree</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Takes Tree</h3>
-                            <div class="feat-detail-tag">Core · Hierarchy</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">A unified hierarchy that shows every Scene, Scene Group, View Layer, VL Group, and Version in a single tree — your entire project at a glance.</p>
+                    <p class="feat-detail-lead">See your whole project in one place. Scenes, view layers, groups, and named versions — all in a clean, draggable tree right next to your viewport.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">drag_pan</span>Drag, nest, and collapse to navigate large projects</li>
-                        <li><span class="material-symbols-outlined">palette</span>Color-tagged for quick visual scanning</li>
-                        <li><span class="material-symbols-outlined">keyboard</span>Keyboard shortcuts for every CRUD operation (create, duplicate, group, rename, delete)</li>
-                        <li><span class="material-symbols-outlined">sync</span>Auto-syncs with Blender's native scene graph at 4 Hz</li>
+                        <li><span class="material-symbols-outlined">drag_pan</span>Drag and drop to reorganize your scenes any time</li>
+                        <li><span class="material-symbols-outlined">palette</span>Color-tag groups so you can spot what you need at a glance</li>
+                        <li><span class="material-symbols-outlined">keyboard</span>Every action has a keyboard shortcut — never leave the keyboard</li>
+                        <li><span class="material-symbols-outlined">sync</span>Updates instantly as you create or rename scenes in Blender</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="cascade">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">south</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>6-Tier Cascade</h3>
-                            <div class="feat-detail-tag">Core · Override Engine</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">Override cameras, worlds, compositors, actions, render presets, and variants at any of six levels — Global → Scene Group → Scene → VL Group → View Layer → VL Version.</p>
+                    <p class="feat-detail-lead">Set a camera, world, or render preset once at the project level — every scene below inherits it. Need a different camera for one shot? Override it just for that shot. Nothing else changes.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">arrow_downward</span>Inheritance flows down; local overrides stay local</li>
-                        <li><span class="material-symbols-outlined">warning</span>Visual alert system for broken references at every tier</li>
-                        <li><span class="material-symbols-outlined">backspace</span>Alt+Click to clear an override at any tier</li>
-                        <li><span class="material-symbols-outlined">shield</span>String-based references survive undo/redo without crashes</li>
+                        <li><span class="material-symbols-outlined">layers</span>Six levels to pick from, depending on how broad or narrow you want the override</li>
+                        <li><span class="material-symbols-outlined">arrow_downward</span>Settings flow downward; what you change locally stays local</li>
+                        <li><span class="material-symbols-outlined">backspace</span>Hold Alt and click any override to clear it</li>
+                        <li><span class="material-symbols-outlined">warning</span>Visual warnings the moment something gets renamed or deleted</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="vl_versions">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">history</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>View Layer Versions</h3>
-                            <div class="feat-detail-tag">Core · Snapshots</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">Named cascade snapshots beneath each View Layer — switch entire setup permutations with one click and render every version automatically.</p>
+                    <p class="feat-detail-lead">Save the entire setup of a view layer — camera, world, action, lights — under a name you choose. Switch between versions with one click. Render every version automatically.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">all_inclusive</span>Unlimited versions per View Layer</li>
-                        <li><span class="material-symbols-outlined">layers</span>Each version stores its own action, camera, world, compositor, and preset overrides</li>
-                        <li><span class="material-symbols-outlined">content_copy</span>One-click duplication for A/B variants</li>
-                        <li><span class="material-symbols-outlined">queue_play_next</span>Render every version automatically via the batch queue</li>
+                        <li><span class="material-symbols-outlined">all_inclusive</span>Make as many versions per view layer as you want</li>
+                        <li><span class="material-symbols-outlined">content_copy</span>One-click duplicate to spin up an A/B variant</li>
+                        <li><span class="material-symbols-outlined">save</span>Each version remembers its own camera, world, action, compositor, and presets</li>
+                        <li><span class="material-symbols-outlined">queue_play_next</span>The batch queue renders every version automatically</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="globals">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">public</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Globals Panel</h3>
-                            <div class="feat-detail-tag">Core · Project Console</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">A project-wide control centre — settings, presets overview, rules, tags, and variants in a single, mode-switchable console.</p>
+                    <p class="feat-detail-lead">One panel to control your whole project — settings, presets, automation rules, tags, and product variants. Everything in one place, always one click away.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">tune</span>Five global modes: Settings, Presets, Rules, Tags, Variants</li>
-                        <li><span class="material-symbols-outlined">center_focus_strong</span>Single source of truth for cross-scene project state</li>
-                        <li><span class="material-symbols-outlined">checklist</span>Master toggles and bulk operations</li>
-                        <li><span class="material-symbols-outlined">radio_button_checked</span>Custom slot configuration for the navigation pie menu</li>
+                        <li><span class="material-symbols-outlined">tune</span>Switch between five modes: Settings, Presets, Rules, Tags, Variants</li>
+                        <li><span class="material-symbols-outlined">checklist</span>Bulk operations across all your scenes at once</li>
+                        <li><span class="material-symbols-outlined">radio_button_checked</span>Customize the navigation pie menu to match your workflow</li>
+                        <li><span class="material-symbols-outlined">power_settings_new</span>Master toggles for every global feature</li>
                     </ul>
                 </div>
-                <div class="feat-detail" data-feat="tags">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">label</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Tags</h3>
-                            <div class="feat-detail-tag">Automation · Labels</div>
-                        </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES — AUTOMATION -->
+<section id="automation" class="feat-section">
+    <div class="section-inner">
+        <div class="section-label">Automation</div>
+        <h2 class="section-title">Set it and forget it</h2>
+        <p class="section-subtitle">Tag your scenes, define rules once, and let Takes handle the repetitive work — so you can focus on the shots.</p>
+
+        <div class="feature-tabs">
+            <aside class="feat-tabs-nav" role="tablist" aria-label="Automation features">
+                <button class="feat-btn-rich active" data-feat="tags" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">label</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Tags</div>
+                        <div class="feat-btn-tag">Automation · Labels</div>
                     </div>
-                    <p class="feat-detail-lead">A universal labelling system for organisation and automation — tag anything in Blender and use those tags to drive cascade rules.</p>
+                </button>
+                <button class="feat-btn-rich" data-feat="rules" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">rule</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Rules</div>
+                        <div class="feat-btn-tag">Automation · Tag-Driven Presets</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="variant" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">swap_horiz</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Variant Switch</div>
+                        <div class="feat-btn-tag">Automation · Material & Visibility</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="smart_output" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">folder_open</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Smart Output</div>
+                        <div class="feat-btn-tag">Automation · Token Paths</div>
+                    </div>
+                </button>
+            </aside>
+
+            <div class="feat-content">
+                <div class="feat-detail active" data-feat="tags">
+                    <p class="feat-detail-lead">Stick a label on anything — an object, a scene, a view layer, a variant. Then filter, group, and automate based on those labels.</p>
                     <ul class="feat-detail-list">
                         <li><span class="material-symbols-outlined">add_circle</span>Tag any object, scene, view layer, or variant</li>
-                        <li><span class="material-symbols-outlined">filter_alt</span>Filter the tree view by tag</li>
-                        <li><span class="material-symbols-outlined">link</span>Tags feed the Rules engine for cascade-driven automation</li>
-                        <li><span class="material-symbols-outlined">touch_app</span>Bulk apply / remove via context menus</li>
+                        <li><span class="material-symbols-outlined">filter_alt</span>Filter the tree to focus on just the tagged items</li>
+                        <li><span class="material-symbols-outlined">link</span>Tags drive the Rules system below — set up once, automate forever</li>
+                        <li><span class="material-symbols-outlined">touch_app</span>Apply or remove tags in bulk from the right-click menu</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="rules">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">rule</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Rules</h3>
-                            <div class="feat-detail-tag">Automation · Tag-Driven Presets</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">Tag-driven preset bundles applied through the cascade automatically — bind a tag to a preset combination once, apply across the entire project.</p>
+                    <p class="feat-detail-lead">Bind a tag to a preset bundle once. From then on, anything with that tag gets the right camera, world, and render settings — automatically.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">link</span>One-time bind: tag → preset bundle</li>
-                        <li><span class="material-symbols-outlined">south</span>Rules respect cascade tier hierarchy</li>
-                        <li><span class="material-symbols-outlined">warning</span>Visual alerts for broken or missing-preset rules</li>
-                        <li><span class="material-symbols-outlined">layers</span>Layer multiple rules for compound automation logic</li>
+                        <li><span class="material-symbols-outlined">link</span>One-time setup: pick a tag, pick a preset bundle</li>
+                        <li><span class="material-symbols-outlined">south</span>Rules respect the cascade — broader tiers cover broader scopes</li>
+                        <li><span class="material-symbols-outlined">warning</span>Visual alerts when a rule's preset gets deleted or renamed</li>
+                        <li><span class="material-symbols-outlined">layers</span>Stack multiple rules for compound automation</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="variant">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">swap_horiz</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Variant Switch</h3>
-                            <div class="feat-detail-tag">Automation · Material & Visibility</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">Per-scope material and visibility swapping with product / parts / variants pools — define everything once, render every combination automatically.</p>
+                    <p class="feat-detail-lead">Swap materials, hide parts, switch full product configurations with one click. Then render every combination automatically.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">account_tree</span>Define products, parts, and variant pools in one tree</li>
-                        <li><span class="material-symbols-outlined">visibility</span>Dual-hierarchy: Parts (visibility) + Materials (surface)</li>
-                        <li><span class="material-symbols-outlined">grid_view</span>Per-scope cascade application</li>
-                        <li><span class="material-symbols-outlined">queue_play_next</span>Render every combination via the batch queue</li>
+                        <li><span class="material-symbols-outlined">account_tree</span>Define products, parts, and material pools in one tree</li>
+                        <li><span class="material-symbols-outlined">visibility</span>Two-track structure: Parts control visibility, Materials control look</li>
+                        <li><span class="material-symbols-outlined">grid_view</span>Each scope can apply variants differently</li>
+                        <li><span class="material-symbols-outlined">queue_play_next</span>The batch queue renders every combination for you</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="smart_output">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">folder_open</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Smart Output</h3>
-                            <div class="feat-detail-tag">Automation · Token Paths</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">Token-based output paths that resolve at render time — no more manual folder creation, no more "PNG.png" double extensions.</p>
+                    <p class="feat-detail-lead">Stop hand-typing folder paths. Use tokens like <code>[scene]/[view_layer]/[camera]_[variant]_####</code> and Takes fills them in correctly at render time. No more typos. No more "PNG.png".</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">code</span>20+ tokens: <code>[scene]</code>, <code>[view_layer]</code>, <code>[camera]</code>, <code>[preset]</code>, <code>[variant]</code>, <code>[timestamp]</code>, …</li>
-                        <li><span class="material-symbols-outlined">tune</span>Parameterized variants with <code>[variant:N]</code> indexing</li>
-                        <li><span class="material-symbols-outlined">toggle_on</span>Optional standard + compositor output toggles</li>
-                        <li><span class="material-symbols-outlined">keyboard</span>Optional F12 / Ctrl+F12 integration</li>
+                        <li><span class="material-symbols-outlined">code</span>Twenty+ tokens covering scene, view layer, camera, preset, variant, timestamp, and more</li>
+                        <li><span class="material-symbols-outlined">tune</span>Pick a specific variant slot with <code>[variant:N]</code></li>
+                        <li><span class="material-symbols-outlined">toggle_on</span>Toggle standard and compositor outputs independently</li>
+                        <li><span class="material-symbols-outlined">keyboard</span>Optionally apply to F12 / Ctrl+F12 too</li>
                     </ul>
                 </div>
-                <div class="feat-detail" data-feat="render_presets">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">palette</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Render Presets</h3>
-                            <div class="feat-detail-tag">Production · 4-Tier Storage</div>
-                        </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES — PRODUCTION -->
+<section id="production" class="feat-section">
+    <div class="section-inner">
+        <div class="section-label">Production</div>
+        <h2 class="section-title">Ship the work</h2>
+        <p class="section-subtitle">From per-VL settings to background batch renders — the tools that turn your project into final pixels.</p>
+
+        <div class="feature-tabs">
+            <aside class="feat-tabs-nav" role="tablist" aria-label="Production features">
+                <button class="feat-btn-rich active" data-feat="render_presets" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">palette</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Render Presets</div>
+                        <div class="feat-btn-tag">Production · 4-Tier Storage</div>
                     </div>
-                    <p class="feat-detail-lead">Capture render config — engine, samples, resolution, color, camera, world, material — as a reusable preset, with four storage tiers that scale from solo to studio.</p>
+                </button>
+                <button class="feat-btn-rich" data-feat="batch" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">movie</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Batch Render</div>
+                        <div class="feat-btn-tag">Production · Render Queue</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="rest_state" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">anchor</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Rest State</div>
+                        <div class="feat-btn-tag">Production · Auto-Mirror</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="vl_preview" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">preview</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">VL Preview</div>
+                        <div class="feat-btn-tag">Production · Inline Thumbnails</div>
+                    </div>
+                </button>
+            </aside>
+
+            <div class="feat-content">
+                <div class="feat-detail active" data-feat="render_presets">
+                    <p class="feat-detail-lead">Save your favourite render settings — engine, samples, resolution, color space, camera, world — and reuse them anywhere. Store them on your machine, your studio's network, or right inside the .blend file.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">storage</span>Four tiers: Default (bundled), Local, Shared (network), Project (in .blend)</li>
-                        <li><span class="material-symbols-outlined">lock</span>Shared folder lock for studio safety</li>
-                        <li><span class="material-symbols-outlined">cloud_download</span>Template seeding on first install</li>
-                        <li><span class="material-symbols-outlined">edit</span>Display name editing independent of filename</li>
+                        <li><span class="material-symbols-outlined">storage</span>Four storage choices: Default (bundled), Local (your machine), Shared (network), Project (in the .blend)</li>
+                        <li><span class="material-symbols-outlined">lock</span>Lock the Shared folder so the team can't accidentally overwrite it</li>
+                        <li><span class="material-symbols-outlined">cloud_download</span>Comes with bundled starter templates ready to use</li>
+                        <li><span class="material-symbols-outlined">edit</span>Edit the display name without renaming the file</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="batch">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">movie</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Batch Render</h3>
-                            <div class="feat-detail-tag">Production · Render Queue</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">Render every View Layer in sequence — foreground or background — with the cascade applied to each, Smart Output paths resolved per-VL, and a sound notification on completion.</p>
+                    <p class="feat-detail-lead">Click Render. Takes works through every view layer in order, applying the right settings to each, saving to the right path, and pinging you when it's done. Foreground or fully in the background — your call.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">play_arrow</span>Foreground modal + headless background (CLI worker) modes</li>
-                        <li><span class="material-symbols-outlined">schedule</span>Pre-render ETA estimate from average sample times</li>
-                        <li><span class="material-symbols-outlined">skip_next</span>Skip-completed toggle with auto-revert</li>
-                        <li><span class="material-symbols-outlined">music_note</span>6 bundled completion sounds (or bring your own .wav)</li>
+                        <li><span class="material-symbols-outlined">play_arrow</span>Foreground (modal) or fully headless background — your viewport stays free</li>
+                        <li><span class="material-symbols-outlined">schedule</span>See an estimated finish time before you commit</li>
+                        <li><span class="material-symbols-outlined">skip_next</span>Skip-completed toggle so re-runs only do what's left</li>
+                        <li><span class="material-symbols-outlined">music_note</span>Six bundled completion sounds (or use your own .wav)</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="rest_state">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">anchor</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Rest State</h3>
-                            <div class="feat-detail-tag">Production · Auto-Mirror</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">A neutral fallback pose stored in a Reference Action — objects automatically return to baseline when no animation exists on the active View Layer.</p>
+                    <p class="feat-detail-lead">A "home pose" for every object. Whenever a view layer has no animation, things snap back to where they belong. No more accidentally dragged-out cameras, no more drifting props.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">sync_alt</span>Auto-mirror keyframes to the reference action</li>
-                        <li><span class="material-symbols-outlined">push_pin</span>Per-object pinning to opt out of mirror logic</li>
+                        <li><span class="material-symbols-outlined">sync_alt</span>Automatically captures and mirrors keyframes as you work</li>
+                        <li><span class="material-symbols-outlined">push_pin</span>Pin individual objects to opt out</li>
                         <li><span class="material-symbols-outlined">edit</span>Survives renames, slot changes, and material swaps</li>
-                        <li><span class="material-symbols-outlined">animation</span>Native Blender 5.x slot-action integration</li>
+                        <li><span class="material-symbols-outlined">animation</span>Built on Blender 5's native action-slot system</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="vl_preview">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">preview</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>View Layer Preview</h3>
-                            <div class="feat-detail-tag">Production · Inline Thumbnails</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">Inline rendered thumbnails next to each View Layer — see what you're switching to at a glance, no more guessing from cryptic names.</p>
+                    <p class="feat-detail-lead">A small rendered thumbnail next to every view layer. See what each one looks like at a glance — no more guessing from cryptic names.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">refresh</span>Live thumbnail updates as renders complete</li>
-                        <li><span class="material-symbols-outlined">folder</span>Custom thumbnail output paths</li>
-                        <li><span class="material-symbols-outlined">layers</span>Per-tier preview capture</li>
-                        <li><span class="material-symbols-outlined">south</span>Cascade-aware thumbnail generation</li>
+                        <li><span class="material-symbols-outlined">refresh</span>Thumbnails update as renders complete</li>
+                        <li><span class="material-symbols-outlined">folder</span>Choose where the thumbnail files live</li>
+                        <li><span class="material-symbols-outlined">layers</span>Capture previews per cascade tier</li>
+                        <li><span class="material-symbols-outlined">south</span>Cascade-aware — thumbnails reflect the full inheritance chain</li>
                     </ul>
                 </div>
-                <div class="feat-detail" data-feat="bookmarks">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">bookmark</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Bookmarks</h3>
-                            <div class="feat-detail-tag">Extras · Property Pointers</div>
-                        </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES — EXTRAS -->
+<section id="extras" class="feat-section">
+    <div class="section-inner">
+        <div class="section-label">Extras</div>
+        <h2 class="section-title">Quality of life</h2>
+        <p class="section-subtitle">The small things that make a long day shorter — bookmarks, hotkeys, diagnostics, and safety nets.</p>
+
+        <div class="feature-tabs">
+            <aside class="feat-tabs-nav" role="tablist" aria-label="Extras">
+                <button class="feat-btn-rich active" data-feat="bookmarks" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">bookmark</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Bookmarks</div>
+                        <div class="feat-btn-tag">Extras · Property Pointers</div>
                     </div>
-                    <p class="feat-detail-lead">Quick-access pointers to any animatable property anywhere in Blender — bookmark a property once, jump back to it instantly.</p>
+                </button>
+                <button class="feat-btn-rich" data-feat="pie_menus" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">radio_button_checked</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Pie Menus</div>
+                        <div class="feat-btn-tag">Extras · Custom Hotkey</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="process_monitor" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">monitoring</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Process Monitor</div>
+                        <div class="feat-btn-tag">Extras · Diagnostics</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="op_guards" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">verified_user</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Op. Guards <span class="feat-new">New</span></div>
+                        <div class="feat-btn-tag">Extras · Granular Safety</div>
+                    </div>
+                </button>
+            </aside>
+
+            <div class="feat-content">
+                <div class="feat-detail active" data-feat="bookmarks">
+                    <p class="feat-detail-lead">Found that one obscure property buried five menus deep? Bookmark it. Click the bookmark next time and Takes jumps right back to it.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">touch_app</span>One-click bookmark from any property</li>
-                        <li><span class="material-symbols-outlined">flight_takeoff</span>Path-resolved navigation jumps you back</li>
-                        <li><span class="material-symbols-outlined">share</span>Shared across the project via cascade</li>
-                        <li><span class="material-symbols-outlined">save</span>Export bookmarks to render presets</li>
+                        <li><span class="material-symbols-outlined">touch_app</span>One click to bookmark any animatable property</li>
+                        <li><span class="material-symbols-outlined">flight_takeoff</span>Click a bookmark to jump back instantly</li>
+                        <li><span class="material-symbols-outlined">share</span>Shared across the project via the cascade</li>
+                        <li><span class="material-symbols-outlined">save</span>Save bookmarks alongside your render presets</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="pie_menus">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">radio_button_checked</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Pie Menus</h3>
-                            <div class="feat-detail-tag">Extras · Custom Hotkey</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">A configurable navigation pie menu — Ctrl+Shift+C — for one-button access to common operations across the addon.</p>
+                    <p class="feat-detail-lead">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> anywhere, get a circular menu with your most-used Takes operations. Customize what's in each slot to match your workflow.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">edit</span>Customizable slots per artist preference</li>
-                        <li><span class="material-symbols-outlined">switch_account</span>Quick switch between Context, Inspector, and Globals</li>
-                        <li><span class="material-symbols-outlined">splitscreen</span>Includes "Split View" for side-by-side comparison</li>
-                        <li><span class="material-symbols-outlined">restart_alt</span>Reset to factory defaults from preferences</li>
+                        <li><span class="material-symbols-outlined">edit</span>Customizable slots — put what you use most up front</li>
+                        <li><span class="material-symbols-outlined">switch_account</span>Quick switch between Context, Inspector, and Globals views</li>
+                        <li><span class="material-symbols-outlined">splitscreen</span>Includes a Split View button for side-by-side comparison</li>
+                        <li><span class="material-symbols-outlined">restart_alt</span>Reset to factory defaults from the preferences any time</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="process_monitor">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">monitoring</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Process Monitor</h3>
-                            <div class="feat-detail-tag">Extras · Diagnostics</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">Runtime diagnostics — process tree, debug console, and View Layer Switch profiler — so you can bisect viewport lag instead of guessing.</p>
+                    <p class="feat-detail-lead">When the viewport feels sluggish, open the Process Monitor and find the culprit. See which background tasks are running, turn them off one at a time, and your viewport speeds back up.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">account_tree</span>Hierarchical process groups (6 feature groups)</li>
-                        <li><span class="material-symbols-outlined">toggle_off</span>Disable handlers individually for surgical debugging</li>
-                        <li><span class="material-symbols-outlined">restart_alt</span>Auto-restart watchdog (Alt+Click)</li>
-                        <li><span class="material-symbols-outlined">speed</span>Built-in VL switch performance profiler</li>
+                        <li><span class="material-symbols-outlined">account_tree</span>All background tasks grouped into six clear categories</li>
+                        <li><span class="material-symbols-outlined">toggle_off</span>Disable any task individually for surgical debugging</li>
+                        <li><span class="material-symbols-outlined">restart_alt</span>Auto-restart watchdog (Alt+click) for tasks that should keep running</li>
+                        <li><span class="material-symbols-outlined">speed</span>Built-in profiler for view layer switches</li>
                     </ul>
                 </div>
                 <div class="feat-detail" data-feat="op_guards">
-                    <div class="feat-detail-header">
-                        <div class="feat-detail-icon"><span class="material-symbols-outlined">verified_user</span></div>
-                        <div class="feat-detail-title-block">
-                            <h3>Operation Guards <span class="feat-new-badge">New in 0.7.0</span></h3>
-                            <div class="feat-detail-tag">Extras · Granular Safety</div>
-                        </div>
-                    </div>
-                    <p class="feat-detail-lead">A category-based confirmation system that prevents accidental destructive operations — replaces the old monolithic "Protected Mode" with surgical opt-in safety.</p>
+                    <p class="feat-detail-lead">A safety net for destructive actions. Choose exactly which operations need a "Are you sure?" prompt — keep the ones you want fast and add prompts to the ones you've burned yourself on.</p>
                     <ul class="feat-detail-list">
-                        <li><span class="material-symbols-outlined">category</span>Six categories: Tree Context, Inspector, Globals, Batch Render, System, Data Integrity</li>
-                        <li><span class="material-symbols-outlined">toggle_on</span>Master toggle for the entire system</li>
-                        <li><span class="material-symbols-outlined">tune</span>Granular per-operator opt-in</li>
-                        <li><span class="material-symbols-outlined">workspaces</span>Independent scene-group vs view-layer-group deletion guards</li>
+                        <li><span class="material-symbols-outlined">category</span>Six categories: Tree, Inspector, Globals, Batch Render, System, Data Integrity</li>
+                        <li><span class="material-symbols-outlined">toggle_on</span>Master toggle to flip the whole system on or off</li>
+                        <li><span class="material-symbols-outlined">tune</span>Pick and choose which operations need confirmation</li>
+                        <li><span class="material-symbols-outlined">workspaces</span>Independent guards for scene-group vs view-layer-group deletes</li>
                     </ul>
                 </div>
             </div>
@@ -1918,7 +2014,7 @@
 
     // In-section feature tabs (scoped per .feature-tabs container)
     document.querySelectorAll('.feature-tabs').forEach(scope => {
-        const btns = scope.querySelectorAll('.feat-btn');
+        const btns = scope.querySelectorAll('.feat-btn, .feat-btn-rich');
         const details = scope.querySelectorAll('.feat-detail');
         btns.forEach(btn => {
             btn.addEventListener('click', () => {
