@@ -965,11 +965,14 @@
                 position: relative; top: auto; max-height: none;
                 padding: 0;
             }
-            .feat-content {
-                border-left: none;
-                border-top: 1px solid var(--border);
-                padding: 1.5rem;
+            /* Mobile: details get moved into the nav next to their buttons by JS */
+            .feat-content { display: none; }
+            .feat-tabs-nav .feat-detail {
+                padding: 1.3rem 1.1rem;
+                background: rgba(0,0,0,0.18);
+                border-bottom: 1px solid rgba(255,255,255,0.06);
             }
+            .feat-tabs-nav .feat-detail:last-child { border-bottom: none; }
             .feat-detail-header { gap: 0.8rem; }
             .feat-detail-icon { width: 48px; height: 48px; font-size: 1.5rem; }
             .feat-detail h3 { font-size: 1.3rem; }
@@ -2010,17 +2013,66 @@
     });
 
     // In-section feature tabs (scoped per .feature-tabs container)
+    function setActive(scope, id) {
+        scope.querySelectorAll('.feat-btn, .feat-btn-rich').forEach(b =>
+            b.classList.toggle('active', b.dataset.feat === id));
+        scope.querySelectorAll('.feat-detail').forEach(d =>
+            d.classList.toggle('active', d.dataset.feat === id));
+    }
     document.querySelectorAll('.feature-tabs').forEach(scope => {
-        const btns = scope.querySelectorAll('.feat-btn, .feat-btn-rich');
-        const details = scope.querySelectorAll('.feat-detail');
-        btns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const id = btn.dataset.feat;
-                btns.forEach(b => b.classList.toggle('active', b.dataset.feat === id));
-                details.forEach(d => d.classList.toggle('active', d.dataset.feat === id));
-            });
+        scope.querySelectorAll('.feat-btn, .feat-btn-rich').forEach(btn => {
+            btn.addEventListener('click', () => setActive(scope, btn.dataset.feat));
         });
     });
+
+    // Mobile: re-parent each detail next to its matching button so the
+    // sidebar reads as an accordion. Driven by a media query so it reverts
+    // cleanly on resize back to desktop.
+    const mobileMQ = window.matchMedia('(max-width: 768px)');
+    function applyMobileLayout() {
+        const isMobile = mobileMQ.matches;
+        document.querySelectorAll('.feature-tabs').forEach(scope => {
+            const nav = scope.querySelector('.feat-tabs-nav');
+            const content = scope.querySelector('.feat-content');
+            if (!nav || !content) return;
+            if (isMobile) {
+                nav.querySelectorAll('.feat-btn, .feat-btn-rich').forEach(btn => {
+                    const id = btn.dataset.feat;
+                    const detail = scope.querySelector(`.feat-detail[data-feat="${id}"]`);
+                    if (detail && detail.parentNode !== btn.parentNode) {
+                        btn.after(detail);
+                    } else if (detail) {
+                        // ensure ordering: button immediately followed by its detail
+                        btn.after(detail);
+                    }
+                });
+            } else {
+                // Move details back into content area, preserving order
+                nav.querySelectorAll('.feat-detail').forEach(d => content.appendChild(d));
+            }
+        });
+    }
+    applyMobileLayout();
+    mobileMQ.addEventListener('change', applyMobileLayout);
+
+    // Scroll-driven accordion on mobile: whichever button is in the
+    // "reading band" (~25%–50% from the top) becomes active, expanding
+    // its detail beneath it. Disabled on desktop where the sidebar
+    // tabs work normally.
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+            if (!mobileMQ.matches) return;
+            // Pick the entry closest to the trigger band (smallest top distance > 0).
+            const visible = entries.filter(e => e.isIntersecting);
+            if (visible.length === 0) return;
+            // Prefer the topmost visible button to feel natural while scrolling.
+            visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+            const btn = visible[0].target;
+            const scope = btn.closest('.feature-tabs');
+            if (scope) setActive(scope, btn.dataset.feat);
+        }, { rootMargin: '-20% 0px -55% 0px', threshold: 0 });
+        document.querySelectorAll('.feat-btn, .feat-btn-rich').forEach(b => obs.observe(b));
+    }
 
     // Early Bird countdown
     // RULE: Offer ends 1 month after Blender LTS 5.2 releases.
