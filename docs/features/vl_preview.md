@@ -15,7 +15,7 @@ In the **Context** panel, click the **down-arrow icon (⌄)** in the side column
 | Setting | Type | Description |
 |---------|------|-------------|
 | **Show Preview** | bool | Master toggle for inline thumbnails. |
-| **Size** | enum | `Small` (24 px), `Medium` (32 px, default), `Large` (40 px). |
+| **Size** | enum | `Small` (24 px, default), `Medium` (32 px), `Large` (40 px). |
 | **Background Colour** | colour | Canvas behind the rendered thumbnail. Baked into the PNG. |
 | **Transparent Background** | bool | Render the thumbnail with alpha instead of a solid background. |
 

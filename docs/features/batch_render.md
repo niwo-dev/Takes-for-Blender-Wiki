@@ -66,10 +66,15 @@ Re-run it any time scene changes have invalidated previous estimates (geometry r
 !!! note "Why probe instead of measure?"
     A full probe takes seconds per View Layer instead of minutes. The extrapolation is rough — useful for ETA / scheduling, not for hitting precise time budgets.
 
-## :material-checkbox-multiple-marked-outline: Selection Modes
+## :material-checkbox-multiple-marked-outline: What Gets Rendered
 
-- **Single View Layer** — Renders only the active View Layer (default).
-- **Multi-select** — When multi-select is enabled, renders all selected View Layers.
+The batch renderer processes **every View Layer whose render-toggle icon is enabled**, regardless of which row is active or selected. Active/multi-select state in the tree drives editing, not rendering.
+
+To control the queue, toggle the **render icon** (next to each View Layer row):
+
+- Click → toggle that View Layer's enabled state.
+- ++shift++ + click → toggle every View Layer in the same scene at once.
+- ++alt++ + click on the batch **Render** / **Desktop** button → force-render every View Layer, even completed ones (otherwise the queue skips already-rendered VLs unless **Skip Completed** is off).
 
 !!! tip "Render Order"
     The batch renderer follows the tree view order (top-to-bottom as displayed),

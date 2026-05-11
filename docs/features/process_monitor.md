@@ -33,7 +33,7 @@ Processes are grouped into 6 feature buckets. Each bucket has a master toggle an
 | **Batch Render** | Modal foreground / background subprocess monitoring. |
 | **Render Presets** | Cascade resolution, dirty-state checks, sync. |
 
-A row turns red when a process logs an error, amber on warnings, green when idle. Click a row to drill into its log lines in the Debug Console.
+A row turns red when a process logs an error, amber on warnings, green when idle. Clicking a row toggles that handler/timer's **enabled** state — disabled rows stop firing until re-enabled, which is the main way you isolate viewport-lag causes without restarting Blender.
 
 ## :material-toggle-switch: Master Toggles
 
@@ -47,12 +47,14 @@ Each group has a master switch. Disabling a group **suspends** its handlers (whe
 
 ## :material-keyboard: Hotkeys
 
-The Process Monitor list shares the generic list hotkeys:
+The Process Monitor list shares the generic list hotkeys plus row-click modifiers:
 
 | Shortcut | Action |
 |----------|--------|
-| ++ctrl+i++ | Invert multi-selection. |
-| ++shift++ + click on a group toggle | Enable all subprocesses in the group. |
-| ++alt++ + click on a group toggle | Invert the subprocess selection. |
+| Click on a process row | Toggle that single process on / off. |
+| ++shift++ + click on a process row | **Range-toggle** from the last-toggled row down to this one. |
+| ++alt++ + click on a process row | **Invert all** processes (every row flips its enabled state). |
+| Click on a group master toggle | Flip every process in that group together. |
+| ++ctrl+i++ | Invert multi-selection (generic list shortcut). |
 
 See [Keyboard Shortcuts](../interface/hotkeys.md).

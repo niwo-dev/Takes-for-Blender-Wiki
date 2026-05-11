@@ -39,18 +39,14 @@ In product visualization, you often need to render the same product in multiple 
 ### :material-eye: Previewing Variants
 Click the **diamond icon** on any inactive State to immediately apply that variant to the viewport. The active state shows as a filled circle.
 
-## :material-shape: Variant Modes
+## :material-shape: Pool-based Variant Model
 
-Variant Switch supports three modes:
+Variant Switch uses a **single pool-based model** — there isn't a per-Part mode selector. Each Part owns its own ordered list of pool materials, and each Variant stores one pool index per Part. Switching to a Variant simply applies that Variant's pool index to every Part it covers.
 
-=== "Swap"
-    Direct material replacement. The simplest mode — Material A becomes Material B.
-
-=== "Preset"
-    Apply a material preset in-place via JSON. The material stays the same but its properties change.
-
-=== "Pool"
-    Pick from a product-level material palette. Each Part has a pool of materials indexed per State.
+- A new Variant is initialised with every Part's pool index at `0` (the first material in each pool).
+- Assigning a material into a Part's pool auto-creates the next empty slot.
+- Removing all materials from a Part shrinks its pool back down (pool indices on existing Variants are re-clamped).
+- Pool sizes can differ between Parts within the same Product — each Part is independent.
 
 ## :material-arrow-decision: Cascade Integration
 
