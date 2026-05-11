@@ -34,20 +34,17 @@ Part
 
 ## :material-cursor-default-click: Usage
 
-### Switching Variants
-
+### :material-swap-horizontal: Switching Variants
 Click the **diamond icon** on any inactive state to immediately preview that variant in the viewport. The active state shows as a filled circle.
 
-### Material Pool
-
+### :material-palette: Material Pool
 Each Part has a material pool — a list of materials that can be swapped in:
 
 1. Assign a material to the first empty slot (a new slot auto-creates).
 2. Use the **pool index** to select which material is active for that part.
 3. When switching states, the system swaps materials according to each state's pool index.
 
-### Collection Assignment
-
+### :material-folder-multiple: Collection Assignment
 Each Part is linked to a Blender collection. All objects in that collection (and child collections) receive the material swap.
 
 ## :material-tag: Variant Tags

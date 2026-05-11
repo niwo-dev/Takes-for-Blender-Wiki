@@ -57,8 +57,7 @@ The Takes Tree is a unified hierarchical list showing your entire project struct
             └─ 📌 View Layer Version
 ```
 
-### Row Elements
-
+### :material-format-list-bulleted: Row Elements
 Each View Layer row displays cascade override icons. These icons show at a glance which properties are overridden at that level:
 
 - **Ghost** — Rest State status
@@ -75,8 +74,7 @@ Each View Layer row displays cascade override icons. These icons show at a glanc
     When the panel is narrow, cascade icons automatically collapse into an overflow
     **⋯** button. Clicking it opens a popover showing all icons in full.
 
-### Tree Lines
-
+### :material-vector-line: Tree Lines
 Configurable indent lines show the hierarchy visually. Tag colors can be inherited by tree lines for quick identification.
 
 ## :material-tune: Tree Display Settings

@@ -53,12 +53,10 @@ The following properties participate in the cascade:
 
 ## :material-pencil: Setting Overrides
 
-### Via Cascade Icons
-
+### :material-cursor-default-click: Via Cascade Icons
 Click any cascade icon on a tree row to open its popover. Set a value to create an override at that level, or clear it to inherit from the parent.
 
-### Via Context Properties
-
+### :material-tune-vertical: Via Context Properties
 The Context Properties panel shows all overrides for the active View Layer in one place.
 
 ## :material-eye-outline: Visual Indicators

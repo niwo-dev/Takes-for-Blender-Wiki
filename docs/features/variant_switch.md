@@ -21,26 +21,22 @@ In product visualization, you often need to render the same product in multiple 
 
 ## :material-cursor-default-click: Usage
 
-### Creating a Product
-
+### :material-plus-circle: Creating a Product
 1. Open the **Variant Switch** panel.
 2. Click **+** or press ++ctrl+n++ to add a Product.
 3. A default Part ("base") is created automatically with one empty pool slot.
 
-### Adding States
-
+### :material-shape-plus: Adding States
 1. Select the Product.
 2. Add a new State (e.g., "Gold").
 3. Each State stores a pool index per Part, selecting which material to use.
 
-### Assigning Materials
-
+### :material-link-variant: Assigning Materials
 1. Expand a Part to see its material pool.
 2. Assign a material to the first empty slot — a new slot auto-creates.
 3. Use Blender's native material selector (New, Duplicate, Unlink).
 
-### Previewing Variants
-
+### :material-eye: Previewing Variants
 Click the **diamond icon** on any inactive State to immediately apply that variant to the viewport. The active state shows as a filled circle.
 
 ## :material-shape: Variant Modes

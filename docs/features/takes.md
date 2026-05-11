@@ -31,20 +31,17 @@ Takes are organized in a six-tier cascade. The **Global** tier is edited in the 
 
 ## :material-plus-circle: Creating Takes
 
-### Add a View Layer
-
+### :material-plus-circle: Add a View Layer
 1. Click **+** in the tree sidebar.
 2. Choose **Add View Layer**.
 3. The new View Layer inherits from the active View Layer.
 
-### Group View Layers
-
+### :material-folder-multiple: Group View Layers
 1. Select a View Layer in the tree.
 2. Press ++ctrl+g++ to create a View Layer Group containing it.
 3. Drag other View Layers into the group.
 
-### View Layer Versions
-
+### :material-source-branch: View Layer Versions
 Create named snapshots of a View Layer's cascade settings:
 
 1. Select a View Layer.

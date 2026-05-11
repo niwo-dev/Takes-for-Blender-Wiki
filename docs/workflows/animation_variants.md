@@ -8,22 +8,19 @@ This workflow shows how to set up different animation takes per View Layer — f
 
 ## :material-cog-outline: Setup
 
-### 1. Create View Layers
-
+### :material-numeric-1-circle: 1. Create View Layers
 Create one View Layer per animation state:
 
 1. Open the Takes Tree.
 2. Click **+** → **Add View Layer** for each animation.
 3. Name them descriptively: "Spin", "Tilt", "Explode".
 
-### 2. Group Them
-
+### :material-numeric-2-circle: 2. Group Them
 1. Select the first View Layer.
 2. Press ++ctrl+g++ to create a group called "Animations".
 3. Move the other View Layers into this group.
 
-### 3. Assign Cameras
-
+### :material-numeric-3-circle: 3. Assign Cameras
 Each animation likely needs its own camera angle:
 
 1. Click the camera icon on each View Layer row.
@@ -31,8 +28,7 @@ Each animation likely needs its own camera angle:
 
 ## :material-animation: Animating
 
-### 4. Animate Per View Layer
-
+### :material-numeric-4-circle: 4. Animate Per View Layer
 1. Switch to "Spin" View Layer by clicking it in the tree.
 2. The cascade automatically assigns a dedicated action for this View Layer.
 3. Animate your objects. Keyframes are stored in the View Layer-specific action.
@@ -43,8 +39,7 @@ Each animation likely needs its own camera angle:
     The Rest State system ensures objects return to their default pose
     when switching away from an animated View Layer. This happens automatically.
 
-### 5. Render All Animations
-
+### :material-numeric-5-circle: 5. Render All Animations
 1. Enable multi-select in the tree sidebar.
 2. Select all animation View Layers.
 3. Click the Render button.

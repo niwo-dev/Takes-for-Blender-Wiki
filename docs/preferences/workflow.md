@@ -34,16 +34,14 @@ icon: material/cog-play
 
 The naming sub-tab holds editable templates for every named entity the addon creates — actions, slots, takes, variants, presets. Templates use [Smart Output tokens](../features/smart_output.md).
 
-### Separator
-
+### :material-minus: Separator
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
 | **Separator** | string (≤3 chars) | `_` | The character(s) emitted by `{sep}` everywhere. |
 | **Unlock Naming Templates** | bool | Off | Safety latch — must be on before any template is editable. Changing templates can break existing slot links. |
 | **Token Filter** | enum | ALL | Limits which tokens the picker shows: ALL / SCENE_ACTION / VL_ACTION / SLOT / TAKE / VARIANT. |
 
-### Action Templates
-
+### :material-play-box-multiple: Action Templates
 | Slot | Default Template |
 |------|------------------|
 | Scene | `{scenegroup}{sep}{scene}` |
@@ -52,8 +50,7 @@ The naming sub-tab holds editable templates for every named entity the addon cre
 | Scene Group | `{scenegroup}` |
 | View Layer Group | `{scenegroup}{sep}{scene}{sep}{vlgroup}` |
 
-### Camera & Compositor Templates
-
+### :material-camera: Camera & Compositor Templates
 | Slot | Default Template |
 |------|------------------|
 | Scene Camera | `{scene}{sep}Cam` |
@@ -64,8 +61,7 @@ The naming sub-tab holds editable templates for every named entity the addon cre
 | Global Camera | `Global{sep}Cam` |
 | Global Compositor | `Global{sep}Comp` |
 
-### Slot Type Templates
-
+### :material-shape: Slot Type Templates
 | Type | Default Template |
 |------|------------------|
 | Reference Action | `Reference{sep}State` |
@@ -77,8 +73,7 @@ The naming sub-tab holds editable templates for every named entity the addon cre
 | Material / Node Tree | `{material}` / `{parent}{sep}Nodes` |
 | Generic fallback | `{object}` |
 
-### Take / Variant / Preset Templates
-
+### :material-palette-swatch: Take / Variant / Preset Templates
 | Slot | Default Template |
 |------|------------------|
 | Take Name | `Take_{index:03d}` |

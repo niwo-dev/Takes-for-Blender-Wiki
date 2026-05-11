@@ -22,8 +22,7 @@ Tokens are wrapped in configurable brackets. The default style uses square brack
 
 This resolves to something like: `Front_3-4_CamHero_0001.png`
 
-### Bracket Styles
-
+### :material-code-brackets: Bracket Styles
 Choose your preferred style in **Addon Preferences > Behavior Options > Syntax Brackets**:
 
 | Style | Syntax | Example |
@@ -40,8 +39,7 @@ Choose your preferred style in **Addon Preferences > Behavior Options > Syntax B
 
 The full token registry is below. Tokens written here use curly braces for readability — switch to your configured bracket style at runtime.
 
-### Context
-
+### :material-target: Context
 | Token | Resolves To |
 |-------|-------------|
 | `{scene}` | Active scene name |
@@ -53,8 +51,7 @@ The full token registry is below. Tokens written here use curly braces for reada
 | `{camera}` | Active camera name |
 | `{marker}` | Current timeline marker |
 
-### Object / Material Context
-
+### :material-cube: Object / Material Context
 | Token | Resolves To |
 |-------|-------------|
 | `{object}` | Target object name |
@@ -65,8 +62,7 @@ The full token registry is below. Tokens written here use curly braces for reada
 | `{parent}` | Parent name (for node trees) |
 | `{action}` | Action name |
 
-### Render
-
+### :material-image-multiple: Render
 | Token | Resolves To |
 |-------|-------------|
 | `{engine}` | Render engine (`CYCLES`, `EEVEE` …) |
@@ -80,15 +76,13 @@ The full token registry is below. Tokens written here use curly braces for reada
 | `{color_depth}` | Color bit depth |
 | `{compression}` | Compression setting |
 
-### Camera
-
+### :material-camera: Camera
 | Token | Resolves To |
 |-------|-------------|
 | `{focal_length}` | Lens length in mm |
 | `{fstop}` | F-stop label (`f2.8`, `f16` …) |
 
-### Animation
-
+### :material-animation: Animation
 | Token | Resolves To |
 |-------|-------------|
 | `{frame_start}` | Scene start frame |
@@ -100,8 +94,7 @@ The full token registry is below. Tokens written here use curly braces for reada
 | `{motion_blur}` | Motion blur status |
 | `{shutter}` | Shutter speed |
 
-### Variant
-
+### :material-swap-horizontal: Variant
 | Token | Resolves To |
 |-------|-------------|
 | `{product}` | Product name (use `{product:N}` for index N) |
@@ -111,8 +104,7 @@ The full token registry is below. Tokens written here use curly braces for reada
 | `{variant_tag}` | Active variant tag (use `{variant_tag:N}`) |
 | `{variant_index}` | Numerical index of active variant |
 
-### Date / Time
-
+### :material-calendar-clock: Date / Time
 | Token | Resolves To |
 |-------|-------------|
 | `{timestamp}` | `YYYYMMDD_HHMMSS` |
@@ -121,8 +113,7 @@ The full token registry is below. Tokens written here use curly braces for reada
 | `{Y}` `{M}` `{D}` | Year / month / day (zero-padded) |
 | `{h}` `{m}` `{s}` | Hour / minute / second (zero-padded) |
 
-### File / System
-
+### :material-file: File / System
 | Token | Resolves To |
 |-------|-------------|
 | `{blend}` | `.blend` filename without extension |
@@ -131,22 +122,19 @@ The full token registry is below. Tokens written here use curly braces for reada
 | `{hostname}` | Computer name |
 | `{workspace}` | Active workspace name |
 
-### TKS Overrides
-
+### :material-toggle-switch-variant: TKS Overrides
 | Token | Resolves To |
 |-------|-------------|
 | `{tks_action}` | Cascade-resolved action override |
 | `{tks_camera}` | Cascade-resolved camera override |
 
-### Index
-
+### :material-numeric: Index
 | Token | Resolves To |
 |-------|-------------|
 | `{index}` | Auto-incrementing number |
 | `{index:03d}` | Same, zero-padded to N digits |
 
-### Node Context (for File Output / Compositor sockets)
-
+### :material-vector-link: Node Context (for File Output / Compositor sockets)
 | Token | Resolves To |
 |-------|-------------|
 | `{node}` | Node name |

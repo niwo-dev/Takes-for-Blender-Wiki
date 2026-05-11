@@ -14,8 +14,7 @@ This workflow covers setting up and running a full batch render across multiple 
 
 ## :material-folder-cog: Setup Smart Output
 
-### 1. Define Output Pattern
-
+### :material-numeric-1-circle: 1. Define Output Pattern
 1. Go to **Properties > Output**.
 2. Enable **Smart Output**.
 3. Set the Directory Pattern:
@@ -30,8 +29,7 @@ This workflow covers setting up and running a full batch render across multiple 
     [view_layer]_[camera]_####.[file_format]
     ```
 
-### 2. Assign Render Presets
-
+### :material-numeric-2-circle: 2. Assign Render Presets
 For consistent quality across all View Layers:
 
 1. Configure your render settings (engine, samples, resolution).
@@ -40,8 +38,7 @@ For consistent quality across all View Layers:
 
 ## :material-play-circle: Running the Batch
 
-### Foreground Mode
-
+### :material-play-circle: Foreground Mode
 1. Open the Takes Tree sidebar.
 2. Click the **Render** button.
 3. The queue processes each View Layer in tree order:
@@ -51,8 +48,7 @@ For consistent quality across all View Layers:
     - Renders and saves to the Smart Output path
 4. Progress shows per-View Layer in the render queue list.
 
-### Background Mode
-
+### :material-cog-clockwise: Background Mode
 1. Click the **Desktop** button instead.
 2. Blender stays interactive while renders run in background processes.
 3. Tree view thumbnails update as each View Layer completes.

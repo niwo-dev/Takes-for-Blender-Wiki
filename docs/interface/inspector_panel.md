@@ -32,8 +32,7 @@ The watchlist shows all objects relevant to the current View Layer:
 | **Name** | Object name (click to select in viewport). |
 | **Sub-data icons** | Compact icons for each animated datablock (material, node tree, etc.). |
 
-### Compact Mode
-
+### :material-arrow-collapse: Compact Mode
 In compact mode, sub-data icons appear as a row of small type-aware icons next to each object:
 
 - **Bright icon** — Datablock has an action assigned

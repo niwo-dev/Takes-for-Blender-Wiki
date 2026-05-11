@@ -37,7 +37,7 @@ The render queue shows the status of each View Layer:
 | **Failed** | Error occurred (hover for details). |
 | **Cancelled** | Skipped due to batch cancellation. |
 
-### Queue Columns
+### :material-view-column: Queue Columns
 
 Click the **gear icon** in the queue header to open the **Queue Columns** popover. It controls which info columns are visible alongside each row, with three sub-controls:
 
