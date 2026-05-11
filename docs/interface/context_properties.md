@@ -40,10 +40,16 @@ View and manage the cascade action assignment:
 Assign a per-View Layer compositor node tree.
 
 ### :material-export: Output Popover
-Configure render output settings:
+Configure every output-side preset for this tier in one place. Five preset slots plus the cascade rule:
 
-- **Output rule** — Tag-based output path rule.
-- **Render preset** — Per-View Layer render settings.
+- **Output Rule** — Tag-driven [Rule](../features/rules.md) that drives all five slots below in one click.
+- **Render preset** — Engine, samples, resolution.
+- **File Output preset** — Format, color depth, compression, Smart Output paths.
+- **Output preset** — Container, dimensions, frame range.
+- **View Layer preset** — Active passes, light groups, holdouts.
+- **Color Management preset** — View transform, look, exposure.
+
+Each slot can be set independently, or pre-filled by selecting an Output Rule at the top — the rule pushes its bundled presets into every slot. Per-slot Accept / Revert controls handle dirty-state edits.
 
 ## :material-stairs: Override Resolution
 

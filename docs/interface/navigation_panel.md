@@ -93,10 +93,16 @@ Click the **down-arrow** next to the up/down move buttons in the Context tree's 
 
 ## :material-alert-outline: Warnings
 
-The Navigation Panel shows warnings when issues are detected:
+The Navigation Panel header surfaces conditional warning badges whenever the addon detects an inconsistency. Each badge is a toggle: click it to expand the matching warning sub-panel below the header. Badges only appear when their condition is met — a clean session shows none.
 
-- **Missing Preset** — A cascade preset reference points to a deleted JSON file.
-- **Dangling Action** — An action is about to be lost because Auto-Assign is disabled.
+| Badge icon | Trigger | What it surfaces |
+|------------|---------|------------------|
+| Preset (gear) | One or more render-related presets are **dirty** (edited live, not saved). | Per-tier list of dirty preset types and Accept / Revert controls. |
+| Unlinked | One or more cascade preset references point to a JSON file that no longer exists. | Missing-preset list with file paths so you can re-import or re-create. |
+| Ghost | The Reference Action is drifting from the current values for one or more managed objects. | Ref-drift list with per-property snap controls. |
+| Font-data | A slot rename is pending — a slot's name no longer matches its template. | Slot-mismatch list with rename actions. |
+| Image-data | One or more View Layer preview thumbnails have a pending rename after a Scene / VL rename. | Pending-preview-rename list with apply / dismiss controls. |
+| Orphan-data | Cascade resolution drifted — a stored cascade value no longer matches the resolver's current output. | Cascade-drift list with re-sync actions. |
 
 ## :material-keyboard: Hotkeys
 

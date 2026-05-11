@@ -8,6 +8,17 @@ icon: material/magnify-scan
 
 The Inspector Panel provides a per-object watchlist showing which objects are managed by the cascade system, their assigned actions, slots, and sub-data (materials, node trees, shape keys).
 
+## :material-toggle-switch: Watchlist vs. Channels
+
+The Inspector body has a **top-level mode toggle** that swaps the entire view:
+
+| Mode | What it shows |
+|------|---------------|
+| **Watchlist** (default) | Managed / pinned objects with their actions, slots, and sub-data icons. The rest of this page covers this mode. |
+| **Channels** | A property-centric view — every animatable property the active object exposes, grouped into Transform, Visibility, Modifiers, etc. Includes a **Slotted / Channels** sub-mode toggle, a Bookmarks shelf, and Timeline Controls. Useful for keyframing a specific property without leaving the Inspector. |
+
+The toggle lives in the Inspector header — its state is stored in `wm.tks_inspector_show_channels`, so it persists per Blender session.
+
 ## :material-pin: Managed vs. Pinned
 
 Objects in the watchlist have one of two states:

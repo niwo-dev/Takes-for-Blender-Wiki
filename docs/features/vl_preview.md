@@ -36,7 +36,7 @@ Both render buttons follow the same pattern: a normal click renders the active /
 You can replace any auto-rendered thumbnail with a custom image — useful when the rendered preview isn't representative (e.g. a wireframe layer that doesn't render anything visible).
 
 - **Pick Preview Image** opens a file browser; choose any PNG / JPG / EXR. The selected file is copied into the `tks_previews/` directory under the View Layer's canonical filename, so future refreshes don't overwrite it.
-- The button is exposed per–View Layer via the preview's right-click / context menu.
+- The operator (`tks.vl_preview_pick`) currently has no permanent button in the UI — invoke it from Blender's operator search (++f3++) with the View Layer's scene name and view-layer name as parameters. A row-menu entry is planned.
 - Clear the override by running a fresh **Render** of the View Layer — the auto-rendered output replaces the picked image.
 
 ## :material-folder: File Storage

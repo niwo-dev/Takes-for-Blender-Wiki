@@ -36,20 +36,35 @@ The arrow direction shows hierarchy (Global is the parent, View Layer Version is
 
 ## :material-format-list-bulleted-type: Cascade Properties
 
-The following properties participate in the cascade:
+Two cascade resolvers live alongside each other. They walk the same 6-tier chain but answer different questions, so the wiki splits them into separate tables to match the source.
 
-| Property | Description |
-|----------|-------------|
-| **Camera** | Which camera object is used for rendering. |
-| **World** | Which world environment is used. |
-| **Compositor** | Which node tree drives compositing. |
-| **Action** | Which animation action is assigned. |
-| **Render Preset** | JSON-based render settings. |
-| **Camera Preset** | JSON-based camera settings. |
-| **World Preset** | JSON-based world settings. |
-| **Output Rule** | Tag-based output path rule. |
-| **Camera Rule** | Tag-based camera selection rule. |
-| **World Rule** | Tag-based world selection rule. |
+### :material-link-variant: Pointer Cascade
+
+These are the cascade's "primary" properties — each one resolves a single datablock reference (or a single rule name) and is driven by the `CascadeProperty` enum / `resolve_cascade` resolver. Each shows up as its own cascade icon on every tree row.
+
+| Property | Resolves to | Description |
+|----------|-------------|-------------|
+| **Camera** | Camera object | Which camera object is used for rendering. |
+| **World** | World datablock | Which world environment is used. |
+| **Compositor** | Node tree | Which node tree drives compositing. |
+| **Action** | Action datablock | Cascade action applied to managed objects on this View Layer. |
+| **Output Rule** | Tag name | The active automation rule that drives the five output-side preset slots. |
+
+### :material-format-list-checkbox: Per-field Cascade
+
+These are name-keyed preset slots and selection rules. Each one cascades independently via the generic `get_cascade_winner` resolver, so a Scene-level Render preset can win while a VL-level Color Management preset overrides it. The Output Popover groups the five output-side slots in one place; Camera Rule and World Rule are surfaced via the Camera and World popovers.
+
+| Slot / rule | Driven by | Description |
+|-------------|-----------|-------------|
+| **Render preset** | `tks_render_preset` | Engine, samples, resolution. |
+| **Output preset** | `tks_output_preset` | Container, dimensions, frame range. |
+| **File Output preset** | `tks_fileoutput_preset` | Format, color depth, compression, Smart Output paths. |
+| **View Layer preset** | `tks_viewlayer_preset` | Active passes, light groups, holdouts. |
+| **Color Management preset** | `tks_colormanagement_preset` | View transform, look, exposure. |
+| **Camera preset** | `tks_camera_preset` | Focal length, sensor, DOF. Applied to the cascade-resolved camera. |
+| **World preset** | `tks_world_preset` | Background, strength, mist. Applied to the cascade-resolved world. |
+| **Camera Rule** | `tks_camera_rule` | Tag-based automatic camera selection. |
+| **World Rule** | `tks_world_rule` | Tag-based automatic world selection. |
 
 ## :material-pencil: Setting Overrides
 

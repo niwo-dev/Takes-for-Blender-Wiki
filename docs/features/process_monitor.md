@@ -10,7 +10,10 @@ The **Process Monitor** is a runtime diagnostics view added in v0.6.6. It shows 
 
 The diagnostic panel is hidden by default. To reveal it, **Alt+Click the Settings gear icon** in the Navigation panel header (a regular click on the gear opens addon preferences).
 
-Once open, the panel itself has a 3-way switcher in its header for picking the view:
+!!! note "What the gear actually toggles"
+    Alt+Click on the gear flips a single internal flag — `tks_show_process_monitor`. That covers the **Process Monitor** and **Debug Console** views (which are the same panel in different modes). The **View Layer Switch Profiler** is a separate panel reached from the in-panel switcher described below, not from the gear directly.
+
+Once the diagnostic UI is visible, its header carries a 3-way switcher for picking the active view:
 
 | Mode | Icon | Shows |
 |------|------|-------|
@@ -18,7 +21,7 @@ Once open, the panel itself has a 3-way switcher in its header for picking the v
 | **Debug Console** | Console | Recent log lines (filtered by *Preferences > Debug > Topics*). |
 | **View Layer Switch Profiler** | Time | Per-step timing for the most recent View Layer switch. |
 
-Alt+Click the gear again to hide the panel.
+The same 3-way switcher is mirrored in the Profiler header, so you can hop between any of the three views once at least one of them is open. Alt+Click the gear again to dismiss the Process Monitor / Debug Console pair.
 
 ## :material-file-tree: Process Tree Hierarchy
 

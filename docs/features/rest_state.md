@@ -52,7 +52,6 @@ The Rest State system covers all standard animatable datablocks:
 - Worlds (environment settings)
 - Scenes (gravity, frame range)
 - Node Trees (shader nodes, compositor)
-
-!!! warning "Shape Keys & Pose Bones"
-    Shape key values and pose bone transforms are not yet supported by the
-    Rest State system. This is planned for a future release.
+- Armatures (rest data — bone roll, layers)
+- Shape Keys (per-key `value` and `slider_min` / `slider_max`)
+- Curves, Lattices, Metaballs, Grease Pencil — wherever an animatable property has a meaningful rest value
