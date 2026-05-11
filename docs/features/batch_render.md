@@ -33,6 +33,28 @@ The render queue shows the status of each View Layer:
 | **Failed** | Error occurred (hover for details). |
 | **Cancelled** | Skipped due to batch cancellation. |
 
+### Queue Columns
+
+Click the **gear icon** in the queue header to open the **Queue Columns** popover. It controls which info columns are visible alongside each row, with three sub-controls:
+
+- **Icons** — toggle individual columns on or off. At least two visible columns must remain so the overflow indicator is meaningful.
+- **Pin Outside Collapse** — pin specific icons so they always render, even when the queue auto-collapses on narrow panels.
+- **Collapse** — switch between *Dynamic* (auto-collapses when the panel is narrower than the **Min Width** value) and *Always* (always collapse).
+
+## :material-timer-cog: Calibrate Render Times
+
+Click **Calibrate Render Times** in the queue toolbar to estimate per–View Layer runtime *before* you commit to a real batch. The operator:
+
+1. Spawns a headless Blender subprocess in the background — your foreground stays interactive.
+2. Probe-renders every queued View Layer at tiny resolution.
+3. Extrapolates each result to the View Layer's real render settings (resolution × samples × engine).
+4. Streams the estimates back row-by-row; each View Layer's `Estimated Render Time` column updates as its probe completes.
+
+Re-run it any time scene changes have invalidated previous estimates (geometry rebuilt, engine swapped, samples bumped, etc.). Clicking the operator again while it's running asks for cancellation — same pattern as cancelling a background batch.
+
+!!! note "Why probe instead of measure?"
+    A full probe takes seconds per View Layer instead of minutes. The extrapolation is rough — useful for ETA / scheduling, not for hitting precise time budgets.
+
 ## :material-checkbox-multiple-marked-outline: Selection Modes
 
 - **Single View Layer** — Renders only the active View Layer (default).
@@ -60,7 +82,7 @@ The render-toggle icon next to each View Layer accepts modifier-clicks:
 | Shortcut | Action |
 |----------|--------|
 | Click | Toggle the View Layer's enabled state in the queue. |
-| ++alt++ + click | **Preview** the View Layer immediately (single-frame snapshot). |
+| ++alt++ + click | **Preview Render** — open the View Layer's most recently rendered image into Blender's Render Result. Requires a finished render to exist; fails silently otherwise. |
 | ++ctrl++ + click | **Render & save** the View Layer through the queue. |
 | ++shift++ + click | Toggle **all** View Layers in the current scene. |
 
