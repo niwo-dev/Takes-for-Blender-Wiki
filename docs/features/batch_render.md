@@ -13,23 +13,40 @@ Takes for Blender supports two render modes:
 === "Foreground"
     Renders inside the current Blender session. You see the render window and progress in real-time, but Blender is locked during rendering.
 
-    - Click the **Render** button (:material-image:) in the tree sidebar.
+    - Click the **Foreground Render** button (:material-image:) in the queue sidebar to open the [scope dropdown](#render-scope-dropdowns), or trigger a default-scope batch directly.
     - Progress shows per-View Layer with status indicators.
     - Press ++esc++ to cancel.
 
 === "Background Batch Render"
     Renders in separate headless Blender subprocesses. Blender stays fully interactive while renders run in the background.
 
-    - Click the **Desktop** button (:material-desktop-classic:) in the sidebar to launch a **Background Batch Render**.
+    - Click the **Background Render** button (:material-desktop-classic:) in the queue sidebar — opens the [scope dropdown](#render-scope-dropdowns).
     - Tree view updates progressively as each View Layer completes.
     - A completion sound plays when all tasks finish.
-    - ++alt++-click the Desktop button to force-render every View Layer in the queue, even completed ones (otherwise the background batch skips finished VLs).
+    - While a background batch is running the button becomes an **X** so you can cancel without leaving the sidebar.
 
 === "Render Active View Layer"
     Renders only the **active** View Layer — useful for quick spot-checks without queueing the full batch.
 
-    - Available from the queue toolbar (single-VL render button) and via ++ctrl++-click on a View Layer's render-toggle icon.
+    - Reached from the [scope dropdown](#render-scope-dropdowns) (**Current View Layer**) or via ++ctrl++-click on a View Layer's render-toggle icon.
     - Requires the `.blend` to be saved.
+
+### :material-menu-down: Render Scope Dropdowns
+
+Both render buttons in the queue sidebar open a dropdown menu listing the available render scopes. Foreground and background share the same 7 scopes (single-VL is foreground-only):
+
+| Action | What it renders |
+|--------|-----------------|
+| **Current View Layer** *(foreground only)* | Just the active View Layer (`tks.render_active_vl`). |
+| **Active VLs (Scene)** | Every render-toggle-enabled VL in the current scene only. |
+| **Active VLs (All Scenes)** | Every render-toggle-enabled VL across every scene. |
+| **All VLs (Scene, Force)** | Every VL in the current scene, regardless of render-toggle. |
+| **All VLs (All Scenes, Force)** | Every VL in every scene, regardless of render-toggle. |
+| **Skip Completed** | Active VLs across all scenes, skipping ones that already finished. |
+| **Failed Only** | Re-render only VLs whose previous attempt failed or cancelled. |
+| **Preview Thumbnails** | Render the queue at preview resolution to refresh thumbnails. |
+
+The same dispatcher (`tks.render_scope_dispatch`) powers the [F12 Render Pie](pie_menus.md#f12-render-pie), so anything you assign to a pie slot maps to one of the rows above.
 
 ## :material-format-list-checkbox: Render Queue
 

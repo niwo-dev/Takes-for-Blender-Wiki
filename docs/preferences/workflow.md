@@ -85,7 +85,21 @@ The naming sub-tab holds editable templates for every named entity the addon cre
 
 ## :material-dots-circle: Pie Menu
 
-Eight enum dropdowns — one per pie direction — each accepting: *None*, *Tree View*, *Watchlist*, *Slotted Mode*, *Rules*, *Variants*, *Tags*, *Batch Render*, *Channels*. Defaults documented on the [Pie Menus](../features/pie_menus.md) page. Reassigning a slot auto-deduplicates the previous holder.
+Two pie configurators live under this sub-tab. Both use a compass grid (NW / N / NE / W / E / SW / S / SE) and auto-deduplicate — assigning an action that already lives in another slot blanks the previous slot.
+
+### :material-compass: Navigation Pie
+
+Master toggle: **Enable Navigation Pie** (on by default, ++ctrl+shift+c++).
+
+Eight enum dropdowns, each accepting: *None*, *Tree View*, *Watchlist*, *Slotted Mode*, *Rules*, *Variants*, *Tags*, *Batch Render*, *Channels*. Defaults documented on the [Pie Menus](../features/pie_menus.md#navigation-pie) page.
+
+### :material-image-multiple: F12 Render Pie
+
+Master toggle: **Enable F12 Render Pie** (off by default). Flipping the toggle on registers a ++f12++ keymap entry that replaces Blender's native render shortcut with a render-scope picker; flipping it off unregisters the entry so native F12 fires again.
+
+Eight enum dropdowns, each accepting any of the 11 render-scope actions: *None*, *Current View Layer*, *Active VLs (Scene)*, *Active VLs (All Scenes)*, *All VLs (Scene, Force)*, *All VLs (All Scenes, Force)*, *Skip Completed*, *Failed Only*, *Preview Thumbnails*, *Native F12*, *Open Render Settings*. Per-action behaviour is documented on the [Pie Menus](../features/pie_menus.md#f12-render-pie) page.
+
+**Reset All Slots** restores either pie's defaults independently.
 
 ## :material-keyboard: Hotkeys
 
