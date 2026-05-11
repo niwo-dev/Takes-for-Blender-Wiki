@@ -80,6 +80,16 @@ When the addon detects stale or missing preset references — a JSON file that n
 
 The badge disappears as soon as every reference resolves again.
 
+## :material-broom: Manage Orphaned Settings
+
+Old presets sometimes contain keys for properties the addon no longer reads — typically after a refactor or when a preset was authored against an older schema. The **Manage Orphaned Settings** operator inspects a preset and lists those leftover keys so you can prune them.
+
+- Available per preset type — pick a category (Render, Output, Camera, World, etc.) in the dialog.
+- Each orphaned key shows its name and the value stored in the JSON.
+- Removing keys is undoable. Save the preset afterward to make the cleanup persistent.
+
+This is mostly a maintenance hatch; you'll rarely need it unless you're cleaning up a long-lived addon-managed preset library.
+
 ## :material-keyboard: Hotkeys
 
 Preset selectors and dirty-state controls follow the cascade convention:

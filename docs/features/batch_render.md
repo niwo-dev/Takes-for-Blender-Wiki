@@ -17,12 +17,19 @@ Takes for Blender supports two render modes:
     - Progress shows per-View Layer with status indicators.
     - Press ++esc++ to cancel.
 
-=== "Background"
+=== "Background Batch Render"
     Renders in separate headless Blender subprocesses. Blender stays fully interactive while renders run in the background.
 
-    - Click the **Desktop** button (:material-desktop-classic:) in the sidebar.
+    - Click the **Desktop** button (:material-desktop-classic:) in the sidebar to launch a **Background Batch Render**.
     - Tree view updates progressively as each View Layer completes.
     - A completion sound plays when all tasks finish.
+    - ++alt++-click the Desktop button to force-render every View Layer in the queue, even completed ones (otherwise the background batch skips finished VLs).
+
+=== "Render Active View Layer"
+    Renders only the **active** View Layer — useful for quick spot-checks without queueing the full batch.
+
+    - Available from the queue toolbar (single-VL render button) and via ++ctrl++-click on a View Layer's render-toggle icon.
+    - Requires the `.blend` to be saved.
 
 ## :material-format-list-checkbox: Render Queue
 

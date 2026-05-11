@@ -29,9 +29,15 @@ The Previews row in the Icon Visibility popover has three render buttons:
 | **Render** (still-image icon) | Run a real render in the background and save the result as a thumbnail. |
 | **Refresh** (refresh icon) | Reload thumbnails from disk without re-rendering — useful if you've manually edited a PNG or restored the file. |
 
-++alt++ + click on the render button targets every View Layer across every scene; a regular click only renders the selection.
+Both render buttons follow the same pattern: a normal click renders the active / multi-selected View Layer, while ++alt++ + click renders **all** View Layers across every scene. The real render runs as **Render Previews (Background)** — a queued background-render operator that fires off headless Blender subprocesses, one View Layer at a time, while the foreground stays interactive. A progress bar shows `Preview 1/N: <Scene> / <ViewLayer>`. The active scene & View Layer are restored when the run finishes.
 
-While rendering, a progress bar shows `Preview 1/N: <Scene> / <ViewLayer>`. The active scene & View Layer are restored when the run finishes.
+## :material-image-edit: Pick Preview Image
+
+You can replace any auto-rendered thumbnail with a custom image — useful when the rendered preview isn't representative (e.g. a wireframe layer that doesn't render anything visible).
+
+- **Pick Preview Image** opens a file browser; choose any PNG / JPG / EXR. The selected file is copied into the `tks_previews/` directory under the View Layer's canonical filename, so future refreshes don't overwrite it.
+- The button is exposed per–View Layer via the preview's right-click / context menu.
+- Clear the override by running a fresh **Render** of the View Layer — the auto-rendered output replaces the picked image.
 
 ## :material-folder: File Storage
 
