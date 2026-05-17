@@ -1,0 +1,177 @@
+/* ============================================================
+   Takes for Blender — Global Web Layout (Grayscale)
+   ============================================================ */
+
+/* Narrower content area for better readability */
+.md-grid {
+  max-width: 1100px;
+}
+
+/* Brand accent — matches the addon's landing page orange. */
+:root {
+  --tks-accent: #e87d0d;
+  --tks-accent-light: #f5a623;
+}
+
+/* LIGHT MODE (SLIGHTLY GRAY) */
+[data-md-color-scheme="default"] {
+  --md-hue: 0; /* Strips native hue tint */
+  --md-default-bg-color: #f6f6f6;
+  --md-default-bg-color--light: #ffffff; /* Make cards/codeblocks pop */
+  --md-default-fg-color: #222222;
+  --md-typeset-a-color: #444444;       /* Links in gray */
+  --md-primary-fg-color: #333333;      /* Header bar gray */
+  --md-accent-fg-color: var(--tks-accent);
+  --md-accent-fg-color--transparent: rgba(232, 125, 13, 0.1);
+  --md-primary-fg-color--light: #555555;
+}
+
+/* DARK MODE (FULLY GRAYSCALE) */
+[data-md-color-scheme="slate"] {
+  --md-hue: 0; /* Strips native blue/indigo MkDocs slate tint */
+  --md-default-bg-color: #222222;
+  --md-default-bg-color--light: #2a2a2a;
+  --md-default-bg-color--lighter: #303030;
+  --md-default-fg-color: #e0e0e0;
+  --md-default-fg-color--light: #bbbbbb;
+  --md-typeset-a-color: #cccccc;       /* Links in gray */
+  --md-primary-fg-color: #111111;      /* Header bar pure dark gray */
+  --md-accent-fg-color: var(--tks-accent-light);
+  --md-accent-fg-color--transparent: rgba(245, 166, 35, 0.12);
+  --md-footer-fg-color: #e0e0e0;
+  --md-footer-fg-color--light: #999999;
+  --md-footer-fg-color--lighter: #666666;
+  --md-footer-bg-color: #1a1a1a;
+  --md-footer-bg-color--dark: #111111;
+}
+
+/* Keyboard shortcut styling */
+kbd {
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-size: 0.85em;
+}
+
+/* Slightly tighter table cell padding */
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+  padding: 0.5em 0.8em;
+}
+
+/* Modern Typography for all Headers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+
+/* Header and Footer — flat opaque grayscale, no transparency blending */
+.md-header {
+  background-color: #1a1a1a !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.md-footer {
+  background-color: #1a1a1a !important;
+}
+.md-tabs {
+  background-color: #1a1a1a !important;
+}
+
+[data-md-color-scheme="default"] .md-header {
+  background-color: #333333 !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+[data-md-color-scheme="default"] .md-footer {
+  background-color: #333333 !important;
+}
+[data-md-color-scheme="default"] .md-tabs {
+  background-color: #333333 !important;
+}
+
+/* Micro-Animations for the Homepage Feature Grid */
+.md-typeset .grid.cards > ul > li {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  border-color: rgba(255, 255, 255, 0.15); /* Neutral/White glow to match grayscale intent */
+}
+
+/* Icons cloned from H2/H3 headings into the sidebar TOC by toc-icons.js */
+.md-nav__link .twemoji.toc-icon {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.45em;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+.md-nav__link .twemoji.toc-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Link colours — orange by default, high-contrast on hover.
+   Light mode: orange → black on hover. Dark mode: lighter orange → white on hover.
+   Explicit :link/:visited overrides prevent the browser's default purple/blue
+   visited colour from leaking through. */
+.md-typeset a,
+.md-typeset a:link,
+.md-typeset a:visited {
+  color: var(--tks-accent);
+}
+[data-md-color-scheme="slate"] .md-typeset a,
+[data-md-color-scheme="slate"] .md-typeset a:link,
+[data-md-color-scheme="slate"] .md-typeset a:visited {
+  color: var(--tks-accent-light);
+}
+
+.md-typeset a:hover,
+.md-typeset a:focus {
+  color: #000000;
+}
+[data-md-color-scheme="slate"] .md-typeset a:hover,
+[data-md-color-scheme="slate"] .md-typeset a:focus {
+  color: #ffffff;
+}
+
+/* Sidebar navigation — active item, scroll-spy highlight, hover/focus.
+   Both schemes get an explicit prefix: Material's `.md-nav__item--active >
+   .md-nav__link` has specificity 0,2,0 — without the scheme prefix mine ties
+   on specificity and only wins by source order, which can flip depending on
+   plugin ordering. With the prefix mine is 0,3,0 in both modes and always
+   wins. */
+[data-md-color-scheme="default"] .md-nav__link--active,
+[data-md-color-scheme="default"] .md-nav__link--active code,
+[data-md-color-scheme="default"] .md-nav__item--active > .md-nav__link,
+[data-md-color-scheme="default"] .md-nav__item--active > .md-nav__link code,
+[data-md-color-scheme="default"] .md-nav__link:hover,
+[data-md-color-scheme="default"] .md-nav__link:focus,
+[data-md-color-scheme="default"] .md-nav__link:focus-visible {
+  color: var(--tks-accent);
+}
+[data-md-color-scheme="slate"] .md-nav__link--active,
+[data-md-color-scheme="slate"] .md-nav__link--active code,
+[data-md-color-scheme="slate"] .md-nav__item--active > .md-nav__link,
+[data-md-color-scheme="slate"] .md-nav__item--active > .md-nav__link code,
+[data-md-color-scheme="slate"] .md-nav__link:hover,
+[data-md-color-scheme="slate"] .md-nav__link:focus,
+[data-md-color-scheme="slate"] .md-nav__link:focus-visible {
+  color: var(--tks-accent-light);
+}
+
+/* Search highlight + selected result also use --md-accent-fg-color in
+   Material, but make any leftover defaults explicit here too. */
+.md-search-result__link:focus,
+.md-search-result__link:hover,
+.md-search-result__link[data-md-state="active"] {
+  background-color: var(--md-accent-fg-color--transparent);
+}
