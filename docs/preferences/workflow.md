@@ -20,8 +20,8 @@ icon: material/cog-play
 
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
-| **Auto-create Reference Action** | bool | On | Creates the *Reference State* action when a new scene is created. |
-| **Auto-mirror Keyframes to Reference** | bool | On | Mirrors unkeyed values into the Reference Action on keyframe insert. |
+| **Auto-create Rest Action** | bool | On | Creates the *Rest State* action when a new scene is created. |
+| **Auto-mirror Keyframes to Rest** | bool | On | Mirrors unkeyed values into the Rest Action on keyframe insert. |
 | **Auto-assign View Layer Actions** | bool | On | Creates and assigns View Layer actions automatically when a View Layer is added. |
 | **Auto-rename Actions on Hierarchy Change** | bool | Off | Regenerates action names from the naming templates when scenes / View Layers are renamed. |
 | **Auto-rename Slots on Target Rename** | bool | On | Keeps slot names in sync with their target object/data. |
@@ -64,7 +64,7 @@ The naming sub-tab holds editable templates for every named entity the addon cre
 ### :material-shape: Slot Type Templates
 | Type | Default Template |
 |------|------------------|
-| Reference Action | `Reference{sep}State` |
+| Rest Action | `Rest{sep}State` |
 | Scene / World / Object | `{scene}` / `{world}` / `{object}{sep}{type}` |
 | Mesh / Armature / Light / Camera | `{object}{sep}Mesh` / `Rig` / `Light` / `Cam` |
 | Curve / Lattice / Metaball / Font | `{object}{sep}Curve` / `Lattice` / `Meta` / `Text` |

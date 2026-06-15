@@ -23,7 +23,7 @@ The header has two rows. The top row carries shared toggles, warning indicators,
 
 | Control | Description |
 |---------|-------------|
-| **Warning indicators** | Conditional badges that appear when an issue is detected — preset dirty, missing preset, reference drift, slot mismatch, pending preview rename, cascade drift. Each one toggles its own warning sub-panel below the header. |
+| **Warning indicators** | Conditional badges that appear when an issue is detected — preset dirty, missing preset, rest drift, slot mismatch, pending preview rename, cascade drift. Each one toggles its own warning sub-panel below the header. |
 | **Save** | Appears in red when there are unsaved preference changes; click to save. |
 | **Help** | Opens the documentation (this wiki). |
 | **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). |
@@ -99,7 +99,7 @@ The Navigation Panel header surfaces conditional warning badges whenever the add
 |------------|---------|------------------|
 | Preset (gear) | One or more render-related presets are **dirty** (edited live, not saved). | Per-tier list of dirty preset types and Accept / Revert controls. |
 | Unlinked | One or more cascade preset references point to a JSON file that no longer exists. | Missing-preset list with file paths so you can re-import or re-create. |
-| Ghost | The Reference Action is drifting from the current values for one or more managed objects. | Ref-drift list with per-property snap controls. |
+| Ghost | The Rest Action is drifting from the current values for one or more managed objects. | Ref-drift list with per-property snap controls. |
 | Font-data | A slot rename is pending — a slot's name no longer matches its template. | Slot-mismatch list with rename actions. |
 | Image-data | One or more View Layer preview thumbnails have a pending rename after a Scene / VL rename. | Pending-preview-rename list with apply / dismiss controls. |
 | Orphan-data | Cascade resolution drifted — a stored cascade value no longer matches the resolver's current output. | Cascade-drift list with re-sync actions. |

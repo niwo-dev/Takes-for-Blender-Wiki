@@ -16,7 +16,7 @@ The header has a row of mode buttons. Each switches the panel body to a differen
 
 | Mode | Icon | Shows |
 |------|------|-------|
-| **Settings** | gear | Project-wide settings (Reference Action, version warning, …). |
+| **Settings** | gear | Project-wide settings (Rest Action, version warning, …). |
 | **Presets** | preset | Overview of all 9 preset categories in one place. |
 | **Variants** | UV-sync | The Variant Switch tree (Products / States / Parts / Pools). See [Variant Switch](variant_switch.md). |
 | **Rules** | gear (system) | Automation rules — see [Rules](rules.md). |
@@ -24,12 +24,12 @@ The header has a row of mode buttons. Each switches the panel body to a differen
 
 ## :material-ghost: Settings Mode
 
-*Reference State controls.*
+*Rest State controls.*
 
 | Control | Description |
 |---------|-------------|
-| **Reference Action** picker | Selects which Action stores the rest baseline. The **+** button creates a new one on the fly. |
-| **Auto-Mirror Keyframes** toggle | When on, the addon mirrors unkeyed values into the Reference Action whenever you keyframe a property. |
+| **Rest Action** picker | Selects which Action stores the rest baseline. The **+** button creates a new one on the fly. |
+| **Auto-Mirror Keyframes** toggle | When on, the addon mirrors unkeyed values into the Rest Action whenever you keyframe a property. |
 
 See [Rest State](rest_state.md) for the full feature description.
 

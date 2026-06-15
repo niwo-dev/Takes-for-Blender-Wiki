@@ -30,7 +30,7 @@ Takes for Blender provides a deep toolset for managing complex product visualiza
 |---------|-------------|
 | [**Render Presets**](render_presets.md) | JSON-based presets for render, output, view layer, color, camera, world, material, bookmarks. |
 | [**Batch Render**](batch_render.md) | Foreground & background multi-View Layer rendering with queue management. |
-| [**Rest State**](rest_state.md) | Auto-mirroring reference action for preserving default keyframes. |
+| [**Rest State**](rest_state.md) | Auto-mirroring rest action for preserving default keyframes. |
 | [**View Layer Preview**](vl_preview.md) | Inline rendered thumbnails next to each View Layer. |
 
 ## :material-shape-plus: Extras

@@ -31,7 +31,7 @@ Processes are grouped into 6 feature buckets. Each bucket has a master toggle an
 |-------|--------|
 | **Core** | View Layer Switch, Cascade overrides, Lock System, Slot Processing. |
 | **UI Sync** | Tree drawing, list syncing, panel redraws. |
-| **Reference State** | Auto-mirror, snap-back, rest cache. |
+| **Rest State** | Auto-mirror, snap-back, rest cache. |
 | **Variant Switch** | Material swap, pool resolution. |
 | **Batch Render** | Modal foreground / background subprocess monitoring. |
 | **Render Presets** | Cascade resolution, dirty-state checks, sync. |

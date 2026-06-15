@@ -17,7 +17,7 @@ Every confirmation dialog can be disabled. All default to **on**. Categorised:
 | Globals | Delete Tag, Delete Tag/Variant Group, Delete Variant, Delete Bookmark. |
 | Batch Render | Start Batch Render, Overwrite Existing Files. |
 | System | Orphan Cleanup, Override Persistence, Shortcut Override. |
-| Data Integrity | Reference State Protection, Locked Take Protection, Pinned Object Protection, Shared Resource Safety. |
+| Data Integrity | Rest State Protection, Locked Take Protection, Pinned Object Protection, Shared Resource Safety. |
 
 ## :material-format-list-bulleted-square: Lists
 
@@ -41,7 +41,7 @@ All default to **on**.
 
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
-| **Default Tree Icons** (9) | bool | On | Per-icon visibility — Reference State, Tag, Render, Variant, Action, Compositor, World, Camera, Automation Rule. |
+| **Default Tree Icons** (9) | bool | On | Per-icon visibility — Rest State, Tag, Render, Variant, Action, Compositor, World, Camera, Automation Rule. |
 | **Default Tree Pin Icons** (8) | bool | Off | Per-icon pin-toggle visibility for the same set. |
 | **Collapse Mode** | enum | DYNAMIC | When the cascade-icon overflow `⋯` appears: DYNAMIC (auto by panel width) or ALWAYS. |
 | **Collapse Width** | int | 600 | Pixel threshold for DYNAMIC collapse. Range 200–800. |

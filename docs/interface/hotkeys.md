@@ -138,8 +138,8 @@ Rename dialogs use Blender's standard text-entry behavior:
 
 | Shortcut | What it does | Why it matters |
 |----------|--------------|----------------|
-| ++i++ | Insert keyframe (Blender native) | Triggers Reference State auto-mirror so the unkeyed value is preserved. |
-| ++alt+i++ | Delete keyframe (Blender native) | The deleted property snaps back to its Reference value automatically. |
+| ++i++ | Insert keyframe (Blender native) | Triggers Rest State auto-mirror so the unkeyed value is preserved. |
+| ++alt+i++ | Delete keyframe (Blender native) | The deleted property snaps back to its Rest value automatically. |
 | ++n++ | Toggle 3D Viewport sidebar (Blender native) | Shows / hides the **Takes** tab. |
 
 !!! note "Customizing Hotkeys"
