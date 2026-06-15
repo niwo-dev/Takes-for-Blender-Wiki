@@ -109,6 +109,7 @@ nav:
     - Data: preferences/data.md
     - Debug: preferences/debug.md
     - Advanced: preferences/advanced.md
+  - Roadmap: roadmap/index.md
   - FAQ: faq.md
 
 markdown_extensions:
