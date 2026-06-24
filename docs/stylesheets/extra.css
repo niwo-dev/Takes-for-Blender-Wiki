@@ -82,6 +82,26 @@ kbd {
 .roadmap-board .sz-m svg { fill: var(--tks-accent-light); }     /* Medium */
 .roadmap-board .sz-l svg { fill: #e53935; }                     /* Large  */
 
+/* Feature-page Phases — distinguish informational (non-task) bullets from the
+   `- [ ]` checklist. Plain items lose their disc and get an ⓘ info marker;
+   checklist items keep their (green-when-done) checkboxes. */
+.phases li:not(.task-list-item) {
+  list-style: none;
+}
+.phases li:not(.task-list-item)::marker { content: ""; }
+.phases li:not(.task-list-item)::before {
+  content: "\24D8";                 /* ⓘ circled small i */
+  color: var(--tks-accent);
+  font-weight: 700;
+  margin-right: 0.45em;
+  margin-left: -1.2em;              /* hang the marker into the indent */
+}
+[data-md-color-scheme="slate"] .phases li:not(.task-list-item)::before {
+  color: var(--tks-accent-light);
+}
+/* Breathing room between an info line and an adjacent checklist */
+.phases > ul > li { margin-top: 0.35em; }
+
 /* Modern Typography for all Headers */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
