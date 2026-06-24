@@ -3,6 +3,7 @@ site/
 
 # Generated at deploy time from the addon source — never committed
 docs/_data/ui_manifest.json
+docs/roadmap/
 
 # Python bytecode
 __pycache__/

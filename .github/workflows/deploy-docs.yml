@@ -52,6 +52,13 @@ jobs:
           echo "manifest counts:"
           python -c "import json; m=json.load(open('docs/_data/ui_manifest.json')); print(m['_meta']['counts'])"
 
+      - name: Generate roadmap board from addon source
+        run: |
+          python .addon-src/dev/scripts/build_wiki_roadmap.py \
+            --addon-root .addon-src \
+            --wiki .
+          echo "roadmap pages:"; ls docs/roadmap
+
       - name: Verify wiki against manifest (string drift)
         run: |
           python .addon-src/dev/build/verify_wiki.py \
