@@ -55,6 +55,7 @@ theme:
     - search.highlight
     - content.code.copy
     - content.tabs.link
+    - content.tooltips
     - toc.follow
   icon:
     repo: fontawesome/brands/github

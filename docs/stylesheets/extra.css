@@ -58,6 +58,27 @@ kbd {
   padding: 0.5em 0.8em;
 }
 
+/* Roadmap board — keep the table within the content width (no horizontal
+   clipping), wrap long text, and render Theme/Area/Size/Link as compact,
+   centered icon columns with hover tooltips. Scoped via the .roadmap-board
+   wrapper so other wiki tables are untouched. */
+.roadmap-board table { width: 100%; table-layout: fixed; }
+.roadmap-board td,
+.roadmap-board th { word-break: break-word; overflow-wrap: anywhere; }
+.roadmap-board th:nth-child(1),
+.roadmap-board td:nth-child(1) { width: 11em; }            /* Feature */
+.roadmap-board th:nth-child(2), .roadmap-board td:nth-child(2),   /* Theme */
+.roadmap-board th:nth-child(3), .roadmap-board td:nth-child(3),   /* Area  */
+.roadmap-board th:nth-child(4), .roadmap-board td:nth-child(4),   /* Size  */
+.roadmap-board th:nth-child(6), .roadmap-board td:nth-child(6) {  /* Link  */
+  width: 3.4em;
+  text-align: center;
+}
+/* col 5 (What it does) absorbs the remaining width */
+.roadmap-board .sz-s { color: #4caf50; }
+.roadmap-board .sz-m { color: var(--tks-accent-light); }
+.roadmap-board .sz-l { color: #e53935; }
+
 /* Modern Typography for all Headers */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
