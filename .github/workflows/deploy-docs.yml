@@ -63,9 +63,17 @@ jobs:
         run: |
           mkdir -p docs/changelog
           cp .addon-src/CHANGELOG.md docs/changelog/index.md
-          # Dev changelog: rewrite its sibling link so MkDocs --strict resolves it
-          # (CHANGELOG.md -> the user changelog page at changelog/index.md == ./).
-          sed 's|](CHANGELOG.md)|](./)|g' .addon-src/CHANGELOG_DEV.md > docs/changelog/dev.md
+          # Dev changelog: adapt two GitHub-only link forms so mkdocs --strict
+          # (which aborts on any unresolved link) passes on the mirrored page:
+          #   1. the intro's [CHANGELOG.md](CHANGELOG.md) sibling link -> the
+          #      user changelog page (index.md, same dir);
+          #   2. any [text](path/to/source.py#L..) link -> inline `code`, since
+          #      source files aren't wiki docs. The dev log uses backticks for
+          #      file refs, so (2) is a belt-and-suspenders guard.
+          sed -E \
+            -e 's#\[CHANGELOG\.md\]\(CHANGELOG\.md\)#[CHANGELOG.md](index.md)#g' \
+            -e 's#\[([^][]*)\]\([^)]*\.py[^)]*\)#`\1`#g' \
+            .addon-src/CHANGELOG_DEV.md > docs/changelog/dev.md
           echo "changelog pages:"; ls docs/changelog
 
       - name: Verify wiki against manifest (string drift)
