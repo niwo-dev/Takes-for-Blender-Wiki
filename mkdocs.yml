@@ -112,6 +112,7 @@ nav:
     - Debug: preferences/debug.md
     - Advanced: preferences/advanced.md
   - What's New:
+    - whats_new.md
     - Changelog: changelog/index.md
     - Changelog (Dev): changelog/dev.md
     - Roadmap: roadmap/index.md
@@ -143,6 +144,9 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
+      # Left-nav (toc.integrate) shows only top-level headings — e.g. the
+      # changelog lists versions (##), not each Added/Changed/Fixed (###).
+      toc_depth: 2
 
 extra_css:
   - stylesheets/extra.css
