@@ -112,7 +112,7 @@ nav:
     - Debug: preferences/debug.md
     - Advanced: preferences/advanced.md
   - What's New:
-    - whats_new.md
+    - whats_new/index.md
     - Changelog: changelog/index.md
     - Changelog (Dev): changelog/dev.md
     - Roadmap: roadmap/index.md

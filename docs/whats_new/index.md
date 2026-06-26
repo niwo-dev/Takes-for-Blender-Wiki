@@ -12,7 +12,7 @@ behind it, and what's planned next. Pick a board:
     Every release in plain language — what you can do now, what changed,
     and what got fixed.
 
-    [:octicons-arrow-right-24: Read the changelog](changelog/index.md)
+    [:octicons-arrow-right-24: Read the changelog](../changelog/index.md)
 
 -   :material-wrench:{ .lg .middle } __Changelog (Dev)__
 
@@ -21,7 +21,7 @@ behind it, and what's planned next. Pick a board:
     The same releases with full technical detail: root causes, file
     references, and design notes for maintainers.
 
-    [:octicons-arrow-right-24: Developer changelog](changelog/dev.md)
+    [:octicons-arrow-right-24: Developer changelog](../changelog/dev.md)
 
 -   :material-map:{ .lg .middle } __Roadmap__
 
@@ -29,6 +29,6 @@ behind it, and what's planned next. Pick a board:
 
     What's planned, in progress, and already shipped — the live board.
 
-    [:octicons-arrow-right-24: View the roadmap](roadmap/index.md)
+    [:octicons-arrow-right-24: View the roadmap](../roadmap/index.md)
 
 </div>
