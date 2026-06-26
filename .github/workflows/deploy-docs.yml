@@ -59,6 +59,15 @@ jobs:
             --wiki .
           echo "roadmap pages:"; ls docs/roadmap
 
+      - name: Mirror changelogs from addon source
+        run: |
+          mkdir -p docs/changelog
+          cp .addon-src/CHANGELOG.md docs/changelog/index.md
+          # Dev changelog: rewrite its sibling link so MkDocs --strict resolves it
+          # (CHANGELOG.md -> the user changelog page at changelog/index.md == ./).
+          sed 's|](CHANGELOG.md)|](./)|g' .addon-src/CHANGELOG_DEV.md > docs/changelog/dev.md
+          echo "changelog pages:"; ls docs/changelog
+
       - name: Verify wiki against manifest (string drift)
         run: |
           python .addon-src/dev/build/verify_wiki.py \

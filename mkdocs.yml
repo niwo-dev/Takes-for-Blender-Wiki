@@ -111,7 +111,10 @@ nav:
     - Data: preferences/data.md
     - Debug: preferences/debug.md
     - Advanced: preferences/advanced.md
-  - Roadmap: roadmap/index.md
+  - What's New:
+    - Changelog: changelog/index.md
+    - Changelog (Dev): changelog/dev.md
+    - Roadmap: roadmap/index.md
   - FAQ: faq.md
 
 markdown_extensions:
