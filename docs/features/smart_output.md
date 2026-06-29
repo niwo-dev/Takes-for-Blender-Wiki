@@ -146,6 +146,25 @@ The full token registry is below. Tokens written here use curly braces for reada
     Click the **Syntax Tokens** button (book icon) in the Output panel header
     for an interactive in-Blender token picker with live preview.
 
+## :material-gesture-tap-button: Build Syntax (Token Builder)
+
+Rather than typing tokens by hand, click the **Build Syntax** launcher (pencil icon, ✏️) beside any token-capable field — the Smart Output **Directory Pattern** / **File Name Pattern**, the naming-template fields in Preferences, and File Output node sockets all expose it. It opens a popover with the full token list and a live pattern preview at the top.
+
+In that preview the assembled pattern is shown as a row of **chips**, one chip per token. The chips and the pattern buttons below them drive the builder:
+
+| Chip action | Button | What it does |
+|-------------|--------|--------------|
+| **Add Token** | Click any token in the list | Appends that token to the end of the pattern in your configured bracket style. |
+| **Select Token** | Click a chip in the preview | Selects that token so it can be moved or removed; clicking the selected chip again deselects it. |
+| **Move Token** | ◀ / ▶ arrows | Shifts the selected chip one step left or right; the far arrows send it all the way to the start or end of the pattern. |
+| **Remove Token** | ✕ on a chip | Deletes the selected token from the pattern. |
+| **Clear Pattern** | Trash / backspace | Empties the whole pattern, or removes just the last token. |
+| **Reset to Default** | Reset | Restores the field's default pattern (the Smart Output prefs default, or the naming-template default for naming fields). |
+| **Copy Pattern** | Copy | Copies the assembled pattern to the clipboard. Disabled while the pattern is empty or its bracket syntax is invalid. |
+
+!!! note "Move and Remove need a selection"
+    **Move Token** and **Remove Token** stay greyed out until you first **Select Token** a chip — they only ever act on the currently selected token, never the whole pattern.
+
 ## :material-minus: Separators
 
 The separator tokens give you stable spacing without hardcoding characters:

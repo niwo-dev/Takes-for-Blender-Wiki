@@ -38,6 +38,8 @@ Tags are the addon's universal labelling system. They serve two purposes:
 - **Multiselect** (☐) toggle to bulk-edit.
 - **Stats row** showing the tag count per category, e.g. `3/5 Output | 2/2 Camera`.
 
+Each category header carries a **chevron** that runs **Toggle Expand** (`tks.tagtree_toggle_expand`) to fold or unfold that category in the tree. ++shift++-click the chevron to expand or collapse **every** category at once — handy for quickly tidying a long tag list down to just the headers, or opening everything back up.
+
 ## :material-plus-circle: Creating Tags
 
 1. Pick a category in the tree.
@@ -53,6 +55,14 @@ Tags are the addon's universal labelling system. They serve two purposes:
 | Variant State | The `Variant` tag selector on the State row. |
 | Object / collection | Custom tags via the per-object UI. |
 | Cascade Rule (auto presets) | Select a tag in *Globals > Rules* mode (see [Rules](rules.md)). |
+
+### :material-arrow-expand-all: Push Tag to Selected
+
+To stamp one tag onto many rows at once, turn on the **Multiselect** (☐) toggle, select the Scenes or View Layers you want, then use **Push Tag to Selected** (`tks.batch_set_tag`). It writes the chosen tag to every selected item in the active list and reports how many it updated. Pushing an empty tag clears the assignment across the selection, so it doubles as a bulk *un-tag*.
+
+### :material-link-off: Unlinking a Rule's Preset
+
+When a tag drives an automation rule (Output / Camera / Studio / Material), each preset field on the rule shows an **X** button once a preset is assigned. Clicking it runs **Unlink Preset** (`tks.unlink_tag_preset`), which clears just that one field on the tag — leaving the tag itself and its other preset slots intact.
 
 ## :material-folder-cog: Smart Output
 

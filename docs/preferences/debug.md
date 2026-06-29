@@ -32,6 +32,20 @@ Nine collapsible topic groups, each with a master toggle and per-subtopic toggle
 | **PRESET** | Cascade, Cascade Sync, Clear Rule, Resolve, Rule Changed, Rule Switch, Tier Write |
 | **TAGS** | Group Processing, Move Operations, Tree Sync |
 
+## :material-text-box-search: Debug-Log Monitor
+
+Once **Enable Debug Logging** is on, a live log monitor is available in the add-on's navigation panel. It reads the log file back into a scrollable list so you can watch events without leaving Blender or opening the file by hand. Two toolbar buttons drive it:
+
+| Button | Operator | What it does |
+|--------|----------|--------------|
+| **Refresh Log** | `tks.dm_refresh` | Re-reads the current log file and reloads the latest entries (capped by the *Show Lines* limit). ++alt++ + click toggles **auto-refresh**, which polls the file on the configured interval. A plain click does nothing while auto-refresh is already on. |
+| **Log Files** | `tks.dm_log_files` | Opens a dropdown to pick which log file the monitor displays. ++shift++ + click instead opens the log folder in your system file browser. |
+
+!!! note "Logging must be enabled first"
+    **Refresh Log** reports *"Enable debug logging first"* and turns auto-refresh
+    off if the master switch is disabled — there is nothing to read until logging
+    is on.
+
 ## :material-keyboard: Hotkeys
 
 Modifier-clicks on group toggles:
@@ -40,3 +54,10 @@ Modifier-clicks on group toggles:
 |----------|--------|
 | ++shift++ + click | Enable all subtopics in the group. |
 | ++alt++ + click | Invert subtopic selection. |
+
+Debug-log monitor buttons:
+
+| Shortcut | Action |
+|----------|--------|
+| ++alt++ + click on **Refresh Log** | Toggle auto-refresh on/off. |
+| ++shift++ + click on **Log Files** | Open the log folder in the system file browser. |

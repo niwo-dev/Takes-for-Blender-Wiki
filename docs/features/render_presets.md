@@ -74,6 +74,18 @@ Presets live in one of four storage tiers, configurable per type in *Preferences
 
 `Lock Shared Folder` (default **on**) prevents the addon from overwriting team presets — toggle in *Preferences > Data > Storage*.
 
+### :material-folder-open: Opening a Tier Folder
+
+To inspect, back up, or hand-edit the raw JSON, jump straight to a tier's folder in your OS file explorer:
+
+| Button | Operator | Opens |
+|--------|----------|-------|
+| **Open Addon Folder** | `tks.open_addon_presets_folder` | The bundled **Addon** presets directory (the read-only defaults). |
+| **Open Project Folder** | `tks.open_project_presets_folder` | The **Project** presets directory that lives next to the current `.blend`. |
+
+!!! note "Save first for the Project folder"
+    **Open Project Folder** is only available once the `.blend` is saved — the Project tier is resolved relative to the file on disk, so an unsaved file has no project folder yet.
+
 ## :material-stethoscope: Preset Health
 
 When the addon detects stale or missing preset references — a JSON file that no longer exists, a stored key that points nowhere — a **broken-link badge** (UNLINKED icon) appears in the Navigation panel's warning row. Click the badge to expand the warning sub-panel; it lists every missing preset with its tier (View Layer, Scene, Global, Scene Group, View Layer Group, or Rule Tag) and file path so you can re-import or re-create them.
@@ -89,6 +101,18 @@ Old presets sometimes contain keys for properties the addon no longer reads — 
 - Removing keys is undoable. Save the preset afterward to make the cleanup persistent.
 
 This is mostly a maintenance hatch; you'll rarely need it unless you're cleaning up a long-lived addon-managed preset library.
+
+## :material-wrench-clock: Clean Up Incompatible Presets
+
+A preset file can become *incompatible* when it was written by a much older addon version, by a newer one, or by a different tool entirely — its schema no longer matches what the current addon reads. **Clean Up Incompatible Presets** (`tks.cleanup_incompatible_presets`) scans every tier for these files and resolves them in one pass:
+
+- Files that **can** be upgraded are **migrated** to the current format in place (re-stamped with the current schema version and preset type).
+- Files that **cannot** be upgraded are **quarantined** — moved into a `_quarantine` subfolder rather than left to break the preset list.
+
+The confirmation dialog tells you exactly how many files will be migrated versus quarantined before you commit.
+
+!!! warning "Nothing is deleted"
+    Quarantined files stay on disk inside the `_quarantine` folder, so you can always inspect or restore them by hand. If the scan finds no incompatible files, the operator reports *No incompatible presets found* and does nothing.
 
 ## :material-keyboard: Hotkeys
 

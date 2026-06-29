@@ -74,6 +74,21 @@ Click any cascade icon on a tree row to open its popover. Set a value to create 
 ### :material-tune-vertical: Via Context Properties
 The Context Properties panel shows all overrides for the active View Layer in one place.
 
+### :material-plus-box: Creating Datablocks per Tier
+
+Every Action and World popover carries a **+** button (:material-plus:) next to its picker. Clicking it creates a brand-new datablock — auto-named from the [Smart Output](smart_output.md) naming template for the tier you're on — marks it with a fake user so it survives a save/reload, and assigns it to that tier in one step. This saves you from creating a datablock in Blender's own browser and then pointing the cascade at it.
+
+| Operator | Button | Creates and assigns to |
+|----------|--------|------------------------|
+| `tks.scene_action_new` | **New Action** | A new Action on the **Scene** tier. |
+| `tks.vl_action_new` | **New Action** | A new Action on the **View Layer** tier. |
+| `tks.scene_world_new` | **New World** | A new World on the **Scene** tier. |
+| `tks.vl_world_new` | **New World** | A new World on the **View Layer** tier. |
+| `tks.rest_action_new` | **New Rest Action** | A new Action assigned as the **Rest Action** (see below). |
+
+!!! note "Rest Action"
+    The **New Rest Action** button lives on the Rest State popover, not the cascade tier itself. The Rest Action is the snapshot that *unkeyed* properties fall back to: any property without a keyframe snaps to its value in the Rest Action. Creating one here gives you an empty action to pose into as your neutral / rest baseline.
+
 ## :material-eye-outline: Visual Indicators
 
 - **Bright icon** — A value is explicitly set at this tier
@@ -83,6 +98,42 @@ The Context Properties panel shows all overrides for the active View Layer in on
 !!! tip "Cascade Debugging"
     Hover over a cascade icon to see a tooltip showing which tier the
     current value is inherited from.
+
+## :material-account-multiple-check: Managing the Cascade Action
+
+The **Action** cascade is special: it doesn't just point at a datablock, it actively pushes that action onto every managed (watched) object on the View Layer. A few operators help keep that in sync:
+
+| Action | Operator | What it does |
+|--------|----------|--------------|
+| **Re-apply Cascade Action** | `tks.reapply_cascade_action` | Forces the resolved cascade action back onto all watched objects, updates the depsgraph for an immediate viewport refresh, and clears the "action mismatch" entry from the navigation warnings. Use it after manually fiddling with an object's animation data. |
+| **Pin Action** | `tks.pin_action_override` | Locks the action *currently* active on an object into that object's own override, so the cascade will leave it alone instead of overwriting it on the next switch. Reports a warning if the object has no action to pin. |
+| **Push to Selected** | `tks.push_override_to_selected` | Copies one override value from the active Scene / View Layer to every multi-selected View Layer at once. Works for Camera, World, Action, Compositor, Output Rule, and Variant. Pushing an empty value clears that override on the targets. The button only appears while a multi-selection is active. |
+
+!!! tip "Bulk editing with Push to Selected"
+    Select several View Layers in the tree, set the value once on one of them, then use **Push to Selected** to fan it out — handy for giving a batch of shots the same camera or world without touching each row.
+
+## :material-camera-switch: Cross-Scene Camera Linking
+
+When you assign a camera at the **Global** or **Scene Group** tier, that camera has to exist in *every* scene the tier covers. If it doesn't, picking it pops up the **Camera not linked in all scenes** confirmation (`tks.link_camera_and_assign`) listing the missing scenes and offering three choices:
+
+- **Link & Assign** — link the camera into each missing scene (mirroring its current collection placement) and then assign it.
+- **Just Assign** — keep the assignment at the source tier and let the cascade silently skip scenes where it can't resolve.
+- **Cancel** — do nothing.
+
+The cascade picker also flags an incompatible camera with an error icon before you click, so you can spot the situation in advance.
+
+## :material-vector-difference: Version Variants
+
+[View Layer Versions](#override-tiers) can override which **variant** of a product is shown — this is the highest-priority tier in the [Variant Switch](variant_switch.md) cascade, so a version's choice wins over everything below it. The version's variant popover exposes two operators:
+
+| Action | Operator | What it does |
+|--------|----------|--------------|
+| **Set Version Variant** | `tks.vlv_set_variant` | Pins a specific product to a chosen variant index on this version. If the version is currently active, the variant cascade re-applies immediately. |
+| **Clear Version Variant** | `tks.vlv_clear_variant` | Removes that product's variant override from the version, letting it inherit again. Re-applies live if the version is active. |
+
+## :material-dots-horizontal-circle: Overflow Icon
+
+On narrow panels the per-row cascade icons collapse behind a single **overflow** indicator. Clicking it (`tks.overflow_icon_click`) opens the inline editor for the chosen cascade property; ++alt++ + clicking instead clears **every** assignment for that property at that tier in one go — the direct value, its selection rule, *and* its preset slot together. The status line reports how many values were cleared (or that the slot was already empty).
 
 ## :material-keyboard: Hotkeys
 

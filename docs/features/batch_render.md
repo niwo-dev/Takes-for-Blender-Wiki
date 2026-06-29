@@ -25,6 +25,9 @@ Takes for Blender supports two render modes:
     - A completion sound plays when all tasks finish.
     - While a background batch is running the button becomes an **X** so you can cancel without leaving the sidebar.
 
+    !!! note "Fast background mode"
+        The [F12 Render Pie](pie_menus.md#f12-render-pie) and the sidebar's background dropdown route through a *fast* background variant (`tks.batch_render_bg_fast`). Instead of launching one headless Blender per task, it saves the `.blend` once, writes a single queue file, and spawns **one** persistent headless process that works through every queued View Layer. That avoids the per-task startup cost, so large queues finish quicker. As with the standard background render, ++alt++-click force-renders every View Layer even if it already completed.
+
 === "Render Active View Layer"
     Renders only the **active** View Layer — useful for quick spot-checks without queueing the full batch.
 
@@ -107,6 +110,17 @@ If a batch render gets stuck:
 ## :material-export: Output
 
 Output paths are resolved via the [Smart Output](smart_output.md) token system. Each View Layer's output is named automatically based on the configured pattern.
+
+### :material-file-refresh: Detect Version From Disk
+
+When your output pattern includes a `{rev}` version token — either in a folder segment or in the file name — the Smart Output section shows a **Version** field with a refresh button (:material-file-refresh:) beside it. **Detect Version From Disk** scans the resolved output folder for files and folders that already match the versioned pattern, finds the highest number present, and sets the **Version** field to *highest + 1* so your next batch continues the sequence instead of overwriting earlier renders.
+
+- Click the refresh button next to **Version** to run the scan (operator `tks.detect_render_version`).
+- It checks both versioned folder names and versioned file names, picking the highest across both.
+- If nothing on disk matches the pattern, it leaves the value untouched and reports *No existing versions found on disk*; otherwise it reports the version it is continuing from and the highest it saw.
+
+!!! tip "When to use it"
+    Reach for this after copying a project, pulling renders from a render farm, or otherwise picking up work where the in-file version counter has drifted from what is actually on disk. It only reads the folder — it never deletes or moves existing renders.
 
 ## :material-keyboard: Hotkeys
 

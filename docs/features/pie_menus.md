@@ -66,6 +66,13 @@ Replaces Blender's native ++f12++ binding with a render-scope picker — pick **
 
 The same scope actions are also available as **Foreground** and **Background** dropdown menus next to the queue's main render buttons — see [Batch Render](batch_render.md#render-scope-dropdowns).
 
+### :material-magnify: Search Scenes
+
+The per-scene scope submenus list every scene as its own row, which gets unwieldy in a heavily populated file. Each submenu therefore opens with a **Search Scenes** entry (`tks.render_scene_search`, shown as *Search scenes…*) at the top. Picking it opens Blender's type-to-filter search popup so you can find a scene by name and render it immediately — no scrolling the full list.
+
+- It respects the popover's current **Foreground / Background** choice, so the chosen scene renders in whichever mode is active.
+- It mirrors the submenu it was opened from: the plain variant renders that scene's render-toggle-enabled View Layers, while the *force* variant renders every View Layer in the scene regardless of toggle state.
+
 ## :material-pencil: Reassigning Slots
 
 *Edit > Preferences > Add-ons > Takes for Blender > Workflow > Pie* — eight enum dropdowns per pie, laid out in a compass grid. Picking an action that already lives in another slot auto-blanks that slot so each direction stays unique. **Reset All Slots** restores the defaults for that pie.
