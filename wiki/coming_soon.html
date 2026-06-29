@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takes for Blender — Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1d23 0%, #1e2a3a 50%, #1a1d23 100%);
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+
+        /* Subtle animated gradient orbs */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: 0;
+        }
+        body::before {
+            width: 600px; height: 600px;
+            background: #265787;
+            top: -200px; right: -100px;
+            animation: float-orb 8s ease-in-out infinite alternate;
+        }
+        body::after {
+            width: 500px; height: 500px;
+            background: #e87d0d;
+            bottom: -200px; left: -100px;
+            animation: float-orb 10s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes float-orb {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, -30px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 640px;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #8899aa;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #e87d0d, #f5a623);
+            color: #1a1d23;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.4rem 1.2rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232, 125, 13, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(232, 125, 13, 0.35); }
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .feature:hover {
+            border-color: rgba(232, 125, 13, 0.3);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .feature-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #e87d0d;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-desc {
+            font-size: 0.8rem;
+            color: #7a8a9a;
+            line-height: 1.4;
+        }
+
+        .btn-wiki {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            background: #265787;
+            color: #fff;
+            border: 1px solid rgba(38, 87, 135, 0.6);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 0.5rem;
+        }
+        .btn-wiki:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(38, 87, 135, 0.4);
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 1.5rem;
+            font-size: 0.75rem;
+            color: #4a5568;
+            z-index: 1;
+        }
+
+        @media (max-width: 520px) {
+            .features { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="badge">Coming Soon</div>
+
+        <h1>Takes for Blender</h1>
+        <p class="subtitle">
+            Stage management, variant switching, and batch rendering
+            for product visualization in Blender 5.1+
+        </p>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-title">Takes Tree</div>
+                <div class="feature-desc">Unified hierarchy for scenes, view layers, and versions.</div>
+            </div>
+            <div class="feature">
+                <div class="feature-title">6-Tier Cascade</div>
+                <div class="feature-desc">Override cameras, worlds, and actions at any level.</div>
+            </div>
+            <div class="feature">
+                <div class="feature-title">Variant Switch</div>
+                <div class="feature-desc">Material swapping and product variant management.</div>
+            </div>
+            <div class="feature">
+                <div class="feature-title">Batch Render</div>
+                <div class="feature-desc">Foreground or background multi-VL rendering.</div>
+            </div>
+        </div>
+
+        <a href="wiki/" class="btn-wiki">
+            📖 Wiki
+        </a>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Nikolaj Woroschilow
+    </div>
+</body>
+</html>
