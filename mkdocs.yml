@@ -90,6 +90,7 @@ nav:
       - Rules: features/rules.md
       - Variant Switch: features/variant_switch.md
       - Smart Output: features/smart_output.md
+      - Custom Tokens: features/custom_tokens.md
     - Production:
       - Render Presets: features/render_presets.md
       - Batch Render: features/batch_render.md
@@ -99,6 +100,7 @@ nav:
       - Bookmarks: features/bookmarks.md
       - Pie Menus: features/pie_menus.md
       - Process Monitor: features/process_monitor.md
+      - Viewport Sync: features/viewport_sync.md
   - Workflows:
     - workflows/index.md
     - Animation Variants: workflows/animation_variants.md

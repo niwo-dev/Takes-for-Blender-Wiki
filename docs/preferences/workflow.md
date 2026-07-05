@@ -4,7 +4,7 @@ icon: material/cog-play
 
 # Workflow Tab
 
-*Render behaviour, automations, naming templates, pie-menu slot mapping, and the hotkey reference.*
+*Render behaviour, automations, syntax templates, the token registry, pie-menu slot mapping, and the hotkey reference.*
 
 ## :material-image-multiple: Render
 
@@ -30,16 +30,14 @@ icon: material/cog-play
 | **Auto-snap on Keyframe Clear** | bool | On | Snaps the View Layer action selection to the nearest keyframe when one is cleared. |
 | **Preset Changes** | enum | MANUAL | Policy when render/output/camera presets are edited live: **MANUAL** (warn), **DROP_REAPPLY** (discard), **ALWAYS_SYNC** (write back to preset). |
 
-## :material-form-textbox: Naming
+## :material-form-textbox: Syntax
 
-The naming sub-tab holds editable templates for every named entity the addon creates — actions, slots, takes, variants, presets. Templates use [Smart Output tokens](../features/smart_output.md).
+The Syntax sub-tab holds editable templates for every named entity the addon creates — actions, slots, takes, variants, presets. Templates use [Smart Output tokens](../features/smart_output.md); every template field carries a **Build Syntax** launcher that opens the interactive token builder. Templates are always editable — bindings are identity-based, so renaming a template can't break existing slot links.
 
 ### :material-minus: Separator
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
 | **Separator** | string (≤3 chars) | `_` | The character(s) emitted by `{sep}` everywhere. |
-| **Unlock Naming Templates** | bool | Off | Safety latch — must be on before any template is editable. Changing templates can break existing slot links. |
-| **Token Filter** | enum | ALL | Limits which tokens the picker shows: ALL / SCENE_ACTION / VL_ACTION / SLOT / TAKE / VARIANT. |
 
 ### :material-play-box-multiple: Action Templates
 | Slot | Default Template |
@@ -82,6 +80,18 @@ The naming sub-tab holds editable templates for every named entity the addon cre
 | Render / Output / File Output Preset | `{scene}{sep}Render` / `Output` / `FileOutput` |
 | View Layer / Color Mgmt Preset | `{scene}{sep}ViewLayer` / `Color` |
 | Camera / World / Material Preset | `{camera}` / `{world}` / `{material}` |
+
+## :material-code-braces: Token
+
+The token registry sub-tab — your [Custom Tokens](../features/custom_tokens.md) live here.
+
+| Area | What it holds |
+|------|---------------|
+| **Preset row** | Save / load named sets of your custom tokens across the Project / Local / Shared / Add-on storage tiers. |
+| **Custom Tokens** | Your own tokens, grouped into categories with picked icons: add via **Add › Category / Token**, edit with the pencil, rename a whole category by clicking its title, star ★ favourites, hide 👁 tokens from the grids, delete with confirmation. Each row live-previews what the token resolves to right now. |
+| **Built-in Tokens (reference)** | A read-only, categorized listing of every shipped token with its live value — the same registry documented on the [Smart Output](../features/smart_output.md) page. ★/👁 work here too. |
+
+The full feature — sources, path rules, format specs, a tutorial and a 50-token example library — is documented on the [Custom Tokens](../features/custom_tokens.md) page.
 
 ## :material-dots-circle: Pie Menu
 

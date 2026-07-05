@@ -37,7 +37,10 @@ Choose your preferred style in **Addon Preferences > Behavior Options > Syntax B
 
 ## :material-format-list-bulleted: Available Tokens
 
-The full token registry is below. Tokens written here use curly braces for readability — switch to your configured bracket style at runtime.
+The full built-in token registry is below. Tokens written here use curly braces for readability — switch to your configured bracket style at runtime.
+
+!!! tip "Make your own"
+    Anything the built-ins don't cover, you can add yourself: **[Custom Tokens](custom_tokens.md)** read live values from the Scene, View Layer, Render settings or Camera (or hold fixed text) — defined in Preferences → Workflow → Token, no scripting involved. That page includes a tutorial and a 50-token example library.
 
 ### :material-target: Context
 | Token | Resolves To |
@@ -46,7 +49,7 @@ The full token registry is below. Tokens written here use curly braces for reada
 | `{view_layer}` / `{viewlayer}` | Active View Layer name |
 | `{version}` | Active View Layer Version name |
 | `{scenegroup}` | Scene Group name |
-| `{vlgroup}` | View Layer Group name |
+| `{viewlayer_group}` | View Layer Group name (`{vlgroup}` still resolves as a legacy alias) |
 | `{group}` | Node group / parent name |
 | `{camera}` | Active camera name |
 | `{marker}` | Current timeline marker |
@@ -68,9 +71,10 @@ The full token registry is below. Tokens written here use curly braces for reada
 | `{engine}` | Render engine (`CYCLES`, `EEVEE` …) |
 | `{preset}` | Active render preset name |
 | `{samples}` | Render samples count |
-| `{res_x}` | Resolution X (resolution % applied) |
-| `{res_y}` | Resolution Y (resolution % applied) |
-| `{res_pct}` | Resolution percentage |
+| `{resolution_x}` | Resolution X (resolution % applied; `{res_x}` still resolves) |
+| `{resolution_y}` | Resolution Y (resolution % applied; `{res_y}` still resolves) |
+| `{resolution_percentage}` | Resolution percentage (`{res_pct}` still resolves) |
+| `{rev}` | Render version number, per scene or per view layer (zero-pad with `{rev:03d}`) |
 | `{frame}` | Current frame, 4-digit zero-padded |
 | `{file_format}` | Output file format (`png`, `exr` …) |
 | `{color_depth}` | Color bit depth |
@@ -108,16 +112,17 @@ The full token registry is below. Tokens written here use curly braces for reada
 | Token | Resolves To |
 |-------|-------------|
 | `{timestamp}` | `YYYYMMDD_HHMMSS` |
-| `{date}` | `YYYY-MM-DD` |
-| `{time}` | `HH-MM-SS` |
+| `{date}` | `YYYY-MM-DD` — or your own format: `{date:%Y%m%d}` → `20260705` |
+| `{time}` | `HH-MM-SS` — or your own format: `{time:%H%M}` → `1432` |
 | `{Y}` `{M}` `{D}` | Year / month / day (zero-padded) |
 | `{h}` `{m}` `{s}` | Hour / minute / second (zero-padded) |
 
 ### :material-file: File / System
 | Token | Resolves To |
 |-------|-------------|
-| `{blend}` | `.blend` filename without extension |
-| `{blend_folder}` | Folder containing the `.blend` |
+| `{blend_name}` | `.blend` filename without extension (`{blend}` still resolves) |
+| `{blend_dir}` | Folder containing the `.blend` (`{blend_folder}` still resolves) |
+| `{blend_name_lib}` / `{blend_dir_lib}` | Library-blend variants of the two above |
 | `{user}` | OS username |
 | `{hostname}` | Computer name |
 | `{workspace}` | Active workspace name |
@@ -137,7 +142,7 @@ The full token registry is below. Tokens written here use curly braces for reada
 ### :material-vector-link: Node Context (for File Output / Compositor sockets)
 | Token | Resolves To |
 |-------|-------------|
-| `{node}` | Node name |
+| `{node_name}` | Node name (`{node}` still resolves) |
 | `{label}` | Node label (or name if blank) |
 | `{input}` | Input socket name |
 | `{socket}` | Socket name |
