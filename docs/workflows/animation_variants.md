@@ -40,7 +40,7 @@ Each animation likely needs its own camera angle:
     when switching away from an animated View Layer. This happens automatically.
 
 ### :material-numeric-5-circle: 5. Render All Animations
-1. Enable multi-select in the tree sidebar.
+1. Enable multi-select in the tree sidebar — the **{{ op('tks.multiselect').bl_label }}** toggle in the tree's statistics row, which adds a checkbox to every row.
 2. Select all animation View Layers.
 3. Click the Render button.
 4. Smart Output names each output file using the View Layer name automatically.

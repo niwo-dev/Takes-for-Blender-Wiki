@@ -17,7 +17,7 @@ The header has a row of mode buttons. Each switches the panel body to a differen
 | Mode | Icon | Shows |
 |------|------|-------|
 | **Settings** | gear | Project-wide settings (Rest Action, version warning, …). |
-| **Presets** | preset | Overview of all 9 preset categories in one place. |
+| **Presets** | preset | Overview of 8 preset categories in one place. |
 | **Variants** | UV-sync | The Variant Switch tree (Products / States / Parts / Pools). See [Variant Switch](variant_switch.md). |
 | **Rules** | gear (system) | Automation rules — see [Rules](rules.md). |
 | **Tags** | colour mod | The full tag library — see [Tags](tags.md). |
@@ -44,6 +44,11 @@ A 2×4 grid showing every preset category with its current assignment, dirty ind
 | Render • Output • File Output • View Layer | Color Management • Camera • World • Material |
 
 Click any preset to open its picker. ++alt++-click on the icon to clear. See [Render Presets](render_presets.md).
+
+!!! note "Where's Bookmark?"
+    The ninth preset category, **Bookmark**, is deliberately not part of this
+    grid — it is a render-config overview, while bookmark save / revert lives
+    in the Channels view.
 
 ## :material-swap-horizontal: Variants Mode
 

@@ -38,5 +38,6 @@ Takes for Blender provides a deep toolset for managing complex product visualiza
 | Feature | Description |
 |---------|-------------|
 | [**Bookmarks**](bookmarks.md) | Quick-access pointers to animatable properties anywhere in Blender. |
-| [**Pie Menus**](pie_menus.md) | Configurable navigation pie menu (++ctrl+shift+c++). |
+| [**Pie Menus**](pie_menus.md) | Configurable pies — navigation (++ctrl+shift+c++), F12 render, keyframe and clear. |
 | [**Process Monitor**](process_monitor.md) | Runtime diagnostics — process tree, debug console, View Layer Switch profiler. |
+| [**Viewport Sync**](viewport_sync.md) | Keep snap, pivot, proportional-edit and other viewport tool settings identical across every scene. |

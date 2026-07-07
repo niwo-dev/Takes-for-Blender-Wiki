@@ -21,7 +21,7 @@ These tools, like Takes, aim to save and toggle "states" of a scene (cameras, wo
 
 ### :material-scale-balance: Takes vs. Polyviews
 - **Polyviews' Approach:** A lightweight, straightforward tool for quickly rendering different camera angles with specific worlds and collection visibilities (popular in ArchViz).
-- **Takes' Advantage:** Built for high-end studio product visualization, Takes goes far beyond simple camera switching. It safely manages multi-material variants, [timeline frame-range action overrides](features/takes.md#action-overrides), and is backed by a bulletproof safety system (the [Watchlist](interface/inspector_panel.md#the-watchlist)) that prevents dangling data-loss during complex View Layer transitions.
+- **Takes' Advantage:** Built for high-end studio product visualization, Takes goes far beyond simple camera switching. It safely manages multi-material variants, [per-tier action overrides](features/cascade.md#override-tiers), and is backed by a bulletproof safety system (the [Watchlist](interface/inspector_panel.md#watchlist-vs-channels)) that prevents dangling data-loss during complex View Layer transitions.
 
 ---
 

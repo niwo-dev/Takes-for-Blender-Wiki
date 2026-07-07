@@ -20,7 +20,7 @@ Step-by-step tutorials for real production scenarios.
 
     ---
 
-    Use Variant Switch for product colour, finish, and material options — mix Swap, Preset, and Pool modes per Part.
+    Use Variant Switch for product colour, finish, and material options — each Part draws from its own material pool, with an optional preset per entry.
 
     [:octicons-arrow-right-24: Material Variants](material_variants.md)
 

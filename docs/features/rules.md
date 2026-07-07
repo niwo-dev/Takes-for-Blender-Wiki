@@ -40,7 +40,7 @@ If [Tags](tags.md) are the labels, Rules are the *programmable* tags: each one c
 
 ## :material-link-variant: Assigning a Rule
 
-In the Context panel, every tier (Scene / View Layer / View Layer Group / Scene Group / Global) shows a **rule icon** (system gear). Click it to choose a rule from the tag library — every preset in the rule is applied to the cascade at that tier.
+In the Context panel, every tier (Scene / View Layer / View Layer Version / View Layer Group / Scene Group / Global) shows a **rule icon** (system gear). Click it to choose a rule from the tag library — every preset in the rule is applied to the cascade at that tier.
 
 Resolution follows the standard cascade rule — the most specific tier with a value wins, and the rest fall back to the parent:
 

@@ -8,22 +8,22 @@ The **Batch Render** system automates rendering across multiple View Layers, app
 
 ## :material-shape: Render Modes
 
-Takes for Blender supports two render modes:
+Takes for Blender supports three render modes:
 
 === "Foreground"
     Renders inside the current Blender session. You see the render window and progress in real-time, but Blender is locked during rendering.
 
-    - Click the **Foreground Render** button (:material-image:) in the queue sidebar to open the [scope dropdown](#render-scope-dropdowns), or trigger a default-scope batch directly.
+    - Open the [render menu](#the-render-menu) from the queue sidebar with **Foreground** mode selected — every scope row then runs **{{ op('tks.batch_render').bl_label }}**.
     - Progress shows per-View Layer with status indicators.
     - Press ++esc++ to cancel.
 
 === "Background Batch Render"
     Renders in separate headless Blender subprocesses. Blender stays fully interactive while renders run in the background.
 
-    - Click the **Background Render** button (:material-desktop-classic:) in the queue sidebar — opens the [scope dropdown](#render-scope-dropdowns).
+    - Open the [render menu](#the-render-menu) and select **Background** mode — the scope rows then dispatch the background renderer.
     - Tree view updates progressively as each View Layer completes.
     - A completion sound plays when all tasks finish.
-    - While a background batch is running the button becomes an **X** so you can cancel without leaving the sidebar.
+    - While a background batch is running the sidebar button becomes an **X** so you can cancel without leaving the sidebar.
 
     !!! note "Fast background mode"
         The [F12 Render Pie](pie_menus.md#f12-render-pie) and the sidebar's background dropdown route through a *fast* background variant (`tks.batch_render_bg_fast`). Instead of launching one headless Blender per task, it saves the `.blend` once, writes a single queue file, and spawns **one** persistent headless process that works through every queued View Layer. That avoids the per-task startup cost, so large queues finish quicker. As with the standard background render, ++alt++-click force-renders every View Layer even if it already completed.
@@ -31,25 +31,27 @@ Takes for Blender supports two render modes:
 === "Render Active View Layer"
     Renders only the **active** View Layer — useful for quick spot-checks without queueing the full batch.
 
-    - Reached from the [scope dropdown](#render-scope-dropdowns) (**Current View Layer**) or via ++ctrl++-click on a View Layer's render-toggle icon.
+    - Reached from the [render menu](#the-render-menu) (**Active Layer Only**, under *Other*) or via ++ctrl++-click on a View Layer's render-toggle icon.
     - Requires the `.blend` to be saved.
 
-### :material-menu-down: Render Scope Dropdowns
+### :material-menu-down: The Render Menu
 
-Both render buttons in the queue sidebar open a dropdown menu listing the available render scopes. Foreground and background share the same 7 scopes (single-VL is foreground-only):
+The queue sidebar carries a single render button (:material-play: in Foreground mode, :material-menu-right: in Background mode) that opens the render menu. A **Render Mode** toggle at the top switches between **Foreground** and **Background**; every scope row below dispatches in whichever mode is selected. The scopes are grouped into three categories:
 
-| Action | What it renders |
-|--------|-----------------|
-| **Current View Layer** *(foreground only)* | Just the active View Layer (`tks.render_active_vl`). |
-| **Active VLs (Scene)** | Every render-toggle-enabled VL in the current scene only. |
-| **Active VLs (All Scenes)** | Every render-toggle-enabled VL across every scene. |
-| **All VLs (Scene, Force)** | Every VL in the current scene, regardless of render-toggle. |
-| **All VLs (All Scenes, Force)** | Every VL in every scene, regardless of render-toggle. |
-| **Skip Completed** | Active VLs across all scenes, skipping ones that already finished. |
-| **Failed Only** | Re-render only VLs whose previous attempt failed or cancelled. |
-| **Preview Thumbnails** | Render the queue at preview resolution to refresh thumbnails. |
+| Category | Row | What it renders |
+|----------|-----|-----------------|
+| **Selected Takes** | **This Scene** | Every render-toggle-enabled VL in the current scene only. |
+| | **All Scenes** | Every render-toggle-enabled VL across every scene. |
+| | **Pick Scene** | Choose a specific scene (with a *Search scenes…* option) to render its enabled VLs. |
+| **All Takes** | **This Scene** | Every VL in the current scene, regardless of render-toggle. |
+| | **All Scenes** | Every VL in every scene, regardless of render-toggle. |
+| | **Pick Scene** | Choose a specific scene and force-render all of its VLs. |
+| **Other** | **Active Layer Only** | Just the active View Layer. |
+| | **Resume — Skip Done** | Enabled VLs across all scenes, skipping ones that already finished. |
+| | **Retry Failed** | Re-render only VLs whose previous attempt failed or cancelled. |
+| | **{{ op('tks.calibrate_render_times').bl_label }}** | Probe-render the queue to seed the [time estimates](#calibrate-render-times). |
 
-The same dispatcher (`tks.render_scope_dispatch`) powers the [F12 Render Pie](pie_menus.md#f12-render-pie), so anything you assign to a pie slot maps to one of the rows above.
+The same dispatcher (`tks.render_scope_dispatch`) powers the [F12 Render Pie](pie_menus.md#f12-render-pie), so anything you assign to a pie slot maps to one of the scope rows above. While a render or calibration is running, the sidebar button turns into its cancel button.
 
 ## :material-format-list-checkbox: Render Queue
 
@@ -77,14 +79,14 @@ Click the **gear icon** in the queue header to open the **Queue Columns** popove
 Click **Calibrate Render Times** in the queue toolbar to estimate per–View Layer runtime *before* you commit to a real batch. The operator:
 
 1. Spawns a headless Blender subprocess in the background — your foreground stays interactive.
-2. Probe-renders every queued View Layer at tiny resolution.
-3. Extrapolates each result to the View Layer's real render settings (resolution × samples × engine).
-4. Streams the estimates back row-by-row; each View Layer's `Estimated Render Time` column updates as its probe completes.
+2. Probe-renders each queued View Layer at **two reduced resolutions**, with every other setting left real — samples, adaptive sampling, denoising and compositing are untouched.
+3. Fits a line through the two probe timings and extrapolates along the pixel axis alone to the View Layer's full output resolution. Extrapolating only pixels is what keeps adaptive-sampling scenes honest — a pixels-times-samples model assumes the nominal sample cap is reached, which adaptive sampling rarely does.
+4. Streams the estimates back row-by-row; each View Layer's `Estimated Render Time` column updates as its probe completes. View Layers that share a scene's render settings share one probe, so calibration finishes faster on typical multi-take scenes.
 
 Re-run it any time scene changes have invalidated previous estimates (geometry rebuilt, engine swapped, samples bumped, etc.). Clicking the operator again while it's running asks for cancellation — same pattern as cancelling a background batch.
 
 !!! note "Why probe instead of measure?"
-    A full probe takes seconds per View Layer instead of minutes. The extrapolation is rough — useful for ETA / scheduling, not for hitting precise time budgets.
+    A probe takes seconds per View Layer instead of minutes, so the initial estimate is necessarily approximate — but it doesn't stay that way. The ETA corrects itself while a batch runs: once the first take finishes, the remaining time reflects how this run is actually performing. Background renders additionally show the render engine's own remaining-time prediction for the take in flight. And the queue remembers each take's recent render times together with the settings they were measured at, rescaling those estimates when resolution or samples change.
 
 ## :material-checkbox-multiple-marked-outline: What Gets Rendered
 

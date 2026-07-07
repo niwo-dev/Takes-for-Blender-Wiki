@@ -109,7 +109,7 @@ nav:
   - Preferences:
     - preferences/index.md
     - Workflow: preferences/workflow.md
-    - UI: preferences/ui.md
+    - Interface: preferences/ui.md
     - Data: preferences/data.md
     - Debug: preferences/debug.md
     - Advanced: preferences/advanced.md

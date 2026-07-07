@@ -52,7 +52,7 @@ Click the **diamond icon** on any State to instantly see that variant in the vie
 
 ### :material-alpha-b-circle: Option B: Cascade Integration
 1. Create a View Layer per variant.
-2. In each View Layer's cascade, assign the matching Variant Switch state.
+2. In each View Layer's cascade, assign the matching Variant Switch state — click the variant cascade icon on the tree row (the same UV-sync icon as the Globals *Variants* mode) to open its popover and pick the state.
 3. Batch Render all View Layers in one go.
 
 ### :material-alpha-c-circle: Option C: Combined with Camera Angles

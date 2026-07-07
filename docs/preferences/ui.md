@@ -2,7 +2,7 @@
 icon: material/view-dashboard
 ---
 
-# UI Tab
+# Interface Tab
 
 *Confirmation dialogs, list row heights, column visibility, tree appearance.*
 
@@ -18,6 +18,35 @@ Every confirmation dialog can be disabled. All default to **on**. Categorised:
 | Batch Render | Start Batch Render, Overwrite Existing Files. |
 | System | Orphan Cleanup, Override Persistence, Shortcut Override. |
 | Data Integrity | Rest State Protection, Locked Take Protection, Pinned Object Protection, Shared Resource Safety. |
+
+The *Tree* through *Batch Render* entries confirm the delete or start action
+they are named after. The **System** and **Data Integrity** ones are less
+obvious:
+
+| Confirmation | What it guards |
+|--------------|----------------|
+| **Orphan Cleanup** | Cleaning up unused add-on data. |
+| **Override Persistence** | Overriding property-persistence rules — this one also gates deleting a preference config and resetting preferences to defaults. |
+| **Shortcut Override** | Resetting the add-on's global hotkeys back to their defaults. |
+| **Rest State Protection** | Edits to properties guarded by the Rest State (frame 0). |
+| **Locked Take Protection** | Changes to View Layers you have explicitly locked. |
+| **Pinned Object Protection** | Changes to objects pinned to a specific Rest State. |
+| **Shared Resource Safety** | Edits to shared render presets and other library resources. |
+
+### :material-information-outline: Info Boxes
+
+The same sub-tab ends with two switches for the explanatory boxes drawn
+throughout the add-on:
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| **Show Tip Boxes** | On | The tip / info boxes that explain a workflow where you meet it. Turn off to declutter once you know the ropes — warnings still appear when there's an actual problem. |
+| **Show Warning Details** | On | The explanation paragraphs *inside* warning panels (what a problem means and why it matters). The warning headline and its fix buttons always stay. |
+
+You don't have to come here to switch them off: every tip or warning box
+carries a **✕** (`tks.dismiss_info_boxes`) that — after a quick confirmation —
+hides that whole category everywhere at once. These two switches are where you
+bring the boxes back.
 
 ## :material-format-list-bulleted-square: Lists
 

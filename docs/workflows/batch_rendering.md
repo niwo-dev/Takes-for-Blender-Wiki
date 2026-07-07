@@ -17,13 +17,13 @@ This workflow covers setting up and running a full batch render across multiple 
 ### :material-numeric-1-circle: 1. Define Output Pattern
 1. Go to **Properties > Output**.
 2. Enable **Smart Output**.
-3. Set the Directory Pattern:
+3. Set the Directory:
 
     ```
     //renders/[scene]/[view_layer]/
     ```
 
-4. Set the File Name Pattern:
+4. Set the File Name:
 
     ```
     [view_layer]_[camera]_####.[file_format]
@@ -61,6 +61,8 @@ The render queue sidebar shows:
 - Status indicator (Pending, Rendering, Saving, Done, Failed, Cancelled)
 - Failed items show a tooltip with the error reason
 
+The queue's time estimates self-correct while a batch runs — once the first take finishes, the remaining time reflects how this run is actually performing — and **{{ op('tks.calibrate_render_times').bl_label }}** learns per-take render times ahead of a run.
+
 ## :material-file-tree: Output Structure
 
 With the patterns above, your output folder looks like:
@@ -81,12 +83,14 @@ renders/
 ## :material-lightbulb-on: Tips
 
 !!! tip "Completion Sound"
-    Set a notification sound in **Preferences > Features** to be alerted
-    when background renders finish. Supports system beeps and custom `.wav` files.
+    Set a notification sound in **Preferences > Workflow > Render** to be alerted
+    when background renders finish. Comes with bundled sounds, or point the
+    Sound Folder at your own `.wav` files.
 
 !!! tip "Preview Before Render"
-    Use ++alt++-click on the render icon next to any View Layer to preview
-    its last rendered output without re-rendering.
+    Use ++alt++-click on the render toggle at the far right of a View Layer's
+    row in the Takes Tree (the camera icon that enables or disables the layer
+    for rendering) to preview its last rendered output without re-rendering.
 
 !!! warning "Save First"
     Background renders require the `.blend` file to be saved.

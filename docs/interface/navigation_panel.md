@@ -16,14 +16,14 @@ The header has two rows. The top row carries shared toggles, warning indicators,
 
 | Control | Description |
 |---------|-------------|
-| **Autokey** | Toggles Blender's auto-keying across all scenes simultaneously. |
+| **Autokey** | Toggles Blender's auto-keying across all scenes simultaneously (`tks.toggle_autokey`). |
 | **Timeline Sync** | Keeps the playhead in sync across scenes. |
 
 **Top row — right side:**
 
 | Control | Description |
 |---------|-------------|
-| **Warning indicators** | Conditional badges that appear when an issue is detected — preset dirty, missing preset, rest drift, slot mismatch, pending preview rename, cascade drift. Each one toggles its own warning sub-panel below the header. |
+| **Warning indicators** | Conditional badges that appear when an issue is detected — preset dirty, missing preset, rest drift, slot mismatch, pending preview rename, cascade drift, view-layer preload. Each one toggles its own warning sub-panel below the header. |
 | **Save** | Appears in red when there are unsaved preference changes; click to save. |
 | **Help** | Opens the documentation (this wiki). |
 | **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). |
@@ -39,7 +39,7 @@ Clicking a tab is **exclusive** — it shows that panel and hides the others.
 |-----|-------|
 | **{{ panel('TKS_PT_Globals').bl_label }}** (world icon, no text label) | Project-wide settings, presets, rules, tags, Variant Switch — see [Globals Panel](../features/globals.md). |
 | **{{ panel('TKS_PT_Context').bl_label }}** | The Takes Tree and per–View Layer cascade. |
-| **{{ panel('TKS_PT_Inspector').bl_label }}** | Watchlist of managed/pinned objects, actions, slots, channels. |
+| **{{ panel('TKS_PT_Inspector').bl_label }}** | Watchlist of managed/pinned objects with their actions and slots, plus the Channels view — a property-centric keyframing mode listing every animatable property of the active object (see [Channels Mode](inspector_panel.md#channels-mode)). |
 | **{{ panel('TKS_PT_BatchRender').bl_label }}** | Render queue and modal/background controls. |
 
 A **link toggle** (🔗 / 🔓) sits between Context and Inspector. With it on, clicking either reveals both at once; with it off, the switcher returns to one-at-a-time mode.
@@ -74,6 +74,12 @@ Each View Layer row displays cascade override icons. These icons show at a glanc
     When the panel is narrow, cascade icons automatically collapse into an overflow
     **⋯** button. Clicking it opens a popover showing all icons in full.
 
+!!! tip "Expand / collapse in bulk"
+    The expand chevron on Scene, Group, and Version rows responds to modifiers:
+    ++shift++ + click expands or collapses **all rows of the same type** at once
+    (like Blender's Outliner), and ++ctrl++ + click toggles the row **and all its
+    nested children** (`tks.toggle_scene_expand`).
+
 ### :material-vector-line: Tree Lines
 Configurable indent lines show the hierarchy visually. Tag colors can be inherited by tree lines for quick identification.
 
@@ -103,6 +109,7 @@ The Navigation Panel header surfaces conditional warning badges whenever the add
 | Font-data | A slot rename is pending — a slot's name no longer matches its template. | Slot-mismatch list with rename actions. |
 | Image-data | One or more View Layer preview thumbnails have a pending rename after a Scene / VL rename. | Pending-preview-rename list with apply / dismiss controls. |
 | Orphan-data | Cascade resolution drifted — a stored cascade value no longer matches the resolver's current output. | Cascade-drift list with re-sync actions. |
+| File-refresh | [View Layer Preload](context_properties.md#view-layer-preload) is enabled and a preload is running, or some layers are still cold ("Not Ready"). | The per-layer preload panel — readiness state for every View Layer, per-section Preload buttons, Cancel and ETA while running. It behaves like the other warning panels (opening it closes the others) and can open **automatically** when an automatic preload starts, if you opt in via the preferences. |
 
 ## :material-keyboard: Hotkeys
 

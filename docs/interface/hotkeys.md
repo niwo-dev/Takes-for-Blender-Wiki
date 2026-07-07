@@ -14,7 +14,7 @@ Hotkeys that share a key across lists are **focus-aware** — only the visible/a
 
 | Shortcut | Action | Notes |
 |----------|--------|-------|
-| {{ keys('wm.call_menu_pie') }} | **Open Navigation Pie Menu** | 8 configurable slots — defaults: West Tree View, East Watchlist, South Slotted Mode, North Rules, NW Variants, NE Tags, SW Batch Render, SE Channels. Reassign each slot in *Preferences > Workflow > Pie Menu*. |
+| {{ keys('wm.call_menu_pie') }} | **Open Navigation Pie Menu** | 8 configurable slots — defaults: West Tree View, East Watchlist, South Slotted Mode, North Rules, NW Variants, NE Tags, SW Batch Render, SE Channels. Reassign each slot in *Preferences > Workflow > Pie & Misc*. |
 
 ---
 
@@ -28,9 +28,10 @@ Hotkeys that share a key across lists are **focus-aware** — only the visible/a
 
 | Shortcut | Action | Notes |
 |----------|--------|-------|
-| {{ keys('tks.global_delete') }} | **Delete** | Confirmation dialog by default (toggleable in *Preferences > UI > Confirmations*). In multi-select, deletes all selected items at once. |
+| {{ keys('tks.global_delete') }} | **Delete** | Confirmation dialog by default (toggleable in *Preferences > Interface > Confirmations*). In multi-select, deletes all selected items at once. |
 | {{ keys('tks.global_rename') }} | **Rename** | Opens the rename dialog. |
-| {{ keys('tks.global_new') }} | **New (smart)** | Adds a new item appropriate to the current selection. |
+| {{ keys('tks.global_new') }} | **New (smart)** | Adds a new item appropriate to the current selection — on a View Layer it creates a Version instantly. For Scene and Group rows, what it creates (or whether it asks via a menu) is configurable in *Preferences > Workflow > Pie & Misc > Add Context*. |
+| {{ keys('tks.global_new_menu') }} | **New (menu)** | The escape hatch for the row above: **always** opens the add menu so you can pick, ignoring the *Add Context* defaults (`tks.global_new_menu`, Takes Tree only). |
 | {{ keys('tks.global_add_menu') }} | **Add Menu** | Opens the full add menu. |
 | {{ keys('tks.global_group') }} | **Group** | Wraps the selection in a Scene Group, View Layer Group, or Tag Group. |
 | {{ keys('tks.global_ungroup') }} | **Ungroup** | Removes the selection from its group. |
@@ -47,7 +48,7 @@ Hotkeys that share a key across lists are **focus-aware** — only the visible/a
 |----------|--------|-------|
 | ++shift++ + click toggle | **Select All** | Selects every visible item. Respects active type filters. |
 | ++alt++ + click toggle | **Invert** | Inverts the selection. |
-| ++ctrl+i++ | **Invert** | Keyboard equivalent of Alt+Click invert. |
+| ++ctrl+i++ | **Invert** | Keyboard equivalent of Alt+Click invert (`tks.global_invert_select`). |
 | Click stat icon | **Type Filter** | Filters checkboxes to a specific type (e.g. only Scenes). Click again to clear. |
 
 ---

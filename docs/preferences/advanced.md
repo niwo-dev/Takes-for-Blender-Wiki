@@ -14,9 +14,13 @@ A handful of preferences only surface as side-effects of other operations:
 |---------|-------|---------|
 | **Smart Output Default Directory** | Used when a fresh render preset is created. | Default starting path (`//`). |
 | **Smart Output Default Filename** | Same. | Default filename pattern (`[view_layer]_####.[file_format]`). |
-| **Smart Output Bracket Style** | Same. | Default delimiter style for new presets (SQUARE / CURLY / ANGLE / PARENS / PERCENT / DOLLAR / HASH). |
 | Override flags (~25) | Internal state | Track which list-row-heights / preset-storage-tiers are user-overridden vs. master-synced. Auto-managed. |
 | Expansion flags (~50) | Internal state | Remember which collapsibles were left open. |
+
+!!! note "No longer hidden: Smart Output Bracket Style"
+    The token bracket style used to surface only when a new preset was created.
+    It is now a regular, visible preference in the *Render Output* section of
+    the [*Workflow* tab](workflow.md#render).
 
 ## :material-restore: Resetting Preferences
 

@@ -76,18 +76,34 @@ The Context Properties panel shows all overrides for the active View Layer in on
 
 ### :material-plus-box: Creating Datablocks per Tier
 
-Every Action and World popover carries a **+** button (:material-plus:) next to its picker. Clicking it creates a brand-new datablock — auto-named from the [Smart Output](smart_output.md) naming template for the tier you're on — marks it with a fake user so it survives a save/reload, and assigns it to that tier in one step. This saves you from creating a datablock in Blender's own browser and then pointing the cascade at it.
+The Action, World, Camera and Compositor popovers carry a **+** button (:material-plus:) next to their picker — from the Global tier all the way down (tier coverage varies per type, see the table). Clicking it creates a brand-new datablock — auto-named from the [Smart Output](smart_output.md) naming template for the tier you're on — marks it with a fake user so it survives a save/reload, and assigns it to that tier in one step. This saves you from creating a datablock in Blender's own browser and then pointing the cascade at it.
 
 | Operator | Button | Creates and assigns to |
 |----------|--------|------------------------|
+| `tks.global_action_new` | **{{ op('tks.global_action_new').bl_label }}** | A new Action on the **Global** tier. |
 | `tks.scene_action_new` | **New Action** | A new Action on the **Scene** tier. |
 | `tks.vl_action_new` | **New Action** | A new Action on the **View Layer** tier. |
 | `tks.scene_world_new` | **New World** | A new World on the **Scene** tier. |
 | `tks.vl_world_new` | **New World** | A new World on the **View Layer** tier. |
+| `tks.global_camera_new` | **{{ op('tks.global_camera_new').bl_label }}** | A new Camera on the **Global** tier. |
+| `tks.scene_camera_new` | **New Camera** | A new Camera on the **Scene** tier. |
+| `tks.vl_camera_new` | **New Camera** | A new Camera on the **View Layer** tier. |
+| `tks.global_compositor_new` | **{{ op('tks.global_compositor_new').bl_label }}** | A new compositor node tree on the **Global** tier. |
+| `tks.group_compositor_new` | **New Compositor** | A new compositor node tree on a **Scene Group**, **View Layer Group**, or **View Layer Version** (one shared operator serves all three group tiers). |
+| `tks.scene_compositor_new` | **New Compositor** | A new compositor node tree on the **Scene** tier. |
+| `tks.vl_compositor_new` | **New Compositor** | A new compositor node tree on the **View Layer** tier. |
 | `tks.rest_action_new` | **New Rest Action** | A new Action assigned as the **Rest Action** (see below). |
 
 !!! note "Rest Action"
     The **New Rest Action** button lives on the Rest State popover, not the cascade tier itself. The Rest Action is the snapshot that *unkeyed* properties fall back to: any property without a keyframe snaps to its value in the Rest Action. Creating one here gives you an empty action to pose into as your neutral / rest baseline.
+
+### :material-pencil: Renaming Without Breaking Anything
+
+Cascade assignments are stored by *name*, so renaming a datablock in Blender's own UI would orphan every assignment pointing at it. The popovers therefore carry a **pencil** button, **{{ op('tks.casic_rename').bl_label }}** (`tks.casic_rename`): it renames the assigned Action / World / Camera / Compositor in a small dialog *and* rewrites every cascade reference to the old name across all tiers in the same step — so the rename can never break an assignment.
+
+### :material-delete-forever: Deleting Assigned Data
+
+++ctrl+shift+alt++-clicking any cascade datablock icon (Action / World / Camera / Compositor, any tier) invokes **{{ op('tks.purge_assigned_data').bl_label }}** (`tks.purge_assigned_data`) — deliberately hidden behind a three-key chord so it can't fire by accident. Its confirmation dialog spells out the full blast radius before you commit: every cascade location the datablock is assigned in, its user count in the file, and whether fake-user protection will be overridden (cameras additionally note that only the object is deleted, its camera data stays). Confirming unassigns the datablock from every slot, then deletes it from the file.
 
 ## :material-eye-outline: Visual Indicators
 
@@ -108,6 +124,8 @@ The **Action** cascade is special: it doesn't just point at a datablock, it acti
 | **Re-apply Cascade Action** | `tks.reapply_cascade_action` | Forces the resolved cascade action back onto all watched objects, updates the depsgraph for an immediate viewport refresh, and clears the "action mismatch" entry from the navigation warnings. Use it after manually fiddling with an object's animation data. |
 | **Pin Action** | `tks.pin_action_override` | Locks the action *currently* active on an object into that object's own override, so the cascade will leave it alone instead of overwriting it on the next switch. Reports a warning if the object has no action to pin. |
 | **Push to Selected** | `tks.push_override_to_selected` | Copies one override value from the active Scene / View Layer to every multi-selected View Layer at once. Works for Camera, World, Action, Compositor, Output Rule, and Variant. Pushing an empty value clears that override on the targets. The button only appears while a multi-selection is active. |
+| **{{ op('tks.update_action_name').bl_label }}** | `tks.update_action_name` | Renames the assigned Scene- or View-Layer cascade action to match the current naming template — useful when generated action names have gone stale after renaming a scene or View Layer. No panel button; run it from Blender's operator search. |
+| **{{ op('tks.scene_action_unlink').bl_label }}** | `tks.scene_action_unlink` | Clears the current scene's Scene-tier action assignment (the action datablock itself stays in the file). Also operator-search only — the popover's ++alt++-click clear is the everyday route. |
 
 !!! tip "Bulk editing with Push to Selected"
     Select several View Layers in the tree, set the value once on one of them, then use **Push to Selected** to fan it out — handy for giving a batch of shots the same camera or world without touching each row.
@@ -131,6 +149,31 @@ The cascade picker also flags an incompatible camera with an error icon before y
 | **Set Version Variant** | `tks.vlv_set_variant` | Pins a specific product to a chosen variant index on this version. If the version is currently active, the variant cascade re-applies immediately. |
 | **Clear Version Variant** | `tks.vlv_clear_variant` | Removes that product's variant override from the version, letting it inherit again. Re-applies live if the version is active. |
 
+## :material-link-off: Broken Assignments
+
+Because cascade assignments are stored by name, an assignment **breaks** when the datablock behind it disappears — deleted, or renamed outside the addon's own [rename tool](#renaming-without-breaking-anything). The cascade can then no longer resolve that slot, and a warning sub-panel appears in the Navigation panel's warning row listing every broken reference with its data type and tier.
+
+The panel repairs as well as reports:
+
+- **X** on an entry runs **{{ op('tks.clear_broken_assignment').bl_label }}** (`tks.clear_broken_assignment`), emptying the stale reference(s) to that one datablock; a type row's **Empty all** button clears every broken reference of that data type at once.
+- The **magnifier** button runs **{{ op('tks.replace_broken_assignment').bl_label }}** (`tks.replace_broken_assignment`), which reopens that exact tier's cascade popover so you can point the slot at a replacement instead of clearing it.
+- **Clear All** at the top runs **{{ op('tks.clear_all_broken_assignments').bl_label }}** (`tks.clear_all_broken_assignments`), emptying every broken cascade assignment in the file in one click.
+
+Clearing only empties the stored reference — nothing is deleted — and the warning disappears as soon as every assignment resolves again.
+
+## :material-compare-horizontal: Cascade & Preset Drift
+
+**Drift** is the opposite failure mode: the assignment is fine, but the *live* value no longer matches it — you changed the world or compositor through Blender's native UI instead of the cascade, or edited settings governed by one of the tier-cascaded preset slots (Render, Output, File Output, View Layer, Color Management, World, Camera). The addon compares the scene's current state against what the cascade last applied and lists each mismatch in a Navigation warning, with a ✓ / ↩ pair per entry:
+
+| Button | Operator | What it does |
+|--------|----------|--------------|
+| ✓ on a World / Compositor row | **{{ op('tks.accept_cascade_drift').bl_label }}** (`tks.accept_cascade_drift`) | Adopts your manual pick — writes it into the active View Layer's assignment, so the cascade owns the new value from now on. |
+| ↩ on a World / Compositor row | **{{ op('tks.revert_cascade_drift').bl_label }}** (`tks.revert_cascade_drift`) | Discards the manual change and re-applies the cascade-resolved value. |
+| ✓ on a preset row | **{{ op('tks.accept_preset_drift').bl_label }}** (`tks.accept_preset_drift`) | Pushes the drifted preset assignment onto the active View Layer's cascade tier. |
+| ↩ on a preset row | **{{ op('tks.revert_preset_drift').bl_label }}** (`tks.revert_preset_drift`) | Restores the cascade-assigned preset. |
+
+The rule of thumb: **Accept** when the change was intentional and should stick to this shot; **Revert** when it was an accidental edit in the wrong panel. (Don't confuse this with the preset *dirty state* — drift is about which datablock or preset is assigned, dirty state is about edited values inside an assigned preset; see [Render Presets](render_presets.md#dirty-state).)
+
 ## :material-dots-horizontal-circle: Overflow Icon
 
 On narrow panels the per-row cascade icons collapse behind a single **overflow** indicator. Clicking it (`tks.overflow_icon_click`) opens the inline editor for the chosen cascade property; ++alt++ + clicking instead clears **every** assignment for that property at that tier in one go — the direct value, its selection rule, *and* its preset slot together. The status line reports how many values were cleared (or that the slot was already empty).
@@ -145,6 +188,7 @@ Cascade icons on tree rows and in the Context panel respond to modifier-clicks:
 | ++alt++ + click | Clear the override at this tier (revert to inherited value). |
 | ++shift++ + click | Toggle the same property across **all items of the same type** in the active scene. |
 | ++ctrl+shift++ + click | Toggle the same property **globally** across every scene and group. |
+| ++ctrl+shift+alt++ + click | **Delete** the assigned datablock from the file, after a blast-radius confirmation — see [Deleting Assigned Data](#deleting-assigned-data). |
 
 Datablock pickers (Camera, World, Compositor, Action) follow the same convention — ++alt++ + click clears the assignment.
 

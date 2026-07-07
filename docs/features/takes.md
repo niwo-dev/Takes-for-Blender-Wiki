@@ -64,9 +64,10 @@ When the Takes Tree is focused (mouse over the N-panel sidebar):
 | ++del++ / ++x++ | Delete (with confirmation) |
 | ++ctrl+g++ | Group the selection (Scene Group / View Layer Group) |
 | ++alt+g++ | Ungroup |
-| ++ctrl+t++ | Retarget (move under another parent) |
+| ++ctrl+t++ | Retarget — move the selected item under a different parent: a View Layer to another View Layer Group, a Scene to another Scene Group, or merge one group into another. Use it to reorganise the tree without deleting and recreating anything. |
 | ++shift+d++ | Duplicate (full copy) |
 | ++alt+d++ | Duplicate (linked) |
 | ++ctrl+i++ | Invert multi-selection |
+| ++shift++ + click a chevron | Expand / collapse every item of that type at once (++ctrl+shift++ + click folds the whole tree; a plain click still toggles just the one group) |
 
 A complete hotkey reference is on the [Keyboard Shortcuts](../interface/hotkeys.md) page.

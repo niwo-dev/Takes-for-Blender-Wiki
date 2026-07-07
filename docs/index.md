@@ -60,7 +60,7 @@ hide:
 | :material-dots-circle: **Pie Menu** | Configurable navigation pie menu (++ctrl+shift+c++). |
 
 !!! tip "Blender Version"
-    Takes for Blender requires **Blender 5.1** or newer. It uses the Slotted Action system introduced in Blender 5.0.
+    Takes for Blender requires **Blender 5.0** or newer and builds on Blender's Slotted Action system. A few newer conveniences need 5.1+.
 
 ??? info "Need another language?"
     The wiki is published in English. Modern browsers can translate the whole page on the fly, free, with no extension to install:
