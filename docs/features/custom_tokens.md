@@ -71,10 +71,11 @@ A spec that doesn't fit the value is ignored rather than breaking the path.
 
 ## :material-folder-cog: Managing your tokens
 
-- **Categories are labels** — a category exists as long as one token carries it. Click a **category title** to rename the whole group inline (invalid names simply snap back); the **pencil** on the category row renames it with error messages and picks its icon; a token's own Category field in the edit dialog moves *just that token*.
-- **Icon browser** — click a category's icon to browse the full icon library, grouped and searchable.
-- **★ / 👁** — star favourites and hide tokens; the Build Syntax grid can filter to favourites and built-in/custom views.
-- **Deleting** asks for confirmation, like every other delete in the addon. The toggle lives in Preferences → Interface → Confirmations → Globals → *Delete Custom Token*.
+- **Editing** — the **pencil** on a token row ({{ op('tks.custom_token_edit').bl_label }}) opens the edit dialog with live validation and a *Now:* preview of what the token resolves to in the current scene.
+- **Categories are labels** — a category exists as long as one token carries it. Click a **category title** to rename the whole group inline (invalid names simply snap back); the **pencil** on the category row ({{ op('tks.custom_token_edit_category').bl_label }}) renames it with error messages and picks its icon; a token's own Category field in the edit dialog moves *just that token*. Category headers expand and collapse on click ({{ op('tks.custom_token_toggle_category').bl_label }}).
+- **Icon browser** — click a category's icon to browse the full icon library, grouped and searchable; picking a cell applies it ({{ op('tks.custom_token_set_category_icon').bl_label }}).
+- **★ / 👁** — star favourites ({{ op('tks.custom_token_toggle_favorite').bl_label }}) and hide tokens ({{ op('tks.custom_token_toggle_hidden').bl_label }}); the Build Syntax grid can filter to favourites and built-in/custom views.
+- **Deleting** — the row's **✕** ({{ op('tks.custom_token_remove').bl_label }}) asks for confirmation, like every other delete in the addon. The toggle lives in Preferences → Interface → Confirmations → Globals → *Delete Custom Token*.
 - **⚠ rows** — a stored token whose name clashes with a built-in (possible via presets from older versions) shows a warning instead of a misleading preview; built-ins always win a name clash.
 
 ## :material-content-save: Token Presets

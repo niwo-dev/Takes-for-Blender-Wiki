@@ -95,6 +95,7 @@ nav:
       - Render Presets: features/render_presets.md
       - Batch Render: features/batch_render.md
       - Rest State: features/rest_state.md
+      - Value Lock: features/value_lock.md
       - VL Preview: features/vl_preview.md
     - Extras:
       - Bookmarks: features/bookmarks.md

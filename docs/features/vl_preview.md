@@ -19,7 +19,7 @@ In the **Context** panel, click the **down-arrow icon (⌄)** in the side column
 |---------|------|-------------|
 | **Show Preview** | bool | Master toggle for inline thumbnails. |
 | **Size** | enum | `Small` (24 px, default), `Medium` (32 px), `Large` (40 px). |
-| **Background Colour** | colour | Canvas behind the rendered thumbnail. Baked into the PNG. |
+| **Preview Background** | colour | Canvas behind the rendered thumbnail. Baked into the PNG. |
 | **Transparent Background** | bool | Render the thumbnail with alpha instead of a solid background. |
 
 ## :material-image-sync: Rendering Previews
@@ -46,10 +46,11 @@ You can replace any auto-rendered thumbnail with a custom image — useful when 
 
 ## :material-folder: File Storage
 
-Thumbnails live in `tks_previews/` next to the `.blend` file. Filenames follow:
+Thumbnails live in `tks_previews/` next to the `.blend` file. Filenames follow
+the pattern *scene name*, two underscores, *View Layer name*:
 
 ```
-{scene_name}__{vl_name}.png
+SceneName__ViewLayerName.png
 ```
 
 Spaces and path separators in scene / View Layer names are replaced with underscores so the files are filesystem-safe. The directory is created on first render.

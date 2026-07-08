@@ -31,6 +31,7 @@ graph LR
 | **Auto-mirror keyframes** | *Globals > Settings > Rest State*. | Mirrors unkeyed property values into the Rest Action automatically. Persists as an addon preference (*Auto-mirror Keyframes to Rest* under *Preferences > Workflow > Automations > Rest State*). |
 | **Rest Action picker** | *Globals > Settings > Rest State > Rest Action*. | Selects which Action stores the rest baseline. The **+** button creates a fresh one. |
 | **{{ op('tks.set_rest_default').bl_label }}** | Property right-click menu → *{{ op('tks.set_rest_default').bl_label }}*. | Records the property's current value as its rest baseline — a keyframe at frame 0 in the Rest Action. Also appended to Blender's *Insert Keyframe* menu as **Keyframe to Rest**. |
+| **{{ op('tks.rest_mode_toggle').bl_label }}** | Navigation header, next to the [Value Lock](value_lock.md) button. | **Rest State Mode:** every View Layer temporarily shows the rest baseline — compare it against your work or adjust the baseline in place, then click again to return. Tree assignments and renders always keep the real actions, and autokey pauses while the mode is on. Turning it on releases an active Value Lock (and vice versa) — the two take turns. |
 
 ## :material-dock-window: The Rest State Panel
 

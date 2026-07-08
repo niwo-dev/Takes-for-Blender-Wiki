@@ -46,6 +46,20 @@ Once **Enable Debug Logging** is on, a live log monitor is available in the add-
     off if the master switch is disabled — there is nothing to read until logging
     is on.
 
+## :material-undo-variant: Undo-Redo
+
+The **Undo-Redo** sub-tab lists the add-on's undo/redo recovery strategies,
+each individually toggleable. These strategies are what keep take switching,
+the cascade, and Rest State consistent across ++ctrl+z++ — for example
+suppressing phantom *Takes Auto-Merge* steps so one gesture costs one undo.
+
+The four **Required** core strategies sit behind an unlock toggle (the same
+pattern as *Workflow → Naming → Templates*): disabling them causes known bugs
+— phantom auto-merge steps on every undo, the cascade clearing actions
+mid-undo, or rest-state snaps overwriting Blender's restored transforms — so
+they can't be switched off by accident. Leave everything on unless you are
+debugging the recovery system itself.
+
 ## :material-keyboard: Hotkeys
 
 Modifier-clicks on group toggles:

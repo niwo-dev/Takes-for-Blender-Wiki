@@ -46,6 +46,14 @@ The day-to-day handling all happens on the preset row itself:
 | **Delete** | **{{ op('tks.delete_render_preset').bl_label }}** (`tks.delete_render_preset`) removes the JSON file after a confirmation and clears the assignment if the preset was in use. Quick route: ++alt++-click the clear **X** to delete the currently selected preset. |
 | **Apply once, no assignment** | **{{ op('tks.apply_render_preset').bl_label }}** (`tks.apply_render_preset`) stamps a preset's stored values onto the current scene / View Layer / camera / world one time, without assigning anything. It has no panel button — run it from Blender's operator search when you want a one-shot apply. |
 
+### :material-dock-window: Preset panels in the Properties editor
+
+Besides the cascade rows, three collapsed standalone panels put the same preset
+row directly where the settings live in Blender's Properties editor:
+**TKS Output Presets** (Output tab), **TKS View Layer Presets** (View Layer
+tab) and **TKS File Output Presets** (Output tab) — handy while you are
+already tweaking the underlying settings.
+
 ## :material-pencil-circle: Dirty State
 
 When you modify render settings after applying a preset, a **dirty indicator** appears:
