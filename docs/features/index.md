@@ -31,6 +31,8 @@ Takes for Blender provides a deep toolset for managing complex product visualiza
 | [**Render Presets**](render_presets.md) | JSON-based presets for render, output, view layer, color, camera, world, material, bookmarks. |
 | [**Batch Render**](batch_render.md) | Foreground & background multi-View Layer rendering with queue management. |
 | [**Rest State**](rest_state.md) | Auto-mirroring rest action for preserving default keyframes. |
+| [**Value Lock**](value_lock.md) | Protects unkeyed values from accidental global changes while you work. |
+| [**Still Mode**](still_mode.md) | Pins takes to the frame-0 still frame per cascade tier — stills stay stills, turntables keep animating. |
 | [**View Layer Preview**](vl_preview.md) | Inline rendered thumbnails next to each View Layer. |
 
 ## :material-shape-plus: Extras

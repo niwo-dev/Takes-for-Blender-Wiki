@@ -12,14 +12,14 @@ Every confirmation dialog can be disabled. All default to **on**. Categorised:
 
 | Category | Settings |
 |----------|----------|
-| Tree | Delete Selected Item, Delete Scene, Delete View Layer, Delete Scene Group, Delete View Layer Group, Delete Version. |
-| Inspector | Rename Action, Remove from Watchlist, Delete Action, Delete Slot, Delete Keyframe. |
-| Globals | Delete Tag, Delete Tag/Variant Group, Delete Variant, Delete Bookmark. |
+| Context | Delete Selected Item (Tree), Delete Scene, Delete View Layer, Delete Scene Group, Delete View Layer Group, Delete Version. |
+| Inspector | Rename Action, Remove from Watchlist, Delete Action, Delete Slot, Clean Empty Slots/Actions, Delete Keyframe. |
+| Globals | Delete Tag, Delete Tag/Variant Group, Delete Variant, Delete Bookmark, Delete Custom Token. |
 | Batch Render | Start Batch Render, Overwrite Existing Files. |
 | System | Orphan Cleanup, Override Persistence, Shortcut Override. |
 | Data Integrity | Rest State Protection, Locked Take Protection, Pinned Object Protection, Shared Resource Safety. |
 
-The *Tree* through *Batch Render* entries confirm the delete or start action
+The *Context* through *Batch Render* entries confirm the delete or start action
 they are named after. The **System** and **Data Integrity** ones are less
 obvious:
 

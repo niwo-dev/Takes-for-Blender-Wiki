@@ -40,7 +40,7 @@ For consistent quality across all View Layers:
 
 ### :material-play-circle: Foreground Mode
 1. Open the Takes Tree sidebar.
-2. Click the **Render** button.
+2. Click the render button to open the [render menu](../features/batch_render.md#the-render-menu), make sure **Render Mode** is set to *Foreground*, then pick a scope row (e.g. *Selected Takes → This Scene*).
 3. The queue processes each View Layer in tree order:
     - Switches scene/View Layer context
     - Applies cascade overrides (camera, world, action, variants)
@@ -49,7 +49,7 @@ For consistent quality across all View Layers:
 4. Progress shows per-View Layer in the render queue list.
 
 ### :material-cog-clockwise: Background Mode
-1. Click the **Desktop** button instead.
+1. Open the same render menu, switch **Render Mode** to *Background*, then pick a scope row.
 2. Blender stays interactive while renders run in background processes.
 3. Tree view thumbnails update as each View Layer completes.
 

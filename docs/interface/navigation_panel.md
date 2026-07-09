@@ -17,7 +17,10 @@ The header has two rows. The top row carries shared toggles, warning indicators,
 | Control | Description |
 |---------|-------------|
 | **Autokey** | Toggles Blender's auto-keying across all scenes simultaneously (`tks.toggle_autokey`). |
-| **Timeline Sync** | Keeps the playhead in sync across scenes. |
+| **Value Lock** (padlock) | Protects the scene's unkeyed values while you work (`tks.value_lock_toggle`) — see [Value Lock](../features/value_lock.md). Mutually exclusive with Autokey. |
+| **Rest Mode** (ghost) | Temporarily shows every View Layer's rest baseline (`tks.rest_mode_toggle`) — see [Rest State](../features/rest_state.md). Takes turns with Value Lock. |
+| **Still Mode** (still camera) | Pins every take's timeline to its still frame (`tks.still_global_toggle`) — see [Still Mode](../features/still_mode.md). Turning it on parks Timeline Sync until you switch back. |
+| **Timeline Sync** | Keeps the playhead in sync across scenes. Grayed out while Still Mode is on — the two are mutually exclusive. |
 
 **Top row — right side:**
 
@@ -26,7 +29,7 @@ The header has two rows. The top row carries shared toggles, warning indicators,
 | **Warning indicators** | Conditional badges that appear when an issue is detected — preset dirty, missing preset, rest drift, slot mismatch, pending preview rename, cascade drift, view-layer preload. Each one toggles its own warning sub-panel below the header. |
 | **Save** | Appears in red when there are unsaved preference changes; click to save. |
 | **Help** | Opens the documentation (this wiki). |
-| **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). |
+| **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). Its sidebar carries **Restart Processes** (`tks.restart_dead_processes`) plus, in Debug Console view, a refresh button (`tks.dm_refresh`) and a log-files opener (`tks.dm_log_files`). |
 
 **Bottom row (panel switcher):**
 

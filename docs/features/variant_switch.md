@@ -27,7 +27,7 @@ In product visualization, you often need to render the same product in multiple 
 ### :material-plus-circle: Creating a Product
 1. Open the **Variant Switch** panel.
 2. Click **+** or press ++ctrl+n++ to add a Product.
-3. A default Part ("base") is created automatically with one empty pool slot.
+3. A default Part named **base part** — plus a starter State named **default** and one empty pool slot — is created automatically.
 
 ### :material-shape-plus: Adding States
 1. Select the Product.

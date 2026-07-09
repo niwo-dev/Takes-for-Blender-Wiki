@@ -140,8 +140,9 @@ The manual escape hatch is **{{ op('tks.split_duplicate_slot').bl_label }}** (`t
 Beyond the per-row pin icon, you can pin straight from your viewport selection:
 
 - **Pin Selected** (`tks.add_to_watchlist`) — pins every selected object on the **current** View Layer in one click. Pinned objects are excluded from cascade action/slot assignment and from auto-rename, so you manage their actions by hand. Objects that are already pinned are skipped.
+- **{{ op('tks.remove_from_watchlist').bl_label }}** (`tks.remove_from_watchlist`) — the reverse: unpins the selected objects and hands them back to the cascade (a confirmation guards it, toggleable under *Preferences > Interface > Confirmations*).
 
-This is the bulk counterpart to clicking the pin icon on a single row — see [Managed vs. Pinned](#managed-vs-pinned).
+These are the bulk counterparts to clicking the pin icon on a single row — see [Managed vs. Pinned](#managed-vs-pinned).
 
 ## :material-call-merge: Reconciling with the Cascade
 

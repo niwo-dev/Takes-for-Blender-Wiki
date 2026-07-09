@@ -37,11 +37,9 @@ See [Rest State](rest_state.md) for the full feature description.
 
 *Overview of all preset categories with their assignments and dirty state.*
 
-A 2×4 grid showing every preset category with its current assignment, dirty indicator, and revert button:
+A stacked list of 8 labeled preset rows — each with its current assignment, dirty indicator, and revert button:
 
-| Row 1 | Row 2 |
-|-------|-------|
-| Render • Output • File Output • View Layer | Color Management • Camera • World • Material |
+Render • Output • File Output • View Layer • Color Management • Camera • World • Material
 
 Click any preset to open its picker. ++alt++-click on the icon to clear. See [Render Presets](render_presets.md).
 

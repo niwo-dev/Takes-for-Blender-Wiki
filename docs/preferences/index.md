@@ -122,6 +122,8 @@ The [naming templates](workflow.md#syntax) on the *Workflow > Syntax* sub-tab on
 | Button | Operator | What it does |
 |--------|----------|--------------|
 | **Scan Properties** | `tks.scan_property_patterns` | Scans the current `.blend` for every unique custom-property key (on objects, bones, scenes, etc.), tags each as Blender-native or addon-added, and fills the cleanup list with counts and sample values. Use it before clearing unwanted custom properties. |
+| **{{ op('tks.cleanup_incompatible_presets').bl_label }}** | `tks.cleanup_incompatible_presets` | Quarantines render-preset files whose format doesn't match the current add-on version so they stop cluttering the preset lists — see [Render Presets](../features/render_presets.md). |
+| **{{ op('tks.open_addon_presets_folder').bl_label }}** / **{{ op('tks.open_project_presets_folder').bl_label }}** | `tks.open_addon_presets_folder` / `tks.open_project_presets_folder` | Open the add-on-wide or per-project render-preset storage folder in your system file browser (the two tiers under *Data > Storage*). |
 | **Hide these notice boxes** | `tks.dismiss_info_boxes` | The ✕ on a tip or warning info box. Hides every box of that kind throughout the add-on at once (tips, or warning-detail boxes). Re-enable them later under *Preferences → Interface → Confirmations*. |
 
 ## :material-lifebuoy: Support & Developer

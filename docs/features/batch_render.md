@@ -18,15 +18,12 @@ Takes for Blender supports three render modes:
     - Press ++esc++ to cancel.
 
 === "Background Batch Render"
-    Renders in separate headless Blender subprocesses. Blender stays fully interactive while renders run in the background.
+    Renders headlessly while Blender stays fully interactive. Selecting **Background** mode in the [render menu](#the-render-menu) dispatches `tks.batch_render_bg_fast`: the `.blend` is saved once, a single queue file is written, and **one** persistent headless Blender process works through every queued View Layer — no per-task startup cost, so large queues finish quicker. The [F12 Render Pie](pie_menus.md#f12-render-pie) background scopes route the same way.
 
-    - Open the [render menu](#the-render-menu) and select **Background** mode — the scope rows then dispatch the background renderer.
     - Tree view updates progressively as each View Layer completes.
     - A completion sound plays when all tasks finish.
     - While a background batch is running the sidebar button becomes an **X** so you can cancel without leaving the sidebar.
-
-    !!! note "Fast background mode"
-        The [F12 Render Pie](pie_menus.md#f12-render-pie) and the sidebar's background dropdown route through a *fast* background variant (`tks.batch_render_bg_fast`). Instead of launching one headless Blender per task, it saves the `.blend` once, writes a single queue file, and spawns **one** persistent headless process that works through every queued View Layer. That avoids the per-task startup cost, so large queues finish quicker. As with the standard background render, ++alt++-click force-renders every View Layer even if it already completed.
+    - ++alt++-click force-renders every View Layer even if it already completed.
 
 === "Render Active View Layer"
     Renders only the **active** View Layer — useful for quick spot-checks without queueing the full batch.
@@ -96,7 +93,7 @@ To control the queue, toggle the **render icon** (next to each View Layer row):
 
 - Click → toggle that View Layer's enabled state.
 - ++shift++ + click → toggle every View Layer in the same scene at once.
-- ++alt++ + click on the batch **Render** / **Desktop** button → force-render every View Layer, even completed ones (otherwise the queue skips already-rendered VLs unless **Skip Completed** is off).
+- ++alt++ + click on a render-menu scope row (or the sidebar render control) → force-render every View Layer, even completed ones (otherwise the queue skips already-rendered VLs unless **Skip Completed** is off).
 
 !!! tip "Render Order"
     The batch renderer follows the tree view order (top-to-bottom as displayed),

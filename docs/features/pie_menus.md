@@ -65,7 +65,7 @@ In the slot dropdowns these actions are grouped under three headings — **Selec
 | **Open Render Settings** | Switch the active Properties editor to the Output context. |
 | **None** | Empty slot. |
 
-The same scope actions are also available from the render menu behind the queue sidebar's render button — see [Batch Render](batch_render.md#the-render-menu).
+The same scope actions are also available from the render menu behind the queue sidebar's render button — see [Batch Render](batch_render.md#the-render-menu). In Background mode both the pie and the menu dispatch through the fast background renderer (`tks.batch_render_bg_fast`), and the menu's *Other* category also offers **Calibrate Render Times** (`tks.calibrate_render_times`) to seed the queue's time estimates.
 
 ### :material-magnify: Search Scenes
 
@@ -129,7 +129,7 @@ Once either keyframe pie is enabled, an **Editor Scope** section appears in *Wor
 All pie shortcuts are rebindable without leaving the addon preferences:
 
 - **Workflow > Hotkeys > Pie Shortcuts** lists every enabled pie's keymap entry — edit the key, modifiers, or disable the binding right there.
-- Each pie configurator grid in **Workflow > Pie & Misc** shows the current chord in its centre cell. Click it, press a new key combination, and the rebind is captured in one interaction; the reset arrow beside it restores the built-in default. Rebinds are stored in the addon preferences, so they survive restarts and addon updates.
+- Each pie configurator grid in **Workflow > Pie & Misc** shows the current chord in its centre cell. Click it, press a new key combination, and the rebind is captured in one interaction; the reset arrow beside it restores the built-in default. Keyframe and Clear pie rebinds are stored in the addon preferences and survive restarts and addon updates; Navigation and F12 rebinds currently live only in the keymap, so an addon reload or update can reset them.
 
 As an advanced fallback, the pies are also normal entries in Blender's own keymap editor (*Edit > Preferences > Keymap*): search for `wm.call_menu_pie` and look for the menu names `TKS_MT_PIE_Navigation` (navigation) or `TKS_MT_PIE_RenderScope` (F12 render). The Keyframe and Clear pies bind through the wrapper operator `tks.invoke_keyframe_pie` instead — the plain-++i++ and ++alt+i++ entries belong to the Keyframe and Clear pie respectively.
 

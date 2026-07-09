@@ -117,9 +117,9 @@ Eight enum dropdowns, each accepting: *None*, *Tree View*, *Watchlist*, *Slotted
 
 ### :material-image-multiple: F12 Render Pie
 
-Master toggle: **Enable F12 Render Pie** (off by default). Flipping the toggle on registers a ++f12++ keymap entry that replaces Blender's native render shortcut with a render-scope picker; flipping it off unregisters the entry so native F12 fires again.
+Master toggle: **{{ pref('f12_pie_menu_enabled').label }}** (off by default). Flipping the toggle on registers a ++f12++ keymap entry that replaces Blender's native render shortcut with a render-scope picker; flipping it off unregisters the entry so native F12 fires again.
 
-Eight enum dropdowns, each accepting any of the 11 render-scope actions: *None*, *Current View Layer*, *Active VLs (Scene)*, *Active VLs (All Scenes)*, *All VLs (Scene, Force)*, *All VLs (All Scenes, Force)*, *Skip Completed*, *Failed Only*, *Preview Thumbnails*, *Native F12*, *Open Render Settings*. Per-action behaviour is documented on the [Pie Menus](../features/pie_menus.md#f12-render-pie) page.
+Eight enum dropdowns, each accepting any of the 10 render-scope actions, grouped under **Selected Takes** / **All Takes** / **Other** headings: *This Scene* and *All Scenes* (per group), *Active Layer Only*, *Resume — Skip Done*, *Retry Failed*, *Native F12*, *Open Render Settings*, and *None*. Per-action behaviour is documented on the [Pie Menus](../features/pie_menus.md#f12-render-pie) page.
 
 ### :material-key-plus: Keyframe Pie
 

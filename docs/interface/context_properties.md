@@ -73,6 +73,8 @@ The Takes Tree is edited entirely in place — every row can be added to, rename
 |--------|----------|--------------|
 | **{{ op('tks.add_new_context_item').bl_label }}** | `tks.add_new_context_item` | The context-aware "add" behind the tree's smart-add shortcut. On a View Layer (or Version) row it instantly creates a new [Version](#view-layer-versions); on Scene and Group rows it creates whatever *Preferences > Workflow > Pie & Misc > Add Context* is set to — or opens the add menu so you can pick. |
 | **{{ op('tks.duplicate_tree_item').bl_label }}** | `tks.duplicate_tree_item` | Duplicates the selected row. Two flavours: full copy and linked copy (Scenes only — View Layers have no linked concept). On a Version row it routes to **Duplicate Version** (see [View Layer Versions](#view-layer-versions)). |
+| **{{ op('tks.add_viewlayer').bl_label }}** | `tks.add_viewlayer` | Adds a fresh View Layer to the active scene — the direct add the smart-add falls back to on scene rows when *Add Context* says View Layer. |
+| **{{ op('tks.split_add_viewlayer').bl_label }}** | `tks.split_add_viewlayer` | Split-view counterpart: adds a View Layer to the scene selected in the split view rather than the active one. |
 
 ### :material-cursor-default-click: Renaming & Switching
 
