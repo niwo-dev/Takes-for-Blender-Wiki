@@ -91,9 +91,9 @@ visible even when the Takes panel is closed.
 
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
-| **Position** | enum | Off | Corner or edge anchor for the banner; `Off` disables the overlay entirely. |
+| **Anchor** | enum | Off | Corner or edge anchor for the banner; `Off` disables the overlay entirely. |
 | **Offset X / Offset Y** | int | 0 | Pixel nudge from the chosen anchor. |
-| **Hide While Panel Open** | bool | On | Suppresses the banner while the Takes N-panel is visible — the panel already shows the same state. |
+| **Hide Progress when Takes Panel Open** | bool | On | Suppresses the progress rows while the Takes N-panel is visible — the panel already shows the same state. |
 
 ### :material-palette: Appearance
 
@@ -109,9 +109,9 @@ pill still shows only while its mode is actually active.
 
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
-| **Show Mode Pills** | bool | On | Master switch for the mode-pill row. |
+| **Show Mode Badges** | bool | On | Master switch for the mode-badge row. |
 | **Autokey / Value Lock / Rest / Still / Timeline Sync** | bool | On | Per-mode pill visibility. |
-| **Hide Modes While Panel Open** | bool | On | Suppresses only the pill row (progress rows stay) while the panel is open. |
+| **Hide Mode Badges when Takes Panel Open** | bool | On | Suppresses only the badge row (progress rows stay) while the panel is open. |
 
 ### :material-progress-clock: Progress
 
