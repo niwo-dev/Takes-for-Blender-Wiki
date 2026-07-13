@@ -78,3 +78,45 @@ All default to **on**.
 | **Tree Line Width** | enum | MEDIUM | THIN / MEDIUM / WIDE. |
 | **Tree Line Color** | colour | grey | RGBA colour for connection lines. |
 | **Active View Layer Color** | colour | gold | RGBA colour for the active View Layer highlight. |
+
+## :material-monitor-dashboard: Viewport Overlay
+
+A status banner drawn directly in the 3D viewport: one colored pill per
+active mode you choose to surface (Autokey, Value Lock, Rest Mode, Still
+Mode, Timeline Sync) plus a progress row for each running background task
+(View-Layer Preload, Batch Render) — so a mode or a busy pause stays
+visible even when the Takes panel is closed.
+
+### :material-map-marker: Placement
+
+| Setting | Type | Default | Description |
+|---------|------|---------|-------------|
+| **Position** | enum | Off | Corner or edge anchor for the banner; `Off` disables the overlay entirely. |
+| **Offset X / Offset Y** | int | 0 | Pixel nudge from the chosen anchor. |
+| **Hide While Panel Open** | bool | On | Suppresses the banner while the Takes N-panel is visible — the panel already shows the same state. |
+
+### :material-palette: Appearance
+
+| Setting | Type | Default | Description |
+|---------|------|---------|-------------|
+| **Opacity** | float | 0.9 | Banner transparency. |
+| **Scale** | float | 1.0 | Overall size multiplier for the banner text and pills. |
+
+### :material-toggle-switch: Modes
+
+Pick which mode pills may appear. Each toggle only *allows* its pill — a
+pill still shows only while its mode is actually active.
+
+| Setting | Type | Default | Description |
+|---------|------|---------|-------------|
+| **Show Mode Pills** | bool | On | Master switch for the mode-pill row. |
+| **Autokey / Value Lock / Rest / Still / Timeline Sync** | bool | On | Per-mode pill visibility. |
+| **Hide Modes While Panel Open** | bool | On | Suppresses only the pill row (progress rows stay) while the panel is open. |
+
+### :material-progress-clock: Progress
+
+Background tasks add a labelled progress bar under the pills: the
+View-Layer Preload row (total run plus the layer currently building) and
+the Batch Render row. Percentages align in a right-hand column. The rows
+appear only while their task runs; there is nothing to configure beyond
+the overlay master settings above.

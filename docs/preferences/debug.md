@@ -2,11 +2,11 @@
 icon: material/bug
 ---
 
-# Debug Tab
+# Developer Tab
 
-*Logging master switch, log file location, per-topic filters.*
+*Logging controls, per-topic filters, and developer utilities.*
 
-## :material-tune: Settings
+## :material-tune: Logging
 
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
@@ -75,3 +75,26 @@ Debug-log monitor buttons:
 |----------|--------|
 | ++alt++ + click on **Refresh Log** | Toggle auto-refresh on/off. |
 | ++shift++ + click on **Log Files** | Open the log folder in the system file browser. |
+
+## :material-toy-brick: Utilities
+
+Developer helpers that live on their own **Utilities** sub-tab.
+
+### :material-emoticon-outline: Icon Sheet
+
+The **Icon Sheet** (`tks.view_icon_sheet`) opens a browsable catalogue of
+every built-in Blender icon:
+
+- **Browse by category** or filter with the **search** field; matching
+  icons highlight in place.
+- **Click any icon** to copy its identifier to the clipboard
+  (`tks.copy_icon_name`) — ready to paste into a script or a custom-token
+  category picker.
+- A **Recent** tab keeps the icons you copied most recently.
+- Open it from the button on this sub-tab, or bind your own hotkey with
+  the rebind widget next to it — the shortcut ships unassigned so it can
+  never collide out of the box.
+
+The same sheet backs the custom-token **category icon picker** (it opens
+on the tab of the icon the category currently uses, with a copy button on
+its Current row).
