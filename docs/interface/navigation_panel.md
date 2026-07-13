@@ -16,10 +16,10 @@ The header has two rows. The top row carries shared toggles, warning indicators,
 
 | Control | Description |
 |---------|-------------|
-| **Autokey** | Toggles Blender's auto-keying across all scenes simultaneously (`tks.toggle_autokey`). |
-| **Value Lock** (padlock) | Protects the scene's unkeyed values while you work (`tks.value_lock_toggle`) — see [Value Lock](../features/value_lock.md). Mutually exclusive with Autokey. |
 | **Rest Mode** (ghost) | Temporarily shows every View Layer's rest baseline (`tks.rest_mode_toggle`) — see [Rest State](../features/rest_state.md). Takes turns with Value Lock. |
 | **Still Mode** (still camera) | Pins every take's timeline to its still frame (`tks.still_global_toggle`) — see [Still Mode](../features/still_mode.md). Turning it on parks Timeline Sync until you switch back. |
+| **Value Lock** (padlock) | Protects the scene's unkeyed values while you work (`tks.value_lock_toggle`) — see [Value Lock](../features/value_lock.md). Mutually exclusive with Autokey. |
+| **Autokey** | Toggles Blender's auto-keying across all scenes simultaneously (`tks.toggle_autokey`). |
 | **Timeline Sync** | Keeps the playhead in sync across scenes. Grayed out while Still Mode is on — the two are mutually exclusive. |
 
 **Top row — right side:**

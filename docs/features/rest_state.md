@@ -48,8 +48,8 @@ Reach for these when an object is stuck in a pose it inherited from another View
 | Tool | Scope | What it does |
 |------|-------|--------------|
 | **Snap Active to Rest** (`tks.snap_prop_to_rest`) | One property | Snaps a single property back to its Rest State value. The pie slot greys out when the active object has nothing to snap back to (no slot in the Rest Action). |
-| **{{ op('tks.snap_selected_to_rest').bl_label }}** (`tks.snap_selected_to_rest`) | Selected objects | Snaps every drifted property on the selected objects back to Rest State. |
-| **{{ op('tks.snap_all_to_rest').bl_label }}** (`tks.snap_all_to_rest`) | Everything | Snaps *all* drifted properties back to their Rest State values. |
+| **{{ op('tks.snap_selected_to_rest').bl_label }}** (`tks.snap_selected_to_rest`) | Selected objects | Snaps every drifted property on the selected objects back to what the current mode expects — an unkeyed value returns to Rest State, a keyed value returns to its own frame-0 keyframe (or the rest pose while Rest State Mode is on). Driver-driven channels are left alone. |
+| **{{ op('tks.snap_all_to_rest').bl_label }}** (`tks.snap_all_to_rest`) | Everything | Snaps *all* drifted properties back — same per-property rules as above, across every object. |
 
 ### Removing Rest keys
 
