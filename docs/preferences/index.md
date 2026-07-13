@@ -6,7 +6,7 @@ icon: material/cog
 
 **Location:** *Edit > Preferences > Add-ons > Takes for Blender*.
 
-The preferences are organised into four top-level tabs — **Workflow**, **Interface**, **Data**, **Debug** — each with sub-tabs. Most settings auto-save via the *Autosave Preferences* mechanism (see [Save Mode](data.md#addon)).
+The preferences are organised into four top-level tabs — **Workflow**, **Interface**, **Data**, **Developer** — each with sub-tabs. Most settings auto-save via the *Autosave Preferences* mechanism (see [Save Mode](data.md#addon)).
 
 !!! tip "Search the preferences"
     The header row of the preferences has a **Search** field (magnifier icon,
@@ -41,13 +41,14 @@ The preferences are organised into four top-level tabs — **Workflow**, **Inter
 
     [:octicons-arrow-right-24: Data Tab](data.md)
 
--   :material-bug:{ .lg .middle } **Debug**
+-   :material-bug:{ .lg .middle } **Developer**
 
     ---
 
-    Logging master switch, log file location, per-topic filters.
+    Logging controls, per-topic filters, and utilities like the
+    Icon Sheet (browse and copy any Blender icon identifier).
 
-    [:octicons-arrow-right-24: Debug Tab](debug.md)
+    [:octicons-arrow-right-24: Developer Tab](debug.md)
 
 -   :material-incognito:{ .lg .middle } **Advanced**
 
