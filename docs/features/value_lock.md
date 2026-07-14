@@ -21,7 +21,7 @@ any that drift — while everything keyframed or driven stays fully editable.
 
 | Control | Location | Description |
 |---------|----------|-------------|
-| **{{ op('tks.value_lock_toggle').bl_label }}** | Navigation header, between **Autokey** and **Timeline Sync**. | Engages the lock: the current unkeyed values of your **selected objects** (plus their materials, object data, the world, and everything else that can hold a static value) are captured as the baseline. Click again to release. |
+| **{{ op('tks.value_lock_toggle').bl_label }}** | Navigation header, between the **Still Mode** and **Autokey** buttons. | Engages the lock: the current unkeyed values of your **selected objects** (plus their materials, object data, the world, and everything else that can hold a static value) are captured as the baseline. Click again to release. |
 
 ## :material-shield-check: What's locked — and what isn't
 

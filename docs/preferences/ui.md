@@ -52,7 +52,7 @@ bring the boxes back.
 
 Master and per-list row-height overrides. Range 5–30. The **Default List Rows** master propagates to every list that hasn't been overridden:
 
-Objects, Actions, Slots, Scenes, View Layers, Takes Tree, Scene Groups, View Layer Groups, View Layer Versions, Tags, Variant Switch Products, Process Monitor, Debug Log, Profiler, Batch Queue, Preferences Setup.
+Objects, Actions, Slots, Scenes, View Layers, Takes Tree, Scene Groups, View Layer Groups, View Layer Versions, Tags, Variants, Process Monitor, Debug Log, Profiler, Batch Queue, Preferences Setup.
 
 ## :material-table-column: Columns
 
@@ -72,7 +72,7 @@ All default to **on**.
 |---------|------|---------|-------------|
 | **Default Tree Icons** (9) | bool | On | Per-icon visibility — Rest State, Tag, Render, Variant, Action, Compositor, World, Camera, Automation Rule. |
 | **Default Tree Pin Icons** (8) | bool | Off | Per-icon pin-toggle visibility for the same set. |
-| **Collapse Mode** | enum | DYNAMIC | When the cascade-icon overflow `⋯` appears: DYNAMIC (auto by panel width) or ALWAYS. |
+| **Collapse Mode** | enum | DYNAMIC | When the cascade-icon overflow `⋯` appears: DYNAMIC (auto by panel width), ALWAYS, or NEVER (always show every enabled icon inline). |
 | **Collapse Width** | int | 600 | Pixel threshold for DYNAMIC collapse. Range 200–800. |
 | **Show Tag Color** | bool | On | Tints tree connection lines by tag colour. |
 | **Tree Line Width** | enum | MEDIUM | THIN / MEDIUM / WIDE. |
