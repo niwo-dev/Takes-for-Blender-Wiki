@@ -26,13 +26,14 @@ Grouped into three collapsible sections: **Render Output**, **Completion Sounds*
 
 ## :material-auto-fix: Automations
 
-Grouped into collapsible categories: **Rest State**, **Actions**, **Cameras**, **World**, **Previews**, and **Render Presets**.
+Grouped into collapsible categories: **Autokey**, **Rest State**, **Actions**, **Cameras**, **World**, **Previews**, and **Render Presets**.
 
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
+| **Manage 'Only Insert Available'** | bool | On | Lets the [Autokey toggle](../interface/navigation_panel.md#autokey-is-being-blocked) manage Blender's *Only Insert Available* preference. Blender 5.2 enables that preference by default, which makes autokey silently skip channels that were never keyed — and every fresh take starts that way. While managed, enabling Autokey turns the preference off and disabling Autokey restores it. Takes asks for your consent once; editing the preference by hand withdraws it. |
 | **Auto-create Rest Action** | bool | On | Creates the *Rest State* action when a new scene is created. |
 | **Auto-mirror Keyframes to Rest** | bool | On | Mirrors unkeyed values into the Rest Action on keyframe insert. |
-| **Auto-snap on Keyframe Clear** | bool | On | Snaps the View Layer action selection to the nearest keyframe when one is cleared. |
+| **Auto-snap on Keyframe Clear** | bool | On | Snaps unkeyed properties back to their [Rest State](../features/rest_state.md) values when their keyframes are deleted. The snap fires once, on the witnessed deletion; when off, nothing snaps automatically — use the manual *Snap to Rest* tools instead. |
 | **Auto-assign ViewLayer Actions** | bool | On | Creates and assigns View Layer actions automatically when a View Layer is added. |
 | **Auto-rename Actions on Hierarchy Change** | bool | Off | Regenerates action names from the naming templates when scenes / View Layers are renamed. |
 | **Auto-rename Slots on Target Rename** | bool | On | Keeps slot names in sync with their target object/data. |

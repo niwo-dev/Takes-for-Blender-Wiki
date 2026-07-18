@@ -69,7 +69,7 @@ Reach for these when Rest State should stop managing a property or object — fo
 | Shortcut | Behavior |
 |----------|----------|
 | ++i++ (Insert Keyframe) | If **Auto-Mirror** is on, the unkeyed value is mirrored into the Rest Action **before** the keyframe is committed, preserving the rest baseline. |
-| ++alt+i++ (Delete Keyframe) | After Blender removes the keyframe, the property snaps back to its Rest value automatically. |
+| ++alt+i++ (Delete Keyframe) | After Blender removes the keyframe, the property snaps back to its Rest value — as long as **Auto-snap on Keyframe Clear** is enabled in [Preferences ▸ Workflow](../preferences/workflow.md). The snap fires once, on the deletion itself; the now-unkeyed value is then yours to move freely, and later edits stay where you put them. With the preference off, nothing snaps automatically — use the manual *Snap to Rest* tools. |
 
 ## :material-database-check: Supported Datablocks
 

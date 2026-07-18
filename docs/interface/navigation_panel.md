@@ -19,7 +19,7 @@ The header has two rows. The top row carries shared toggles, warning indicators,
 | **Rest Mode** (ghost) | Temporarily shows every View Layer's rest baseline (`tks.rest_mode_toggle`) — see [Rest State](../features/rest_state.md). Takes turns with Value Lock. |
 | **Still Mode** (still camera) | Pins every take's timeline to its still frame (`tks.still_global_toggle`) — see [Still Mode](../features/still_mode.md). Turning it on parks Timeline Sync until you switch back. |
 | **Value Lock** (padlock) | Protects the scene's unkeyed values while you work (`tks.value_lock_toggle`) — see [Value Lock](../features/value_lock.md). Mutually exclusive with Autokey. |
-| **Autokey** | Toggles Blender's auto-keying across all scenes simultaneously (`tks.toggle_autokey`). |
+| **Autokey** | Toggles Blender's auto-keying across all scenes simultaneously (`tks.toggle_autokey`). Blender 5.2 ships *Only Insert Available* enabled, which makes auto-keying silently skip channels that were never keyed — the state every fresh take starts in. Takes offers to manage that preference for you: enabling Autokey turns it off, disabling Autokey restores it. You are asked once — see [Autokey Is Being Blocked](#autokey-is-being-blocked). |
 | **Timeline Sync** | Keeps the playhead in sync across scenes. Grayed out while Still Mode is on — the two are mutually exclusive. |
 
 **Top row — right side:**
@@ -113,6 +113,19 @@ The Navigation Panel header surfaces conditional warning badges whenever the add
 | Image-data | One or more View Layer preview thumbnails have a pending rename after a Scene / VL rename. | Pending-preview-rename list with apply / dismiss controls. |
 | Orphan-data | Cascade resolution drifted — a stored cascade value no longer matches the resolver's current output. | Cascade-drift list with re-sync actions. |
 | File-refresh | [View Layer Preload](context_properties.md#view-layer-preload) is enabled and a preload is running, or some layers are still cold ("Not Ready"). | The per-layer preload panel — readiness state for every View Layer, per-section Preload buttons, Cancel and ETA while running. It behaves like the other warning panels (opening it closes the others) and can open **automatically** when an automatic preload starts, if you opt in via the preferences. |
+
+### Autokey Is Being Blocked
+
+This one is not badge-driven — it appears on its own, directly below the navigation bar, whenever Autokey is on but Blender's *Only Insert Available* preference would silently swallow your keyframes. That preference is enabled by default from Blender 5.2 onward, and it skips any channel that has never been keyed, which is exactly how every fresh take begins. The result without this warning is autokey that looks active but records nothing.
+
+The panel explains both outcomes and offers a choice:
+
+| Button | Operator | Effect |
+|--------|----------|--------|
+| **Let Takes Manage** | `tks.autokey_guard_accept` — *Let Takes Manage 'Only Insert Available'* | Takes borrows the preference: it switches *Only Insert Available* off while Autokey is on and hands it back when Autokey goes off. Turns on **Manage 'Only Insert Available'** in [Preferences ▸ Workflow](../preferences/workflow.md). |
+| **Keep Setting** | `tks.autokey_guard_decline` — *Keep Blender's Keying Setting* | Takes never touches the preference and the warning stays silenced for good. You can re-enable the automation later under [Preferences ▸ Workflow](../preferences/workflow.md). |
+
+The same two choices also appear as a one-time **Autokey Setup** popup the first time you toggle Autokey. Changing *Only Insert Available* by hand while Takes is holding it withdraws your consent — Takes stops managing the preference and the warning returns, so you can decide again.
 
 ## :material-keyboard: Hotkeys
 
