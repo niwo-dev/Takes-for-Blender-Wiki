@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="500" height="500">
+  <defs>
+    <!-- Blender Blue & Orange Gradients -->
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3a7bc8" />
+      <stop offset="100%" stop-color="#265787" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e87d0d" />
+      <stop offset="100%" stop-color="#f5a623" />
+    </linearGradient>
+  </defs>
+
+  <!-- Dark Background Plate (Optional) -->
+  <rect width="200" height="200" rx="16" fill="#121212" />
+
+  <!-- Isometric Base Grid -->
+  <g transform="translate(100, 140) scale(1, 0.5) rotate(45)" opacity="0.4">
+    <rect x="-50" y="-50" width="100" height="100" fill="none" stroke="#3a7bc8" stroke-width="2" />
+    <line x1="-25" y1="-50" x2="-25" y2="50" stroke="#3a7bc8" stroke-width="1" />
+    <line x1="0" y1="-50" x2="0" y2="50" stroke="#3a7bc8" stroke-width="1" />
+    <line x1="25" y1="-50" x2="25" y2="50" stroke="#3a7bc8" stroke-width="1" />
+    <line x1="-50" y1="-25" x2="50" y2="-25" stroke="#3a7bc8" stroke-width="1" />
+    <line x1="-50" y1="0" x2="50" y2="0" stroke="#3a7bc8" stroke-width="1" />
+    <line x1="-50" y1="25" x2="50" y2="25" stroke="#3a7bc8" stroke-width="1" />
+  </g>
+
+  <!-- Burst Fragments -->
+  <polygon points="40,80 50,75 45,90" fill="#e87d0d" opacity="0.8" />
+  <polygon points="160,90 150,110 170,105" fill="#f5a623" />
+  <polygon points="140,50 155,55 145,70" fill="#3a7bc8" />
+
+  <!-- Main Clapperboard Body -->
+  <g transform="translate(45, 90)">
+    <rect x="0" y="0" width="110" height="60" rx="4" fill="url(#blueGrad)" />
+    
+    <!-- Inner board detailing -->
+    <path d="M 0,20 L 110,0 L 110,60 L 0,60 Z" fill="#1a3d5c" opacity="0.3"/>
+  </g>
+
+  <!-- Clapperboard Top Arm (Angled) -->
+  <g transform="rotate(-15, 45, 80)">
+    <rect x="45" y="60" width="110" height="20" rx="2" fill="#1a3d5c" />
+    <!-- Chevrons / Stripes -->
+    <polygon points="55,60 70,60 60,80 45,80" fill="url(#orangeGrad)" />
+    <polygon points="85,60 100,60 90,80 75,80" fill="url(#orangeGrad)" />
+    <polygon points="115,60 130,60 120,80 105,80" fill="url(#orangeGrad)" />
+    <polygon points="145,60 155,60 150,80 135,80" fill="url(#orangeGrad)" />
+    
+    <!-- Hinge Detail -->
+    <circle cx="55" cy="70" r="4" fill="#121212" />
+  </g>
+
+  <!-- Clapperboard Lower Arm -->
+  <g transform="translate(0, 5)">
+    <rect x="45" y="80" width="110" height="10" fill="#1a3d5c" />
+    <polygon points="65,80 80,80 70,90 55,90" fill="url(#orangeGrad)" />
+    <polygon points="95,80 110,80 100,90 85,90" fill="url(#orangeGrad)" />
+    <polygon points="125,80 140,80 130,90 115,90" fill="url(#orangeGrad)" />
+  </g>
+
+  <!-- Typography -->
+  <text x="100" y="175" font-family="sans-serif" font-weight="bold" font-size="14" fill="#ffffff" text-anchor="middle" letter-spacing="1">TAKES FOR BLENDER</text>
+</svg>
