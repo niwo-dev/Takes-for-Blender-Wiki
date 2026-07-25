@@ -188,6 +188,21 @@ Three toggles live in the popover header:
     The move arrows and ✕ stay greyed out until a chip is selected — they only
     ever act on the currently selected chip, never the whole pattern.
 
+### :material-gesture-tap-button: Popover actions
+
+Every button in the popover maps to a named operator — handy if you want to bind one to a hotkey or run it from Blender's operator search:
+
+| Action | Operator |
+|--------|----------|
+| Click a grid token to append it to the pattern | **{{ op('tks.token_builder_append').bl_label }}** (`tks.token_builder_append`) |
+| Select or deselect a chip | **{{ op('tks.token_builder_select').bl_label }}** (`tks.token_builder_select`) |
+| Step a chip ◀ / ▶ or send it to an edge | **{{ op('tks.token_builder_move').bl_label }}** (`tks.token_builder_move`) |
+| Delete the selected chip (✕) | **{{ op('tks.token_builder_remove').bl_label }}** (`tks.token_builder_remove`) |
+| Clear Last Token / Clear All | **{{ op('tks.token_builder_clear').bl_label }}** (`tks.token_builder_clear`) |
+| Reset the pattern to its default | **{{ op('tks.token_builder_reset').bl_label }}** (`tks.token_builder_reset`) |
+| Copy the assembled pattern | **{{ op('tks.token_builder_copy').bl_label }}** (`tks.token_builder_copy`) |
+| Write the draft back to the field (the red **Apply** flag) | **{{ op('tks.token_builder_apply').bl_label }}** (`tks.token_builder_apply`) |
+
 ### :material-blender-software: Blender's Own Filepath Tokens
 
 On render-path fields — the Output panel rows and File Output node fields, not naming templates — the grid also offers Blender's native filepath tokens alongside the addon's. `####` (frame number, one `#` per digit), `//` (blend-relative root) and `../` (up one folder) appear as their own cells and are inserted verbatim, never rewritten to the addon bracket style. With the Blender-logo toggle on, addon tokens whose name matches a Blender filepath token — `{scene}`, `{camera}`, `{fps}`, `{resolution_x}`, `{blend_name}`, `{node_name}`, … — are marked with the Blender logo in the grid.

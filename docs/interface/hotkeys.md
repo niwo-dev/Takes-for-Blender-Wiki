@@ -111,7 +111,7 @@ The "Render All Previews" button:
 
 ## :material-bug: Logging Topics
 
-*Modifier-clicks in *Preferences > Debug > Topics*.*
+*Modifier-clicks in *Preferences > Developer > Topics*.*
 
 | Shortcut | Action |
 |----------|--------|

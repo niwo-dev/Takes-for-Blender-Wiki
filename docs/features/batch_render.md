@@ -108,7 +108,7 @@ If a batch render gets stuck:
 
 ## :material-export: Output
 
-Output paths are resolved via the [Smart Output](smart_output.md) token system. Each View Layer's output is named automatically based on the configured pattern.
+Output paths are resolved via the [Smart Output](smart_output.md) token system. Each View Layer's output is named automatically based on the configured pattern. The **Directory** and **File Name** rows carry the same ▾ per-field dropdown as the Properties Output panel — **Build Syntax**, an **Insert Token** quick-pick, and **{{ op('tks.field_clear').bl_label }}** (`tks.field_clear`), which clears the last token or the whole field.
 
 ### :material-file-refresh: Detect Version From Disk
 

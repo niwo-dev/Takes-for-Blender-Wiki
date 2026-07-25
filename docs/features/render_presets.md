@@ -11,9 +11,14 @@ icon: material/palette-swatch
 | Type | What It Captures |
 |------|-----------------|
 | **Render** | Engine, samples, resolution, color management, film settings. |
+| **Output** | Output container, dimensions, frame range, FPS. |
+| **View Layer** | Active passes, light groups, holdouts, layer overrides. |
+| **Color Management** | View transform, look, exposure, gamma. |
 | **Camera** | Focal length, sensor size, DOF, clip distances. |
 | **World** | Environment lighting, background color, AO settings. |
+| **Material** | Per-material shader values (used by Variant Switch). |
 | **File Output** | Output format, color depth, compression, Smart Output paths. |
+| **Bookmark** | Saved sets of bookmarked properties. |
 
 ## :material-plus-circle: Creating Presets
 

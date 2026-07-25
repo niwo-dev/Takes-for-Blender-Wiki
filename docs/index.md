@@ -63,7 +63,9 @@ hide:
     Takes for Blender requires **Blender 5.0** or newer and builds on Blender's Slotted Action system. A few newer conveniences need 5.1+.
 
 ??? info "Need another language?"
-    The wiki is published in English. Modern browsers can translate the whole page on the fly, free, with no extension to install:
+    **The add-on interface** follows Blender's own language setting (*Preferences → Interface → Translation*) — **German** is the first shipped language, covering labels, tooltips, menus, warnings and status messages, with more possible as translation word lists are added. That is separate from **this wiki**, which is published in English.
+
+    To read the wiki in another language, modern browsers can translate the whole page on the fly, free, with no extension to install:
 
     - **Chrome / Edge / Brave** — right-click anywhere on the page → *Translate to…*, or click the **translate icon** that appears in the address bar.
     - **Firefox** (118+) — right-click → *Translate Page*.

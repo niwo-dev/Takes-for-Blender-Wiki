@@ -18,7 +18,7 @@ Once the diagnostic UI is visible, its header carries a 3-way switcher for picki
 | Mode | Icon | Shows |
 |------|------|-------|
 | **Process Monitor** | F-curve | Live process tree (the focus of this page). |
-| **Debug Console** | Console | Recent log lines (filtered by *Preferences > Debug > Topics*). |
+| **Debug Console** | Console | Recent log lines (filtered by *Preferences > Developer > Topics*). |
 | **View Layer Switch Profiler** | Time | Per-step timing for the most recent View Layer switch. |
 
 The same 3-way switcher is mirrored in the Profiler header, so you can hop between any of the three views once at least one of them is open. Alt+Click the gear again to dismiss the Process Monitor / Debug Console pair.
@@ -65,7 +65,7 @@ If a timer or handler has stopped firing — a row that should be ticking shows 
 
 - The viewport is stuttering and you want to see which feature group is firing during scrub.
 - A View Layer switch feels slow — open the **View Layer Switch Profiler** tab to see per-step times.
-- A bug report asks for a log — flip on *Preferences > Debug > Enable Logging*, reproduce the issue, then copy lines from the Debug Console.
+- A bug report asks for a log — flip on *Preferences > Developer > Enable Logging*, reproduce the issue, then copy lines from the Debug Console.
 
 ## :material-keyboard: Hotkeys
 
