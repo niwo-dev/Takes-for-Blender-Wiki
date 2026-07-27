@@ -37,10 +37,10 @@ The queue sidebar carries a single render button (:material-play: in Foreground 
 
 | Category | Row | What it renders |
 |----------|-----|-----------------|
-| **Selected Takes** | **This Scene** | Every render-toggle-enabled VL in the current scene only. |
+| **Selected Layers** | **This Scene** | Every render-toggle-enabled VL in the current scene only. |
 | | **All Scenes** | Every render-toggle-enabled VL across every scene. |
 | | **Pick Scene** | Choose a specific scene (with a *Search scenes…* option) to render its enabled VLs. |
-| **All Takes** | **This Scene** | Every VL in the current scene, regardless of render-toggle. |
+| **All Layers** | **This Scene** | Every VL in the current scene, regardless of render-toggle. |
 | | **All Scenes** | Every VL in every scene, regardless of render-toggle. |
 | | **Pick Scene** | Choose a specific scene and force-render all of its VLs. |
 | **Other** | **Active Layer Only** | Just the active View Layer. |

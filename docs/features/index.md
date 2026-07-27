@@ -10,9 +10,9 @@ Takes for Blender provides a deep toolset for managing complex product visualiza
 
 | Feature | Description |
 |---------|-------------|
-| [**Takes**](takes.md) | Hierarchical organisation of Scenes, View Layers, and Versions. |
+| [**Takes**](takes.md) | Hierarchical organisation of Scenes, View Layers, and Takes. |
 | [**Cascade System**](cascade.md) | 6-tier property override resolution engine. |
-| [**View Layer Versions**](vl_versions.md) | Named cascade-override snapshots beneath each View Layer. |
+| [**Takes (Review Loop)**](vl_versions.md) | Saved review iterations beneath each View Layer. |
 | [**Globals Panel**](globals.md) | Project-wide control centre — settings, presets overview, rules, tags, variants. |
 
 ## :material-auto-fix: Automation

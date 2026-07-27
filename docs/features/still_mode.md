@@ -9,7 +9,7 @@ icon: material/camera
 ## :material-map-marker: Where to Find It
 
 - **Navigation header** — the **{{ op('tks.still_global_toggle').bl_label }}** button (still-camera icon) flips the whole project between Still and Animate at the Global tier.
-- **Tree rows** — every cascade level (Scene Group, Scene, View Layer Group, View Layer, Version) carries a Still popover (`tks.still_popover`): pick **Still** or **Animate** (`tks.still_set`), or **Clear (Inherit)** to fall back to the parent tier. ++alt++ + click the icon clears straight to Inherit, matching the other cascade icons.
+- **Tree rows** — every cascade level (Scene Group, Scene, View Layer Group, View Layer, Take) carries a Still popover (`tks.still_popover`): pick **Still** or **Animate** (`tks.still_set`), or **Clear (Inherit)** to fall back to the parent tier. ++alt++ + click the icon clears straight to Inherit, matching the other cascade icons.
 
 ## :material-stairs: How It Resolves
 

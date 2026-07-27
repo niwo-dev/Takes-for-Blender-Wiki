@@ -65,7 +65,7 @@ Variant Switch states are resolved as part of the [cascade](cascade.md). Each Vi
 | **Scene** | `tks.vsw_scene_variant_popover` | **{{ op('tks.vsw_set_scene_variant').bl_label }}** / **{{ op('tks.vsw_clear_scene_variant').bl_label }}** |
 | **View Layer Group** | `tks.vsw_vlg_variant_popover` | Same pattern as Scene Group, at the VL Group tier. |
 | **View Layer** | `tks.vsw_vl_variant_popover` | **{{ op('tks.vsw_set_vl_variant').bl_label }}** / **{{ op('tks.vsw_clear_vl_variant').bl_label }}** |
-| **View Layer Version** | `tks.vlv_variant_popover` | **{{ op('tks.vlv_set_variant').bl_label }}** / **{{ op('tks.vlv_clear_variant').bl_label }}** — see [Version Variants](cascade.md#version-variants). |
+| **Take** | `tks.take_variant_popover` | **{{ op('tks.take_set_variant').bl_label }}** / **{{ op('tks.take_clear_variant').bl_label }}** — see [Take Variants](cascade.md#version-variants). |
 
 Every popover shares one anatomy. Each assigned Product gets a row of `[Product ▼] [Variant ▼] [✕]`: the pickers repoint the row (**{{ op('tks.vsw_set_cascade_variant').bl_label }}** pins the variant, **{{ op('tks.vsw_swap_cascade_product').bl_label }}** exchanges the product while keeping the row), and the ✕ removes that product's override at this tier (**{{ op('tks.vsw_delete_cascade_product').bl_label }}**, `tks.vsw_delete_cascade_product`). Rows inherited from a higher tier appear greyed with a link icon — override them locally by picking a variant. **Add Product** (`tks.vsw_add_cascade_product`) appends another row, so a single tier can pin variants for *several products at once*. A **Push to Selected** button appears during multi-selection, fanning the tier's variant value out to every selected View Layer.
 

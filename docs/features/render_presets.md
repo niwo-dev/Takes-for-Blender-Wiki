@@ -36,7 +36,7 @@ Presets are assigned through the cascade — they can be set at any of the six t
 - **Scene** — Settings for every View Layer in one scene
 - **View Layer Group** — Shared settings for a group of View Layers
 - **View Layer** — Per-shot render configuration
-- **View Layer Version** — Version-specific tweaks
+- **Take** — Take-specific tweaks
 
 ## :material-magnify: Managing Presets
 
@@ -98,7 +98,7 @@ The full set of preset categories accessible from *Globals > Presets mode* is br
 | **Material** | Per-material shader values (used by Variant Switch). |
 | **Bookmark** | Saved sets of bookmarked properties. |
 
-Each category can be assigned independently through the cascade (Global → Scene Group → Scene → View Layer Group → View Layer → View Layer Version) and via Tag-driven Rules (see [Rules](rules.md)).
+Each category can be assigned independently through the cascade (Global → Scene Group → Scene → View Layer Group → View Layer → Take) and via Tag-driven Rules (see [Rules](rules.md)).
 
 ## :material-folder-multiple: Storage Tiers
 

@@ -16,7 +16,7 @@ graph TD
     SceneGrp --> Scene[Scene]
     Scene --> LayerGroup[View Layer Group]
     LayerGroup --> Layer[View Layer]
-    Layer --> Version[View Layer Version]
+    Layer --> Take[Take]
 ```
 
 Each level in this hierarchy can override properties from the level above — this is the **Cascade** system.

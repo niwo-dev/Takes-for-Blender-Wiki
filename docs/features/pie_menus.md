@@ -44,20 +44,20 @@ Replaces Blender's native ++f12++ binding with a render-scope picker — pick **
 
 |   |   |   |
 |:-:|:-:|:-:|
-| **NW**<br>All Takes · This Scene | **N**<br>Resume — Skip Done           | **NE**<br>Retry Failed            |
-| **W**<br>Active Layer Only      | :material-cursor-default-click:{ .lg .middle } | **E**<br>Selected Takes · This Scene |
-| **SW**<br>All Takes · All Scenes | **S**<br>Selected Takes · All Scenes | **SE**<br>*(empty)*     |
+| **NW**<br>All Layers · This Scene | **N**<br>Resume — Skip Done           | **NE**<br>Retry Failed            |
+| **W**<br>Active Layer Only      | :material-cursor-default-click:{ .lg .middle } | **E**<br>Selected Layers · This Scene |
+| **SW**<br>All Layers · All Scenes | **S**<br>Selected Layers · All Scenes | **SE**<br>*(empty)*     |
 
 ### :material-format-list-bulleted: F12 Pie — Slot Actions
 
-In the slot dropdowns these actions are grouped under three headings — **Selected Takes** (View Layers whose render icon is on), **All Takes** (every View Layer, render icon ignored), and **Other**. Inside the pie itself the scope actions carry their group in the label (e.g. *Selected Takes · This Scene*).
+In the slot dropdowns these actions are grouped under three headings — **Selected Layers** (View Layers whose render icon is on), **All Layers** (every View Layer, render icon ignored), and **Other**. Inside the pie itself the scope actions carry their group in the label (e.g. *Selected Layers · This Scene*).
 
 | Action | What it renders |
 |--------|-----------------|
-| **Selected Takes · This Scene** | Every render-icon-enabled View Layer in the current scene only. |
-| **Selected Takes · All Scenes** | Every render-icon-enabled View Layer across every scene. |
-| **All Takes · This Scene** | Every View Layer in the current scene, regardless of render-icon state. |
-| **All Takes · All Scenes** | Every View Layer in every scene, regardless of render-icon state. |
+| **Selected Layers · This Scene** | Every render-icon-enabled View Layer in the current scene only. |
+| **Selected Layers · All Scenes** | Every render-icon-enabled View Layer across every scene. |
+| **All Layers · This Scene** | Every View Layer in the current scene, regardless of render-icon state. |
+| **All Layers · All Scenes** | Every View Layer in every scene, regardless of render-icon state. |
 | **Active Layer Only** | Just the active View Layer (`tks.render_active_vl`). |
 | **Resume — Skip Done** | Resume a batch — skips View Layers already marked done. |
 | **Retry Failed** | Re-render only the View Layers whose previous batch attempt failed or cancelled. |

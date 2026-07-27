@@ -30,7 +30,7 @@ Hotkeys that share a key across lists are **focus-aware** — only the visible/a
 |----------|--------|-------|
 | {{ keys('tks.global_delete') }} | **Delete** | Confirmation dialog by default (toggleable in *Preferences > Interface > Confirmations*). In multi-select, deletes all selected items at once. |
 | {{ keys('tks.global_rename') }} | **Rename** | Opens the rename dialog. |
-| {{ keys('tks.global_new') }} | **New (smart)** | Adds a new item appropriate to the current selection — on a View Layer it creates a Version instantly. For Scene and Group rows, what it creates (or whether it asks via a menu) is configurable in *Preferences > Workflow > Pie & Misc > Add Context*. |
+| {{ keys('tks.global_new') }} | **New (smart)** | Adds a new item appropriate to the current selection — on a View Layer it creates a Take instantly. For Scene and Group rows, what it creates (or whether it asks via a menu) is configurable in *Preferences > Workflow > Pie & Misc > Add Context*. |
 | {{ keys('tks.global_new_menu') }} | **New (menu)** | The escape hatch for the row above: **always** opens the add menu so you can pick, ignoring the *Add Context* defaults (`tks.global_new_menu`, Takes Tree only). |
 | {{ keys('tks.global_add_menu') }} | **Add Menu** | Opens the full add menu. |
 | {{ keys('tks.global_group') }} | **Group** | Wraps the selection in a Scene Group, View Layer Group, or Tag Group. |

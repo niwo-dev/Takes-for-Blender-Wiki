@@ -57,7 +57,7 @@ The Takes Tree is a unified hierarchical list showing your entire project struct
    └─ 🎬 Scene
       └─ 📂 View Layer Group
          └─ 🔲 View Layer
-            └─ 📌 View Layer Version
+            └─ 📌 Take
 ```
 
 ### :material-format-list-bulleted: Row Elements
@@ -78,7 +78,7 @@ Each View Layer row displays cascade override icons. These icons show at a glanc
     **⋯** button. Clicking it opens a popover showing all icons in full.
 
 !!! tip "Expand / collapse in bulk"
-    The expand chevron on Scene, Group, and Version rows responds to modifiers:
+    The expand chevron on Scene, Group, and Take rows responds to modifiers:
     ++shift++ + click expands or collapses **all rows of the same type** at once
     (like Blender's Outliner), and ++ctrl++ + click toggles the row **and all its
     nested children** (`tks.toggle_scene_expand`).

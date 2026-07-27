@@ -53,12 +53,12 @@ Each slot can be set independently, or pre-filled by selecting an Output Rule at
 
 ## :material-stairs: Override Resolution
 
-Overrides are resolved from the **most specific tier upward**. The first non-empty value wins, so a value set on the View Layer Version overrides everything else; a value set on the View Layer overrides everything except the Version; and so on, with Global as the final fallback.
+Overrides are resolved from the **most specific tier upward**. The first non-empty value wins, so a value set on the Take overrides everything else; a value set on the View Layer overrides everything except the Take; and so on, with Global as the final fallback.
 
 Resolution priority (highest → lowest):
 
 ```
-View Layer Version → View Layer → View Layer Group → Scene → Scene Group → Global
+Take → View Layer → View Layer Group → Scene → Scene Group → Global
 ```
 
 An icon appears **bright** when a value is set at that level, and **dimmed** when inherited from a higher tier in the hierarchy.
@@ -71,8 +71,8 @@ The Takes Tree is edited entirely in place — every row can be added to, rename
 
 | Action | Operator | What it does |
 |--------|----------|--------------|
-| **{{ op('tks.add_new_context_item').bl_label }}** | `tks.add_new_context_item` | The context-aware "add" behind the tree's smart-add shortcut. On a View Layer (or Version) row it instantly creates a new [Version](#view-layer-versions); on Scene and Group rows it creates whatever *Preferences > Workflow > Pie & Misc > Add Context* is set to — or opens the add menu so you can pick. |
-| **{{ op('tks.duplicate_tree_item').bl_label }}** | `tks.duplicate_tree_item` | Duplicates the selected row. Two flavours: full copy and linked copy (Scenes only — View Layers have no linked concept). On a Version row it routes to **Duplicate Version** (see [View Layer Versions](#view-layer-versions)). |
+| **{{ op('tks.add_new_context_item').bl_label }}** | `tks.add_new_context_item` | The context-aware "add" behind the tree's smart-add shortcut. On a View Layer (or Take) row it instantly creates a new [Take](#view-layer-versions); on Scene and Group rows it creates whatever *Preferences > Workflow > Pie & Misc > Add Context* is set to — or opens the add menu so you can pick. |
+| **{{ op('tks.duplicate_tree_item').bl_label }}** | `tks.duplicate_tree_item` | Duplicates the selected row. Two flavours: full copy and linked copy (Scenes only — View Layers have no linked concept). On a Take row it routes to **Duplicate Take** (see [Takes](#view-layer-versions)). |
 | **{{ op('tks.add_viewlayer').bl_label }}** | `tks.add_viewlayer` | Adds a fresh View Layer to the active scene — the direct add the smart-add falls back to on scene rows when *Add Context* says View Layer. |
 | **{{ op('tks.split_add_viewlayer').bl_label }}** | `tks.split_add_viewlayer` | Split-view counterpart: adds a View Layer to the scene selected in the split view rather than the active one. |
 
@@ -104,7 +104,7 @@ Deletion asks for confirmation by default — the toggle and the shared Delete s
 
 ### :material-camera-iris: Render Toggles
 
-Each View Layer row carries its own render toggle (see [Render Queue](hotkeys.md#render-queue) for its modifier-clicks); the higher tiers get bulk versions:
+Each View Layer row carries its own render toggle (see [Render Queue](hotkeys.md#render-queue) for its modifier-clicks); the higher tiers get bulk equivalents:
 
 | Action | Operator | Scope |
 |--------|----------|-------|
@@ -162,23 +162,24 @@ When working in the grouped tree you can spawn a brand-new scene straight into a
 | **{{ op('tks.delete_group').bl_label }}** | `tks.delete_group` | Deletes a group and moves its members to *Ungrouped*. The default group itself cannot be deleted. |
 | **{{ op('tks.toggle_group_select').bl_label }}** | `tks.toggle_group_select` | The group row's checkbox in multi-select mode — checks or unchecks **every member** of the group in one click. |
 
-## :material-layers-triple: View Layer Versions
+## :material-layers-triple: Takes {: #view-layer-versions }
 
-A View Layer can hold several **Versions** — alternative sets of cascade overrides (camera, world, action, compositor, output rule) that sit at the very top of the resolution order. Only one version in a set is active at a time.
+A View Layer can hold several **Takes** — saved review iterations of the layer's cascade overrides (camera, world, action, compositor, output rule) that sit at the very top of the resolution order. Only one take in a list is active at a time, every row shows its slate number ("Take 3 · …"), and each take carries a [feedback note](../features/vl_versions.md#the-review-loop) for the review round it answered.
 
-**Activate Version** (`tks.activate_vl_version`) turns a version on and applies its cascade overrides, automatically deactivating whichever version was previously active in the same set. Clicking the already-active version **toggles it off**, falling back to the View Layer's own overrides. If the target View Layer is the one currently active in Blender, the cascade is re-applied immediately so the viewport reflects the change.
+**Activate Take** (`tks.activate_vl_version`) turns a take on and applies its cascade overrides, automatically deactivating whichever take was previously active in the same list. Clicking the already-active take **toggles it off**, falling back to the View Layer's own overrides. If the target View Layer is the one currently active in Blender, the cascade is re-applied immediately so the viewport reflects the change.
 
-### :material-layers-plus: Creating, Duplicating & Deleting Versions
+### :material-layers-plus: Creating, Duplicating & Deleting Takes {: #creating-duplicating-deleting-versions }
 
 | Action | Operator | What it does |
 |--------|----------|--------------|
-| **{{ op('tks.create_vl_version').bl_label }}** | `tks.create_vl_version` | Adds a blank Version to a View Layer — if the layer has no version set yet, one is created on the spot. Reachable from the split view's **+** button, the add menu's **VL Version** entry, and the smart-add shortcut on a View Layer row. |
-| **{{ op('tks.duplicate_vl_version').bl_label }}** | `tks.duplicate_vl_version` | Copies a Version together with **all** its cascade overrides. The copy is appended at the end of the set with a `.001` suffix — the quickest way to branch a variation from a known-good setup. The tree's Duplicate shortcut routes here on a Version row. |
-| **{{ op('tks.delete_vl_version').bl_label }}** | `tks.delete_vl_version` | Removes a Version. If it was the active one, the previous version in the set takes over. The **last remaining** Version can't be deleted — remove the whole version set instead. |
+| **{{ op('tks.create_vl_version').bl_label }}** | `tks.create_vl_version` | Adds a blank Take to a View Layer — named by the take naming template; if the layer has no take list yet, one is created on the spot. Reachable from the split view's **+** button, the add menu's **Take** entry, and the smart-add shortcut on a View Layer row. |
+| **{{ op('tks.duplicate_vl_version').bl_label }}** | `tks.duplicate_vl_version` | Copies a Take together with **all** its fields — overrides, rules, variant, presets and note. The copy is appended at the end of the list with a `.001` suffix. The tree's Duplicate shortcut routes here on a Take row. |
+| **{{ op('tks.new_take_from_here').bl_label }}** | `tks.new_take_from_here` | Starts the next review round: copies the take completely, names the copy by the take naming template, makes it active, and begins with a fresh empty feedback note. |
+| **{{ op('tks.delete_vl_version').bl_label }}** | `tks.delete_vl_version` | Removes a Take. If it was the active one, the previous take in the list takes over. The **last remaining** Take can't be deleted — remove the whole take list instead. |
 
 ## :material-database-clock: View Layer Preload
 
-Switching to a View Layer for the first time can be slow while Blender builds it. The **Preload** workflow pre-builds layers ahead of time so the first switch to each take is instant. It runs quietly in the background and never changes the layer you are currently on.
+Switching to a View Layer for the first time can be slow while Blender builds it. The **Preload** workflow pre-builds layers ahead of time so the first switch to each layer is instant. It runs quietly in the background and never changes the layer you are currently on.
 
 | Action | Operator | What it does |
 |--------|----------|--------------|

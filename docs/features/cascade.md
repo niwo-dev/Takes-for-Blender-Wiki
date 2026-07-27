@@ -8,7 +8,7 @@ The **Cascade** is the core engine of Takes for Blender. It resolves property ov
 
 ## :material-cog-sync: How It Works
 
-When you switch to a View Layer, the cascade resolves each property (camera, world, action, compositor, presets) by walking the hierarchy from the **most specific tier upward** and using the **first non-empty value** it finds. View Layer Version wins over View Layer, View Layer wins over View Layer Group, and so on up to Global as the final fallback:
+When you switch to a View Layer, the cascade resolves each property (camera, world, action, compositor, presets) by walking the hierarchy from the **most specific tier upward** and using the **first non-empty value** it finds. Take wins over View Layer, View Layer wins over View Layer Group, and so on up to Global as the final fallback:
 
 ```mermaid
 graph LR
@@ -16,12 +16,12 @@ graph LR
     SceneGrp --> Scene[Scene]
     Scene --> LayerGroup[View Layer Group]
     LayerGroup --> Layer[View Layer]
-    Layer --> Version[View Layer Version]
+    Layer --> Take[Take]
 
-    style Version fill:#e87d0d,color:#fff
+    style Take fill:#e87d0d,color:#fff
 ```
 
-The arrow direction shows hierarchy (Global is the parent, View Layer Version is the leaf). Resolution priority runs in the **opposite** direction — leaf wins over root.
+The arrow direction shows hierarchy (Global is the parent, the Take is the leaf). Resolution priority runs in the **opposite** direction — leaf wins over root.
 
 ## :material-stairs: Override Tiers
 
@@ -32,7 +32,7 @@ The arrow direction shows hierarchy (Global is the parent, View Layer Version is
 | **Scene** | All View Layers in the scene | Scene-specific compositor |
 | **View Layer Group** | All View Layers in the group | Shared camera angle |
 | **View Layer** | Single View Layer | Per-shot camera, action, world |
-| **View Layer Version** | Named snapshot | Version-specific tweaks |
+| **Take** | Saved review iteration of one layer | Take-specific tweaks between review rounds |
 
 ## :material-format-list-bulleted-type: Cascade Properties
 
@@ -89,7 +89,7 @@ The Action, World, Camera and Compositor popovers carry a **+** button (:materia
 | `tks.scene_camera_new` | **New Camera** | A new Camera on the **Scene** tier. |
 | `tks.vl_camera_new` | **New Camera** | A new Camera on the **View Layer** tier. |
 | `tks.global_compositor_new` | **{{ op('tks.global_compositor_new').bl_label }}** | A new compositor node tree on the **Global** tier. |
-| `tks.group_compositor_new` | **New Compositor** | A new compositor node tree on a **Scene Group**, **View Layer Group**, or **View Layer Version** (one shared operator serves all three group tiers). |
+| `tks.group_compositor_new` | **New Compositor** | A new compositor node tree on a **Scene Group**, **View Layer Group**, or **Take** (one shared operator serves all three group tiers). |
 | `tks.scene_compositor_new` | **New Compositor** | A new compositor node tree on the **Scene** tier. |
 | `tks.vl_compositor_new` | **New Compositor** | A new compositor node tree on the **View Layer** tier. |
 | `tks.rest_action_new` | **New Rest Action** | A new Action assigned as the **Rest Action** (see below). |
@@ -140,14 +140,14 @@ When you assign a camera at the **Global** or **Scene Group** tier, that camera 
 
 The cascade picker also flags an incompatible camera with an error icon before you click, so you can spot the situation in advance.
 
-## :material-vector-difference: Version Variants
+## :material-vector-difference: Take Variants {: #version-variants }
 
-[View Layer Versions](#override-tiers) can override which **variant** of a product is shown — this is the highest-priority tier in the [Variant Switch](variant_switch.md) cascade, so a version's choice wins over everything below it. The version's variant popover exposes two operators:
+[Takes](#override-tiers) can override which **variant** of a product is shown — this is the highest-priority tier in the [Variant Switch](variant_switch.md) cascade, so a take's choice wins over everything below it. The take's variant popover exposes two operators:
 
 | Action | Operator | What it does |
 |--------|----------|--------------|
-| **Set Version Variant** | `tks.vlv_set_variant` | Pins a specific product to a chosen variant index on this version. If the version is currently active, the variant cascade re-applies immediately. |
-| **Clear Version Variant** | `tks.vlv_clear_variant` | Removes that product's variant override from the version, letting it inherit again. Re-applies live if the version is active. |
+| **Set Take Variant** | `tks.take_set_variant` | Pins a specific product to a chosen variant index on this take. If the take is currently active, the variant cascade re-applies immediately. |
+| **Clear Take Variant** | `tks.take_clear_variant` | Removes that product's variant override from the take, letting it inherit again. Re-applies live if the take is active. |
 
 ## :material-link-off: Broken Assignments
 

@@ -1,63 +1,87 @@
 ---
-icon: material/source-branch
+icon: material/movie-open
 ---
 
-# View Layer Versions
+# Takes — the Review Loop
 
-**View Layer Versions** are named snapshots of a View Layer's cascade settings. Use them to keep multiple variations of the same shot side-by-side without duplicating the View Layer itself.
+A **Take** is one attempt at a layer — exactly like a film take. You build the shot, show it, collect feedback, save a take, work the notes in, and show it again: take 1, take 2, take 3 … until it's approved. Takes live at the deepest tier of the cascade, so every take can carry its own camera, world, action, compositor, presets and variant — while the layer itself stays untouched.
 
-A View Layer Version stores its own value for every cascade property (camera, world, action, compositor, render preset, output rule, etc.) and inherits everything else from its parent View Layer.
+Each take also carries a short **feedback note** — what the review asked for that round — so the whole conversation stays attached to the takes it produced.
+
+!!! info "Formerly \"View Layer Versions\""
+    Earlier releases called this tier *View Layer Versions*. Same data, same
+    behavior — the word finally matches what the tier always was: sequential
+    review iterations of one layer. Saved `.blend` files load unchanged, and
+    the `{version}` token keeps working forever as an alias of `{take}`.
 
 ## :material-help-circle-outline: When to Use
 
-*Versions vs. a fresh View Layer.*
+*A new take vs. a fresh view layer.*
 
-| Use a View Layer Version when… | Use a new View Layer when… |
+| Use a Take when… | Use a new View Layer when… |
 |------------------------|----------------------------|
-| You want to A/B compare lighting / lensing on the same shot. | You need a fundamentally different shot (different objects rendered, different passes). |
-| You want different render-preset variations of one shot. | You need different visibility / collection setups. |
-| You want to keep the parent View Layer's animation but tweak rendering. | You need a different animation. |
+| You're iterating on the same shot between reviews. | You need a fundamentally different shot (different objects rendered, different passes). |
+| You want to A/B compare lighting / lensing on the same shot. | You need different visibility / collection setups. |
+| You want different render-preset variations of one shot. | You need a different animation. |
 
-## :material-plus-circle: Creating a Version
+## :material-plus-circle: Creating a Take
 
 1. Select a View Layer in the Takes Tree.
-2. Click **+** → **Add Version**, or press ++ctrl+n++ on the View Layer.
-3. The version inherits every cascade value from its parent. Override only what you need.
+2. Click **+** → **Add Take**, or press ++ctrl+n++ on the View Layer.
+3. The take inherits every cascade value from its parent. Override only what you need.
+
+New takes are named by your **take naming template** (Preferences → Naming → Takes, default `Take_001`-style numbering).
+
+## :material-refresh: The Review Loop
+
+The list of takes *is* the review history — every row shows its slate number ("Take 3 · NightLighting"):
+
+1. Build the shot and show it.
+2. Get feedback → open the take's **note** (the :material-text: icon on the row) and write down what was asked.
+3. Click **New Take from Here** — the current take is copied completely (every override, rule, variant and preset), becomes the new active take, and starts with a fresh empty note.
+4. Work the notes in, show again. Repeat until approved.
+
+Step back through past takes any time by activating an earlier row — or circle an earlier one as the keeper and simply leave it active. The note popover also lists the earlier takes' notes, so the whole feedback trail reads in one place.
+
+!!! tip "Numbers are positions"
+    The slate number is the take's position in the list. Deleting a take
+    renumbers the ones after it — names are the stable identity, numbers are
+    the running order.
 
 ## :material-stairs: Cascade Position
 
-View Layer Versions sit at the bottom of the cascade hierarchy:
+Takes sit at the bottom of the cascade hierarchy:
 
 ```
-Global → Scene Group → Scene → View Layer Group → View Layer → View Layer Version
+Global → Scene Group → Scene → View Layer Group → View Layer → Take
 ```
 
-A value set on a Version overrides every parent tier. Values left empty fall back to the parent View Layer.
+A value set on a take overrides every parent tier. Values left empty fall back to the parent View Layer.
 
-## :material-swap-horizontal: Switching Versions
+## :material-swap-horizontal: Switching Takes
 
-Click a Version row in the tree. The cascade re-resolves and the viewport updates to reflect the version's overrides. The version's name appears in `{version}` for Smart Output naming.
+Click a take row in the tree. The cascade re-resolves and the viewport updates to reflect the take's overrides. The active take's name appears in `[take]` for Smart Output naming.
 
 ## :material-folder-cog: Smart Output
 
-Two tokens identify the active Version:
+Two tokens identify the active take:
 
-- `{version}` — the version's own name.
-- `{viewlayer}` — the parent View Layer's name.
+- `[take]` — the active take's own name (the old spelling `[version]` keeps working forever).
+- `[viewlayer]` — the parent View Layer's name.
 
 Combine them in your output pattern, e.g.:
 
 ```
-{scene}{sep}{viewlayer}{sep}{version}{sep}####.{file_format}
+[scene][sep][viewlayer][sep][take][sep]####.[file_format]
 ```
 
 ## :material-keyboard: Hotkeys
 
-View Layer Versions share the generic tree hotkeys:
+Takes share the generic tree hotkeys:
 
 | Shortcut | Action |
 |----------|--------|
-| ++ctrl+n++ | Add a Version under the selected View Layer. |
+| ++ctrl+n++ | Add a Take under the selected View Layer. |
 | ++f2++ | Rename. |
 | ++del++ / ++x++ | Delete. |
 | ++shift+d++ / ++alt+d++ | Duplicate (full / linked). |

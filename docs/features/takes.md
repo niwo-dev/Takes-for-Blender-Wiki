@@ -1,14 +1,14 @@
 ---
-icon: material/movie-open
+icon: material/file-tree
 ---
 
-# Takes
+# The Takes System
 
-A **Take** is a named group of View Layers that represent a specific configuration of your scene — a camera angle, a lighting setup, a material variant, or an animation state.
+Takes for Blender turns Blender's scenes and view layers into one organized tree, where every level can carry its own camera, world, action, compositor and render setup — and where each layer's iterations are saved as **[Takes](vl_versions.md)**, film-style: take 1, take 2, take 3 … until the shot is approved.
 
 ## :material-lightbulb-outline: Concept
 
-In film and photography, a "take" is one version of a shot. Takes for Blender extends this concept to Blender's View Layer system, giving you:
+In film, a *take* is one attempt at a shot, repeated until the director is happy. That is exactly the deepest tier of this addon: one layer, many saved attempts, each carrying the feedback it answered. Around that review loop, the addon gives you:
 
 - **Independent camera assignments** per View Layer
 - **Independent world environments** per View Layer
@@ -18,7 +18,7 @@ In film and photography, a "take" is one version of a shot. Takes for Blender ex
 
 ## :material-file-tree: Organization
 
-Takes are organized in a six-tier cascade. The **Global** tier is edited in the [Globals](globals.md) panel; the remaining five tiers all live inside the Takes Tree:
+Everything is organized in a six-tier cascade. The **Global** tier is edited in the [Globals](globals.md) panel; the remaining five tiers all live inside the Takes Tree:
 
 | Level | Purpose | Example |
 |-------|---------|---------|
@@ -27,9 +27,9 @@ Takes are organized in a six-tier cascade. The **Global** tier is edited in the 
 | **Scene** | A Blender scene | "Kitchen", "Bathroom" |
 | **View Layer Group** | Logical grouping of View Layers | "Hero Shots", "Detail Shots" |
 | **View Layer** | The actual render unit | "Front 3/4", "Top Down" |
-| **View Layer Version** | Named snapshots of View Layer settings | "v1 warm", "v2 cool" |
+| **Take** | Saved review iterations of one layer | "Take 1 · Blockout", "Take 2 · NightLighting" |
 
-## :material-plus-circle: Creating Takes
+## :material-plus-circle: Building the Tree
 
 ### :material-plus-circle: Add a View Layer
 1. Click **+** in the tree sidebar.
@@ -41,16 +41,17 @@ Takes are organized in a six-tier cascade. The **Global** tier is edited in the 
 2. Press ++ctrl+g++ to create a View Layer Group containing it.
 3. Drag other View Layers into the group.
 
-### :material-source-branch: View Layer Versions
-Create named snapshots of a View Layer's cascade settings:
+### :material-movie-open: Takes
+Save review iterations of a View Layer's cascade settings:
 
 1. Select a View Layer.
-2. Click **+** → **Add Version**.
-3. Each version stores its own camera, world, action, and preset overrides.
+2. Click **+** → **Add Take**.
+3. Each take stores its own camera, world, action, and preset overrides — plus a feedback note.
 
-!!! tip "Quick Switching"
-    Switch between View Layer Versions to instantly compare different configurations
-    without duplicating View Layers.
+!!! tip "The review loop"
+    Activate any take to instantly compare iterations, and use
+    **New Take from Here** to start the next round from the current state.
+    The full loop is described on the [Takes page](vl_versions.md).
 
 ## :material-keyboard: Hotkeys
 
