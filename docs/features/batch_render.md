@@ -71,6 +71,10 @@ Click the **gear icon** in the queue header to open the **Queue Columns** popove
 - **Pin Outside Collapse** — pin specific icons so they always render, even when the queue auto-collapses on narrow panels.
 - **Collapse** — switch between *Dynamic* (auto-collapses when the panel is narrower than the **Min Width** value) and *Always* (always collapse).
 
+### :material-briefcase-outline: Render Jobs
+
+The **Render Jobs** popover (`tks.render_jobs_popover`) tracks disk-backed render jobs alongside the queue. **Rescan Disk** (`tks.render_jobs_rescan`) re-checks the disk for already-rendered frames of every job — useful after renders arrive from outside the current session (a render farm, another machine, a resumed batch).
+
 ## :material-timer-cog: Calibrate Render Times
 
 Click **Calibrate Render Times** in the queue toolbar to estimate per–View Layer runtime *before* you commit to a real batch. The operator:
@@ -120,6 +124,20 @@ When your output pattern includes a `{rev}` version token — either in a folder
 
 !!! tip "When to use it"
     Reach for this after copying a project, pulling renders from a render farm, or otherwise picking up work where the in-file version counter has drifted from what is actually on disk. It only reads the folder — it never deletes or moves existing renders.
+
+### :material-counter: Versions, Sub-versions & Notes
+
+The Version block under Smart Output is a small versioning system around the `{rev}` token:
+
+- **Version / Sub-version** — the two counters the `{rev}` and `{subrev}` tokens resolve (compose e.g. `v{rev:03d}.{subrev:02d}` → `v002.03`). Bumping **Version** resets **Sub-version** to 0, the usual major/minor behaviour. Whether the counters live per scene or per View Layer is a preference (see below).
+- **Note** — a short line about what changed in this version. Click **Add Version Note** (`tks.add_render_version_note`) to start one; the note then edits inline beside the Version rows. Notes are saved inside the `.blend`.
+- **Version History** (:material-history: popover) — every noted version, newest first, with its note editable in place and a per-version lock toggle.
+- **Lock Version as Final** (:material-lock: , `tks.toggle_render_version_lock`) — marks the current version as final. **Detect Version From Disk** never lands on a locked version; it continues forward past it.
+- **Open Newest Version Folder** (:material-folder: , `tks.open_newest_version_folder`) — jumps straight to the highest version folder on disk in your system file browser.
+- **Archive Other Versions** (`tks.archive_render_versions`, in the history popover) — sweeps every version on disk *except* the current one and any locked ones into an `archive/` folder created beside them. Files are moved, never deleted; a confirmation lists exactly what stays and what moves before anything happens, and nothing already in the archive is ever overwritten.
+
+!!! info "Preferences"
+    **Workflow ▸ Render Output** holds the master **Render Versioning** switch (hides the whole block when off — tokens in existing paths keep resolving), the **Render Version Scope** (one counter per scene, or one per View Layer), and the **Render Version Padding** a bare `{rev}` pads to (v001 / v01 / v1).
 
 ## :material-keyboard: Hotkeys
 

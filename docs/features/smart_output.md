@@ -87,7 +87,8 @@ The full built-in token registry is below. Tokens written here use curly braces 
 | `{resolution_x}` | Resolution X (resolution % applied; `{res_x}` still resolves) |
 | `{resolution_y}` | Resolution Y (resolution % applied; `{res_y}` still resolves) |
 | `{resolution_percentage}` | Resolution percentage (`{res_pct}` still resolves) |
-| `{rev}` | Render version number, per scene or per view layer (zero-pad with `{rev:03d}`) |
+| `{rev}` | Render version number, per scene or per view layer; a bare `{rev}` pads per the preference, `{rev:03d}` overrides |
+| `{subrev}` | Render sub-version for small iterations (`v{rev:03d}.{subrev:02d}` → `v002.03`); resets to 0 when the version bumps |
 | `{frame}` | Current frame, 4-digit zero-padded |
 | `{file_format}` | Output file format (`png`, `exr` …) |
 | `{color_depth}` | Color bit depth |
