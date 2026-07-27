@@ -64,9 +64,10 @@ Click a take row in the tree. The cascade re-resolves and the viewport updates t
 
 ## :material-folder-cog: Smart Output
 
-Two tokens identify the active take:
+Three tokens identify the active take:
 
-- `[take]` — the active take's own name (the old spelling `[version]` keeps working forever).
+- `[take]` — the active take's own (custom) name (the old spelling `[version]` keeps working forever).
+- `[take_number]` — the running slate number: the take's position in its list, padded explicitly like `[take_number:02d]`.
 - `[viewlayer]` — the parent View Layer's name.
 
 Combine them in your output pattern, e.g.:

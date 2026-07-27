@@ -60,6 +60,7 @@ The full built-in token registry is below. Tokens written here use curly braces 
 | `{scene}` | Active scene name |
 | `{view_layer}` / `{viewlayer}` | Active View Layer name |
 | `{take}` | Active Take name (the old spelling `{version}` keeps working) |
+| `{take_number}` | Running take number — the active take's position in its list; pad explicitly like `{take_number:02d}` |
 | `{scenegroup}` | Scene Group name |
 | `{viewlayer_group}` | View Layer Group name (`{vlgroup}` still resolves as a legacy alias) |
 | `{group}` | Node group / parent name |
