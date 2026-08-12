@@ -190,16 +190,16 @@ When working in the grouped tree you can spawn a brand-new scene straight into a
 
 A View Layer can hold several **Takes** — saved review iterations of the layer's cascade overrides (camera, world, action, compositor, output rule) that sit at the very top of the resolution order. Only one take in a list is active at a time, every row shows its slate number ("Take 3 · …"), and each take carries a [feedback note](../features/vl_versions.md#the-review-loop) for the review round it answered.
 
-**Activate Take** (`tks.activate_vl_version`) turns a take on and applies its cascade overrides, automatically deactivating whichever take was previously active in the same list. Clicking the already-active take **toggles it off**, falling back to the View Layer's own overrides. If the target View Layer is the one currently active in Blender, the cascade is re-applied immediately so the viewport reflects the change.
+**{{ op('tks.activate_take').bl_label }}** (`{{ op('tks.activate_take').bl_idname }}`) turns a take on and applies its cascade overrides, automatically deactivating whichever take was previously active in the same list. Clicking the already-active take **toggles it off**, falling back to the View Layer's own overrides. If the target View Layer is the one currently active in Blender, the cascade is re-applied immediately so the viewport reflects the change.
 
 ### :material-layers-plus: Creating, Duplicating & Deleting Takes {: #creating-duplicating-deleting-versions }
 
 | Action | Operator | What it does |
 |--------|----------|--------------|
-| **{{ op('tks.create_vl_version').bl_label }}** | `tks.create_vl_version` | Adds a blank Take to a View Layer — named by the take naming template; if the layer has no take list yet, one is created on the spot. Reachable from the split view's **+** button, the add menu's **Take** entry, and the smart-add shortcut on a View Layer row. |
-| **{{ op('tks.duplicate_vl_version').bl_label }}** | `tks.duplicate_vl_version` | Copies a Take together with **all** its fields — overrides, rules, variant, presets and note. The copy is appended at the end of the list with a `.001` suffix. The tree's Duplicate shortcut routes here on a Take row. |
+| **{{ op('tks.create_take').bl_label }}** | `tks.create_take` | Adds a blank Take to a View Layer — named by the take naming template; if the layer has no take list yet, one is created on the spot. Reachable from the split view's **+** button, the add menu's **Take** entry, and the smart-add shortcut on a View Layer row. |
+| **{{ op('tks.duplicate_take').bl_label }}** | `tks.duplicate_take` | Copies a Take together with **all** its fields — overrides, rules, variant, presets and note. The copy is appended at the end of the list with a `.001` suffix. The tree's Duplicate shortcut routes here on a Take row. |
 | **{{ op('tks.new_take_from_here').bl_label }}** | `tks.new_take_from_here` | Starts the next review round: copies the take completely, names the copy by the take naming template, makes it active, and begins with a fresh empty feedback note. |
-| **{{ op('tks.delete_vl_version').bl_label }}** | `tks.delete_vl_version` | Removes a Take. If it was the active one, the previous take in the list takes over. The **last remaining** Take can't be deleted — remove the whole take list instead. |
+| **{{ op('tks.delete_take').bl_label }}** | `tks.delete_take` | Removes a Take. If it was the active one, the previous take in the list takes over. The **last remaining** Take can't be deleted — remove the whole take list instead. |
 
 ## :material-database-clock: View Layer Preload
 
