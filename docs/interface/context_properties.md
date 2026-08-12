@@ -96,11 +96,35 @@ The Takes Tree is edited entirely in place — every row can be added to, rename
 
 | Action | Operator | What it does |
 |--------|----------|--------------|
-| **{{ op('tks.delete_scene').bl_label }}** / **{{ op('tks.delete_viewlayer').bl_label }}** | `tks.delete_scene` / `tks.delete_viewlayer` | Type-specific removal for Scene and View Layer rows. |
-| **{{ op('tks.delete_context_item').bl_label }}** | `tks.delete_context_item` | Delete for the split view's right-hand list. |
+| **{{ op('tks.delete_scene').bl_label }}** / **{{ op('tks.delete_viewlayer').bl_label }}** | `tks.delete_scene` / `tks.delete_viewlayer` | The split view's minus buttons — type-specific removal for the Scenes list and the View Layers list. |
+| **{{ op('tks.delete_context_item').bl_label }}** | `tks.delete_context_item` | The tree's minus button, acting on the highlighted row. |
 | **{{ op('tks.delete_selected_context_items').bl_label }}** | `tks.delete_selected_context_items` | Multi-select delete — removes every checked item in one sweep, whatever the mix of types, honouring the active type filter. The default *Ungrouped* groups are protected. |
 
 Deletion asks for confirmation by default — the toggle and the shared Delete shortcut are covered under [Keyboard Shortcuts](hotkeys.md#tree-edits).
+
+#### Deleting a Scene's last View Layer
+
+Blender has no such thing as a Scene without a View Layer, so a lone View Layer
+cannot simply be removed. Rather than greying the button out, Takes reads the
+request the way you meant it: **deleting a Scene's only View Layer deletes the
+Scene.**
+
+!!! warning "This always asks first"
+
+    A click that will take a whole Scene names it in the confirmation before
+    anything happens — even if you have the delete confirmations switched off
+    under *Preferences → Interface → Confirmations*. That preference was set
+    for "delete this View Layer", and this is a bigger step than the click
+    suggests.
+
+It works the same everywhere: the tree's minus button, the split view's, the
+++delete++ / ++x++ shortcut, and multi-select. In multi-select, ticking **every**
+View Layer of a Scene is what triggers it, and the confirmation lists each Scene
+that will go in full.
+
+The one thing Takes will not do is empty your file. The last Scene stays, and
+keeps one View Layer with it — the confirmation says so under *Kept:* instead of
+failing quietly.
 
 ### :material-camera-iris: Render Toggles
 
