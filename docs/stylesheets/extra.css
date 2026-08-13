@@ -144,11 +144,13 @@ kbd {
   font-size: inherit;
 }
 .md-typeset .roadmap-section > summary {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
   width: auto;
   background: transparent;
   border-radius: 0.1rem;
-  padding: 0.15em 1.7em 0.15em 0.3em;
+  padding: 0.15em 0.45em 0.15em 0.3em;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -157,6 +159,17 @@ kbd {
   cursor: pointer;
 }
 .md-typeset .roadmap-section > summary::before { display: none; }   /* the ⓘ glyph */
+/* Material pins the fold chevron with `position: absolute; top: .625em` against a
+   full-size admonition title. This summary is a short 0.72rem label, so the 1rem
+   marker box hung below the text. Let it flow inline and the flexbox centre it. */
+.md-typeset .roadmap-section > summary::after {
+  position: static;
+  top: auto;
+  right: auto;
+  flex: none;
+  width: 0.85rem;
+  height: 0.85rem;
+}
 .md-typeset .roadmap-section > summary:hover {
   color: var(--md-accent-fg-color);
   background: var(--md-accent-fg-color--transparent);
