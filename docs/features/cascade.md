@@ -161,6 +161,23 @@ The panel repairs as well as reports:
 
 Clearing only empties the stored reference — nothing is deleted — and the warning disappears as soon as every assignment resolves again.
 
+## :material-alert-circle-outline: Camera or World Needed {: #needed-rows }
+
+A broken assignment points at something that vanished. This is the other half: nothing is assigned *anywhere* in the tree, and the scene has no camera or no world to fall back on. The Navigation panel's warning row says so and carries everything needed to resolve it, so you never have to leave the panel to find a picker.
+
+Each row offers the same pair of chips:
+
+| Chip | Operator | What it does |
+|------|----------|--------------|
+| **▾** on the camera row | **{{ op('tks.camera_needed_pick').bl_label }}** (`tks.camera_needed_pick`) | Opens a small popup with a live search field bound to the **adopt tier** — the tier your *Camera handling* preference nominates. Picking a camera writes it straight onto that tier, so the cascade owns it from that moment on. |
+| **+** on the camera row | **{{ op('tks.camera_needed_new').bl_label }}** (`tks.camera_needed_new`) | Creates a camera named for the adopt tier, links it into the scene, assigns it to that tier and aligns it to your current 3D view — one click from "no camera" to a framed shot. |
+| **▾** on the world row | **{{ op('tks.world_needed_pick').bl_label }}** (`tks.world_needed_pick`) | The same live-search popup for worlds, bound to the world adopt tier. |
+| **+** on the world row | **{{ op('tks.world_needed_new').bl_label }}** (`tks.world_needed_new`) | Creates a world, assigns it to the adopt tier, and clears the warning. |
+
+Which tier the chips write to is not a fixed choice — it follows the *World handling* and *Camera handling* preferences (see [Globals](globals.md)), so a studio that manages everything on the Scene tier and one that works per View Layer both get a resolve button that lands in the right place.
+
+When the camera row appears because a camera was *removed* rather than never assigned, it also names what was removed, so you can put the same one back instead of guessing.
+
 ## :material-compare-horizontal: Cascade & Preset Drift
 
 **Drift** is the opposite failure mode: the assignment is fine, but the *live* value no longer matches it — you changed the world or compositor through Blender's native UI instead of the cascade, or edited settings governed by one of the tier-cascaded preset slots (Render, Output, File Output, View Layer, Color Management, World, Camera). The addon compares the scene's current state against what the cascade last applied and lists each mismatch in a Navigation warning, with a ✓ / ↩ pair per entry:

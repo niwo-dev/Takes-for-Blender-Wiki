@@ -75,6 +75,8 @@ Click the **gear icon** in the queue header to open the **Queue Columns** popove
 
 The **Render Jobs** popover (`tks.render_jobs_popover`) tracks disk-backed render jobs alongside the queue. **Rescan Disk** (`tks.render_jobs_rescan`) re-checks the disk for already-rendered frames of every job — useful after renders arrive from outside the current session (a render farm, another machine, a resumed batch).
 
+The popover remembers how wide you want it. Blender popups cannot live-resize, so the **corner grip** at the bottom-right runs **{{ op('tks.render_jobs_drag_resize').bl_label }}** (`tks.render_jobs_drag_resize`) as a modal preview: drag left or right and the candidate width appears in the status bar, click to apply and reopen the popover at that size, right-click or ++esc++ to cancel. The chosen width is saved in the preferences, so it survives restarts and applies to every later opening.
+
 ## :material-timer-cog: Calibrate Render Times
 
 Click **Calibrate Render Times** in the queue toolbar to estimate per–View Layer runtime *before* you commit to a real batch. The operator:
