@@ -188,6 +188,42 @@ kbd {
 /* Breathing room between an info line and an adjacent checklist */
 .phases > ul > li { margin-top: 0.35em; }
 
+/* Changelog TOC — releases grouped into 0.7.x style series by changelog-toc.js.
+   The summary is styled as a nav link so a series reads like any other entry,
+   with a caret and a release count instead of a link target. */
+.cl-series__summary {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;                 /* drop the native disclosure triangle */
+}
+.cl-series__summary::-webkit-details-marker { display: none; }
+.cl-series__summary::before {       /* our own caret, rotating when open */
+  content: "";
+  width: 0;
+  height: 0;
+  border: 0.3em solid transparent;
+  border-left-color: currentcolor;
+  opacity: 0.6;
+  transition: transform 150ms;
+}
+.cl-series__fold[open] > .cl-series__summary::before {
+  transform: rotate(90deg) translateX(0.12em);
+}
+.cl-series__count {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.55;
+}
+.cl-series__list {
+  margin-left: 0.75em;
+  border-left: 1px solid var(--md-default-fg-color--lightest);
+  padding-left: 0.4em;
+}
+
 /* Modern Typography for all Headers */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;

@@ -158,6 +158,7 @@ extra_css:
 extra_javascript:
   - javascripts/toc-icons.js
   - javascripts/roadmap-sort.js
+  - javascripts/changelog-toc.js
 
 extra:
   social:
