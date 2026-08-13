@@ -60,8 +60,10 @@ kbd {
 
 /* Roadmap board — keep the table within the content width (no horizontal
    clipping) and wrap long text. Theme/Area/Size collapse into one centered Meta
-   column of icons with hover tooltips; the feature title is the link. Scoped via
-   the .roadmap-board wrapper so other wiki tables are untouched. */
+   column of icons with hover tooltips; the feature title is the link; When shows
+   the milestone date, its clock tooltip the whole history. Scoped via the
+   .roadmap-board wrapper (a <details>, so each section folds) so other wiki
+   tables are untouched. */
 .roadmap-board table { width: 100%; table-layout: fixed; }
 .roadmap-board td,
 .roadmap-board th { word-break: break-word; overflow-wrap: anywhere; }
@@ -74,7 +76,62 @@ kbd {
   white-space: nowrap;
 }
 .roadmap-board td:nth-child(2) .twemoji { margin: 0 0.08em; }
-/* col 3 (What it does) absorbs the remaining width */
+.roadmap-board th:nth-child(3),
+.roadmap-board td:nth-child(3) {                                 /* When    */
+  width: 8.5em;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+.roadmap-board td:nth-child(3) { font-variant-numeric: tabular-nums; }
+.roadmap-board td:nth-child(3) .twemoji { margin-right: 0.3em; opacity: 0.75; }
+/* col 4 (What it does) absorbs the remaining width */
+
+/* Sortable headers: a pointer, a hover tint, and a caret that appears once the
+   column is the one being sorted (▲ ascending / ▼ descending). */
+.roadmap-board th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.roadmap-board th.sortable:hover { color: var(--md-accent-fg-color); }
+.roadmap-board th.sortable::after {
+  content: "⇅";
+  margin-left: 0.35em;
+  opacity: 0.35;
+  font-size: 0.85em;
+}
+.roadmap-board th.sortable[data-dir="asc"]::after { content: "▲"; opacity: 1; }
+.roadmap-board th.sortable[data-dir="desc"]::after { content: "▼"; opacity: 1; }
+
+/* Foldable sections. Material dresses every <details> as an info admonition —
+   border, tinted title bar, ⓘ glyph — which competes with the tables. Strip that
+   back to a quiet count line that doubles as the fold handle (the chevron stays).
+   Archive ships closed, so old work is one click away rather than in the way. */
+.md-typeset .roadmap-section {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  margin: 0.3em 0 1.4em;
+  font-size: inherit;
+}
+.md-typeset .roadmap-section > summary {
+  display: inline-block;
+  width: auto;
+  background: transparent;
+  border-radius: 0.1rem;
+  padding: 0.15em 1.7em 0.15em 0.3em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+  cursor: pointer;
+}
+.md-typeset .roadmap-section > summary::before { display: none; }   /* the ⓘ glyph */
+.md-typeset .roadmap-section > summary:hover {
+  color: var(--md-accent-fg-color);
+  background: var(--md-accent-fg-color--transparent);
+}
 
 /* Colour-code the Size dot. Target the SVG fill directly (higher specificity
    than Material's `.twemoji svg { fill: currentcolor }`). */
