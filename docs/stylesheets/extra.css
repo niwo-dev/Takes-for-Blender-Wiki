@@ -110,7 +110,11 @@ kbd {
    (one milestone per row); every other tooltip on the wiki is a single line, so
    `pre-line` changes nothing for them. Non-breaking spaces do the aligning —
    `pre-line` collapses ordinary runs of spaces. */
-.md-tooltip__inner { white-space: pre-line; }
+/* Both class names on purpose: this Material build renders `md-tooltip2__inner`,
+   older ones `md-tooltip__inner`, and an upgrade shouldn't silently flatten the
+   rows back into one line. */
+.md-tooltip__inner,
+.md-tooltip2__inner { white-space: pre-line; }
 
 /* Sortable headers: a pointer, a hover tint, and a caret that appears once the
    column is the one being sorted (▲ ascending / ▼ descending). */
