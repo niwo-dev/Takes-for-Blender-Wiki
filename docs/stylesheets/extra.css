@@ -69,23 +69,48 @@ kbd {
 .roadmap-board th { word-break: break-word; overflow-wrap: anywhere; }
 .roadmap-board th:nth-child(1),
 .roadmap-board td:nth-child(1) { width: 12em; }                  /* Feature */
-.roadmap-board th:nth-child(2),
-.roadmap-board td:nth-child(2) {                                 /* Meta    */
-  width: 5em;
-  text-align: center;
+/* Meta and When read as one cluster: Meta hugs its right edge, When starts right
+   after it, so the two narrow columns sit together instead of drifting apart.
+   `table` is in the selector to out-specify the site-wide cell padding above. */
+.roadmap-board table th:nth-child(2),
+.roadmap-board table td:nth-child(2) {                           /* Meta    */
+  width: 4.2em;
+  text-align: right;
+  padding-right: 0.2em;
   white-space: nowrap;
 }
 .roadmap-board td:nth-child(2) .twemoji { margin: 0 0.08em; }
-.roadmap-board th:nth-child(3),
-.roadmap-board td:nth-child(3) {                                 /* When    */
-  width: 8.5em;
+.roadmap-board table th:nth-child(3),
+.roadmap-board table td:nth-child(3) {                           /* When    */
+  width: 4.6em;
+  padding-left: 0.45em;
   white-space: nowrap;
   word-break: normal;
   overflow-wrap: normal;
 }
-.roadmap-board td:nth-child(3) { font-variant-numeric: tabular-nums; }
-.roadmap-board td:nth-child(3) .twemoji { margin-right: 0.3em; opacity: 0.75; }
+/* Day and year stack under the clock rather than running out sideways, so the
+   column costs barely more width than the icon itself. */
+.roadmap-board td:nth-child(3) {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+.roadmap-board td:nth-child(3) .twemoji {
+  opacity: 0.7;
+  font-size: 0.9em;
+}
+.roadmap-board td:nth-child(3) .dm { display: block; }
+.roadmap-board td:nth-child(3) .yr {
+  display: block;
+  font-size: 0.82em;
+  color: var(--md-default-fg-color--light);
+}
 /* col 4 (What it does) absorbs the remaining width */
+
+/* Tooltips keep their line breaks. The roadmap's clock tooltip is a small table
+   (one milestone per row); every other tooltip on the wiki is a single line, so
+   `pre-line` changes nothing for them. Non-breaking spaces do the aligning —
+   `pre-line` collapses ordinary runs of spaces. */
+.md-tooltip__inner { white-space: pre-line; }
 
 /* Sortable headers: a pointer, a hover tint, and a caret that appears once the
    column is the one being sorted (▲ ascending / ▼ descending). */
