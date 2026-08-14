@@ -33,6 +33,7 @@ Tags are the addon's universal labelling system. They serve two purposes:
 - **Tree view** of all tags grouped by category.
 - **+** / **−** to add or remove a tag.
 - **↑ / ↓** to reorder.
+- **{{ op('tks.tag_retarget_group').bl_label }}** (track icon) to move a tag into another group — equivalent to ++ctrl+t++.
 - **Filter** search box (`tks_tags_filter`) to narrow visible tags by name.
 - **Multiselect** (☐) toggle to bulk-edit.
 - **Stats row** showing the tag count per category, e.g. `3/5 Output | 2/2 Camera`.
@@ -53,7 +54,7 @@ Once a category holds more than a handful of tags, fold them into **Tag Groups**
 1. **Create a group** — select the tags to bundle (enable **Multiselect** to pick several), then press ++ctrl+g++ or click **+** → **Group**. This runs **{{ op('tks.tag_group_create').bl_label }}** (`tks.tag_group_create`): a group named *New Group* (auto-numbered if taken) appears with the selected tags inside. All selected tags must belong to the same category.
 2. **Rename it** — ++f2++ on the group header opens the **{{ op('tks.tag_group_rename').bl_label }}** dialog (`tks.tag_group_rename`); group names must stay unique within their category.
 3. **Reorder** — the **↑ / ↓** buttons move the group up or down within its category (`tks.tag_group_move`).
-4. **Move tags between groups** — ++ctrl+t++ (**{{ op('tks.tag_retarget_group').bl_label }}**, `tks.tag_retarget_group`) opens a small dialog with a target-group dropdown. It moves the active tag or the whole multi-selection, and remembers the last target per category — so re-filing a batch of tags is two clicks. This one is keyboard-only: it has no sidebar button.
+4. **Move tags between groups** — **{{ op('tks.tag_retarget_group').bl_label }}** (track icon, or ++ctrl+t++, `tks.tag_retarget_group`) opens a small dialog with a target-group dropdown. It moves the active tag or the whole multi-selection, and remembers the last target per category — so re-filing a batch of tags is two clicks.
 5. **Fold / unfold** — the chevron on a group header toggles that group (`tks.tag_group_toggle_expand`); ++shift++-click sets **every group in every category** to the same state at once.
 
 When a group has outlived its usefulness, there are two exits with very different blast radii:
