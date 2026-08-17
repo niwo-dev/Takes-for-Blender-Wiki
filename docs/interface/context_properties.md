@@ -140,7 +140,7 @@ Each View Layer row carries its own render toggle (see [Render Queue](hotkeys.md
 
 | Action | Operator | What it does |
 |--------|----------|--------------|
-| **{{ op('tks.toggle_scene_expand').bl_label }}** | `tks.toggle_scene_expand` | The expand chevron on any hierarchical row. ++shift++ + click expands / collapses **all rows of the same type** at once (like the Outliner); ++ctrl++ + click toggles the row **and all its nested children**. |
+| **{{ op('tks.toggle_scene_expand').bl_label }}** | `tks.toggle_scene_expand` | The expand chevron on any hierarchical row. ++ctrl++ + click toggles the row **and all its nested children**; ++shift++ + click expands / collapses **all rows of the same type** at once (like the Outliner); ++alt+shift++ + click toggles **every row in the tree** regardless of type. |
 | **{{ op('tks.refresh_tree').bl_label }}** | `tks.refresh_tree` | Forces a full rebuild of the tree when a structural change hasn't shown up yet. Also available in the [Tree Display Settings](navigation_panel.md#tree-display-settings) popover. |
 | **Right-click menu** | `tks.open_tree_context_menu` | ++ctrl++ + right-click a tree row opens its context menu — a header identifying the row, plus **Show Overrides…**, which opens the full cascade-icon popover for that row. |
 

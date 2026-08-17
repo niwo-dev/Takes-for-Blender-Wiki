@@ -43,6 +43,10 @@ Grouped into collapsible categories: **Autokey**, **Rest State**, **Actions**, *
 | **{{ pref('preload_auto_open_panel').label }}** | bool | Off | With Automatic preload, opens the View-Layer Preload panel so you can watch progress; it closes itself once every layer is preloaded. |
 | **Auto-rename Thumbnails on Name Change** | bool | On | Renames preview PNGs alongside their source. |
 | **Preset Changes** | enum | MANUAL | Policy when render/output/camera presets are edited live: **MANUAL** (warn), **DROP_REAPPLY** (discard), **ALWAYS_SYNC** (write back to preset). |
+| **{{ pref('world_unassigned_mode').label }}** (World) | enum | Adopt into Scene (Native) | What happens when you assign a World in Blender's own Properties editor rather than through the cascade. **Adopt into Scene (Native)** records it on your adopt tier automatically, so the tree knows about it and take switches keep it — Blender behaves like Blender. **Preserve** leaves it alone without recording it, and the [drift reminder](../features/cascade.md#cascade-preset-drift) stays visible. **Auto-clear (Strict)** gives the addon full ownership: with no World assigned anywhere in the tree, the scene's World is cleared. |
+| **{{ pref('world_adopt_tier').label }}** (World) | enum | Scene | Which tier an adopted World lands on — Global, Scene Group, Scene, VL Group, ViewLayer or Take. Scene matches native Blender. This is also the tier the [World needed](../features/cascade.md#needed-rows) resolve chips write to. |
+| **{{ pref('camera_unassigned_mode').label }}** (Cameras) | enum | Adopt into Scene (Native) | The same three-way choice for a camera picked in the Properties editor or the viewport: adopt it onto your adopt tier, preserve it untracked, or let the addon own the slot outright. |
+| **{{ pref('camera_adopt_tier').label }}** (Cameras) | enum | Scene | Which tier an adopted camera lands on, and the tier the [Camera needed](../features/cascade.md#needed-rows) chips write to. |
 
 ## :material-form-textbox: Syntax
 

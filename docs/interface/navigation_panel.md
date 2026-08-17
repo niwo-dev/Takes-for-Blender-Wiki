@@ -26,7 +26,7 @@ The header has two rows. The top row carries shared toggles, warning indicators,
 
 | Control | Description |
 |---------|-------------|
-| **Warning indicators** | Conditional badges that appear when an issue is detected — preset dirty, missing preset, rest drift, slot mismatch, pending preview rename, cascade drift, view-layer preload. Each one toggles its own warning sub-panel below the header. |
+| **Warning indicators** | Conditional badges that appear when an issue is detected — preset dirty, missing preset, incompatible preset, rest drift, slot mismatch, pending preview rename, cascade drift, broken assignment, camera link gap, variant conflict, stale cache, view-layer preload. Each one toggles its own warning sub-panel below the header. |
 | **Save** | Appears in red when there are unsaved preference changes; click to save. |
 | **Help** | Opens the documentation (this wiki). |
 | **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). Its sidebar carries **Restart Processes** (`tks.restart_dead_processes`) plus, in Debug Console view, a refresh button (`tks.dm_refresh`) and a log-files opener (`tks.dm_log_files`). |
@@ -78,10 +78,15 @@ Each View Layer row displays cascade override icons. These icons show at a glanc
     **⋯** button. Clicking it opens a popover showing all icons in full.
 
 !!! tip "Expand / collapse in bulk"
-    The expand chevron on Scene, Group, and Take rows responds to modifiers:
-    ++shift++ + click expands or collapses **all rows of the same type** at once
-    (like Blender's Outliner), and ++ctrl++ + click toggles the row **and all its
-    nested children** (`tks.toggle_scene_expand`).
+    The expand chevron on Scene, Group, and Take rows responds to modifiers
+    (`tks.toggle_scene_expand`):
+
+    | Shortcut | Reach |
+    |----------|-------|
+    | Click | Just this row. |
+    | ++ctrl++ + click | This row **and all its nested children**. |
+    | ++shift++ + click | **All rows of the same type**, like Blender's Outliner. |
+    | ++alt+shift++ + click | **Every row in the tree**, whatever its type. |
 
 ### :material-vector-line: Tree Lines
 Configurable indent lines show the hierarchy visually. Tag colors can be inherited by tree lines for quick identification.
@@ -111,7 +116,12 @@ The Navigation Panel header surfaces conditional warning badges whenever the add
 | Ghost | The Rest Action is drifting from the current values for one or more managed objects. | Rest-drift list with per-property snap controls. |
 | Font-data | A slot rename is pending — a slot's name no longer matches its template. | Slot-mismatch list with rename actions. |
 | Image-data | One or more View Layer preview thumbnails have a pending rename after a Scene / VL rename. | Pending-preview-rename list with apply / dismiss controls. |
-| Orphan-data | Cascade resolution drifted — a stored cascade value no longer matches the resolver's current output. | Cascade-drift list with re-sync actions. |
+| Orphan-data | Cascade resolution drifted — a stored cascade value no longer matches the resolver's current output. | Cascade-drift list with re-sync actions. The same panel also carries the **Camera needed** and **World needed** rows: nothing is assigned anywhere in the tree and the scene has no fallback, so each row offers a **▾** picker and a **+** create button that write straight to your adopt tier — see [Camera or World Needed](../features/cascade.md#needed-rows). |
+| Orphan-data (broken) | A cascade assignment points at a datablock that no longer exists — deleted, or renamed outside the addon. | Broken-assignment list grouped by data type, with per-entry clear, a replace-via-picker button, and **Clear All** — see [Broken Assignments](../features/cascade.md#broken-assignments). |
+| Camera-data | A Global- or Scene-Group-tier camera isn't linked into every scene that tier covers, so takes in those scenes are skipped. | Per-camera list of unreachable scenes with **Link** buttons and a link-into-all footer — see [Cross-Scene Camera Linking](../features/cascade.md#cross-scene-camera-linking). |
+| UV-sync-select | A [Variant Switch](../features/variant_switch.md) would collapse two materials of one pool onto a single object, or two products drive the same object. | Conflict list naming the products, pools and objects involved, plus a rescan. |
+| Package | One or more preset JSON files on disk were written by an incompatible schema version. | Incompatible-preset list with quarantine / migrate actions — see [Render Presets](../features/render_presets.md). |
+| Unlinked (cache) | The active scene was last saved by a different addon version (a MAJOR.MINOR mismatch), so cached tree data may be stale. | A cache notice with a refresh action. |
 | File-refresh | [View Layer Preload](context_properties.md#view-layer-preload) is enabled and a preload is running, or some layers are still cold ("Not Ready"). | The per-layer preload panel — readiness state for every View Layer, per-section Preload buttons, Cancel and ETA while running. It behaves like the other warning panels (opening it closes the others) and can open **automatically** when an automatic preload starts, if you opt in via the preferences. |
 
 ### Autokey Is Being Blocked

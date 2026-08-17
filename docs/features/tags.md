@@ -47,6 +47,15 @@ Each category header carries a **chevron** that runs **Toggle Expand** (`tks.tag
 3. Choose a name and a colour (5 default presets, or custom).
 4. (Optional) drop the tag inside a Tag Group via **+** → **Group**, then drag tags into it.
 
+### Duplicate names
+
+Names don't have to be unique, and nothing is rejected for colliding. Takes follows **Blender's own convention** instead: create a second `hero` and it becomes `hero.001`, a third `hero.002` — exactly what happens when you duplicate an object or a material.
+
+**Rules and tags are separate namespaces.** A rule named `a` and a tag named `a` coexist happily, and neither pushes the other to `.001`. The same is true of Tag Groups: the suffix is only applied within the same kind of thing.
+
+!!! tip "Renaming frees the name up again"
+    Rename `hero.001` to something else and the suffix is not reserved — the next `hero` you create takes `hero.001` again. If you are scripting against these names, read the name back from the object you created rather than assuming the one you asked for.
+
 ## :material-folder-multiple: Organizing Your Tag Library
 
 Once a category holds more than a handful of tags, fold them into **Tag Groups** — collapsible folders inside the category:

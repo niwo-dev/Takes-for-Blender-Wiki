@@ -54,6 +54,31 @@ Variant Switch uses a **single pool-based model** — there isn't a per-Part mod
 - Removing all materials from a Part shrinks its pool back down (pool indices on existing Variants are re-clamped).
 - Pool sizes can differ between Parts within the same Product — each Part is independent.
 
+## :material-content-duplicate: Duplicating a Product
+
+**{{ op('tks.vsw_duplicate_product').bl_label }}** (`tks.vsw_duplicate_product`) copies a product whole — every Part, every material pool and every State come with it, in one click. It is the fast way to build a second product that shares a structure with the first: duplicate, then swap the materials that differ instead of rebuilding the pools by hand.
+
+The copy is named by [Blender's own duplicate convention](tags.md#duplicate-names), so duplicating `Chair` gives you `Chair.001`.
+
+## :material-alert-decagram: Conflicts {: #conflicts }
+
+A variant switch writes real material slots and visibility flags, so two products can quietly disagree about the same geometry. Takes detects both shapes and warns **before** a switch does something you can't easily see:
+
+| Conflict | What it means |
+|----------|---------------|
+| **Collapse** | One object carries **two or more distinct materials from the same pool**. A switch has only one pool index to apply, so both slots collapse onto a single material and the distinction is lost. The warning names the object, the slot, the material being replaced and the one replacing it. |
+| **Shared object** | One object is reachable from **two different products** — through their root collections, part collections or material-pool collections. Whichever product switches last wins, so the result depends on the order you clicked in. |
+
+Conflicts surface as the [variant-conflict badge](../interface/navigation_panel.md#warnings) in the Navigation panel header, and each entry offers:
+
+| Button | Operator | What it does |
+|--------|----------|--------------|
+| **{{ op('tks.vsw_reveal_pool').bl_label }}** | `tks.vsw_reveal_pool` | Selects the offending pool in the Variants tree, so you land on the exact Part that needs fixing instead of hunting for it. |
+| **{{ op('tks.vsw_conflicts_rescan').bl_label }}** | `tks.vsw_conflicts_rescan` | Re-scans every pool and product. The detection is cached and invalidated as you edit; use this after changing material slots outside the addon. |
+
+!!! note "Detection is scoped, not a file sweep"
+    Reach is computed from the product's own collections only — never a sweep over every object in the file — so the scan stays cheap enough to run as you work.
+
 ## :material-arrow-decision: Variants in the Cascade
 
 Variant Switch states are resolved as part of the [cascade](cascade.md). Each View Layer (or higher tier) can specify which variant is active, enabling different variants per camera angle — and the same 6-tier override chain applies, leaf beating root:

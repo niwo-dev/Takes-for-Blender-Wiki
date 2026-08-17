@@ -132,13 +132,26 @@ The **Action** cascade is special: it doesn't just point at a datablock, it acti
 
 ## :material-camera-switch: Cross-Scene Camera Linking
 
-When you assign a camera at the **Global** or **Scene Group** tier, that camera has to exist in *every* scene the tier covers. If it doesn't, picking it pops up the **Camera not linked in all scenes** confirmation (`tks.link_camera_and_assign`) listing the missing scenes and offering three choices:
+When you assign a camera at the **Global** or **Scene Group** tier, that camera has to exist in *every* scene the tier covers. If it doesn't, the cascade quietly skips the takes in the scenes it can't reach — the assignment itself is fine, it just cannot land everywhere.
 
-- **Link & Assign** — link the camera into each missing scene (mirroring its current collection placement) and then assign it.
-- **Just Assign** — keep the assignment at the source tier and let the cascade silently skip scenes where it can't resolve.
-- **Cancel** — do nothing.
+**Picking always assigns.** There is no confirmation in the way: choosing a camera writes it to the tier immediately, even when some covered scenes don't have it linked. Interrupting a pick to ask about scene membership put a dialog in front of the common case to serve the rare one, so the gap is *surfaced* afterwards instead — in three places you're already looking:
 
-The cascade picker also flags an incompatible camera with an error icon before you click, so you can spot the situation in advance.
+- **A red camera flag** on the affected tree rows.
+- **The Camera Links warning** in the Navigation panel, which names each camera, the tier it came from, and every scene it can't reach.
+- **The cascade picker itself**, which offers a **Link '&lt;camera&gt;' into this scene** entry right where you noticed the problem.
+
+All three run the same repair, **{{ op('tks.link_inherited_camera').bl_label }}** (`tks.link_inherited_camera`), which links the camera into the scenes that are missing it while preserving its collection placement:
+
+| Button | Where | Scope |
+|--------|-------|-------|
+| **Link** | Per-scene row in the Camera Links warning | That one scene. |
+| **Link into all missing scenes** | Footer of a camera's entry, when more than one scene is missing | Every scene in the Scene Group for an SG-tier camera; the whole file for a Global-tier one. Scenes that already have the camera are skipped, so over-covering is harmless. |
+| **Link '&lt;camera&gt;' into this scene** | The cascade camera picker | The scene you are working in. |
+
+Nothing is duplicated — linking is Blender's own multi-scene linking, so it stays one camera object. The warning clears as soon as every covered scene can resolve it.
+
+!!! note "Three different camera problems, three different warnings"
+    **Camera Links** means the camera exists and is assigned, but can't reach some scenes. That's distinct from a [broken assignment](#broken-assignments) (the camera datablock is gone) and from [drift](#cascade-preset-drift) (a camera was picked natively, outside the tree).
 
 ## :material-vector-difference: Take Variants {: #version-variants }
 
