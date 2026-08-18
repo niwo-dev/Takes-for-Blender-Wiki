@@ -98,12 +98,37 @@ jobs:
             .addon-src/CHANGELOG_DEV.md > docs/changelog/dev.md
           echo "changelog pages:"; ls docs/changelog
 
+      # The verifier writes its findings to a file and exits 1 on drift, so a
+      # bare invocation fails with an empty log. Print what it found — the
+      # page, line and stale reference — before letting the step fail.
       - name: Verify wiki against manifest (string drift)
         run: |
+          set +e
           python .addon-src/dev/build/verify_wiki.py \
             --wiki docs \
             --manifest docs/_data/ui_manifest.json \
             --out /tmp/verify_findings.json
+          status=$?
+          set -e
+          if [ "$status" -ne 0 ]; then
+            echo "::error::Wiki drift: the wiki names add-on strings that no longer exist."
+            python - <<'PY'
+          import json
+          try:
+              findings = json.load(open("/tmp/verify_findings.json", encoding="utf-8"))["findings"]
+          except Exception as exc:                       # noqa: BLE001 - diagnostics only
+              print(f"(could not read findings: {exc})")
+              raise SystemExit(0)
+          for f in findings:
+              print(f"{f.get('severity', '?').upper():<6} "
+                    f"{f.get('wiki_file')}:{f.get('wiki_line')}  "
+                    f"{f.get('kind')} '{f.get('ref')}'")
+              if f.get("description"):
+                  print(f"       {f['description']}")
+          print(f"\n{len(findings)} finding(s). Fix the page, or update the reference.")
+          PY
+          fi
+          exit "$status"
 
       - name: Build MkDocs into wiki subdirectory
         run: mkdocs build --strict
