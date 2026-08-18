@@ -23,6 +23,14 @@ plugins:
       module_name: macros
       on_error_fail: true
 
+# Keeps the "What's New" section (changelog + roadmap) out of the search
+# index — those pages are generated, so front matter can't carry the flag.
+hooks:
+  - hooks/search_exclude.py
+  # Resolves the latest available addon version into `extra.addon_version`
+  # for the header's GitHub version chip.
+  - hooks/addon_version.py
+
 theme:
   name: material
   custom_dir: docs/overrides

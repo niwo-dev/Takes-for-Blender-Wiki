@@ -7,6 +7,7 @@ on:
       - 'docs/**'
       - 'mkdocs.yml'
       - 'macros.py'
+      - 'hooks/**'
       - 'index.html'
   schedule:
     # Daily catch-up in case the addon repo's notify webhook is missed
@@ -51,6 +52,27 @@ jobs:
             --out docs/_data/ui_manifest.json
           echo "manifest counts:"
           python -c "import json; m=json.load(open('docs/_data/ui_manifest.json')); print(m['_meta']['counts'])"
+
+      # The header's version chip. The addon repo is private, so the browser
+      # can't read this — resolve it here, where the read token exists, and
+      # bake it into the build. Falls back to the manifest version.
+      - name: Resolve latest addon release
+        env:
+          GH_TOKEN: ${{ secrets.ADDON_REPO_READ_TOKEN }}
+        run: |
+          tag="$(gh api repos/niwo-dev/Takes-for-Blender/releases/latest \
+                   --jq .tag_name 2>/dev/null || true)"
+          if [ -z "$tag" ]; then
+            echo "No readable published release - falling back to the manifest version."
+            tag="v$(python -c "import json; print(json.load(open('docs/_data/ui_manifest.json'))['addon']['version'])")"
+          fi
+          python - "$tag" <<'PY'
+          import json, sys
+          tag = sys.argv[1]
+          with open("docs/_data/release.json", "w", encoding="utf-8") as fh:
+              json.dump({"tag": tag, "version": tag.lstrip("vV")}, fh, indent=2)
+          PY
+          echo "latest release:"; cat docs/_data/release.json
 
       - name: Generate roadmap board from addon source
         run: |
