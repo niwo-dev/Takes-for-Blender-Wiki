@@ -91,7 +91,7 @@ nav:
     - Core:
       - Takes: features/takes.md
       - Cascade System: features/cascade.md
-      - VL Versions: features/vl_versions.md
+      - The Review Loop: features/vl_versions.md
       - Globals Panel: features/globals.md
     - Automation:
       - Tags: features/tags.md
@@ -102,6 +102,7 @@ nav:
     - Production:
       - Render Presets: features/render_presets.md
       - Batch Render: features/batch_render.md
+      - Video Sequencer: features/sequencer.md
       - Rest State: features/rest_state.md
       - Value Lock: features/value_lock.md
       - Still Mode: features/still_mode.md
@@ -111,6 +112,7 @@ nav:
       - Pie Menus: features/pie_menus.md
       - Process Monitor: features/process_monitor.md
       - Viewport Sync: features/viewport_sync.md
+      - AI Assistant: features/ai_assistant.md
   - Workflows:
     - workflows/index.md
     - Animation Variants: workflows/animation_variants.md

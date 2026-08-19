@@ -33,16 +33,18 @@ Takes for Blender supports three render modes:
 
 ### :material-menu-down: The Render Menu
 
-The queue sidebar carries a single render button (:material-play: in Foreground mode, :material-menu-right: in Background mode) that opens the render menu. A **Render Mode** toggle at the top switches between **Foreground** and **Background**; every scope row below dispatches in whichever mode is selected. The scopes are grouped into three categories:
+The queue sidebar carries a single render button (:material-export: — one icon, whichever mode you are in) that opens the render menu. **Render Mode** sits at the **bottom** of that menu, below the scopes, and names the two choices by what they cost you: **In Blender — you wait** and **In Background — keep working**. Every scope row dispatches in whichever mode is selected. The scopes are grouped into three categories:
 
 | Category | Row | What it renders |
 |----------|-----|-----------------|
 | **Selected Layers** | **This Scene** | Every render-toggle-enabled VL in the current scene only. |
 | | **All Scenes** | Every render-toggle-enabled VL across every scene. |
 | | **Pick Scene** | Choose a specific scene (with a *Search scenes…* option) to render its enabled VLs. |
+| | **Pick Tag** | Choose a [tag](tags.md) and render only the view layers carrying it. Each entry shows how many layers that tag would render. |
 | **All Layers** | **This Scene** | Every VL in the current scene, regardless of render-toggle. |
 | | **All Scenes** | Every VL in every scene, regardless of render-toggle. |
 | | **Pick Scene** | Choose a specific scene and force-render all of its VLs. |
+| | **Pick Tag** | Force-render every view layer carrying the chosen tag, regardless of render-toggle. |
 | **Other** | **Active Layer Only** | Just the active View Layer. |
 | | **Resume — Skip Done** | Enabled VLs across all scenes, skipping ones that already finished. |
 | | **Retry Failed** | Re-render only VLs whose previous attempt failed or cancelled. |
@@ -62,6 +64,8 @@ The render queue shows the status of each View Layer:
 | **Done** | Successfully completed. |
 | **Failed** | Error occurred (hover for details). |
 | **Cancelled** | Skipped due to batch cancellation. |
+
+Above the list, the queue reports how many takes it will **skip for a missing camera** before the render starts — a take with no camera anywhere in its cascade cannot render, and finding that out after a long queue has run is the failure this heads off. Resolve them from the [Camera needed](cascade.md#needed-rows) row.
 
 ### :material-view-column: Queue Columns
 

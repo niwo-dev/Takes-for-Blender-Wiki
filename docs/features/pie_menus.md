@@ -74,6 +74,35 @@ The per-scene scope submenus list every scene as its own row, which gets unwield
 - It respects the popover's current **Foreground / Background** choice, so the chosen scene renders in whichever mode is active.
 - It mirrors the submenu it was opened from: the plain variant renders that scene's render-toggle-enabled View Layers, while the *force* variant renders every View Layer in the scene regardless of toggle state.
 
+## :material-toggle-switch: Mode Pie {: #mode-pie }
+
+++shift+alt+q++ opens a pie carrying the persistent **mode toggles** that otherwise live in the Navigation Panel header — so you can flip Rest State, Still Mode, Value Lock, Autokey, Timeline Sync or Variant Live without travelling to the panel.
+
+It is **off by default**. Switch it on with **Enable Mode Pie** in *Preferences ▸ Workflow ▸ Pie & Misc*, which also reveals the eight slot dropdowns.
+
+!!! note "Why ++shift+alt+q++"
+    Not a ++ctrl+alt++ chord: on German layouts ++alt-gr++ sends Ctrl+Alt, so such a binding fires while typing. Plain ++alt+q++ is Blender's Quick Favourites. ++shift+alt+q++ is free in the factory keymap.
+
+### :material-format-list-bulleted: Mode Pie — Slot Actions
+
+Every one of the eight compass slots is a dropdown; these are the choices:
+
+| Action | What it toggles |
+|--------|-----------------|
+| **None** | Empty slot. |
+| **Rest State** | [Rest State](rest_state.md) mode. |
+| **Still Mode** | Pin every take to its still frame. |
+| **Animation** | Make every take animate. |
+| **Off (per-take)** | Let each take's own [Still](still_mode.md) setting decide. |
+| **Value Lock** | The [Value Lock](value_lock.md). |
+| **Autokey** | Automatic keyframe insertion across all scenes. |
+| **Timeline Sync** | Playhead sync across scenes. |
+| **Variant Live** | [Live apply](variant_switch.md) for the edited variant state. |
+
+Still's three states each get their own slice rather than sharing one cycling button — the point of a pie is that every destination is a direction, not a number of presses.
+
+**Defaults:** North *Timeline Sync*, North-East *Value Lock*, East *Variant Live*, South-East *Animation*, South *Still Mode*, South-West *Off (per-take)*, West *Autokey*, North-West *Rest State*.
+
 ## :material-key: Keyframe & Clear Pies
 
 Two opt-in pies that replace Blender's ++i++ (insert keyframe) and ++alt+i++ (clear keyframe) shortcuts in the editors you choose. Where the native shortcuts only know about ordinary keyframes, these pies put the addon's [Rest State](rest_state.md) actions on the same muscle-memory gesture — set a rest default, snap back to rest, or clear rest keys without hunting through menus. Both pies are **off by default**: enable them in *Workflow > Pie & Misc* (*Enable Keyframe Pie* / *Enable Clear Pie (Alt+I)*).
