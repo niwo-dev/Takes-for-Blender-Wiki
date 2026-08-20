@@ -5,6 +5,10 @@ site/
 docs/_data/ui_manifest.json
 docs/_data/release.json
 docs/roadmap/
+docs/changelog/
+
+# Local gate output (dev/wiki_gate.py, dev/anchor_check.py)
+dev/verify_findings.json
 
 # Python bytecode
 __pycache__/
