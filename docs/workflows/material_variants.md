@@ -4,45 +4,41 @@ icon: material/palette
 
 # Workflow: Material Variants
 
-This workflow shows how to set up product color/finish variants using the Variant Switch system.
+When one product has to render in several finishes, using the Variant Switch system.
 
 ## :material-script-text-outline: Scenario
 
-You have a product (e.g., a water bottle) that needs to be rendered in three finishes: Matte Black, Brushed Aluminum, and Rose Gold.
+You have a water bottle that ships in three finishes: Matte Black, Brushed Aluminum and Rose Gold.
 
 ## :material-cog-outline: Setup
 
 ### :material-numeric-1-circle: 1. Create the Product
 1. Open the **Variant Switch** panel.
-2. Click **+** to create a new Product named "Bottle".
-3. A default Part ("base") is created automatically.
+2. Click **+** and name the new Product "Bottle".
+3. A default Part called "base" appears with it.
 
 ### :material-numeric-2-circle: 2. Define Parts
 Split the product into components:
 
-1. Add a Part called "Body" → assign the body collection.
-2. Add a Part called "Cap" → assign the cap collection.
-3. Add a Part called "Label" → assign the label collection.
+1. Add a Part called "Body" and assign the body collection.
+2. Add a Part called "Cap" and assign the cap collection.
+3. Add a Part called "Label" and assign the label collection.
 
 ### :material-numeric-3-circle: 3. Add Materials to Pools
-For each Part, populate the material pool:
-
-1. Expand "Body" to see its pool.
-2. Assign `Mat_Matte_Black` to slot 1.
-3. Assign `Mat_Aluminum` to slot 2 (auto-creates).
-4. Assign `Mat_Rose_Gold` to slot 3 (auto-creates).
-5. Repeat for Cap and Label with their respective materials.
+1. Expand "Body" to see its material pool.
+2. Assign the matte black material to slot 1.
+3. Assign the aluminum material to slot 2. The slot is created for you.
+4. Assign the rose gold material to slot 3.
+5. Repeat for Cap and Label with their own materials.
 
 ### :material-numeric-4-circle: 4. Create States
-Add a State for each variant:
-
-1. Add State "Matte Black" → set pool index 1 for all parts.
-2. Add State "Aluminum" → set pool index 2 for all parts.
-3. Add State "Rose Gold" → set pool index 3 for all parts.
+1. Add a State "Matte Black" and set pool index 1 on every part.
+2. Add "Aluminum" with pool index 2.
+3. Add "Rose Gold" with pool index 3.
 
 ## :material-eye: Previewing
 
-Click the **diamond icon** on any State to instantly see that variant in the viewport.
+Click the **diamond icon** on any State to see that variant in the viewport.
 
 ## :material-image-multiple: Rendering All Variants
 
@@ -52,21 +48,26 @@ Click the **diamond icon** on any State to instantly see that variant in the vie
 
 ### :material-alpha-b-circle: Option B: Cascade Integration
 1. Create a View Layer per variant.
-2. In each View Layer's cascade, assign the matching Variant Switch state — click the variant cascade icon on the tree row (the same UV-sync icon as the Globals *Variants* mode) to open its popover and pick the state.
-3. Batch Render all View Layers in one go.
+2. Click the variant cascade icon on the tree row to open its popover.
+3. Pick the matching state.
+4. Batch Render all View Layers in one go.
+
+??? info "Finding the variant cascade icon"
+    It is the same UV-sync icon as the **Variants** mode button in the Globals
+    header, sitting with the other cascade icons on the tree row.
 
 ### :material-alpha-c-circle: Option C: Combined with Camera Angles
-Create a View Layer for each combination (variant × angle):
 
-| View Layer | Variant | Camera |
-|------------|---------|--------|
-| Black_Front | Matte Black | Cam_Front |
-| Black_Side | Matte Black | Cam_Side |
-| Alu_Front | Aluminum | Cam_Front |
-| Alu_Side | Aluminum | Cam_Side |
-
-Batch Render handles all combinations with Smart Output tokens:
+Give every combination of variant and angle its own View Layer. Batch Render then covers all of them, and Smart Output writes the names for you:
 
 ```
 [variant]_[camera]_####.[file_format]
 ```
+
+??? info "What the View Layers look like"
+    | View Layer | Variant | Camera |
+    |------------|---------|--------|
+    | Black_Front | Matte Black | Cam_Front |
+    | Black_Side | Matte Black | Cam_Side |
+    | Alu_Front | Aluminum | Cam_Front |
+    | Alu_Side | Aluminum | Cam_Side |

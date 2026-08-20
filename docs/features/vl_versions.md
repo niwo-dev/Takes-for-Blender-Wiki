@@ -4,11 +4,13 @@ icon: material/movie-open
 
 # Takes — the Review Loop
 
-A **Take** is one attempt at a layer — exactly like a film take. You build the shot, show it, collect feedback, save a take, work the notes in, and show it again: take 1, take 2, take 3 … until it's approved. Takes live at the deepest tier of the cascade, so every take can carry its own camera, world, action, compositor, presets and variant — while the layer itself stays untouched.
+A **Take** is one attempt at a View Layer, exactly like a film take.
 
-Each take also carries a short **feedback note** — what the review asked for that round — so the whole conversation stays attached to the takes it produced.
+You build the shot, show it, save a take, work the notes in, and show it again — take 1, take 2, take 3 — until it is approved.
 
-!!! info "Formerly \"View Layer Versions\""
+This page covers the Take level only. For the tree above it, see [The Takes System](takes.md).
+
+??? info "Formerly \"View Layer Versions\""
     Earlier releases called this tier *View Layer Versions*. Same data, same
     behavior — the word finally matches what the tier always was: sequential
     review iterations of one layer. Saved `.blend` files load unchanged, and
@@ -16,75 +18,75 @@ Each take also carries a short **feedback note** — what the review asked for t
 
 ## :material-help-circle-outline: When to Use
 
-*A new take vs. a fresh view layer.*
+Add a take when you keep iterating on the *same* shot. Add a View Layer when the shot itself changes.
 
-| Use a Take when… | Use a new View Layer when… |
-|------------------------|----------------------------|
-| You're iterating on the same shot between reviews. | You need a fundamentally different shot (different objects rendered, different passes). |
-| You want to A/B compare lighting / lensing on the same shot. | You need different visibility / collection setups. |
-| You want different render-preset variations of one shot. | You need a different animation. |
+??? info "Take or new View Layer?"
+    | Use a Take when… | Use a new View Layer when… |
+    |------------------------|----------------------------|
+    | You're iterating on the same shot between reviews. | You need a fundamentally different shot (different objects rendered, different passes). |
+    | You want to A/B compare lighting / lensing on the same shot. | You need different visibility / collection setups. |
+    | You want different render-preset variations of one shot. | You need a different animation. |
 
 ## :material-plus-circle: Creating a Take
 
 1. Select a View Layer in the Takes Tree.
-2. Click **+** → **Add Take**, or press ++ctrl+n++ on the View Layer.
-3. The take inherits every cascade value from its parent. Override only what you need.
+2. Click **+** → **Add Take**, or press ++ctrl+n++.
+3. Override only what you need — the take inherits the rest, and never changes the View Layer itself.
 
-New takes are named by your **take naming template** (Preferences → Naming → Takes, default `Take_001`-style numbering).
+??? tip "How new takes get their names"
+    Your **take naming template** names them: **Preferences → Naming → Takes**,
+    with `Take_001`-style numbering by default.
 
 ## :material-refresh: The Review Loop
 
-The list of takes *is* the review history — every row shows its slate number ("Take 3 · NightLighting"):
+The list of takes *is* your review history. Every row shows its slate number, like "Take 3 · NightLighting".
 
 1. Build the shot and show it.
-2. Get feedback → open the take's **note** (the :material-text: icon on the row) and write down what was asked.
-3. Click **New Take from Here** — the current take is copied completely (every override, rule, variant and preset), becomes the new active take, and starts with a fresh empty note.
+2. Write down what the review asked for in the take's **note** — the :material-text: icon on the row.
+3. Click **New Take from Here**. The copy becomes the active take, with a fresh empty note.
 4. Work the notes in, show again. Repeat until approved.
 
-Step back through past takes any time by activating an earlier row — or circle an earlier one as the keeper and simply leave it active. The note popover also lists the earlier takes' notes, so the whole feedback trail reads in one place.
+Activate an earlier row any time to step back. To settle on one, leave it active.
 
-!!! tip "Numbers are positions"
+??? info "Notes and slate numbers"
+    **New Take from Here** copies everything: every override, rule, variant and
+    preset. Only the note starts empty.
+
+    The note popover also lists the earlier takes' notes, so the whole feedback
+    trail reads in one place.
+
     The slate number is the take's position in the list. Deleting a take
     renumbers the ones after it — names are the stable identity, numbers are
     the running order.
 
 ## :material-stairs: Cascade Position
 
-Takes sit at the bottom of the cascade hierarchy:
+A take sits at the very bottom of the tree, so it beats every level above.
 
-```
-Global → Scene Group → Scene → View Layer Group → View Layer → Take
-```
+Anything you leave empty falls back to the parent View Layer.
 
-A value set on a take overrides every parent tier. Values left empty fall back to the parent View Layer.
+??? info "What a take can override"
+    Its own camera, world, action, compositor, preset slots and product variant —
+    the same set every other level offers. The rules are the same too, so read
+    them once on the [Cascade System](cascade.md#override-tiers) page.
 
 ## :material-swap-horizontal: Switching Takes
 
-Click a take row in the tree. The cascade re-resolves and the viewport updates to reflect the take's overrides. The active take's name appears in `[take]` for Smart Output naming.
+Click a take row in the tree. Its overrides resolve and the viewport updates. Only one take of a View Layer is live at a time.
 
 ## :material-folder-cog: Smart Output
 
-Three tokens identify the active take:
+Put `{take}` in your output pattern for the active take's name, or `{take_number}` for its slate number.
 
-- `[take]` — the active take's own (custom) name (the old spelling `[version]` keeps working forever).
-- `[take_number]` — the running slate number: the take's position in its list, padded explicitly like `[take_number:02d]`.
-- `[viewlayer]` — the parent View Layer's name.
+??? tip "An example pattern"
+    `{viewlayer}` gives you the parent View Layer's name, so a full pattern reads:
 
-Combine them in your output pattern, e.g.:
+    ```
+    {scene}{sep}{viewlayer}{sep}{take}{sep}####.{file_format}
+    ```
 
-```
-[scene][sep][viewlayer][sep][take][sep]####.[file_format]
-```
+    Every token is listed on [Smart Output](smart_output.md).
 
 ## :material-keyboard: Hotkeys
 
-Takes share the generic tree hotkeys:
-
-| Shortcut | Action |
-|----------|--------|
-| ++ctrl+n++ | Add a Take under the selected View Layer. |
-| ++f2++ | Rename. |
-| ++del++ / ++x++ | Delete. |
-| ++shift+d++ / ++alt+d++ | Duplicate (full / linked). |
-
-See [Keyboard Shortcuts](../interface/hotkeys.md).
+++ctrl+n++ adds a take under the selected View Layer, ++f2++ renames, ++del++ deletes — see [Keyboard Shortcuts](../interface/hotkeys.md).

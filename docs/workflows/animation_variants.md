@@ -4,7 +4,7 @@ icon: material/animation-play
 
 # Workflow: Animation Variants
 
-This workflow shows how to set up different animation takes per View Layer — for example, a product spinning, tilting, and exploding, each on its own View Layer with independent cameras.
+When every animation needs its own View Layer and camera. For example: a product that spins, tilts and explodes.
 
 ## :material-cog-outline: Setup
 
@@ -21,29 +21,30 @@ Create one View Layer per animation state:
 3. Move the other View Layers into this group.
 
 ### :material-numeric-3-circle: 3. Assign Cameras
-Each animation likely needs its own camera angle:
+Each animation usually needs its own angle:
 
-1. Click the camera icon on each View Layer row.
-2. Assign the appropriate camera.
+1. Click the camera icon on a View Layer row.
+2. Pick the camera for that animation.
+3. Repeat for the other View Layers.
 
 ## :material-animation: Animating
 
 ### :material-numeric-4-circle: 4. Animate Per View Layer
-1. Switch to "Spin" View Layer by clicking it in the tree.
-2. The cascade automatically assigns a dedicated action for this View Layer.
-3. Animate your objects. Keyframes are stored in the View Layer-specific action.
-4. Switch to "Tilt" — the objects snap back to their Rest State.
-5. Create a different animation on this View Layer.
+1. Click "Spin" in the tree to switch to it.
+2. Animate your objects. The cascade gives this View Layer its own action, and your keyframes go into it.
+3. Switch to "Tilt". The objects snap back to their Rest State.
+4. Animate a different motion here.
 
-!!! tip "Rest State"
-    The Rest State system ensures objects return to their default pose
-    when switching away from an animated View Layer. This happens automatically.
+??? tip "Rest State"
+    Rest State returns objects to their default pose when you switch away from
+    an animated View Layer. It happens on its own — nothing to set up.
 
 ### :material-numeric-5-circle: 5. Render All Animations
-1. Enable multi-select in the tree sidebar — the **{{ op('tks.multiselect').bl_label }}** toggle in the tree's statistics row, which adds a checkbox to every row.
-2. Select all animation View Layers.
+1. Enable **{{ op('tks.multiselect').bl_label }}** in the tree's statistics row. It puts a checkbox on every row.
+2. Tick all animation View Layers.
 3. Click the Render button.
-4. Smart Output names each output file using the View Layer name automatically.
+
+Smart Output names each file after its View Layer.
 
 ## :material-check-circle: Result
 

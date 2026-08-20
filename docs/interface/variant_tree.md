@@ -6,7 +6,9 @@ icon: material/file-tree
 
 **Location:** *3D Viewport > Sidebar (++n++) > Takes tab > [Globals](../features/globals.md) > **Variants** mode*.
 
-The Variant Tree manages product variants — different material configurations, color options, or states of your product. It uses a hierarchical structure of Products, States, and Parts. The tree is one of five modes inside the Globals panel; switch to it via the Globals header's **Variants** mode button.
+The Variant Tree manages product variants — colour options, finishes or states of one product.
+
+It is one of five modes in the Globals panel. Switch to it with the header's **Variants** button.
 
 ## :material-source-branch: Hierarchy
 
@@ -23,43 +25,52 @@ graph TD
 ```
 
 Product
-:   The top-level container (e.g., "Bottle", "Watch").
+:   The top-level container ("Bottle", "Watch").
 
 State
-:   A named variant of the product (e.g., "Gold", "Silver", "Matte Black").
+:   A named variant of the product ("Gold", "Matte Black").
 
 Part
-:   A component of the product linked to a collection (e.g., "Body", "Cap", "Strap").
+:   A component linked to a collection ("Body", "Cap").
     Each part has a material pool with indexed slots.
 
 ## :material-cursor-default-click: Usage
 
+The tree swaps materials for you, so one product can ship in many finishes without duplicate objects.
+
+Build the skeleton first: add a Product, then a Part per component, and link each Part to its collection.
+
+Then add a State per finish and fill the material pools.
+
 ### :material-swap-horizontal: Switching Variants
-Click the **diamond icon** on any inactive state to immediately preview that variant in the viewport. The active state shows as a filled circle.
+Click the **diamond icon** on any inactive state to preview that variant. The active state shows as a filled circle.
 
 ### :material-palette: Material Pool
-Each Part has a material pool — a list of materials that can be swapped in:
+Each Part carries a pool of materials it can swap between.
 
-1. Assign a material to the first empty slot (a new slot auto-creates).
-2. Use the **pool index** to select which material is active for that part.
-3. When switching states, the system swaps materials according to each state's pool index.
+1. Assign a material to the first empty slot. A new slot appears automatically.
+2. Set the **pool index** to pick the active material.
+3. Switch states — each state pulls the material at its own index.
 
 ### :material-folder-multiple: Collection Assignment
-Each Part is linked to a Blender collection. All objects in that collection (and child collections) receive the material swap.
+Each Part links to one collection. Every object inside it, and inside its children, gets the swap.
 
 ## :material-tag: Variant Tags
 
-States can be tagged with the **Variant** tag category for organization and Smart Output token resolution via `{variant_tag}`.
+Tag states with the **Variant** tag category to organise them. Smart Output resolves that tag through the `{variant_tag}` token.
 
 ## :material-keyboard: Hotkeys
 
-| Shortcut | Action |
-|----------|--------|
-| ++ctrl+n++ | Smart add (Product, State, or Part depending on selection). |
-| ++shift+a++ | Full add menu. |
-| ++f2++ | Rename the selected Product / State / Part. |
-| ++del++ / ++x++ | Remove the selected item (enforces minimum 1 State and 1 Part per Product). |
-| ++ctrl+i++ | Invert multi-selection. |
-| ++alt++ + click on a cascade icon | Clear the variant override at this tier. |
+The tree has its own shortcuts.
+
+??? info "All Variant Tree shortcuts"
+    | Shortcut | Action |
+    |----------|--------|
+    | ++ctrl+n++ | Smart add (Product, State, or Part depending on selection). |
+    | ++shift+a++ | Full add menu. |
+    | ++f2++ | Rename the selected Product / State / Part. |
+    | ++del++ / ++x++ | Remove the selected item (keeps at least 1 State and 1 Part per Product). |
+    | ++ctrl+i++ | Invert multi-selection. |
+    | ++alt++ + click on a cascade icon | Clear the variant override at this tier. |
 
 See the full reference at [Keyboard Shortcuts](hotkeys.md).

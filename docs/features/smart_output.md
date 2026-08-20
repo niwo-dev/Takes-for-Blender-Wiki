@@ -43,6 +43,14 @@ That resolves to something like `Front_3-4_CamHero_0001.png`.
 
 Blender's own `####` frame padding keeps working. The preview shows the real frame number.
 
+!!! note "Why this wiki writes `{take}` and your fields show `[take]`"
+
+    The rest of the wiki writes tokens with curly braces, because that is what the
+    naming templates use and it reads cleanly next to Blender's `####`. Your output
+    fields use whichever style you picked below — square by default. Same token
+    either way, and **{{ op('tks.sync_brackets').bl_label }}** converts a field that
+    is in the wrong style.
+
 ### :material-code-brackets: Bracket Styles
 
 Choose the style you like with **{{ pref('smart_output_bracket_style').label }}**, under *Preferences > Workflow > Render > Render Output*.
@@ -74,7 +82,6 @@ These few cover most jobs:
 | `{file_format}` | Output file format |
 | `{date}` | `YYYY-MM-DD` |
 
-Tokens are written with curly braces on this page for readability. At runtime they use your bracket style.
 
 ??? info "The complete token list"
     **Context**

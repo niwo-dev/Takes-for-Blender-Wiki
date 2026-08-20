@@ -4,23 +4,29 @@ icon: material/keyboard
 
 # Keyboard Shortcuts
 
-All Takes-for-Blender shortcuts are scoped to the **3D Viewport sidebar** (press ++n++ to toggle the sidebar), so they never collide with Blender's native shortcuts elsewhere.
+Every Takes shortcut works inside the **3D Viewport sidebar** only. Press ++n++ to open it.
 
-Hotkeys that share a key across lists are **focus-aware** — only the visible/active list responds.
+Keys shared by several lists are focus-aware: only the active list reacts.
 
 ---
 
 ## :material-dots-circle: Pie Menu
 
-| Shortcut | Action | Notes |
-|----------|--------|-------|
-| {{ keys('wm.call_menu_pie') }} | **Open Navigation Pie Menu** | 8 configurable slots — defaults: West Tree View, East Watchlist, South Slotted Mode, North Rules, NW Variants, NE Tags, SW Batch Render, SE Channels. Reassign each slot in *Preferences > Workflow > Pie & Misc*. |
+| Shortcut | Action |
+|----------|--------|
+| {{ keys('wm.call_menu_pie') }} | **Open Navigation Pie Menu** — eight slots, all reassignable. |
+
+??? info "Default slots, and how to change them"
+    West **Tree View**, East **Watchlist**, South **Slotted Mode**, North **Rules**,
+    NW **Variants**, NE **Tags**, SW **Batch Render**, SE **Channels**.
+
+    Reassign any slot in *Preferences > Workflow > Pie & Misc*.
 
 ---
 
 ## :material-file-tree: Tree Edits
 
-*Generic create / rename / delete shortcuts. They target the active list — Takes Tree, Tag Library, or Variant Tree — depending on what has focus.*
+*These keys hit the list that has focus: Takes Tree, Tag Library, or Variant Tree.*
 
 <!-- The shortcut column is generated from the addon's keymap manifest.
      If a binding changes in the addon source, this table updates on the
@@ -28,122 +34,124 @@ Hotkeys that share a key across lists are **focus-aware** — only the visible/a
 
 | Shortcut | Action | Notes |
 |----------|--------|-------|
-| {{ keys('tks.global_delete') }} | **Delete** | Confirmation dialog by default (toggleable in *Preferences > Interface > Confirmations*). In multi-select, deletes all selected items at once. Deleting a Scene's only View Layer deletes the Scene — see [Deleting a Scene's last View Layer](context_properties.md#deleting-a-scenes-last-view-layer). |
+| {{ keys('tks.global_delete') }} | **Delete** | Asks first. Removes the whole multi-selection. |
 | {{ keys('tks.global_rename') }} | **Rename** | Opens the rename dialog. |
-| {{ keys('tks.global_new') }} | **New (smart)** | Adds a new item appropriate to the current selection — on a View Layer it creates a Take instantly. For Scene and Group rows, what it creates (or whether it asks via a menu) is configurable in *Preferences > Workflow > Pie & Misc > Add Context*. |
-| {{ keys('tks.global_new_menu') }} | **New (menu)** | The escape hatch for the row above: **always** opens the add menu so you can pick, ignoring the *Add Context* defaults (Takes Tree only). |
+| {{ keys('tks.global_new') }} | **New (smart)** | Adds what fits the selected row. On a View Layer: a Take. |
+| {{ keys('tks.global_new_menu') }} | **New (menu)** | Always opens the add menu instead. Takes Tree only. |
 | {{ keys('tks.global_add_menu') }} | **Add Menu** | Opens the full add menu. |
-| {{ keys('tks.global_group') }} | **Group** | Wraps the selection in a Scene Group, View Layer Group, or Tag Group. |
-| {{ keys('tks.global_ungroup') }} | **Ungroup** | Removes the selection from its group. |
-| {{ keys('tks.global_retarget') }} | **Retarget** | Move the selected item to another parent. |
+| {{ keys('tks.global_group') }} | **Group** | Wraps the selection in a group. |
+| {{ keys('tks.global_ungroup') }} | **Ungroup** | Takes the selection out of its group. |
+| {{ keys('tks.global_retarget') }} | **Retarget** | Moves the selected item to another parent. |
 | {{ keys('tks.global_duplicate') }} | **Duplicate** | Two bindings: full copy and linked copy. |
+
+??? info "Delete and New, in detail"
+    Switch the delete confirmation off in *Preferences > Interface > Confirmations*.
+
+    Deleting a Scene's only View Layer deletes the Scene as well — see
+    [Deleting a Scene's last View Layer](context_properties.md#deleting-a-scenes-last-view-layer).
+
+    On Scene and Group rows, **New (smart)** either creates straight away or opens
+    a menu. You pick which in *Preferences > Workflow > Pie & Misc > Add Context*.
 
 ---
 
 ## :material-checkbox-multiple-marked-outline: Multi-Select
 
-*Activated by clicking the **☐** icon in the stats row of any list.*
+*Turn it on with the **☐** icon in a list's stats row.*
 
-| Shortcut | Action | Notes |
-|----------|--------|-------|
-| ++shift++ + click toggle | **Select All** | Selects every visible item. Respects active type filters. |
-| ++alt++ + click toggle | **Invert** | Inverts the selection. |
-| ++ctrl+i++ | **Invert** | Keyboard equivalent of Alt+Click invert. |
-| Click stat icon | **Type Filter** | Filters checkboxes to a specific type (e.g. only Scenes). Click again to clear. |
+| Shortcut | Action |
+|----------|--------|
+| ++shift++ + click the toggle | **Select All** visible items. Active type filters still apply. |
+| ++alt++ + click the toggle | **Invert** the selection. |
+| ++ctrl+i++ | **Invert** — the same, from the keyboard. |
+| Click a stat icon | **Type Filter**: show only that type. Click again to clear. |
 
 ---
 
 ## :material-arrow-decision: Cascade Icons
 
-*Modifier-clicks on the cascade icons next to each tree row.*
+*Modifier-clicks on the cascade icons beside a tree row.*
 
 | Shortcut | Action |
 |----------|--------|
-| Click | Open the cascade popover for this property. |
-| ++alt++ + click | Clear the override at this tier (revert to inherited value). |
-| ++shift++ + click | Toggle the same property across **all items of the same type** in the active scene. |
-| ++ctrl+shift++ + click | Toggle the same property **globally** across all scenes and groups. |
+| Click | Open the popover for this property. |
+| ++alt++ + click | Clear the override at this tier, so it inherits again. |
+| ++shift++ + click | Toggle it on every item of the same type in this scene. |
+| ++ctrl+shift++ + click | Toggle it across all scenes and groups. |
 
 ---
 
 ## :material-image-multiple: Render Queue
 
-*Modifier-clicks on the render-toggle icon next to each View Layer.*
+*Modifier-clicks on the render toggle beside a View Layer.*
 
 | Shortcut | Action |
 |----------|--------|
-| Click | Toggle the View Layer's enabled state in the queue. |
-| ++alt++ + click | **Preview** the View Layer immediately (single-frame snapshot). |
-| ++ctrl++ + click | **Render & save** the View Layer through the queue. |
-| ++shift++ + click | Toggle **all** View Layers in the current scene. |
-
-The "Render All Previews" button:
-
-| Shortcut | Action |
-|----------|--------|
-| Click | Render previews for the selected / multi-selected View Layers. |
-| ++alt++ + click | Render previews for **every** View Layer across all scenes. |
+| Click | Turn this View Layer on or off in the queue. |
+| ++alt++ + click | **Preview** it now, as a single frame. |
+| ++ctrl++ + click | **Render & save** it through the queue. |
+| ++shift++ + click | Toggle every View Layer in this scene. |
+| Click **Render All Previews** | Preview the selected View Layers. |
+| ++alt++ + click **Render All Previews** | Preview every View Layer in every scene. |
 
 ---
 
 ## :material-progress-clock: Batch Render
 
-*While a batch render is running.*
-
 | Shortcut | Action |
 |----------|--------|
-| ++esc++ | Cancel the batch render. The status line shows `(ESC to cancel)` while running. |
-| ++alt++ + click on the Render button | Force-reset a stuck render state. |
+| ++esc++ | Cancel the running batch render. |
+| ++alt++ + click the **Render** button | Force-reset a stuck render. |
 
 ---
 
 ## :material-database-eye: Datablock Pickers
 
-*Action, Camera, World, and Compositor pickers.*
+*Action, Camera, World and Compositor pickers.*
 
 | Shortcut | Action |
 |----------|--------|
-| Click | Open the picker dialog. |
+| Click | Open the picker. |
 | ++alt++ + click | Clear the assigned datablock at this tier. |
-| ++alt++ + click on **Find Action** | Show Scene & World datablocks instead of Object datablocks. |
+| ++alt++ + click **Find Action** | Show Scene and World datablocks instead of Object ones. |
 
 ---
 
 ## :material-bug: Logging Topics
 
-*Modifier-clicks in *Preferences > Developer > Topics*.*
+*Modifier-clicks in Preferences > Developer > Topics.*
 
 | Shortcut | Action |
 |----------|--------|
 | Click | Toggle the parent topic. |
-| ++shift++ + click | Enable **all** subtopics in this category. |
-| ++alt++ + click | Invert subtopic selection. |
+| ++shift++ + click | Enable every subtopic in this category. |
+| ++alt++ + click | Invert the subtopic selection. |
 
 ---
 
 ## :material-rename-box: Rename Dialogs
 
-Rename dialogs use Blender's standard text-entry behavior:
+*Blender's standard text entry.*
 
 | Shortcut | Action |
 |----------|--------|
-| ++enter++ | Confirm rename. |
+| ++enter++ | Confirm the rename. |
 | ++esc++ | Cancel. |
-| ++tab++ | Move to next field. |
+| ++tab++ | Jump to the next field. |
 
 ---
 
 ## :material-link-variant: Blender-Native Keys
 
-*Standard Blender shortcuts that trigger Takes behaviour even though the addon doesn't bind them.*
+*Blender's own keys that Takes reacts to, without binding them.*
 
-| Shortcut | What it does | Why it matters |
-|----------|--------------|----------------|
-| ++i++ | Insert keyframe (Blender native) | Triggers Rest State auto-mirror so the unkeyed value is preserved. |
-| ++alt+i++ | Delete keyframe (Blender native) | The deleted property snaps back to its Rest value automatically. |
-| ++n++ | Toggle 3D Viewport sidebar (Blender native) | Shows / hides the **Takes** tab. |
+| Shortcut | What it does |
+|----------|--------------|
+| ++i++ | Insert keyframe. Rest State mirrors the unkeyed value for you. |
+| ++alt+i++ | Delete keyframe. The property snaps back to its Rest value. |
+| ++n++ | Toggle the sidebar, where the **Takes** tab lives. |
 
-!!! note "Customizing Hotkeys"
-    Each binding above is a normal Blender keymap entry. To change a key,
+??? info "Changing a shortcut"
+    Every binding here is a normal Blender keymap entry. To change a key,
     open *Edit > Preferences > Keymap*, search for the operator id (e.g.
     `tks.global_rename`), and edit it like any other shortcut.

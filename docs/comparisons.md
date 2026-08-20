@@ -4,53 +4,101 @@ icon: material/scale-balance
 
 # Comparing Takes for Blender
 
-If you've spent any time looking for ways to streamline a complex production pipeline in Blender, you've likely encountered several powerful Addons designed for scene management, lighting setups, or batch rendering. 
+Takes manages the **stage**: the camera, world, materials, action and render settings behind every shot.
 
-Understanding the specific architectural intent of **Takes for Blender** compared to the rest of the ecosystem is crucial. Many users confuse *Batch Rendering Queues* with true *Product Stage Management*. 
+Use it when one file has to deliver many looks — colourways, lighting setups, product variants.
 
-Here is an objective breakdown of where Takes fits into your pipeline compared to other popular industry tools.
+The addons below solve neighbouring problems, and most of them sit happily next to Takes.
 
 ---
 
 ## :material-store: 1. The Context Managers
-These tools, like Takes, aim to save and toggle "states" of a scene (cameras, worlds, collections).
+
+These save and recall scene states, as Takes does. Takes arranges those states in a tree, so one change at the top flows down.
 
 ### :material-scale-balance: Takes vs. Renderset (by polygoniq)
-- **Renderset's Approach:** Renderset is a highly flexible "store anything" system. You manually right-click properties in Blender and save them to flat, independent "contexts."
-- **Takes' Advantage (The Cascade Hierarchy):** Instead of managing flat lists of contexts that must be updated individually when a client requests a global change, Takes uses a **Tree Structure ([The Cascade](features/cascade.md))**. Change the lighting environment at the root level, and *all* child takes inherit the change instantly. Takes also utilizes native Action Slots for true, non-destructive mesh/material animation swaps, eliminating the need to "hack" collections by duplicating objects.
+
+Renderset keeps flat, independent contexts. Takes keeps a hierarchy.
+
+??? info "The difference in practice"
+    Renderset stores anything: right-click a property and save it into a context.
+    That is flexible and quick to learn.
+
+    Takes was inspired by that direction and reimagined it as a tree. Change the
+    lighting at the root, and every take below inherits it — see
+    [The Cascade](features/cascade.md).
+
+    Takes also builds on Blender's native action slots, so animation and material
+    swaps stay non-destructive. Nothing has to be duplicated.
 
 ### :material-scale-balance: Takes vs. Polyviews
-- **Polyviews' Approach:** A lightweight, straightforward tool for quickly rendering different camera angles with specific worlds and collection visibilities (popular in ArchViz).
-- **Takes' Advantage:** Built for high-end studio product visualization, Takes goes far beyond simple camera switching. It safely manages multi-material variants, [per-tier action overrides](features/cascade.md#override-tiers), and is backed by a bulletproof safety system (the [Watchlist](interface/inspector_panel.md#watchlist-vs-channels)) that prevents dangling data-loss during complex View Layer transitions.
+
+Polyviews is the lighter, faster route to a set of camera angles.
+
+??? info "The difference in practice"
+    Polyviews renders different angles with their own worlds and collection
+    visibility. It is direct, easy to pick up, and popular in ArchViz.
+
+    Takes targets studio product work. It adds multi-material variants,
+    [per-tier overrides](features/cascade.md#override-tiers), and the
+    [Watchlist](interface/inspector_panel.md#watchlist-vs-channels), which warns you
+    before animation data goes missing during a View Layer switch.
 
 ---
 
 ## :material-camera-iris: 2. The Lighting & Camera Suites
+
 ### :material-scale-balance: Takes vs. Photographer
-- **Photographer's Focus:** A premium suite for physical camera properties (ISO, shutter speed, autofocus), light mixing, and optical lens effects. Photographer includes its own basic queue to batch render its cameras.
-- **Takes' Advantage (They Complement Each Other):** These tools are not competitors; they operate brilliantly together. Use Photographer to dial in your beautiful, photorealistic physical cameras and lights. Then, assign those perfect Photographer cameras to different nodes in your **Takes Tree**. 
-> **Takes manages the *Stage*** (materials, animations, cascading states).
-> **Photographer manages the *Lens***.
+
+Not a rival — a partner. Photographer owns the *lens*, Takes owns the *stage*.
+
+??? info "Using both together"
+    Photographer gives you physical camera controls (ISO, shutter, autofocus),
+    light mixing and optical lens effects. It also batch-renders its own cameras.
+
+    Dial a camera in there, then assign it to a node in your Takes tree. Takes
+    handles the materials, actions and cascading states around it.
 
 ---
 
 ## :material-animation: 3. The Animation Sequencers
+
 ### :material-scale-balance: Takes vs. Shot Manager
-- **Shot Manager's Focus:** Designed for complex animation pipelines (e.g., short films, episodic rendering). It masters timeline frame-ranges, output node graphs, burn-ins, and NLA track management across sequential shots.
-- **Takes' Advantage:** Takes is built for **product iteration and staging**, not sequential timeline editing. If you need to edit a 50-shot animated short film sequence that plays back continuously, use Shot Manager. If you need to render out 5 different colorways of a shoe design, under 3 different lighting scenarios, acting out the exact same 5-second turntable spinning animation—Takes is vastly superior.
+
+Shot Manager sequences shots over time. Takes iterates looks on one shot.
+
+??? info "Which one fits your job"
+    Shot Manager is built for film and episodic work: frame ranges, output node
+    graphs, burn-ins and NLA tracks across many sequential shots. Reach for it when
+    you cut a 50-shot sequence that plays back end to end.
+
+    Takes is built for product iteration. Five colourways of a shoe, under three
+    lighting setups, all acting out the same five-second turntable — that is its
+    home ground.
 
 ---
 
 ## :material-image-multiple: 4. The Dedicated Batch Renderers
+
 ### :material-scale-balance: Takes vs. Render+ (by Sinestesia)
-- **Render+'s Focus:** The industry-standard tool strictly for queuing up batch render jobs, executing pre/post-render scripts, automatically shutting down PCs, and running headless renders.
-- **Takes' Advantage:** A batch renderer like Render+ only renders what you have manually built. It does not help you *organize* the scene states, manage material swaps, or build variants. Takes provides the [UI and Architecture](interface/variant_tree.md) to visually orchestrate your scene states, *and* it includes a native, built-in Batch Renderer specifically tied to that tree structure. 
+
+Render+ is a mature render queue. Takes builds the states, then renders them.
+
+??? info "The difference in practice"
+    Render+ is excellent at queuing jobs: pre- and post-render scripts, headless
+    renders, and shutting the machine down when the last frame is done.
+
+    A queue renders what you already set up by hand. Takes gives you the
+    [tree](interface/variant_tree.md) to build those states visually, plus its own
+    batch renderer wired straight into that tree.
 
 ---
 
 ## :material-check-circle: Summary: When to choose Takes
-Choose **Takes for Blender** when you need:
-1. **Non-destructive overrides:** You don't want to duplicate massive geometry meshes into collection folders just to change a material or swap an animation.
-2. **The Cascade:** You need high-level settings (like global lighting) to flow down to variations automatically.
-3. **Data Safety:** You need a system that actively warns you if an animation data-block is on the verge of being silently lost during a transition.
-4. **All-in-One Interface:** You want your scene manager, variant switcher, and batch render queue living inside a single, unified God-View panel.
+
+Choose Takes when you want:
+
+- **Non-destructive overrides** — swap a material or an action without duplicating geometry.
+- **The cascade** — high-level settings flow down to every variation automatically.
+- **Data safety** — a warning before animation data is lost in a transition.
+- **One panel** — scene manager, variant switcher and batch queue in a single place.

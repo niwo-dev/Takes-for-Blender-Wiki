@@ -4,60 +4,69 @@ icon: material/database
 
 # Data Tab
 
-*Preset storage tiers, shared / project / local folder paths, and where the addon's own preferences JSON lives.*
+*Where presets, safety copies and the add-on's own settings are stored.*
 
 ## :material-folder-multiple: Storage
 
-| Setting | Type | Default | Description |
-|---------|------|---------|-------------|
-| **Local Presets Folder** | path | *(empty)* | Personal preset directory. |
-| **Shared Presets Folder** | path | *(empty)* | Team preset directory. |
-| **Lock Shared Folder** | bool | On | Prevents the addon from writing into the Shared folder. |
+Two folders you can point anywhere — a personal one and a team one.
+
+| Setting | What it does |
+|---------|--------------|
+| **Local Presets Folder** | Your personal preset directory. |
+| **Shared Presets Folder** | The team preset directory. |
+| **Lock Shared Folder** | On by default. Stops the add-on writing into the shared folder. |
 
 ## :material-backup-restore: Snapshots & Recovery {: #snapshots }
 
-Takes stores your takes, groups, tags, rules and variants on a **World datablock** inside the `.blend`. That makes them travel with the file — but it also means that if the World carrying them is ever deleted, purged as unused, or removed by a script, the whole organisation goes with it and the tree rebuilds itself flat.
+Your takes, groups, tags, rules and variants ride on a World inside the `.blend`. That keeps them with the file. But delete or purge that World and the whole organisation goes too — the tree rebuilds itself flat.
 
-So Takes keeps a **safety copy** on disk, refreshed as you work, and puts it back automatically if it notices the storage has gone. Recovery normally needs no action at all: it happens and then tells you what it did.
+So Takes keeps a safety copy on disk, refreshed as you work. If the storage goes missing, it puts the copy back on its own and tells you afterwards.
 
-| Setting | Type | Default | Description |
-|---------|------|---------|-------------|
-| **Confirm Restore** | bool | Off | Ask before restoring. Off by default — recovery runs on its own and only reports afterwards. Turn it on if you would rather approve each restore. |
-| **Snapshots** | path *(read-only)* | — | Where the copies live. The folder button beside it runs **{{ op('tks.open_snapshots_folder').bl_label }}** and opens that directory in your file browser. |
-
-### When a restore is offered
-
-If the storage is lost and Takes cannot resolve it automatically — the conservative single-take case, or when **Confirm Restore** is on — a block appears at the top of the Navigation panel explaining that the tree rebuilt itself flat and that a safety copy is available. It carries two buttons, and until you answer one of them the tree on screen is a rebuild, so **organising takes before restoring means your changes get replaced**:
-
-| Button | What it does |
-| -------- | -------------- |
-| **{{ op('tks.restore_store_snapshot').bl_label }}** | Puts the organisation back from the most recent matching copy, and reports how many stores it recovered. When several copies match this file the block says so first. |
-| **{{ op('tks.dismiss_store_notice').bl_label }}** | You meant to lose it. Accepts the current, thinner state as intended, so the safety copy starts tracking it from now on instead of holding the old one back. |
+| Setting | What it does |
+|---------|--------------|
+| **Confirm Before Restoring** | Off by default, so recovery just happens. Turn it on to approve each restore yourself. |
+| **Snapshots** | Read-only path to the copies. The folder button beside it runs **{{ op('tks.open_snapshots_folder').bl_label }}**. |
 
 !!! warning "Keep at least one World in the file"
-    The store rides on a World datablock. A script that clears `bpy.data.worlds`, or an Outliner purge that removes the last one, takes the take organisation with it. The takes themselves are View Layers and survive — it is the grouping that has to be recovered.
+    A script that clears `bpy.data.worlds`, or a purge that removes the last
+    World, takes your take organisation with it. Your takes are View Layers and
+    survive — it is the grouping you must recover.
 
-An AI assistant driving Takes meets the same two choices as `api.restore_takes()` and `api.keep_current_takes()`; every other verb refuses while the offer stands, for exactly the reason above.
+??? info "When Takes asks you first"
+    Sometimes it cannot decide alone — the conservative single-take case, or when
+    **Confirm Before Restoring** is on. Then a block appears at the top of the
+    Navigation panel with two buttons. Until you answer, the tree on screen is a
+    rebuild, so **organising takes before restoring means your changes get replaced**.
+
+    | Button | What it does |
+    | -------- | -------------- |
+    | **{{ op('tks.restore_store_snapshot').bl_label }}** | Puts the organisation back from the most recent matching copy, and reports how many stores it recovered. If several copies match this file, the block says so first. |
+    | **{{ op('tks.dismiss_store_notice').bl_label }}** | You meant to lose it. Accepts the thinner state as intended, so the safety copy starts tracking that from now on. |
+
+    An AI assistant driving Takes gets the same two choices, and every other
+    action refuses while the offer stands — for exactly the reason above.
 
 ## :material-palette-swatch: Presets
 
-A master *Master Default* enum sets the default storage tier for **new** presets, and per-type overrides exist for each of the 9 categories:
+**Master Default** sets the tier that *new* presets are saved to. Each of the nine preset types can override it.
 
 | Tier | Where it writes |
 |------|-----------------|
-| **ADDON** | Bundled folder. |
-| **PROJECT** | Next to the `.blend`. |
-| **SHARED** | Shared folder. |
-| **LOCAL** | Local folder. |
+| **Addon** | The bundled add-on folder. |
+| **Project** | Next to the `.blend`. |
+| **Shared** | The Shared Presets Folder above. |
+| **Local** | The Local Presets Folder above. |
 
-Per-type overrides: Render, Output, File Output, View Layer, Color Management, Camera, World, Material, Bookmark.
+The nine types: Render, Output, File Output, View Layer, Color Management, Camera, World, Material, Bookmark.
 
 ## :material-puzzle: Addon
 
-| Setting | Type | Default | Description |
-|---------|------|---------|-------------|
-| **Save Mode** | enum | ADDON | Where the preferences JSON is written: ADDON / PROJECT / SHARED / LOCAL. |
-| **Config File (Shared / Local / Project)** | enum | `user_preferences.json` | Which config file to load from each storage tier. |
-| **Autosave Preferences** | bool | On | Persist any change immediately. |
-| **Auto-Restart Dead Processes** | bool | On | Restart background render processes if they crash. |
-| **Auto-migrate on File Load** | bool | On | Run schema migration when opening a file from an older version. |
+Where the add-on keeps its own settings.
+
+| Setting | What it does |
+|---------|--------------|
+| **Save Mode** | Which tier the settings file goes to: **Addon**, **Project**, **Shared** or **Local**. |
+| **Config File** | Which settings file to load. One picker per tier. |
+| **Autosave Preferences** | On. Saves every change the moment you make it. |
+| **Auto-Restart Dead Processes** | On. Restarts a background render process if it crashes. |
+| **Auto-migrate on File Load** | On. Updates data saved by an older add-on version when you open the file. |

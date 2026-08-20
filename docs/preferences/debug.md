@@ -4,97 +4,87 @@ icon: material/bug
 
 # Developer Tab
 
-*Logging controls, per-topic filters, and developer utilities.*
+*Logging, per-topic filters, and developer utilities.*
 
 ## :material-tune: Logging
 
-| Setting | Type | Default | Description |
-|---------|------|---------|-------------|
-| **Enable Debug Logging** | bool | Off | Master switch for log file output. |
-| **Log Directory** | path | *(empty)* | Override the default log location. |
-| **Log Filename** | string | `takes_for_blender.log` | Filename (no path). |
-| **Print to Console** | bool | On | Echo log lines to Blender's System Console. |
-| **Levels: Debug / Info / Warning / Error** | bool | All On | Per-level inclusion in the log file. |
+Everything here starts off. Turn on **Enable Debug Logging** first — the groups below appear only then.
+
+| Setting | What it does |
+|---------|--------------|
+| **Enable Debug Logging** | The master switch. |
+| *File* → **Folder**, **Filename** | Where the log goes. Leave both empty and the panel prints the default path. |
+| *Console* → **Print to Console** | Echo the same lines into Blender's System Console. |
+| *Console* → **Levels** | Which severities reach the log: **Debug**, **Info**, **Warning**, **Error**. |
+| *Tools* → **Export Debug Log**, **Email Dev Support** | Save a copy to send on, or open a support mail. |
 
 ## :material-format-list-checkbox: Topics
 
-Nine collapsible topic groups, each with a master toggle and per-subtopic toggles. All default to **on**:
+A **topic** is one debugging session, named after the symptom you would report — take switching, batch render, variant switch. A **subtopic** is one stage inside it.
 
-| Topic | Subtopics |
-|-------|-----------|
-| **CORE** | Init/Reloads, File Handlers, Addon Prefs, View Layer Switch, Cascade Overrides, Inspector, Lock System, Process Monitor, Rest State, Slot Processing, List Sync, Undo Handlers, Watchlist, Group Processing |
-| **UI** | Tree Drawing, Tree Syncing, Context State, Panel Drawing, Popovers Logic, Inspector Logic |
-| **DATA** | Schema Migration, Pointer Healing, Undo Protection, Property Scanning |
-| **OPS** | General Buttons, Creation Tools, Smart Renaming, Animation/Slots, Groups |
-| **FEATURES** | Variant Switch, Rest State, Tag Integration, Scene Groups, Naming Engine, Preset Engine |
-| **RENDER** | Batch Execution, Smart Tokens, Render Presets, State Callbacks |
-| **BATCH** | Background Process, Path Logic, Write Logic |
-| **PRESET** | Cascade, Cascade Sync, Clear Rule, Resolve, Rule Changed, Rule Switch, Tier Write |
-| **TAGS** | Group Processing, Move Operations, Tree Sync |
+Turn on only the topics you are chasing. Logging everything buries the lines that matter.
+
+Expand a topic's chevron to reach its subtopics. **All Topics** and **All Subtopics** at the top flip the whole list at once.
+
+??? info "All twelve topics, and the modifier clicks"
+    | Topic | Subtopics |
+    |-------|-----------|
+    | **SWITCH** (Take & Cascade) | Take Switch, Cascade Overrides, Group Processing, List Sync, Preload |
+    | **ANIM** (Actions & Slots) | Slot Processing, Action Assignment |
+    | **REST** (Rest & Still) | Rest State, Still / Animation Mode |
+    | **VARIANT** (Variant Switch) | Variant Switch |
+    | **RENDER** (Batch Render) | Background Process, Path Logic, Write Logic, Progress & ETA, Render Versions |
+    | **PRESET** (Render Presets) | Cascade, Cascade Sync, Clear Rule, Resolve, Rule Changed, Rule Switch, Tier Write, Color Management, Preset Engine |
+    | **NAMING** (Names & Tokens) | Smart Renaming, Datablock Renames, Token Engine |
+    | **TAGS** (Tag Library) | Move Operations, Group Processing, Tag Integration |
+    | **STORE** (Take Data & Safety Copy) | Safety Copy, Pointer Healing, Bookmarks |
+    | **UI** (Interface) | Tree Drawing, Tree Syncing, Panel Drawing, Popovers Logic, Inspector, Hotkeys / Keymaps, Watchlist |
+    | **OPS** (Operator Trace) | Operator Runs, Groups |
+    | **SYSTEM** (Lifecycle & Background) | Init / Reloads, Addon Prefs, Undo Handlers, Process Monitor, AI Facade, Event Bus, Providers, Cache Registry, Viewport Sync |
+
+    | Shortcut | Action |
+    |----------|--------|
+    | ++shift++ + click a topic checkbox | Turn on every subtopic in that topic. |
+    | ++alt++ + click a topic checkbox | Invert that topic's subtopics. |
+    | ++shift++ + click a chevron | Expand or collapse every topic. |
 
 ## :material-text-box-search: Debug-Log Monitor
 
-Once **Enable Debug Logging** is on, a live log monitor is available in the add-on's navigation panel. It reads the log file back into a scrollable list so you can watch events without leaving Blender or opening the file by hand. Two toolbar buttons drive it:
+With logging on, a live monitor appears in the navigation panel. It reads the log into a scrollable list, so you can watch events without leaving Blender.
 
 | Button | What it does |
 | -------- | -------------- |
-| **Refresh Log** | Re-reads the current log file and reloads the latest entries (capped by the *Show Lines* limit). ++alt++ + click toggles **auto-refresh**, which polls the file on the configured interval. A plain click does nothing while auto-refresh is already on. |
-| **Log Files** | Opens a dropdown to pick which log file the monitor displays. ++shift++ + click instead opens the log folder in your system file browser. |
-
-!!! note "Logging must be enabled first"
-    **Refresh Log** reports *"Enable debug logging first"* and turns auto-refresh
-    off if the master switch is disabled — there is nothing to read until logging
-    is on.
+| **Refresh Log** | Reloads the latest entries, up to the *Show Lines* limit. ++alt++ + click starts auto-refresh, which re-reads on a timer. With logging off it only reports *"Enable debug logging first"*. |
+| **Log Files** | Picks which log file to show. ++shift++ + click opens the log folder in your file browser instead. |
 
 ## :material-undo-variant: Undo-Redo
 
-The **Undo-Redo** sub-tab lists the add-on's undo/redo recovery strategies,
-each individually toggleable. These strategies are what keep take switching,
-the cascade, and Rest State consistent across ++ctrl+z++ — for example
-suppressing phantom *Takes Auto-Merge* steps so one gesture costs one undo.
+This sub-tab lists the strategies that keep take switching, the cascade and Rest State consistent across ++ctrl+z++.
 
-The four **Required** core strategies sit behind an unlock toggle (the same
-pattern as *Workflow → Naming → Templates*): disabling them causes known bugs
-— phantom auto-merge steps on every undo, the cascade clearing actions
-mid-undo, or rest-state snaps overwriting Blender's restored transforms — so
-they can't be switched off by accident. Leave everything on unless you are
-debugging the recovery system itself.
+Each has its own toggle. Leave them on unless you are debugging the recovery system itself.
 
-## :material-keyboard: Hotkeys
+??? warning "What they do, and why four are locked"
+    One example: they suppress phantom *Takes Auto-Merge* steps, so one gesture
+    costs one undo.
 
-Modifier-clicks on group toggles:
-
-| Shortcut | Action |
-|----------|--------|
-| ++shift++ + click | Enable all subtopics in the group. |
-| ++alt++ + click | Invert subtopic selection. |
-
-Debug-log monitor buttons:
-
-| Shortcut | Action |
-|----------|--------|
-| ++alt++ + click on **Refresh Log** | Toggle auto-refresh on/off. |
-| ++shift++ + click on **Log Files** | Open the log folder in the system file browser. |
+    The four **Required** core strategies sit behind an unlock toggle, the same
+    pattern as *Workflow → Naming → Templates*. Switching them off causes known
+    bugs: phantom auto-merge steps on every undo, the cascade clearing actions
+    mid-undo, or rest-state snaps overwriting the transforms Blender just restored.
 
 ## :material-toy-brick: Utilities
 
-Developer helpers that live on their own **Utilities** sub-tab.
+Developer helpers on their own sub-tab — right now, the Icon Sheet.
 
 ### :material-emoticon-outline: Icon Sheet
 
-The **Icon Sheet** opens a browsable catalogue of
-every built-in Blender icon:
+**Open Icon Sheet** shows every built-in Blender icon. Browse by category, or type in the **search** field and matches highlight in place. Click an icon to copy its name. A **Recent** tab keeps your last picks.
 
-- **Browse by category** or filter with the **search** field; matching
-  icons highlight in place.
-- **Click any icon** to copy its identifier to the clipboard
- — ready to paste into a script or a custom-token
-  category picker.
-- A **Recent** tab keeps the icons you copied most recently.
-- Open it from the button on this sub-tab, or bind your own hotkey with
-  the rebind widget next to it — the shortcut ships unassigned so it can
-  never collide out of the box.
+??? tip "Binding a shortcut, and the second way in"
+    The Icon Sheet ships with **no hotkey assigned**, so it can never collide with
+    your keymap out of the box. Bind your own with the rebind widget next to the
+    button on this sub-tab.
 
-The same sheet backs the custom-token **category icon picker** (it opens
-on the tab of the icon the category currently uses, with a copy button on
-its Current row).
+    The same sheet backs the custom-token **category icon picker**. Opened that
+    way it starts on the tab of the icon the category already uses, and its
+    *Current* row gets a copy button.

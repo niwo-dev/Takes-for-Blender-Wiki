@@ -4,30 +4,35 @@ icon: material/file-tree
 
 # The Takes System
 
-Takes for Blender turns Blender's scenes and view layers into one organized tree, where every level can carry its own camera, world, action, compositor and render setup — and where each layer's iterations are saved as **[Takes](vl_versions.md)**, film-style: take 1, take 2, take 3 … until the shot is approved.
+Takes for Blender turns your scenes and View Layers into one organized tree.
+
+Every level of that tree can carry its own camera, world, action, compositor and render setup.
+
+This page is the map of the whole system. The deepest level — the review loop itself — has its own page: **[Takes — the Review Loop](vl_versions.md)**.
 
 ## :material-lightbulb-outline: Concept
 
-In film, a *take* is one attempt at a shot, repeated until the director is happy. That is exactly the deepest tier of this addon: one layer, many saved attempts, each carrying the feedback it answered. Around that review loop, the addon gives you:
+In film, a *take* is one attempt at a shot, repeated until the director is happy.
 
-- **Independent camera assignments** per View Layer
-- **Independent world environments** per View Layer
-- **Independent compositor node trees** per View Layer
-- **Independent render presets** per View Layer
-- **Independent animation actions** per View Layer
+The addon builds that idea into Blender. One View Layer holds many saved attempts, and each one remembers the feedback it answered.
 
 ## :material-file-tree: Organization
 
-Everything is organized in a six-tier cascade. The **Global** tier is edited in the [Globals](globals.md) panel; the remaining five tiers all live inside the Takes Tree:
+Six levels, from project-wide defaults down to a single take.
 
-| Level | Purpose | Example |
-|-------|---------|---------|
-| **Global** | Project-wide defaults | Default camera, default world |
-| **Scene Group** | Folder-level organization for scenes | "Interior", "Exterior" |
-| **Scene** | A Blender scene | "Kitchen", "Bathroom" |
-| **View Layer Group** | Logical grouping of View Layers | "Hero Shots", "Detail Shots" |
-| **View Layer** | The actual render unit | "Front 3/4", "Top Down" |
-| **Take** | Saved review iterations of one layer | "Take 1 · Blockout", "Take 2 · NightLighting" |
+A deeper level always beats a wider one. That resolution is the [Cascade System](cascade.md).
+
+You edit the top level in the [Globals](globals.md) panel. The other five all live in the Takes Tree.
+
+??? info "The six levels, widest first"
+    | Level | Purpose | Example |
+    |-------|---------|---------|
+    | **Global** | Project-wide defaults | Default camera, default world |
+    | **Scene Group** | Folder-level organization for scenes | "Interior", "Exterior" |
+    | **Scene** | A Blender scene | "Kitchen", "Bathroom" |
+    | **View Layer Group** | Logical grouping of View Layers | "Hero Shots", "Detail Shots" |
+    | **View Layer** | The actual render unit | "Front 3/4", "Top Down" |
+    | **Take** | Saved review iterations of one layer | "Take 1 · Blockout", "Take 2 · NightLighting" |
 
 ## :material-plus-circle: Building the Tree
 
@@ -42,33 +47,31 @@ Everything is organized in a six-tier cascade. The **Global** tier is edited in 
 3. Drag other View Layers into the group.
 
 ### :material-movie-open: Takes
-Save review iterations of a View Layer's cascade settings:
+Select a View Layer, then click **+** → **Add Take** to save a review iteration of it.
 
-1. Select a View Layer.
-2. Click **+** → **Add Take**.
-3. Each take stores its own camera, world, action, and preset overrides — plus a feedback note.
+Each take stores its own camera, world, action and preset overrides, plus a feedback note.
 
-!!! tip "The review loop"
-    Activate any take to instantly compare iterations, and use
-    **New Take from Here** to start the next round from the current state.
-    The full loop is described on the [Takes page](vl_versions.md).
+The full loop — notes, **New Take from Here**, comparing rounds — is on [Takes — the Review Loop](vl_versions.md).
 
 ## :material-keyboard: Hotkeys
 
-When the Takes Tree is focused (mouse over the N-panel sidebar):
+Put your mouse over the Takes Tree in the sidebar, then use the tree shortcuts.
 
-| Shortcut | Action |
-|----------|--------|
-| ++ctrl+n++ | Add (smart — picks the right item type for the current selection) |
-| ++shift+a++ | Add menu (full add options) |
-| ++f2++ | Rename the selected item |
-| ++del++ / ++x++ | Delete (with confirmation) |
-| ++ctrl+g++ | Group the selection (Scene Group / View Layer Group) |
-| ++alt+g++ | Ungroup |
-| ++ctrl+t++ | Retarget — move the selected item under a different parent: a View Layer to another View Layer Group, a Scene to another Scene Group, or merge one group into another. Use it to reorganise the tree without deleting and recreating anything. |
-| ++shift+d++ | Duplicate (full copy) |
-| ++alt+d++ | Duplicate (linked) |
-| ++ctrl+i++ | Invert multi-selection |
-| ++shift++ + click a chevron | Expand / collapse every item of that type at once (++ctrl+shift++ + click folds the whole tree; a plain click still toggles just the one group) |
+++ctrl+n++ adds, ++f2++ renames, ++del++ deletes, ++ctrl+g++ groups the selection.
+
+??? info "Every tree shortcut"
+    | Shortcut | Action |
+    |----------|--------|
+    | ++ctrl+n++ | Add (smart — picks the right item type for the current selection) |
+    | ++shift+a++ | Add menu (full add options) |
+    | ++f2++ | Rename the selected item |
+    | ++del++ / ++x++ | Delete (with confirmation) |
+    | ++ctrl+g++ | Group the selection (Scene Group / View Layer Group) |
+    | ++alt+g++ | Ungroup |
+    | ++ctrl+t++ | Retarget — move the selected item under a different parent: a View Layer to another View Layer Group, a Scene to another Scene Group, or merge one group into another. Use it to reorganise the tree without deleting and recreating anything. |
+    | ++shift+d++ | Duplicate (full copy) |
+    | ++alt+d++ | Duplicate (linked) |
+    | ++ctrl+i++ | Invert multi-selection |
+    | ++shift++ + click a chevron | Expand / collapse every item of that type at once (++ctrl+shift++ + click folds the whole tree; a plain click still toggles just the one group) |
 
 A complete hotkey reference is on the [Keyboard Shortcuts](../interface/hotkeys.md) page.

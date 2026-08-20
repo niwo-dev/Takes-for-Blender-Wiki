@@ -4,79 +4,86 @@ icon: material/monitor-dashboard
 
 # Process Monitor
 
-The **Process Monitor** is a runtime diagnostics view added in v0.6.6. It shows what the addon's background processes are doing in real time — useful when you're troubleshooting viewport lag, suspicious cascade behaviour, or just want to see which subsystems are active.
+The **Process Monitor** shows what the addon's background processes are doing, live.
+
+Open it when the viewport stutters, a switch feels slow, or a bug report asks for a log.
 
 ## :material-map-marker: Where to Find It
 
-The diagnostic panel is hidden by default. To reveal it, **Alt+Click the Settings gear icon** in the Navigation panel header (a regular click on the gear opens addon preferences).
+The panel is hidden by default. ++alt++-click the **gear** icon in the Navigation panel header to show it.
 
-!!! note "What the gear actually toggles"
-    Alt+Click on the gear flips a single internal flag — `tks_show_process_monitor`. That covers the **Process Monitor** and **Debug Console** views (which are the same panel in different modes). The **View Layer Switch Profiler** is a separate panel reached from the in-panel switcher described below, not from the gear directly.
+A plain click on the gear opens addon preferences instead. ++alt++-click it again to hide the panel.
 
-Once the diagnostic UI is visible, its header carries a 3-way switcher for picking the active view:
+Its header carries a 3-way switcher for choosing which view you see.
 
-| Mode | Icon | Shows |
-|------|------|-------|
-| **Process Monitor** | F-curve | Live process tree (the focus of this page). |
-| **Debug Console** | Console | Recent log lines (filtered by *Preferences > Developer > Topics*). |
-| **View Layer Switch Profiler** | Time | Per-step timing for the most recent View Layer switch. |
+??? info "The three views"
+    | View | Icon | Shows |
+    |------|------|-------|
+    | **Process Monitor** | F-curve | The live process tree — this page. |
+    | **Debug Console** | Console | Recent log lines, filtered by *Preferences > Developer > Topics*. |
+    | **View Layer Switch Profiler** | Time | Per-step timing for the most recent View Layer switch. |
 
-The same 3-way switcher is mirrored in the Profiler header, so you can hop between any of the three views once at least one of them is open. Alt+Click the gear again to dismiss the Process Monitor / Debug Console pair.
+    The gear shows the **Process Monitor** and **Debug Console** — they are the same
+    panel in two modes. The **View Layer Switch Profiler** is a separate panel, reached
+    from the switcher. The switcher is mirrored in the Profiler header, so you can hop
+    between all three once any one of them is open.
+
+    **Which one you want.** Viewport stuttering during scrub: the Process Monitor.
+    A slow View Layer switch: the Profiler. A log for a bug report: turn on
+    *Preferences > Developer > Enable Logging*, reproduce the problem, then copy lines
+    from the Debug Console.
 
 ## :material-file-tree: Process Tree Hierarchy
 
-Processes are grouped into 6 feature buckets. Each bucket has a master toggle and a chevron to expand/collapse:
+Processes sit in six feature groups. Each group has a master toggle and a chevron to expand it.
 
-| Group | Tracks |
-|-------|--------|
-| **Core** | View Layer Switch, Cascade overrides, Lock System, Slot Processing. |
-| **UI Sync** | Tree drawing, list syncing, panel redraws. |
-| **Rest State** | Auto-mirror, snap-back, rest cache. |
-| **Variant Switch** | Material swap, pool resolution. |
-| **Batch Render** | Modal foreground / background subprocess monitoring. |
-| **Render Presets** | Cascade resolution, dirty-state checks, sync. |
+The row colour tells you the state: red after an error, amber on a warning, green when idle.
 
-A row turns red when a process logs an error, amber on warnings, green when idle. Clicking a row toggles that handler/timer's **enabled** state — disabled rows stop firing until re-enabled, which is the main way you isolate viewport-lag causes without restarting Blender.
+Click a row to switch that one process off. Disabled rows stop firing until you switch them back on.
+
+??? info "What each group tracks"
+    | Group | Tracks |
+    |-------|--------|
+    | **Core** | View Layer Switch, cascade overrides, Lock System, slot processing. |
+    | **UI Sync** | Tree drawing, list syncing, panel redraws. |
+    | **Rest State** | Auto-mirror, snap-back, rest cache. |
+    | **Variant Switch** | Material swap, pool resolution. |
+    | **Batch Render** | Foreground and background render monitoring. |
+    | **Render Presets** | Cascade resolution, dirty-state checks, sync. |
 
 ## :material-toggle-switch: Master Toggles
 
-Each group has a master switch. Disabling a group **suspends** its handlers (where safe) so you can isolate causes of viewport lag without restarting Blender. Re-enable to restore normal behaviour.
+Each group has one master switch. It suspends every process in that group at once, where that is safe.
+
+Use it to silence a whole subsystem without restarting Blender. Switch it back on to restore normal behaviour.
 
 ## :material-gesture-tap-button: Row & Group Actions
 
-The tree is interactive — every click flips live state, no restart needed. There are three click targets:
+Every click flips live state — no restart needed.
 
-| Action | Where you click | What it does |
-|--------|-----------------|--------------|
-| **Toggle Process** | A single process row | Flips that one handler/timer's enabled state. ++shift++ + click **range-toggles** from the last clicked row down to this one; ++alt++ + click **inverts all** processes at once. |
-| **Toggle Feature Group** | A group's master switch | Enables or disables every child process in that bucket together — the fastest way to silence a whole subsystem while bisecting a lag source. |
-| **Toggle Group Expand** | A group's chevron | Expands or collapses the group to show or hide its child rows. ++shift++ + click cascades the same expanded/collapsed state to **all** groups at once. |
+Click a single row for one process, a group's master switch for the whole bucket, or a chevron to fold a group.
 
-!!! tip "Bisecting viewport lag"
-    Disable groups one at a time with **Toggle Feature Group**, scrub the timeline after each, and watch the heartbeat / exec-time columns. When the stutter disappears, the group you just switched off is the culprit — then drill in with single-row **Toggle Process** to find the exact handler.
+??? tip "Modifier clicks"
+    | Shortcut | Action |
+    |----------|--------|
+    | Click a process row | Toggle that one process on or off. |
+    | ++shift++ + click a row | Range-toggle, from the last row you clicked down to this one. |
+    | ++alt++ + click a row | Invert all — every row flips its state. |
+    | Click a group master switch | Flip every process in that group together. |
+    | ++shift++ + click a chevron | Expand or collapse **all** groups at once. |
+    | ++ctrl+i++ | Invert the multi-selection (generic list shortcut). |
+
+    Full list on [Keyboard Shortcuts](../interface/hotkeys.md).
+
+??? tip "Bisecting viewport lag"
+    Switch groups off one at a time, scrub the timeline after each, and watch the
+    heartbeat and exec-time columns. When the stutter disappears, the group you just
+    switched off is the culprit. Then click single rows to find the exact process.
 
 ## :material-restart: Restart Processes
 
-If a timer or handler has stopped firing — a row that should be ticking shows no heartbeat — click **Restart Processes** to force every monitored process back to life. It re-registers all dead timers in one pass and reports how many it brought back.
+If a row that should be ticking shows no heartbeat, click **Restart Processes**.
 
-++alt++ + click the same button instead toggles the **Auto-Restart Watchdog**: while the watchdog is on, dead processes are revived automatically and a plain click is a no-op (the watchdog already covers it). Click once more to turn the watchdog back off and return to manual restarts.
+It brings every dead process back in one pass and tells you how many it revived.
 
-## :material-help-circle-outline: When to Use It
-
-- The viewport is stuttering and you want to see which feature group is firing during scrub.
-- A View Layer switch feels slow — open the **View Layer Switch Profiler** tab to see per-step times.
-- A bug report asks for a log — flip on *Preferences > Developer > Enable Logging*, reproduce the issue, then copy lines from the Debug Console.
-
-## :material-keyboard: Hotkeys
-
-The Process Monitor list shares the generic list hotkeys plus row-click modifiers:
-
-| Shortcut | Action |
-|----------|--------|
-| Click on a process row | Toggle that single process on / off. |
-| ++shift++ + click on a process row | **Range-toggle** from the last-toggled row down to this one. |
-| ++alt++ + click on a process row | **Invert all** processes (every row flips its enabled state). |
-| Click on a group master toggle | Flip every process in that group together. |
-| ++ctrl+i++ | Invert multi-selection (generic list shortcut). |
-
-See [Keyboard Shortcuts](../interface/hotkeys.md).
+++alt++-click the same button to toggle the **Auto-Restart Watchdog**. While it is on, dead processes come back on their own and a plain click does nothing. Click again for manual restarts.
