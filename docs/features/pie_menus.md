@@ -81,7 +81,7 @@ The per-scene scope submenus list every scene as its own row, which gets unwield
 It is **off by default**. Switch it on with **Enable Mode Pie** in *Preferences ▸ Workflow ▸ Pie & Misc*, which also reveals the eight slot dropdowns.
 
 !!! note "Why ++shift+alt+q++"
-    Not a ++ctrl+alt++ chord: on German layouts ++alt-gr++ sends Ctrl+Alt, so such a binding fires while typing. Plain ++alt+q++ is Blender's Quick Favourites. ++shift+alt+q++ is free in the factory keymap.
+    Not a `Ctrl+Alt` chord: on German layouts `AltGr` sends Ctrl+Alt, so such a binding fires while typing. Plain `Alt+Q` is Blender's own Quick Favourites. ++shift+alt+q++ is free in the factory keymap.
 
 ### :material-format-list-bulleted: Mode Pie — Slot Actions
 
