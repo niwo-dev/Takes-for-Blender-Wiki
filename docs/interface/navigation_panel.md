@@ -16,12 +16,12 @@ The header has two rows. The top row carries shared toggles, warning indicators,
 
 | Control | Description |
 |---------|-------------|
-| **Rest Mode** (ghost) | Temporarily shows every View Layer's rest baseline (`tks.rest_mode_toggle`) — see [Rest State](../features/rest_state.md). Takes turns with Value Lock. |
-| **Still Mode** (still camera) | Pins every take's timeline to its still frame (`tks.still_global_toggle`) — see [Still Mode](../features/still_mode.md). Turning it on parks Timeline Sync until you switch back. |
-| **Value Lock** (padlock) | Protects the scene's unkeyed values while you work (`tks.value_lock_toggle`) — see [Value Lock](../features/value_lock.md). Mutually exclusive with Autokey. |
-| **Autokey** | Toggles Blender's auto-keying across all scenes simultaneously (`tks.toggle_autokey`). Blender 5.2 ships *Only Insert Available* enabled, which makes auto-keying silently skip channels that were never keyed — the state every fresh take starts in. Takes offers to manage that preference for you: enabling Autokey turns it off, disabling Autokey restores it. You are asked once — see [Autokey Is Being Blocked](#autokey-is-being-blocked). |
+| **Rest Mode** (ghost) | Temporarily shows every View Layer's rest baseline — see [Rest State](../features/rest_state.md). Takes turns with Value Lock. |
+| **Still Mode** (still camera) | Pins every take's timeline to its still frame — see [Still Mode](../features/still_mode.md). Turning it on parks Timeline Sync until you switch back. |
+| **Value Lock** (padlock) | Protects the scene's unkeyed values while you work — see [Value Lock](../features/value_lock.md). Mutually exclusive with Autokey. |
+| **Autokey** | Toggles Blender's auto-keying across all scenes simultaneously. Blender 5.2 ships *Only Insert Available* enabled, which makes auto-keying silently skip channels that were never keyed — the state every fresh take starts in. Takes offers to manage that preference for you: enabling Autokey turns it off, disabling Autokey restores it. You are asked once — see [Autokey Is Being Blocked](#autokey-is-being-blocked). |
 | **Timeline Sync** | Keeps the playhead in sync across scenes. Grayed out while Still Mode is on — the two are mutually exclusive. |
-| **Variant Live** (sync arrows) | Shows the [variant](../features/variant_switch.md) state you are editing live in the viewport (`tks.vsw_live_apply`); switching it off restores what the take assigns. ++alt++ + click arms it *and* opens the Variants list. It sits here rather than in the Variants sidebar because it is a **mode**, and it belongs beside the mode it excludes: arming Live switches Autokey off, and arming Autokey switches Live off. Greyed out when the file has no products. |
+| **Variant Live** (sync arrows) | Shows the [variant](../features/variant_switch.md) state you are editing live in the viewport; switching it off restores what the take assigns. ++alt++ + click arms it *and* opens the Variants list. It sits here rather than in the Variants sidebar because it is a **mode**, and it belongs beside the mode it excludes: arming Live switches Autokey off, and arming Autokey switches Live off. Greyed out when the file has no products. |
 
 **Top row — right side:**
 
@@ -30,7 +30,7 @@ The header has two rows. The top row carries shared toggles, warning indicators,
 | **Warning indicators** | Conditional badges that appear when an issue is detected — preset dirty, missing preset, incompatible preset, rest drift, slot mismatch, pending preview rename, cascade drift, broken assignment, camera link gap, variant conflict, stale cache, view-layer preload. Each one toggles its own warning sub-panel below the header. |
 | **Save** | Appears in red when there are unsaved preference changes; click to save. |
 | **Help** | Opens the documentation (this wiki). |
-| **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). Its sidebar carries **Restart Processes** (`tks.restart_dead_processes`) plus, in Debug Console view, a refresh button (`tks.dm_refresh`) and a log-files opener (`tks.dm_log_files`). |
+| **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). Its sidebar carries **Restart Processes** plus, in Debug Console view, a refresh button and a log-files opener. |
 
 **Bottom row (panel switcher):**
 
@@ -80,7 +80,7 @@ Each View Layer row displays cascade override icons. These icons show at a glanc
 
 !!! tip "Expand / collapse in bulk"
     The expand chevron on Scene, Group, and Take rows responds to modifiers
-    (`tks.toggle_scene_expand`):
+:
 
     | Shortcut | Reach |
     |----------|-------|
@@ -131,10 +131,10 @@ This one is not badge-driven — it appears on its own, directly below the navig
 
 The panel explains both outcomes and offers a choice:
 
-| Button | Operator | Effect |
-|--------|----------|--------|
-| **Let Takes Manage** | `tks.autokey_guard_accept` — *Let Takes Manage 'Only Insert Available'* | Takes borrows the preference: it switches *Only Insert Available* off while Autokey is on and hands it back when Autokey goes off. Turns on **Manage 'Only Insert Available'** in [Preferences ▸ Workflow](../preferences/workflow.md). |
-| **Keep Setting** | `tks.autokey_guard_decline` — *Keep Blender's Keying Setting* | Takes never touches the preference and the warning stays silenced for good. You can re-enable the automation later under [Preferences ▸ Workflow](../preferences/workflow.md). |
+| Button | Effect |
+| -------- | -------- |
+| **Let Takes Manage** | Takes borrows the preference: it switches *Only Insert Available* off while Autokey is on and hands it back when Autokey goes off. Turns on **Manage 'Only Insert Available'** in [Preferences ▸ Workflow](../preferences/workflow.md). |
+| **Keep Setting** | Takes never touches the preference and the warning stays silenced for good. You can re-enable the automation later under [Preferences ▸ Workflow](../preferences/workflow.md). |
 
 The same two choices also appear as a one-time **Autokey Setup** popup the first time you toggle Autokey. Changing *Only Insert Available* by hand while Takes is holding it withdraws your consent — Takes stops managing the preference and the warning returns, so you can decide again.
 

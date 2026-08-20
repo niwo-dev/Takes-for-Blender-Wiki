@@ -38,7 +38,7 @@ Tags are the addon's universal labelling system. They serve two purposes:
 - **Multiselect** (☐) toggle to bulk-edit.
 - **Stats row** showing the tag count per category, e.g. `3/5 Output | 2/2 Camera`.
 
-Each category header carries a **chevron** that runs **Toggle Expand** (`tks.tagtree_toggle_expand`) to fold or unfold that category in the tree. ++shift++-click the chevron to expand or collapse **every** category at once — handy for quickly tidying a long tag list down to just the headers, or opening everything back up.
+Each category header carries a **chevron** that runs **Toggle Expand** to fold or unfold that category in the tree. ++shift++-click the chevron to expand or collapse **every** category at once — handy for quickly tidying a long tag list down to just the headers, or opening everything back up.
 
 ## :material-plus-circle: Creating Tags
 
@@ -60,18 +60,18 @@ Names don't have to be unique, and nothing is rejected for colliding. Takes foll
 
 Once a category holds more than a handful of tags, fold them into **Tag Groups** — collapsible folders inside the category:
 
-1. **Create a group** — select the tags to bundle (enable **Multiselect** to pick several), then press ++ctrl+g++ or click **+** → **Group**. This runs **{{ op('tks.tag_group_create').bl_label }}** (`tks.tag_group_create`): a group named *New Group* (auto-numbered if taken) appears with the selected tags inside. All selected tags must belong to the same category.
-2. **Rename it** — ++f2++ on the group header opens the **{{ op('tks.tag_group_rename').bl_label }}** dialog (`tks.tag_group_rename`); group names must stay unique within their category.
-3. **Reorder** — the **↑ / ↓** buttons move the group up or down within its category (`tks.tag_group_move`).
-4. **Move tags between groups** — **{{ op('tks.tag_retarget_group').bl_label }}** (track icon, or ++ctrl+t++, `tks.tag_retarget_group`) opens a small dialog with a target-group dropdown. It moves the active tag or the whole multi-selection. The dropdown always opens on **Select a Group**, and lists only destinations that would actually move something: the group the tags already sit in is left out, and **Ungrouped** appears whenever at least one of them is inside a group — that is how you take a tag back out of a group.
-5. **Fold / unfold** — the chevron on a group header toggles that group (`tks.tag_group_toggle_expand`); ++shift++-click sets **every group in every category** to the same state at once.
+1. **Create a group** — select the tags to bundle (enable **Multiselect** to pick several), then press ++ctrl+g++ or click **+** → **Group**. This runs **{{ op('tks.tag_group_create').bl_label }}**: a group named *New Group* (auto-numbered if taken) appears with the selected tags inside. All selected tags must belong to the same category.
+2. **Rename it** — ++f2++ on the group header opens the **{{ op('tks.tag_group_rename').bl_label }}** dialog; group names must stay unique within their category.
+3. **Reorder** — the **↑ / ↓** buttons move the group up or down within its category.
+4. **Move tags between groups** — **{{ op('tks.tag_retarget_group').bl_label }}** (track icon, or ++ctrl+t++) opens a small dialog with a target-group dropdown. It moves the active tag or the whole multi-selection. The dropdown always opens on **Select a Group**, and lists only destinations that would actually move something: the group the tags already sit in is left out, and **Ungrouped** appears whenever at least one of them is inside a group — that is how you take a tag back out of a group.
+5. **Fold / unfold** — the chevron on a group header toggles that group; ++shift++-click sets **every group in every category** to the same state at once.
 
 When a group has outlived its usefulness, there are two exits with very different blast radii:
 
-| Action | Operator | What happens to the tags |
-|--------|----------|--------------------------|
-| **{{ op('tks.tag_group_dissolve').bl_label }}** (++alt+g++) | `tks.tag_group_dissolve` | The group shell disappears; its member tags survive and move back to the category's ungrouped level. |
-| **{{ op('tks.tag_group_delete').bl_label }}** | `tks.tag_group_delete` | The group **and every tag inside it** are deleted. Asks for confirmation first (toggleable in Preferences). |
+| Action | What happens to the tags |
+| -------- | -------------------------- |
+| **{{ op('tks.tag_group_dissolve').bl_label }}** (++alt+g++) | The group shell disappears; its member tags survive and move back to the category's ungrouped level. |
+| **{{ op('tks.tag_group_delete').bl_label }}** | The group **and every tag inside it** are deleted. Asks for confirmation first (toggleable in Preferences). |
 
 ## :material-link-variant: Assigning Tags
 
@@ -84,11 +84,11 @@ When a group has outlived its usefulness, there are two exits with very differen
 
 ### :material-arrow-expand-all: Push Tag to Selected
 
-To stamp one tag onto many rows at once, turn on the **Multiselect** (☐) toggle, select the Scenes or View Layers you want, then use **Push Tag to Selected** (`tks.batch_set_tag`). It writes the chosen tag to every selected item in the active list and reports how many it updated. Pushing an empty tag clears the assignment across the selection, so it doubles as a bulk *un-tag*.
+To stamp one tag onto many rows at once, turn on the **Multiselect** (☐) toggle, select the Scenes or View Layers you want, then use **Push Tag to Selected**. It writes the chosen tag to every selected item in the active list and reports how many it updated. Pushing an empty tag clears the assignment across the selection, so it doubles as a bulk *un-tag*.
 
 ### :material-link-off: Unlinking a Rule's Preset
 
-When a tag drives an automation rule (Output / Camera / World / Material), each preset field on the rule shows an **X** button once a preset is assigned. Clicking it runs **Unlink Preset** (`tks.unlink_tag_preset`), which clears just that one field on the tag — leaving the tag itself and its other preset slots intact.
+When a tag drives an automation rule (Output / Camera / World / Material), each preset field on the rule shows an **X** button once a preset is assigned. Clicking it runs **Unlink Preset**, which clears just that one field on the tag — leaving the tag itself and its other preset slots intact.
 
 ## :material-folder-cog: Smart Output
 

@@ -36,10 +36,10 @@ Nine collapsible topic groups, each with a master toggle and per-subtopic toggle
 
 Once **Enable Debug Logging** is on, a live log monitor is available in the add-on's navigation panel. It reads the log file back into a scrollable list so you can watch events without leaving Blender or opening the file by hand. Two toolbar buttons drive it:
 
-| Button | Operator | What it does |
-|--------|----------|--------------|
-| **Refresh Log** | `tks.dm_refresh` | Re-reads the current log file and reloads the latest entries (capped by the *Show Lines* limit). ++alt++ + click toggles **auto-refresh**, which polls the file on the configured interval. A plain click does nothing while auto-refresh is already on. |
-| **Log Files** | `tks.dm_log_files` | Opens a dropdown to pick which log file the monitor displays. ++shift++ + click instead opens the log folder in your system file browser. |
+| Button | What it does |
+| -------- | -------------- |
+| **Refresh Log** | Re-reads the current log file and reloads the latest entries (capped by the *Show Lines* limit). ++alt++ + click toggles **auto-refresh**, which polls the file on the configured interval. A plain click does nothing while auto-refresh is already on. |
+| **Log Files** | Opens a dropdown to pick which log file the monitor displays. ++shift++ + click instead opens the log folder in your system file browser. |
 
 !!! note "Logging must be enabled first"
     **Refresh Log** reports *"Enable debug logging first"* and turns auto-refresh
@@ -82,13 +82,13 @@ Developer helpers that live on their own **Utilities** sub-tab.
 
 ### :material-emoticon-outline: Icon Sheet
 
-The **Icon Sheet** (`tks.view_icon_sheet`) opens a browsable catalogue of
+The **Icon Sheet** opens a browsable catalogue of
 every built-in Blender icon:
 
 - **Browse by category** or filter with the **search** field; matching
   icons highlight in place.
 - **Click any icon** to copy its identifier to the clipboard
-  (`tks.copy_icon_name`) — ready to paste into a script or a custom-token
+ — ready to paste into a script or a custom-token
   category picker.
 - A **Recent** tab keeps the icons you copied most recently.
 - Open it from the button on this sub-tab, or bind your own hotkey with

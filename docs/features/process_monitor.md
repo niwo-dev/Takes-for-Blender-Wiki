@@ -48,16 +48,16 @@ The tree is interactive — every click flips live state, no restart needed. The
 
 | Action | Where you click | What it does |
 |--------|-----------------|--------------|
-| **Toggle Process** | A single process row | Flips that one handler/timer's enabled state. ++shift++ + click **range-toggles** from the last clicked row down to this one; ++alt++ + click **inverts all** processes at once (`tks.pm_toggle_enabled`). |
-| **Toggle Feature Group** | A group's master switch | Enables or disables every child process in that bucket together — the fastest way to silence a whole subsystem while bisecting a lag source (`tks.pm_toggle_feature`). |
-| **Toggle Group Expand** | A group's chevron | Expands or collapses the group to show or hide its child rows. ++shift++ + click cascades the same expanded/collapsed state to **all** groups at once (`tks.pm_toggle_group_expand`). |
+| **Toggle Process** | A single process row | Flips that one handler/timer's enabled state. ++shift++ + click **range-toggles** from the last clicked row down to this one; ++alt++ + click **inverts all** processes at once. |
+| **Toggle Feature Group** | A group's master switch | Enables or disables every child process in that bucket together — the fastest way to silence a whole subsystem while bisecting a lag source. |
+| **Toggle Group Expand** | A group's chevron | Expands or collapses the group to show or hide its child rows. ++shift++ + click cascades the same expanded/collapsed state to **all** groups at once. |
 
 !!! tip "Bisecting viewport lag"
     Disable groups one at a time with **Toggle Feature Group**, scrub the timeline after each, and watch the heartbeat / exec-time columns. When the stutter disappears, the group you just switched off is the culprit — then drill in with single-row **Toggle Process** to find the exact handler.
 
 ## :material-restart: Restart Processes
 
-If a timer or handler has stopped firing — a row that should be ticking shows no heartbeat — click **Restart Processes** to force every monitored process back to life (`tks.restart_dead_processes`). It re-registers all dead timers in one pass and reports how many it brought back.
+If a timer or handler has stopped firing — a row that should be ticking shows no heartbeat — click **Restart Processes** to force every monitored process back to life. It re-registers all dead timers in one pass and reports how many it brought back.
 
 ++alt++ + click the same button instead toggles the **Auto-Restart Watchdog**: while the watchdog is on, dead processes are revived automatically and a plain click is a no-op (the watchdog already covers it). Click once more to turn the watchdog back off and return to manual restarts.
 

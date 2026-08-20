@@ -33,7 +33,7 @@ The fastest way back to defaults: in *Preferences > Data > Addon*, switch *Save 
 
 ## :material-cached: Rebuild Cache { #rebuild-cache }
 
-If the takes tree, presets, or rest-state ever look stale or out of sync — for example after the add-on warns that a file was last touched by a different version — the **Rebuild Cache & Reload Addon** button (`tks.rebuild_cache`) clears everything and starts fresh in one step. It:
+If the takes tree, presets, or rest-state ever look stale or out of sync — for example after the add-on warns that a file was last touched by a different version — the **Rebuild Cache & Reload Addon** button clears everything and starts fresh in one step. It:
 
 1. Clears every in-memory cache the add-on owns (rest-state, preset files, the preset engine, navigation warnings).
 2. Re-stamps the active scene with the current add-on version so the next launch sees a clean stamp.

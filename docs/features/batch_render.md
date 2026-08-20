@@ -18,7 +18,7 @@ Takes for Blender supports three render modes:
     - Press ++esc++ to cancel.
 
 === "Background Batch Render"
-    Renders headlessly while Blender stays fully interactive. Selecting **Background** mode in the [render menu](#the-render-menu) dispatches `tks.batch_render_bg_fast`: the `.blend` is saved once, a single queue file is written, and **one** persistent headless Blender process works through every queued View Layer — no per-task startup cost, so large queues finish quicker. The [F12 Render Pie](pie_menus.md#f12-render-pie) background scopes route the same way.
+    Renders headlessly while Blender stays fully interactive. Choose **Background** mode in the [render menu](#the-render-menu): the `.blend` is saved once, a single queue file is written, and **one** persistent headless Blender process works through every queued View Layer — no per-task startup cost, so large queues finish quicker. The [F12 Render Pie](pie_menus.md#f12-render-pie) background scopes route the same way.
 
     - Tree view updates progressively as each View Layer completes.
     - A completion sound plays when all tasks finish.
@@ -50,7 +50,7 @@ The queue sidebar carries a single render button (:material-export: — one icon
 | | **Retry Failed** | Re-render only VLs whose previous attempt failed or cancelled. |
 | | **{{ op('tks.calibrate_render_times').bl_label }}** | Probe-render the queue to seed the [time estimates](#calibrate-render-times). |
 
-The same dispatcher (`tks.render_scope_dispatch`) powers the [F12 Render Pie](pie_menus.md#f12-render-pie), so anything you assign to a pie slot maps to one of the scope rows above. While a render or calibration is running, the sidebar button turns into its cancel button.
+The same dispatcher powers the [F12 Render Pie](pie_menus.md#f12-render-pie), so anything you assign to a pie slot maps to one of the scope rows above. While a render or calibration is running, the sidebar button turns into its cancel button.
 
 ## :material-format-list-checkbox: Render Queue
 
@@ -77,9 +77,9 @@ Click the **gear icon** in the queue header to open the **Queue Columns** popove
 
 ### :material-briefcase-outline: Render Jobs
 
-The **Render Jobs** popover (`tks.render_jobs_popover`) tracks disk-backed render jobs alongside the queue. **Rescan Disk** (`tks.render_jobs_rescan`) re-checks the disk for already-rendered frames of every job — useful after renders arrive from outside the current session (a render farm, another machine, a resumed batch).
+The **Render Jobs** popover tracks disk-backed render jobs alongside the queue. **Rescan Disk** re-checks the disk for already-rendered frames of every job — useful after renders arrive from outside the current session (a render farm, another machine, a resumed batch).
 
-The popover remembers how wide you want it. Blender popups cannot live-resize, so the **corner grip** at the bottom-right runs **{{ op('tks.render_jobs_drag_resize').bl_label }}** (`tks.render_jobs_drag_resize`) as a modal preview: drag left or right and the candidate width appears in the status bar, click to apply and reopen the popover at that size, right-click or ++esc++ to cancel. The chosen width is saved in the preferences, so it survives restarts and applies to every later opening.
+The popover remembers how wide you want it. Blender popups cannot live-resize, so the **corner grip** at the bottom-right runs **{{ op('tks.render_jobs_drag_resize').bl_label }}** as a modal preview: drag left or right and the candidate width appears in the status bar, click to apply and reopen the popover at that size, right-click or ++esc++ to cancel. The chosen width is saved in the preferences, so it survives restarts and applies to every later opening.
 
 ## :material-timer-cog: Calibrate Render Times
 
@@ -118,13 +118,13 @@ If a batch render gets stuck:
 
 ## :material-export: Output
 
-Output paths are resolved via the [Smart Output](smart_output.md) token system. Each View Layer's output is named automatically based on the configured pattern. The **Directory** and **File Name** rows carry the same ▾ per-field dropdown as the Properties Output panel — **Build Syntax**, an **Insert Token** quick-pick, and **{{ op('tks.field_clear').bl_label }}** (`tks.field_clear`), which clears the last token or the whole field.
+Output paths are resolved via the [Smart Output](smart_output.md) token system. Each View Layer's output is named automatically based on the configured pattern. The **Directory** and **File Name** rows carry the same ▾ per-field dropdown as the Properties Output panel — **Build Syntax**, an **Insert Token** quick-pick, and **{{ op('tks.field_clear').bl_label }}**, which clears the last token or the whole field.
 
 ### :material-file-refresh: Detect Version From Disk
 
 When your output pattern includes a `{rev}` version token — either in a folder segment or in the file name — the Smart Output section shows a **Version** field with a refresh button (:material-file-refresh:) beside it. **Detect Version From Disk** scans the resolved output folder for files and folders that already match the versioned pattern, finds the highest number present, and sets the **Version** field to *highest + 1* so your next batch continues the sequence instead of overwriting earlier renders.
 
-- Click the refresh button next to **Version** to run the scan (operator `tks.detect_render_version`).
+- Click the refresh button next to **Version** to run the scan.
 - It checks both versioned folder names and versioned file names, picking the highest across both.
 - If nothing on disk matches the pattern, it leaves the value untouched and reports *No existing versions found on disk*; otherwise it reports the version it is continuing from and the highest it saw.
 
@@ -136,11 +136,11 @@ When your output pattern includes a `{rev}` version token — either in a folder
 The Version block under Smart Output is a small versioning system around the `{rev}` token:
 
 - **Version / Sub-version** — the two counters the `{rev}` and `{subrev}` tokens resolve (compose e.g. `v{rev:03d}.{subrev:02d}` → `v002.03`). Bumping **Version** resets **Sub-version** to 0, the usual major/minor behaviour. Whether the counters live per scene or per View Layer is a preference (see below).
-- **Note** — a short line about what changed in this version. Click **Add Version Note** (`tks.add_render_version_note`) to start one; the note then edits inline beside the Version rows. Notes are saved inside the `.blend`.
+- **Note** — a short line about what changed in this version. Click **Add Version Note** to start one; the note then edits inline beside the Version rows. Notes are saved inside the `.blend`.
 - **Version History** (:material-history: popover) — every noted version, newest first, with its note editable in place and a per-version lock toggle.
-- **Lock Version as Final** (:material-lock: , `tks.toggle_render_version_lock`) — marks the current version as final. **Detect Version From Disk** never lands on a locked version; it continues forward past it.
-- **Open Newest Version Folder** (:material-folder: , `tks.open_newest_version_folder`) — jumps straight to the highest version folder on disk in your system file browser.
-- **Archive Other Versions** (`tks.archive_render_versions`, in the history popover) — sweeps every version on disk *except* the current one and any locked ones into an `archive/` folder created beside them. Files are moved, never deleted; a confirmation lists exactly what stays and what moves before anything happens, and nothing already in the archive is ever overwritten.
+- **Lock Version as Final** (:material-lock:) — marks the current version as final. **Detect Version From Disk** never lands on a locked version; it continues forward past it.
+- **Open Newest Version Folder** (:material-folder:) — jumps straight to the highest version folder on disk in your system file browser.
+- **Archive Other Versions** (in the history popover) — sweeps every version on disk *except* the current one and any locked ones into an `archive/` folder created beside them. Files are moved, never deleted; a confirmation lists exactly what stays and what moves before anything happens, and nothing already in the archive is ever overwritten.
 
 !!! info "Preferences"
     **Workflow ▸ Render Output** holds the master **Render Versioning** switch (hides the whole block when off — tokens in existing paths keep resolving), the **Render Version Scope** (one counter per scene, or one per View Layer), and the **Render Version Padding** a bare `{rev}` pads to (v001 / v01 / v1).

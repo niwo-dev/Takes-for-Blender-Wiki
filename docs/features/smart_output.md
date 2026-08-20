@@ -18,10 +18,10 @@ Smart Output adds its own controls to the Output panel:
 
 | Control | What it does |
 |---------|--------------|
-| **Standard / Compositor** buttons + link toggle | Choose where renders go — the standard output path, the compositor's File Output nodes, or (with the link icon on) both together (`tks.toggle_output_mode`). The buttons sit beside the Smart Output toggle and gray out while Smart Output is off, rather than disappearing. |
-| **Browse folder** (folder icon) | **{{ op('tks.browse_directory').bl_label }}** (`tks.browse_directory`) opens a file browser to pick the output directory; ++shift++-click opens the configured folder in your OS file explorer instead. |
-| **▾ per-field dropdown** | Each pattern field's actions in one place: **Build Syntax**, **Make Absolute** / **Make Relative** (`tks.toggle_render_path_mode`, directory fields only), an **Insert Token** quick-pick of the field's most-used tokens, **{{ op('tks.reset_directory').bl_label }}** (`tks.reset_directory`), **Clear Last Token**, and **Clear All**. |
-| **{{ op('tks.sync_brackets').bl_label }}** (red refresh icon) | Appears beside a field only when its tokens use a bracket style other than the current preference; click to convert them (`tks.sync_brackets`). |
+| **Standard / Compositor** buttons + link toggle | Choose where renders go — the standard output path, the compositor's File Output nodes, or (with the link icon on) both together. The buttons sit beside the Smart Output toggle and gray out while Smart Output is off, rather than disappearing. |
+| **Browse folder** (folder icon) | **{{ op('tks.browse_directory').bl_label }}** opens a file browser to pick the output directory; ++shift++-click opens the configured folder in your OS file explorer instead. |
+| **▾ per-field dropdown** | Each pattern field's actions in one place: **Build Syntax**, **Make Absolute** / **Make Relative** (directory fields only), an **Insert Token** quick-pick of the field's most-used tokens, **{{ op('tks.reset_directory').bl_label }}**, **Clear Last Token**, and **Clear All**. |
+| **{{ op('tks.sync_brackets').bl_label }}** (red refresh icon) | Appears beside a field only when its tokens use a bracket style other than the current preference; click to convert them. |
 | **Version** counter | The value the `{rev}` token resolves to, kept per scene or per view layer (**{{ pref('smart_output_render_version_scope').label }}** in Preferences). Its refresh button scans the output folder and continues from the highest version found on disk. |
 
 ## :material-code-tags: Token Syntax
@@ -194,16 +194,16 @@ Three toggles live in the popover header:
 
 Every button in the popover maps to a named operator — handy if you want to bind one to a hotkey or run it from Blender's operator search:
 
-| Action | Operator |
-|--------|----------|
-| Click a grid token to append it to the pattern | **{{ op('tks.token_builder_append').bl_label }}** (`tks.token_builder_append`) |
-| Select or deselect a chip | **{{ op('tks.token_builder_select').bl_label }}** (`tks.token_builder_select`) |
-| Step a chip ◀ / ▶ or send it to an edge | **{{ op('tks.token_builder_move').bl_label }}** (`tks.token_builder_move`) |
-| Delete the selected chip (✕) | **{{ op('tks.token_builder_remove').bl_label }}** (`tks.token_builder_remove`) |
-| Clear Last Token / Clear All | **{{ op('tks.token_builder_clear').bl_label }}** (`tks.token_builder_clear`) |
-| Reset the pattern to its default | **{{ op('tks.token_builder_reset').bl_label }}** (`tks.token_builder_reset`) |
-| Copy the assembled pattern | **{{ op('tks.token_builder_copy').bl_label }}** (`tks.token_builder_copy`) |
-| Write the draft back to the field (the red **Apply** flag) | **{{ op('tks.token_builder_apply').bl_label }}** (`tks.token_builder_apply`) |
+| Action |
+| -------- |
+| Click a grid token to append it to the pattern |
+| Select or deselect a chip |
+| Step a chip ◀ / ▶ or send it to an edge |
+| Delete the selected chip (✕) |
+| Clear Last Token / Clear All |
+| Reset the pattern to its default |
+| Copy the assembled pattern |
+| Write the draft back to the field (the red **Apply** flag) |
 
 ### :material-blender-software: Blender's Own Filepath Tokens
 
@@ -214,7 +214,7 @@ On render-path fields — the Output panel rows and File Output node fields, not
 Smart Output validates patterns as you type — in the Output panel rows, on File Output nodes, and inside the Build Syntax popover:
 
 - **Writable root** — a render directory must start with `//` (blend-relative) or an absolute path (`C:/`, a POSIX `/` root, a UNC share). Anything else, including an empty directory, would render to an unpredictable location — so the field turns red and the preview line names the reason.
-- **Absolute / relative badge** — the directory field's own icon shows an `A` (absolute) or `R` (blend-relative) letter badge. The badge is a read-only indicator; switching is done with **Make Absolute** / **Make Relative** in the field's ▾ dropdown (`tks.toggle_render_path_mode`), which stays grayed out until the `.blend` file has been saved.
+- **Absolute / relative badge** — the directory field's own icon shows an `A` (absolute) or `R` (blend-relative) letter badge. The badge is a read-only indicator; switching is done with **Make Absolute** / **Make Relative** in the field's ▾ dropdown, which stays grayed out until the `.blend` file has been saved.
 - **Separator syntax** — a separator only makes sense *between* two values, so a pattern that starts with a separator token, ends with one, or puts two in a row is flagged as invalid syntax.
 
 ## :material-vector-link: File Output Nodes

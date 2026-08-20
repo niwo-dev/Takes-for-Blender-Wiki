@@ -58,18 +58,18 @@ In the slot dropdowns these actions are grouped under three headings — **Selec
 | **Selected Layers · All Scenes** | Every render-icon-enabled View Layer across every scene. |
 | **All Layers · This Scene** | Every View Layer in the current scene, regardless of render-icon state. |
 | **All Layers · All Scenes** | Every View Layer in every scene, regardless of render-icon state. |
-| **Active Layer Only** | Just the active View Layer (`tks.render_active_vl`). |
+| **Active Layer Only** | Just the active View Layer. |
 | **Resume — Skip Done** | Resume a batch — skips View Layers already marked done. |
 | **Retry Failed** | Re-render only the View Layers whose previous batch attempt failed or cancelled. |
 | **Native F12** | Fall back to Blender's built-in `render.render`. |
 | **Open Render Settings** | Switch the active Properties editor to the Output context. |
 | **None** | Empty slot. |
 
-The same scope actions are also available from the render menu behind the queue sidebar's render button — see [Batch Render](batch_render.md#the-render-menu). In Background mode both the pie and the menu dispatch through the fast background renderer (`tks.batch_render_bg_fast`), and the menu's *Other* category also offers **Calibrate Render Times** (`tks.calibrate_render_times`) to seed the queue's time estimates.
+The same scope actions are also available from the render menu behind the queue sidebar's render button — see [Batch Render](batch_render.md#the-render-menu). In Background mode both the pie and the menu dispatch through the fast background renderer, and the menu's *Other* category also offers **Calibrate Render Times** to seed the queue's time estimates.
 
 ### :material-magnify: Search Scenes
 
-The per-scene scope submenus list every scene as its own row, which gets unwieldy in a heavily populated file. Each submenu therefore opens with a **Search Scenes** entry (`tks.render_scene_search`, shown as *Search scenes…*) at the top. Picking it opens Blender's type-to-filter search popup so you can find a scene by name and render it immediately — no scrolling the full list.
+The per-scene scope submenus list every scene as its own row, which gets unwieldy in a heavily populated file. Each submenu therefore opens with a **Search Scenes** entry (shown as *Search scenes…*) at the top. Picking it opens Blender's type-to-filter search popup so you can find a scene by name and render it immediately — no scrolling the full list.
 
 - It respects the popover's current **Foreground / Background** choice, so the chosen scene renders in whichever mode is active.
 - It mirrors the submenu it was opened from: the plain variant renders that scene's render-toggle-enabled View Layers, while the *force* variant renders every View Layer in the scene regardless of toggle state.

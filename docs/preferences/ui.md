@@ -44,7 +44,7 @@ throughout the add-on:
 | **Show Warning Details** | On | The explanation paragraphs *inside* warning panels (what a problem means and why it matters). The warning headline and its fix buttons always stay. |
 
 You don't have to come here to switch them off: every tip or warning box
-carries a **✕** (`tks.dismiss_info_boxes`) that — after a quick confirmation —
+carries a **✕** that — after a quick confirmation —
 hides that whole category everywhere at once. These two switches are where you
 bring the boxes back.
 

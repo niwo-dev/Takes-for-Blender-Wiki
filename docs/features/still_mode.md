@@ -9,7 +9,7 @@ icon: material/camera
 ## :material-map-marker: Where to Find It
 
 - **Navigation header** — the **{{ op('tks.still_global_toggle').bl_label }}** button (still-camera icon) flips the whole project between Still and Animate at the Global tier.
-- **Tree rows** — every cascade level (Global, Scene Group, Scene, View Layer Group, View Layer, Take) carries a Still popover (`tks.still_popover`): pick **Still** or **Animate** (`tks.still_set`), or **Clear (Inherit)** to fall back to the parent tier. ++alt++ + click the icon clears straight to Inherit, matching the other cascade icons. Setting it on the **Global row** defines the default for the whole project — every take inherits it until a lower tier overrides. The timeline icon sits right after the tag column on every row.
+- **Tree rows** — every cascade level (Global, Scene Group, Scene, View Layer Group, View Layer, Take) carries a Still popover: pick **Still** or **Animate**, or **Clear (Inherit)** to fall back to the parent tier. ++alt++ + click the icon clears straight to Inherit, matching the other cascade icons. Setting it on the **Global row** defines the default for the whole project — every take inherits it until a lower tier overrides. The timeline icon sits right after the tag column on every row.
 
 ## :material-stairs: How It Resolves
 

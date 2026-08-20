@@ -43,7 +43,7 @@ In product visualization, you often need to render the same product in multiple 
 Click the **diamond icon** on any inactive State to immediately apply that variant to the viewport. The active state shows as a filled circle.
 
 ### :material-folder-outline: Linking a Part to a Collection
-Each Part carries a **collection button** (`tks.vsw_part_collection_popover`) — its tooltip shows the currently linked collection. Click it to pick which collection's objects this Part governs (the Product's own collection must be set first; the Part's collection is chosen from inside it), or ++alt++-click to clear the link. The picker writes through **{{ op('tks.vsw_set_part_collection').bl_label }}** (`tks.vsw_set_part_collection`). The linked collection is what scopes the Part's material pool: switching a variant swaps materials on the objects of that collection.
+Each Part carries a **collection button** — its tooltip shows the currently linked collection. Click it to pick which collection's objects this Part governs (the Product's own collection must be set first; the Part's collection is chosen from inside it), or ++alt++-click to clear the link. The picker writes through **{{ op('tks.vsw_set_part_collection').bl_label }}**. The linked collection is what scopes the Part's material pool: switching a variant swaps materials on the objects of that collection.
 
 ## :material-shape: Pool-based Variant Model
 
@@ -56,7 +56,7 @@ Variant Switch uses a **single pool-based model** — there isn't a per-Part mod
 
 ## :material-content-duplicate: Duplicating a Product
 
-**{{ op('tks.vsw_duplicate_product').bl_label }}** (`tks.vsw_duplicate_product`) copies a product whole — every Part, every material pool and every State come with it, in one click. It is the fast way to build a second product that shares a structure with the first: duplicate, then swap the materials that differ instead of rebuilding the pools by hand.
+**{{ op('tks.vsw_duplicate_product').bl_label }}** copies a product whole — every Part, every material pool and every State come with it, in one click. It is the fast way to build a second product that shares a structure with the first: duplicate, then swap the materials that differ instead of rebuilding the pools by hand.
 
 The copy is named by [Blender's own duplicate convention](tags.md#duplicate-names), so duplicating `Chair` gives you `Chair.001`.
 
@@ -71,10 +71,10 @@ A variant switch writes real material slots and visibility flags, so two product
 
 Conflicts surface as the [variant-conflict badge](../interface/navigation_panel.md#warnings) in the Navigation panel header, and each entry offers:
 
-| Button | Operator | What it does |
-|--------|----------|--------------|
-| **{{ op('tks.vsw_reveal_pool').bl_label }}** | `tks.vsw_reveal_pool` | Selects the offending pool in the Variants tree, so you land on the exact Part that needs fixing instead of hunting for it. |
-| **{{ op('tks.vsw_conflicts_rescan').bl_label }}** | `tks.vsw_conflicts_rescan` | Re-scans every pool and product. The detection is cached and invalidated as you edit; use this after changing material slots outside the addon. |
+| Button | What it does |
+| -------- | -------------- |
+| **{{ op('tks.vsw_reveal_pool').bl_label }}** | Selects the offending pool in the Variants tree, so you land on the exact Part that needs fixing instead of hunting for it. |
+| **{{ op('tks.vsw_conflicts_rescan').bl_label }}** | Re-scans every pool and product. The detection is cached and invalidated as you edit; use this after changing material slots outside the addon. |
 
 !!! note "Detection is scoped, not a file sweep"
     Reach is computed from the product's own collections only — never a sweep over every object in the file — so the scan stays cheap enough to run as you work.
@@ -83,16 +83,18 @@ Conflicts surface as the [variant-conflict badge](../interface/navigation_panel.
 
 Variant Switch states are resolved as part of the [cascade](cascade.md). Each View Layer (or higher tier) can specify which variant is active, enabling different variants per camera angle — and the same 6-tier override chain applies, leaf beating root:
 
-| Tier | Variant popover | Set / clear operators |
-|------|-----------------|-----------------------|
-| **Global** | `tks.vsw_global_variant_popover` | **{{ op('tks.vsw_set_global_variant').bl_label }}** / **{{ op('tks.vsw_clear_global_variant').bl_label }}** |
-| **Scene Group** | `tks.vsw_sg_variant_popover` | Row pickers write the group tier; **{{ op('tks.vsw_group_clear_variant').bl_label }}** empties every member. |
-| **Scene** | `tks.vsw_scene_variant_popover` | **{{ op('tks.vsw_set_scene_variant').bl_label }}** / **{{ op('tks.vsw_clear_scene_variant').bl_label }}** |
-| **View Layer Group** | `tks.vsw_vlg_variant_popover` | Same pattern as Scene Group, at the VL Group tier. |
-| **View Layer** | `tks.vsw_vl_variant_popover` | **{{ op('tks.vsw_set_vl_variant').bl_label }}** / **{{ op('tks.vsw_clear_vl_variant').bl_label }}** |
-| **Take** | `tks.take_variant_popover` | **{{ op('tks.take_set_variant').bl_label }}** / **{{ op('tks.take_clear_variant').bl_label }}** — see [Take Variants](cascade.md#version-variants). |
+| Tier | Set / clear buttons |
+|------|---------------------|
+| **Global** | **{{ op('tks.vsw_set_global_variant').bl_label }}** / **{{ op('tks.vsw_clear_global_variant').bl_label }}** |
+| **Scene Group** | Row pickers write the group tier; **{{ op('tks.vsw_group_clear_variant').bl_label }}** empties every member. |
+| **Scene** | **{{ op('tks.vsw_set_scene_variant').bl_label }}** / **{{ op('tks.vsw_clear_scene_variant').bl_label }}** |
+| **View Layer Group** | Same pattern as Scene Group, at the View Layer Group tier. |
+| **View Layer** | **{{ op('tks.vsw_set_vl_variant').bl_label }}** / **{{ op('tks.vsw_clear_vl_variant').bl_label }}** |
+| **Take** | **{{ op('tks.take_set_variant').bl_label }}** / **{{ op('tks.take_clear_variant').bl_label }}** — see [Take Variants](cascade.md#version-variants). |
 
-Every popover shares one anatomy. Each assigned Product gets a row of `[Product ▼] [Variant ▼] [✕]`: the pickers repoint the row (**{{ op('tks.vsw_set_cascade_variant').bl_label }}** pins the variant, **{{ op('tks.vsw_swap_cascade_product').bl_label }}** exchanges the product while keeping the row), and the ✕ removes that product's override at this tier (**{{ op('tks.vsw_delete_cascade_product').bl_label }}**, `tks.vsw_delete_cascade_product`). Rows inherited from a higher tier appear greyed with a link icon — override them locally by picking a variant. **Add Product** (`tks.vsw_add_cascade_product`) appends another row, so a single tier can pin variants for *several products at once*. A **Push to Selected** button appears during multi-selection, fanning the tier's variant value out to every selected View Layer.
+Every tier row also carries a **variant popover** — click the variant icon on the row to pick a state for that tier.
+
+Every popover shares one anatomy. Each assigned Product gets a row of `[Product ▼] [Variant ▼] [✕]`: the pickers repoint the row (**{{ op('tks.vsw_set_cascade_variant').bl_label }}** pins the variant, **{{ op('tks.vsw_swap_cascade_product').bl_label }}** exchanges the product while keeping the row), and the ✕ removes that product's override at this tier (**{{ op('tks.vsw_delete_cascade_product').bl_label }}**). Rows inherited from a higher tier appear greyed with a link icon — override them locally by picking a variant. **Add Product** appends another row, so a single tier can pin variants for *several products at once*. A **Push to Selected** button appears during multi-selection, fanning the tier's variant value out to every selected View Layer.
 
 The cascade icon itself answers to modifiers: ++alt++-click clears the tier's own override, and ++alt+shift++-click additionally clears every child tier's overrides beneath it (e.g. on the Global icon: every Scene and View Layer).
 

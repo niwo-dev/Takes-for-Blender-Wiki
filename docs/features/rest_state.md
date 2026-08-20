@@ -47,9 +47,9 @@ Reach for these when an object is stuck in a pose it inherited from another View
 
 | Tool | Scope | What it does |
 |------|-------|--------------|
-| **Snap Active to Rest** (`tks.snap_prop_to_rest`) | One property | Snaps a single property back to its Rest State value. The pie slot greys out when the active object has nothing to snap back to (no slot in the Rest Action). |
-| **{{ op('tks.snap_selected_to_rest').bl_label }}** (`tks.snap_selected_to_rest`) | Selected objects | Snaps every drifted property on the selected objects back to what the current mode expects — an unkeyed value returns to Rest State, a keyed value returns to its own frame-0 keyframe (or the rest pose while Rest State Mode is on). Driver-driven channels are left alone. |
-| **{{ op('tks.snap_all_to_rest').bl_label }}** (`tks.snap_all_to_rest`) | Everything | Snaps *all* drifted properties back — same per-property rules as above, across every object. |
+| **Snap Active to Rest** | One property | Snaps a single property back to its Rest State value. The pie slot greys out when the active object has nothing to snap back to (no slot in the Rest Action). |
+| **{{ op('tks.snap_selected_to_rest').bl_label }}** | Selected objects | Snaps every drifted property on the selected objects back to what the current mode expects — an unkeyed value returns to Rest State, a keyed value returns to its own frame-0 keyframe (or the rest pose while Rest State Mode is on). Driver-driven channels are left alone. |
+| **{{ op('tks.snap_all_to_rest').bl_label }}** | Everything | Snaps *all* drifted properties back — same per-property rules as above, across every object. |
 
 ### Removing Rest keys
 
@@ -57,10 +57,10 @@ Reach for these when Rest State should stop managing a property or object — fo
 
 | Tool | Scope | What it does |
 |------|-------|--------------|
-| **{{ op('tks.unset_rest_key_channel').bl_label }}** (`tks.unset_rest_key_channel`) | One channel | Deletes just that property's channel from the Rest Action, leaving the rest of the object's slot intact. Targets the hovered property, or the active object's transforms when run from the pie. |
-| **{{ op('tks.unset_rest_slot').bl_label }}** (`tks.unset_rest_slot`) | Active object | Removes the active object's entire slot from the Rest Action, so it falls back to cascade-derived defaults instead of holding any rest values. |
-| **{{ op('tks.clear_all_rest_keys_for_vl').bl_label }}** (`tks.clear_all_rest_keys_for_vl`) | View Layer | Walks every object visible in the active View Layer and removes each one's slot from the Rest Action. |
-| **{{ op('tks.delete_rest_slot').bl_label }}** (`tks.delete_rest_slot`) | Active / Selected / All | Scope-aware slot removal — the pie offers *Active*, *· Sel* and *· All* variants. Destructive, so it asks for confirmation first (auto-accept toggle in Preferences). |
+| **{{ op('tks.unset_rest_key_channel').bl_label }}** | One channel | Deletes just that property's channel from the Rest Action, leaving the rest of the object's slot intact. Targets the hovered property, or the active object's transforms when run from the pie. |
+| **{{ op('tks.unset_rest_slot').bl_label }}** | Active object | Removes the active object's entire slot from the Rest Action, so it falls back to cascade-derived defaults instead of holding any rest values. |
+| **{{ op('tks.clear_all_rest_keys_for_vl').bl_label }}** | View Layer | Walks every object visible in the active View Layer and removes each one's slot from the Rest Action. |
+| **{{ op('tks.delete_rest_slot').bl_label }}** | Active / Selected / All | Scope-aware slot removal — the pie offers *Active*, *· Sel* and *· All* variants. Destructive, so it asks for confirmation first (auto-accept toggle in Preferences). |
 
 ## :material-keyboard: Native Hotkeys
 

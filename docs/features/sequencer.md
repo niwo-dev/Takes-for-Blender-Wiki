@@ -42,11 +42,11 @@ Using a sequencer takes the window to the scene that owns the strips, because th
 !!! warning "They are a ladder, not four separate doors"
     Hover fires before any press, so the rungs below it only get a turn when it is switched off. If you want clicking to be the trigger, turn Hover off — otherwise Hover gets there first every time.
 
-**{{ op('tks.sequencer_focus_switch').bl_label }}** (`tks.sequencer_focus_switch`) is the manual version of the same journey, for when every automatic rung is off.
+**{{ op('tks.sequencer_focus_switch').bl_label }}** is the manual version of the same journey, for when every automatic rung is off.
 
 ## :material-keyboard-return: Going back {: #going-back }
 
-**{{ op('tks.sequencer_go_back').bl_label }}** (`tks.sequencer_go_back`) returns the window to the scene *and view layer* it was taken from — not just the scene, so you land on the take you left.
+**{{ op('tks.sequencer_go_back').bl_label }}** returns the window to the scene *and view layer* it was taken from — not just the scene, so you land on the take you left.
 
 The return can also happen by itself, but it is **off by default**. With both halves on, the window follows your mouse between the two editors — sequencer, viewport, sequencer — and every crossing runs a full cascade. On two monitors that may be exactly right; it is not something handed to you unasked. Its own ladder has only two rungs (**Hover**, **Click**): there is no playhead in a viewport, so Play and Playhead have no meaning on the way back.
 
@@ -54,7 +54,7 @@ The return can also happen by itself, but it is **off by default**. With both ha
 
 The sequencer caches rendered frames. A stored frame keeps the take it was rendered *with*, so it can show an old camera, animation or material before the correct one appears — which looks exactly like the follow being broken.
 
-**{{ op('tks.sequencer_cache_off').bl_label }}** (`tks.sequencer_cache_off`) turns the frame cache off for a timeline the follow is driving, and invalidates what is already stored. The sidebar warns — *"Stored frames can show the wrong take"* — when the cache is on and could mislead you.
+**{{ op('tks.sequencer_cache_off').bl_label }}** turns the frame cache off for a timeline the follow is driving, and invalidates what is already stored. The sidebar warns — *"Stored frames can show the wrong take"* — when the cache is on and could mislead you.
 
 A preference keeps it off automatically on any timeline the follow drives; leave it on and you get the warning instead of the silent wrong frame.
 
