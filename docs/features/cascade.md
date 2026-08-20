@@ -4,11 +4,9 @@ icon: material/arrow-decision
 
 # Cascade System
 
-The **Cascade** is the core engine of Takes for Blender. It resolves property overrides through a 6-tier hierarchy, allowing any level to override any level above it.
+The cascade decides which camera, world, action, compositor and presets a take uses.
 
-## :material-cog-sync: How It Works
-
-When you switch to a View Layer, the cascade resolves each property (camera, world, action, compositor, presets) by walking the hierarchy from the **most specific tier upward** and using the **first non-empty value** it finds. Take wins over View Layer, View Layer wins over View Layer Group, and so on up to Global as the final fallback:
+You set a value on any level. Deeper levels win over higher ones.
 
 ```mermaid
 graph LR
@@ -21,205 +19,220 @@ graph LR
     style Take fill:#e87d0d,color:#fff
 ```
 
-The arrow direction shows hierarchy (Global is the parent, the Take is the leaf). Resolution priority runs in the **opposite** direction — leaf wins over root.
+The arrows show who contains whom. Winning runs the other way: a Take beats everything above it.
 
 ## :material-stairs: Override Tiers
 
-| Tier | Scope | Example Use |
-|------|-------|-------------|
-| **Global** | All scenes, all View Layers | Default camera, global world |
-| **Scene Group** | All scenes in the group | Shared exterior lighting |
-| **Scene** | All View Layers in the scene | Scene-specific compositor |
-| **View Layer Group** | All View Layers in the group | Shared camera angle |
-| **View Layer** | Single View Layer | Per-shot camera, action, world |
-| **Take** | Saved review iteration of one layer | Take-specific tweaks between review rounds |
+Six levels, from widest to narrowest.
 
-## :material-format-list-bulleted-type: Cascade Properties
+| Tier | Covers | Typical use |
+|------|--------|-------------|
+| **Global** | Everything | Default camera and world |
+| **Scene Group** | Every scene in the group | Shared exterior lighting |
+| **Scene** | Every View Layer in the scene | Scene compositor |
+| **View Layer Group** | Every View Layer in the group | Shared camera angle |
+| **View Layer** | One View Layer | Per-shot camera, action, world |
+| **Take** | One saved review round | Tweaks between review rounds |
 
-Two cascade resolvers live alongside each other. They walk the same 6-tier chain but answer different questions, so the wiki splits them into separate tables to match the source.
+??? info "Which properties cascade"
+    Two resolvers run side by side over the same six tiers.
 
-### :material-link-variant: Pointer Cascade
+    **Single-value properties.** Each gets its own icon on every tree row.
 
-These are the cascade's "primary" properties — each one resolves a single datablock reference (or a single rule name) and is driven by the `CascadeProperty` enum / `resolve_cascade` resolver. Each shows up as its own cascade icon on every tree row.
+    | Property | Resolves to |
+    |----------|-------------|
+    | **Camera** | The camera object used for rendering. |
+    | **World** | The world environment. |
+    | **Compositor** | The node tree that drives compositing. |
+    | **Action** | The action pushed onto managed objects on this View Layer. |
+    | **Output Rule** | The automation rule driving the five output preset slots. |
 
-| Property | Resolves to | Description |
-|----------|-------------|-------------|
-| **Camera** | Camera object | Which camera object is used for rendering. |
-| **World** | World datablock | Which world environment is used. |
-| **Compositor** | Node tree | Which node tree drives compositing. |
-| **Action** | Action datablock | Cascade action applied to managed objects on this View Layer. |
-| **Output Rule** | Tag name | The active automation rule that drives the five output-side preset slots. |
+    **Preset slots and rules.** Each cascades on its own, so a Scene-level Render
+    preset can win while a View Layer Color Management preset overrides it.
 
-### :material-format-list-checkbox: Per-field Cascade
-
-These are name-keyed preset slots and selection rules. Each one cascades independently via the generic `get_cascade_winner` resolver, so a Scene-level Render preset can win while a VL-level Color Management preset overrides it. The Output Popover groups the five output-side slots in one place; Camera Rule and World Rule are surfaced via the Camera and World popovers.
-
-| Slot / rule | Driven by | Description |
-|-------------|-----------|-------------|
-| **Render preset** | `tks_render_preset` | Engine, samples, resolution. |
-| **Output preset** | `tks_output_preset` | Container, dimensions, frame range. |
-| **File Output preset** | `tks_fileoutput_preset` | Format, color depth, compression, Smart Output paths. |
-| **View Layer preset** | `tks_viewlayer_preset` | Active passes, light groups, holdouts. |
-| **Color Management preset** | `tks_colormanagement_preset` | View transform, look, exposure. |
-| **Camera preset** | `tks_camera_preset` | Focal length, sensor, DOF. Applied to the cascade-resolved camera. |
-| **World preset** | `tks_world_preset` | Background, strength, mist. Applied to the cascade-resolved world. |
-| **Camera Rule** | `tks_camera_rule` | Tag-based automatic camera selection. |
-| **World Rule** | `tks_world_rule` | Tag-based automatic world selection. |
+    | Slot / rule | Holds |
+    |-------------|-------|
+    | **Render preset** | Engine, samples, resolution. |
+    | **Output preset** | Container, dimensions, frame range. |
+    | **File Output preset** | Format, colour depth, compression, Smart Output paths. |
+    | **View Layer preset** | Active passes, light groups, holdouts. |
+    | **Color Management preset** | View transform, look, exposure. |
+    | **Camera preset** | Focal length, sensor, depth of field. |
+    | **World preset** | Background, strength, mist. |
+    | **Camera Rule** | Tag-based automatic camera choice. |
+    | **World Rule** | Tag-based automatic world choice. |
 
 ## :material-pencil: Setting Overrides
 
-### :material-cursor-default-click: Via Cascade Icons
-Click any cascade icon on a tree row to open its popover. Set a value to create an override at that level, or clear it to inherit from the parent.
+Click a cascade icon on any tree row. Set a value to override, or clear it to inherit again.
 
-### :material-tune-vertical: Via Context Properties
-The Context Properties panel shows all overrides for the active View Layer in one place.
+A **bright** icon means the value is set here. A **dimmed** icon means it came from above.
+
+The Context Properties panel shows every override for the active View Layer in one place.
+
+??? tip "Modifier clicks on a cascade icon"
+    | Shortcut | Action |
+    |----------|--------|
+    | Click | Open the popover for this property. |
+    | ++alt++ + click | Clear the override at this tier. |
+    | ++shift++ + click | Toggle it across all items of the same type in the scene. |
+    | ++ctrl+shift++ + click | Toggle it across every scene and group. |
+    | ++ctrl+shift+alt++ + click | Delete the datablock — see [Deleting Assigned Data](#deleting-assigned-data). |
+
+    Hover any icon to see which tier the current value came from.
+    Datablock pickers follow the same rules. Full list on
+    [Keyboard Shortcuts](../interface/hotkeys.md).
 
 ### :material-plus-box: Creating Datablocks per Tier
 
-The Action, World, Camera and Compositor popovers carry a **+** button (:material-plus:) next to their picker — from the Global tier all the way down (tier coverage varies per type, see the table). Clicking it creates a brand-new datablock — auto-named from the [Smart Output](smart_output.md) naming template for the tier you're on — marks it with a fake user so it survives a save/reload, and assigns it to that tier in one step. This saves you from creating a datablock in Blender's own browser and then pointing the cascade at it.
+The Action, World, Camera and Compositor popovers each have a **+** button.
 
-| Button | Creates and assigns to |
-| -------- | ------------------------ |
-| **{{ op('tks.global_action_new').bl_label }}** | A new Action on the **Global** tier. |
-| **New Action** | A new Action on the **Scene** tier. |
-| **New Action** | A new Action on the **View Layer** tier. |
-| **New World** | A new World on the **Scene** tier. |
-| **New World** | A new World on the **View Layer** tier. |
-| **{{ op('tks.global_camera_new').bl_label }}** | A new Camera on the **Global** tier. |
-| **New Camera** | A new Camera on the **Scene** tier. |
-| **New Camera** | A new Camera on the **View Layer** tier. |
-| **{{ op('tks.global_compositor_new').bl_label }}** | A new compositor node tree on the **Global** tier. |
-| **New Compositor** | A new compositor node tree on a **Scene Group**, **View Layer Group**, or **Take** (one shared operator serves all three group tiers). |
-| **New Compositor** | A new compositor node tree on the **Scene** tier. |
-| **New Compositor** | A new compositor node tree on the **View Layer** tier. |
-| **New Rest Action** | A new Action assigned as the **Rest Action** (see below). |
+It makes a new datablock, names it from your [Smart Output](smart_output.md) template, protects it from cleanup, and assigns it here — in one click.
 
-!!! note "Rest Action"
-    The **New Rest Action** button lives on the Rest State popover, not the cascade tier itself. The Rest Action is the snapshot that *unkeyed* properties fall back to: any property without a keyframe snaps to its value in the Rest Action. Creating one here gives you an empty action to pose into as your neutral / rest baseline.
+??? info "Which tiers offer a + button"
+    | Button | Creates and assigns to |
+    | -------- | ------------------------ |
+    | **{{ op('tks.global_action_new').bl_label }}** | A new Action on the **Global** tier. |
+    | **New Action** | A new Action on the **Scene** tier. |
+    | **New Action** | A new Action on the **View Layer** tier. |
+    | **New World** | A new World on the **Scene** tier. |
+    | **New World** | A new World on the **View Layer** tier. |
+    | **{{ op('tks.global_camera_new').bl_label }}** | A new Camera on the **Global** tier. |
+    | **New Camera** | A new Camera on the **Scene** tier. |
+    | **New Camera** | A new Camera on the **View Layer** tier. |
+    | **{{ op('tks.global_compositor_new').bl_label }}** | A new compositor node tree on the **Global** tier. |
+    | **New Compositor** | A new node tree on a **Scene Group**, **View Layer Group**, or **Take**. |
+    | **New Compositor** | A new node tree on the **Scene** tier. |
+    | **New Compositor** | A new node tree on the **View Layer** tier. |
+    | **New Rest Action** | A new Action set as the **Rest Action**. |
+
+    **New Rest Action** sits on the Rest State popover, not on a cascade tier. The
+    Rest Action is what *unkeyed* properties fall back to. Creating one here gives
+    you an empty action to pose into as your neutral baseline.
 
 ### :material-pencil: Renaming Without Breaking Anything
 
-Cascade assignments are stored by *name*, so renaming a datablock in Blender's own UI would orphan every assignment pointing at it. The popovers therefore carry a **pencil** button, **{{ op('tks.casic_rename').bl_label }}**: it renames the assigned Action / World / Camera / Compositor in a small dialog *and* rewrites every cascade reference to the old name across all tiers in the same step — so the rename can never break an assignment.
+Assignments are stored by name. Renaming in Blender's own UI would orphan them.
+
+So use the **pencil** button in the popover instead. It renames the datablock *and* fixes every reference to it, everywhere, in one step.
 
 ### :material-delete-forever: Deleting Assigned Data
 
-++ctrl+shift+alt++-clicking any cascade datablock icon (Action / World / Camera / Compositor, any tier) invokes **{{ op('tks.purge_assigned_data').bl_label }}** — deliberately hidden behind a three-key chord so it can't fire by accident. Its confirmation dialog spells out the full blast radius before you commit: every cascade location the datablock is assigned in, its user count in the file, and whether fake-user protection will be overridden (cameras additionally note that only the object is deleted, its camera data stays). Confirming unassigns the datablock from every slot, then deletes it from the file.
+++ctrl+shift+alt++-click any cascade icon to delete that datablock from the file.
 
-## :material-eye-outline: Visual Indicators
+The three-key chord stops accidents. A dialog lists the full blast radius first.
 
-- **Bright icon** — A value is explicitly set at this tier
-- **Dimmed icon** — The value is inherited from a parent tier
-- **Alt+Click** — Clear the override at this tier
+??? warning "What the dialog tells you"
+    It names every cascade slot the datablock is assigned to, how many users it has
+    in the file, and whether fake-user protection will be overridden. For a camera
+    it notes that only the object is deleted — the camera data stays.
 
-!!! tip "Cascade Debugging"
-    Hover over a cascade icon to see a tooltip showing which tier the
-    current value is inherited from.
+    Confirming unassigns it everywhere, then deletes it.
 
 ## :material-account-multiple-check: Managing the Cascade Action
 
-The **Action** cascade is special: it doesn't just point at a datablock, it actively pushes that action onto every managed (watched) object on the View Layer. A few operators help keep that in sync:
+The Action cascade is special. It does not just point at an action — it pushes that action onto every watched object on the View Layer.
 
-| Action | What it does |
-| -------- | -------------- |
-| **Re-apply Cascade Action** | Forces the resolved cascade action back onto all watched objects, updates the depsgraph for an immediate viewport refresh, and clears the "action mismatch" entry from the navigation warnings. Use it after manually fiddling with an object's animation data. |
-| **Pin Action** | Locks the action *currently* active on an object into that object's own override, so the cascade will leave it alone instead of overwriting it on the next switch. Reports a warning if the object has no action to pin. |
-| **Push to Selected** | Copies one override value from the active Scene / View Layer to every multi-selected View Layer at once. Works for Camera, World, Action, Compositor, Output Rule, and Variant. Pushing an empty value clears that override on the targets. The button only appears while a multi-selection is active. |
-| **{{ op('tks.update_action_name').bl_label }}** | Renames the assigned Scene- or View-Layer cascade action to match the current naming template — useful when generated action names have gone stale after renaming a scene or View Layer. No panel button; run it from Blender's operator search. |
-| **{{ op('tks.scene_action_unlink').bl_label }}** | Clears the current scene's Scene-tier action assignment (the action datablock itself stays in the file). Also operator-search only — the popover's ++alt++-click clear is the everyday route. |
-
-!!! tip "Bulk editing with Push to Selected"
-    Select several View Layers in the tree, set the value once on one of them, then use **Push to Selected** to fan it out — handy for giving a batch of shots the same camera or world without touching each row.
-
-## :material-camera-switch: Cross-Scene Camera Linking
-
-When you assign a camera at the **Global** or **Scene Group** tier, that camera has to exist in *every* scene the tier covers. If it doesn't, the cascade quietly skips the takes in the scenes it can't reach — the assignment itself is fine, it just cannot land everywhere.
-
-**Picking always assigns.** There is no confirmation in the way: choosing a camera writes it to the tier immediately, even when some covered scenes don't have it linked. Interrupting a pick to ask about scene membership put a dialog in front of the common case to serve the rare one, so the gap is *surfaced* afterwards instead — in three places you're already looking:
-
-- **A red camera flag** on the affected tree rows.
-- **The Camera Links warning** in the Navigation panel, which names each camera, the tier it came from, and every scene it can't reach.
-- **The cascade picker itself**, which offers a **Link '&lt;camera&gt;' into this scene** entry right where you noticed the problem.
-
-All three run the same repair, **{{ op('tks.link_inherited_camera').bl_label }}**, which links the camera into the scenes that are missing it while preserving its collection placement:
-
-| Button | Where | Scope |
-|--------|-------|-------|
-| **Link** | Per-scene row in the Camera Links warning | That one scene. |
-| **Link into all missing scenes** | Footer of a camera's entry, when more than one scene is missing | Every scene in the Scene Group for an SG-tier camera; the whole file for a Global-tier one. Scenes that already have the camera are skipped, so over-covering is harmless. |
-| **Link '&lt;camera&gt;' into this scene** | The cascade camera picker | The scene you are working in. |
-
-Nothing is duplicated — linking is Blender's own multi-scene linking, so it stays one camera object. The warning clears as soon as every covered scene can resolve it.
-
-!!! note "Three different camera problems, three different warnings"
-    **Camera Links** means the camera exists and is assigned, but can't reach some scenes. That's distinct from a [broken assignment](#broken-assignments) (the camera datablock is gone) and from [drift](#cascade-preset-drift) (a camera was picked natively, outside the tree).
-
-## :material-vector-difference: Take Variants {: #version-variants }
-
-[Takes](#override-tiers) can override which **variant** of a product is shown — this is the highest-priority tier in the [Variant Switch](variant_switch.md) cascade, so a take's choice wins over everything below it. The take's variant popover exposes two operators:
-
-| Action | What it does |
-| -------- | -------------- |
-| **Set Take Variant** | Pins a specific product to a chosen variant index on this take. If the take is currently active, the variant cascade re-applies immediately. |
-| **Clear Take Variant** | Removes that product's variant override from the take, letting it inherit again. Re-applies live if the take is active. |
-
-## :material-link-off: Broken Assignments
-
-Because cascade assignments are stored by name, an assignment **breaks** when the datablock behind it disappears — deleted, or renamed outside the addon's own [rename tool](#renaming-without-breaking-anything). The cascade can then no longer resolve that slot, and a warning sub-panel appears in the Navigation panel's warning row listing every broken reference with its data type and tier.
-
-The panel repairs as well as reports:
-
-- **X** on an entry runs **{{ op('tks.clear_broken_assignment').bl_label }}**, emptying the stale reference(s) to that one datablock; a type row's **Empty all** button clears every broken reference of that data type at once.
-- The **magnifier** button runs **{{ op('tks.replace_broken_assignment').bl_label }}**, which reopens that exact tier's cascade popover so you can point the slot at a replacement instead of clearing it.
-- **Clear All** at the top runs **{{ op('tks.clear_all_broken_assignments').bl_label }}**, emptying every broken cascade assignment in the file in one click.
-
-Clearing only empties the stored reference — nothing is deleted — and the warning disappears as soon as every assignment resolves again.
-
-## :material-alert-circle-outline: Camera or World Needed {: #needed-rows }
-
-A broken assignment points at something that vanished. This is the other half: nothing is assigned *anywhere* in the tree, and the scene has no camera or no world to fall back on. The Navigation panel's warning row says so and carries everything needed to resolve it, so you never have to leave the panel to find a picker.
-
-Each row offers the same pair of chips:
-
-| Chip | What it does |
-| ------ | -------------- |
-| **▾** on the camera row | Opens a small popup with a live search field bound to the **adopt tier** — the tier your *Camera handling* preference nominates. Picking a camera writes it straight onto that tier, so the cascade owns it from that moment on. |
-| **+** on the camera row | Creates a camera named for the adopt tier, links it into the scene, assigns it to that tier and aligns it to your current 3D view — one click from "no camera" to a framed shot. |
-| **▾** on the world row | The same live-search popup for worlds, bound to the world adopt tier. |
-| **+** on the world row | Creates a world, assigns it to the adopt tier, and clears the warning. |
-
-Which tier the chips write to is not a fixed choice — it follows the *World handling* and *Camera handling* preferences (see [Globals](globals.md)), so a studio that manages everything on the Scene tier and one that works per View Layer both get a resolve button that lands in the right place.
-
-When the camera row appears because a camera was *removed* rather than never assigned, it also names what was removed, so you can put the same one back instead of guessing.
-
-## :material-compare-horizontal: Cascade & Preset Drift
-
-**Drift** is the opposite failure mode: the assignment is fine, but the *live* value no longer matches it — you changed the world or compositor through Blender's native UI instead of the cascade, or edited settings governed by one of the tier-cascaded preset slots (Render, Output, File Output, View Layer, Color Management, World, Camera). The addon compares the scene's current state against what the cascade last applied and lists each mismatch in a Navigation warning, with a ✓ / ↩ pair per entry:
+Three buttons keep it in sync.
 
 | Button | What it does |
 | -------- | -------------- |
-| ✓ on a World / Compositor row | Adopts your manual pick — writes it into the active View Layer's assignment, so the cascade owns the new value from now on. |
-| ↩ on a World / Compositor row | Discards the manual change and re-applies the cascade-resolved value. |
-| ✓ on a preset row | Pushes the drifted preset assignment onto the active View Layer's cascade tier. |
-| ↩ on a preset row | Restores the cascade-assigned preset. |
+| **Re-apply Cascade Action** | Puts the resolved action back on every watched object. Use it after hand-editing an object's animation. |
+| **Pin Action** | Locks the object's current action so the cascade leaves it alone. |
+| **Push to Selected** | Copies one value from the active row to every selected View Layer. Appears only during a multi-selection. |
 
-The rule of thumb: **Accept** when the change was intentional and should stick to this shot; **Revert** when it was an accidental edit in the wrong panel. (Don't confuse this with the preset *dirty state* — drift is about which datablock or preset is assigned, dirty state is about edited values inside an assigned preset; see [Render Presets](render_presets.md#dirty-state).)
+??? info "Two more, from operator search only"
+    | Action | What it does |
+    | -------- | -------------- |
+    | **{{ op('tks.update_action_name').bl_label }}** | Renames the assigned cascade action to match the current naming template. Useful when names go stale after renaming a scene or View Layer. |
+    | **{{ op('tks.scene_action_unlink').bl_label }}** | Clears the scene's Scene-tier action assignment. The action itself stays in the file. The popover's ++alt++-click is the everyday route. |
+
+    **Bulk tip.** Select several View Layers, set the value once, then
+    **Push to Selected** to fan it out. Handy for giving a batch of shots the same
+    camera or world.
+
+## :material-camera-switch: Cross-Scene Camera Linking
+
+A camera set at **Global** or **Scene Group** must exist in every scene that tier covers.
+
+If it does not, those takes are quietly skipped. Picking still assigns — the gap is flagged afterwards, not blocked by a dialog.
+
+You will see it in three places: a red camera flag on the tree row, the **Camera Links** warning in the Navigation panel, and the camera picker itself.
+
+??? info "Fixing it"
+    All three run the same repair, which links the camera into the missing scenes.
+    Nothing is duplicated — it stays one camera object.
+
+    | Button | Where | Scope |
+    |--------|-------|-------|
+    | **Link** | A scene row in the Camera Links warning | That one scene. |
+    | **Link into all missing scenes** | Footer of a camera's entry | Every scene the tier covers. Scenes that already have it are skipped. |
+    | **Link '&lt;camera&gt;' into this scene** | The cascade camera picker | The scene you are in. |
+
+    The warning clears once every covered scene can resolve the camera.
+
+    **Three camera problems, three warnings.** Camera Links means the camera exists
+    but cannot reach some scenes. A [broken assignment](#broken-assignments) means the
+    camera is gone. [Drift](#cascade-preset-drift) means one was picked outside the tree.
+
+## :material-vector-difference: Take Variants {: #version-variants }
+
+A [take](#override-tiers) can choose which **variant** of a product shows.
+
+This is the top tier of the [Variant Switch](variant_switch.md) cascade, so it beats everything below.
+
+**Set Take Variant** pins a product to a variant. **Clear Take Variant** lets it inherit again. Both apply live if the take is active.
+
+## :material-link-off: Broken Assignments
+
+An assignment **breaks** when the thing behind it is gone — deleted, or renamed outside the [rename tool](#renaming-without-breaking-anything).
+
+A warning in the Navigation panel lists every broken reference, and repairs them.
+
+??? info "The repair buttons"
+    - **X** empties the stale reference to that one datablock. A type row's
+      **Empty all** clears every broken reference of that type.
+    - The **magnifier** reopens that tier's popover so you can pick a replacement
+      instead of clearing.
+    - **Clear All** empties every broken assignment in the file at once.
+
+    Clearing only empties the stored reference — nothing is deleted. The warning
+    goes away once everything resolves again.
+
+## :material-alert-circle-outline: Camera or World Needed {: #needed-rows }
+
+This is the other half of a broken assignment: nothing is assigned *anywhere*, and the scene has no camera or world to fall back on.
+
+The Navigation panel says so and gives you two chips to fix it on the spot.
+
+**▾** opens a search popup and writes your pick to the adopt tier. **+** creates one, assigns it, and — for a camera — aligns it to your current view.
+
+??? info "Which tier the chips write to"
+    Not fixed. It follows your *Camera handling* and *World handling* preferences
+    (see [Globals](globals.md)). A studio that manages everything on the Scene tier
+    and one that works per View Layer both get a button that lands in the right place.
+
+    When the row appears because a camera was *removed* rather than never assigned,
+    it also names what was removed, so you can put the same one back.
+
+## :material-compare-horizontal: Cascade & Preset Drift
+
+**Drift** is the opposite problem. The assignment is fine, but the live value no longer matches it.
+
+It happens when you change a world or compositor in Blender's own UI, or edit settings owned by a preset slot.
+
+Each mismatch gets a ✓ / ↩ pair. **✓** keeps your change and writes it into the cascade. **↩** throws it away and re-applies the cascade value.
+
+??? tip "Which one to click"
+    **✓** when the change was deliberate and should stick to this shot.
+    **↩** when it was an accidental edit in the wrong panel.
+
+    Don't confuse drift with a preset's *dirty state*. Drift is about *which*
+    preset or datablock is assigned. Dirty state is about edited values *inside*
+    an assigned preset — see [Render Presets](render_presets.md#dirty-state).
 
 ## :material-dots-horizontal-circle: Overflow Icon
 
-On narrow panels the per-row cascade icons collapse behind a single **overflow** indicator. Clicking it opens the inline editor for the chosen cascade property; ++alt++ + clicking instead clears **every** assignment for that property at that tier in one go — the direct value, its selection rule, *and* its preset slot together. The status line reports how many values were cleared (or that the slot was already empty).
+On a narrow panel the row icons collapse behind one **overflow** dot.
 
-## :material-keyboard: Hotkeys
-
-Cascade icons on tree rows and in the Context panel respond to modifier-clicks:
-
-| Shortcut | Action |
-|----------|--------|
-| Click | Open the popover for this property. |
-| ++alt++ + click | Clear the override at this tier (revert to inherited value). |
-| ++shift++ + click | Toggle the same property across **all items of the same type** in the active scene. |
-| ++ctrl+shift++ + click | Toggle the same property **globally** across every scene and group. |
-| ++ctrl+shift+alt++ + click | **Delete** the assigned datablock from the file, after a blast-radius confirmation — see [Deleting Assigned Data](#deleting-assigned-data). |
-
-Datablock pickers (Camera, World, Compositor, Action) follow the same convention — ++alt++ + click clears the assignment.
-
-See the full reference on the [Keyboard Shortcuts](../interface/hotkeys.md) page.
+Click it to open the editor for a property. ++alt++-click clears **everything** for that property at that tier — the value, its rule, and its preset slot together.

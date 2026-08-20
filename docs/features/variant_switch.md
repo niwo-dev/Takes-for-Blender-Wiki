@@ -4,122 +4,164 @@ icon: material/swap-horizontal
 
 # Variant Switch
 
-The **Variant Switch** system manages product variants — different material configurations, finishes, or color options — with per-scope material swapping and cascade-aware state management.
+Show one product in several finishes — Gold, Silver, Matte Black — without rebuilding anything.
 
-## :material-lightbulb-outline: Concept
-
-In product visualization, you often need to render the same product in multiple finishes (Gold, Silver, Matte Black) or configurations. Variant Switch automates the material swapping process.
+Set the looks up once. Takes swaps the materials for you, and every shot can ask for a different one.
 
 ## :material-source-branch: Hierarchy
 
-| Element | Description |
-|---------|-------------|
-| **Product** | The top-level container (e.g., "Watch", "Bottle"). |
-| **State** | A named variant (e.g., "Gold", "Silver"). Click to preview. |
-| **Part** | A component linked to a collection (e.g., "Body", "Strap"). |
-| **Pool** | Material slots available for each part. |
+Four words cover the whole system.
 
-!!! note ""State" vs "Variant""
-    The two words name the same thing from two sides. The Variant Tree speaks of **States** — the **{{ op('tks.vsw_add_state').bl_label }}** button creates one. Everywhere the *cascade* is involved — the per-tier variant popovers, the `Set … Variant` operators, the `{variant_tag}` token — that same entry is called a **Variant**. Selecting a State in the tree and assigning a Variant through the cascade set the identical value.
+| Element | What it is |
+|---------|------------|
+| **Product** | The whole thing you are showing, such as "Watch". |
+| **Part** | One component of it, such as "Strap". Each Part is linked to a collection. |
+| **material pool** | The list of materials that Part can wear. |
+| **State** | A named look, such as "Gold". Click one to preview it. |
+
+A State remembers one pool entry per Part. Picking a State applies all of them at once.
+
+??? note "State and Variant are the same thing"
+    The Variant Tree calls each entry a **State** — the
+    **{{ op('tks.vsw_add_state').bl_label }}** button creates one.
+
+    Everywhere the cascade is involved, that same entry is called a **Variant**:
+    the per-tier popovers, the Set Variant buttons and the `{variant_tag}` token.
+
+    Selecting a State in the tree and assigning a Variant through the cascade
+    write the identical value.
 
 ## :material-cursor-default-click: Usage
 
-### :material-plus-circle: Creating a Product
 1. Open the **Variant Switch** panel.
-2. Click **+** or press ++ctrl+n++ to add a Product.
-3. A default Part named **base part** — plus a starter State named **default** and one empty pool slot — is created automatically.
+2. Click **+**, or press ++ctrl+n++, to add a Product.
+3. Expand the new Part and drop a material into its empty pool slot.
+4. Add a State for each finish you need, such as "Gold".
 
-### :material-shape-plus: Adding States
-1. Select the Product.
-2. Add a new State (e.g., "Gold").
-3. Each State stores a pool index per Part, selecting which material to use.
+??? info "What you get, and what happens as you fill the pool"
+    A new Product arrives ready to use: one Part named **base part**, one starter
+    State named **default**, and one empty pool slot.
 
-### :material-link-variant: Assigning Materials
-1. Expand a Part to see its material pool.
-2. Assign a material to the first empty slot — a new slot auto-creates.
-3. Use Blender's native material selector (New, Duplicate, Unlink).
+    Assign a material to the last empty slot and a fresh empty slot appears below
+    it, so the pool grows as you work. The material field is Blender's own, so
+    **New**, **Duplicate** and **Unlink** behave exactly as you expect.
 
 ### :material-eye: Previewing Variants
-Click the **diamond icon** on any inactive State to immediately apply that variant to the viewport. The active state shows as a filled circle.
+
+Click the **diamond** icon on any inactive State to apply that look to the viewport at once.
+
+The State that is currently active shows a filled circle instead.
 
 ### :material-folder-outline: Linking a Part to a Collection
-Each Part carries a **collection button** — its tooltip shows the currently linked collection. Click it to pick which collection's objects this Part governs (the Product's own collection must be set first; the Part's collection is chosen from inside it), or ++alt++-click to clear the link. The picker writes through **{{ op('tks.vsw_set_part_collection').bl_label }}**. The linked collection is what scopes the Part's material pool: switching a variant swaps materials on the objects of that collection.
+
+Each Part has a **collection button**. Click it to choose which collection's objects this Part controls.
+
+That collection is what the Part's materials are swapped on. ++alt++-click the button to clear the link.
+
+??? info "Picking the collection"
+    The Product's own collection must be set first — a Part's collection is chosen
+    from inside it. Hover the button to see which collection is linked right now.
+
+    The picker writes through **{{ op('tks.vsw_set_part_collection').bl_label }}**.
 
 ## :material-shape: Pool-based Variant Model
 
-Variant Switch uses a **single pool-based model** — there isn't a per-Part mode selector. Each Part owns its own ordered list of pool materials, and each Variant stores one pool index per Part. Switching to a Variant simply applies that Variant's pool index to every Part it covers.
+There is no mode selector to learn. Every Part owns its own ordered pool of materials.
 
-- A new Variant is initialised with every Part's pool index at `0` (the first material in each pool).
-- Assigning a material into a Part's pool auto-creates the next empty slot.
-- Removing all materials from a Part shrinks its pool back down (pool indices on existing Variants are re-clamped).
-- Pool sizes can differ between Parts within the same Product — each Part is independent.
+Each Variant stores one pool position per Part, and switching applies those positions to every Part it covers.
+
+??? info "How pools behave"
+    - A new Variant starts on the first material in every Part's pool.
+    - Assigning a material into the last empty slot creates the next one.
+    - Removing all materials shrinks the pool again, and existing Variants are
+      pulled back to a position that still exists.
+    - Pools may be different lengths on different Parts of the same Product.
 
 ## :material-content-duplicate: Duplicating a Product
 
-**{{ op('tks.vsw_duplicate_product').bl_label }}** copies a product whole — every Part, every material pool and every State come with it, in one click. It is the fast way to build a second product that shares a structure with the first: duplicate, then swap the materials that differ instead of rebuilding the pools by hand.
+**{{ op('tks.vsw_duplicate_product').bl_label }}** copies a Product whole — every Part, every pool and every State.
 
-The copy is named by [Blender's own duplicate convention](tags.md#duplicate-names), so duplicating `Chair` gives you `Chair.001`.
+To build a near-identical product, duplicate it and swap only the materials that differ.
+
+The copy follows [Blender's own duplicate naming](tags.md#duplicate-names), so `Chair` becomes `Chair.001`.
 
 ## :material-alert-decagram: Conflicts {: #conflicts }
 
-A variant switch writes real material slots and visibility flags, so two products can quietly disagree about the same geometry. Takes detects both shapes and warns **before** a switch does something you can't easily see:
+A switch writes real material slots, so two Products can quietly disagree about the same object.
 
-| Conflict | What it means |
-|----------|---------------|
-| **Collapse** | One object carries **two or more distinct materials from the same pool**. A switch has only one pool index to apply, so both slots collapse onto a single material and the distinction is lost. The warning names the object, the slot, the material being replaced and the one replacing it. |
-| **Shared object** | One object is reachable from **two different products** — through their root collections, part collections or material-pool collections. Whichever product switches last wins, so the result depends on the order you clicked in. |
+Takes warns you *before* that happens, through the [variant-conflict badge](../interface/navigation_panel.md#warnings) in the Navigation panel.
 
-Conflicts surface as the [variant-conflict badge](../interface/navigation_panel.md#warnings) in the Navigation panel header, and each entry offers:
+??? info "The two kinds of conflict"
+    | Conflict | What it means |
+    |----------|---------------|
+    | **Collapse** | One object carries **two or more different materials from the same pool**. A switch has only one pool position to apply, so both slots end up on one material and the difference is lost. The warning names the object, the slot, the material being replaced and the one replacing it. |
+    | **Shared object** | One object is reachable from **two different Products**, through their root collections, Part collections or pool collections. Whichever Product switches last wins, so the result depends on the order you clicked in. |
 
-| Button | What it does |
-| -------- | -------------- |
-| **{{ op('tks.vsw_reveal_pool').bl_label }}** | Selects the offending pool in the Variants tree, so you land on the exact Part that needs fixing instead of hunting for it. |
-| **{{ op('tks.vsw_conflicts_rescan').bl_label }}** | Re-scans every pool and product. The detection is cached and invalidated as you edit; use this after changing material slots outside the addon. |
+    Each entry offers two buttons.
 
-!!! note "Detection is scoped, not a file sweep"
-    Reach is computed from the product's own collections only — never a sweep over every object in the file — so the scan stays cheap enough to run as you work.
+    | Button | What it does |
+    | -------- | -------------- |
+    | **{{ op('tks.vsw_reveal_pool').bl_label }}** | Selects the offending pool in the Variants tree, so you land on the exact Part that needs fixing. |
+    | **{{ op('tks.vsw_conflicts_rescan').bl_label }}** | Re-scans every pool and Product. Use it after changing material slots outside the addon. |
+
+??? note "Detection is scoped, not a file sweep"
+    Reach is worked out from the Product's own collections only — never a sweep
+    over every object in the file — so the scan stays cheap enough to run as you work.
 
 ## :material-arrow-decision: Variants in the Cascade
 
-Variant Switch states are resolved as part of the [cascade](cascade.md). Each View Layer (or higher tier) can specify which variant is active, enabling different variants per camera angle — and the same 6-tier override chain applies, leaf beating root:
+Variants resolve through the [cascade](cascade.md), so a scene, a shot or a single take can each demand a different look.
 
-| Tier | Set / clear buttons |
-|------|---------------------|
-| **Global** | **{{ op('tks.vsw_set_global_variant').bl_label }}** / **{{ op('tks.vsw_clear_global_variant').bl_label }}** |
-| **Scene Group** | Row pickers write the group tier; **{{ op('tks.vsw_group_clear_variant').bl_label }}** empties every member. |
-| **Scene** | **{{ op('tks.vsw_set_scene_variant').bl_label }}** / **{{ op('tks.vsw_clear_scene_variant').bl_label }}** |
-| **View Layer Group** | Same pattern as Scene Group, at the View Layer Group tier. |
-| **View Layer** | **{{ op('tks.vsw_set_vl_variant').bl_label }}** / **{{ op('tks.vsw_clear_vl_variant').bl_label }}** |
-| **Take** | **{{ op('tks.take_set_variant').bl_label }}** / **{{ op('tks.take_clear_variant').bl_label }}** — see [Take Variants](cascade.md#version-variants). |
+Click the **variant** icon on any tree row to pick a State for that tier. The same six tiers apply, and the deeper one wins.
 
-Every tier row also carries a **variant popover** — click the variant icon on the row to pick a state for that tier.
+??? info "Set and clear buttons, tier by tier"
+    | Tier | Set / clear buttons |
+    |------|---------------------|
+    | **Global** | **{{ op('tks.vsw_set_global_variant').bl_label }}** / **{{ op('tks.vsw_clear_global_variant').bl_label }}** |
+    | **Scene Group** | Row pickers write the group tier; **{{ op('tks.vsw_group_clear_variant').bl_label }}** empties every member. |
+    | **Scene** | **{{ op('tks.vsw_set_scene_variant').bl_label }}** / **{{ op('tks.vsw_clear_scene_variant').bl_label }}** |
+    | **View Layer Group** | Same pattern as Scene Group, at the View Layer Group tier. |
+    | **View Layer** | **{{ op('tks.vsw_set_vl_variant').bl_label }}** / **{{ op('tks.vsw_clear_vl_variant').bl_label }}** |
+    | **Take** | **{{ op('tks.take_set_variant').bl_label }}** / **{{ op('tks.take_clear_variant').bl_label }}** — see [Take Variants](cascade.md#version-variants). |
 
-Every popover shares one anatomy. Each assigned Product gets a row of `[Product ▼] [Variant ▼] [✕]`: the pickers repoint the row (**{{ op('tks.vsw_set_cascade_variant').bl_label }}** pins the variant, **{{ op('tks.vsw_swap_cascade_product').bl_label }}** exchanges the product while keeping the row), and the ✕ removes that product's override at this tier (**{{ op('tks.vsw_delete_cascade_product').bl_label }}**). Rows inherited from a higher tier appear greyed with a link icon — override them locally by picking a variant. **Add Product** appends another row, so a single tier can pin variants for *several products at once*. A **Push to Selected** button appears during multi-selection, fanning the tier's variant value out to every selected View Layer.
+??? info "Inside a variant popover"
+    Every popover looks the same. Each assigned Product gets a row of
+    `[Product ▼] [Variant ▼] [✕]`.
 
-The cascade icon itself answers to modifiers: ++alt++-click clears the tier's own override, and ++alt+shift++-click additionally clears every child tier's overrides beneath it (e.g. on the Global icon: every Scene and View Layer).
+    The left picker exchanges the Product while keeping the row
+    (**{{ op('tks.vsw_swap_cascade_product').bl_label }}**), the right one pins the
+    variant (**{{ op('tks.vsw_set_cascade_variant').bl_label }}**), and **✕** removes
+    that Product's override at this tier
+    (**{{ op('tks.vsw_delete_cascade_product').bl_label }}**).
 
-!!! tip "Variant Tags"
-    Assign tags from the "Variant" category to states for organization
-    and Smart Output resolution via the `{variant_tag}` token.
+    Rows inherited from a higher tier are greyed and carry a link icon — pick a
+    variant to override them here. **Add Product** appends another row, so one tier
+    can pin variants for several Products at once. **Push to Selected** appears
+    during a multi-selection and fans the tier's value out to every selected View Layer.
+
+??? tip "Variant Tags"
+    Give States tags from the **Variant** category to keep them organised and to
+    fill the `{variant_tag}` token in [Smart Output](smart_output.md).
 
 ## :material-keyboard: Hotkeys
 
-When the Variant Tree is focused:
+With the Variant Tree focused, ++ctrl+n++ adds the right thing for your selection, and ++f2++ renames it.
 
-| Shortcut | Action |
-|----------|--------|
-| ++ctrl+n++ | Add (smart — Product, State, or Part depending on selection) |
-| ++shift+a++ | Add menu (full options) |
-| ++f2++ | Rename the selected item |
-| ++del++ / ++x++ | Remove (enforces minimum 1 State and 1 Part per Product) |
-| ++ctrl+i++ | Invert multi-selection |
+??? info "Full list"
+    | Shortcut | Action |
+    |----------|--------|
+    | ++ctrl+n++ | Add — Product, State or Part, depending on the selection. |
+    | ++shift+a++ | Add menu, with every option. |
+    | ++f2++ | Rename the selected item. |
+    | ++del++ / ++x++ | Remove. Every Product keeps at least one State and one Part. |
+    | ++ctrl+i++ | Invert the multi-selection. |
 
-Cascade icons on State / Part rows accept the same modifier-clicks as the Takes Tree:
+    Cascade icons on State and Part rows take the same modifier-clicks as the Takes Tree.
 
-| Shortcut | Action |
-|----------|--------|
-| ++alt++ + click | Clear the variant override at this tier. |
-| ++alt+shift++ + click | Clear the override at this tier **and** on every child tier beneath it. |
-| ++shift++ + click | Toggle this variant across all View Layers in the active scene. |
+    | Shortcut | Action |
+    |----------|--------|
+    | ++alt++ + click | Clear the variant override at this tier. |
+    | ++alt+shift++ + click | Clear it here **and** on every tier beneath it. |
+    | ++shift++ + click | Toggle this variant across all View Layers in the active scene. |
 
-See the [Keyboard Shortcuts](../interface/hotkeys.md) page for the full reference.
+    The full reference lives on [Keyboard Shortcuts](../interface/hotkeys.md).

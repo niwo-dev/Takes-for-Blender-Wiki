@@ -8,115 +8,129 @@ icon: material/view-dashboard
 
 ## :material-comment-question: Confirmations
 
-Every confirmation dialog can be disabled. All default to **on**. Categorised:
+Every confirmation dialog can be switched off here. All default to **on**.
 
-| Category | Settings |
-|----------|----------|
-| Context | Delete Tree Item, Delete Scene, Delete View Layer, Delete Scene Group, Delete View Layer Group, Delete Take. |
-| Inspector | Rename Action, Remove from Watchlist, Delete Action, Delete Slot, Clean Empty Slots/Actions, Delete Keyframe. |
-| Globals | Delete Tag, Delete Tag/Variant Group, Delete Variant, Delete Bookmark, Delete Custom Token. |
-| Batch Render | Start Batch Render, Overwrite Existing Files. |
-| System | Orphan Cleanup, Override Persistence, Shortcut Override. |
-| Data Integrity | Rest State Protection, Locked Take Protection, Pinned Object Protection, Shared Resource Safety. |
+??? info "Every confirmation, by group"
+    | Group | Settings |
+    |----------|----------|
+    | Context | Delete Tree Item, Delete Scene, Delete View Layer, Delete Scene Group, Delete View Layer Group, Delete Take. |
+    | Inspector | Rename Action, Remove from Watchlist, Delete Action, Delete Slot, Clean Empty Slots/Actions, Delete Keyframe. |
+    | Globals | Delete Tag, Delete Tag/Variant Group, Delete Variant, Delete Bookmark, Delete Custom Token. |
+    | Batch Render | Start Batch Render, Overwrite Existing Files. |
+    | System | Orphan Cleanup, Override Persistence, Shortcut Override. |
+    | Data Integrity | Rest State Protection, Locked Take Protection, Pinned Object Protection, Shared Resource Safety. |
 
-The *Context* through *Batch Render* entries confirm the delete or start action
-they are named after. The **System** and **Data Integrity** ones are less
-obvious:
+    *Context* through *Batch Render* confirm the delete or start they are named
+    after. The last two groups are less obvious:
 
-| Confirmation | What it guards |
-|--------------|----------------|
-| **Orphan Cleanup** | Cleaning up unused add-on data. |
-| **Override Persistence** | Overriding property-persistence rules — this one also gates deleting a preference config and resetting preferences to defaults. |
-| **Shortcut Override** | Resetting the add-on's global hotkeys back to their defaults. |
-| **Rest State Protection** | Edits to properties guarded by the Rest State (frame 0). |
-| **Locked Take Protection** | Changes to View Layers you have explicitly locked. |
-| **Pinned Object Protection** | Changes to objects pinned to a specific Rest State. |
-| **Shared Resource Safety** | Edits to shared render presets and other library resources. |
+    | Confirmation | What it guards |
+    |--------------|----------------|
+    | **Orphan Cleanup** | Cleaning up unused add-on data. |
+    | **Override Persistence** | Property-persistence rules. It also gates deleting a preference config and resetting preferences to defaults. |
+    | **Shortcut Override** | Resetting the add-on's global hotkeys back to their defaults. |
+    | **Rest State Protection** | Edits to properties guarded by the Rest State (frame 0). |
+    | **Locked Take Protection** | Changes to View Layers you have explicitly locked. |
+    | **Pinned Object Protection** | Changes to objects pinned to a specific Rest State. |
+    | **Shared Resource Safety** | Edits to shared render presets and other library resources. |
 
 ### :material-information-outline: Info Boxes
 
-The same sub-tab ends with two switches for the explanatory boxes drawn
-throughout the add-on:
+Two switches for the explanatory boxes drawn throughout the add-on.
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| **Show Tip Boxes** | On | The tip / info boxes that explain a workflow where you meet it. Turn off to declutter once you know the ropes — warnings still appear when there's an actual problem. |
-| **Show Warning Details** | On | The explanation paragraphs *inside* warning panels (what a problem means and why it matters). The warning headline and its fix buttons always stay. |
+| **Show Tip Boxes** | On | The tip boxes that explain a workflow where you meet it. |
+| **Show Warning Details** | On | The explanation paragraphs inside warning panels. |
 
-You don't have to come here to switch them off: every tip or warning box
-carries a **✕** that — after a quick confirmation —
-hides that whole category everywhere at once. These two switches are where you
-bring the boxes back.
+Every box also carries a **✕** that hides its whole category everywhere at once. These two switches bring the boxes back.
+
+??? note "What stays after you turn them off"
+    Warnings still appear whenever there is an actual problem. A warning keeps its
+    headline and its fix buttons — only the explanation paragraph goes.
+
+    The **✕** asks for a quick confirmation first.
 
 ## :material-format-list-bulleted-square: Lists
 
-Master and per-list row-height overrides. Range 5–30. The **Default List Rows** master propagates to every list that hasn't been overridden:
+Row heights for the add-on's lists, from 5 to 30 rows.
 
-Objects, Actions, Slots, Scenes, View Layers, Takes Tree, Scene Groups, ViewLayer Groups, Takes, Tags, VSW Products, Process Monitor, Debug Log, Profiler, Batch Queue, Preferences Setup.
+**Default List Rows** is the master. It applies to every list you have not given its own height.
+
+??? info "Lists you can override one by one"
+    Objects, Actions, Slots, Scenes, View Layers, Takes Tree, Scene Groups,
+    ViewLayer Groups, Takes, Tags, VSW Products, Process Monitor, Debug Log,
+    Profiler, Batch Queue, Preferences Setup.
 
 ## :material-table-column: Columns
 
-Toggle column visibility:
+Extra columns on the Inspector lists. All default to **on**.
 
-| Column | List |
+| List | Columns |
 |--------|------|
-| Action / Slot | Objects |
-| Slot Count / Key Count / Fake User | Actions |
-| User Count / Key Count / Action | Slots |
-
-All default to **on**.
+| Objects | Action, Slot |
+| Actions | Slot Count, Key Count, Fake User |
+| Slots | User Count, Key Count, Action |
 
 ## :material-file-tree: Tree
 
-| Setting | Type | Default | Description |
-|---------|------|---------|-------------|
-| **Default Tree Icons** (9) | bool | On | Per-icon visibility — Rest State, Tag, Render, Variant, Action, Compositor, World, Camera, Automation Rule. |
-| **Default Tree Pin Icons** (8) | bool | Off | Per-icon pin-toggle visibility for the same set. |
-| **Collapse Mode** | enum | DYNAMIC | When the cascade-icon overflow `⋯` appears: DYNAMIC (auto by panel width), ALWAYS, or NEVER (always show every enabled icon inline). |
-| **Collapse Width** | int | 600 | Pixel threshold for DYNAMIC collapse. Range 200–800. |
-| **Show Tag Color** | bool | On | Tints tree connection lines by tag colour. |
-| **Tree Line Width** | enum | MEDIUM | THIN / MEDIUM / WIDE. |
-| **Tree Line Color** | colour | grey | RGBA colour for connection lines. |
-| **Active View Layer Color** | colour | gold | RGBA colour for the active View Layer highlight. |
+How the Takes tree looks, and which icons its rows show.
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| **Default Tree Icons** | On | Per-icon visibility for the nine cascade icons. |
+| **Collapse Mode** | Dynamic | When the overflow `⋯` replaces the icons: Dynamic (by panel width), Always, or Never. |
+| **Show Tag Color** | On | Tints the tree connection lines by tag colour. |
+
+??? info "The rest of the tree settings"
+    | Setting | Default | Description |
+    |---------|---------|-------------|
+    | **Default Tree Pin Icons** | Off | Per-icon pin-toggle visibility, for eight of the same icons. |
+    | **Collapse Width** | 600 | Panel width in pixels at which Dynamic collapses. Range 200–800. |
+    | **Tree Line Width** | Medium | Thin, Medium or Wide connection lines. |
+    | **Tree Line Color** | grey | Colour of the connection lines. |
+    | **Active View Layer Color** | gold | Highlight colour for the active View Layer. |
+
+    The nine icons are Rest State, Tag, Render, Variant, Action, Compositor,
+    World, Camera and Automation Rule.
 
 ## :material-monitor-dashboard: Viewport Overlay
 
-A status banner drawn directly in the 3D viewport: one colored pill per
-active mode you choose to surface (Autokey, Value Lock, Rest Mode, Still
-Mode, Timeline Sync) plus a progress row for each running background task
-(View-Layer Preload, Batch Render) — so a mode or a busy pause stays
-visible even when the Takes panel is closed.
+A status banner drawn directly in the 3D viewport. One coloured pill per active mode, plus a progress row for each running background task.
+
+It keeps a mode — or a busy pause — visible even when the Takes panel is closed.
 
 ### :material-map-marker: Placement
 
-| Setting | Type | Default | Description |
-|---------|------|---------|-------------|
-| **Anchor** | enum | Off | Corner or edge anchor for the banner; `Off` disables the overlay entirely. |
-| **Offset X / Offset Y** | int | 0 | Pixel nudge from the chosen anchor. |
-| **Hide Progress when Takes Panel Open** | bool | On | Suppresses the progress rows while the Takes N-panel is visible — the panel already shows the same state. |
+| Setting | Default | Description |
+|---------|---------|-------------|
+| **Anchor** | Off | Which corner or edge the banner sits in. **Off** disables the overlay. |
+| **Offset X / Offset Y** | 0 | Pixel nudge from the anchor. |
+| **Hide Progress when Takes Panel Open** | On | Hides the progress rows while the Takes panel is visible. |
 
 ### :material-palette: Appearance
 
-| Setting | Type | Default | Description |
-|---------|------|---------|-------------|
-| **Opacity** | float | 0.9 | Banner transparency. |
-| **Scale** | float | 1.0 | Overall size multiplier for the banner text and pills. |
+| Setting | Default | Description |
+|---------|---------|-------------|
+| **Opacity** | 0.9 | Banner transparency. |
+| **Scale** | 1.0 | Size of the banner text and pills. |
 
 ### :material-toggle-switch: Modes
 
-Pick which mode pills may appear. Each toggle only *allows* its pill — a
-pill still shows only while its mode is actually active.
+Pick which mode pills may appear. A toggle only *allows* its pill — the pill shows only while that mode is actually active.
 
-| Setting | Type | Default | Description |
-|---------|------|---------|-------------|
-| **Show Mode Badges** | bool | On | Master switch for the mode-badge row. |
-| **Autokey / Value Lock / Rest / Still / Timeline Sync** | bool | On | Per-mode pill visibility. |
-| **Hide Mode Badges when Takes Panel Open** | bool | On | Suppresses only the badge row (progress rows stay) while the panel is open. |
+| Setting | Default | Description |
+|---------|---------|-------------|
+| **Show Mode Badges** | On | Master switch for the mode-badge row. |
+| **Autokey / Value Lock / Rest / Still / Timeline Sync** | On | Per-mode pill visibility. |
+| **Hide Mode Badges when Takes Panel Open** | On | Hides only the badge row while the panel is open. Progress rows stay. |
 
 ### :material-progress-clock: Progress
 
-Background tasks add a labelled progress bar under the pills: the
-View-Layer Preload row (total run plus the layer currently building) and
-the Batch Render row. Percentages align in a right-hand column. The rows
-appear only while their task runs; there is nothing to configure beyond
-the overlay master settings above.
+Background tasks add a labelled progress bar under the pills. There is nothing to configure here.
+
+??? info "Which tasks get a row"
+    The **View-Layer Preload** row shows the total run plus the layer currently
+    building. The **Batch Render** row shows the queue.
+
+    Percentages align in a right-hand column, and each row appears only while its
+    task is running.

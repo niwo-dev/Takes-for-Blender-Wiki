@@ -6,51 +6,51 @@ icon: material/compass
 
 **Location:** *3D Viewport > Sidebar (++n++) > Takes tab*
 
-The Navigation Panel is the primary control center for managing your Takes hierarchy. It contains the Takes Tree, cascade override icons, and access to batch rendering.
+This is your main control center. It holds the Takes Tree, the cascade override icons, and batch rendering.
 
 ## :material-page-layout-header: Header Controls
 
-The header has two rows. The top row carries shared toggles, warning indicators, and quick-access buttons; the bottom row is the panel switcher (Context / Inspector / Batch Render / Globals).
+The header has two rows. The top row carries the shared mode toggles, the warning badges, and quick buttons.
 
-**Top row — left side:**
+The bottom row is the panel switcher. Click a tab to show that panel and hide the others.
 
-| Control | Description |
-|---------|-------------|
-| **Rest Mode** (ghost) | Temporarily shows every View Layer's rest baseline — see [Rest State](../features/rest_state.md). Takes turns with Value Lock. |
-| **Still Mode** (still camera) | Pins every take's timeline to its still frame — see [Still Mode](../features/still_mode.md). Turning it on parks Timeline Sync until you switch back. |
-| **Value Lock** (padlock) | Protects the scene's unkeyed values while you work — see [Value Lock](../features/value_lock.md). Mutually exclusive with Autokey. |
-| **Autokey** | Toggles Blender's auto-keying across all scenes simultaneously. Blender 5.2 ships *Only Insert Available* enabled, which makes auto-keying silently skip channels that were never keyed — the state every fresh take starts in. Takes offers to manage that preference for you: enabling Autokey turns it off, disabling Autokey restores it. You are asked once — see [Autokey Is Being Blocked](#autokey-is-being-blocked). |
-| **Timeline Sync** | Keeps the playhead in sync across scenes. Grayed out while Still Mode is on — the two are mutually exclusive. |
-| **Variant Live** (sync arrows) | Shows the [variant](../features/variant_switch.md) state you are editing live in the viewport; switching it off restores what the take assigns. ++alt++ + click arms it *and* opens the Variants list. It sits here rather than in the Variants sidebar because it is a **mode**, and it belongs beside the mode it excludes: arming Live switches Autokey off, and arming Autokey switches Live off. Greyed out when the file has no products. |
+??? info "Top row — left side: the mode toggles"
+    | Control | Description |
+    |---------|-------------|
+    | **Rest Mode** (ghost) | Temporarily shows every View Layer's rest baseline — see [Rest State](../features/rest_state.md). Takes turns with Value Lock. |
+    | **Still Mode** (still camera) | Pins every take's timeline to its still frame — see [Still Mode](../features/still_mode.md). Turning it on parks Timeline Sync until you switch back. |
+    | **Value Lock** (padlock) | Protects the scene's unkeyed values while you work — see [Value Lock](../features/value_lock.md). Mutually exclusive with Autokey. |
+    | **Autokey** | Toggles Blender's auto-keying across all scenes at once. Blender 5.2 ships *Only Insert Available* enabled, which makes auto-keying silently skip channels that were never keyed — the state every fresh take starts in. Takes offers to manage that preference for you: enabling Autokey turns it off, disabling Autokey restores it. You are asked once — see [Autokey Is Being Blocked](#autokey-is-being-blocked). |
+    | **Timeline Sync** | Keeps the playhead in sync across scenes. Grayed out while Still Mode is on — the two are mutually exclusive. |
+    | **Variant Live** (sync arrows) | Shows the [variant](../features/variant_switch.md) state you are editing live in the viewport. Switching it off restores what the take assigns. ++alt++ + click arms it *and* opens the Variants list. It sits here because it is a **mode**, beside the mode it excludes: arming Live switches Autokey off, and arming Autokey switches Live off. Greyed out when the file has no products. |
 
-**Top row — right side:**
+??? info "Top row — right side: badges, save, help, gear"
+    | Control | Description |
+    |---------|-------------|
+    | **Warning indicators** | Badges that appear when an issue is detected — preset dirty, missing preset, incompatible preset, rest drift, slot mismatch, pending preview rename, cascade drift, broken assignment, camera link gap, variant conflict, stale cache, view-layer preload. Each one toggles its own warning sub-panel below the header. |
+    | **Save** | Appears in red when there are unsaved preference changes. Click it to save. |
+    | **Help** | Opens the documentation (this wiki). |
+    | **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). Its sidebar carries **Restart Processes** plus, in Debug Console view, a refresh button and a log-files opener. |
 
-| Control | Description |
-|---------|-------------|
-| **Warning indicators** | Conditional badges that appear when an issue is detected — preset dirty, missing preset, incompatible preset, rest drift, slot mismatch, pending preview rename, cascade drift, broken assignment, camera link gap, variant conflict, stale cache, view-layer preload. Each one toggles its own warning sub-panel below the header. |
-| **Save** | Appears in red when there are unsaved preference changes; click to save. |
-| **Help** | Opens the documentation (this wiki). |
-| **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). Its sidebar carries **Restart Processes** plus, in Debug Console view, a refresh button and a log-files opener. |
+??? info "Bottom row — the four panel tabs"
+    <!-- Tab labels are pulled from the addon's manifest so they auto-update if a
+         panel's bl_label changes. -->
 
-**Bottom row (panel switcher):**
+    | Tab | Shows |
+    |-----|-------|
+    | **{{ panel('TKS_PT_Globals').bl_label }}** (world icon, no text label) | Project-wide settings, presets, rules, tags, Variant Switch — see [Globals Panel](../features/globals.md). |
+    | **{{ panel('TKS_PT_Context').bl_label }}** | The Takes Tree and per–View Layer cascade. |
+    | **{{ panel('TKS_PT_Inspector').bl_label }}** | Watchlist of managed and pinned objects with their actions and slots, plus the Channels view — a property-centric keyframing mode listing every animatable property of the active object (see [Channels Mode](inspector_panel.md#channels-mode)). |
+    | **{{ panel('TKS_PT_BatchRender').bl_label }}** | Render queue and modal/background controls. |
 
-Clicking a tab is **exclusive** — it shows that panel and hides the others.
-
-<!-- Tab labels are pulled from the addon's manifest so they auto-update if a
-     panel's bl_label changes. -->
-
-| Tab | Shows |
-|-----|-------|
-| **{{ panel('TKS_PT_Globals').bl_label }}** (world icon, no text label) | Project-wide settings, presets, rules, tags, Variant Switch — see [Globals Panel](../features/globals.md). |
-| **{{ panel('TKS_PT_Context').bl_label }}** | The Takes Tree and per–View Layer cascade. |
-| **{{ panel('TKS_PT_Inspector').bl_label }}** | Watchlist of managed/pinned objects with their actions and slots, plus the Channels view — a property-centric keyframing mode listing every animatable property of the active object (see [Channels Mode](inspector_panel.md#channels-mode)). |
-| **{{ panel('TKS_PT_BatchRender').bl_label }}** | Render queue and modal/background controls. |
-
-A **link toggle** (🔗 / 🔓) sits between Context and Inspector. With it on, clicking either reveals both at once; with it off, the switcher returns to one-at-a-time mode.
+    A **link toggle** (🔗 / 🔓) sits between Context and Inspector. With it on, clicking
+    either reveals both at once. With it off, the switcher returns to one-at-a-time mode.
 
 ## :material-file-tree: The Takes Tree
 
-The Takes Tree is a unified hierarchical list showing your entire project structure. The cascade has six tiers — five live in the tree, plus an implicit **Global** root that you edit from the [Globals](../features/globals.md) panel:
+One list for your whole project. Five tiers live in the tree.
+
+The sixth, **Global**, is an implicit root you edit from the [Globals](../features/globals.md) panel.
 
 ```
 🌐 Global                       ← edited in the Globals panel
@@ -62,25 +62,26 @@ The Takes Tree is a unified hierarchical list showing your entire project struct
 ```
 
 ### :material-format-list-bulleted: Row Elements
-Each View Layer row displays cascade override icons. These icons show at a glance which properties are overridden at that level:
 
-- **Ghost** — Rest State status
-- **Tag** — Assigned color tag
-- **Variant** — Active variant switch state
-- **Action** — Cascade action assignment
-- **Compositor** — Node tree override
-- **World** — World/environment override
-- **Camera** — Camera assignment
-- **Output** — Output tag/rule
-- **Render** — Render preset
+Every View Layer row carries a strip of cascade override icons. They show at a glance which properties are overridden at that level.
 
-!!! tip "Cascade Icon Overflow"
-    When the panel is narrow, cascade icons automatically collapse into an overflow
-    **⋯** button. Clicking it opens a popover showing all icons in full.
+??? info "The nine row icons"
+    - **Ghost** — Rest State status
+    - **Tag** — Assigned color tag
+    - **Variant** — Active variant switch state
+    - **Action** — Cascade action assignment
+    - **Compositor** — Node tree override
+    - **World** — World/environment override
+    - **Camera** — Camera assignment
+    - **Output** — Output tag/rule
+    - **Render** — Render preset
 
-!!! tip "Expand / collapse in bulk"
-    The expand chevron on Scene, Group, and Take rows responds to modifiers
-:
+??? tip "Narrow panels: the overflow ⋯ button"
+    When the panel is narrow, the cascade icons collapse into one **⋯** button.
+    Click it to open a popover showing all icons in full.
+
+??? tip "Expand or collapse in bulk"
+    The expand chevron on Scene, Group and Take rows responds to modifiers.
 
     | Shortcut | Reach |
     |----------|-------|
@@ -90,66 +91,83 @@ Each View Layer row displays cascade override icons. These icons show at a glanc
     | ++alt+shift++ + click | **Every row in the tree**, whatever its type. |
 
 ### :material-vector-line: Tree Lines
-Configurable indent lines show the hierarchy visually. Tag colors can be inherited by tree lines for quick identification.
+
+Indent lines draw the hierarchy for you. They are configurable, and they can inherit tag colors so you spot a group fast.
 
 ## :material-tune: Tree Display Settings
 
-*Live behind the down-arrow icon (⌄) in the side column next to the tree, not under the header gear.*
+Click the **down-arrow** (⌄) beside the up/down move buttons, in the column right of the tree. It opens the **Icon Visibility** popover.
 
-Click the **down-arrow** next to the up/down move buttons in the Context tree's right-hand column to open the **Icon Visibility** popover:
+This is where you control what each tree row shows.
 
-| Setting | Description |
-|---------|-------------|
-| **Refresh Tree** | Force a full rebuild of the Takes Tree. |
-| **Collection Visibility** | Copy / paste the collection-visibility set of the active View Layer. |
-| **Previews** | Master toggle, viewport-snapshot button, render button, refresh, size, background colour, transparent background. See [View Layer Preview](../features/vl_preview.md). |
-| **Cascade Icon Visibility** | Per-icon show/hide toggles (Tag, Variant, Action, Compositor, World, Camera, Output Rule). |
-| **Pin** toggles | Force certain icons to always render (skip the overflow `⋯`). |
+??? info "What the popover holds"
+    | Setting | Description |
+    |---------|-------------|
+    | **Refresh Tree** | Force a full rebuild of the Takes Tree. |
+    | **Collection Visibility** | Copy / paste the collection-visibility set of the active View Layer. |
+    | **Previews** | Master toggle, viewport-snapshot button, render button, refresh, size, background colour, transparent background. See [View Layer Preview](../features/vl_preview.md). |
+    | **Cascade Icon Visibility** | Per-icon show/hide toggles (Tag, Variant, Action, Compositor, World, Camera, Output Rule). |
+    | **Pin** toggles | Force certain icons to always render, skipping the overflow **⋯**. |
 
 ## :material-alert-outline: Warnings
 
-The Navigation Panel header surfaces conditional warning badges whenever the addon detects an inconsistency. Each badge is a toggle: click it to expand the matching warning sub-panel below the header. Badges only appear when their condition is met — a clean session shows none.
+Warning badges appear in the header only when the addon finds a problem. A clean file shows none.
 
-| Badge icon | Trigger | What it surfaces |
-|------------|---------|------------------|
-| Preset (gear) | One or more render-related presets are **dirty** (edited live, not saved). | Per-tier list of dirty preset types and Accept / Revert controls. |
-| Unlinked | One or more cascade preset references point to a JSON file that no longer exists. | Missing-preset list with file paths so you can re-import or re-create. |
-| Ghost | The Rest Action is drifting from the current values for one or more managed objects. | Rest-drift list with per-property snap controls. |
-| Font-data | A slot rename is pending — a slot's name no longer matches its template. | Slot-mismatch list with rename actions. |
-| Image-data | One or more View Layer preview thumbnails have a pending rename after a Scene / VL rename. | Pending-preview-rename list with apply / dismiss controls. |
-| Orphan-data | Cascade resolution drifted — a stored cascade value no longer matches the resolver's current output. | Cascade-drift list with re-sync actions. The same panel also carries the **Camera needed** and **World needed** rows: nothing is assigned anywhere in the tree and the scene has no fallback, so each row offers a **▾** picker and a **+** create button that write straight to your adopt tier — see [Camera or World Needed](../features/cascade.md#needed-rows). |
-| Orphan-data (broken) | A cascade assignment points at a datablock that no longer exists — deleted, or renamed outside the addon. | Broken-assignment list grouped by data type, with per-entry clear, a replace-via-picker button, and **Clear All** — see [Broken Assignments](../features/cascade.md#broken-assignments). |
-| Camera-data | A Global- or Scene-Group-tier camera isn't linked into every scene that tier covers, so takes in those scenes are skipped. | Per-camera list of unreachable scenes with **Link** buttons and a link-into-all footer — see [Cross-Scene Camera Linking](../features/cascade.md#cross-scene-camera-linking). |
-| Sync arrows | A [Variant Switch](../features/variant_switch.md) would collapse two materials of one pool onto a single object, or two products drive the same object. | Conflict list naming the products, pools and objects involved, plus a rescan. |
-| Package | One or more preset JSON files on disk were written by an incompatible schema version. | Incompatible-preset list with quarantine / migrate actions — see [Render Presets](../features/render_presets.md). |
-| Unlinked (cache) | The active scene was last saved by a different addon version (a MAJOR.MINOR mismatch), so cached tree data may be stale. | A cache notice with a refresh action. |
-| File-refresh | [View Layer Preload](context_properties.md#view-layer-preload) is enabled and a preload is running, or some layers are still cold ("Not Ready"). | The per-layer preload panel — readiness state for every View Layer, per-section Preload buttons, Cancel and ETA while running. It behaves like the other warning panels (opening it closes the others) and can open **automatically** when an automatic preload starts, if you opt in via the preferences. |
+Click a badge to open its warning panel below the header. Each panel lists what is wrong and gives you the buttons to fix it.
+
+??? info "Every badge and what it surfaces"
+    | Badge icon | Trigger | What it surfaces |
+    |------------|---------|------------------|
+    | Preset (gear) | One or more render-related presets are **dirty** (edited live, not saved). | Per-tier list of dirty preset types and Accept / Revert controls. |
+    | Unlinked | One or more cascade preset references point to a JSON file that no longer exists. | Missing-preset list with file paths so you can re-import or re-create. |
+    | Ghost | The Rest Action is drifting from the current values for one or more managed objects. | Rest-drift list with per-property snap controls. |
+    | Font-data | A slot rename is pending — a slot's name no longer matches its template. | Slot-mismatch list with rename actions. |
+    | Image-data | One or more View Layer preview thumbnails have a pending rename after a Scene / VL rename. | Pending-preview-rename list with apply / dismiss controls. |
+    | Orphan-data | Cascade resolution drifted — a stored cascade value no longer matches the resolver's current output. | Cascade-drift list with re-sync actions. The same panel also carries the **Camera needed** and **World needed** rows: nothing is assigned anywhere in the tree and the scene has no fallback, so each row offers a **▾** picker and a **+** create button that write straight to your adopt tier — see [Camera or World Needed](../features/cascade.md#needed-rows). |
+    | Orphan-data (broken) | A cascade assignment points at a datablock that no longer exists — deleted, or renamed outside the addon. | Broken-assignment list grouped by data type, with per-entry clear, a replace-via-picker button, and **Clear All** — see [Broken Assignments](../features/cascade.md#broken-assignments). |
+    | Camera-data | A Global- or Scene-Group-tier camera isn't linked into every scene that tier covers, so takes in those scenes are skipped. | Per-camera list of unreachable scenes with **Link** buttons and a link-into-all footer — see [Cross-Scene Camera Linking](../features/cascade.md#cross-scene-camera-linking). |
+    | Sync arrows | A [Variant Switch](../features/variant_switch.md) would collapse two materials of one pool onto a single object, or two products drive the same object. | Conflict list naming the products, pools and objects involved, plus a rescan. |
+    | Package | One or more preset JSON files on disk were written by an incompatible schema version. | Incompatible-preset list with quarantine / migrate actions — see [Render Presets](../features/render_presets.md). |
+    | Unlinked (cache) | The active scene was last saved by a different addon version (a MAJOR.MINOR mismatch), so cached tree data may be stale. | A cache notice with a refresh action. |
+    | File-refresh | [View Layer Preload](context_properties.md#view-layer-preload) is enabled and a preload is running, or some layers are still cold ("Not Ready"). | The per-layer preload panel — readiness state for every View Layer, per-section Preload buttons, Cancel and ETA while running. It behaves like the other warning panels (opening it closes the others) and can open **automatically** when an automatic preload starts, if you opt in via the preferences. |
 
 ### Autokey Is Being Blocked
 
-This one is not badge-driven — it appears on its own, directly below the navigation bar, whenever Autokey is on but Blender's *Only Insert Available* preference would silently swallow your keyframes. That preference is enabled by default from Blender 5.2 onward, and it skips any channel that has never been keyed, which is exactly how every fresh take begins. The result without this warning is autokey that looks active but records nothing.
+This warning has no badge. It appears on its own, right below the navigation bar.
 
-The panel explains both outcomes and offers a choice:
+It means Autokey is on, but Blender would silently swallow your keyframes anyway. Pick **Let Takes Manage** to hand the setting to Takes, or **Keep Setting** to leave it alone.
 
-| Button | Effect |
-| -------- | -------- |
-| **Let Takes Manage** | Takes borrows the preference: it switches *Only Insert Available* off while Autokey is on and hands it back when Autokey goes off. Turns on **Manage 'Only Insert Available'** in [Preferences ▸ Workflow](../preferences/workflow.md). |
-| **Keep Setting** | Takes never touches the preference and the warning stays silenced for good. You can re-enable the automation later under [Preferences ▸ Workflow](../preferences/workflow.md). |
+??? warning "Why your keys vanish, and what each button does"
+    Blender's *Only Insert Available* preference skips any channel that has never been
+    keyed — which is exactly how every fresh take begins. It is enabled by default from
+    Blender 5.2 onward. Without this warning, auto-keying looks active but records nothing.
 
-The same two choices also appear as a one-time **Autokey Setup** popup the first time you toggle Autokey. Changing *Only Insert Available* by hand while Takes is holding it withdraws your consent — Takes stops managing the preference and the warning returns, so you can decide again.
+    | Button | Effect |
+    | -------- | -------- |
+    | **Let Takes Manage** | Takes borrows the preference: it switches *Only Insert Available* off while Autokey is on, and hands it back when Autokey goes off. Turns on **Manage 'Only Insert Available'** in [Preferences ▸ Workflow](../preferences/workflow.md). |
+    | **Keep Setting** | Takes never touches the preference, and the warning stays silenced for good. You can re-enable the automation later under [Preferences ▸ Workflow](../preferences/workflow.md). |
+
+    The same two choices appear as a one-time **Autokey Setup** popup the first time you
+    toggle Autokey. Changing *Only Insert Available* by hand while Takes is holding it
+    withdraws your consent — Takes stops managing it and the warning returns, so you can
+    decide again.
 
 ## :material-keyboard: Hotkeys
 
-| Shortcut | Action |
-|----------|--------|
-| ++ctrl+shift+c++ | Open the [Navigation Pie Menu](../features/pie_menus.md). |
-| ++ctrl+n++ | Add a new tree item (smart). |
-| ++shift+a++ | Open the full add menu. |
-| ++f2++ | Rename the selected item. |
-| ++del++ / ++x++ | Delete (with confirmation). |
-| ++ctrl+g++ / ++alt+g++ | Group / ungroup the selection. |
-| ++ctrl+t++ | Retarget. |
-| ++shift+d++ / ++alt+d++ | Duplicate (full / linked). |
-| ++ctrl+i++ | Invert multi-selection. |
+The tree takes the usual add, rename, delete and duplicate shortcuts. The full reference lives at [Keyboard Shortcuts](hotkeys.md).
 
-Cascade icons accept ++alt++-click to clear, ++shift++-click for scene-wide toggle, and ++ctrl+shift++-click for global toggle. The full reference lives at [Keyboard Shortcuts](hotkeys.md).
+??? info "Tree and cascade shortcuts"
+    | Shortcut | Action |
+    |----------|--------|
+    | ++ctrl+shift+c++ | Open the [Navigation Pie Menu](../features/pie_menus.md). |
+    | ++ctrl+n++ | Add a new tree item (smart). |
+    | ++shift+a++ | Open the full add menu. |
+    | ++f2++ | Rename the selected item. |
+    | ++del++ / ++x++ | Delete (with confirmation). |
+    | ++ctrl+g++ / ++alt+g++ | Group / ungroup the selection. |
+    | ++ctrl+t++ | Retarget. |
+    | ++shift+d++ / ++alt+d++ | Duplicate (full / linked). |
+    | ++ctrl+i++ | Invert multi-selection. |
+
+    Cascade icons accept ++alt++-click to clear, ++shift++-click for a scene-wide toggle,
+    and ++ctrl+shift++-click for a global toggle.

@@ -4,163 +4,217 @@ icon: material/play-box-multiple
 
 # Batch Render
 
-The **Batch Render** system automates rendering across multiple View Layers, applying cascade overrides (cameras, worlds, actions, presets, variants) for each one.
+Render many takes in one go. Each take brings its own camera, world, action, presets and variant from the [cascade](cascade.md).
 
 ## :material-shape: Render Modes
 
-Takes for Blender supports three render modes:
+Pick **Render Mode** at the bottom of the [render menu](#the-render-menu).
 
-=== "Foreground"
-    Renders inside the current Blender session. You see the render window and progress in real-time, but Blender is locked during rendering.
+**In Blender — you wait** locks Blender while it renders. **In Background — keep working** renders headlessly. **Active Layer Only** does just the active View Layer.
 
-    - Open the [render menu](#the-render-menu) from the queue sidebar with **Foreground** mode selected — every scope row then runs **{{ op('tks.batch_render').bl_label }}**.
-    - Progress shows per-View Layer with status indicators.
-    - Press ++esc++ to cancel.
+??? info "What each mode does"
+    **In Blender (Foreground).** You see the render window and live progress, but
+    Blender is locked. Every scope row runs
+    **{{ op('tks.batch_render').bl_label }}**. Progress shows per View Layer with
+    status indicators. Press ++esc++ to cancel.
 
-=== "Background Batch Render"
-    Renders headlessly while Blender stays fully interactive. Choose **Background** mode in the [render menu](#the-render-menu): the `.blend` is saved once, a single queue file is written, and **one** persistent headless Blender process works through every queued View Layer — no per-task startup cost, so large queues finish quicker. The [F12 Render Pie](pie_menus.md#f12-render-pie) background scopes route the same way.
+    **In Background.** The .blend is saved once, one queue file is written, and a
+    single headless Blender works through every queued View Layer. There is no
+    per-take startup cost, so large queues finish quicker. The
+    [F12 Render Pie](pie_menus.md#f12-render-pie) background scopes route the same way.
 
-    - Tree view updates progressively as each View Layer completes.
-    - A completion sound plays when all tasks finish.
-    - While a background batch is running the sidebar button becomes an **X** so you can cancel without leaving the sidebar.
-    - ++alt++-click force-renders every View Layer even if it already completed.
+    - The tree updates as each View Layer completes.
+    - A sound plays when all tasks finish.
+    - The sidebar button becomes an **X** so you can cancel without leaving the sidebar.
+    - ++alt++-click force-renders every View Layer, even completed ones.
 
-=== "Render Active View Layer"
-    Renders only the **active** View Layer — useful for quick spot-checks without queueing the full batch.
-
-    - Reached from the [render menu](#the-render-menu) (**Active Layer Only**, under *Other*) or via ++ctrl++-click on a View Layer's render-toggle icon.
-    - Requires the `.blend` to be saved.
+    **Active Layer Only.** Good for a quick spot-check. Reached from the render
+    menu under *Other*, or by ++ctrl++-clicking a View Layer's render-toggle icon.
+    The file must be saved first.
 
 ### :material-menu-down: The Render Menu
 
-The queue sidebar carries a single render button (:material-export: — one icon, whichever mode you are in) that opens the render menu. **Render Mode** sits at the **bottom** of that menu, below the scopes, and names the two choices by what they cost you: **In Blender — you wait** and **In Background — keep working**. Every scope row dispatches in whichever mode is selected. The scopes are grouped into three categories:
+The queue sidebar carries one render button (:material-export:). It opens a menu of scopes — *what* to render — under **Selected Layers**, **All Layers** and **Other**.
 
-| Category | Row | What it renders |
-|----------|-----|-----------------|
-| **Selected Layers** | **This Scene** | Every render-toggle-enabled VL in the current scene only. |
-| | **All Scenes** | Every render-toggle-enabled VL across every scene. |
-| | **Pick Scene** | Choose a specific scene (with a *Search scenes…* option) to render its enabled VLs. |
-| | **Pick Tag** | Choose a [tag](tags.md) and render only the view layers carrying it. Each entry shows how many layers that tag would render. |
-| **All Layers** | **This Scene** | Every VL in the current scene, regardless of render-toggle. |
-| | **All Scenes** | Every VL in every scene, regardless of render-toggle. |
-| | **Pick Scene** | Choose a specific scene and force-render all of its VLs. |
-| | **Pick Tag** | Force-render every view layer carrying the chosen tag, regardless of render-toggle. |
-| **Other** | **Active Layer Only** | Just the active View Layer. |
-| | **Resume — Skip Done** | Enabled VLs across all scenes, skipping ones that already finished. |
-| | **Retry Failed** | Re-render only VLs whose previous attempt failed or cancelled. |
-| | **{{ op('tks.calibrate_render_times').bl_label }}** | Probe-render the queue to seed the [time estimates](#calibrate-render-times). |
+Every scope row runs in the selected mode. While a render runs, the button becomes its cancel button.
 
-The same dispatcher powers the [F12 Render Pie](pie_menus.md#f12-render-pie), so anything you assign to a pie slot maps to one of the scope rows above. While a render or calibration is running, the sidebar button turns into its cancel button.
+??? info "Every scope row"
+    | Category | Row | What it renders |
+    |----------|-----|-----------------|
+    | **Selected Layers** | **This Scene** | Every render-toggle-enabled View Layer in the current scene. |
+    | | **All Scenes** | Every render-toggle-enabled View Layer across every scene. |
+    | | **Pick Scene** | Choose a scene (with a *Search scenes…* option) and render its enabled View Layers. |
+    | | **Pick Tag** | Choose a [tag](tags.md) and render only the View Layers carrying it. Each entry shows how many layers it would render. |
+    | **All Layers** | **This Scene** | Every View Layer in the current scene, whatever its render-toggle. |
+    | | **All Scenes** | Every View Layer in every scene, whatever its render-toggle. |
+    | | **Pick Scene** | Choose a scene and force-render all of its View Layers. |
+    | | **Pick Tag** | Force-render every View Layer carrying the chosen tag. |
+    | **Other** | **Active Layer Only** | Just the active View Layer. |
+    | | **Resume — Skip Done** | Enabled View Layers across all scenes, skipping ones that already finished. |
+    | | **Retry Failed** | Only View Layers whose last attempt failed or was cancelled. |
+    | | **{{ op('tks.calibrate_render_times').bl_label }}** | Probe-render the queue to seed the [time estimates](#calibrate-render-times). |
+
+    The same dispatcher powers the [F12 Render Pie](pie_menus.md#f12-render-pie),
+    so anything you assign to a pie slot maps to one of these rows.
 
 ## :material-format-list-checkbox: Render Queue
 
-The render queue shows the status of each View Layer:
+The queue lists every View Layer with a status: **Pending**, **Rendering**, **Saving**, **Done**, **Failed** or **Cancelled**.
 
-| Status | Description |
-|--------|-------------|
-| **Pending** | Waiting to be rendered. |
-| **Rendering** | Currently being processed. |
-| **Saving** | Writing output file to disk. |
-| **Done** | Successfully completed. |
-| **Failed** | Error occurred (hover for details). |
-| **Cancelled** | Skipped due to batch cancellation. |
+Above the list it reports how many takes it will **skip for a missing camera**. Fix those from the [Camera needed](cascade.md#needed-rows) row first.
 
-Above the list, the queue reports how many takes it will **skip for a missing camera** before the render starts — a take with no camera anywhere in its cascade cannot render, and finding that out after a long queue has run is the failure this heads off. Resolve them from the [Camera needed](cascade.md#needed-rows) row.
+??? info "What each status means"
+    | Status | Meaning |
+    |--------|---------|
+    | **Pending** | Waiting to be rendered. |
+    | **Rendering** | Being processed right now. |
+    | **Saving** | Writing the output file to disk. |
+    | **Done** | Finished successfully. |
+    | **Failed** | Something went wrong — hover for details. |
+    | **Cancelled** | Skipped because the batch was cancelled. |
+
+    A take with no camera anywhere in its cascade cannot render. Finding that out
+    after a long queue has run is the failure the skip warning heads off.
 
 ### :material-view-column: Queue Columns
 
-Click the **gear icon** in the queue header to open the **Queue Columns** popover. It controls which info columns are visible alongside each row, with three sub-controls:
+Click the **gear icon** in the queue header to choose which info columns show beside each row.
 
-- **Icons** — toggle individual columns on or off. At least two visible columns must remain so the overflow indicator is meaningful.
-- **Pin Outside Collapse** — pin specific icons so they always render, even when the queue auto-collapses on narrow panels.
-- **Collapse** — switch between *Dynamic* (auto-collapses when the panel is narrower than the **Min Width** value) and *Always* (always collapse).
+??? info "The three sub-controls"
+    - **Icons** — turn individual columns on or off. At least two must stay
+      visible, so the overflow indicator still means something.
+    - **Pin Outside Collapse** — pin icons so they always draw, even when the
+      queue auto-collapses on a narrow panel.
+    - **Collapse** — *Dynamic* collapses below the **Min Width** value,
+      *Always* collapses all the time.
 
 ### :material-briefcase-outline: Render Jobs
 
-The **Render Jobs** popover tracks disk-backed render jobs alongside the queue. **Rescan Disk** re-checks the disk for already-rendered frames of every job — useful after renders arrive from outside the current session (a render farm, another machine, a resumed batch).
+The **Render Jobs** popover tracks render jobs on disk. **Rescan Disk** re-checks for frames that arrived from elsewhere — a render farm, another machine, a resumed batch.
 
-The popover remembers how wide you want it. Blender popups cannot live-resize, so the **corner grip** at the bottom-right runs **{{ op('tks.render_jobs_drag_resize').bl_label }}** as a modal preview: drag left or right and the candidate width appears in the status bar, click to apply and reopen the popover at that size, right-click or ++esc++ to cancel. The chosen width is saved in the preferences, so it survives restarts and applies to every later opening.
+??? tip "Resizing the popover"
+    Blender popups cannot resize while open. So drag the **corner grip** at the
+    bottom right, which runs
+    **{{ op('tks.render_jobs_drag_resize').bl_label }}**: drag left or right and
+    the candidate width appears in the status bar, click to apply and reopen at
+    that size, right-click or ++esc++ to cancel. The width is saved in the
+    preferences and used every time you open it again.
 
 ## :material-timer-cog: Calibrate Render Times
 
-Click **Calibrate Render Times** in the queue toolbar to estimate per–View Layer runtime *before* you commit to a real batch. The operator:
+Click **Calibrate Render Times** in the queue toolbar to estimate how long each take needs, before you commit to a real batch.
 
-1. Spawns a headless Blender subprocess in the background — your foreground stays interactive.
-2. Probe-renders each queued View Layer at **two reduced resolutions**, with every other setting left real — samples, adaptive sampling, denoising and compositing are untouched.
-3. Fits a line through the two probe timings and extrapolates along the pixel axis alone to the View Layer's full output resolution. Extrapolating only pixels is what keeps adaptive-sampling scenes honest — a pixels-times-samples model assumes the nominal sample cap is reached, which adaptive sampling rarely does.
-4. Streams the estimates back row-by-row; each View Layer's `Estimated Render Time` column updates as its probe completes. View Layers that share a scene's render settings share one probe, so calibration finishes faster on typical multi-take scenes.
+It probe-renders in the background, so you keep working. Re-run it whenever the scene changes. Click it again to cancel.
 
-Re-run it any time scene changes have invalidated previous estimates (geometry rebuilt, engine swapped, samples bumped, etc.). Clicking the operator again while it's running asks for cancellation — same pattern as cancelling a background batch.
+??? info "How the estimate is made"
+    1. A headless Blender starts in the background — your session stays interactive.
+    2. Each queued View Layer is probe-rendered at **two reduced resolutions**.
+       Everything else stays real: samples, adaptive sampling, denoising, compositing.
+    3. A line is fitted through the two timings and stretched along the pixel axis
+       alone to the full output resolution. Extrapolating only pixels is what keeps
+       adaptive-sampling scenes honest — a pixels-times-samples model assumes the
+       sample cap is reached, which adaptive sampling rarely does.
+    4. Estimates stream back row by row. Each **Estimated Render Time** column
+       updates as its probe finishes. View Layers sharing a scene's render settings
+       share one probe, so calibration is quicker on multi-take scenes.
 
-!!! note "Why probe instead of measure?"
-    A probe takes seconds per View Layer instead of minutes, so the initial estimate is necessarily approximate — but it doesn't stay that way. The ETA corrects itself while a batch runs: once the first take finishes, the remaining time reflects how this run is actually performing. Background renders additionally show the render engine's own remaining-time prediction for the take in flight. And the queue remembers each take's recent render times together with the settings they were measured at, rescaling those estimates when resolution or samples change.
+    Re-run it after geometry rebuilds, an engine swap, a samples bump, and so on.
+
+??? note "Why probe instead of measure?"
+    A probe takes seconds per View Layer instead of minutes, so the first estimate
+    is approximate — but it does not stay that way. The remaining time corrects
+    itself once the first take finishes and shows how this run really performs.
+    Background renders also show the render engine's own remaining-time prediction
+    for the take in flight. And the queue remembers each take's recent render
+    times along with the settings they were measured at, rescaling them when
+    resolution or samples change.
 
 ## :material-checkbox-multiple-marked-outline: What Gets Rendered
 
-The batch renderer processes **every View Layer whose render-toggle icon is enabled**, regardless of which row is active or selected. Active/multi-select state in the tree drives editing, not rendering.
+Every View Layer whose **render-toggle** icon is on. Which row is active or selected does not matter — that drives editing, not rendering.
 
-To control the queue, toggle the **render icon** (next to each View Layer row):
+Click the render icon next to a View Layer row to toggle it.
 
-- Click → toggle that View Layer's enabled state.
-- ++shift++ + click → toggle every View Layer in the same scene at once.
-- ++alt++ + click on a render-menu scope row (or the sidebar render control) → force-render every View Layer, even completed ones (otherwise the queue skips already-rendered VLs unless **Skip Completed** is off).
+??? tip "Modifier clicks and render order"
+    - ++shift++ + click — toggle every View Layer in the same scene at once.
+    - ++alt++ + click on a render-menu scope row, or on the sidebar render
+      control — force-render every View Layer, even completed ones. Without it the
+      queue skips finished ones, unless **Skip Completed** is off.
 
-!!! tip "Render Order"
-    The batch renderer follows the tree view order (top-to-bottom as displayed),
-    not Blender's internal scene/View Layer order.
-
-## :material-restore: Recovery
-
-If a batch render gets stuck:
-
-1. **Alt+Click** the Render button to force-reset.
-2. This clears all internal flags and restores suppressed handlers.
+    **Render order.** The batch follows the tree order you see, top to bottom —
+    not Blender's own scene and View Layer order.
 
 ## :material-export: Output
 
-Output paths are resolved via the [Smart Output](smart_output.md) token system. Each View Layer's output is named automatically based on the configured pattern. The **Directory** and **File Name** rows carry the same ▾ per-field dropdown as the Properties Output panel — **Build Syntax**, an **Insert Token** quick-pick, and **{{ op('tks.field_clear').bl_label }}**, which clears the last token or the whole field.
+Output paths come from the [Smart Output](smart_output.md) token system, so every take names its own file.
+
+The **Directory** and **File Name** rows carry the same ▾ dropdown as the Properties Output panel: **Build Syntax**, an **Insert Token** quick-pick, and **{{ op('tks.field_clear').bl_label }}** for the last token or the whole field.
 
 ### :material-file-refresh: Detect Version From Disk
 
-When your output pattern includes a `{rev}` version token — either in a folder segment or in the file name — the Smart Output section shows a **Version** field with a refresh button (:material-file-refresh:) beside it. **Detect Version From Disk** scans the resolved output folder for files and folders that already match the versioned pattern, finds the highest number present, and sets the **Version** field to *highest + 1* so your next batch continues the sequence instead of overwriting earlier renders.
+If your path uses a `{rev}` version token, a **Version** field appears with a refresh button (:material-file-refresh:).
 
-- Click the refresh button next to **Version** to run the scan.
-- It checks both versioned folder names and versioned file names, picking the highest across both.
-- If nothing on disk matches the pattern, it leaves the value untouched and reports *No existing versions found on disk*; otherwise it reports the version it is continuing from and the highest it saw.
+Click it to scan the output folder and set **Version** one past the highest found. Your next batch continues the sequence instead of overwriting older renders.
 
-!!! tip "When to use it"
-    Reach for this after copying a project, pulling renders from a render farm, or otherwise picking up work where the in-file version counter has drifted from what is actually on disk. It only reads the folder — it never deletes or moves existing renders.
+??? info "What the scan looks at"
+    It checks versioned folder names *and* versioned file names, and picks the
+    highest across both. The token can sit in either place.
+
+    If nothing matches, it leaves the value alone and reports *No existing
+    versions found on disk*. Otherwise it reports which version it continues from
+    and the highest it saw.
+
+??? tip "When to use it"
+    Reach for this after copying a project, pulling renders off a render farm, or
+    picking up work where the counter in the file has drifted from what is on
+    disk. It only reads the folder — it never deletes or moves renders.
 
 ### :material-counter: Versions, Sub-versions & Notes
 
-The Version block under Smart Output is a small versioning system around the `{rev}` token:
+**Version** and **Sub-version** are the counters your version tokens resolve. Bumping **Version** resets **Sub-version** to zero.
 
-- **Version / Sub-version** — the two counters the `{rev}` and `{subrev}` tokens resolve (compose e.g. `v{rev:03d}.{subrev:02d}` → `v002.03`). Bumping **Version** resets **Sub-version** to 0, the usual major/minor behaviour. Whether the counters live per scene or per View Layer is a preference (see below).
-- **Note** — a short line about what changed in this version. Click **Add Version Note** to start one; the note then edits inline beside the Version rows. Notes are saved inside the `.blend`.
-- **Version History** (:material-history: popover) — every noted version, newest first, with its note editable in place and a per-version lock toggle.
-- **Lock Version as Final** (:material-lock:) — marks the current version as final. **Detect Version From Disk** never lands on a locked version; it continues forward past it.
-- **Open Newest Version Folder** (:material-folder:) — jumps straight to the highest version folder on disk in your system file browser.
-- **Archive Other Versions** (in the history popover) — sweeps every version on disk *except* the current one and any locked ones into an `archive/` folder created beside them. Files are moved, never deleted; a confirmation lists exactly what stays and what moves before anything happens, and nothing already in the archive is ever overwritten.
+Add a **Note** to record what changed, browse past ones in **Version History**, and **Lock Version as Final** to protect one.
 
-!!! info "Preferences"
-    **Workflow ▸ Render Output** holds the master **Render Versioning** switch (hides the whole block when off — tokens in existing paths keep resolving), the **Render Version Scope** (one counter per scene, or one per View Layer), and the **Render Version Padding** a bare `{rev}` pads to (v001 / v01 / v1).
+??? info "The whole version block"
+    - **Version / Sub-version** — compose them freely, for example
+      `v{rev:03d}.{subrev:02d}` resolves to `v002.03`. Whether the counters live
+      per scene or per View Layer is a preference.
+    - **Note** — a short line about what changed. Click **Add Version Note** to
+      start one; it then edits inline beside the Version rows. Notes are saved in
+      the .blend.
+    - **Version History** (:material-history:) — every noted version, newest
+      first, each note editable in place, each with a lock toggle.
+    - **Lock Version as Final** (:material-lock:) — **Detect Version From Disk**
+      never lands on a locked version; it continues past it.
+    - **Open Newest Version Folder** (:material-folder:) — opens the highest
+      version folder on disk in your file browser.
+    - **Archive Other Versions** (in the history popover) — sweeps every version
+      on disk except the current one and any locked ones into an `archive/` folder
+      beside them. Files are moved, never deleted. A confirmation lists exactly
+      what stays and what moves, and nothing already archived is overwritten.
+
+??? info "Preferences"
+    **Workflow ▸ Render Output** holds the master **Render Versioning** switch
+    (it hides the whole block when off — tokens in existing paths keep resolving),
+    the **Render Version Scope** (one counter per scene, or one per View Layer),
+    and the **Render Version Padding** a bare version token pads to
+    (v001 / v01 / v1).
 
 ## :material-keyboard: Hotkeys
 
-The render-toggle icon next to each View Layer accepts modifier-clicks:
+The render-toggle icon beside each View Layer takes modifier-clicks. ++esc++ cancels a running batch.
 
-| Shortcut | Action |
-|----------|--------|
-| Click | Toggle the View Layer's enabled state in the queue. |
-| ++alt++ + click | **Preview Render** — open the View Layer's most recently rendered image into Blender's Render Result. Requires a finished render to exist; fails silently otherwise. |
-| ++ctrl++ + click | **Render & save** the View Layer through the queue. |
-| ++shift++ + click | Toggle **all** View Layers in the current scene. |
+??? info "Every shortcut on this page"
+    | Shortcut on the render-toggle icon | Action |
+    |----------|--------|
+    | Click | Toggle that View Layer in the queue. |
+    | ++alt++ + click | **Preview Render** — open the View Layer's newest rendered image into Blender's Render Result. Needs a finished render; does nothing otherwise. |
+    | ++ctrl++ + click | **Render & save** that View Layer through the queue. |
+    | ++shift++ + click | Toggle **all** View Layers in the current scene. |
 
-While a batch render is running:
-
-| Shortcut | Action |
-|----------|--------|
-| ++esc++ | Cancel the batch render. The status line shows `(ESC to cancel)` while running. |
-| ++alt++ + click on the **Render** button | Force-reset a stuck render state. |
+    | While a batch runs | Action |
+    |----------|--------|
+    | ++esc++ | Cancel the batch. The status line shows *(ESC to cancel)* while running. |
+    | ++alt++ + click the **Render** button | Force-reset a stuck render. It clears the batch state and restores anything the render suppressed. |
 
 See [Keyboard Shortcuts](../interface/hotkeys.md) for the full reference.

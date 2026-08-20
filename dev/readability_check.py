@@ -36,14 +36,23 @@ SKIP_PREFIXES = ("roadmap", "changelog", "assets", "admin")
 DEV_ID = re.compile(r"\btks\.[a-z_]+|bpy\.(?:ops|types|context|data)\.[A-Za-z_.]+")
 STRIP_BLOCKS = re.compile(r"(?is)<(script|style|nav|head|footer)\b.*?</\1>")
 TAGS = re.compile(r"(?is)<[^>]+>")
+# `??? info "..."` renders as a COLLAPSED <details>. Its body is real content the
+# reader can reach, but it is not on screen until they ask for it -- which is the
+# whole point of folding detail away. `???+` renders as <details open> and counts.
+COLLAPSED = re.compile(r'(?is)<details(?![^>]*\bopen\b)[^>]*>.*?</details>')
 
 
-def visible_text(html: str) -> str:
+def visible_text(html: str, *, folded=False) -> str:
     body = STRIP_BLOCKS.sub(" ", html)
     # The article element holds the page body; fall back to the whole document.
     m = re.search(r'(?is)<article\b[^>]*>(.*?)</article>', body)
     if m:
         body = m.group(1)
+    if not folded:
+        # Keep the <summary> label -- that line IS on screen.
+        body = COLLAPSED.sub(
+            lambda d: ' '.join(re.findall(r'(?is)<summary[^>]*>(.*?)</summary>', d.group())),
+            body)
     return TAGS.sub(" ", body)
 
 
@@ -69,14 +78,17 @@ def main() -> int:
 
     dev_rows, long_rows, total_ids = [], [], 0
     for rel, f in pages():
-        text = visible_text(f.read_text(encoding="utf-8", errors="replace"))
-        ids = DEV_ID.findall(text)
+        html = f.read_text(encoding="utf-8", errors="replace")
+        text = visible_text(html)
+        # Dev talk is measured on the FULL page: an idname hidden in a fold is
+        # still an idname the reader can hit.
+        ids = DEV_ID.findall(visible_text(html, folded=True))
         words = len(text.split())
         if ids:
             dev_rows.append((len(ids), rel, sorted(set(ids))[:3]))
             total_ids += len(ids)
         if words > args.budget:
-            long_rows.append((words, rel))
+            long_rows.append((words, rel, len(visible_text(html, folded=True).split())))
 
     print(f"=== DEV TALK (visible identifiers) — {total_ids} on {len(dev_rows)} pages ===")
     for n, rel, sample in sorted(dev_rows, reverse=True):
@@ -85,10 +97,12 @@ def main() -> int:
         print("  none — clean")
 
     print(f"\n=== OVER WORD BUDGET ({args.budget}) — {len(long_rows)} pages ===")
-    for n, rel in sorted(long_rows, reverse=True):
-        print(f"  {n:>5}  {rel}")
+    print(f"  {'ON SCREEN':>9}  {'TOTAL':>6}  page")
+    for n, rel, full in sorted(long_rows, reverse=True):
+        print(f"  {n:>9}  {full:>6}  {rel}")
     if not long_rows:
         print("  none — clean")
+    print("\n  ON SCREEN excludes collapsed ??? blocks; TOTAL counts everything.")
 
     return 0
 

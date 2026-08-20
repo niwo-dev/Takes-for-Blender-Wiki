@@ -4,17 +4,15 @@ icon: material/ghost
 
 # Rest State
 
-The **Rest State** system (formerly *Reference State*) automatically preserves pristine default property values alongside your per-View Layer animations.
+The **Rest Action** is your neutral baseline. Every property you have *not* keyed falls back to it.
 
-## :material-lightbulb-outline: Concept
-
-When you animate an object differently on each View Layer, you need a "neutral" baseline — the object's default position, rotation, material values, etc. The Rest State system maintains this baseline automatically.
+Those baseline values live at frame 0. Takes keeps them safe while you animate each View Layer differently.
 
 ## :material-cog-sync: How It Works
 
-1. A shared **Rest Action** (`Rest_State`) stores the default values for all animated properties at frame 0.
-2. When you add a keyframe on any View Layer, the Rest State system automatically mirrors that property's current default value into the Rest Action.
-3. When switching View Layers, objects without animation on the target View Layer snap back to their Rest State values.
+Key a property, and its old unkeyed value is copied into the Rest Action first.
+
+Switch View Layers, and anything with no animation there snaps back to that baseline.
 
 ```mermaid
 graph LR
@@ -24,64 +22,103 @@ graph LR
     C -->|No| R[Snap to Rest State]
 ```
 
+??? note "Blender's own keyframe shortcuts already drive this"
+    | Shortcut | What happens |
+    |---|---|
+    | ++i++ | With **Auto-mirror keyframes** on, the unkeyed value goes to the Rest Action *before* the keyframe is written. |
+    | ++alt+i++ | The property snaps back to its rest value, if **Auto-snap on Keyframe Clear** is on in [Preferences ▸ Workflow](../preferences/workflow.md). |
+
+    No add-on shortcut is needed. The ++alt+i++ snap fires once, on the deletion
+    itself. After that the value is yours to move freely, and later edits stay
+    where you put them. With the preference off nothing snaps — use the manual
+    tools below.
+
+??? info "Which data has a rest value"
+    Objects (transforms, visibility), lights (energy, colour, size), cameras (focal
+    length, depth of field), materials and node trees (shader and compositor values),
+    worlds (environment settings), scenes (gravity, frame range), armatures (bone roll
+    and layers) and shape keys (each key's value and its slider range).
+
+    Curves, lattices, metaballs and Grease Pencil are covered too — anywhere an
+    animatable property has a meaningful neutral value.
+
+    Rest State was called *Reference State* in older versions.
+
 ## :material-tune: Controls
 
-| Control | Location | Description |
-|---------|----------|-------------|
-| **Auto-mirror keyframes** | *Globals > Settings > Rest State*. | Mirrors unkeyed property values into the Rest Action automatically. Persists as an addon preference (*Auto-mirror Keyframes to Rest* under *Preferences > Workflow > Automations > Rest State*). |
-| **Rest Action picker** | *Globals > Settings > Rest State > Rest Action*. | Selects which Action stores the rest baseline. The **+** button creates a fresh one. |
-| **{{ op('tks.set_rest_default').bl_label }}** | Property right-click menu → *{{ op('tks.set_rest_default').bl_label }}*. | Records the property's current value as its rest baseline — a keyframe at frame 0 in the Rest Action. Also appended to Blender's *Insert Keyframe* menu as **Keyframe to Rest**. |
-| **{{ op('tks.rest_mode_toggle').bl_label }}** | Navigation header — the leftmost of the mode toggles (Rest State, then Still Mode, then [Value Lock](value_lock.md)). | **Rest State Mode:** every View Layer temporarily shows the rest baseline — compare it against your work or adjust the baseline in place, then click again to return. Tree assignments and renders always keep the real actions, and autokey pauses while the mode is on. Turning it on releases an active Value Lock (and vice versa) — the two take turns. |
+The Rest State block sits in *Globals ▸ Settings*.
+
+| Control | What it does |
+|---|---|
+| **Rest Action** | Picks which action holds your baseline. **+** makes a fresh one. |
+| **Auto-mirror keyframes** | Copies an unkeyed value into the Rest Action as you key it. |
+| **{{ op('tks.set_rest_default').bl_label }}** | Records the property's current value as its baseline. |
+| **{{ op('tks.rest_mode_toggle').bl_label }}** | Shows the baseline on every View Layer until you click it again. |
+
+??? info "The fine print on these four"
+    **Auto-mirror keyframes** is also an add-on preference, *Auto-mirror Keyframes
+    to Rest*, under *Preferences ▸ Workflow ▸ Automations ▸ Rest State*.
+
+    **{{ op('tks.set_rest_default').bl_label }}** sits in the right-click menu of any
+    property, and in Blender's *Insert Keyframe* menu as **Keyframe to Rest**. It
+    writes a keyframe at frame 0 in the Rest Action.
+
+    **{{ op('tks.rest_mode_toggle').bl_label }}** is the leftmost of the three mode
+    toggles in the Navigation header, before **Still Mode** and
+    [Value Lock](value_lock.md). Use it to compare your work against the baseline,
+    or to adjust the baseline in place. Tree assignments and renders always use the
+    real actions, and autokey pauses while the mode is on. Turning it on releases an
+    active Value Lock, and the other way round.
 
 ## :material-dock-window: The Rest State Panel
 
-Besides the inline block in *Globals > Settings*, Rest State has its own collapsible **{{ panel('TKS_PT_rest_state').bl_label }}** sub-panel on the Globals tab. Its header carries a ghost icon that fills in once a Rest Action is assigned, and the body holds the Rest Action picker plus the same tip box as the Settings block — the two locations read identically, so use whichever is closer to hand. (The Settings block additionally hosts the **+** new-action button and the **Auto-mirror keyframes** toggle.)
+The Globals tab also carries a foldable **{{ panel('TKS_PT_rest_state').bl_label }}** panel. Its ghost icon fills in once a Rest Action is assigned.
+
+It shows the same Rest Action picker and tip as the Settings block, so use whichever is closer to hand. Only the Settings block adds the **+** button and the **Auto-mirror keyframes** toggle.
 
 ## :material-magnet: Manual Rest Tools
 
-Auto-mirroring keeps the baseline current, but sometimes you want to push values *back* to it — or take a property out of Rest State's care entirely. These tools live in the **keyframe pie menu** (see [Pie Menus](pie_menus.md)).
+Auto-mirroring keeps the baseline current. These tools push values back to it, or hand a property back to you.
+
+They all live in the **keyframe pie menu** — see [Pie Menus](pie_menus.md).
 
 ### Snapping back to Rest
 
-Reach for these when an object is stuck in a pose it inherited from another View Layer, or after experimenting without keyframes:
+Reach for these when an object is stuck in a pose it picked up from another View Layer.
 
-| Tool | Scope | What it does |
-|------|-------|--------------|
-| **Snap Active to Rest** | One property | Snaps a single property back to its Rest State value. The pie slot greys out when the active object has nothing to snap back to (no slot in the Rest Action). |
-| **{{ op('tks.snap_selected_to_rest').bl_label }}** | Selected objects | Snaps every drifted property on the selected objects back to what the current mode expects — an unkeyed value returns to Rest State, a keyed value returns to its own frame-0 keyframe (or the rest pose while Rest State Mode is on). Driver-driven channels are left alone. |
-| **{{ op('tks.snap_all_to_rest').bl_label }}** | Everything | Snaps *all* drifted properties back — same per-property rules as above, across every object. |
+| Tool | Scope |
+|---|---|
+| **Snap Active to Rest** | One property |
+| **{{ op('tks.snap_selected_to_rest').bl_label }}** | The selected objects |
+| **{{ op('tks.snap_all_to_rest').bl_label }}** | Everything |
+
+??? info "What exactly snaps where"
+    An unkeyed property returns to its rest value. A keyed one returns to its own
+    frame-0 keyframe — or to the rest pose while **Rest State Mode** is on. Anything
+    driven by a driver is left alone.
+
+    **Snap Active to Rest** greys out in the pie when the active object has nothing
+    stored in the Rest Action.
 
 ### Removing Rest keys
 
-Reach for these when Rest State should stop managing a property or object — for example, an object whose neutral pose you now drive through the cascade instead:
+Reach for these when Rest State should stop looking after a property or an object.
 
-| Tool | Scope | What it does |
-|------|-------|--------------|
-| **{{ op('tks.unset_rest_key_channel').bl_label }}** | One channel | Deletes just that property's channel from the Rest Action, leaving the rest of the object's slot intact. Targets the hovered property, or the active object's transforms when run from the pie. |
-| **{{ op('tks.unset_rest_slot').bl_label }}** | Active object | Removes the active object's entire slot from the Rest Action, so it falls back to cascade-derived defaults instead of holding any rest values. |
-| **{{ op('tks.clear_all_rest_keys_for_vl').bl_label }}** | View Layer | Walks every object visible in the active View Layer and removes each one's slot from the Rest Action. |
-| **{{ op('tks.delete_rest_slot').bl_label }}** | Active / Selected / All | Scope-aware slot removal — the pie offers *Active*, *· Sel* and *· All* variants. Destructive, so it asks for confirmation first (auto-accept toggle in Preferences). |
+| Tool | Removes |
+|---|---|
+| **{{ op('tks.unset_rest_key_channel').bl_label }}** | One property's channel |
+| **{{ op('tks.unset_rest_slot').bl_label }}** | The active object's whole rest slot |
+| **{{ op('tks.clear_all_rest_keys_for_vl').bl_label }}** | Every object in the active View Layer |
+| **{{ op('tks.delete_rest_slot').bl_label }}** | Active, selected, or all objects |
 
-## :material-keyboard: Native Hotkeys
+??? info "Details and safety net"
+    **{{ op('tks.unset_rest_key_channel').bl_label }}** targets the property you hover,
+    or the active object's transforms when you run it from the pie. The rest of that
+    object's rest slot stays.
 
-*Blender's standard keyframe shortcuts drive Rest State automatically — no addon-specific binding required.*
+    An object with no rest slot left falls back to the defaults it gets from the
+    [cascade](cascade.md) — handy when you now drive its neutral pose there instead.
 
-| Shortcut | Behavior |
-|----------|----------|
-| ++i++ (Insert Keyframe) | If **Auto-Mirror** is on, the unkeyed value is mirrored into the Rest Action **before** the keyframe is committed, preserving the rest baseline. |
-| ++alt+i++ (Delete Keyframe) | After Blender removes the keyframe, the property snaps back to its Rest value — as long as **Auto-snap on Keyframe Clear** is enabled in [Preferences ▸ Workflow](../preferences/workflow.md). The snap fires once, on the deletion itself; the now-unkeyed value is then yours to move freely, and later edits stay where you put them. With the preference off, nothing snaps automatically — use the manual *Snap to Rest* tools. |
-
-## :material-database-check: Supported Datablocks
-
-The Rest State system covers all standard animatable datablocks:
-
-- Objects (transforms, visibility)
-- Lights (energy, color, size)
-- Cameras (focal length, DOF)
-- Materials (shader properties)
-- Worlds (environment settings)
-- Scenes (gravity, frame range)
-- Node Trees (shader nodes, compositor)
-- Armatures (rest data — bone roll, layers)
-- Shape Keys (per-key `value` and `slider_min` / `slider_max`)
-- Curves, Lattices, Metaballs, Grease Pencil — wherever an animatable property has a meaningful rest value
+    **{{ op('tks.delete_rest_slot').bl_label }}** offers *Active*, *· Sel* and *· All*
+    in the pie. It is destructive, so it asks you to confirm first. You can
+    auto-accept that in Preferences.

@@ -4,16 +4,11 @@ icon: material/cog
 
 # Preferences
 
-**Location:** *Edit > Preferences > Add-ons > Takes for Blender*.
+Open them under *Edit > Preferences > Add-ons > Takes for Blender*.
 
-The preferences are organised into four top-level tabs — **Workflow**, **Interface**, **Data**, **Developer** — each with sub-tabs. Most settings auto-save via the *Autosave Preferences* mechanism (see [Save Mode](data.md#addon)).
+Four tabs hold every setting: **Workflow**, **Interface**, **Data** and **Developer**. Each splits into sub-tabs.
 
-!!! tip "Search the preferences"
-    The header row of the preferences has a **Search** field (magnifier icon,
-    beside the solo-accordion toggle). As you type, settings that don't match
-    are dimmed — and so are whole sub-tabs and tabs with no match, so you can
-    see at a glance where a setting lives. Empty the field
-    (*{{ op('tks.clear_pref_search').bl_label }}*) to bring everything back.
+Your changes save themselves as you make them. [Save Mode](data.md#addon) decides where they land.
 
 <div class="grid cards" markdown>
 
@@ -21,7 +16,7 @@ The preferences are organised into four top-level tabs — **Workflow**, **Inter
 
     ---
 
-    Render behaviour, automations, naming templates, pie menu slot mapping, and the hotkey reference.
+    Render behaviour, automations, naming templates, pie menu slots, hotkeys.
 
     [:octicons-arrow-right-24: Workflow Tab](workflow.md)
 
@@ -37,7 +32,7 @@ The preferences are organised into four top-level tabs — **Workflow**, **Inter
 
     ---
 
-    Preset storage tiers, shared / project / local folder paths, and where the addon's own preferences JSON lives.
+    Preset storage tiers, shared / project / local folder paths, and where your settings file lives.
 
     [:octicons-arrow-right-24: Data Tab](data.md)
 
@@ -45,8 +40,7 @@ The preferences are organised into four top-level tabs — **Workflow**, **Inter
 
     ---
 
-    Logging controls, per-topic filters, and utilities like the
-    Icon Sheet (browse and copy any Blender icon identifier).
+    Logging controls, per-topic filters, and the Icon Sheet for browsing Blender's icons.
 
     [:octicons-arrow-right-24: Developer Tab](debug.md)
 
@@ -54,89 +48,115 @@ The preferences are organised into four top-level tabs — **Workflow**, **Inter
 
     ---
 
-    Hidden / side-effect settings and how to reset preferences back to defaults.
+    Hidden side-effect settings, and how to reset everything back to defaults.
 
     [:octicons-arrow-right-24: Advanced](advanced.md)
 
 </div>
 
+??? tip "Can't find a setting? Search for it."
+    The header row has a **Search** field, next to the solo-accordion toggle.
+    As you type, anything that doesn't match goes dim — whole tabs and sub-tabs
+    included. So you can see at a glance where a setting lives.
+
+    Empty the field (**{{ op('tks.clear_pref_search').bl_label }}**) to bring everything back.
+
 ## :material-folder-cog: Preference Configurations
 
-The preferences live in a JSON file whose location is set by *Save Mode* (see [*Data > Addon*](data.md#addon)). These actions manage that file and its sibling configs. They appear next to the **Config File** picker on the *Data > Addon* sub-tab.
+Your settings live in a config file. *Save Mode* on [*Data > Addon*](data.md#addon) picks the folder.
 
-| Button | What it does |
-| -------- | -------------- |
-| **New Configuration** | Prompts for a filename and writes a fresh `*.json` config — pre-filled with default values — into the directory for the current *Save Mode* tier (ADDON / PROJECT / SHARED / LOCAL), then switches to it. Refuses to overwrite an existing file. |
-| **Create Project Preferences** | One-click project setup: creates a `presets/` folder next to the saved `.blend`, links it to the scene's World so the PROJECT tier resolves there, switches *Save Mode* to PROJECT, and writes your current settings into `presets/user_preferences.json`. The `.blend` must be saved first. |
-| **Open Config Folder** | Opens the folder that holds the active preferences config file in your system file browser. |
-| **{{ op('tks.duplicate_preference_config').bl_label }}** | Copies the active config to a new file (pre-filled `*_copy` name, editable), then switches to the copy. Refuses to overwrite an existing file. |
-| **{{ op('tks.delete_preference_config').bl_label }}** | Deletes the active config file — after a confirmation, gated by the *Override Persistence* setting — and switches to the next config in the same folder, if one exists. |
-| **{{ op('tks.rename_project_prefs_file').bl_label }}** | Renames the current project preferences file on disk (PROJECT save mode). |
+Buttons beside the **Config File** picker on that same sub-tab manage the file and its siblings.
 
-!!! note "Project preferences travel with the .blend"
-    **Create Project Preferences** is the fastest way to give a single project its
-    own settings. Because the folder is linked through the scene's World, anyone
-    who opens that `.blend` (and points *Save Mode* at PROJECT) loads the same
-    config — handy for shared shot files.
+??? info "Every configuration button"
+    | Button | What it does |
+    | -------- | -------------- |
+    | **New Configuration** | Asks for a filename, then writes a fresh config full of default values into the current *Save Mode* folder (Addon, Project, Shared or Local) and switches to it. It refuses to overwrite an existing file. |
+    | **Create Project Preferences** | One-click project setup. It creates a **presets** folder beside your saved `.blend`, links it through the scene's World, switches *Save Mode* to Project, and writes your current settings there. Save the `.blend` first. |
+    | **Open Config Folder** | Opens the folder holding the active config file in your system file browser. |
+    | **{{ op('tks.duplicate_preference_config').bl_label }}** | Copies the active config to a new file, with an editable name pre-filled, then switches to the copy. It refuses to overwrite an existing file. |
+    | **{{ op('tks.delete_preference_config').bl_label }}** | Deletes the active config file after a confirmation, gated by the *Override Persistence* setting. It then switches to the next config in that folder, if there is one. |
+    | **{{ op('tks.rename_project_prefs_file').bl_label }}** | Renames the current project preferences file on disk, in Project save mode. |
+
+    **Project preferences travel with the .blend.** Because the folder is linked
+    through the scene's World, anyone who opens that file loads the same settings —
+    as long as their *Save Mode* points at Project. Handy for shared shot files.
 
 ### :material-content-save: Manual Save / Load / Reset
 
-With *Autosave Preferences* **on** (the default) you never need these. Switch
-autosave off and a three-button row below it takes over:
+With *Autosave Preferences* on — the default — you never touch these. Switch autosave off and a three-button row takes over.
 
-| Button | What it does |
-| -------- | -------------- |
-| **{{ op('tks.save_preferences').bl_label }}** | Writes the portable settings to the active config file, and the machine-specific values (folder paths, save mode) to a separate machine-state file that shared configs never overwrite. |
-| **{{ op('tks.load_preferences').bl_label }}** | Re-reads the active config file from disk, replacing the current in-memory settings. |
-| **{{ op('tks.reset_preferences').bl_label }}** | Puts every saveable preference back to its default value — after a confirmation, gated by the *Override Persistence* setting. |
+??? info "What the three buttons do"
+    | Button | What it does |
+    | -------- | -------------- |
+    | **{{ op('tks.save_preferences').bl_label }}** | Writes the portable settings to the active config file. Machine-specific values, like folder paths and save mode, go to a separate file that shared configs never overwrite. |
+    | **{{ op('tks.load_preferences').bl_label }}** | Re-reads the active config file from disk and replaces your current settings. |
+    | **{{ op('tks.reset_preferences').bl_label }}** | Puts every saveable preference back to its default, after a confirmation gated by the *Override Persistence* setting. |
 
 ### :material-map-legend: Storage Legend
 
-The **Configuration Inspector** (below the Addon section on *Data > Addon*)
-lists every preference with a small icon telling you where that value lives.
-The inspector's collapsible *Legend* explains each icon — the entries are
-informational buttons, so hovering any of them shows the full explanation:
+The **Configuration Inspector** sits below the Addon section on *Data > Addon*. It lists every preference with a small icon.
 
-| Icon | Legend entry | Meaning |
-|------|--------------|---------|
-| :material-check: | **{{ op('tks.legend_portable').bl_label }}** | Serialized to the active config JSON — identical on every machine that shares the file. |
-| :material-lock: | **{{ op('tks.legend_machine').bl_label }}** | Tied to this Blender installation (file paths and the like) — never overwritten when a shared config is loaded. |
-| :material-eye: | **{{ op('tks.legend_temp').bl_label }}** | Volatile UI expansion toggles and internal flags — reset on every Blender restart. |
-| :material-alert-circle: | **{{ op('tks.legend_internal').bl_label }}** | Blender's own internal RNA properties, outside the add-on's configuration scope. |
+That icon tells you where the value is stored. Open the inspector's *Legend* to read them, or hover an entry for the full explanation.
+
+??? info "What the four icons mean"
+    | Icon | Legend entry | Meaning |
+    |------|--------------|---------|
+    | :material-check: | **{{ op('tks.legend_portable').bl_label }}** | Saved into the active config file — identical on every machine that shares it. |
+    | :material-lock: | **{{ op('tks.legend_machine').bl_label }}** | Tied to this Blender installation, like folder paths. Loading a shared config never overwrites it. |
+    | :material-eye: | **{{ op('tks.legend_temp').bl_label }}** | Panel expansion toggles and other short-lived flags. They reset every time Blender restarts. |
+    | :material-alert-circle: | **{{ op('tks.legend_internal').bl_label }}** | Blender's own settings, outside the add-on's configuration. |
 
 ## :material-format-text: Naming-Template Repair
 
-The [naming templates](workflow.md#syntax) on the *Workflow > Syntax* sub-tab only accept tokens in the required `{curly}` format, and only tokens that are valid for that particular template. When a field contains a problem, a small fix-up action appears in its ▾ row popover.
+The [naming templates](workflow.md#syntax) on *Workflow > Syntax* only accept tokens in `{curly}` braces. Each template also accepts only its own tokens.
 
-| Button | What it does |
-| -------- | -------------- |
-| **Fix Token Format** | Converts wrong-format tokens (for example `[scene]`) into the required `{scene}` curly-brace style. Operates on one field, or on every template when no field is targeted. |
-| **Remove Invalid Tokens** | Strips any token that is not valid for a given template, then tidies up the leftover separators (collapses doubled `_` / spaces, trims the ends). |
+When a field holds a bad token, a fix-up button appears in its ▾ row popover.
 
-!!! tip "Context-aware tooltips"
-    When a field actually contains a problem, the button tooltip names the exact
-    offending tokens (e.g. *"Wrong format: `[scene]`. Click to convert to `{curly}`
-    braces"*), so you can see what will change before clicking.
+??? info "The two repair buttons"
+    | Button | What it does |
+    | -------- | -------------- |
+    | **Fix Token Format** | Converts wrong-format tokens, such as `[scene]`, into the `{scene}` curly-brace style. It works on one field, or on every template when you target none. |
+    | **Remove Invalid Tokens** | Strips any token that template doesn't accept. It then tidies the leftovers, collapsing doubled underscores or spaces and trimming the ends. |
+
+    **The tooltips name the culprit.** When a field really holds a problem, the
+    button tooltip names the exact offending tokens. So you see what will change
+    before you click.
 
 ## :material-wrench: Maintenance
 
-| Button | What it does |
-| -------- | -------------- |
-| **Scan Properties** | Scans the current `.blend` for every unique custom-property key (on objects, bones, scenes, etc.), tags each as Blender-native or addon-added, and fills the cleanup list with counts and sample values. Use it before clearing unwanted custom properties. |
-| **{{ op('tks.cleanup_incompatible_presets').bl_label }}** | Quarantines render-preset files whose format doesn't match the current add-on version so they stop cluttering the preset lists — see [Render Presets](../features/render_presets.md). |
-| **{{ op('tks.open_addon_presets_folder').bl_label }}** / **{{ op('tks.open_project_presets_folder').bl_label }}** | Open the add-on-wide or per-project render-preset storage folder in your system file browser (the two tiers under *Data > Storage*). |
-| **{{ op('tks.open_snapshots_folder').bl_label }}** | Open the folder holding the safety copies of your take data, beside the read-only path under *Data > Snapshots & Recovery* — see [Snapshots & Recovery](data.md#snapshots). |
-| **Hide these notice boxes** | The ✕ on a tip or warning info box. Hides every box of that kind throughout the add-on at once (tips, or warning-detail boxes). Re-enable them later under *Preferences → Interface → Confirmations*. |
+Housekeeping buttons, each living on the tab it belongs to.
+
+They scan custom properties, tidy stale presets, and open the folders the add-on writes into.
+
+??? info "Every maintenance button"
+    | Button | What it does |
+    | -------- | -------------- |
+    | **Scan Properties** | Scans your `.blend` for every custom-property key on objects, bones, scenes and the rest. It tags each as Blender-native or added by the add-on, then fills the cleanup list with counts and sample values. Run it before clearing anything. |
+    | **{{ op('tks.cleanup_incompatible_presets').bl_label }}** | Quarantines render presets whose format no longer matches this add-on version, so they stop cluttering your preset lists — see [Render Presets](../features/render_presets.md). |
+    | **{{ op('tks.open_addon_presets_folder').bl_label }}** / **{{ op('tks.open_project_presets_folder').bl_label }}** | Open the add-on-wide or per-project render-preset folder in your file browser. These are the two tiers under *Data > Storage*. |
+    | **{{ op('tks.open_snapshots_folder').bl_label }}** | Opens the folder holding the safety copies of your take data. It sits beside the read-only path under *Data > Snapshots & Recovery* — see [Snapshots & Recovery](data.md#snapshots). |
+    | **Hide these notice boxes** | The ✕ on a tip or warning box. It hides every box of that kind across the whole add-on at once. Bring them back under *Preferences > Interface > Confirmations*. |
 
 ## :material-lifebuoy: Support & Developer
 
-| Button | What it does |
-| -------- | -------------- |
-| **Preview Sound** | Plays the currently selected render-completion sound so you can audition it without running a render. Respects the *Enable Render Sounds* switch. See [render sounds](workflow.md#render). |
-| **Email Dev Support** | Opens your default mail client with a pre-filled support ticket — subject line stamped with the add-on and Blender versions, and a reminder to attach the exported log. |
-| **Reload Addon** | Clears the Python bytecode cache and safely disables + re-enables the add-on, picking up any code changes without restarting Blender. Intended for development; for a deeper reset see [Rebuild Cache & Reload Addon](advanced.md#rebuild-cache). |
+**Preview Sound** plays your render-completion sound so you can audition it without rendering.
 
-!!! warning "Reload vs. restart"
-    **Reload Addon** rebuilds the add-on's runtime state in place. After editing
-    the add-on's Python files, a full Blender restart is still the most reliable
-    way to reload deeply-nested submodules.
+**Email Dev Support** opens your mail client with a support ticket ready to send. **Reload Addon** picks up code changes without restarting Blender.
+
+??? info "The fine print"
+    **Preview Sound** respects the *Enable Render Sounds* switch — see
+    [render sounds](workflow.md#render).
+
+    **Email Dev Support** stamps the subject line with your add-on and Blender
+    versions, and reminds you to attach the exported log.
+
+    **Reload Addon** clears the cached Python bytecode, then disables and
+    re-enables the add-on. It is meant for development. For a deeper reset, see
+    [Rebuild Cache & Reload Addon](advanced.md#rebuild-cache).
+
+??? warning "Reload or restart?"
+    **Reload Addon** rebuilds the add-on's runtime state in place. That is enough
+    most of the time.
+
+    After editing the add-on's own Python files, a full Blender restart is still
+    the most reliable way to load everything fresh.
