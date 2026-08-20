@@ -57,7 +57,7 @@ The Syntax sub-tab holds editable templates for every named entity the addon cre
 |------|------------------|
 | Scene | `{scenegroup}{sep}{scene}` |
 | View Layer | `{scenegroup}{sep}{scene}{sep}{vlgroup}{sep}{viewlayer}` |
-| View Layer Version | `{scenegroup}{sep}{scene}{sep}{vlgroup}{sep}{viewlayer}{sep}{version}` |
+| Take | `{scenegroup}{sep}{scene}{sep}{vlgroup}{sep}{viewlayer}{sep}{take}` |
 | Scene Group | `{scenegroup}` |
 | View Layer Group | `{scenegroup}{sep}{scene}{sep}{vlgroup}` |
 

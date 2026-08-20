@@ -12,10 +12,9 @@ validation:
 
 copyright: "&copy; 2026 Nikolaj Woroschilow"
 
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/niwo-dev/Takes-for-Blender
+# NOTE: `extra:` is defined once, at the bottom of this file. YAML keeps only the
+# last definition of a duplicate key, so a second block here would silently win
+# over it (or be silently overridden) — keep them merged in one place.
 
 plugins:
   - search
@@ -85,7 +84,7 @@ nav:
     - Inspector Panel: interface/inspector_panel.md
     - Context Properties: interface/context_properties.md
     - Variant Tree: interface/variant_tree.md
-    - Hotkeys: interface/hotkeys.md
+    - Keyboard Shortcuts: interface/hotkeys.md
   - Features:
     - features/index.md
     - Core:
@@ -94,7 +93,7 @@ nav:
       - The Review Loop: features/vl_versions.md
       - Globals Panel: features/globals.md
     - Automation:
-      - Tags: features/tags.md
+      - Tag Library: features/tags.md
       - Rules: features/rules.md
       - Variant Switch: features/variant_switch.md
       - Smart Output: features/smart_output.md
@@ -106,7 +105,7 @@ nav:
       - Rest State: features/rest_state.md
       - Value Lock: features/value_lock.md
       - Still Mode: features/still_mode.md
-      - VL Preview: features/vl_preview.md
+      - View Layer Preview: features/vl_preview.md
     - Extras:
       - Bookmarks: features/bookmarks.md
       - Pie Menus: features/pie_menus.md
@@ -123,7 +122,7 @@ nav:
     - Workflow: preferences/workflow.md
     - Interface: preferences/ui.md
     - Data: preferences/data.md
-    - Debug: preferences/debug.md
+    - Developer: preferences/debug.md
     - Advanced: preferences/advanced.md
   - What's New:
     - whats_new/index.md

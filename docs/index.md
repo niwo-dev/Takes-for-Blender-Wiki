@@ -47,8 +47,8 @@ hide:
 
 | Feature | Description |
 |---------|-------------|
-| :material-movie-open: **Takes Tree** | Unified hierarchy: Scene Groups → Scenes → View Layer Groups → View Layers → Versions. |
-| :material-arrow-decision: **6-Tier Cascade** | Property override resolution across six tiers — Global, Scene Group, Scene, View Layer Group, View Layer, View Layer Version. The most specific tier with a value wins. |
+| :material-movie-open: **Takes Tree** | Unified hierarchy: Scene Groups → Scenes → View Layer Groups → View Layers → Takes. |
+| :material-arrow-decision: **6-Tier Cascade** | Property override resolution across six tiers — Global, Scene Group, Scene, View Layer Group, View Layer, Take. The most specific tier with a value wins. |
 | :material-tag-multiple: **Tags & Rules** | Universal labelling system with tag-driven preset bundles applied through the cascade. |
 | :material-earth: **Globals Panel** | Project-wide control centre — settings, presets overview, rules, tags, variants. |
 | :material-swap-horizontal: **Variant Switch** | Product variant system with per-scope material swapping, preset injection, and pool management. |

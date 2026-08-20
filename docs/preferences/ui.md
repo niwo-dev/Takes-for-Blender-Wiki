@@ -12,7 +12,7 @@ Every confirmation dialog can be disabled. All default to **on**. Categorised:
 
 | Category | Settings |
 |----------|----------|
-| Context | Delete Selected Item (Tree), Delete Scene, Delete View Layer, Delete Scene Group, Delete View Layer Group, Delete Version. |
+| Context | Delete Tree Item, Delete Scene, Delete View Layer, Delete Scene Group, Delete View Layer Group, Delete Take. |
 | Inspector | Rename Action, Remove from Watchlist, Delete Action, Delete Slot, Clean Empty Slots/Actions, Delete Keyframe. |
 | Globals | Delete Tag, Delete Tag/Variant Group, Delete Variant, Delete Bookmark, Delete Custom Token. |
 | Batch Render | Start Batch Render, Overwrite Existing Files. |
@@ -52,7 +52,7 @@ bring the boxes back.
 
 Master and per-list row-height overrides. Range 5–30. The **Default List Rows** master propagates to every list that hasn't been overridden:
 
-Objects, Actions, Slots, Scenes, View Layers, Takes Tree, Scene Groups, View Layer Groups, View Layer Versions, Tags, Variants, Process Monitor, Debug Log, Profiler, Batch Queue, Preferences Setup.
+Objects, Actions, Slots, Scenes, View Layers, Takes Tree, Scene Groups, ViewLayer Groups, Takes, Tags, VSW Products, Process Monitor, Debug Log, Profiler, Batch Queue, Preferences Setup.
 
 ## :material-table-column: Columns
 
