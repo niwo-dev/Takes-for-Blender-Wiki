@@ -44,8 +44,12 @@
   // pages a one-crumb bar so every page is built the same way.
   function ensurePathBar() {
     if (document.querySelector(".md-path")) return;
+    // Material puts the real bar BEFORE .md-content__inner. Inserting it inside
+    // instead drops the list into .md-typeset, which styles it as prose -- list
+    // margins and bullets -- so the bar came out nearly twice as tall and
+    // off-centre. Match Material's placement exactly.
     var inner = document.querySelector(".md-content__inner");
-    if (!inner) return;
+    if (!inner || !inner.parentNode) return;
 
     var active = document.querySelector(".md-nav__link--active");
     var label = (active && active.textContent.trim()) ||
@@ -61,7 +65,7 @@
     li.textContent = label;                 // textContent, never innerHTML
     ul.appendChild(li);
     nav.appendChild(ul);
-    inner.insertBefore(nav, inner.firstChild);
+    inner.parentNode.insertBefore(nav, inner);
   }
 
   function teardown() {

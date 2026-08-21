@@ -395,10 +395,12 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: center !important;
   }
+  /* Content spans the same grid the header and footer use, rather than a
+     narrower reading column that made the page look inset. */
   .md-content,
   [dir] .md-content {
-    max-width: 820px !important;
-    flex: 0 1 820px !important;
+    max-width: none;
+    flex: 1 1 auto;
   }
   .md-content__inner,
   [dir] .md-content__inner {
@@ -580,9 +582,11 @@ h1, h2, h3, h4, h5, h6 {
     overflow: visible;
   }
   .md-path__list {
-    max-width: 820px;
+    display: flex !important;
+    align-items: center;
+    max-width: 61rem;
     margin: 0 auto;
-    padding: 0 0.4rem;
+    padding: 0 0.8rem;
   }
   .md-path__item,
   .md-path__link {
@@ -642,7 +646,7 @@ h1, h2, h3, h4, h5, h6 {
   .tks-toc-panel {
     top: 5.6rem;
     left: auto;
-    right: max(1rem, calc(50% - 410px));
+    right: max(1rem, calc(50% - 30.5rem));
   }
 }
 
