@@ -878,3 +878,15 @@ h1, h2, h3, h4, h5, h6 {
 .tks-toc-panel .md-nav__item .md-nav__item:last-child {
   border-bottom: 0;
 }
+
+/* THE back button. A nested panel's title is a <label> pointing at its parent
+   toggle -- clicking it slides you back out. Material hides those titles at
+   desktop width, because its desktop sidebar shows nested navs inline and has
+   no panels to go back from. In a drawer that leaves you able to go in and not
+   out, which is exactly what this looked like. Show them again. */
+@media screen and (min-width: 76.25em) {
+  .md-nav--primary .md-nav .md-nav__title,
+  [dir] .md-nav--primary .md-nav .md-nav__title {
+    display: block !important;
+  }
+}
