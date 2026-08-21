@@ -382,8 +382,13 @@ h1, h2, h3, h4, h5, h6 {
   [dir] .md-sidebar--secondary {
     display: none !important;
   }
+  /* NOT display:none -- there is no transition from `none`, which is exactly
+     why the drawer appeared instantly instead of sliding. It stays rendered
+     and parked off-screen by its transform; visibility keeps it out of the
+     tab order until it is open. */
   .md-sidebar--primary {
-    display: none;
+    display: block;
+    visibility: hidden;
   }
 
   /* Content centres in the space both sidebars were holding, and stops at a
@@ -428,14 +433,17 @@ h1, h2, h3, h4, h5, h6 {
        assumption; measuring the real thing at 420px shows these two layers. */
     box-shadow: rgba(0, 0, 0, 0.4) 0 4px 10px, rgba(0, 0, 0, 0.35) 0 0 1px;
     transform: translateX(calc(-100% - max(0px, calc(50% - 410px - 15.5rem - 1rem))));
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s linear 0.25s;
     will-change: transform;
   }
 
   /* Checkbox on = drawer in. */
   [data-md-toggle="drawer"]:checked ~ .md-container .md-sidebar--primary {
-    display: block;
+    visibility: visible;
     transform: translateX(0);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s linear 0s;
   }
 
 
@@ -889,4 +897,20 @@ h1, h2, h3, h4, h5, h6 {
   [dir] .md-nav--primary .md-nav .md-nav__title {
     display: block !important;
   }
+}
+
+/* Stacking order once a menu is open. The scrim dims and blurs everything
+   beneath it, and the header and breadcrumb strip are chrome, not page -- they
+   should stay crisp and readable while you are choosing where to go. So they
+   sit above the scrim, and the drawer sits above them, exactly as the mobile
+   drawer covers the header.
+       scrim 5  <  header / strip 6  <  drawer 7
+   The contents panel keeps its own pair one step lower, since it never needs
+   to cover the header. */
+@media screen and (min-width: 76.25em) {
+  .md-header { z-index: 6; }
+  .md-path,
+  [dir] .md-path { z-index: 6; }
+  .md-sidebar--primary,
+  [dir] .md-sidebar--primary { z-index: 7; }
 }
