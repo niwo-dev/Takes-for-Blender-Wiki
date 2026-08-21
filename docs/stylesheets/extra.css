@@ -421,10 +421,12 @@ h1, h2, h3, h4, h5, h6 {
        was offsetting it by the header's height, which is the single biggest
        reason the two looked unalike. */
     top: 0 !important;
-    /* Park the drawer's right edge just left of the reading column instead of
-       at the window edge -- on a wide monitor the edge is a long way from the
-       text. Collapses back to the edge when the margin runs out. */
-    left: max(0px, calc(50% - 410px - 15.5rem - 1rem));
+    /* At the window edge, like the mobile drawer. It was inset from the reading
+       column before, but that needed the transform to cancel the inset -- and a
+       percentage means the CONTAINER in `left` and the ELEMENT'S OWN WIDTH in
+       `transform`. The offset silently evaluated to zero there, leaving a strip
+       of the drawer on screen at wide windows. Edge-anchored needs no such sum. */
+    left: 0;
     width: 15.5rem;
     height: 100%;
     z-index: 6;                 /* above the scrim, which sits at 5 */
@@ -432,7 +434,7 @@ h1, h2, h3, h4, h5, h6 {
     /* Mobile's drawer DOES carry a shadow -- I removed it earlier on an
        assumption; measuring the real thing at 420px shows these two layers. */
     box-shadow: rgba(0, 0, 0, 0.4) 0 4px 10px, rgba(0, 0, 0, 0.35) 0 0 1px;
-    transform: translateX(calc(-100% - max(0px, calc(50% - 410px - 15.5rem - 1rem))));
+    transform: translateX(-100%);
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
                 visibility 0s linear 0.25s;
     will-change: transform;
