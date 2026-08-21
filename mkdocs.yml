@@ -200,6 +200,7 @@ extra_css:
   - stylesheets/extra.css?v=d642cfb0
 
 extra_javascript:
+  - javascripts/nav-icons.js?v=b4328d39
   - javascripts/toc-icons.js?v=e5d33e6b
   - javascripts/roadmap-sort.js?v=71afec24
   - javascripts/changelog-toc.js?v=9b4e6d01
