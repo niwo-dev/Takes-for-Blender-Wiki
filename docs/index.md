@@ -2,7 +2,8 @@
 icon: material/home
 title: Home
 hide:
-  - navigation
+  # navigation stays VISIBLE: with the top tabs gone, hiding it left the
+  # hamburger with nothing to open and made Home a dead end.
   - toc
   - title
 ---

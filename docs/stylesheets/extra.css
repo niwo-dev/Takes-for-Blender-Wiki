@@ -558,6 +558,11 @@ h1, h2, h3, h4, h5, h6 {
   [dir] .md-main__inner {
     margin-top: 0;
   }
+  /* ...but a page with no breadcrumb bar (Home) still needs the gap, or the
+     content butts straight against the header. */
+  .md-main__inner:not(:has(.md-path)) {
+    margin-top: 1.5rem;
+  }
   .md-content__inner,
   [dir] .md-content__inner {
     padding-top: 0;
@@ -699,5 +704,16 @@ h1, h2, h3, h4, h5, h6 {
   .md-top,
   [dir] .md-top {
     top: calc(var(--tks-header-h, 2.4rem) + var(--tks-bar-h, 1.8rem) + 0.5rem);
+  }
+}
+
+/* A card grid is a landing layout, not prose -- the 820px reading measure
+   squeezes four cards into two cramped columns. Give any page holding one
+   room to breathe. */
+@media screen and (min-width: 76.25em) {
+  .md-content:has(.grid.cards),
+  [dir] .md-content:has(.grid.cards) {
+    max-width: 1180px !important;
+    flex: 0 1 1180px !important;
   }
 }
