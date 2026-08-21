@@ -197,13 +197,13 @@ markdown_extensions:
       toc_depth: 2
 
 extra_css:
-  - stylesheets/extra.css
+  - stylesheets/extra.css?v=d642cfb0
 
 extra_javascript:
-  - javascripts/toc-icons.js
-  - javascripts/roadmap-sort.js
-  - javascripts/changelog-toc.js
-  - javascripts/toc-popover.js
+  - javascripts/toc-icons.js?v=e5d33e6b
+  - javascripts/roadmap-sort.js?v=71afec24
+  - javascripts/changelog-toc.js?v=9b4e6d01
+  - javascripts/toc-popover.js?v=16b0ee56
 
 extra:
   social:
