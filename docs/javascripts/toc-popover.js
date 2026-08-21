@@ -38,6 +38,32 @@
   }
   window.addEventListener("resize", syncHeaderHeight);
 
+  // Material renders no breadcrumb on a page with no parents -- the home page.
+  // With the bar carrying the layout (sticky strip, contents button, the
+  // back-to-top offset), its absence made Home the odd one out. Give those
+  // pages a one-crumb bar so every page is built the same way.
+  function ensurePathBar() {
+    if (document.querySelector(".md-path")) return;
+    var inner = document.querySelector(".md-content__inner");
+    if (!inner) return;
+
+    var active = document.querySelector(".md-nav__link--active");
+    var label = (active && active.textContent.trim()) ||
+                document.title.split("—")[0].trim() || "Home";
+
+    var nav = document.createElement("nav");
+    nav.className = "md-path";
+    nav.setAttribute("aria-label", "Navigation");
+    var ul = document.createElement("ul");
+    ul.className = "md-path__list";
+    var li = document.createElement("li");
+    li.className = "md-path__item";
+    li.textContent = label;                 // textContent, never innerHTML
+    ul.appendChild(li);
+    nav.appendChild(ul);
+    inner.insertBefore(nav, inner.firstChild);
+  }
+
   function teardown() {
     document.querySelectorAll(".tks-toc-fab, .tks-toc-panel").forEach(function (n) {
       n.remove();
@@ -46,6 +72,7 @@
 
   function build() {
     teardown();
+    ensurePathBar();
     syncHeaderHeight();
 
     // Material renders the page TOC here even when the column is hidden.
