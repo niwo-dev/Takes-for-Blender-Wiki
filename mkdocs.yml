@@ -51,8 +51,9 @@ theme:
   features:
     - navigation.tabs
     - navigation.path
-    - navigation.sections
-    - navigation.expand
+    # No navigation.sections / navigation.expand: those render groups as flat,
+    # always-open headers. Without them the sidebar groups collapse, which is
+    # what keeps a 17-page section from swamping the menu.
     - navigation.top
     - navigation.indexes
     - navigation.footer
@@ -87,9 +88,16 @@ nav:
 
   - Guides:
     - workflows/index.md
-    - Make Animation Variants: workflows/animation_variants.md
+    - Switch Between Takes: workflows/switch_takes.md
     - Make Material Variants: workflows/material_variants.md
+    - Make Animation Variants: workflows/animation_variants.md
     - Batch Render Your Takes: workflows/batch_rendering.md
+    - Name Your Output Files: workflows/name_output_files.md
+    - Use Render Presets: workflows/use_render_presets.md
+    - Tag & Filter Takes: workflows/tag_and_filter.md
+    - Lock a Value: workflows/lock_a_value.md
+    - Keep an Object's Own Animation: workflows/keep_an_objects_own_animation.md
+    - Bookmark Takes: workflows/bookmark_takes.md
 
   - How It Works:
     - The Takes System: features/takes.md

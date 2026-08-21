@@ -9,58 +9,57 @@ hide:
 
 <div class="grid cards" markdown>
 
--   :material-rocket-launch:{ .lg .middle } **Getting Started**
+-   :material-rocket-launch:{ .lg .middle } **Start Here**
 
     ---
 
-    Install the addon and learn the basics in under 5 minutes.
+    New to Takes? Install it and build your first take in a few minutes.
 
-    [:octicons-arrow-right-24: Installation](getting_started/installation.md)
+    [:octicons-arrow-right-24: Start Here](getting_started/index.md)
 
--   :material-view-dashboard:{ .lg .middle } **Interface Guide**
-
-    ---
-
-    Visual maps of every panel, button, and control.
-
-    [:octicons-arrow-right-24: Interface](interface/index.md)
-
--   :material-layers-triple:{ .lg .middle } **Features**
+-   :material-play-circle:{ .lg .middle } **Guides**
 
     ---
 
-    Deep dive into Takes, Cascade, Variants, Batch Render, and more.
+    One page per job. Switch takes, name your files, batch render, and more.
 
-    [:octicons-arrow-right-24: Features](features/index.md)
+    [:octicons-arrow-right-24: Guides](workflows/index.md)
 
--   :material-play-circle:{ .lg .middle } **Workflows**
+-   :material-lightbulb-on:{ .lg .middle } **How It Works**
 
     ---
 
-    Step-by-step tutorials for real production scenarios.
+    The few ideas behind Takes — the tree, the cascade, and the review loop.
 
-    [:octicons-arrow-right-24: Workflows](workflows/index.md)
+    [:octicons-arrow-right-24: How It Works](features/takes.md)
+
+-   :material-view-dashboard:{ .lg .middle } **Buttons & Settings**
+
+    ---
+
+    Look up any panel, button or preference, one short line each.
+
+    [:octicons-arrow-right-24: Buttons & Settings](interface/index.md)
 
 </div>
 
-## :material-star-circle: Key Capabilities
+## :material-star-circle: What Takes Does
 
-| Feature | Description |
-|---------|-------------|
-| :material-movie-open: **Takes Tree** | Unified hierarchy: Scene Groups → Scenes → View Layer Groups → View Layers → Takes. |
-| :material-arrow-decision: **6-Tier Cascade** | Property override resolution across six tiers — Global, Scene Group, Scene, View Layer Group, View Layer, Take. The most specific tier with a value wins. |
-| :material-tag-multiple: **Tags & Rules** | Universal labelling system with tag-driven preset bundles applied through the cascade. |
-| :material-earth: **Globals Panel** | Project-wide control centre — settings, presets overview, rules, tags, variants. |
-| :material-swap-horizontal: **Variant Switch** | Product variant system with per-scope material swapping, preset injection, and pool management. |
-| :material-ghost: **Rest State** | Auto-mirroring rest action system that preserves pristine default keyframes across animations. |
-| :material-play-box-multiple: **Batch Render** | Modal render engine (foreground or background) with a Smart Output token system for file naming. |
-| :material-palette-swatch: **Render Presets** | 9 JSON-based preset categories (render, output, view layer, color, camera, world, material, file output, bookmarks) with 4-tier storage. |
-| :material-image-multiple: **View Layer Preview** | Live viewport thumbnails next to each View Layer in the tree. |
-| :material-monitor-dashboard: **Process Monitor** | Runtime diagnostics — process tree, debug console, View Layer Switch profiler. |
-| :material-dots-circle: **Pie Menu** | Configurable navigation pie menu (++ctrl+shift+c++). |
+| | |
+|---|---|
+| :material-movie-open: **Takes Tree** | One tree for your whole project: Scene Groups → Scenes → View Layer Groups → View Layers → Takes. |
+| :material-arrow-decision: **The Cascade** | Set a camera, world, action or preset on any level. The deepest level wins, so a single take can override everything above it. |
+| :material-swap-horizontal: **Variant Switch** | Ship one product in many finishes. Takes swaps the materials for you. |
+| :material-tag-multiple: **Tags & Rules** | Label anything, then let a tag apply a whole bundle of presets. |
+| :material-play-box-multiple: **Batch Render** | Render every take in one go, in front of you or quietly in the background. |
+| :material-palette-swatch: **Render Presets** | Save render settings once and reuse them anywhere in the tree. |
+| :material-form-textbox: **Smart Output** | Build file names from tokens, so every render lands in the right folder. |
+| :material-ghost: **Rest State** | A neutral pose your unkeyed properties fall back to, so takes never drift. |
+| :material-image-multiple: **View Layer Preview** | A live thumbnail beside every row, so you can see what you are picking. |
+| :material-earth: **Globals Panel** | One place for project-wide settings, presets, rules, tags and variants. |
 
-!!! tip "Blender Version"
-    Takes for Blender requires **Blender 5.0** or newer and builds on Blender's Slotted Action system. A few newer conveniences need 5.1+.
+!!! tip "Which Blender do I need?"
+    Takes needs **Blender 5.0** or newer. A few newer conveniences need 5.1+.
 
 ??? info "Need another language?"
     **The add-on interface** follows Blender's own language setting (*Preferences → Interface → Translation*) — **German** is the first shipped language, covering labels, tooltips, menus, warnings and status messages, with more possible as translation word lists are added. That is separate from **this wiki**, which is published in English.

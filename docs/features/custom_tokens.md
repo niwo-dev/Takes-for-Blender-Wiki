@@ -1,5 +1,6 @@
 ---
 title: Custom Tokens
+icon: material/code-braces
 ---
 
 # Custom Tokens

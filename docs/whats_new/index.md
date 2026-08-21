@@ -1,3 +1,7 @@
+---
+icon: material/star-shooting
+---
+
 # What's New
 
 How Takes for Blender evolves — what just shipped, the technical detail
