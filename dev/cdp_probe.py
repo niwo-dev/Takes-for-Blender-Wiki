@@ -78,6 +78,29 @@ def main() -> int:
                 break
         ws.close()
 
+        # --frames N: after the script resolves, grab N screenshots and report
+        # how many are visually distinct. That answers "does anything MOVE on
+        # screen", which a computed transform cannot -- a clipped element can
+        # animate its transform while showing nothing.
+        if "--frames" in sys.argv:
+            import base64, hashlib
+            n = int(sys.argv[sys.argv.index("--frames") + 1])
+            shots = []
+            for i in range(n):
+                ws2 = websocket.create_connection(wait_for_target(), timeout=30)
+                ws2.send(json.dumps({"id": 10 + i, "method": "Page.captureScreenshot",
+                                     "params": {"format": "png"}}))
+                while True:
+                    m2 = json.loads(ws2.recv())
+                    if m2.get("id") == 10 + i:
+                        break
+                ws2.close()
+                data = m2.get("result", {}).get("data", "")
+                shots.append(hashlib.sha1(base64.b64decode(data)).hexdigest()[:10])
+                time.sleep(0.03)
+            print("frame hashes:", shots)
+            print("distinct frames:", len(set(shots)), "of", len(shots))
+
         res = msg.get("result", {})
         if "exceptionDetails" in res:
             print("JS ERROR:", json.dumps(res["exceptionDetails"])[:600])
