@@ -6,6 +6,13 @@ icon: material/bug
 
 *Logging, per-topic filters, and developer utilities.*
 
+<!-- Alias anchor. Ten Developer-tab controls in the add-on wire their
+     right-click Online Manual at `preferences/debug/#settings`, but this
+     section is called Logging, which is the better name and stays. The
+     alias makes those ten links land here instead of the page top. Remove
+     it once wire_assignments.json points at #logging. -->
+<a id="settings"></a>
+
 ## :material-tune: Logging
 
 Everything here starts off. Turn on **Enable Debug Logging** first — the groups below appear only then.

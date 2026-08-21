@@ -1,18 +1,7 @@
 {
   "total": 867,
-  "ok": 857,
-  "broken": [
-    "preferences/debug/#settings",
-    "preferences/debug/#settings",
-    "preferences/debug/#settings",
-    "preferences/debug/#settings",
-    "preferences/debug/#settings",
-    "preferences/debug/#settings",
-    "preferences/debug/#settings",
-    "preferences/debug/#settings",
-    "preferences/debug/#settings",
-    "preferences/debug/#settings"
-  ],
+  "ok": 867,
+  "broken": [],
   "pages_referenced": [
     "features/batch_render",
     "features/bookmarks",
