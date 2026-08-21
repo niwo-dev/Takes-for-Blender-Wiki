@@ -706,14 +706,3 @@ h1, h2, h3, h4, h5, h6 {
     top: calc(var(--tks-header-h, 2.4rem) + var(--tks-bar-h, 1.8rem) + 0.5rem);
   }
 }
-
-/* A card grid is a landing layout, not prose -- the 820px reading measure
-   squeezes four cards into two cramped columns. Give any page holding one
-   room to breathe. */
-@media screen and (min-width: 76.25em) {
-  .md-content:has(.grid.cards),
-  [dir] .md-content:has(.grid.cards) {
-    max-width: 1180px !important;
-    flex: 0 1 1180px !important;
-  }
-}
