@@ -31,5 +31,12 @@ function applyTocIcons() {
 if (typeof document$ !== "undefined" && document$.subscribe) {
   document$.subscribe(applyTocIcons);
 } else {
-  document.addEventListener("DOMContentLoaded", applyTocIcons);
+  // Instant loading swaps page content without a reload, so DOMContentLoaded
+  // fires only once for the whole session. Material's document$ observable
+  // emits on every navigation; fall back when it is unavailable.
+  if (window.document$ && typeof window.document$.subscribe === "function") {
+    window.document$.subscribe(applyTocIcons);
+  } else {
+    document.addEventListener("DOMContentLoaded", applyTocIcons);
+  }
 }

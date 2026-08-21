@@ -20,6 +20,24 @@
     '<path d="M3 5h2v2H3V5zm4 0h14v2H7V5zM3 11h2v2H3v-2zm4 0h14v2H7v-2zm-4 6h2v2H3v-2zm4 0h14v2H7v-2z"/>' +
     "</svg>";
 
+  // The breadcrumb bar sticks directly under the header, but Material scales
+  // the root font between breakpoints so the header's height is not a constant
+  // we can hard-code. Measure it and publish it as a custom property instead.
+  function syncHeaderHeight() {
+    var root = document.documentElement;
+    var h = document.querySelector(".md-header");
+    if (h) {
+      root.style.setProperty(
+        "--tks-header-h", h.getBoundingClientRect().height + "px");
+    }
+    // The breadcrumb bar's height is needed too, so the back-to-top button can
+    // clear it instead of hiding behind it.
+    var bar = document.querySelector(".md-path");
+    root.style.setProperty(
+      "--tks-bar-h", bar ? bar.getBoundingClientRect().height + "px" : "0px");
+  }
+  window.addEventListener("resize", syncHeaderHeight);
+
   function teardown() {
     document.querySelectorAll(".tks-toc-fab, .tks-toc-panel").forEach(function (n) {
       n.remove();
@@ -28,6 +46,7 @@
 
   function build() {
     teardown();
+    syncHeaderHeight();
 
     // Material renders the page TOC here even when the column is hidden.
     var toc = document.querySelector(".md-sidebar--secondary .md-nav--secondary");
@@ -90,7 +109,16 @@
       drawer.addEventListener("change", sync);
     }
 
-    document.body.appendChild(btn);
+    // Prefer living inside the breadcrumb bar: it is already a full-width
+    // strip at the right height, so the button lines up with the reading
+    // column at any font scale instead of being positioned by guesswork.
+    var host = document.querySelector(".md-path__list");
+    if (host) {
+      btn.classList.add("tks-toc-fab--inbar");
+      host.appendChild(btn);
+    } else {
+      document.body.appendChild(btn);
+    }
     document.body.appendChild(panel);
     btn.style.display = "flex";
 

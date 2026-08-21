@@ -413,13 +413,16 @@ h1, h2, h3, h4, h5, h6 {
   [dir] .md-sidebar--primary {
     position: fixed;
     top: 0;
-    left: 0;
+    /* Park the drawer's right edge just left of the reading column instead of
+       at the window edge -- on a wide monitor the edge is a long way from the
+       text. Collapses back to the edge when the margin runs out. */
+    left: max(0px, calc(50% - 410px - 15.5rem - 1rem));
     width: 15.5rem;
     height: 100%;
     z-index: 5;
     background-color: var(--md-default-bg-color);
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.35);
-    transform: translateX(-100%);
+    transform: translateX(calc(-100% - max(0px, calc(50% - 410px - 15.5rem - 1rem))));
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
   }
@@ -467,7 +470,10 @@ h1, h2, h3, h4, h5, h6 {
 .tks-toc-fab {
   position: fixed;
   top: 4.6rem;
-  left: 1rem;
+  /* Sit in the margin just left of the 820px reading column rather than at the
+     window edge -- on a wide monitor the edge is nowhere near the text it
+     belongs to. max() keeps it on screen when the margin runs out. */
+  left: max(1rem, calc(50% - 530px));
   z-index: 4;
   display: none;                 /* shown by JS only when the page HAS a toc */
   align-items: center;
@@ -492,7 +498,7 @@ h1, h2, h3, h4, h5, h6 {
 .tks-toc-panel {
   position: fixed;
   top: 7.4rem;
-  left: 1rem;
+  left: max(1rem, calc(50% - 530px));
   z-index: 5;
   display: none;
   width: 15rem;
@@ -531,5 +537,167 @@ h1, h2, h3, h4, h5, h6 {
   .md-nav--primary .md-nav__title {
     line-height: 1.3;
     white-space: normal;
+  }
+}
+
+/* ===================================================================
+   The breadcrumb takes over the strip the tab row used to occupy.
+   Full-bleed in the header's own colour, so the page still tells you
+   where you are without a second menu doing it.
+   =================================================================== */
+@media screen and (min-width: 76.25em) {
+
+  /* The site name is in the drawer's title already; the logo carries the
+     brand in the header. */
+  .md-header__title {
+    display: none;
+  }
+
+  /* Butt the bar against the header. */
+  .md-main__inner,
+  [dir] .md-main__inner {
+    margin-top: 0;
+  }
+  .md-content__inner,
+  [dir] .md-content__inner {
+    padding-top: 0;
+  }
+
+  /* Full-bleed out of the centred reading column, without needing to know
+     the header's height. */
+  .md-path,
+  [dir] .md-path {
+    width: 100vw;
+    margin: 0 calc(50% - 50vw) 1.6rem;
+    padding: 0.5rem 0;
+    background-color: var(--md-primary-fg-color);
+    color: var(--md-primary-bg-color);
+    overflow: visible;
+  }
+  .md-path__list {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 0.4rem;
+  }
+  .md-path__item,
+  .md-path__link {
+    color: var(--md-primary-bg-color);
+    opacity: 0.75;
+  }
+  .md-path__link:hover,
+  .md-path__link:focus {
+    color: var(--tks-accent-light, var(--md-accent-fg-color));
+    opacity: 1;
+  }
+  /* Last crumb is the current page -- give it full weight. */
+  .md-path__item:last-child {
+    opacity: 1;
+    font-weight: 600;
+  }
+  /* The separator chevron is drawn from a mask, so it needs the light colour
+     too or it disappears against the dark bar. */
+  .md-path__item:not(:first-child)::before {
+    background-color: var(--md-primary-bg-color);
+    opacity: 0.5;
+  }
+
+  /* The contents pill clears the new bar. */
+  .tks-toc-fab { top: 3.9rem; }
+  .tks-toc-panel { top: 6.6rem; }
+}
+
+/* The pill rides at the right end of the breadcrumb bar. `.md-path__list` is
+   already a flex row capped to the reading column, so `margin-left:auto` lands
+   it exactly on the column's right edge -- no offsets to keep in sync. */
+@media screen and (min-width: 76.25em) {
+  .md-path,
+  [dir] .md-path {
+    padding: 0.3rem 0;
+  }
+  .md-path__list {
+    min-height: 1.3rem;
+  }
+  .tks-toc-fab--inbar {
+    position: static;
+    margin-left: auto;
+    flex: 0 0 auto;
+    padding: 0.15rem 0.5rem;
+    background: transparent;
+    border-color: transparent;
+    color: var(--md-primary-bg-color);
+    opacity: 0.75;
+    box-shadow: none;
+  }
+  .tks-toc-fab--inbar:hover {
+    opacity: 1;
+    color: var(--tks-accent-light, var(--md-accent-fg-color));
+    border-color: transparent;
+  }
+  /* Panel hangs from the bar, aligned to the column's right edge. */
+  .tks-toc-panel {
+    top: 5.6rem;
+    left: auto;
+    right: max(1rem, calc(50% - 410px));
+  }
+}
+
+/* Material reserves a tall banner area at the top of the drawer -- it is the
+   mobile 'back' header, which has no job here and left a large empty band
+   above the title. Collapse it to the text it actually holds. */
+@media screen and (min-width: 76.25em) {
+  .md-nav--primary .md-nav__title,
+  [dir] .md-nav--primary .md-nav__title {
+    height: auto;
+    padding: 0.2rem 0.6rem 0.5rem;
+    line-height: 1.3;
+    white-space: normal;
+    box-shadow: none;
+    background: transparent;
+  }
+  /* The scrim Material draws behind that banner. */
+  .md-nav--primary .md-nav__title .md-nav__button,
+  .md-nav--primary .md-nav__title ~ .md-nav__icon {
+    display: none;
+  }
+  .md-sidebar--primary .md-sidebar__inner {
+    padding: 0.6rem 0.8rem 2rem;
+  }
+}
+
+/* The bar follows you down the page: it is the only thing left telling you
+   where you are, and the contents button rides in it. */
+@media screen and (min-width: 76.25em) {
+}
+
+/* The bar follows you down the page: with both sidebars gone it is the only
+   thing still saying where you are, and the contents button rides in it.
+   (Header height is measured into --tks-header-h by toc-popover.js, because
+   Material scales the root font between breakpoints.) */
+@media screen and (min-width: 76.25em) {
+  .md-path,
+  [dir] .md-path {
+    position: sticky;
+    top: var(--tks-header-h, 2.4rem);
+    z-index: 3;
+  }
+
+  /* With the site title hidden, the search sat off to one side. Centre it
+     between the logo cluster and the icon cluster. */
+  .md-header__inner {
+    position: relative;
+  }
+  .md-search,
+  [dir] .md-search {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Back-to-top sits at a fixed 3.2rem, which lands inside the breadcrumb bar
+   and disappears behind it. Drop it clear of the bar instead. */
+@media screen and (min-width: 76.25em) {
+  .md-top,
+  [dir] .md-top {
+    top: calc(var(--tks-header-h, 2.4rem) + var(--tks-bar-h, 1.8rem) + 0.5rem);
   }
 }

@@ -15,7 +15,7 @@ hide:
 
     New to Takes? Install it and build your first take in a few minutes.
 
-    [:octicons-arrow-right-24: Start Here](getting_started/index.md)
+    [:octicons-arrow-right-24: Install Takes](getting_started/installation.md)
 
 -   :material-play-circle:{ .lg .middle } **Guides**
 
@@ -23,7 +23,7 @@ hide:
 
     One page per job. Switch takes, name your files, batch render, and more.
 
-    [:octicons-arrow-right-24: Guides](workflows/index.md)
+    [:octicons-arrow-right-24: Switch Between Takes](workflows/switch_takes.md)
 
 -   :material-lightbulb-on:{ .lg .middle } **How It Works**
 
@@ -39,7 +39,7 @@ hide:
 
     Look up any panel, button or preference, one short line each.
 
-    [:octicons-arrow-right-24: Buttons & Settings](interface/index.md)
+    [:octicons-arrow-right-24: Navigation Panel](interface/navigation_panel.md)
 
 </div>
 

@@ -99,5 +99,12 @@ function applyChangelogToc() {
 if (typeof document$ !== "undefined" && document$.subscribe) {
   document$.subscribe(applyChangelogToc);
 } else {
-  document.addEventListener("DOMContentLoaded", applyChangelogToc);
+  // Instant loading swaps page content without a reload, so DOMContentLoaded
+  // fires only once for the whole session. Material's document$ observable
+  // emits on every navigation; fall back when it is unavailable.
+  if (window.document$ && typeof window.document$.subscribe === "function") {
+    window.document$.subscribe(applyChangelogToc);
+  } else {
+    document.addEventListener("DOMContentLoaded", applyChangelogToc);
+  }
 }

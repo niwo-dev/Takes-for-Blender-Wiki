@@ -285,7 +285,7 @@ It only runs when you enable preloading in the preferences.
 
 ## :material-rename-box: Preview Thumbnail Renames
 
-Rename a scene or View Layer and its cached [preview thumbnails](../features/index.md) stop matching.
+Rename a scene or View Layer and its cached [preview thumbnails](../features/vl_preview.md) stop matching.
 
 A warning panel lists each pending rename. **Rename All Previews** fixes them.
 

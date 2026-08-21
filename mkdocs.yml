@@ -49,13 +49,24 @@ theme:
         icon: material/brightness-7
         name: Switch to Dark Pattern
   features:
-    - navigation.tabs
+    # No navigation.tabs: the drawer now carries the whole tree, so a top
+    # row of the same section names was the menu twice. Dropping it also
+    # means the drawer opens at the TOP of the nav rather than scoped to
+    # the current section.
+    # Ajax page loads: Material swaps content instead of reloading, so the
+    # header, drawer and search survive navigation. Every custom script in
+    # docs/javascripts/ subscribes to document$ rather than DOMContentLoaded,
+    # because that fires once per session under instant loading.
+    - navigation.instant
+    - navigation.instant.progress
     - navigation.path
     # No navigation.sections / navigation.expand: those render groups as flat,
     # always-open headers. Without them the sidebar groups collapse, which is
     # what keeps a 17-page section from swamping the menu.
     - navigation.top
-    - navigation.indexes
+    # No navigation.indexes: it turns a section's own page into the section
+    # link, so some menu rows navigated while others expanded. Every group
+    # now does the same thing -- expand.
     - navigation.footer
     - navigation.tracking
     - navigation.tooltip
@@ -81,24 +92,26 @@ nav:
   # would break right-click "Online Manual" for no reader benefit. Nav titles are
   # independent of paths, which is what makes this regrouping free.
   - Start Here:
-    - getting_started/index.md
     - Install Takes: getting_started/installation.md
     - Your First Steps: getting_started/first_steps.md
     - Your First Take: getting_started/first_take.md
     - Your First Batch Render: getting_started/first_batch_render.md
 
   - Guides:
-    - workflows/index.md
-    - Switch Between Takes: workflows/switch_takes.md
-    - Make Material Variants: workflows/material_variants.md
-    - Make Animation Variants: workflows/animation_variants.md
-    - Batch Render Your Takes: workflows/batch_rendering.md
-    - Name Your Output Files: workflows/name_output_files.md
-    - Use Render Presets: workflows/use_render_presets.md
-    - Tag & Filter Takes: workflows/tag_and_filter.md
-    - Lock a Value: workflows/lock_a_value.md
-    - Keep an Object's Own Animation: workflows/keep_an_objects_own_animation.md
-    - Bookmark Takes: workflows/bookmark_takes.md
+    - Working with Takes:
+      - Switch Between Takes: workflows/switch_takes.md
+      - Keep an Object's Own Animation: workflows/keep_an_objects_own_animation.md
+      - Lock a Value: workflows/lock_a_value.md
+    - Looks & Variants:
+      - Make Material Variants: workflows/material_variants.md
+      - Make Animation Variants: workflows/animation_variants.md
+      - Tag & Filter Takes: workflows/tag_and_filter.md
+    - Rendering:
+      - Batch Render Your Takes: workflows/batch_rendering.md
+      - Name Your Output Files: workflows/name_output_files.md
+      - Use Render Presets: workflows/use_render_presets.md
+    - Getting Around:
+      - Bookmark Takes: workflows/bookmark_takes.md
 
   - How It Works:
     - The Takes System: features/takes.md
@@ -109,7 +122,6 @@ nav:
 
   - Buttons & Settings:
     - Panels:
-      - interface/index.md
       - Navigation Panel: interface/navigation_panel.md
       - Inspector Panel: interface/inspector_panel.md
       - Context Properties: interface/context_properties.md
@@ -117,7 +129,6 @@ nav:
       - Globals Panel: features/globals.md
       - Keyboard Shortcuts: interface/hotkeys.md
     - Features:
-      - features/index.md
       - Setting Up Looks:
         - Variant Switch: features/variant_switch.md
         - Render Presets: features/render_presets.md
@@ -140,7 +151,7 @@ nav:
         - Process Monitor: features/process_monitor.md
         - AI Assistant: features/ai_assistant.md
     - Preferences:
-      - preferences/index.md
+      - Overview: preferences/index.md
       - Workflow: preferences/workflow.md
       - Interface: preferences/ui.md
       - Data: preferences/data.md
@@ -150,7 +161,7 @@ nav:
   - FAQ: faq.md
 
   - What's New:
-    - whats_new/index.md
+    - Overview: whats_new/index.md
     - Changelog: changelog/index.md
     - Changelog (Dev): changelog/dev.md
     - Roadmap: roadmap/index.md
