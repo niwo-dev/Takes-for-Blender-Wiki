@@ -572,10 +572,12 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Full-bleed out of the centred reading column, without needing to know
      the header's height. */
+  /* The strip is as wide as the content, not the window. Full-bleed left a
+     long empty run of dark to the right of the crumbs. */
   .md-path,
   [dir] .md-path {
-    width: 100vw;
-    margin: 0 calc(50% - 50vw) 1.6rem;
+    width: auto;
+    margin: 0 0 1.6rem;
     padding: 0.5rem 0;
     background-color: var(--md-primary-fg-color);
     color: var(--md-primary-bg-color);
@@ -588,9 +590,9 @@ h1, h2, h3, h4, h5, h6 {
     display: flex !important;
     align-items: center;
     box-sizing: border-box;
-    max-width: 61rem;
-    margin: 0 auto;
-    padding: 0 3rem;
+    max-width: none;
+    margin: 0;
+    padding: 0;
   }
   .md-path__item,
   .md-path__link {
