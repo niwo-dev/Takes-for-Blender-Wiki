@@ -1,11 +1,9 @@
 ---
 icon: material/home
-title: Home
 hide:
-  # navigation stays VISIBLE: with the top tabs gone, hiding it left the
-  # hamburger with nothing to open and made Home a dead end.
   - toc
   - title
+title: Home
 ---
 
 <div class="grid cards" markdown>
@@ -46,8 +44,6 @@ hide:
 
 ## :material-star-circle: What Takes Does
 
-| | |
-|---|---|
 | :material-movie-open: **Takes Tree** | One tree for your whole project: Scene Groups → Scenes → View Layer Groups → View Layers → Takes. |
 | :material-arrow-decision: **The Cascade** | Set a camera, world, action or preset on any level. The deepest level wins, so a single take can override everything above it. |
 | :material-swap-horizontal: **Variant Switch** | Ship one product in many finishes. Takes swaps the materials for you. |
@@ -63,16 +59,12 @@ hide:
     Takes needs **Blender 5.0** or newer. A few newer conveniences need 5.1+.
 
 ??? info "Need another language?"
-    **The add-on interface** follows Blender's own language setting (*Preferences → Interface → Translation*) — **German** is the first shipped language, covering labels, tooltips, menus, warnings and status messages, with more possible as translation word lists are added. That is separate from **this wiki**, which is published in English.
+    **The add-on interface** follows Blender's own language setting (_Preferences → Interface → Translation_) — **German** is the first shipped language, covering labels, tooltips, menus, warnings and status messages, with more possible as translation word lists are added. That is separate from **this wiki**, which is published in English.
 
     To read the wiki in another language, modern browsers can translate the whole page on the fly, free, with no extension to install:
 
-    - **Chrome / Edge / Brave** — right-click anywhere on the page → *Translate to…*, or click the **translate icon** that appears in the address bar.
-    - **Firefox** (118+) — right-click → *Translate Page*.
+    - **Chrome / Edge / Brave** — right-click anywhere on the page → _Translate to…_, or click the **translate icon** that appears in the address bar.
+    - **Firefox** (118+) — right-click → _Translate Page_.
     - **Safari** (Big Sur / iOS 14+) — click the **translate icon** in the address bar.
 
     Browser translation is private (processed locally where supported) and covers 100+ languages.
-
----
-
-*Created by Nikolaj Woroschilow*
