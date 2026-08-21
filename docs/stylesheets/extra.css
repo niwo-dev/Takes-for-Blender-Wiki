@@ -412,7 +412,10 @@ h1, h2, h3, h4, h5, h6 {
   .md-sidebar--primary,
   [dir] .md-sidebar--primary {
     position: fixed;
-    top: 0;
+    /* Mobile's drawer starts at the very top and covers the header. Desktop
+       was offsetting it by the header's height, which is the single biggest
+       reason the two looked unalike. */
+    top: 0 !important;
     /* Park the drawer's right edge just left of the reading column instead of
        at the window edge -- on a wide monitor the edge is a long way from the
        text. Collapses back to the edge when the margin runs out. */
@@ -421,8 +424,9 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%;
     z-index: 6;                 /* above the scrim, which sits at 5 */
     background-color: var(--md-default-bg-color);
-    /* Mobile's drawer carries no shadow; the dimmed scrim does that work. */
-    box-shadow: none;
+    /* Mobile's drawer DOES carry a shadow -- I removed it earlier on an
+       assumption; measuring the real thing at 420px shows these two layers. */
+    box-shadow: rgba(0, 0, 0, 0.4) 0 4px 10px, rgba(0, 0, 0, 0.35) 0 0 1px;
     transform: translateX(calc(-100% - max(0px, calc(50% - 410px - 15.5rem - 1rem))));
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
@@ -791,5 +795,44 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%;
     opacity: 1;
     transition: width 0ms, height 0ms, opacity 0.25s;
+  }
+}
+
+/* Mobile's nav links run to the panel edge; the desktop inner padding was
+   indenting them by 12px. Measured against the real mobile drawer. */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary .md-sidebar__inner,
+  [dir] .md-sidebar--primary .md-sidebar__inner {
+    padding: 0 !important;
+  }
+  .md-sidebar--primary .md-sidebar__scrollwrap,
+  [dir] .md-sidebar--primary .md-sidebar__scrollwrap {
+    margin: 0 !important;
+  }
+}
+
+/* Material keeps a DESKTOP rule for the nav title -- sticky, with a glow used
+   to mask scrolling content behind it in the old fixed sidebar:
+       .md-nav--primary .md-nav__title { box-shadow: 0 0 .4rem .4rem ...; }
+   In a drawer there is nothing to mask, so the glow just smears the title.
+   Cancel it, and the leftover desktop gutters that were still indenting the
+   links and pushing the scroll area down. Numbers checked against the real
+   mobile drawer at 420px: link starts at x=0, scroll area at y=0. */
+@media screen and (min-width: 76.25em) {
+  .md-nav--primary .md-nav__title,
+  [dir] .md-nav--primary .md-nav__title {
+    box-shadow: none !important;
+  }
+  .md-sidebar--primary .md-sidebar__scrollwrap,
+  [dir] .md-sidebar--primary .md-sidebar__scrollwrap {
+    top: 0 !important;
+    margin: 0 !important;
+  }
+  .md-nav--primary .md-nav__list,
+  [dir] .md-nav--primary .md-nav__list,
+  .md-nav--primary .md-nav__item,
+  [dir] .md-nav--primary .md-nav__item {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
   }
 }
