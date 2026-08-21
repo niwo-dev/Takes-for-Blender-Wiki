@@ -82,6 +82,8 @@ They use [Smart Output tokens](../features/smart_output.md). Every field has a *
 
 Names for the action on each cascade tier.
 
+Takes uses these when it creates an action for you, so shot names stay consistent without you typing them.
+
 ??? info "Defaults"
     | Slot | Default Template |
     |------|------------------|
@@ -226,6 +228,8 @@ Master toggle **{{ pref('keyframe_alt_pie_enabled').label }}**, off by default.
 ### :material-window-restore: Editor Scope
 
 Picks which editors get the keyframe pies.
+
+Turn an editor off to leave its own shortcuts alone. This section only shows while a keyframe pie is enabled.
 
 ??? info "The editor list"
     This section only appears while at least one keyframe pie is enabled.

@@ -16,6 +16,8 @@ Click a cascade icon on a tree row to set or clear that override.
 
 Pick the camera this View Layer renders with.
 
+The same popover applies a **Camera preset**, and creates or renames a camera without leaving the panel.
+
 ??? info "The rest of the popover"
     The dropdown lists only cameras linked to the current scene.
 
@@ -28,6 +30,8 @@ Pick the camera this View Layer renders with.
 ### :material-earth: World Popover
 
 Pick the world environment for this View Layer.
+
+You can also apply a **World preset**, or let a **World rule** choose the world from tags.
 
 ??? info "The three World controls"
     | Control | What it does |

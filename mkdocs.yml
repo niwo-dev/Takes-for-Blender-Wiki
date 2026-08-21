@@ -74,62 +74,72 @@ theme:
 
 nav:
   - Home: index.md
-  - Getting Started:
+
+  # Sections are named for what the reader wants, not for how the addon is built:
+  # learn / do / look up / understand. Page PATHS are deliberately unchanged --
+  # the addon deep-links ~867 controls at page#anchor targets, so moving files
+  # would break right-click "Online Manual" for no reader benefit. Nav titles are
+  # independent of paths, which is what makes this regrouping free.
+  - Start Here:
     - getting_started/index.md
-    - Installation: getting_started/installation.md
-    - First Steps: getting_started/first_steps.md
-  - Interface:
-    - interface/index.md
-    - Navigation Panel: interface/navigation_panel.md
-    - Inspector Panel: interface/inspector_panel.md
-    - Context Properties: interface/context_properties.md
-    - Variant Tree: interface/variant_tree.md
-    - Keyboard Shortcuts: interface/hotkeys.md
-  - Features:
-    - features/index.md
-    - Core:
-      - Takes: features/takes.md
-      - Cascade System: features/cascade.md
-      - The Review Loop: features/vl_versions.md
-      - Globals Panel: features/globals.md
-    - Automation:
+    - Install Takes: getting_started/installation.md
+    - Your First Steps: getting_started/first_steps.md
+
+  - Guides:
+    - workflows/index.md
+    - Make Animation Variants: workflows/animation_variants.md
+    - Make Material Variants: workflows/material_variants.md
+    - Batch Render Your Takes: workflows/batch_rendering.md
+
+  - How It Works:
+    - The Takes System: features/takes.md
+    - Takes & the Review Loop: features/vl_versions.md
+    - The Cascade: features/cascade.md
+    - Rest State: features/rest_state.md
+    - Takes vs Other Tools: comparisons.md
+
+  - Buttons & Settings:
+    - Panels:
+      - interface/index.md
+      - Navigation Panel: interface/navigation_panel.md
+      - Inspector Panel: interface/inspector_panel.md
+      - Context Properties: interface/context_properties.md
+      - Variant Tree: interface/variant_tree.md
+      - Keyboard Shortcuts: interface/hotkeys.md
+    - Features:
+      - features/index.md
+      - Variant Switch: features/variant_switch.md
       - Tag Library: features/tags.md
       - Rules: features/rules.md
-      - Variant Switch: features/variant_switch.md
+      - Globals Panel: features/globals.md
       - Smart Output: features/smart_output.md
       - Custom Tokens: features/custom_tokens.md
-    - Production:
       - Render Presets: features/render_presets.md
       - Batch Render: features/batch_render.md
       - Video Sequencer: features/sequencer.md
-      - Rest State: features/rest_state.md
-      - Value Lock: features/value_lock.md
-      - Still Mode: features/still_mode.md
       - View Layer Preview: features/vl_preview.md
-    - Extras:
+      - Still Mode: features/still_mode.md
+      - Value Lock: features/value_lock.md
       - Bookmarks: features/bookmarks.md
       - Pie Menus: features/pie_menus.md
       - Process Monitor: features/process_monitor.md
       - Viewport Sync: features/viewport_sync.md
       - AI Assistant: features/ai_assistant.md
-  - Workflows:
-    - workflows/index.md
-    - Animation Variants: workflows/animation_variants.md
-    - Material Variants: workflows/material_variants.md
-    - Batch Rendering: workflows/batch_rendering.md
-  - Preferences:
-    - preferences/index.md
-    - Workflow: preferences/workflow.md
-    - Interface: preferences/ui.md
-    - Data: preferences/data.md
-    - Developer: preferences/debug.md
-    - Advanced: preferences/advanced.md
+    - Preferences:
+      - preferences/index.md
+      - Workflow: preferences/workflow.md
+      - Interface: preferences/ui.md
+      - Data: preferences/data.md
+      - Developer: preferences/debug.md
+      - Advanced: preferences/advanced.md
+
+  - FAQ: faq.md
+
   - What's New:
     - whats_new/index.md
     - Changelog: changelog/index.md
     - Changelog (Dev): changelog/dev.md
     - Roadmap: roadmap/index.md
-  - FAQ: faq.md
 
 markdown_extensions:
   - admonition
