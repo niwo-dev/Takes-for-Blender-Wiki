@@ -34,10 +34,26 @@ END = "/* <<< END PORTED MOBILE DRAWER >>> */"
 
 # Only the drawer's own nav. Pulling every md-nav rule across would also restyle
 # the table-of-contents nav, which focus mode clones for its contents popover.
-KEEP = re.compile(r"md-nav--primary|md-nav__title|md-nav__source")
+KEEP = re.compile(r"md-nav--primary|md-nav__title|md-nav__source|md-nav__toggle")
 
 # Rules that would fight focus mode's own positioning of the panel.
-DROP = re.compile(r"md-sidebar|md-overlay|md-header|md-tabs")
+# ...and never the secondary nav: the contents popover clones it, and the
+# drawer's sliding rules would translate that clone off screen.
+DROP = re.compile(r"md-sidebar|md-overlay|md-header|md-tabs|md-nav--secondary")
+
+
+def scope(selector: str) -> str:
+    """Confine a rule to the drawer.
+
+    The sliding rules are written generically (`.md-nav__toggle~.md-nav`), so
+    applied as-is at desktop they would also catch the table-of-contents nav.
+    Prefixing each part with the primary-nav class keeps them where they belong.
+    """
+    parts = []
+    for part in selector.split(","):
+        part = part.strip()
+        parts.append(part if "md-nav--primary" in part else f".md-nav--primary {part}")
+    return ", ".join(parts)
 
 
 def extract_blocks(css: str, query: str):
