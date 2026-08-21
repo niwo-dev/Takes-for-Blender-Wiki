@@ -59,7 +59,6 @@ theme:
     - navigation.footer
     - navigation.tracking
     - navigation.tooltip
-    - toc.integrate
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -113,26 +112,31 @@ nav:
       - Inspector Panel: interface/inspector_panel.md
       - Context Properties: interface/context_properties.md
       - Variant Tree: interface/variant_tree.md
+      - Globals Panel: features/globals.md
       - Keyboard Shortcuts: interface/hotkeys.md
     - Features:
       - features/index.md
-      - Variant Switch: features/variant_switch.md
-      - Tag Library: features/tags.md
-      - Rules: features/rules.md
-      - Globals Panel: features/globals.md
-      - Smart Output: features/smart_output.md
-      - Custom Tokens: features/custom_tokens.md
-      - Render Presets: features/render_presets.md
-      - Batch Render: features/batch_render.md
-      - Video Sequencer: features/sequencer.md
-      - View Layer Preview: features/vl_preview.md
-      - Still Mode: features/still_mode.md
-      - Value Lock: features/value_lock.md
-      - Bookmarks: features/bookmarks.md
-      - Pie Menus: features/pie_menus.md
-      - Process Monitor: features/process_monitor.md
-      - Viewport Sync: features/viewport_sync.md
-      - AI Assistant: features/ai_assistant.md
+      - Setting Up Looks:
+        - Variant Switch: features/variant_switch.md
+        - Render Presets: features/render_presets.md
+        - Tag Library: features/tags.md
+        - Rules: features/rules.md
+      - Naming & Output:
+        - Smart Output: features/smart_output.md
+        - Custom Tokens: features/custom_tokens.md
+        - Batch Render: features/batch_render.md
+      - Working Faster:
+        - Pie Menus: features/pie_menus.md
+        - Bookmarks: features/bookmarks.md
+        - View Layer Preview: features/vl_preview.md
+        - Viewport Sync: features/viewport_sync.md
+      - Modes & Safety:
+        - Still Mode: features/still_mode.md
+        - Value Lock: features/value_lock.md
+      - Advanced:
+        - Video Sequencer: features/sequencer.md
+        - Process Monitor: features/process_monitor.md
+        - AI Assistant: features/ai_assistant.md
     - Preferences:
       - preferences/index.md
       - Workflow: preferences/workflow.md
@@ -175,7 +179,7 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
-      # Left-nav (toc.integrate) shows only top-level headings — e.g. the
+      # The right-hand contents column shows only top-level headings — e.g. the
       # changelog lists versions (##), not each Added/Changed/Fixed (###).
       toc_depth: 2
 
