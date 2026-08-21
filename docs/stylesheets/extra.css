@@ -750,3 +750,18 @@ h1, h2, h3, h4, h5, h6 {
 .md-typeset details {
   margin: 1.6em 0;
 }
+
+/* The header's logo sat 16px right of everything else: the header inner adds
+   its own left padding, then the first button adds a margin and a padding on
+   top. Cancel both so the glyph starts on the same line as the crumbs, the
+   headings and the body text. */
+@media screen and (min-width: 76.25em) {
+  .md-header__inner,
+  [dir] .md-header__inner {
+    padding-left: 0;
+  }
+  .md-header__inner > .md-header__button:first-of-type,
+  [dir] .md-header__inner > .md-header__button:first-of-type {
+    margin-left: -0.4rem;
+  }
+}
