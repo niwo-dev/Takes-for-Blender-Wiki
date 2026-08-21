@@ -98,7 +98,7 @@
   }
 
   function teardown() {
-    document.querySelectorAll(".tks-toc-fab, .tks-toc-panel").forEach(function (n) {
+    document.querySelectorAll(".tks-toc-fab, .tks-toc-panel, .tks-toc-scrim").forEach(function (n) {
       n.remove();
     });
   }
@@ -127,12 +127,20 @@
     panel.className = "tks-toc-panel";
     panel.appendChild(toc.cloneNode(true));
 
+    // Its own scrim, so opening the contents dims and blurs the page exactly
+    // as the drawer does -- and so clicking away is an obvious way out rather
+    // than a hidden one.
+    var scrim = document.createElement("div");
+    scrim.className = "tks-toc-scrim";
+
     function close() {
       panel.setAttribute("data-open", "false");
+      scrim.setAttribute("data-open", "false");
       btn.setAttribute("aria-expanded", "false");
     }
     function open() {
       panel.setAttribute("data-open", "true");
+      scrim.setAttribute("data-open", "true");
       btn.setAttribute("aria-expanded", "true");
     }
 
@@ -180,6 +188,8 @@
     } else {
       document.body.appendChild(btn);
     }
+    scrim.addEventListener("click", close);
+    document.body.appendChild(scrim);
     document.body.appendChild(panel);
     btn.style.display = "flex";
 

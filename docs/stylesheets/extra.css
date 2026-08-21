@@ -660,15 +660,11 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 3;
   }
 
-  /* With the site title hidden, the search sat off to one side. Centre it
-     between the logo cluster and the icon cluster. */
+  /* The search stays where Material puts it, on the right. Centring it looked
+     tidy but fought the panel's own open animation, and the field belongs with
+     the other header controls anyway. */
   .md-header__inner {
     position: relative;
-  }
-  .md-search,
-  [dir] .md-search {
-    margin-left: auto;
-    margin-right: auto;
   }
 }
 
@@ -835,4 +831,50 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 0 !important;
     margin-left: 0 !important;
   }
+}
+
+/* Both overlays dim AND blur, so whatever is behind stops competing for the
+   eye rather than merely going darker. */
+.md-overlay,
+.tks-toc-scrim {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+/* The contents panel's own scrim -- same treatment as the drawer's, one layer
+   below the panel so the panel stays crisp. */
+.tks-toc-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.54);
+}
+.tks-toc-scrim[data-open="true"] {
+  display: block;
+}
+@media screen and (max-width: 76.2394em) {
+  .tks-toc-scrim { display: none !important; }
+}
+
+/* Contents entries were stacked tight enough to read as one block. Give each
+   its own row with a hairline between, so the list scans as separate targets. */
+.tks-toc-panel .md-nav__item {
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+.tks-toc-panel .md-nav__item:last-child {
+  border-bottom: 0;
+}
+.tks-toc-panel .md-nav__link {
+  margin: 0;
+  padding: 0.5rem 0.4rem;
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+.tks-toc-panel .md-nav__link:hover {
+  background-color: var(--md-default-fg-color--lightest);
+}
+/* Nested headings keep their indent but not a second divider. */
+.tks-toc-panel .md-nav__item .md-nav__item:last-child {
+  border-bottom: 0;
 }
