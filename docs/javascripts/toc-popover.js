@@ -35,6 +35,12 @@
     var bar = document.querySelector(".md-path");
     root.style.setProperty(
       "--tks-bar-h", bar ? bar.getBoundingClientRect().height + "px" : "0px");
+
+    // 100vw counts the scrollbar, so a full-bleed strip built from it overhangs
+    // the header by the scrollbar's width and forces a horizontal scroll.
+    // Publish the real gutter so the strip can subtract it.
+    root.style.setProperty(
+      "--tks-sbw", (window.innerWidth - root.clientWidth) + "px");
   }
   window.addEventListener("resize", syncHeaderHeight);
 

@@ -572,12 +572,13 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Full-bleed out of the centred reading column, without needing to know
      the header's height. */
-  /* The strip is as wide as the content, not the window. Full-bleed left a
-     long empty run of dark to the right of the crumbs. */
+  /* The strip spans the window, exactly like the header above it -- a
+     content-width strip leaves bare page either side of it. Only the crumbs
+     inside are pulled in to line up with the text. */
   .md-path,
   [dir] .md-path {
-    width: auto;
-    margin: 0 0 1.6rem;
+    width: calc(100vw - var(--tks-sbw, 0px));
+    margin: 0 calc(50% - 50vw + var(--tks-sbw, 0px) / 2) 1.6rem;
     padding: 0.5rem 0;
     background-color: var(--md-primary-fg-color);
     color: var(--md-primary-bg-color);
@@ -590,9 +591,9 @@ h1, h2, h3, h4, h5, h6 {
     display: flex !important;
     align-items: center;
     box-sizing: border-box;
-    max-width: none;
-    margin: 0;
-    padding: 0;
+    max-width: 61rem;
+    margin: 0 auto;
+    padding: 0 3rem;
   }
   .md-path__item,
   .md-path__link {
