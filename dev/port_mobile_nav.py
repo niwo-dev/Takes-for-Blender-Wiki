@@ -34,12 +34,12 @@ END = "/* <<< END PORTED MOBILE DRAWER >>> */"
 
 # Only the drawer's own nav. Pulling every md-nav rule across would also restyle
 # the table-of-contents nav, which focus mode clones for its contents popover.
-KEEP = re.compile(r"md-nav--primary|md-nav__title|md-nav__source|md-nav__toggle")
+KEEP = re.compile(r"md-nav--primary|md-nav__title|md-nav__source|md-nav__toggle|md-overlay")
 
 # Rules that would fight focus mode's own positioning of the panel.
 # ...and never the secondary nav: the contents popover clones it, and the
 # drawer's sliding rules would translate that clone off screen.
-DROP = re.compile(r"md-sidebar|md-overlay|md-header|md-tabs|md-nav--secondary")
+DROP = re.compile(r"md-sidebar|md-header|md-tabs|md-nav--secondary")
 
 
 def scope(selector: str) -> str:
@@ -52,7 +52,12 @@ def scope(selector: str) -> str:
     parts = []
     for part in selector.split(","):
         part = part.strip()
-        parts.append(part if "md-nav--primary" in part else f".md-nav--primary {part}")
+        # The overlay is a sibling of the drawer toggle, not part of the nav --
+        # prefixing it would stop it matching anything at all.
+        if "md-overlay" in part or "md-nav--primary" in part:
+            parts.append(part)
+        else:
+            parts.append(f".md-nav--primary {part}")
     return ", ".join(parts)
 
 

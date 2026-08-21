@@ -419,9 +419,10 @@ h1, h2, h3, h4, h5, h6 {
     left: max(0px, calc(50% - 410px - 15.5rem - 1rem));
     width: 15.5rem;
     height: 100%;
-    z-index: 5;
+    z-index: 6;                 /* above the scrim, which sits at 5 */
     background-color: var(--md-default-bg-color);
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.35);
+    /* Mobile's drawer carries no shadow; the dimmed scrim does that work. */
+    box-shadow: none;
     transform: translateX(calc(-100% - max(0px, calc(50% - 410px - 15.5rem - 1rem))));
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
@@ -433,13 +434,6 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(0);
   }
 
-  /* Dim the page behind the open drawer; clicking it closes. */
-  [data-md-toggle="drawer"]:checked ~ .md-container .md-overlay {
-    width: 100%;
-    height: 100%;
-    opacity: 1;
-    transition: width 0s, height 0s, opacity 0.25s;
-  }
 
   .md-sidebar--primary .md-sidebar__scrollwrap {
     overflow-y: auto;
@@ -781,5 +775,21 @@ h1, h2, h3, h4, h5, h6 {
   [dir=rtl] .md-nav__toggle~.md-nav { transform:translateX(-100%) }
   .md-nav__toggle:checked~.md-nav { opacity:1;transform:translateX(0);transition:transform .25s cubic-bezier(.4,0,.2,1),opacity 125ms 125ms }
   .md-nav__toggle:checked~.md-nav>.md-nav__list { backface-visibility:hidden }
+  .md-overlay { background-color:#0000008a;height:0;opacity:0;position:fixed;top:0;transition:width 0ms .25s,height 0ms .25s,opacity .25s;width:0;z-index:5 }
+  [data-md-toggle=drawer]:checked~.md-overlay { height:100%;opacity:1;transition:width 0ms,height 0ms,opacity .25s;width:100% }
 }
 /* <<< END PORTED MOBILE DRAWER >>> */
+
+/* The ported base rule sets the scrim to opacity 0, and it lands after
+   Material's own "drawer is open" rule -- so the scrim stayed invisible even
+   though it was full-screen and dark. Restate the open state last, where it
+   wins. This is also what makes clicking outside close the drawer: the scrim
+   is a <label for="__drawer">, so it only takes clicks once it has a size. */
+@media screen and (min-width: 76.25em) {
+  [data-md-toggle="drawer"]:checked ~ .md-overlay {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: width 0ms, height 0ms, opacity 0.25s;
+  }
+}
