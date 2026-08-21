@@ -139,15 +139,6 @@ Tag names feed two [Smart Output](smart_output.md) tokens.
 
 ## :material-keyboard: Hotkeys
 
-The tag tree has its own shortcuts. Full list on [Keyboard Shortcuts](../interface/hotkeys.md).
+In the tag tree, ++ctrl+g++ groups the selected tags and ++ctrl+t++ retargets them.
 
-??? info "Tag tree shortcuts"
-    | Shortcut | Action |
-    |----------|--------|
-    | ++ctrl+n++ | Add tag (smart). |
-    | ++shift+a++ | Full add menu. |
-    | ++f2++ | Rename. |
-    | ++del++ / ++x++ | Delete. |
-    | ++ctrl+g++ / ++alt+g++ | Group / ungroup. |
-    | ++ctrl+t++ | Retarget into another group. |
-    | ++ctrl+i++ | Invert multi-selection. |
+Full list: [Keyboard Shortcuts](../interface/hotkeys.md)

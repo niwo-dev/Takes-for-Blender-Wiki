@@ -4,42 +4,50 @@ icon: material/layers-triple
 
 # Features
 
-Takes for Blender provides a deep toolset for managing complex product visualization pipelines. Each feature is designed to work together through the cascade system.
+One page per feature, grouped by what you are trying to do. Each page shows where the feature lives and what every control does.
 
-## :material-cube-outline: Core
+## :material-palette-swatch: Setting Up Looks
 
-| Feature | Description |
-|---------|-------------|
-| [**Takes**](takes.md) | Hierarchical organisation of Scenes, View Layers, and Takes. |
-| [**Cascade System**](cascade.md) | 6-tier property override resolution engine. |
-| [**Takes (Review Loop)**](vl_versions.md) | Saved review iterations beneath each View Layer. |
-| [**Globals Panel**](globals.md) | Project-wide control centre — settings, presets overview, rules, tags, variants. |
+| Feature | What it does |
+|---|---|
+| [**Variant Switch**](variant_switch.md) | Show one product in many finishes. Takes swaps the materials for you. |
+| [**Render Presets**](render_presets.md) | Save render settings once, reuse them anywhere in the tree. |
+| [**Tag Library**](tags.md) | Colour-coded labels for scenes, layers, variants and objects. |
+| [**Rules**](rules.md) | One tag that applies a whole bundle of presets in one click. |
 
-## :material-auto-fix: Automation
+## :material-form-textbox: Naming & Output
 
-| Feature | Description |
-|---------|-------------|
-| [**Tags**](tags.md) | Universal labelling system for organisation and automation. |
-| [**Rules**](rules.md) | Tag-driven preset bundles applied through the cascade. |
-| [**Variant Switch**](variant_switch.md) | Per-scope material swapping and product variants. |
-| [**Smart Output**](smart_output.md) | Dynamic token-based file path resolution. |
+| Feature | What it does |
+|---|---|
+| [**Smart Output**](smart_output.md) | Build file names from tokens, so every render lands in the right folder. |
+| [**Custom Tokens**](custom_tokens.md) | Make your own tokens from live scene data. No scripting. |
+| [**Batch Render**](batch_render.md) | Render every take in one go, in front of you or in the background. |
 
-## :material-factory: Production
+## :material-run-fast: Working Faster
 
-| Feature | Description |
-|---------|-------------|
-| [**Render Presets**](render_presets.md) | JSON-based presets for render, output, view layer, color, camera, world, material, bookmarks. |
-| [**Batch Render**](batch_render.md) | Foreground & background multi-View Layer rendering with queue management. |
-| [**Rest State**](rest_state.md) | Auto-mirroring rest action for preserving default keyframes. |
-| [**Value Lock**](value_lock.md) | Protects unkeyed values from accidental global changes while you work. |
-| [**Still Mode**](still_mode.md) | Pins takes to the frame-0 still frame per cascade tier — stills stay stills, turntables keep animating. |
-| [**View Layer Preview**](vl_preview.md) | Inline rendered thumbnails next to each View Layer. |
+| Feature | What it does |
+|---|---|
+| [**Pie Menus**](pie_menus.md) | Wheel menus under your cursor for switching, rendering and keying. |
+| [**Bookmarks**](bookmarks.md) | Pull a buried property somewhere you can reach it. |
+| [**View Layer Preview**](vl_preview.md) | A live thumbnail beside every row, so you see what you are picking. |
+| [**Viewport Sync**](viewport_sync.md) | Keep snap, pivot and other viewport tool settings the same in every scene. |
 
-## :material-shape-plus: Extras
+## :material-shield-check: Modes & Safety
 
-| Feature | Description |
-|---------|-------------|
-| [**Bookmarks**](bookmarks.md) | Quick-access pointers to animatable properties anywhere in Blender. |
-| [**Pie Menus**](pie_menus.md) | Configurable pies — navigation (++ctrl+shift+c++), F12 render, keyframe and clear. |
-| [**Process Monitor**](process_monitor.md) | Runtime diagnostics — process tree, debug console, View Layer Switch profiler. |
-| [**Viewport Sync**](viewport_sync.md) | Keep snap, pivot, proportional-edit and other viewport tool settings identical across every scene. |
+| Feature | What it does |
+|---|---|
+| [**Still Mode**](still_mode.md) | Stills stay frozen on their frame while turntables keep animating. |
+| [**Value Lock**](value_lock.md) | Protects unkeyed values from an accidental nudge. |
+
+## :material-flask-outline: Advanced
+
+| Feature | What it does |
+|---|---|
+| [**Video Sequencer**](sequencer.md) | Scene strips preview with the right take as you scrub the edit. |
+| [**Process Monitor**](process_monitor.md) | See what Takes is doing, live, when something feels slow. |
+| [**AI Assistant**](ai_assistant.md) | Let an outside assistant read your project and drive Takes safely. |
+
+!!! tip "Looking for something else?"
+    The **Globals Panel** and the other panels live under
+    [Panels](../interface/index.md). The big ideas — the tree, the cascade,
+    the review loop — live under [How It Works](takes.md).

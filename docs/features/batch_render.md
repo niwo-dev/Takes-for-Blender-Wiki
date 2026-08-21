@@ -204,17 +204,4 @@ Add a **Note** to record what changed, browse past ones in **Version History**, 
 
 The render-toggle icon beside each View Layer takes modifier-clicks. ++esc++ cancels a running batch.
 
-??? info "Every shortcut on this page"
-    | Shortcut on the render-toggle icon | Action |
-    |----------|--------|
-    | Click | Toggle that View Layer in the queue. |
-    | ++alt++ + click | **Preview Render** — open the View Layer's newest rendered image into Blender's Render Result. Needs a finished render; does nothing otherwise. |
-    | ++ctrl++ + click | **Render & save** that View Layer through the queue. |
-    | ++shift++ + click | Toggle **all** View Layers in the current scene. |
-
-    | While a batch runs | Action |
-    |----------|--------|
-    | ++esc++ | Cancel the batch. The status line shows *(ESC to cancel)* while running. |
-    | ++alt++ + click the **Render** button | Force-reset a stuck render. It clears the batch state and restores anything the render suppressed. |
-
-See [Keyboard Shortcuts](../interface/hotkeys.md) for the full reference.
+Full list: [Keyboard Shortcuts](../interface/hotkeys.md)

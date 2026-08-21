@@ -61,16 +61,6 @@ Tag states with the **Variant** tag category to organise them. Smart Output reso
 
 ## :material-keyboard: Hotkeys
 
-The tree has its own shortcuts.
+++ctrl+n++ adds the right item for your selection, ++f2++ renames it.
 
-??? info "All Variant Tree shortcuts"
-    | Shortcut | Action |
-    |----------|--------|
-    | ++ctrl+n++ | Smart add (Product, State, or Part depending on selection). |
-    | ++shift+a++ | Full add menu. |
-    | ++f2++ | Rename the selected Product / State / Part. |
-    | ++del++ / ++x++ | Remove the selected item (keeps at least 1 State and 1 Part per Product). |
-    | ++ctrl+i++ | Invert multi-selection. |
-    | ++alt++ + click on a cascade icon | Clear the variant override at this tier. |
-
-See the full reference at [Keyboard Shortcuts](hotkeys.md).
+Full list: [Keyboard Shortcuts](hotkeys.md)

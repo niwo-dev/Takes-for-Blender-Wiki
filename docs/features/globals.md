@@ -60,14 +60,6 @@ Blender 5.0 is the minimum for slotted actions. On an older build a banner links
 
 ## :material-keyboard: Hotkeys
 
-The Globals panel shares the generic tree hotkeys with every other tree panel. Full list on [Keyboard Shortcuts](../interface/hotkeys.md).
+The Globals panel shares the generic tree hotkeys with every other tree panel.
 
-??? info "The tree shortcuts"
-    | Shortcut | Action |
-    |----------|--------|
-    | ++ctrl+n++ / ++shift+a++ | Add (smart / full menu). |
-    | ++f2++ | Rename. |
-    | ++del++ / ++x++ | Delete. |
-    | ++ctrl+g++ / ++alt+g++ | Group / ungroup (Tags & Rules). |
-    | ++ctrl+t++ | Retarget. |
-    | ++ctrl+i++ | Invert multi-selection. |
+Full list: [Keyboard Shortcuts](../interface/hotkeys.md)

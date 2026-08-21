@@ -94,6 +94,21 @@ Every View Layer row carries a strip of cascade override icons. They show at a g
 
 Indent lines draw the hierarchy for you. They are configurable, and they can inherit tag colors so you spot a group fast.
 
+### :material-filter: Filtering the Tree {: #tag-filter }
+
+The **funnel** icon in the tree's side column filters the tree by tag.
+
+Click it to open **{{ op('tks.tag_filter_popover').bl_label }}**, then pick a tag. Only rows carrying it stay — and a Scene stays visible when any of its View Layers matches.
+
+??? info "Details"
+    The popover lists only tags that are actually assigned somewhere, plus a
+    **-- Show All --** row that clears the filter. The funnel stays highlighted
+    while any filter is active, so you can see why rows are missing.
+
+    Filtering the *tree* is generous: a parent survives when a child matches.
+    Filtering a *render* by tag is strict — the render menu's **Pick Tag** scope
+    matches a View Layer's own tag only. See [Tag & Filter Takes](../workflows/tag_and_filter.md).
+
 ## :material-tune: Tree Display Settings
 
 Click the **down-arrow** (⌄) beside the up/down move buttons, in the column right of the tree. It opens the **Icon Visibility** popover.
@@ -154,20 +169,6 @@ It means Autokey is on, but Blender would silently swallow your keyframes anyway
 
 ## :material-keyboard: Hotkeys
 
-The tree takes the usual add, rename, delete and duplicate shortcuts. The full reference lives at [Keyboard Shortcuts](hotkeys.md).
+++ctrl+shift+c++ opens the [Navigation Pie Menu](../features/pie_menus.md). The tree takes the usual add, rename, delete and duplicate shortcuts.
 
-??? info "Tree and cascade shortcuts"
-    | Shortcut | Action |
-    |----------|--------|
-    | ++ctrl+shift+c++ | Open the [Navigation Pie Menu](../features/pie_menus.md). |
-    | ++ctrl+n++ | Add a new tree item (smart). |
-    | ++shift+a++ | Open the full add menu. |
-    | ++f2++ | Rename the selected item. |
-    | ++del++ / ++x++ | Delete (with confirmation). |
-    | ++ctrl+g++ / ++alt+g++ | Group / ungroup the selection. |
-    | ++ctrl+t++ | Retarget. |
-    | ++shift+d++ / ++alt+d++ | Duplicate (full / linked). |
-    | ++ctrl+i++ | Invert multi-selection. |
-
-    Cascade icons accept ++alt++-click to clear, ++shift++-click for a scene-wide toggle,
-    and ++ctrl+shift++-click for a global toggle.
+Full list: [Keyboard Shortcuts](hotkeys.md)

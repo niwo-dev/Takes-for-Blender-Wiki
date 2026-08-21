@@ -84,6 +84,8 @@ nav:
     - getting_started/index.md
     - Install Takes: getting_started/installation.md
     - Your First Steps: getting_started/first_steps.md
+    - Your First Take: getting_started/first_take.md
+    - Your First Batch Render: getting_started/first_batch_render.md
 
   - Guides:
     - workflows/index.md

@@ -53,3 +53,5 @@ Three housekeeping operators move bookmark sets between files. None is drawn in 
 ## :material-keyboard: Hotkeys
 
 Bookmarks have no dedicated hotkey — add and remove them from the right-click menu on any property.
+
+Full list: [Keyboard Shortcuts](../interface/hotkeys.md)

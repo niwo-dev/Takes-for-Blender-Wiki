@@ -61,13 +61,6 @@ Your change reaches every tier using that rule on the next sync.
 
 ## :material-keyboard: Hotkeys
 
-Cascade icons that select a rule accept ++alt++-click to clear the assignment at that tier. See [Keyboard Shortcuts](../interface/hotkeys.md).
+Cascade icons that select a rule accept ++alt++-click to clear the assignment at that tier.
 
-??? info "Tree shortcuts in Rules mode"
-    | Shortcut | Action |
-    |----------|--------|
-    | ++ctrl+n++ | Add rule. |
-    | ++f2++ | Rename. |
-    | ++del++ / ++x++ | Delete. |
-    | ++ctrl+g++ / ++alt+g++ | Group / ungroup. |
-    | ++ctrl+t++ | Retarget. |
+Full list: [Keyboard Shortcuts](../interface/hotkeys.md)

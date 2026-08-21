@@ -15,12 +15,16 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 | Shortcut | Action |
 |----------|--------|
 | {{ keys('wm.call_menu_pie') }} | **Open Navigation Pie Menu** — eight slots, all reassignable. |
+| ++f12++ | **F12 Render Pie** — pick a render scope before rendering. Off by default. |
+| ++i++ | **Keyframe Pie** — replaces Blender's native insert menu. Off by default. |
+| ++alt+i++ | **Clear Pie** — a pie of keyframe-clearing actions. Off by default. |
 
 ??? info "Default slots, and how to change them"
     West **Tree View**, East **Watchlist**, South **Slotted Mode**, North **Rules**,
     NW **Variants**, NE **Tags**, SW **Batch Render**, SE **Channels**.
 
-    Reassign any slot in *Preferences > Workflow > Pie & Misc*.
+    Reassign any slot in *Preferences > Workflow > Pie & Misc*. The three
+    optional pies have their master toggles there too.
 
 ---
 
@@ -43,6 +47,15 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 | {{ keys('tks.global_ungroup') }} | **Ungroup** | Takes the selection out of its group. |
 | {{ keys('tks.global_retarget') }} | **Retarget** | Moves the selected item to another parent. |
 | {{ keys('tks.global_duplicate') }} | **Duplicate** | Two bindings: full copy and linked copy. |
+
+*The expand chevron on Scene, Group and Take rows answers to modifiers.*
+
+| Shortcut | Reach |
+|----------|-------|
+| Click | Just this row. |
+| ++ctrl++ + click | This row **and all its nested children**. |
+| ++shift++ + click | **All rows of the same type**, like Blender's Outliner. |
+| ++alt+shift++ + click | **Every row in the tree**, whatever its type. |
 
 ??? info "Delete and New, in detail"
     Switch the delete confirmation off in *Preferences > Interface > Confirmations*.
@@ -68,6 +81,41 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 
 ---
 
+## :material-magnify-scan: Inspector
+
+*With the Inspector focused.*
+
+| Shortcut | Action |
+|----------|--------|
+| ++f2++ | **Rename** the selected action or slot. |
+| ++del++ / ++x++ | **Delete** an action, slot or watchlist entry. Asks first. |
+| ++ctrl+i++ | **Invert** the multi-selection. |
+
+*The trash button in the Channels frame-navigation bar widens with modifiers.*
+
+| Shortcut | Scope |
+|----------|-------|
+| Click | Keys of the **selected target type** at the **current frame**. |
+| ++alt++ + click | Keys of **all target types** at the current frame. |
+| ++shift++ + click | Keys of the selected target type across the **whole timeline**. |
+| ++shift+alt++ + click | **Everything** — all target types, whole timeline. |
+
+---
+
+## :material-swap-horizontal: Variant Tree
+
+The Variant Tree takes the same [Tree Edits](#tree-edits) keys. **Delete** always keeps one State and one Part per Product.
+
+*Modifier-clicks on the variant cascade icons, on State and Part rows.*
+
+| Shortcut | Action |
+|----------|--------|
+| ++alt++ + click | Clear the variant override at this tier. |
+| ++alt+shift++ + click | Clear it here **and** on every tier beneath it. |
+| ++shift++ + click | Toggle this variant across all View Layers in the active scene. |
+
+---
+
 ## :material-arrow-decision: Cascade Icons
 
 *Modifier-clicks on the cascade icons beside a tree row.*
@@ -88,7 +136,7 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 | Shortcut | Action |
 |----------|--------|
 | Click | Turn this View Layer on or off in the queue. |
-| ++alt++ + click | **Preview** it now, as a single frame. |
+| ++alt++ + click | **Preview Render** — open its newest rendered image in the Render Result. Needs a finished render. |
 | ++ctrl++ + click | **Render & save** it through the queue. |
 | ++shift++ + click | Toggle every View Layer in this scene. |
 | Click **Render All Previews** | Preview the selected View Layers. |
@@ -101,6 +149,7 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 | Shortcut | Action |
 |----------|--------|
 | ++esc++ | Cancel the running batch render. |
+| ++alt++ + click a render scope row | Force-render every View Layer, even completed ones. |
 | ++alt++ + click the **Render** button | Force-reset a stuck render. |
 
 ---
@@ -114,6 +163,19 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 | Click | Open the picker. |
 | ++alt++ + click | Clear the assigned datablock at this tier. |
 | ++alt++ + click **Find Action** | Show Scene and World datablocks instead of Object ones. |
+
+---
+
+## :material-palette-swatch: Preset Rows
+
+*Preset selectors on cascade rows and in the Globals panel.*
+
+| Shortcut | Action |
+|----------|--------|
+| Click the preset field | Search and assign a preset. |
+| ++alt++ + click the preset icon | Clear the assignment at this tier. |
+| ++alt++ + click **Accept** | Save the dirty preset **and** push it to every scene using it. |
+| ++alt++ + click the clear **X** | Delete the preset file, after a confirmation. |
 
 ---
 
@@ -150,6 +212,7 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 | ++i++ | Insert keyframe. Rest State mirrors the unkeyed value for you. |
 | ++alt+i++ | Delete keyframe. The property snaps back to its Rest value. |
 | ++n++ | Toggle the sidebar, where the **Takes** tab lives. |
+| ++f3++ | Operator search. A few housekeeping tools live only there. |
 
 ??? info "Changing a shortcut"
     Every binding here is a normal Blender keymap entry. To change a key,

@@ -29,12 +29,6 @@ collections:
         fields:
           - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown"}
-      - label: "Corporate Identity"
-        name: "corporate_identity"
-        file: "docs/corporate_identity.md"
-        fields:
-          - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
-          - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "getting-started"
     label: "Getting Started"

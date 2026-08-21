@@ -55,23 +55,6 @@ The full loop — notes, **New Take from Here**, comparing rounds — is on [Tak
 
 ## :material-keyboard: Hotkeys
 
-Put your mouse over the Takes Tree in the sidebar, then use the tree shortcuts.
+Put your mouse over the Takes Tree, then ++ctrl+n++ adds and ++f2++ renames.
 
-++ctrl+n++ adds, ++f2++ renames, ++del++ deletes, ++ctrl+g++ groups the selection.
-
-??? info "Every tree shortcut"
-    | Shortcut | Action |
-    |----------|--------|
-    | ++ctrl+n++ | Add (smart — picks the right item type for the current selection) |
-    | ++shift+a++ | Add menu (full add options) |
-    | ++f2++ | Rename the selected item |
-    | ++del++ / ++x++ | Delete (with confirmation) |
-    | ++ctrl+g++ | Group the selection (Scene Group / View Layer Group) |
-    | ++alt+g++ | Ungroup |
-    | ++ctrl+t++ | Retarget — move the selected item under a different parent: a View Layer to another View Layer Group, a Scene to another Scene Group, or merge one group into another. Use it to reorganise the tree without deleting and recreating anything. |
-    | ++shift+d++ | Duplicate (full copy) |
-    | ++alt+d++ | Duplicate (linked) |
-    | ++ctrl+i++ | Invert multi-selection |
-    | ++shift++ + click a chevron | Expand / collapse every item of that type at once (++ctrl+shift++ + click folds the whole tree; a plain click still toggles just the one group) |
-
-A complete hotkey reference is on the [Keyboard Shortcuts](../interface/hotkeys.md) page.
+Full list: [Keyboard Shortcuts](../interface/hotkeys.md)

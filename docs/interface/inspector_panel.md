@@ -245,20 +245,6 @@ Bookmarked target types stay switchable even with no keyframes, so your favourit
 
 ## :material-keyboard: Hotkeys
 
-With the Inspector focused, ++f2++ renames, ++del++ deletes, and ++ctrl+i++ inverts a multi-selection.
+With the Inspector focused, ++f2++ renames and ++del++ deletes. ++alt++-click **Find Action** to search Scene & World datablocks instead of Object ones.
 
-??? info "The full list for this panel"
-    | Shortcut | Action |
-    |----------|--------|
-    | ++f2++ | Rename the selected action or slot. |
-    | ++del++ / ++x++ | Delete an action, slot or watchlist entry. The confirmation is toggleable in *Preferences > Interface > Confirmations*. |
-    | ++ctrl+i++ | Invert the multi-selection. |
-
-    Datablock pickers (Action, Camera, World) follow the cascade convention:
-
-    | Shortcut | Action |
-    |----------|--------|
-    | ++alt++ + click | Clear the assigned datablock. |
-    | ++alt++ + click on **Find Action** | Show Scene & World datablocks instead of Object datablocks. |
-
-See [Keyboard Shortcuts](hotkeys.md) for the full reference.
+Full list: [Keyboard Shortcuts](hotkeys.md)

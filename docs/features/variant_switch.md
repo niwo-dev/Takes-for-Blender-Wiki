@@ -147,21 +147,4 @@ Click the **variant** icon on any tree row to pick a State for that tier. The sa
 
 With the Variant Tree focused, ++ctrl+n++ adds the right thing for your selection, and ++f2++ renames it.
 
-??? info "Full list"
-    | Shortcut | Action |
-    |----------|--------|
-    | ++ctrl+n++ | Add — Product, State or Part, depending on the selection. |
-    | ++shift+a++ | Add menu, with every option. |
-    | ++f2++ | Rename the selected item. |
-    | ++del++ / ++x++ | Remove. Every Product keeps at least one State and one Part. |
-    | ++ctrl+i++ | Invert the multi-selection. |
-
-    Cascade icons on State and Part rows take the same modifier-clicks as the Takes Tree.
-
-    | Shortcut | Action |
-    |----------|--------|
-    | ++alt++ + click | Clear the variant override at this tier. |
-    | ++alt+shift++ + click | Clear it here **and** on every tier beneath it. |
-    | ++shift++ + click | Toggle this variant across all View Layers in the active scene. |
-
-    The full reference lives on [Keyboard Shortcuts](../interface/hotkeys.md).
+Full list: [Keyboard Shortcuts](../interface/hotkeys.md)

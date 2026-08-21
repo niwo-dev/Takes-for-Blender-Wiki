@@ -329,14 +329,6 @@ Fix it right there, or click **Fix Formats** or **Strip Invalid**.
 
 ## :material-keyboard: Hotkeys
 
-Cascade icons answer to modifier-clicks. Datablock pickers accept ++alt++-click to clear.
+Cascade icons answer to modifier-clicks — ++alt++-click clears the override at this tier.
 
-??? tip "Modifier-clicks on a cascade icon"
-    | Shortcut | Action |
-    |----------|--------|
-    | Click | Open the cascade popover. |
-    | ++alt++ + click | Clear the override at this tier. |
-    | ++shift++ + click | Toggle this property across all items of the same type in the active scene. |
-    | ++ctrl+shift++ + click | Toggle this property globally across every scene and group. |
-
-    The full reference lives on [Keyboard Shortcuts](hotkeys.md).
+Full list: [Keyboard Shortcuts](hotkeys.md)

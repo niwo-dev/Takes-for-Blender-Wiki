@@ -198,8 +198,6 @@ A preset saved by a much older or newer version can stop loading, because its la
 
 ## :material-keyboard: Hotkeys
 
-Preset controls follow the cascade convention. Click a selector to open the picker. ++alt++-click a preset icon to clear the assignment at that tier.
+++alt++-click a preset icon to clear the assignment at that tier.
 
-++alt++-click **Accept** on a dirty preset to save it and push it to every tier using it.
-
-See [Keyboard Shortcuts](../interface/hotkeys.md) for the complete reference.
+Full list: [Keyboard Shortcuts](../interface/hotkeys.md)

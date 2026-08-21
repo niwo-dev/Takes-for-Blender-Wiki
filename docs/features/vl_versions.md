@@ -89,4 +89,6 @@ Put `{take}` in your output pattern for the active take's name, or `{take_number
 
 ## :material-keyboard: Hotkeys
 
-++ctrl+n++ adds a take under the selected View Layer, ++f2++ renames, ++del++ deletes — see [Keyboard Shortcuts](../interface/hotkeys.md).
+++ctrl+n++ adds a take under the selected View Layer, ++f2++ renames, ++del++ deletes.
+
+Full list: [Keyboard Shortcuts](../interface/hotkeys.md)
