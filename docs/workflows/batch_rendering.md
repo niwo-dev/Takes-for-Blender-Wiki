@@ -36,10 +36,10 @@ When you want one click to render every View Layer, each with its own camera, wo
 
 ## :material-play-circle: Running the Batch
 
-### :material-play-circle: Foreground Mode
+### :material-play-circle: Render in Blender
 1. Open the Takes Tree sidebar.
 2. Click the render button to open the [render menu](../features/batch_render.md#the-render-menu).
-3. Set **Render Mode** to *Foreground*.
+3. Set **Render Mode** to *In Blender — you wait*.
 4. Pick a scope row, for example *Selected Layers → This Scene*.
 
 Blender works through the queue in tree order and saves each result to its Smart Output path.
@@ -52,9 +52,9 @@ Blender works through the queue in tree order and saves each result to its Smart
 
     Progress shows per View Layer in the render queue list.
 
-### :material-cog-clockwise: Background Mode
+### :material-cog-clockwise: Render in the Background
 1. Open the same render menu.
-2. Switch **Render Mode** to *Background*.
+2. Switch **Render Mode** to *In Background — keep working*.
 3. Pick a scope row.
 
 Blender stays interactive while the renders run. Tree thumbnails update as each View Layer finishes.

@@ -18,12 +18,13 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 | ++f12++ | **F12 Render Pie** — pick a render scope before rendering. Off by default. |
 | ++i++ | **Keyframe Pie** — replaces Blender's native insert menu. Off by default. |
 | ++alt+i++ | **Clear Pie** — a pie of keyframe-clearing actions. Off by default. |
+| ++shift+alt+q++ | **Mode Pie** — switch Still, Animation and Rest modes. Off by default. |
 
 ??? info "Default slots, and how to change them"
     West **Tree View**, East **Watchlist**, South **Slotted Mode**, North **Rules**,
     NW **Variants**, NE **Tags**, SW **Batch Render**, SE **Channels**.
 
-    Reassign any slot in *Preferences > Workflow > Pie & Misc*. The three
+    Reassign any slot in *Preferences > Workflow > Pie & Misc*. The four
     optional pies have their master toggles there too.
 
 ---
@@ -48,7 +49,7 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 | {{ keys('tks.global_retarget') }} | **Retarget** | Moves the selected item to another parent. |
 | {{ keys('tks.global_duplicate') }} | **Duplicate** | Two bindings: full copy and linked copy. |
 
-*The expand chevron on Scene, Group and Take rows answers to modifiers.*
+*The expand chevron on Scene, Group and View Layer rows answers to modifiers. Take rows are the end of a branch, so they carry no chevron.*
 
 | Shortcut | Reach |
 |----------|-------|
@@ -106,13 +107,20 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 
 The Variant Tree takes the same [Tree Edits](#tree-edits) keys. **Delete** always keeps one State and one Part per Product.
 
-*Modifier-clicks on the variant cascade icons, on State and Part rows.*
+*On the variant cascade icons in the **Takes tree**:*
 
 | Shortcut | Action |
 |----------|--------|
+| Click | Open the variant popover. |
 | ++alt++ + click | Clear the variant override at this tier. |
 | ++alt+shift++ + click | Clear it here **and** on every tier beneath it. |
-| ++shift++ + click | Toggle this variant across all View Layers in the active scene. |
+
+*On **State** and **Part** rows in the Variant Tree:*
+
+| Shortcut | Action |
+|----------|--------|
+| Click | Open the row's popover. |
+| ++alt++ + click | Clear this row's collection. |
 
 ---
 
@@ -122,10 +130,11 @@ The Variant Tree takes the same [Tree Edits](#tree-edits) keys. **Delete** alway
 
 | Shortcut | Action |
 |----------|--------|
-| Click | Open the popover for this property. |
+| Click | Open the quick list and pick a value. |
+| ++shift++ + click | Open the full popover, with **+**, rename and inherited value. |
 | ++alt++ + click | Clear the override at this tier, so it inherits again. |
-| ++shift++ + click | Toggle it on every item of the same type in this scene. |
-| ++ctrl+shift++ + click | Toggle it across all scenes and groups. |
+| ++shift+alt++ + click | Clear this tier **and** every tier below it. |
+| ++ctrl+shift+alt++ + click | Delete the datablock from the file. |
 
 ---
 

@@ -48,9 +48,23 @@ A State remembers one pool entry per Part. Picking a State applies all of them a
 
 ### :material-eye: Previewing Variants
 
-Click the **diamond** icon on any inactive State to apply that look to the viewport at once.
+Click the **diamond** icon on any inactive State to pick that State for editing.
 
 The State that is currently active shows a filled circle instead.
+
+The viewport only follows your picks while **Live** is on. With Live off, the take keeps showing its own assigned look.
+
+#### :material-play-circle-outline: Live
+
+**Live** is off until you switch it on. Turn it on and the viewport follows whatever State you pick.
+
+While Live is on, Takes turns **autokey off** and gives it back when you switch Live off. Switching Live off also puts the take's assigned look back.
+
+| On a Product row | What it means |
+| ------------------ | --------------- |
+| **LIVE** label | This is the Product the viewport is following. |
+| Dimmed diamond | Another Product. Click it to hand Live over to that one. |
+| **Link** icon with a number | How many places in the Takes tree use this Product. No number means nothing uses it, so there is nothing to snap back to. |
 
 ### :material-folder-outline: Linking a Part to a Collection
 
@@ -97,12 +111,12 @@ Takes warns you *before* that happens, through the [variant-conflict badge](../i
     | **Collapse** | One object carries **two or more different materials from the same pool**. A switch has only one pool position to apply, so both slots end up on one material and the difference is lost. The warning names the object, the slot, the material being replaced and the one replacing it. |
     | **Shared object** | One object is reachable from **two different Products**, through their root collections, Part collections or pool collections. Whichever Product switches last wins, so the result depends on the order you clicked in. |
 
-    Each entry offers two buttons.
+    | Button | Where it sits | What it does |
+    | -------- | --------------- | -------------- |
+    | **{{ op('tks.vsw_conflicts_rescan').bl_label }}** | Top right of the whole warning. | Re-scans every pool and Product. Use it after changing material slots outside the addon. |
+    | **{{ op('tks.vsw_reveal_pool').bl_label }}** | On each **Collapse** entry. | Selects the offending pool in the Variants tree, so you land on the exact Part that needs fixing. |
 
-    | Button | What it does |
-    | -------- | -------------- |
-    | **{{ op('tks.vsw_reveal_pool').bl_label }}** | Selects the offending pool in the Variants tree, so you land on the exact Part that needs fixing. |
-    | **{{ op('tks.vsw_conflicts_rescan').bl_label }}** | Re-scans every pool and Product. Use it after changing material slots outside the addon. |
+    **Shared object** entries carry no button. Fix those by taking the object out of one of the two Products.
 
 ??? note "Detection is scoped, not a file sweep"
     Reach is worked out from the Product's own collections only — never a sweep

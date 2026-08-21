@@ -6,14 +6,14 @@ icon: material/dots-circle
 
 A pie menu opens under your cursor. You flick in a direction instead of hunting for a button.
 
-Takes gives you four, each with eight slots you fill yourself.
+Takes gives you five, each with eight slots you fill yourself.
 
 Only the **Navigation Pie** is on out of the box. Switch the others on in *Preferences ▸ Workflow ▸ Pie & Misc*.
 
-??? info "What all four pies share"
+??? info "What all five pies share"
     - Eight compass directions per pie: N, NE, E, SE, S, SW, W, NW.
     - Assigning an action that already lives in another slot blanks that other slot. Every direction stays unique.
-    - All four are configured in the same place: *Workflow > Pie & Misc*.
+    - All five are configured in the same place: *Workflow > Pie & Misc*.
 
 ## :material-compass: Navigation Pie
 
@@ -57,14 +57,13 @@ It takes over ++f12++, so it ships off. Switch on **F12 Render Pie Menu** in *Wo
 The same scopes also sit in the render menu behind the queue sidebar's render button — see [Batch Render](batch_render.md#the-render-menu).
 
 ??? info "Default layout"
-    Every slot is reassignable. The SE slot ships empty, ready for the action you
-    reach for most.
+    Every slot is reassignable.
 
     |   |   |   |
     |:-:|:-:|:-:|
     | **NW**<br>All Layers · This Scene | **N**<br>Resume — Skip Done           | **NE**<br>Retry Failed            |
     | **W**<br>Active Layer Only      | :material-cursor-default-click:{ .lg .middle } | **E**<br>Selected Layers · This Scene |
-    | **SW**<br>All Layers · All Scenes | **S**<br>Selected Layers · All Scenes | **SE**<br>*(empty)*     |
+    | **SW**<br>All Layers · All Scenes | **S**<br>Selected Layers · All Scenes | **SE**<br>Render Jobs     |
 
 ### :material-format-list-bulleted: F12 Pie — Slot Actions
 
@@ -86,6 +85,7 @@ Ten actions, grouped in the dropdowns as **Selected Layers**, **All Layers** and
     | **Retry Failed** | Re-render only the View Layers whose previous attempt failed or cancelled. |
     | **Native F12** | Fall back to Blender's built-in render. |
     | **Open Render Settings** | Switch the active Properties editor to the Output context. |
+    | **Render Jobs** | Open the Render Jobs overview popover. |
     | **None** | Empty slot. |
 
     In Background mode both the pie and the render menu dispatch through the fast
@@ -144,7 +144,7 @@ Both ship off. Switch on **Enable Keyframe Pie** and **Enable Clear Pie (Alt+I)*
 
 ### :material-format-list-bulleted: Keyframe Pie (I) — Slot Actions
 
-Default layout: **N** Set as Rest Default, **S** Snap Active to Rest, **W** Snap All to Rest. The other slots ship empty.
+Default layout: **N** Set as Rest Default, **E** Insert Keyframe (Native), **S** Snap Active to Rest, **W** Snap All to Rest. The four corner slots ship empty.
 
 ??? info "Every action you can assign"
     | Action | What it does |

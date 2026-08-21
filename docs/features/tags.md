@@ -52,7 +52,7 @@ Use **+** and **−** to add or remove a tag, and **↑ / ↓** to reorder one. 
 2. Click **+**, then **Tag**.
 3. Give it a name and a colour — five presets, or your own.
 
-To file it away, make a group with **+** → **Group**, then drag tags into it.
+To file it away, tick the tags you want, then press **+** → **Group**. The group is built from what you picked. To move a tag later, select it and use **Retarget**.
 
 ### Duplicate names
 

@@ -21,11 +21,11 @@ Everything keyframed or driven stays fully editable.
 
 | Control | Location | Description |
 |---------|----------|-------------|
-| **{{ op('tks.value_lock_toggle').bl_label }}** | Navigation header, between the **Still Mode** and **Autokey** buttons. | Engages the lock and captures the unkeyed values of your **selected objects** as the baseline. That includes their materials, object data, the world, and anything else holding a static value. Click again to release. |
+| **{{ op('tks.value_lock_toggle').bl_label }}** | Navigation header, between the **Still Mode** and **Autokey** buttons. | Engages the lock and captures the unkeyed values of **every object in the scene** as the baseline. That includes their materials, object data, shape keys, the world, and anything else holding a static value. You do not need to select anything. Click again to release. |
 
 ## :material-shield-check: What's locked — and what isn't
 
-- **Locked:** unkeyed, undriven values on the selection at lock time — object
+- **Locked:** unkeyed, undriven values in the whole scene at lock time — object
   transforms, material and node values, light and world settings.
 - **Free:** anything with keyframes or drivers. Animated channels are the point
   of the workflow; the lock never touches them.

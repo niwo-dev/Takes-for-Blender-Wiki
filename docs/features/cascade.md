@@ -73,10 +73,10 @@ The Context Properties panel shows every override for the active View Layer in o
 ??? tip "Modifier clicks on a cascade icon"
     | Shortcut | Action |
     |----------|--------|
-    | Click | Open the popover for this property. |
+    | Click | Open the quick list and pick a value. |
+    | ++shift++ + click | Open the full popover, with **+**, rename and inherited value. |
     | ++alt++ + click | Clear the override at this tier. |
-    | ++shift++ + click | Toggle it across all items of the same type in the scene. |
-    | ++ctrl+shift++ + click | Toggle it across every scene and group. |
+    | ++shift+alt++ + click | Clear this tier **and** every tier below it. |
     | ++ctrl+shift+alt++ + click | Delete the datablock — see [Deleting Assigned Data](#deleting-assigned-data). |
 
     Hover any icon to see which tier the current value came from.
@@ -138,7 +138,7 @@ Three buttons keep it in sync.
 | Button | What it does |
 | -------- | -------------- |
 | **Re-apply Cascade Action** | Puts the resolved action back on every watched object. Use it after hand-editing an object's animation. |
-| **Pin Action** | Locks the object's current action so the cascade leaves it alone. |
+| **Pin Action** | Remembers the object's current action as its own. Takes uses it when the cascade finds nothing to give. It is a fallback, not a block — to keep the cascade off an object for good, pin the object in the [Inspector](../interface/inspector_panel.md). |
 | **Push to Selected** | Copies one value from the active row to every selected View Layer. Appears only during a multi-selection. |
 
 ??? info "Two more, from operator search only"

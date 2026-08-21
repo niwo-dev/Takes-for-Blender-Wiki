@@ -10,7 +10,7 @@ It is a cascade state like any other override: set it once at the top, then let 
 
 ## :material-map-marker: Where to Find It
 
-- **Navigation header** — the **{{ op('tks.still_global_toggle').bl_label }}** button (still-camera icon) flips the whole project between Still and Animate at the Global tier.
+- **Navigation header** — the **{{ op('tks.still_global_toggle').bl_label }}** button (still-camera icon) opens a small menu with three choices: **Still**, **Animation**, and **Off (per-take)**. The first two set the whole project at the Global tier. **Off** clears it again, so each take decides for itself.
 - **Tree rows** — every cascade level carries a Still popover: pick **Still**, **Animate**, or **Clear (Inherit)** to fall back to the parent tier. The timeline icon sits right after the tag column.
 
 ??? info "Setting it per tier"

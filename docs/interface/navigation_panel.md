@@ -66,10 +66,10 @@ The sixth, **Global**, is an implicit root you edit from the [Globals](../featur
 Every View Layer row carries a strip of cascade override icons. They show at a glance which properties are overridden at that level.
 
 ??? info "The nine row icons"
-    - **Ghost** — Rest State status
     - **Tag** — Assigned color tag
+    - **Still / Anim** — whether this row is a still or an animation
     - **Variant** — Active variant switch state
-    - **Action** — Cascade action assignment
+    - **Action** — Cascade action assignment. It turns into a **ghost** when a rest action is in play.
     - **Compositor** — Node tree override
     - **World** — World/environment override
     - **Camera** — Camera assignment
@@ -81,7 +81,8 @@ Every View Layer row carries a strip of cascade override icons. They show at a g
     Click it to open a popover showing all icons in full.
 
 ??? tip "Expand or collapse in bulk"
-    The expand chevron on Scene, Group and Take rows responds to modifiers.
+    The expand chevron on Scene, Group and View Layer rows responds to modifiers.
+    Take rows are the end of a branch, so they carry no chevron.
 
     | Shortcut | Reach |
     |----------|-------|
@@ -109,6 +110,12 @@ Click it to open **{{ op('tks.tag_filter_popover').bl_label }}**, then pick a ta
     Filtering a *render* by tag is strict — the render menu's **Pick Tag** scope
     matches a View Layer's own tag only. See [Tag & Filter Takes](../workflows/tag_and_filter.md).
 
+### :material-arrow-up-down: Moving Rows
+
+The **up** and **down** arrows in the column right of the tree move the highlighted row one step.
+
+++shift++ + click an arrow to move **every ticked row** at once. The highlight leads the move, then settles back on the ticked rows, so your selection stays with them.
+
 ## :material-tune: Tree Display Settings
 
 Click the **down-arrow** (⌄) beside the up/down move buttons, in the column right of the tree. It opens the **Icon Visibility** popover.
@@ -120,15 +127,22 @@ This is where you control what each tree row shows.
     |---------|-------------|
     | **Refresh Tree** | Force a full rebuild of the Takes Tree. |
     | **Collection Visibility** | Copy / paste the collection-visibility set of the active View Layer. |
+    | **Camera Visibility** | Show camera state on rows, with an **Automate** toggle. |
     | **Previews** | Master toggle, viewport-snapshot button, render button, refresh, size, background colour, transparent background. See [View Layer Preview](../features/vl_preview.md). |
     | **Cascade Icon Visibility** | Per-icon show/hide toggles (Tag, Variant, Action, Compositor, World, Camera, Output Rule). |
     | **Pin** toggles | Force certain icons to always render, skipping the overflow **⋯**. |
+    | **Collapse** | When the icons fold into **⋯**: Dynamic (with a minimum width), Always, or Never. |
+    | **Colors** | Row colours, including the active View Layer. |
+    | **{{ op('tks.sync_tree_to_prefs').bl_label }}** | Save these display choices into your preferences. |
 
 ## :material-alert-outline: Warnings
 
 Warning badges appear in the header only when the addon finds a problem. A clean file shows none.
 
 Click a badge to open its warning panel below the header. Each panel lists what is wrong and gives you the buttons to fix it.
+
+!!! warning "Panels greyed out?"
+    While Takes is waiting on a restore question, the whole panel locks — badges and mode buttons included. Answer the restore block and it unlocks. See [Snapshots & Recovery](../preferences/data.md#snapshots).
 
 ??? info "Every badge and what it surfaces"
     | Badge icon | Trigger | What it surfaces |

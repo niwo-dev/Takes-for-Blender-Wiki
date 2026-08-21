@@ -4,7 +4,7 @@ icon: material/earth
 
 # Globals Panel
 
-The **Globals** panel is the project-wide control centre. It holds project settings, the preset library, automation rules, the tag library and the Variant Switch tree — everything not tied to one Scene or View Layer.
+The **Globals** panel is the project-wide control centre. It holds the preset library, automation rules, the tag library and the Variant Switch tree — everything not tied to one Scene or View Layer.
 
 ## :material-map-marker: Where to Find It
 
@@ -16,22 +16,15 @@ The header has a row of mode buttons. Each switches the panel body to a differen
 
 | Mode | Icon | Shows |
 |------|------|-------|
-| **Settings** | gear | Project-wide settings (Rest Action, version warning, …). |
 | **Presets** | preset | Overview of 8 preset categories. |
 | **Variants** | UV-sync | The [Variant Switch](variant_switch.md) tree. |
 | **Rules** | gear (system) | Automation [rules](rules.md). |
 | **Tags** | colour mod | The full [tag](tags.md) library. |
 
-## :material-ghost: Settings Mode
-
-The Rest State controls.
-
-| Control | Description |
-|---------|-------------|
-| **Rest Action** picker | Picks the Action that stores the rest baseline. **+** creates a new one. |
-| **Auto-Mirror Keyframes** toggle | Mirrors unkeyed values into the Rest Action whenever you keyframe a property. |
-
-Full detail on [Rest State](rest_state.md).
+??? question "Looking for the Rest Action?"
+    It is not in this panel. The **Rest Action** picker sits in the header of the
+    Takes tree, and **Auto-Mirror Keyframes** lives in
+    *Preferences > Workflow*. Full detail on [Rest State](rest_state.md).
 
 ## :material-palette-swatch: Presets Mode
 
@@ -39,7 +32,7 @@ Eight preset rows, each with its current assignment, dirty indicator and revert 
 
 Render • Output • File Output • View Layer • Color Management • Camera • World • Material
 
-Click any preset to open its picker. ++alt++-click the icon to clear. See [Render Presets](render_presets.md).
+Click any preset to open its picker. Click the **X** at the end of a row to clear it. See [Render Presets](render_presets.md).
 
 ??? note "Where's Bookmark?"
     The ninth preset category, **Bookmark**, is deliberately not part of this

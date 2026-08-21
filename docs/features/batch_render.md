@@ -59,7 +59,7 @@ Every scope row runs in the selected mode. While a render runs, the button becom
 
 ## :material-format-list-checkbox: Render Queue
 
-The queue lists every View Layer with a status: **Pending**, **Rendering**, **Saving**, **Done**, **Failed** or **Cancelled**.
+The queue lists every View Layer with a status: **Pending**, **Rendering**, **Post**, **Saving**, **Done**, **Failed** or **Cancelled**.
 
 Above the list it reports how many takes it will **skip for a missing camera**. Fix those from the [Camera needed](cascade.md#needed-rows) row first.
 
@@ -68,6 +68,7 @@ Above the list it reports how many takes it will **skip for a missing camera**. 
     |--------|---------|
     | **Pending** | Waiting to be rendered. |
     | **Rendering** | Being processed right now. |
+    | **Post** | Frames are done. Takes is finishing the last steps. |
     | **Saving** | Writing the output file to disk. |
     | **Done** | Finished successfully. |
     | **Failed** | Something went wrong — hover for details. |
@@ -90,7 +91,7 @@ Click the **gear icon** in the queue header to choose which info columns show be
 
 ### :material-briefcase-outline: Render Jobs
 
-The **Render Jobs** popover tracks render jobs on disk. **Rescan Disk** re-checks for frames that arrived from elsewhere — a render farm, another machine, a resumed batch.
+The **Render Jobs** popover tracks render jobs on disk. It opens at your mouse pointer, so it appears where you clicked. **Rescan Disk** re-checks for frames that arrived from elsewhere — a render farm, another machine, a resumed batch.
 
 ??? tip "Resizing the popover"
     Blender popups cannot resize while open. So drag the **corner grip** at the
@@ -102,7 +103,7 @@ The **Render Jobs** popover tracks render jobs on disk. **Rescan Disk** re-check
 
 ## :material-timer-cog: Calibrate Render Times
 
-Click **Calibrate Render Times** in the queue toolbar to estimate how long each take needs, before you commit to a real batch.
+Open the render menu and click **Calibrate Render Times** under **Other**. It estimates how long each take needs, before you commit to a real batch.
 
 It probe-renders in the background, so you keep working. Re-run it whenever the scene changes. Click it again to cancel.
 

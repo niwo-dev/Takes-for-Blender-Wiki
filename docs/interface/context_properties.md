@@ -265,7 +265,7 @@ The **+** adds a blank take. **{{ op('tks.new_take_from_here').bl_label }}** sta
     | **{{ op('tks.create_take').bl_label }}** | Adds a blank Take, named by the take naming template. If the layer has no take list yet, one is created on the spot. Reachable from the split view's **+**, the add menu's **Take** entry, and the smart-add shortcut on a View Layer row. |
     | **{{ op('tks.duplicate_take').bl_label }}** | Copies a Take with **all** its fields — overrides, rules, variant, presets and note. The copy is appended at the end with a `.001` suffix. The tree's Duplicate shortcut routes here on a Take row. |
     | **{{ op('tks.new_take_from_here').bl_label }}** | Copies the take completely, names the copy by the take naming template, makes it active, and starts with a fresh empty feedback note. |
-    | **{{ op('tks.delete_take').bl_label }}** | Removes a Take. If it was active, the previous take takes over. The **last remaining** Take can't be deleted — remove the whole take list instead. |
+    | **{{ op('tks.delete_take').bl_label }}** | Removes a Take. If it was active, the previous take takes over. Deleting the **last** Take clears the take list too, so the View Layer goes back to its own settings. |
 
 ## :material-database-clock: View Layer Preload
 

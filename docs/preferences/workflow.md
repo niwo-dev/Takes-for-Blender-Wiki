@@ -21,14 +21,18 @@ How renders name their files, and what you hear when they finish.
 | **Enable Render Sounds** | On | Play a sound when a render finishes. |
 
 ??? info "Every Render setting"
-    Three collapsible sections hold them: **Render Output**, **Completion
-    Sounds**, and **Play Sound For**.
+    Four collapsible sections hold them: **Render Output**, **Render Jobs
+    Popover**, **Completion Sounds**, and **Play Sound For**.
 
     | Setting | Type | Default | Description |
     |---------|------|---------|-------------|
     | **{{ pref('smart_output_apply_to_f12').label }}** | bool | Off | When off, ++f12++ keeps Blender's native render behaviour: literal filepath, no token resolution. When on, ++f12++ / ++ctrl+f12++ resolve Smart Output tokens and obey the Standard / Compositor output toggles. Batch renders use Smart Output either way. |
     | **{{ pref('smart_output_bracket_style').label }}** | enum | `[token]` | Bracket style for [Smart Output](../features/smart_output.md#bracket-styles) tokens — seven styles, from `[scene]` to `#scene#`. |
+    | **{{ pref('use_render_versioning').label }}** | bool | On | Count up a render version each time you render. |
     | **{{ pref('smart_output_render_version_scope').label }}** | enum | Per Scene | Where the `{rev}` render-version counter is stored: one shared by the whole scene, or one per view layer. |
+    | **{{ pref('smart_output_render_version_padding').label }}** | int | 3 | How many digits a bare version gets — `v001`, `v01` or `v1`. |
+    | **{{ pref('render_jobs_popup_position').label }}** | enum | At Cursor | Where the Render Jobs popover opens: at your mouse, top middle, or centre. |
+    | **{{ pref('render_jobs_popup_width').label }}** | int | — | How wide that popover opens. You can also drag its corner grip. |
     | **Enable Render Sounds** | bool | On | Plays a notification sound when a render completes. |
     | **Sound Folder** | path | *(empty)* | Your own folder of sound files. Empty falls back to the bundled ones. |
     | **Success Sound** | enum | *(scanned)* | File played on a successful render. |
@@ -172,7 +176,7 @@ To change a binding, open *Edit > Preferences > Keymap* and search for the opera
 
 ## :material-dots-circle: Pie & Misc
 
-Four pie menus, plus the Editor Scope, Add Context and Tokens settings.
+Five pie menus, plus the Editor Scope, Add Context and Tokens settings.
 
 ??? info "How every pie works"
     Each pie uses a compass grid (NW / N / NE / W / E / SW / S / SE) and has its
@@ -206,8 +210,14 @@ Master toggle **{{ pref('f12_pie_menu_enabled').label }}**, off by default.
     Eight dropdowns take any of the 10 render-scope actions, grouped under
     **Selected Layers** / **All Layers** / **Other**: *This Scene* and *All
     Scenes* (per group), *Active Layer Only*, *Resume — Skip Done*, *Retry
-    Failed*, *Native F12*, *Open Render Settings*, and *None*. Each action is
+    Failed*, *Native F12*, *Open Render Settings*, *Render Jobs*, and *None*. Each action is
     described on the [Pie Menus](../features/pie_menus.md#f12-render-pie) page.
+
+### :material-toggle-switch: Mode Pie
+
+Puts the mode switches — Still, Animation, Rest — on ++shift+alt+q++. Eight slots.
+
+Master toggle **{{ pref('mode_pie_enabled').label }}**, off by default. Layout on the [Pie Menus](../features/pie_menus.md#mode-pie) page.
 
 ### :material-key-plus: Keyframe Pie
 
