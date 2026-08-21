@@ -41,6 +41,19 @@
     // Publish the real gutter so the strip can subtract it.
     root.style.setProperty(
       "--tks-sbw", (window.innerWidth - root.clientWidth) + "px");
+
+    // How far in from the window edge the drawer sits. Published in px because
+    // the closed state has to slide it back by its own width PLUS this inset,
+    // and a percentage inside transform() means the element's own width, not
+    // the container's -- which silently zeroed the offset when it was CSS.
+    var content = document.querySelector(".md-content__inner");
+    var drawerW = 15.5 * parseFloat(getComputedStyle(root).fontSize);
+    var inset = 0;
+    if (content) {
+      var gap = content.getBoundingClientRect().left - drawerW - 16;
+      inset = Math.max(0, Math.round(gap));
+    }
+    root.style.setProperty("--tks-drawer-left", inset + "px");
   }
   window.addEventListener("resize", syncHeaderHeight);
 

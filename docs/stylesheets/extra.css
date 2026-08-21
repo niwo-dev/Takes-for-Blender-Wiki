@@ -421,12 +421,12 @@ h1, h2, h3, h4, h5, h6 {
        was offsetting it by the header's height, which is the single biggest
        reason the two looked unalike. */
     top: 0 !important;
-    /* At the window edge, like the mobile drawer. It was inset from the reading
-       column before, but that needed the transform to cancel the inset -- and a
-       percentage means the CONTAINER in `left` and the ELEMENT'S OWN WIDTH in
-       `transform`. The offset silently evaluated to zero there, leaving a strip
-       of the drawer on screen at wide windows. Edge-anchored needs no such sum. */
-    left: 0;
+    /* Inset from the window edge so it sits beside the reading column. The
+       inset is measured in script and published in px: a percentage inside
+       transform() resolves against the element's own width, not the container,
+       so expressing it in CSS silently zeroed the offset and left a strip of
+       the drawer on screen. */
+    left: var(--tks-drawer-left, 0px);
     width: 15.5rem;
     height: 100%;
     z-index: 6;                 /* above the scrim, which sits at 5 */
@@ -434,7 +434,7 @@ h1, h2, h3, h4, h5, h6 {
     /* Mobile's drawer DOES carry a shadow -- I removed it earlier on an
        assumption; measuring the real thing at 420px shows these two layers. */
     box-shadow: rgba(0, 0, 0, 0.4) 0 4px 10px, rgba(0, 0, 0, 0.35) 0 0 1px;
-    transform: translateX(-100%);
+    transform: translateX(calc(-100% - var(--tks-drawer-left, 0px)));
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
                 visibility 0s linear 0.25s;
     will-change: transform;
@@ -449,8 +449,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 
 
+  /* hidden, not auto -- mobile scrolls the LIST inside, and lets the wrapper
+     clip nothing. With `auto` here the panel sliding out to the right counts as
+     overflow and gets cut off instantly, so going back jumped instead of
+     sliding while going forward looked fine. */
   .md-sidebar--primary .md-sidebar__scrollwrap {
-    overflow-y: auto;
+    overflow: hidden;
     height: 100%;
     margin: 0;
   }
