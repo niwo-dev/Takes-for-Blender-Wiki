@@ -581,12 +581,16 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--md-primary-bg-color);
     overflow: visible;
   }
+  /* The crumbs must line up with the text below them. The bar is full-bleed,
+     so the list carries the grid's own max-width plus the padding that brings
+     its first crumb to the content's left edge. */
   .md-path__list {
     display: flex !important;
     align-items: center;
+    box-sizing: border-box;
     max-width: 61rem;
     margin: 0 auto;
-    padding: 0 0.8rem;
+    padding: 0 3rem;
   }
   .md-path__item,
   .md-path__link {
@@ -709,4 +713,37 @@ h1, h2, h3, h4, h5, h6 {
   [dir] .md-top {
     top: calc(var(--tks-header-h, 2.4rem) + var(--tks-bar-h, 1.8rem) + 0.5rem);
   }
+}
+
+/* ===================================================================
+   Breathing room between sections.
+
+   Pages here are short by design, with the detail folded away, so the
+   headings ARE the structure a reader scans. Material's default gaps make
+   consecutive sections read as one continuous block. Widen the space above
+   a heading much more than below it, so each heading visibly belongs to the
+   text that follows rather than floating between two blocks.
+   =================================================================== */
+.md-typeset h2 {
+  margin: 3.2em 0 0.8em;
+}
+.md-typeset h3 {
+  margin: 2.4em 0 0.7em;
+}
+.md-typeset h4 {
+  margin: 1.8em 0 0.6em;
+}
+/* A heading straight after another heading should not inherit the full gap --
+   that is a section title with a subtitle, not two sections. */
+.md-typeset h2 + h3,
+.md-typeset h3 + h4 {
+  margin-top: 1em;
+}
+/* First heading on the page keeps its distance from the title, not 3em of it. */
+.md-typeset h1 + h2 {
+  margin-top: 1.6em;
+}
+/* Folded blocks are section-sized too, so give them room to stand apart. */
+.md-typeset details {
+  margin: 1.6em 0;
 }
