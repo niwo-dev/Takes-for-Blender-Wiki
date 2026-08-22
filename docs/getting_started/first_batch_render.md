@@ -24,13 +24,13 @@ Click the **Scene** row in the tree, then **+**, then **New** under *New View La
 
 Click **+** again. **Take_001** appears under the new layer, already live.
 
-<div class="tks-shot" data-shot="getting-started_first-batch-render_second-layer">tree with the second layer and its first take</div>
+![tree with the second layer and its first take](../assets/shots/getting-started_first-batch-render_second-layer.png)
 
 ## 4. Frame a new angle
 
 Orbit the viewport with the middle mouse button to a view you like.
 
-<div class="tks-shot" data-shot="getting-started_first-batch-render_third-angle">viewport orbited to a third angle on the cube</div>
+![viewport orbited to a third angle on the cube](../assets/shots/getting-started_first-batch-render_third-angle.png)
 
 ## 5. Create the layer's camera
 

@@ -12,19 +12,19 @@ New to the panel? Skim [First Steps](first_steps.md) first.
 
 In Blender, choose **File → New → General**. You get the default cube, camera and light.
 
-<div class="tks-shot" data-shot="getting-started_first-take_default-scene">fresh default scene with the cube</div>
+![fresh default scene with the cube](../assets/shots/getting-started_first-take_default-scene.png)
 
 ## 2. Open the Takes tab
 
 Press ++n++ in the 3D Viewport and click the **Takes** tab. The tree shows your scene and its View Layer.
 
-<div class="tks-shot" data-shot="getting-started_first-take_takes-panel">sidebar open on the Takes tab, tree visible</div>
+![sidebar open on the Takes tab, tree visible](../assets/shots/getting-started_first-take_takes-panel.png)
 
 ## 3. Add your first take
 
 Click the **ViewLayer** row, then the **+** button beside the tree. **Take_001** appears under the layer, already live.
 
-<div class="tks-shot" data-shot="getting-started_first-take_first-take-row">tree with Take_001 under ViewLayer, highlighted as active</div>
+![tree with Take_001 under ViewLayer, highlighted as active](../assets/shots/getting-started_first-take_first-take-row.png)
 
 ## 4. Give it the default camera
 
@@ -36,13 +36,13 @@ Click the camera icon on the take's row and pick **Camera** from the menu.
 
 Click **+** again. **Take_002** appears and is now the live take.
 
-<div class="tks-shot" data-shot="getting-started_first-take_two-takes">tree with two takes, Take_002 active</div>
+![tree with two takes, Take_002 active](../assets/shots/getting-started_first-take_two-takes.png)
 
 ## 6. Frame a new angle
 
 Orbit the viewport with the middle mouse button until you see the cube from a different side.
 
-<div class="tks-shot" data-shot="getting-started_first-take_new-angle">viewport orbited to a new angle on the cube</div>
+![viewport orbited to a new angle on the cube](../assets/shots/getting-started_first-take_new-angle.png)
 
 ## 7. Create a camera for this angle
 

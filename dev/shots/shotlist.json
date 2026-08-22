@@ -1,6 +1,10 @@
 {
   "project": "takes_for_blender",
   "output": "docs/assets/shots",
+  "window": [
+    1920,
+    1080
+  ],
   "addon_module": "bl_ext.user_default.takes_for_blender",
   "shots": [
     {
@@ -34,9 +38,21 @@
       "name": "getting-started_first-steps_open-panel",
       "page": "getting_started/first_steps.md",
       "desc": "Sidebar open on the Takes tab (step 1)",
-      "recipe": [],
-      "crop": null,
-      "watch": [],
+      "recipe": [
+        "open_sidebar",
+        "tab:Takes",
+        "sidebar:1100",
+        "wait:1.0",
+        "wait:0.5"
+      ],
+      "crop": {
+        "kind": "region",
+        "area": "VIEW_3D",
+        "region": "UI"
+      },
+      "watch": [
+        "label:Takes"
+      ],
       "stamp": {}
     },
     {
@@ -79,7 +95,9 @@
       "name": "getting-started_first-take_default-scene",
       "page": "getting_started/first_take.md",
       "desc": "Fresh default scene with the cube",
-      "recipe": [],
+      "recipe": [
+        "frame_scene"
+      ],
       "crop": null,
       "watch": [],
       "stamp": {}
@@ -88,18 +106,42 @@
       "name": "getting-started_first-take_takes-panel",
       "page": "getting_started/first_take.md",
       "desc": "Sidebar open on the Takes tab, tree visible",
-      "recipe": [],
-      "crop": null,
-      "watch": [],
+      "recipe": [
+        "open_sidebar",
+        "tab:Takes",
+        "sidebar:1100",
+        "wait:1.5"
+      ],
+      "crop": {
+        "kind": "region",
+        "area": "VIEW_3D",
+        "region": "UI"
+      },
+      "watch": [
+        "label:Takes"
+      ],
       "stamp": {}
     },
     {
       "name": "getting-started_first-take_first-take-row",
       "page": "getting_started/first_take.md",
       "desc": "Tree with Take_001 under the View Layer, highlighted active",
-      "recipe": [],
-      "crop": null,
-      "watch": [],
+      "recipe": [
+        "open_sidebar",
+        "tab:Takes",
+        "sidebar:1100",
+        "wait:1.0",
+        "op:tks.create_take(scene_name=Scene,vl_name=ViewLayer)",
+        "wait:1.0"
+      ],
+      "crop": {
+        "kind": "region",
+        "area": "VIEW_3D",
+        "region": "UI"
+      },
+      "watch": [
+        "op:tks.create_take"
+      ],
       "stamp": {}
     },
     {
@@ -115,16 +157,36 @@
       "name": "getting-started_first-take_two-takes",
       "page": "getting_started/first_take.md",
       "desc": "Tree with two takes, Take_002 active",
-      "recipe": [],
-      "crop": null,
-      "watch": [],
+      "recipe": [
+        "open_sidebar",
+        "tab:Takes",
+        "sidebar:1100",
+        "wait:1.0",
+        "op:tks.create_take(scene_name=Scene,vl_name=ViewLayer)",
+        "op:tks.create_take(scene_name=Scene,vl_name=ViewLayer)",
+        "wait:1.0"
+      ],
+      "crop": {
+        "kind": "region",
+        "area": "VIEW_3D",
+        "region": "UI"
+      },
+      "watch": [
+        "op:tks.create_take"
+      ],
       "stamp": {}
     },
     {
       "name": "getting-started_first-take_new-angle",
       "page": "getting_started/first_take.md",
       "desc": "Viewport orbited to a new angle on the cube",
-      "recipe": [],
+      "recipe": [
+        "frame_scene",
+        "op:view3d.view_orbit(type=ORBITLEFT)",
+        "op:view3d.view_orbit(type=ORBITLEFT)",
+        "op:view3d.view_orbit(type=ORBITUP)",
+        "wait:0.4"
+      ],
       "crop": null,
       "watch": [],
       "stamp": {}
@@ -169,16 +231,36 @@
       "name": "getting-started_first-batch-render_second-layer",
       "page": "getting_started/first_batch_render.md",
       "desc": "Tree with the second layer and its first take",
-      "recipe": [],
-      "crop": null,
-      "watch": [],
+      "recipe": [
+        "open_sidebar",
+        "tab:Takes",
+        "sidebar:1100",
+        "wait:1.0",
+        "op:tks.add_viewlayer(type=NEW,target_scene=Scene,vl_name=ViewLayer_002)",
+        "wait:1.0",
+        "op:tks.create_take(scene_name=Scene,vl_name=ViewLayer_002)",
+        "wait:1.0"
+      ],
+      "crop": {
+        "kind": "region",
+        "area": "VIEW_3D",
+        "region": "UI"
+      },
+      "watch": [
+        "op:tks.add_viewlayer"
+      ],
       "stamp": {}
     },
     {
       "name": "getting-started_first-batch-render_third-angle",
       "page": "getting_started/first_batch_render.md",
       "desc": "Viewport orbited to a third angle on the cube",
-      "recipe": [],
+      "recipe": [
+        "frame_scene",
+        "op:view3d.view_orbit(type=ORBITRIGHT)",
+        "op:view3d.view_orbit(type=ORBITUP)",
+        "wait:0.4"
+      ],
       "crop": null,
       "watch": [],
       "stamp": {}
@@ -223,9 +305,24 @@
       "name": "workflows_switch-takes_tree",
       "page": "workflows/switch_takes.md",
       "desc": "Tree with several takes on one layer, one active",
-      "recipe": [],
-      "crop": null,
-      "watch": [],
+      "recipe": [
+        "open_sidebar",
+        "tab:Takes",
+        "sidebar:1100",
+        "wait:1.0",
+        "op:tks.create_take(scene_name=Scene,vl_name=ViewLayer)",
+        "op:tks.create_take(scene_name=Scene,vl_name=ViewLayer)",
+        "op:tks.create_take(scene_name=Scene,vl_name=ViewLayer)",
+        "wait:1.0"
+      ],
+      "crop": {
+        "kind": "region",
+        "area": "VIEW_3D",
+        "region": "UI"
+      },
+      "watch": [
+        "op:tks.create_take"
+      ],
       "stamp": {}
     },
     {

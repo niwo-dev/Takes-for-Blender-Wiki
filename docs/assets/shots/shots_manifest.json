@@ -1,0 +1,62 @@
+{
+  "first_take_01_default_scene": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "18948ba06f6bf275"
+  },
+  "getting-started_first-batch-render_second-layer": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "bf15413a3f97e5dc"
+  },
+  "getting-started_first-batch-render_third-angle": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "b5bc1f61e5ad69f9"
+  },
+  "getting-started_first-steps_open-panel": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "c48056ea79e09715"
+  },
+  "getting-started_first-take_default-scene": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "e1f1c15d863e8c3e"
+  },
+  "getting-started_first-take_first-take-row": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "ba9e5141c565d4c5"
+  },
+  "getting-started_first-take_new-angle": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "7a8057e751b58699"
+  },
+  "getting-started_first-take_takes-panel": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "d378a740512065c6"
+  },
+  "getting-started_first-take_two-takes": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "69559da445c6f99a"
+  },
+  "workflows_switch-takes_tree": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "f11e75fc63b59d45"
+  }
+}
