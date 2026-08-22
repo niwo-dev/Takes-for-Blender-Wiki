@@ -206,7 +206,7 @@ extra_javascript:
   - javascripts/changelog-toc.js?v=9b4e6d01
   - javascripts/toc-popover.js?v=16b0ee56
 
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/niwo-dev/Takes-for-Blender
+# No `social:` list. It only ever held the GitHub icon, and the header already
+# carries a GitHub link with the version chip — the footer copy was the same
+# destination a second time. Adding a key here brings the footer icon row back.
+extra: {}
