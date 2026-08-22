@@ -24,6 +24,9 @@
   --md-accent-fg-color: var(--tks-accent);
   --md-accent-fg-color--transparent: rgba(232, 125, 13, 0.1);
   --md-primary-fg-color--light: #555555;
+  /* Title banner: a step DARKER than the page, so the band reads as chrome
+     above the text rather than a lighter card sitting on it. */
+  --tks-hero-bg: #e4e4e4;
 }
 
 /* DARK MODE (FULLY GRAYSCALE) */
@@ -43,6 +46,9 @@
   --md-footer-fg-color--lighter: #666666;
   --md-footer-bg-color: #1a1a1a;
   --md-footer-bg-color--dark: #111111;
+  /* Same idea in the dark scheme: below the #222 page, above the #111
+     header, so the three bands step down in order. */
+  --tks-hero-bg: #191919;
 }
 
 /* Keyboard shortcut styling */
@@ -266,21 +272,45 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #333333 !important;
 }
 
-/* The landing page's title, as a banner rather than a line of text.
-   Opted into per heading with `{ .tks-hero }` instead of styling every h1 on
-   the site: the other pages sit under a breadcrumb bar that already frames
-   them, and a coloured band on each one would be two bars stacked. Move the
-   class to another heading and it becomes a banner too.
-   The tint is the accent-transparent token, which every colour scheme defines,
-   so the band follows light and dark without a second rule. */
-.md-typeset h1.tks-hero {
+/* Every page's title, as a banner rather than a line of text. It becomes the
+   third band down -- header, breadcrumb strip, title -- so a page announces
+   itself in the same shape wherever you land.
+
+   Direct child only: this is the page's own title, not any heading that
+   happens to be an h1 inside the prose.
+
+   Full-bleed by the same arithmetic the breadcrumb strip uses: the reading
+   column is centred and capped, so a band that spans the window has to be
+   pushed back out of it. `100vw` counts the scrollbar, hence --tks-sbw, which
+   the JS publishes at every width. */
+.md-typeset.md-content__inner > h1 {
   text-align: center;
-  background: var(--md-accent-fg-color--transparent);
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 8px;
-  padding: 1.1rem 1rem;
-  margin: 0 0 1.6rem;
+  background-color: var(--tks-hero-bg);
+  border: 0;
+  border-radius: 0;
+  padding: 1.4rem 1rem;
+  width: calc(100vw - var(--tks-sbw, 0px));
+  margin: 0 calc(50% - 50vw + var(--tks-sbw, 0px) / 2) 1.6rem;
   color: var(--md-default-fg-color);
+}
+
+/* The strip above ends with a gap meant to separate it from body text. A
+   banner is not body text -- it is the next band down -- so the two meet with
+   no seam. Guarded, so a page without its own title keeps the gap.
+   Material also opens the content with a .4rem spacer pseudo-element, which is
+   the second half of that gap; both have to go or the band still floats. */
+.md-content:has(.md-content__inner > h1) .md-path,
+[dir] .md-content:has(.md-content__inner > h1) .md-path {
+  margin-bottom: 0;
+}
+.md-content__inner:has(> h1)::before {
+  display: none;
+}
+/* Desktop already zeroes this; narrow screens keep Material's .6rem, which put
+   the band back off the strip at phone width only. */
+.md-content__inner:has(> h1),
+[dir] .md-content__inner:has(> h1) {
+  padding-top: 0;
 }
 
 /* Micro-Animations for the Homepage Feature Grid */

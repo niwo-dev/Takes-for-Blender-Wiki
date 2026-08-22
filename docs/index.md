@@ -12,7 +12,7 @@ title: Home
      that is what the browser tab, the menu row and the breadcrumb should keep
      saying; only the heading on the page itself is spelled out in full. -->
 
-# Takes for Blender — User Guide { .tks-hero }
+# Takes for Blender — User Guide
 
 <div class="grid cards" markdown>
 
