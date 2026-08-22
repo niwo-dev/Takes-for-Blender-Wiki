@@ -6,6 +6,14 @@ hide:
 title: Home
 ---
 
+<!-- The heading below is deliberate. Material invents a heading from the front
+     matter when a page has none, which made this page announce itself as
+     "Home" — a position in the menu, not a name. `title: Home` stays, because
+     that is what the browser tab, the menu row and the breadcrumb should keep
+     saying; only the heading on the page itself is spelled out in full. -->
+
+# Takes for Blender — User Guide
+
 <div class="grid cards" markdown>
 
 -   :material-rocket-launch:{ .lg .middle } **Start Here**
