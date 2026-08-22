@@ -32,18 +32,18 @@ SECTIONS = {
     "Start Here": "rocket-launch",
     "Guides": "play-circle",
     "How It Works": "lightbulb-on",
-    "Buttons & Settings": "view-dashboard",
+    "Inside Takes": "view-dashboard",
     "What's New": "star-shooting",
     # Guides
     "Working with Takes": "movie-open-outline",
     "Looks & Variants": "palette-swatch",
     "Rendering": "image-multiple",
     "Getting Around": "map-marker-path",
-    # Buttons & Settings
+    # Inside Takes
     "Panels": "view-dashboard-outline",
     "Features": "shape",
     "Preferences": "cog",
-    # Buttons & Settings > Features
+    # Inside Takes > Features
     "Setting Up Looks": "palette-outline",
     "Naming & Output": "rename-box",
     "Working Faster": "speedometer",

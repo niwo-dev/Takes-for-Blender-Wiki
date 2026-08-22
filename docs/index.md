@@ -40,7 +40,7 @@ title: Home
 
     [:octicons-arrow-right-24: How It Works](features/takes.md)
 
--   :material-view-dashboard:{ .lg .middle } **Buttons & Settings**
+-   :material-view-dashboard:{ .lg .middle } **Inside Takes**
 
     ---
 
