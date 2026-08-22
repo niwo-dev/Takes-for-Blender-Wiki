@@ -12,26 +12,26 @@ You have a water bottle that ships in three finishes: Matte Black, Brushed Alumi
 
 ## :material-cog-outline: Setup
 
-### :material-numeric-1-circle: 1. Create the Product
+### 1. Create the Product
 1. Open the **Variant Switch** panel.
 2. Click **+** and name the new Product "Bottle".
 3. A default Part called "base" appears with it.
 
-### :material-numeric-2-circle: 2. Define Parts
+### 2. Define Parts
 Split the product into components:
 
 1. Add a Part called "Body" and assign the body collection.
 2. Add a Part called "Cap" and assign the cap collection.
 3. Add a Part called "Label" and assign the label collection.
 
-### :material-numeric-3-circle: 3. Add Materials to Pools
+### 3. Add Materials to Pools
 1. Expand "Body" to see its material pool.
 2. Assign the matte black material to slot 1.
 3. Assign the aluminum material to slot 2. The slot is created for you.
 4. Assign the rose gold material to slot 3.
 5. Repeat for Cap and Label with their own materials.
 
-### :material-numeric-4-circle: 4. Create States
+### 4. Create States
 1. Add a State "Matte Black" and set pool index 1 on every part.
 2. Add "Aluminum" with pool index 2.
 3. Add "Rose Gold" with pool index 3.

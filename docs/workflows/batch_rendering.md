@@ -14,7 +14,7 @@ When you want one click to render every View Layer, each with its own camera, wo
 
 ## :material-folder-cog: Setup Smart Output
 
-### :material-numeric-1-circle: 1. Define Output Pattern
+### 1. Define Output Pattern
 1. Go to **Properties > Output**.
 2. Enable **Smart Output**.
 3. Set the Directory:
@@ -29,7 +29,7 @@ When you want one click to render every View Layer, each with its own camera, wo
     [view_layer]_[camera]_####.[file_format]
     ```
 
-### :material-numeric-2-circle: 2. Assign Render Presets
+### 2. Assign Render Presets
 1. Configure your render settings — engine, samples, resolution.
 2. Save them as a render preset in the cascade popover.
 3. Assign the preset at **Global** level, or per View Layer Group for different quality tiers.

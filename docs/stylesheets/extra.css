@@ -266,6 +266,23 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #333333 !important;
 }
 
+/* The landing page's title, as a banner rather than a line of text.
+   Opted into per heading with `{ .tks-hero }` instead of styling every h1 on
+   the site: the other pages sit under a breadcrumb bar that already frames
+   them, and a coloured band on each one would be two bars stacked. Move the
+   class to another heading and it becomes a banner too.
+   The tint is the accent-transparent token, which every colour scheme defines,
+   so the band follows light and dark without a second rule. */
+.md-typeset h1.tks-hero {
+  text-align: center;
+  background: var(--md-accent-fg-color--transparent);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  padding: 1.1rem 1rem;
+  margin: 0 0 1.6rem;
+  color: var(--md-default-fg-color);
+}
+
 /* Micro-Animations for the Homepage Feature Grid */
 .md-typeset .grid.cards > ul > li {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
