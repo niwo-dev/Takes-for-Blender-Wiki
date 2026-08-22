@@ -313,6 +313,15 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 0;
 }
 
+/* Breathing room before the footer. Material leaves 1.2rem between the last
+   line and the Previous/Next band, which reads as the text running into the
+   chrome -- the page has a top band with 1.4rem of padding and then stops
+   dead at the bottom. Give the end of the page the same weight as its start. */
+.md-content__inner,
+[dir] .md-content__inner {
+  padding-bottom: 3rem;
+}
+
 /* Screenshot placeholders. These were HTML comments, which meant the pages
    that most need pictures -- the two step-by-step tutorials -- looked finished
    while the gaps were invisible to everyone including the author. A dashed

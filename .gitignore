@@ -19,3 +19,6 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
+
+# Blender capture scratch — probe PNGs and logs, never wiki assets.
+dev/shots/_probe/
