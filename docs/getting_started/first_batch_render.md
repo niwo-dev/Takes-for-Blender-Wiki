@@ -12,43 +12,43 @@ It builds on [Your First Take](first_take.md) — do that lesson first.
 
 Save the file anywhere you like (**File > Save**). Your renders will land in a folder next to it.
 
-<!-- img: Blender save dialog -->
+<div class="tks-shot">Blender save dialog</div>
 
 ## 2. Add a second View Layer
 
 Click the **Scene** row in the tree, then **+**, then **New** under *New View Layer*. The new layer appears and becomes active.
 
-<!-- img: add menu with the New View Layer options -->
+<div class="tks-shot">add menu with the New View Layer options</div>
 
 ## 3. Give the new layer a take
 
 Click **+** again. **Take_001** appears under the new layer, already live.
 
-<!-- img: tree with the second layer and its first take -->
+<div class="tks-shot">tree with the second layer and its first take</div>
 
 ## 4. Frame a new angle
 
 Orbit the viewport with the middle mouse button to a view you like.
 
-<!-- img: viewport orbited to a third angle on the cube -->
+<div class="tks-shot">viewport orbited to a third angle on the cube</div>
 
 ## 5. Create the layer's camera
 
 Click the camera icon on the new layer's row and choose **Create New Camera**. Each layer now looks through its own camera.
 
-<!-- img: Create New Camera on the second layer's row -->
+<div class="tks-shot">Create New Camera on the second layer's row</div>
 
 ## 6. Switch on Smart Output
 
 Open the **Output** panel in Blender's Properties editor and turn on the **Smart Output** toggle.
 
-<!-- img: Smart Output toggle in the Output panel -->
+<div class="tks-shot">Smart Output toggle in the Output panel</div>
 
 ## 7. Name the output
 
 Set **Directory** to `//renders/` and **File Name** to `{scene}{sep}{viewlayer}{sep}{take}{sep}####.{file_format}`. Each field previews the real name it will write.
 
-<!-- img: Directory and File Name fields with live preview -->
+<div class="tks-shot">Directory and File Name fields with live preview</div>
 
 ## 8. Render the batch
 
@@ -56,7 +56,7 @@ Click the render button in the tree sidebar. Set **Render Mode** to **In Blender
 
 Both layers render because their render toggles — the camera icon at the far right of each row — are on. The queue shows each layer's progress until both rows say **Done**.
 
-<!-- img: render menu with Render Mode and the This Scene row -->
+<div class="tks-shot">render menu with Render Mode and the This Scene row</div>
 
 ## Done
 

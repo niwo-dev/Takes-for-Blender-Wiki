@@ -2,7 +2,7 @@
 icon: material/bookmark-plus
 ---
 
-# Bookmark Takes
+# Bookmark a Property
 
 When the one value you keep tweaking is buried five panels deep.
 

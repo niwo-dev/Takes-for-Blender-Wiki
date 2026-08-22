@@ -313,6 +313,32 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 0;
 }
 
+/* Screenshot placeholders. These were HTML comments, which meant the pages
+   that most need pictures -- the two step-by-step tutorials -- looked finished
+   while the gaps were invisible to everyone including the author. A dashed
+   frame states the gap on the page instead, and reads as unfinished on
+   purpose. Replace the whole <div> with the image when you shoot it. */
+.tks-shot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  min-height: 5.5rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 2px dashed var(--md-default-fg-color--lighter);
+  border-radius: 6px;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.72rem;
+  text-align: center;
+}
+.tks-shot::before {
+  content: "Screenshot:";
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 /* Micro-Animations for the Homepage Feature Grid */
 .md-typeset .grid.cards > ul > li {
   transition: transform 0.25s ease, box-shadow 0.25s ease;

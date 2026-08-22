@@ -111,7 +111,7 @@ nav:
       - Name Your Output Files: workflows/name_output_files.md
       - Use Render Presets: workflows/use_render_presets.md
     - Getting Around:
-      - Bookmark Takes: workflows/bookmark_takes.md
+      - Bookmark a Property: workflows/bookmark_a_property.md
 
   - How It Works:
     - The Takes System: features/takes.md
@@ -197,7 +197,7 @@ markdown_extensions:
       toc_depth: 2
 
 extra_css:
-  - stylesheets/extra.css?v=41e513b4
+  - stylesheets/extra.css?v=ba1fc960
 
 extra_javascript:
   - javascripts/nav-icons.js?v=b4328d39
