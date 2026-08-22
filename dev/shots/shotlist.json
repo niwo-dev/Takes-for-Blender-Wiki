@@ -1,118 +1,1195 @@
 {
   "project": "takes_for_blender",
   "output": "docs/assets/shots",
+  "addon_module": "bl_ext.user_default.takes_for_blender",
   "shots": [
     {
-      "name": "batch_01_save_dialog",
-      "page": "docs/getting_started/first_batch_render.md",
-      "desc": "Blender save dialog",
+      "name": "getting-started_installation_get-extensions",
+      "page": "getting_started/installation.md",
+      "desc": "Preferences > Get Extensions, with Install from Disk open",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "batch_02_add_menu",
-      "page": "docs/getting_started/first_batch_render.md",
-      "desc": "add menu with the New View Layer options",
+      "name": "getting-started_installation_addon-enabled",
+      "page": "getting_started/installation.md",
+      "desc": "Takes for Blender enabled in the add-on list",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "batch_03_second_layer",
-      "page": "docs/getting_started/first_batch_render.md",
-      "desc": "tree with the second layer and its first take",
+      "name": "getting-started_installation_takes-tab",
+      "page": "getting_started/installation.md",
+      "desc": "3D View sidebar showing the new Takes tab",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "batch_04_third_angle",
-      "page": "docs/getting_started/first_batch_render.md",
-      "desc": "viewport orbited to a third angle on the cube",
+      "name": "getting-started_first-steps_open-panel",
+      "page": "getting_started/first_steps.md",
+      "desc": "Sidebar open on the Takes tab (step 1)",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "batch_05_second_camera",
-      "page": "docs/getting_started/first_batch_render.md",
-      "desc": "Create New Camera on the second layer's row",
+      "name": "getting-started_first-steps_add-viewlayer",
+      "page": "getting_started/first_steps.md",
+      "desc": "The + add menu with the New View Layer entry (step 2)",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "batch_06_smart_output",
-      "page": "docs/getting_started/first_batch_render.md",
-      "desc": "Smart Output toggle in the Output panel",
+      "name": "getting-started_first-steps_assign-camera",
+      "page": "getting_started/first_steps.md",
+      "desc": "Camera icon on a tree row with the picker open (step 3)",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "batch_07_output_fields",
-      "page": "docs/getting_started/first_batch_render.md",
-      "desc": "Directory and File Name fields with live preview",
+      "name": "getting-started_first-steps_groups",
+      "page": "getting_started/first_steps.md",
+      "desc": "Tree with a Scene Group and a VL Group wrapping rows (step 4)",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "batch_08_render_menu",
-      "page": "docs/getting_started/first_batch_render.md",
-      "desc": "render menu with Render Mode and the This Scene row",
+      "name": "getting-started_first-steps_batch-render",
+      "page": "getting_started/first_steps.md",
+      "desc": "Render button and render menu on the tree (step 5)",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "first_take_01_default_scene",
-      "page": "docs/getting_started/first_take.md",
-      "desc": "fresh default scene with the cube",
+      "name": "getting-started_first-take_default-scene",
+      "page": "getting_started/first_take.md",
+      "desc": "Fresh default scene with the cube",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "first_take_02_takes_panel",
-      "page": "docs/getting_started/first_take.md",
-      "desc": "sidebar open on the Takes tab, tree visible",
+      "name": "getting-started_first-take_takes-panel",
+      "page": "getting_started/first_take.md",
+      "desc": "Sidebar open on the Takes tab, tree visible",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "first_take_03_first_take_row",
-      "page": "docs/getting_started/first_take.md",
-      "desc": "tree with Take_001 under ViewLayer, highlighted as active",
+      "name": "getting-started_first-take_first-take-row",
+      "page": "getting_started/first_take.md",
+      "desc": "Tree with Take_001 under the View Layer, highlighted active",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "first_take_04_camera_menu",
-      "page": "docs/getting_started/first_take.md",
-      "desc": "camera menu on the take row, Camera entry",
+      "name": "getting-started_first-take_camera-menu",
+      "page": "getting_started/first_take.md",
+      "desc": "Camera menu on the take row, Camera entry",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "first_take_05_two_takes",
-      "page": "docs/getting_started/first_take.md",
-      "desc": "tree with two takes, Take_002 active",
+      "name": "getting-started_first-take_two-takes",
+      "page": "getting_started/first_take.md",
+      "desc": "Tree with two takes, Take_002 active",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "first_take_06_new_angle",
-      "page": "docs/getting_started/first_take.md",
-      "desc": "viewport orbited to a new angle on the cube",
+      "name": "getting-started_first-take_new-angle",
+      "page": "getting_started/first_take.md",
+      "desc": "Viewport orbited to a new angle on the cube",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "first_take_07_create_camera",
-      "page": "docs/getting_started/first_take.md",
+      "name": "getting-started_first-take_new-camera",
+      "page": "getting_started/first_take.md",
       "desc": "Create New Camera entry in the layer's camera menu",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     },
     {
-      "name": "first_take_08_side_by_side",
-      "page": "docs/getting_started/first_take.md",
-      "desc": "side-by-side of the two framings while flipping takes",
+      "name": "getting-started_first-take_flip-compare",
+      "page": "getting_started/first_take.md",
+      "desc": "Side-by-side of the two framings while flipping takes",
       "recipe": [],
-      "watch": []
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "getting-started_first-batch-render_save-dialog",
+      "page": "getting_started/first_batch_render.md",
+      "desc": "Blender save dialog",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "getting-started_first-batch-render_add-menu",
+      "page": "getting_started/first_batch_render.md",
+      "desc": "Add menu with the New View Layer options",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "getting-started_first-batch-render_second-layer",
+      "page": "getting_started/first_batch_render.md",
+      "desc": "Tree with the second layer and its first take",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "getting-started_first-batch-render_third-angle",
+      "page": "getting_started/first_batch_render.md",
+      "desc": "Viewport orbited to a third angle on the cube",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "getting-started_first-batch-render_new-camera",
+      "page": "getting_started/first_batch_render.md",
+      "desc": "Create New Camera on the second layer's row",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "getting-started_first-batch-render_smart-output",
+      "page": "getting_started/first_batch_render.md",
+      "desc": "Smart Output toggle in the Output panel",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "getting-started_first-batch-render_name-preview",
+      "page": "getting_started/first_batch_render.md",
+      "desc": "Directory and File Name fields with live preview",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "getting-started_first-batch-render_render-menu",
+      "page": "getting_started/first_batch_render.md",
+      "desc": "Render menu with Render Mode and the This Scene row",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_switch-takes_tree",
+      "page": "workflows/switch_takes.md",
+      "desc": "Tree with several takes on one layer, one active",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_switch-takes_click-row",
+      "page": "workflows/switch_takes.md",
+      "desc": "Clicking an inactive take row (cursor on it)",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_switch-takes_pie",
+      "page": "workflows/switch_takes.md",
+      "desc": "The Navigation pie as the faster route",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_keep-an-objects-own-animation_inspector-pin",
+      "page": "workflows/keep_an_objects_own_animation.md",
+      "desc": "The object pin in the Inspector",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_keep-an-objects-own-animation_pinned-row",
+      "page": "workflows/keep_an_objects_own_animation.md",
+      "desc": "A pinned object row, marked hands-off",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_lock-a-value_header-button",
+      "page": "workflows/lock_a_value.md",
+      "desc": "Value Lock button in the navigation header",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_lock-a-value_locked-state",
+      "page": "workflows/lock_a_value.md",
+      "desc": "Lock engaged: button lit, Autokey dimmed",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_material-variants_product",
+      "page": "workflows/material_variants.md",
+      "desc": "New Product in the Variants tree",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_material-variants_parts-pool",
+      "page": "workflows/material_variants.md",
+      "desc": "A Part with pool slots and materials assigned",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_material-variants_states",
+      "page": "workflows/material_variants.md",
+      "desc": "States listed, one active (filled circle)",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_material-variants_live-preview",
+      "page": "workflows/material_variants.md",
+      "desc": "Live on, a State picked, viewport following",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_animation-variants_layers",
+      "page": "workflows/animation_variants.md",
+      "desc": "The View Layers created for the variants",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_animation-variants_cameras",
+      "page": "workflows/animation_variants.md",
+      "desc": "Cameras assigned per layer in the tree",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_animation-variants_render-all",
+      "page": "workflows/animation_variants.md",
+      "desc": "Render menu set to render them all",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_tag-and-filter_assign",
+      "page": "workflows/tag_and_filter.md",
+      "desc": "Tag popover open on a tree row",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_tag-and-filter_library",
+      "page": "workflows/tag_and_filter.md",
+      "desc": "The tag library with a few tags and a group",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_tag-and-filter_tree-filter",
+      "page": "workflows/tag_and_filter.md",
+      "desc": "Tree filtered by tag, parents kept",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_batch-rendering_render-menu",
+      "page": "workflows/batch_rendering.md",
+      "desc": "Render menu: scope rows and the two render modes",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_batch-rendering_queue",
+      "page": "workflows/batch_rendering.md",
+      "desc": "Queue running, mixed statuses visible",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_batch-rendering_output-files",
+      "page": "workflows/batch_rendering.md",
+      "desc": "The rendered files in their output folder",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_name-output-files_fields",
+      "page": "workflows/name_output_files.md",
+      "desc": "Directory and File Name fields with tokens in them",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_name-output-files_preview",
+      "page": "workflows/name_output_files.md",
+      "desc": "The live preview resolving the tokens",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_name-output-files_result",
+      "page": "workflows/name_output_files.md",
+      "desc": "Resulting file names on disk",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_use-render-presets_picker",
+      "page": "workflows/use_render_presets.md",
+      "desc": "Preset picker open on a row",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_use-render-presets_globals",
+      "page": "workflows/use_render_presets.md",
+      "desc": "Globals panel, Presets mode, the 8 categories",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_use-render-presets_dirty",
+      "page": "workflows/use_render_presets.md",
+      "desc": "Dirty indicator with Accept / Revert",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_bookmark-a-property_rightclick",
+      "page": "workflows/bookmark_a_property.md",
+      "desc": "Right-click menu with Bookmark Property",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_bookmark-a-property_channels",
+      "page": "workflows/bookmark_a_property.md",
+      "desc": "Inspector Channels view, bookmark shelf revealed",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "workflows_bookmark-a-property_shelf-row",
+      "page": "workflows/bookmark_a_property.md",
+      "desc": "A bookmarked property edited from its shelf row",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_takes_hierarchy",
+      "page": "features/takes.md",
+      "desc": "Full tree: Scene Group > Scene > VL Group > View Layer > Take",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_takes_take-rows",
+      "page": "features/takes.md",
+      "desc": "Take rows under one layer, close up",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_vl-versions_takes",
+      "page": "features/vl_versions.md",
+      "desc": "Several takes as review iterations on one layer",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_vl-versions_switch",
+      "page": "features/vl_versions.md",
+      "desc": "Flipping between them, viewport following",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_cascade_icons-row",
+      "page": "features/cascade.md",
+      "desc": "Cascade icon strip on a tree row",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_cascade_bright-dim",
+      "page": "features/cascade.md",
+      "desc": "Bright (set here) vs dimmed (inherited) icons",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_cascade_popover",
+      "page": "features/cascade.md",
+      "desc": "Shift-click full popover with + and inherited value",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_cascade_context-props",
+      "page": "features/cascade.md",
+      "desc": "Context Properties listing every override at once",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_rest-state_picker",
+      "page": "features/rest_state.md",
+      "desc": "Rest Action picker in the Takes tree header",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_rest-state_drift",
+      "page": "features/rest_state.md",
+      "desc": "Ghost drift warning with snap controls",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_navigation-panel_overview",
+      "page": "interface/navigation_panel.md",
+      "desc": "The whole panel: header, tree, warnings",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_navigation-panel_header",
+      "page": "interface/navigation_panel.md",
+      "desc": "Header controls close up",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_navigation-panel_row-icons",
+      "page": "interface/navigation_panel.md",
+      "desc": "One row with its icon strip, readable",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_navigation-panel_warnings",
+      "page": "interface/navigation_panel.md",
+      "desc": "Warning badges row with one panel open",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_navigation-panel_display",
+      "page": "interface/navigation_panel.md",
+      "desc": "The Icon Visibility / display popover",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_inspector-panel_overview",
+      "page": "interface/inspector_panel.md",
+      "desc": "The panel in Inspector mode",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_inspector-panel_watchlist",
+      "page": "interface/inspector_panel.md",
+      "desc": "Watchlist with objects and pins",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_inspector-panel_channels",
+      "page": "interface/inspector_panel.md",
+      "desc": "Channels view with keyable rows",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_context-properties_overview",
+      "page": "interface/context_properties.md",
+      "desc": "The panel with the active layer's overrides",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_context-properties_rows",
+      "page": "interface/context_properties.md",
+      "desc": "Override rows: value, rule, preset slot",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_context-properties_push",
+      "page": "interface/context_properties.md",
+      "desc": "Push to Selected during a multi-selection",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_variant-tree_overview",
+      "page": "interface/variant_tree.md",
+      "desc": "The tree: Products, States, Parts, pools",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "interface_variant-tree_row",
+      "page": "interface/variant_tree.md",
+      "desc": "One Product row: LIVE cell, in-use count, stats",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_globals_modes",
+      "page": "features/globals.md",
+      "desc": "Header with the four mode buttons",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_globals_presets",
+      "page": "features/globals.md",
+      "desc": "Presets mode: the 8 categories",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_globals_rules",
+      "page": "features/globals.md",
+      "desc": "Rules mode",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_globals_tags",
+      "page": "features/globals.md",
+      "desc": "Tags mode",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_variant-switch_tree",
+      "page": "features/variant_switch.md",
+      "desc": "Product with Parts, pools and States",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_variant-switch_live",
+      "page": "features/variant_switch.md",
+      "desc": "Live armed: LIVE label on one Product, dimmed marker on another",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_variant-switch_diamond",
+      "page": "features/variant_switch.md",
+      "desc": "Diamond vs filled circle on State rows",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_variant-switch_conflicts",
+      "page": "features/variant_switch.md",
+      "desc": "Conflict warning: Collapse and Shared-object entries",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_render-presets_rows",
+      "page": "features/render_presets.md",
+      "desc": "Preset rows: empty, assigned, dirty, missing",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_render-presets_edit",
+      "page": "features/render_presets.md",
+      "desc": "Edit popover of one preset",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_render-presets_tiers",
+      "page": "features/render_presets.md",
+      "desc": "The same preset type at two tiers in the tree",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_tags_library",
+      "page": "features/tags.md",
+      "desc": "The library with tags and one group",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_tags_group",
+      "page": "features/tags.md",
+      "desc": "Selected tags becoming a group (+ > Group)",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_tags_presets",
+      "page": "features/tags.md",
+      "desc": "A tag carrying a preset bundle",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_rules_list",
+      "page": "features/rules.md",
+      "desc": "Rules mode with a rule listed",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_rules_row",
+      "page": "features/rules.md",
+      "desc": "One rule: pattern, target, preset",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_smart-output_toggle",
+      "page": "features/smart_output.md",
+      "desc": "Smart Output toggle in the Output panel",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_smart-output_tokens",
+      "page": "features/smart_output.md",
+      "desc": "The token grid / mega-sheet",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_smart-output_preview",
+      "page": "features/smart_output.md",
+      "desc": "Pattern with tokens and its live preview",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_custom-tokens_editor",
+      "page": "features/custom_tokens.md",
+      "desc": "The custom token editor in preferences",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_custom-tokens_in-use",
+      "page": "features/custom_tokens.md",
+      "desc": "A custom token inside an output pattern",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_batch-render_menu",
+      "page": "features/batch_render.md",
+      "desc": "The render menu: categories, Calibrate, render modes",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_batch-render_queue",
+      "page": "features/batch_render.md",
+      "desc": "The queue with Pending / Rendering / Post / Done rows",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_batch-render_jobs",
+      "page": "features/batch_render.md",
+      "desc": "The Render Jobs popover at the pointer",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_batch-render_eta",
+      "page": "features/batch_render.md",
+      "desc": "ETA and progress during a background batch",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_pie-menus_navigation",
+      "page": "features/pie_menus.md",
+      "desc": "Navigation pie, eight slots",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_pie-menus_f12",
+      "page": "features/pie_menus.md",
+      "desc": "F12 render pie",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_pie-menus_mode",
+      "page": "features/pie_menus.md",
+      "desc": "Mode pie (Shift+Alt+Q)",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_pie-menus_keyframe",
+      "page": "features/pie_menus.md",
+      "desc": "Keyframe pie on I",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_pie-menus_config",
+      "page": "features/pie_menus.md",
+      "desc": "The pie grid configurator in preferences",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_bookmarks_menu",
+      "page": "features/bookmarks.md",
+      "desc": "Right-click Bookmark Property entry",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_bookmarks_shelf",
+      "page": "features/bookmarks.md",
+      "desc": "The bookmark shelf in Channels",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_vl-preview_thumbs",
+      "page": "features/vl_preview.md",
+      "desc": "Thumbnails beside tree rows",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_vl-preview_settings",
+      "page": "features/vl_preview.md",
+      "desc": "Preview controls in the display popover",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_viewport-sync_toggle",
+      "page": "features/viewport_sync.md",
+      "desc": "The sync control and what it aligns",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_still-mode_row-icons",
+      "page": "features/still_mode.md",
+      "desc": "Still / Anim icons on VL and take rows",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_still-mode_global-menu",
+      "page": "features/still_mode.md",
+      "desc": "Header button open: Still / Animation / Off (per-take)",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_still-mode_frame-pin",
+      "page": "features/still_mode.md",
+      "desc": "A Still take pinned to its frame",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_value-lock_button",
+      "page": "features/value_lock.md",
+      "desc": "The header button between Still Mode and Autokey",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_value-lock_engaged",
+      "page": "features/value_lock.md",
+      "desc": "Lock on: Autokey dimmed, values guarded",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_sequencer_strips",
+      "page": "features/sequencer.md",
+      "desc": "VSE with scene strips driven by takes",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_sequencer_controls",
+      "page": "features/sequencer.md",
+      "desc": "The Takes controls on a strip",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_process-monitor_overlay",
+      "page": "features/process_monitor.md",
+      "desc": "The viewport HUD during a background render",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_process-monitor_list",
+      "page": "features/process_monitor.md",
+      "desc": "The process list with a running job",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "features_ai-assistant_panel",
+      "page": "features/ai_assistant.md",
+      "desc": "The AI Assistant surface",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "preferences_index_overview",
+      "page": "preferences/index.md",
+      "desc": "The preferences with their tab row",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "preferences_workflow_tab",
+      "page": "preferences/workflow.md",
+      "desc": "Workflow tab overview",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "preferences_workflow_render",
+      "page": "preferences/workflow.md",
+      "desc": "The four Render sections",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "preferences_workflow_pies",
+      "page": "preferences/workflow.md",
+      "desc": "Pie & Misc with one pie grid open",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "preferences_ui_tab",
+      "page": "preferences/ui.md",
+      "desc": "Interface tab overview",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "preferences_ui_tree",
+      "page": "preferences/ui.md",
+      "desc": "Tree design settings",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "preferences_data_tab",
+      "page": "preferences/data.md",
+      "desc": "Data tab overview",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "preferences_data_snapshots",
+      "page": "preferences/data.md",
+      "desc": "Snapshots & Recovery section",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "preferences_debug_tab",
+      "page": "preferences/debug.md",
+      "desc": "Developer tab overview",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "preferences_debug_logging",
+      "page": "preferences/debug.md",
+      "desc": "Logging topics section",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
+    },
+    {
+      "name": "preferences_advanced_tab",
+      "page": "preferences/advanced.md",
+      "desc": "Advanced tab overview",
+      "recipe": [],
+      "crop": null,
+      "watch": [],
+      "stamp": {}
     }
   ]
 }
