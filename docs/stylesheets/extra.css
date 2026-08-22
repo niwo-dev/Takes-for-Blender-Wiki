@@ -313,6 +313,72 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 0;
 }
 
+/* The breadcrumb band, at EVERY width. It used to be styled inside the desktop
+   media query only, which left phones with the raw Material breadcrumb:
+   transparent, indented, and floating 30px under the header, wedged between two
+   dark bands (the header above, the title band below). It read as a rendering
+   fault rather than a bar.
+
+   Full-bleed by the same arithmetic the title band uses -- the reading column is
+   centred and capped, so a band that spans the window has to be pushed back out
+   of it. `100vw` counts the scrollbar, hence --tks-sbw. */
+.md-path,
+[dir] .md-path {
+  width: calc(100vw - var(--tks-sbw, 0px));
+  margin: 0 calc(50% - 50vw + var(--tks-sbw, 0px) / 2) 1.6rem;
+  padding: 0.5rem 0;
+  background-color: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  overflow: visible;
+}
+.md-path__item,
+.md-path__link {
+  color: var(--md-primary-bg-color);
+  opacity: 0.75;
+}
+.md-path__link:hover,
+.md-path__link:focus {
+  color: var(--tks-accent-light, var(--md-accent-fg-color));
+  opacity: 1;
+}
+/* Last crumb is the current page -- give it full weight. */
+.md-path__item:last-child {
+  opacity: 1;
+  font-weight: 600;
+}
+/* The separator chevron is drawn from a mask, so it needs the light colour too
+   or it disappears against the dark bar. */
+.md-path__item:not(:first-child)::before {
+  background-color: var(--md-primary-bg-color);
+  opacity: 0.5;
+}
+
+/* Phones: the crumbs line up with the body text rather than a centred grid,
+   and a long trail scrolls sideways instead of wrapping the band to two lines
+   or running off the edge. The scrollbar is hidden -- it would be a grey slab
+   across a 0.5rem-tall bar. */
+@media screen and (max-width: 76.234375em) {
+  .md-path__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 0 0.8rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .md-path__list::-webkit-scrollbar {
+    display: none;
+  }
+  .md-path__item {
+    white-space: nowrap;
+  }
+  /* Butt the band against the header, as it does on desktop. */
+  .md-main__inner,
+  [dir] .md-main__inner {
+    margin-top: 0;
+  }
+}
+
 /* Breathing room before the footer. Material leaves 1.2rem between the last
    line and the Previous/Next band, which reads as the text running into the
    chrome -- the page has a top band with 1.4rem of padding and then stops
@@ -646,18 +712,6 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Full-bleed out of the centred reading column, without needing to know
      the header's height. */
-  /* The strip spans the window, exactly like the header above it -- a
-     content-width strip leaves bare page either side of it. Only the crumbs
-     inside are pulled in to line up with the text. */
-  .md-path,
-  [dir] .md-path {
-    width: calc(100vw - var(--tks-sbw, 0px));
-    margin: 0 calc(50% - 50vw + var(--tks-sbw, 0px) / 2) 1.6rem;
-    padding: 0.5rem 0;
-    background-color: var(--md-primary-fg-color);
-    color: var(--md-primary-bg-color);
-    overflow: visible;
-  }
   /* The crumbs must line up with the text below them. The bar is full-bleed,
      so the list carries the grid's own max-width plus the padding that brings
      its first crumb to the content's left edge. */
@@ -670,27 +724,6 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0;
-  }
-  .md-path__item,
-  .md-path__link {
-    color: var(--md-primary-bg-color);
-    opacity: 0.75;
-  }
-  .md-path__link:hover,
-  .md-path__link:focus {
-    color: var(--tks-accent-light, var(--md-accent-fg-color));
-    opacity: 1;
-  }
-  /* Last crumb is the current page -- give it full weight. */
-  .md-path__item:last-child {
-    opacity: 1;
-    font-weight: 600;
-  }
-  /* The separator chevron is drawn from a mask, so it needs the light colour
-     too or it disappears against the dark bar. */
-  .md-path__item:not(:first-child)::before {
-    background-color: var(--md-primary-bg-color);
-    opacity: 0.5;
   }
 
   /* The contents pill clears the new bar. */
