@@ -1,0 +1,118 @@
+{
+  "project": "takes_for_blender",
+  "output": "docs/assets/shots",
+  "shots": [
+    {
+      "name": "batch_01_save_dialog",
+      "page": "docs/getting_started/first_batch_render.md",
+      "desc": "Blender save dialog",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "batch_02_add_menu",
+      "page": "docs/getting_started/first_batch_render.md",
+      "desc": "add menu with the New View Layer options",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "batch_03_second_layer",
+      "page": "docs/getting_started/first_batch_render.md",
+      "desc": "tree with the second layer and its first take",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "batch_04_third_angle",
+      "page": "docs/getting_started/first_batch_render.md",
+      "desc": "viewport orbited to a third angle on the cube",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "batch_05_second_camera",
+      "page": "docs/getting_started/first_batch_render.md",
+      "desc": "Create New Camera on the second layer's row",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "batch_06_smart_output",
+      "page": "docs/getting_started/first_batch_render.md",
+      "desc": "Smart Output toggle in the Output panel",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "batch_07_output_fields",
+      "page": "docs/getting_started/first_batch_render.md",
+      "desc": "Directory and File Name fields with live preview",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "batch_08_render_menu",
+      "page": "docs/getting_started/first_batch_render.md",
+      "desc": "render menu with Render Mode and the This Scene row",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "first_take_01_default_scene",
+      "page": "docs/getting_started/first_take.md",
+      "desc": "fresh default scene with the cube",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "first_take_02_takes_panel",
+      "page": "docs/getting_started/first_take.md",
+      "desc": "sidebar open on the Takes tab, tree visible",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "first_take_03_first_take_row",
+      "page": "docs/getting_started/first_take.md",
+      "desc": "tree with Take_001 under ViewLayer, highlighted as active",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "first_take_04_camera_menu",
+      "page": "docs/getting_started/first_take.md",
+      "desc": "camera menu on the take row, Camera entry",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "first_take_05_two_takes",
+      "page": "docs/getting_started/first_take.md",
+      "desc": "tree with two takes, Take_002 active",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "first_take_06_new_angle",
+      "page": "docs/getting_started/first_take.md",
+      "desc": "viewport orbited to a new angle on the cube",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "first_take_07_create_camera",
+      "page": "docs/getting_started/first_take.md",
+      "desc": "Create New Camera entry in the layer's camera menu",
+      "recipe": [],
+      "watch": []
+    },
+    {
+      "name": "first_take_08_side_by_side",
+      "page": "docs/getting_started/first_take.md",
+      "desc": "side-by-side of the two framings while flipping takes",
+      "recipe": [],
+      "watch": []
+    }
+  ]
+}
