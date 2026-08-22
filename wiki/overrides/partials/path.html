@@ -1,0 +1,33 @@
+{#-
+  Override of Material's breadcrumb partial.
+  Stock Material renders only the ancestor path (e.g. "Home › What's New")
+  and leaves the current page out of the breadcrumb. We append the current
+  page as a final, non-link crumb so the trail reads "Home › What's New ›
+  Roadmap". The page-show guard is unchanged, so this only adds the leaf to
+  breadcrumbs that already render.
+-#}
+{% import "partials/path-item.html" as item with context %}
+{% if page.meta and page.meta.hide %}
+  {% set hidden = "hidden" if "path" in page.meta.hide %}
+{% endif %}
+{% set depth = page.ancestors | length %}
+{% if nav.homepage %}
+  {% set depth = depth + 1 %}
+{% endif %}
+{% if depth > 1 %}
+  <nav class="md-path" aria-label="{{ lang.t('nav') }}" {{ hidden }}>
+    <ol class="md-path__list">
+      {% if nav.homepage %}
+        {{ item.render(nav.homepage) }}
+      {% endif %}
+      {% for nav_item in page.ancestors | reverse %}
+        {{ item.render(nav_item) }}
+      {% endfor %}
+      <li class="md-path__item">
+        <span class="md-ellipsis" aria-current="page">
+          {{ page.title }}
+        </span>
+      </li>
+    </ol>
+  </nav>
+{% endif %}
