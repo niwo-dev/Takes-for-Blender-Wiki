@@ -170,13 +170,13 @@ def tab_steps(label):
 SHOTS = {
     "first_take_01": [
         frame_scene,
-        lambda: shoot("first_take_01_default_scene"),
+        lambda: shoot("getting-started_first-take_default-scene"),
     ],
     "first_take_02": [
         open_sidebar,
         *tab_steps("Takes"),
         frame_scene,
-        lambda: shoot("first_take_02_takes_panel"),
+        lambda: shoot("getting-started_first-take_takes-panel"),
     ],
 }
 
