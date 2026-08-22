@@ -43,24 +43,26 @@ DROP = re.compile(r"md-sidebar|md-header|md-tabs|md-nav--secondary")
 
 # Replaying the mobile rules is not enough on its own: Material's DESKTOP block
 # declares properties for the same selectors that the mobile block never
-# mentions, and those survive the replay untouched. Each entry here forces the
-# value the mobile drawer actually computes.
+# mentions, and those survive the replay untouched.
 #
-# `visibility`: desktop closes a nested panel with `visibility: collapse`, and
-# delays that collapse through its own `transition`. Replaying mobile replaces
-# `transition` wholesale, so the delay disappears and the panel collapses at
-# t=0 -- the slide-out then runs where nobody can see it, which reads as "going
-# back doesn't animate" even though the transform is perfect. Mobile never
-# collapses these panels at all: they are absolutely positioned inside a
-# clipped drawer, so translating them out already hides them.
+# The one that bites is `visibility`. Desktop closes a nested panel with
+# `visibility: collapse` and delays that collapse through its own `transition`
+# shorthand. Replaying mobile replaces `transition` wholesale -- it is one
+# property, not a list you can add to -- so the delay disappears and the panel
+# collapses at t=0. The slide-out then runs where nobody can see it, which
+# reads as "going back doesn't animate" even though the transform is perfect.
 #
-# Emitted scoped to the drawer, so the neutralisation cannot reach any other
-# nav on the page.
-NEUTRALISE = {"visibility": "visible"}
-NEUTRALISE_SELECTORS = (
-    ".md-nav--primary .md-nav__toggle~.md-nav",
-    ".md-nav--primary .md-nav__toggle:checked~.md-nav",
-)
+# Simply forcing `visibility: visible` is NOT the fix, though it does make the
+# slide appear: a parked panel is translated a full width past its parent, so
+# un-hiding it puts a live, clickable menu on top of the page -- and because
+# `.md-nav--primary` is the containing block for these absolutely positioned
+# panels, the drawer's own `overflow: hidden` never clips them.
+#
+# So keep the collapse and restore its delay, which is what Material itself
+# does. The timings come from the ported mobile rules rather than being typed
+# in here, so a theme upgrade carries them along.
+NESTED_CLOSED = ".md-nav__toggle~.md-nav"
+NESTED_OPEN = ".md-nav__toggle:checked~.md-nav"
 
 
 def scope(selector: str) -> str:
@@ -80,6 +82,43 @@ def scope(selector: str) -> str:
         else:
             parts.append(f".md-nav--primary {part}")
     return ", ".join(parts)
+
+
+def _transition_of(decl: str) -> str:
+    m = re.search(r"transition:([^;]+)", decl)
+    if not m:
+        raise SystemExit("ported nested-nav rule has no transition to extend")
+    return m.group(1).strip()
+
+
+def _slide_ms(transition: str) -> str:
+    """How long the panel takes to slide out, as a CSS time."""
+    m = re.search(r"transform\s+([\d.]+m?s)", transition)
+    if not m:
+        raise SystemExit("cannot read the transform duration from: " + transition)
+    return m.group(1)
+
+
+def visibility_override(by_sel: dict) -> str:
+    """Keep the closed panel collapsed, but not until it has finished sliding.
+
+    Scoped to the drawer so no other nav on the page is touched.
+    """
+    closed = by_sel.get(NESTED_CLOSED)
+    opened = by_sel.get(NESTED_OPEN)
+    if not closed or not opened:
+        raise SystemExit("nested-nav rules missing -- has the theme's markup changed?")
+    t_closed, t_open = _transition_of(closed), _transition_of(opened)
+    return (
+        "  /* Desktop declares `visibility` for these selectors and the mobile\n"
+        "     block does not, so replaying mobile drops the delay that keeps a\n"
+        "     closing panel on screen while it slides. Restore it. See\n"
+        "     dev/port_mobile_nav.py for the full reasoning. */\n"
+        f"  .md-nav--primary {NESTED_CLOSED} {{ visibility: collapse;"
+        f" transition: {t_closed}, visibility 0ms {_slide_ms(t_closed)} }}\n"
+        f"  .md-nav--primary {NESTED_OPEN} {{ visibility: visible;"
+        f" transition: {t_open}, visibility 0ms }}"
+    )
 
 
 def extract_blocks(css: str, query: str):
@@ -142,12 +181,7 @@ def main() -> int:
         return 1
 
     body = "\n".join(f"  {sel} {{ {decl} }}" for sel, decl in kept)
-    body += (
-        "\n  /* Desktop-only leftovers the replay cannot see -- see NEUTRALISE\n"
-        "     in dev/port_mobile_nav.py for why each one is here. */\n"
-        + ",\n".join(f"  {s}" for s in NEUTRALISE_SELECTORS)
-        + " { " + "; ".join(f"{k}: {v}" for k, v in NEUTRALISE.items()) + " }"
-    )
+    body += "\n" + visibility_override(dict(kept))
     ported = (
         f"\n{BEGIN}\n"
         f"/* Material scopes these to {MOBILE_Q}. Focus mode shows the drawer on\n"

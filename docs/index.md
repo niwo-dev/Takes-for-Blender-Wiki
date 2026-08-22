@@ -44,6 +44,13 @@ title: Home
 
 ## :material-star-circle: What Takes Does
 
+<!-- The two rows below are the table's head and its separator. Markdown needs
+     both, even when the head is blank — without them every row collapses into
+     one paragraph of pipe characters. Please keep them if you edit this page
+     in the CMS. -->
+
+| | |
+|---|---|
 | :material-movie-open: **Takes Tree** | One tree for your whole project: Scene Groups → Scenes → View Layer Groups → View Layers → Takes. |
 | :material-arrow-decision: **The Cascade** | Set a camera, world, action or preset on any level. The deepest level wins, so a single take can override everything above it. |
 | :material-swap-horizontal: **Variant Switch** | Ship one product in many finishes. Takes swaps the materials for you. |

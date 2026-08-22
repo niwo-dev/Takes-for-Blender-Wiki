@@ -63,22 +63,36 @@ def main() -> int:
             if "error" in r:
                 raise SystemExit(f"{label}: {r['error']}")
             back = r["backward"]
-            bad = [s for s in back if "visible" not in s]
-            moved = len({s.split()[0] for s in back}) > 2
+            xs = [int(s.split()[0]) for s in back]
+            end = max(xs)
+            # Mid-flight only. Once the panel has parked at its final x it is
+            # allowed -- required, in fact -- to be hidden again.
+            flight = [s for s, x in zip(back, xs) if 0 < x < end]
+            hidden = [s for s in flight if "visible" not in s]
+            moved = len(set(xs)) > 2
             print(f"  {label:8} {width}px  backward: "
                   f"{'MOVES' if moved else 'STATIC'}, "
-                  f"{len(back) - len(bad)}/{len(back)} samples visible")
-            if bad:
-                failures.append(f"{label}: {len(bad)} sample(s) hidden mid-slide "
-                                f"-- e.g. {bad[0]}")
+                  f"{len(flight) - len(hidden)}/{len(flight)} mid-slide samples visible"
+                  f"  |  parked: open={r['parkedOpen']['reach']}, "
+                  f"shut={r['parkedShut']['reach']}")
             if not moved:
                 failures.append(f"{label}: transform never moved going back")
+            elif not flight:
+                failures.append(f"{label}: never sampled mid-slide -- test is blind")
+            elif hidden:
+                failures.append(f"{label}: {len(hidden)} sample(s) hidden mid-slide "
+                                f"-- e.g. {hidden[0]}")
+            for state in ("parkedOpen", "parkedShut"):
+                if r[state]["reach"] == "REACHABLE":
+                    failures.append(
+                        f"{label}: a parked panel is still clickable ({state}) "
+                        f"-- visibility {r[state]['vis']}")
         print()
         if failures:
             for f in failures:
                 print(f"  FAIL  {f}")
             return 1
-        print("  PASS  the panel stays visible for the whole slide, both widths")
+        print("  PASS  the panel is visible while it slides and unreachable once parked")
         return 0
     finally:
         httpd.shutdown()
