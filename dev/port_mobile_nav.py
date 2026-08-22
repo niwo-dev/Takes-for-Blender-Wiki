@@ -41,6 +41,27 @@ KEEP = re.compile(r"md-nav--primary|md-nav__title|md-nav__source|md-nav__toggle|
 # drawer's sliding rules would translate that clone off screen.
 DROP = re.compile(r"md-sidebar|md-header|md-tabs|md-nav--secondary")
 
+# Replaying the mobile rules is not enough on its own: Material's DESKTOP block
+# declares properties for the same selectors that the mobile block never
+# mentions, and those survive the replay untouched. Each entry here forces the
+# value the mobile drawer actually computes.
+#
+# `visibility`: desktop closes a nested panel with `visibility: collapse`, and
+# delays that collapse through its own `transition`. Replaying mobile replaces
+# `transition` wholesale, so the delay disappears and the panel collapses at
+# t=0 -- the slide-out then runs where nobody can see it, which reads as "going
+# back doesn't animate" even though the transform is perfect. Mobile never
+# collapses these panels at all: they are absolutely positioned inside a
+# clipped drawer, so translating them out already hides them.
+#
+# Emitted scoped to the drawer, so the neutralisation cannot reach any other
+# nav on the page.
+NEUTRALISE = {"visibility": "visible"}
+NEUTRALISE_SELECTORS = (
+    ".md-nav--primary .md-nav__toggle~.md-nav",
+    ".md-nav--primary .md-nav__toggle:checked~.md-nav",
+)
+
 
 def scope(selector: str) -> str:
     """Confine a rule to the drawer.
@@ -121,6 +142,12 @@ def main() -> int:
         return 1
 
     body = "\n".join(f"  {sel} {{ {decl} }}" for sel, decl in kept)
+    body += (
+        "\n  /* Desktop-only leftovers the replay cannot see -- see NEUTRALISE\n"
+        "     in dev/port_mobile_nav.py for why each one is here. */\n"
+        + ",\n".join(f"  {s}" for s in NEUTRALISE_SELECTORS)
+        + " { " + "; ".join(f"{k}: {v}" for k, v in NEUTRALISE.items()) + " }"
+    )
     ported = (
         f"\n{BEGIN}\n"
         f"/* Material scopes these to {MOBILE_Q}. Focus mode shows the drawer on\n"

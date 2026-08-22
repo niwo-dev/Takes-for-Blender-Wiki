@@ -10,10 +10,17 @@ single DevTools connection and counting how many frames are visually distinct.
     many               it animated
 
 Usage:
-    python dev/cdp_anim.py <url> <setup.js> <action.js> [--width N] [--frames N]
+    python dev/cdp_anim.py <url> <setup.js> <action.js>
+                           [--width N] [--height N] [--frames N]
 
 `setup.js` runs first and is awaited (open the drawer, walk into a submenu).
 `action.js` is fired WITHOUT waiting, and capture starts immediately after.
+
+ALWAYS run a known-good interaction through it before trusting a bad verdict.
+Capture is a socket round-trip per frame, so at a large viewport the sampling
+rate drops below the transition and a WORKING animation reports as JUMPED --
+which is exactly how this tool once "proved" a healthy transition was broken.
+`--height` is the cheap fix: 1500x360 samples fast enough for a 250ms slide.
 """
 
 from __future__ import annotations
@@ -54,12 +61,17 @@ def main() -> int:
     url, setup_js, action_js = sys.argv[1], sys.argv[2], sys.argv[3]
     width = int(sys.argv[sys.argv.index("--width") + 1]) if "--width" in sys.argv else 1500
     frames = int(sys.argv[sys.argv.index("--frames") + 1]) if "--frames" in sys.argv else 14
+    # Capture cost scales with pixel count, and each frame is a full socket
+    # round-trip. At 1500x900 the sampling rate falls below a 250ms transition,
+    # so a working animation reports as JUMPED -- verified by running a
+    # known-good interaction through it. Shrink the height to sample faster.
+    height = int(sys.argv[sys.argv.index("--height") + 1]) if "--height" in sys.argv else 900
 
     proc = subprocess.Popen(
         [CHROME, "--headless=new", "--disable-gpu", "--force-device-scale-factor=1",
          f"--remote-debugging-port={PORT}", "--remote-allow-origins=*",
          "--no-first-run", "--no-default-browser-check",
-         f"--window-size={width},900",
+         f"--window-size={width},{height}",
          "--user-data-dir=" + str(Path.home() / ".cdp-anim-profile"), url],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     try:
