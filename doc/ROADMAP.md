@@ -8,9 +8,10 @@ The tables below are generated from the per-feature files in [`roadmap/`](roadma
 
 ## 💡 Ideas
 
-| Feature                                                           | Theme | Area        | Size | What it does                                                                           |
-|-------------------------------------------------------------------|-------|-------------|------|----------------------------------------------------------------------------------------|
-| [Shorten the Long Pages](roadmap/ideas/shorten-the-long-pages.md) | Docs  | Readability | 🟡    | Bring the 24 pages that run long back under the house limit, so no page asks for more… |
+| Feature                                                                   | Theme | Area        | Size | What it does                                                                           |
+|---------------------------------------------------------------------------|-------|-------------|------|----------------------------------------------------------------------------------------|
+| [Screenshots for Every Page](roadmap/ideas/screenshots-for-every-page.md) | Docs  | Screenshots | 🔴    | Give every page the pictures it asks for, so a reader can see the panel instead of…    |
+| [Shorten the Long Pages](roadmap/ideas/shorten-the-long-pages.md)         | Docs  | Readability | 🟡    | Bring the 24 pages that run long back under the house limit, so no page asks for more… |
 
 ## ✅ Done
 
