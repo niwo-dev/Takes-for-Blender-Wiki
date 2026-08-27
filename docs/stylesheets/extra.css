@@ -227,15 +227,20 @@ kbd {
 [data-md-color-scheme="slate"] .rm-type-chore    { --rm-type-hue: #a0aec0; }
 [data-md-color-scheme="slate"] .rm-type-test     { --rm-type-hue: #68d391; }
 
-/* Cursor-anchored tooltip bubble for the board (filled by roadmap-tooltip.js
-   from data-tip attributes). Frosted, rounded, follows the pointer; pre-line
-   keeps the clock tooltip's one-milestone-per-line table intact. */
+/* Speech-bubble tooltip for the board (filled by roadmap-tooltip.js from
+   data-tip attributes). Sits centered above the hovered element; the ::after
+   square is the arrow pointing down at it (--rm-tip-arrow-x, set by the
+   script, keeps it on the element when the bubble is clamped sideways).
+   .below flips bubble and arrow under the element when there is no room
+   above. pre-line keeps the clock tooltip's one-milestone-per-line table. */
 .rm-tip {
+  --rm-tip-bg: color-mix(in srgb, var(--md-default-bg-color--light) 92%, transparent);
+  --rm-tip-border: color-mix(in srgb, var(--md-default-fg-color) 18%, transparent);
   position: fixed;
   z-index: 200;
   max-width: 24rem;
-  padding: 0.45em 0.7em;
-  border-radius: 0.45rem;
+  padding: 0.5em 0.75em;
+  border-radius: 0.55rem;
   font-size: 0.62rem;
   line-height: 1.45;
   white-space: pre-line;
@@ -244,11 +249,30 @@ kbd {
   transform: translateY(3px);
   transition: opacity 0.12s ease, transform 0.12s ease;
   color: var(--md-default-fg-color);
-  background: color-mix(in srgb, var(--md-default-bg-color--light) 84%, transparent);
+  background: var(--rm-tip-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 15%, transparent);
+  border: 1px solid var(--rm-tip-border);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+.rm-tip::after {
+  content: "";
+  position: absolute;
+  left: var(--rm-tip-arrow-x, 50%);
+  bottom: -5.5px;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+  background: var(--rm-tip-bg);
+  border-right: 1px solid var(--rm-tip-border);
+  border-bottom: 1px solid var(--rm-tip-border);
+}
+.rm-tip.below::after {
+  bottom: auto;
+  top: -5.5px;
+  border: none;
+  border-left: 1px solid var(--rm-tip-border);
+  border-top: 1px solid var(--rm-tip-border);
 }
 .rm-tip.visible {
   opacity: 1;
