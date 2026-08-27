@@ -1,0 +1,27 @@
+#!/bin/sh
+# Regenerate the GitHub roadmap board (doc/ROADMAP.md) whenever a roadmap
+# feature file is part of the commit, so the board never drifts from its single
+# source in doc/roadmap/{ideas,active,done}.
+#
+# Copy this into <repo>/dev/hooks/pre-commit and arm it once per clone:
+#   git config core.hooksPath dev/hooks
+#
+# It is LOUD on purpose. The version this replaces sent the builder's output to
+# /dev/null and always exited 0, so a missing or broken builder produced a
+# perfectly normal-looking commit with a stale board -- exactly the drift the
+# hook exists to prevent. A tool that isn't installed now stops the commit and
+# says how to fix it.
+if git diff --cached --name-only | grep -qE '^doc/roadmap/(ideas|active|done)/'; then
+  if ! command -v roadmap-build >/dev/null 2>&1; then
+    echo "pre-commit: 'roadmap-build' is not installed, so doc/ROADMAP.md would" >&2
+    echo "            go stale. Install the shared tooling and commit again:" >&2
+    echo "              pip install -e ../blender-repo-tools" >&2
+    exit 1
+  fi
+  if ! PYTHONIOENCODING=utf-8 roadmap-build; then
+    echo "pre-commit: roadmap-build failed -- see the error above." >&2
+    exit 1
+  fi
+  git add doc/ROADMAP.md
+fi
+exit 0
