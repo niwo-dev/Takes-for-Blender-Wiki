@@ -31,7 +31,13 @@ def run():
 
         win = bpy.context.window_manager.windows[0]
         view3d = next(a for a in win.screen.areas if a.type == 'VIEW_3D')
-        view3d.spaces.active.show_region_ui = True
+        # read_homefile above tore down and rebuilt every window, and a bare
+        # app-timer context carries no window at all. The show_region_* update
+        # walks CTX_wm_window(C) and dereferences it -- null read at 0x70,
+        # EXCEPTION_ACCESS_VIOLATION (blender.crash.txt, 2026-08-22 16:20).
+        # Point the context at the fresh window before the write.
+        with bpy.context.temp_override(window=win, area=view3d):
+            view3d.spaces.active.show_region_ui = True
         ui = next(r for r in view3d.regions if r.type == 'UI')
 
         log(f"tabs offered: {getattr(ui, 'panel_categories', 'n/a')}")
