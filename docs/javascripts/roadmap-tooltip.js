@@ -15,6 +15,15 @@
 (function () {
   let tip = null;
 
+  /* The checklist tooltip arrives as plain text with ☑ / ☐ / • line markers
+     (attributes cannot carry SVG). These are swapped for drawn icons here. */
+  const ICONS = {
+    "☑": '<svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-9 14-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg>',
+    "☐": '<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v14H5V5z"/></svg>',
+    "•": '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg>',
+  };
+  const CLASSES = { "☑": "done", "☐": "open", "•": "dot" };
+
   function ensureTip() {
     if (!tip || !document.body.contains(tip)) {
       tip = document.createElement("div");
@@ -24,9 +33,36 @@
     return tip;
   }
 
+  function fill(t, text) {
+    const lines = text.split("\n");
+    if (!lines.some((line) => ICONS[line.charAt(0)])) {
+      t.textContent = text;                     // plain tooltip (info, clock)
+      return;
+    }
+    t.textContent = "";
+    for (const line of lines) {
+      const row = document.createElement("div");
+      row.className = "rm-tip-row";
+      const marker = line.charAt(0);
+      if (ICONS[marker]) {
+        const icon = document.createElement("span");
+        icon.className = "rm-tip-ico " + CLASSES[marker];
+        icon.innerHTML = ICONS[marker];
+        row.appendChild(icon);
+        const txt = document.createElement("span");
+        txt.className = "rm-tip-txt";      // one line, CSS-trimmed with "…"
+        txt.textContent = line.slice(1).trimStart();
+        row.appendChild(txt);
+      } else {
+        row.textContent = line;
+      }
+      t.appendChild(row);
+    }
+  }
+
   function show(host) {
     const t = ensureTip();
-    t.textContent = host.getAttribute("data-tip");
+    fill(t, host.getAttribute("data-tip"));
     t.classList.remove("below");
     t.classList.add("visible");
 
@@ -56,4 +92,19 @@
       tip.classList.remove("visible");
     }
   });
+
+  /* The bubble is fixed to the viewport, so anything that moves or replaces
+     the page under it must hide it: clicking a link (Material's instant
+     navigation swaps the content without a mouseout), scrolling (the anchor
+     element moves away), and the navigation event itself. */
+  function hide() {
+    if (tip) tip.classList.remove("visible");
+  }
+  document.addEventListener("click", hide, true);
+  window.addEventListener("scroll", hide, true);
+  if (typeof document$ !== "undefined" && document$.subscribe) {
+    document$.subscribe(hide);
+  } else if (window.document$ && typeof window.document$.subscribe === "function") {
+    window.document$.subscribe(hide);
+  }
 })();

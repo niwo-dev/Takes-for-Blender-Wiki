@@ -278,6 +278,38 @@ kbd {
   opacity: 1;
   transform: translateY(0);
 }
+/* Checklist tooltips: one row per phase, drawn checkbox icons (built by
+   roadmap-tooltip.js from the ☑ ☐ • text markers). Flex gives wrapped lines
+   a hanging indent under their text; done rows dim so open work stands out. */
+.rm-tip-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45em;
+  margin: 0.18em 0;
+}
+/* Each checklist row stays on ONE line — long phase text ends in "…" (the
+   generator also trims early, so most rows never reach this). */
+.rm-tip-txt {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rm-tip-ico {
+  flex: none;
+  margin-top: 0.12em;
+}
+.rm-tip-ico svg {
+  display: block;
+  width: 0.7rem;
+  height: 0.7rem;
+  fill: currentColor;
+}
+.rm-tip-ico.done { color: #4caf50; }
+.rm-tip-ico.open { color: var(--md-default-fg-color--light); }
+.rm-tip-ico.dot  { color: var(--md-default-fg-color--light); }
+.rm-tip-row:has(.rm-tip-ico.done) { color: var(--md-default-fg-color--light); }
 
 /* Feature-page Phases — distinguish informational (non-task) bullets from the
    `- [ ]` checklist. Plain items lose their disc and get an ⓘ info marker;
