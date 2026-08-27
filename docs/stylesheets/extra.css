@@ -87,7 +87,7 @@ kbd {
 .roadmap-board th:nth-child(1),
 .roadmap-board td:nth-child(1) { width: 6.5em; white-space: nowrap; }  /* Type */
 /* Item: one line always — a long title trims to an ellipsis, and the link's
-   own tooltip (title attr set by the generator) carries the full name. */
+   data-tip (set by the generator, shown by roadmap-tooltip.js) has the rest. */
 .roadmap-board td:nth-child(2) {
   white-space: nowrap;
   overflow: hidden;
@@ -201,9 +201,9 @@ kbd {
    dark schemes only need to swap the hue. */
 .md-typeset .rm-type {
   display: inline-block;
-  padding: 0.05em 0.55em;
+  padding: 0.08em 0.55em;
   border-radius: 0.7em;
-  font-size: 0.6rem;
+  font-size: 0.52rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -226,6 +226,34 @@ kbd {
 [data-md-color-scheme="slate"] .rm-type-refactor { --rm-type-hue: #b794f4; }
 [data-md-color-scheme="slate"] .rm-type-chore    { --rm-type-hue: #a0aec0; }
 [data-md-color-scheme="slate"] .rm-type-test     { --rm-type-hue: #68d391; }
+
+/* Cursor-anchored tooltip bubble for the board (filled by roadmap-tooltip.js
+   from data-tip attributes). Frosted, rounded, follows the pointer; pre-line
+   keeps the clock tooltip's one-milestone-per-line table intact. */
+.rm-tip {
+  position: fixed;
+  z-index: 200;
+  max-width: 24rem;
+  padding: 0.45em 0.7em;
+  border-radius: 0.45rem;
+  font-size: 0.62rem;
+  line-height: 1.45;
+  white-space: pre-line;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  color: var(--md-default-fg-color);
+  background: color-mix(in srgb, var(--md-default-bg-color--light) 84%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 15%, transparent);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+.rm-tip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* Feature-page Phases — distinguish informational (non-task) bullets from the
    `- [ ]` checklist. Plain items lose their disc and get an ⓘ info marker;

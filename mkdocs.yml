@@ -197,12 +197,13 @@ markdown_extensions:
       toc_depth: 2
 
 extra_css:
-  - stylesheets/extra.css?v=b4095a0b
+  - stylesheets/extra.css?v=4d81c9e2
 
 extra_javascript:
   - javascripts/nav-icons.js?v=2e4c972a
   - javascripts/toc-icons.js?v=e5d33e6b
   - javascripts/roadmap-sort.js?v=71afec24
+  - javascripts/roadmap-tooltip.js?v=a3f60d17
   - javascripts/changelog-toc.js?v=9b4e6d01
   - javascripts/toc-popover.js?v=16b0ee56
 
