@@ -73,8 +73,9 @@ kbd {
 .roadmap-board table { width: 100%; table-layout: fixed; }
 .roadmap-board td,
 .roadmap-board th { word-break: break-word; overflow-wrap: anywhere; }
+/* 13em: the type chip sits inline before the name and needs the extra room */
 .roadmap-board th:nth-child(1),
-.roadmap-board td:nth-child(1) { width: 12em; }                  /* Feature */
+.roadmap-board td:nth-child(1) { width: 13em; }                  /* Feature */
 /* Meta and When read as one cluster: Meta hugs its right edge, When starts right
    after it, so the two narrow columns sit together instead of drifting apart.
    `table` is in the selector to out-specify the site-wide cell padding above. */
@@ -186,6 +187,38 @@ kbd {
 .roadmap-board .sz-s svg { fill: #4caf50; }                     /* Small  */
 .roadmap-board .sz-m svg { fill: var(--tks-accent-light); }     /* Medium */
 .roadmap-board .sz-l svg { fill: #e53935; }                     /* Large  */
+
+/* Type chip — a small readable pill left of the item name (board) and under the
+   title (feature pages, outside .roadmap-board, hence the unscoped class). One
+   hue per type; the tinted background is mixed from the same hue so light and
+   dark schemes only need to swap the hue. */
+.md-typeset .rm-type {
+  display: inline-block;
+  padding: 0.05em 0.55em;
+  border-radius: 0.7em;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: 0.1em;
+  color: var(--rm-type-hue, #718096);
+  background: color-mix(in srgb, var(--rm-type-hue, #718096) 16%, transparent);
+}
+.rm-type-feature  { --rm-type-hue: #2b6cb0; }
+.rm-type-fix      { --rm-type-hue: #c53030; }
+.rm-type-perf     { --rm-type-hue: #dd6b20; }
+.rm-type-docs     { --rm-type-hue: #2c7a7b; }
+.rm-type-refactor { --rm-type-hue: #6b46c1; }
+.rm-type-chore    { --rm-type-hue: #718096; }
+.rm-type-test     { --rm-type-hue: #2f855a; }
+[data-md-color-scheme="slate"] .rm-type-feature  { --rm-type-hue: #63b3ed; }
+[data-md-color-scheme="slate"] .rm-type-fix      { --rm-type-hue: #fc8181; }
+[data-md-color-scheme="slate"] .rm-type-perf     { --rm-type-hue: #f6ad55; }
+[data-md-color-scheme="slate"] .rm-type-docs     { --rm-type-hue: #4fd1c5; }
+[data-md-color-scheme="slate"] .rm-type-refactor { --rm-type-hue: #b794f4; }
+[data-md-color-scheme="slate"] .rm-type-chore    { --rm-type-hue: #a0aec0; }
+[data-md-color-scheme="slate"] .rm-type-test     { --rm-type-hue: #68d391; }
 
 /* Feature-page Phases — distinguish informational (non-task) bullets from the
    `- [ ]` checklist. Plain items lose their disc and get an ⓘ info marker;
