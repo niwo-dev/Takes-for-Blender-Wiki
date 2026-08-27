@@ -70,22 +70,37 @@ kbd {
    title is the link; When shows the milestone date, its clock tooltip the whole
    history. Scoped via the .roadmap-board wrapper (a <details>, so each section
    folds) so other wiki tables are untouched. */
-/* Auto layout on purpose: with the summary folded into the ⓘ tooltip no cell
-   carries long text any more, so the browser sizes Item to its names and the
-   Meta/When columns stay at their fixed widths below. */
-.roadmap-board table { width: 100%; }
+/* Material turns bare tables into inline-block scroll wrappers; on a table
+   element that display spawns an anonymous inner table that shrink-wraps its
+   content, so width:100% stretched only the wrapper (measured: wrapper 796px,
+   rows 604px). display:table makes width:100% reach the columns again; fixed
+   layout then gives the narrow columns their widths below and Item, the only
+   auto column, absorbs everything left over. */
+.md-typeset .roadmap-board table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
 .roadmap-board td,
 .roadmap-board th { word-break: break-word; overflow-wrap: anywhere; }
-/* Column order: Type · Item · Meta · When. Type is a narrow chip rail; Item
-   (no width rule) absorbs the remaining width. */
+/* Column order: Type · Item · Meta · When. Type is a narrow chip rail. */
 .roadmap-board th:nth-child(1),
-.roadmap-board td:nth-child(1) { white-space: nowrap; }          /* Type    */
+.roadmap-board td:nth-child(1) { width: 6.5em; white-space: nowrap; }  /* Type */
+/* Item: one line always — a long title trims to an ellipsis, and the link's
+   own tooltip (title attr set by the generator) carries the full name. */
+.roadmap-board td:nth-child(2) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: normal;
+  overflow-wrap: normal;
+}
 /* Meta and When read as one cluster: Meta hugs its right edge, When starts right
    after it, so the two narrow columns sit together instead of drifting apart.
    `table` is in the selector to out-specify the site-wide cell padding above. */
 .roadmap-board table th:nth-child(3),
 .roadmap-board table td:nth-child(3) {                           /* Meta    */
-  width: 5.6em;                       /* four icons now: ⓘ + Theme/Area/Size */
+  width: 7em;                         /* four icons now: ⓘ + Theme/Area/Size */
   text-align: right;
   padding-right: 0.2em;
   white-space: nowrap;
@@ -93,27 +108,16 @@ kbd {
 .roadmap-board td:nth-child(3) .twemoji { margin: 0 0.08em; }
 .roadmap-board table th:nth-child(4),
 .roadmap-board table td:nth-child(4) {                           /* When    */
-  width: 4.6em;
+  width: 8.6em;                     /* clock icon + "27 Jul 2026" on one line */
   padding-left: 0.45em;
   white-space: nowrap;
   word-break: normal;
   overflow-wrap: normal;
 }
-/* Day and year stack under the clock rather than running out sideways, so the
-   column costs barely more width than the icon itself. */
-.roadmap-board td:nth-child(4) {
-  font-variant-numeric: tabular-nums;
-  line-height: 1.3;
-}
+.roadmap-board td:nth-child(4) { font-variant-numeric: tabular-nums; }
 .roadmap-board td:nth-child(4) .twemoji {
   opacity: 0.7;
   font-size: 0.9em;
-}
-.roadmap-board td:nth-child(4) .dm { display: block; }
-.roadmap-board td:nth-child(4) .yr {
-  display: block;
-  font-size: 0.82em;
-  color: var(--md-default-fg-color--light);
 }
 
 /* Tooltips keep their line breaks. The roadmap's clock tooltip is a small table
