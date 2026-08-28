@@ -77,14 +77,14 @@ How the Takes tree looks, and which icons its rows show.
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| **Default Tree Icons** | On | Per-icon visibility for the nine cascade icons. |
+| **Icons** | On | Per-icon visibility for the nine cascade icons. Each toggle carries the icon's own name — Tag, Variant, Action, Compositor and so on. |
 | **Collapse Mode** | Dynamic | When the overflow `⋯` replaces the icons: Dynamic (by panel width), Always, or Never. |
 | **Show Tag Color** | On | Tints the tree connection lines by tag colour. |
 
 ??? info "The rest of the tree settings"
     | Setting | Default | Description |
     |---------|---------|-------------|
-    | **Default Tree Pin Icons** | Off | Per-icon pin-toggle visibility, for eight of the same icons. |
+    | **Pin Outside Collapse** | Off | Which icons stay visible when the overflow `⋯` takes over, for eight of the same icons. |
     | **Collapse Width** | 600 | Panel width in pixels at which Dynamic collapses. Range 200–800. |
     | **Tree Line Width** | Medium | Thin, Medium or Wide connection lines. |
     | **Tree Line Color** | grey | Colour of the connection lines. |

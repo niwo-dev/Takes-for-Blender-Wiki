@@ -20,7 +20,7 @@ Everything here starts off. Turn on **Enable Debug Logging** first — the group
 | Setting | What it does |
 |---------|--------------|
 | **Enable Debug Logging** | The master switch. |
-| *File* → **Folder**, **Filename** | Where the log goes. Leave both empty and the panel prints the default path. |
+| *File* → **Log Directory**, **Log Filename** | Where the log goes. Leave both empty and the panel prints the default path. |
 | *Console* → **Print to Console** | Echo the same lines into Blender's System Console. |
 | *Console* → **Levels** | Which severities reach the log: **Debug**, **Info**, **Warning**, **Error**. |
 | *Tools* → **Export Debug Log**, **Email Dev Support** | Save a copy to send on, or open a support mail. |
