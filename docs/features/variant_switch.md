@@ -38,6 +38,8 @@ A State remembers one pool entry per Part. Picking a State applies all of them a
 3. Expand the new Part and drop a material into its empty pool slot.
 4. Add a State for each finish you need, such as "Gold".
 
+The tree's **+**, **−** and **▲ / ▼** buttons add, delete and reorder rows. The **Add Variant Item** menu holds **Add Product**, **Add State**, **Add Part**, **Add Materials** and **Add Slot** — see [Variant Tree](../interface/variant_tree.md#row-controls).
+
 ??? info "What you get, and what happens as you fill the pool"
     A new Product arrives ready to use: one Part named **base part**, one starter
     State named **default**, and one empty pool slot.
@@ -57,6 +59,8 @@ The viewport only follows your picks while **Live** is on. With Live off, the ta
 #### :material-play-circle-outline: Live
 
 **Live** is off until you switch it on. Turn it on and the viewport follows whatever State you pick.
+
+The switch is the **Variant Live** toggle in the Navigation panel header — see [Navigation Panel](../interface/navigation_panel.md).
 
 While Live is on, Takes turns **autokey off** and gives it back when you switch Live off. Switching Live off also puts the take's assigned look back.
 

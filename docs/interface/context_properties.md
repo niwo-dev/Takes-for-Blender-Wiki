@@ -106,6 +106,7 @@ Rename a row inline. Click the dot at its left to make it active.
     | -------- | -------------- |
     | **{{ op('tks.rename_item').bl_label }}** | Inline rename for any tree row. Type the name, ++enter++ to confirm, ++esc++ to cancel. Works in tree and split view. Groups use their own dialog instead — see [Scene & View Layer Groups](#scene-view-layer-groups). |
     | **{{ op('tks.switch_scene').bl_label }}** / **{{ op('tks.switch_viewlayer').bl_label }}** | The selector dot at the left of each row. Clicking it makes that Scene or View Layer active, which triggers the cascade to apply its overrides. |
+    | **{{ op('tks.activate_take').bl_label }}** | The same dot on a Take row. Clicking it makes that Take live and applies its cascade overrides. |
 
 ### :material-arrow-all: Moving & Retargeting
 

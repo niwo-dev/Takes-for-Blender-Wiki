@@ -88,9 +88,10 @@ Ten actions, grouped in the dropdowns as **Selected Layers**, **All Layers** and
     | **Render Jobs** | Open the Render Jobs overview popover. |
     | **None** | Empty slot. |
 
-    In Background mode both the pie and the render menu dispatch through the fast
-    background renderer. The menu's *Other* category also offers **Calibrate Render
-    Times** to seed the queue's time estimates.
+    In Background mode both the pie and the render menu dispatch through
+    **Background Batch Render**, the fast background renderer.
+    The menu's *Other* category also offers
+    **Calibrate Render Times** to seed the queue's time estimates.
 
 ??? tip "Search Scenes — find one scene in a crowded file"
     The per-scene scope submenus list every scene as its own row, which gets

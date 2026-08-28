@@ -55,6 +55,24 @@ Each Part carries a pool of materials it can swap between.
 ### :material-folder-multiple: Collection Assignment
 Each Part links to one collection. Every object inside it, and inside its children, gets the swap.
 
+## :material-cursor-pointer: Row Controls
+
+The buttons beside the tree edit whatever row you have selected.
+
+| Button | What it does |
+|--------|--------------|
+| **+** | Adds the right item for the selected row — a State on a Product, a Part on a State, and so on. Hold it open for the full **Add Variant Item** menu. |
+| **−** | Deletes the selected row. |
+| **▲ / ▼** | Moves the selected row up or down among its siblings. |
+| **chevron** | Folds a row open or shut. |
+
+The **Add Variant Item** menu names each choice outright: **Add Product**, **Add State**, **Add Part**, **Add Materials**, and **Add Slot** for a Part's pool.
+
+??? info "Switching which product a row drives"
+    A tree row can be pointed at a different Product without rebuilding it.
+    Open the row's product menu and pick another one; the menu lists every
+    Product in the file by name.
+
 ## :material-tag: Variant Tags
 
 Tag states with the **Variant** tag category to organise them. Smart Output resolves that tag through the `{variant_tag}` token.

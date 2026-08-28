@@ -205,7 +205,9 @@ This is the other half of a broken assignment: nothing is assigned *anywhere*, a
 
 The Navigation panel says so and gives you two chips to fix it on the spot.
 
-**▾** opens a search popup and writes your pick to the adopt tier. **+** creates one, assigns it, and — for a camera — aligns it to your current view.
+**▾** — *Assign Camera* / *Assign World* — opens a search popup and writes your pick to the adopt tier.
+
+**+** — *New Camera* / *New World* — creates one, assigns it, and, for a camera, aligns it to your current view.
 
 ??? info "Which tier the chips write to"
     Not fixed. It follows your *Camera handling* and *World handling* preferences
