@@ -70,9 +70,9 @@ Buttons beside the **Config File** picker on that same sub-tab manage the file a
 ??? info "Every configuration button"
     | Button | What it does |
     | -------- | -------------- |
-    | **New Configuration** | Asks for a filename, then writes a fresh config full of default values into the current *Save Mode* folder (Addon, Project, Shared or Local) and switches to it. It refuses to overwrite an existing file. |
-    | **Create Project Preferences** | One-click project setup. It creates a **presets** folder beside your saved `.blend`, links it through the scene's World, switches *Save Mode* to Project, and writes your current settings there. Save the `.blend` first. |
-    | **Open Config Folder** | Opens the folder holding the active config file in your system file browser. |
+    | **{{ op('tks.new_preference_config').bl_label }}** | Asks for a filename, then writes a fresh config full of default values into the current *Save Mode* folder (Addon, Project, Shared or Local) and switches to it. It refuses to overwrite an existing file. |
+    | **{{ op('tks.init_project_prefs').bl_label }}** | One-click project setup. It creates a **presets** folder beside your saved `.blend`, links it through the scene's World, switches *Save Mode* to Project, and writes your current settings there. Save the `.blend` first. |
+    | **{{ op('tks.open_config_folder').bl_label }}** | Opens the folder holding the active config file in your system file browser. |
     | **{{ op('tks.duplicate_preference_config').bl_label }}** | Copies the active config to a new file, with an editable name pre-filled, then switches to the copy. It refuses to overwrite an existing file. |
     | **{{ op('tks.delete_preference_config').bl_label }}** | Deletes the active config file after a confirmation, gated by the *Override Persistence* setting. It then switches to the next config in that folder, if there is one. |
     | **{{ op('tks.rename_project_prefs_file').bl_label }}** | Renames the current project preferences file on disk, in Project save mode. |

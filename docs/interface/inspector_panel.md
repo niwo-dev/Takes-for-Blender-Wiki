@@ -74,19 +74,19 @@ The **Actions** list holds every action referencing it. The **Slots** list holds
 
 **New Action** makes an empty action, names it from your [Smart Naming](../features/smart_output.md) template and assigns it.
 
-**Remove Action** deletes the action itself.
+**{{ op('tks.remove_action').bl_label }}** deletes the Action itself.
 
 ??? info "Every create and remove button"
     | Button | What it does |
     | -------- | -------------- |
     | **New Action** | Creates a fresh, empty Action with an automatic [Smart Naming](../features/smart_output.md) name — no dialog. It is fake-user protected, so it survives a save before it has any keyframes. Started from an object's popover, it is assigned to that object too. |
     | **New Action** *(datablock)* | The sub-datablock version. Click a sub-data icon (material, node tree, shape key) to open its popover, then create an Action assigned to *that* datablock instead of the object. Auto-named and protected the same way. |
-    | **Remove Action** | Permanently deletes the selected Action, or every checkbox-selected Action in multi-select mode. It first clears the Action off every object, scene, world, material and node tree that used it, so nothing dangles. |
+    | **{{ op('tks.remove_action').bl_label }}** | Permanently deletes the selected Action, or every checkbox-selected Action in multi-select mode. It first clears the Action off every object, scene, world, material and node tree that used it, so nothing dangles. |
     | **{{ op('tks.assign_existing_action').bl_label }}** | When a row has no animation yet, its browse button (▾) opens a searchable popup of **existing** Actions and assigns your pick. Nothing new is created. |
     | **{{ op('tks.duplicate_action').bl_label }}** | Copies the selected Action. Sits as **Duplicate Selected** in the Actions list's add menu and in the object and datablock popovers — handy for branching a variant without touching the original. |
 
 ??? note "Removal is permanent"
-    **Remove Action** deletes the datablock, not just its assignment. A confirmation
+    **{{ op('tks.remove_action').bl_label }}** deletes the datablock, not just its assignment. A confirmation
     dialog appears first; you can switch it off in *Preferences > Interface > Confirmations*.
 
 ### :material-magnify: Find Action & Slot
