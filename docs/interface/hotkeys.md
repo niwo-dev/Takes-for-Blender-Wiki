@@ -171,7 +171,8 @@ The Variant Tree takes the same [Tree Edits](#tree-edits) keys. **Delete** alway
 |----------|--------|
 | Click | Open the picker. |
 | ++alt++ + click | Clear the assigned datablock at this tier. |
-| ++alt++ + click **Find Action** | Show Scene and World datablocks instead of Object ones. |
+| ++shift++ + click **Find Action** | Show Scene and World datablocks instead of Object ones. |
+| ++alt++ + click **Find Action** | Turn **Follow Selection** on or off. |
 
 ---
 

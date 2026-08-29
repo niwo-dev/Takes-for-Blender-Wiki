@@ -91,12 +91,33 @@ The **Actions** list holds every action referencing it. The **Slots** list holds
 
 ### :material-magnify: Find Action & Slot
 
-The magnifier in the watchlist's side column runs **{{ op('tks.find_action_slot').bl_label }}**. It jumps the Actions and Slots lists to the active object's match.
+The magnifier in the watchlist's side column runs **{{ op('tks.find_action_slot').bl_label }}**. It jumps the Actions and Slots lists to the match for whatever the watchlist has selected.
 
 ??? info "When several datablocks qualify"
-    A small menu lets you pick one. ++alt++ + click searches **Scene & World**
-    datablocks instead of Object datablocks, like the other pickers — see
-    [Hotkeys](#hotkeys).
+    A small menu lets you pick one. ++shift++ + click searches **Scene & World**
+    datablocks instead of Object datablocks — see [Hotkeys](#hotkeys). Whatever
+    you pick, the watchlist moves to the matching row as well.
+
+### :material-cursor-default-click: Follow Selection
+
+Turn **Follow Selection** on and you stop pressing the magnifier at all. Pick a
+row in the watchlist, or an object in the viewport, and the Actions and Slots
+lists jump there on their own.
+
+++alt++-click the magnifier to switch it on or off. The button stays highlighted
+while it is on, and its tooltip says so.
+
+??? info "Scene, World, and staying out of the way"
+    The **Scene** and **World** rows work like any other row. Picking one clears
+    the viewport selection, because the scene itself is what you are looking at
+    now. Their animation is found wherever it lives — a world animated on its
+    nodes is picked up just the same.
+
+    Following stands down while the add-on is applying a take or view-layer
+    switch, so it never fights you for the lists.
+
+    To keep it on for every session, tick **Follow Selection** in
+    *Preferences ▸ Workflow ▸ Automations ▸ Inspector*.
 
 ## :material-playlist-edit: Slot Management
 
@@ -245,6 +266,6 @@ Bookmarked target types stay switchable even with no keyframes, so your favourit
 
 ## :material-keyboard: Hotkeys
 
-With the Inspector focused, ++f2++ renames and ++del++ deletes. ++alt++-click **Find Action** to search Scene & World datablocks instead of Object ones.
+With the Inspector focused, ++f2++ renames and ++del++ deletes. ++shift++-click **Find Action** to search Scene & World datablocks, and ++alt++-click it to turn **Follow Selection** on or off.
 
 Full list: [Keyboard Shortcuts](hotkeys.md)
