@@ -117,9 +117,16 @@ These few cover most jobs:
     | `{engine}` | Render engine (`CYCLES`, `EEVEE` …) |
     | `{preset}` | Active render preset name |
     | `{samples}` | Render samples count |
-    | `{resolution_x}` | Resolution X (resolution % applied; `{res_x}` still resolves) |
-    | `{resolution_y}` | Resolution Y (resolution % applied; `{res_y}` still resolves) |
+    | `{render_type}` | `still` or `animation`, from the take's Still & Animation Mode |
+    | `{resolution_x}` | Resolution X as set on the scene, before the percentage |
+    | `{resolution_y}` | Resolution Y as set on the scene, before the percentage |
+    | `{resolution_x_scaled}` | Width in pixels of the image you actually get, after the percentage (`{res_x}` still resolves to this) |
+    | `{resolution_y_scaled}` | Height in pixels of the image you actually get, after the percentage (`{res_y}` still resolves to this) |
     | `{resolution_percentage}` | Resolution percentage (`{res_pct}` still resolves) |
+    | `{region_width}` | Render region width in pixels, before the percentage — the full width when no region is set |
+    | `{region_height}` | Render region height in pixels, before the percentage — the full height when no region is set |
+    | `{region_width_scaled}` | Render region width in pixels, after the percentage |
+    | `{region_height_scaled}` | Render region height in pixels, after the percentage |
     | `{rev}` | Render version number, per scene or per view layer; a bare `{rev}` pads per the preference, `{rev:03d}` overrides |
     | `{subrev}` | Render sub-version for small iterations (`v{rev:03d}.{subrev:02d}` → `v002.03`); resets to 0 when the version bumps |
     | `{frame}` | Current frame, 4-digit zero-padded |
@@ -140,6 +147,7 @@ These few cover most jobs:
     |-------|-------------|
     | `{frame_start}` | Scene start frame |
     | `{frame_end}` | Scene end frame |
+    | `{frame_step}` | Frame step — how many frames the range skips per rendered frame |
     | `{frame_range}` | `start-end` |
     | `{fps}` | Frames per second |
     | `{duration}` | Duration in seconds |
