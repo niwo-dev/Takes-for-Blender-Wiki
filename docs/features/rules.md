@@ -32,7 +32,7 @@ If [Tags](tags.md) are the labels, Rules are the *programmable* ones — each ca
     | **Output** | Container & dimensions. |
     | **File Output** | Format, color depth, compression, Smart Output paths. |
     | **View Layer** | Active passes, light groups. |
-    | **Color Mgmt** | View transform, look, exposure. |
+    | **Color Management** | View transform, look, exposure. |
 
     | Slot (CAMERA) | What it drives |
     |---------------|----------------|

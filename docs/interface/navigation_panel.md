@@ -107,7 +107,7 @@ Click it to open **{{ op('tks.tag_filter_popover').bl_label }}**, then pick a ta
     while any filter is active, so you can see why rows are missing.
 
     Filtering the *tree* is generous: a parent survives when a child matches.
-    Filtering a *render* by tag is strict — the render menu's **Pick Tag** scope
+    Filtering a *render* by tag is strict — the render menu's **Select Tag** scope
     matches a View Layer's own tag only. See [Tag & Filter Takes](../workflows/tag_and_filter.md).
 
 ### :material-arrow-up-down: Moving Rows

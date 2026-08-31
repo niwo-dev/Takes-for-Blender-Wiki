@@ -20,7 +20,7 @@ Everything here starts off. Turn on **Enable Debug Logging** first — the group
 | Setting | What it does |
 |---------|--------------|
 | **Enable Debug Logging** | The master switch. |
-| *File* → **Log Directory**, **Log Filename** | Where the log goes. Leave both empty and the panel prints the default path. |
+| *File* → **Log Directory**, **Log File Name** | Where the log goes. Leave both empty and the panel prints the default path. |
 | *Console* → **Print to Console** | Echo the same lines into Blender's System Console. |
 | *Console* → **Levels** | Which severities reach the log: **Debug**, **Info**, **Warning**, **Error**. |
 | *Tools* → **Export Debug Log**, **Email Dev Support** | Save a copy to send on, or open a support mail. |
@@ -44,10 +44,10 @@ Expand a topic's chevron to reach its subtopics. **All Topics** and **All Subtop
     | **PRESET** (Render Presets) | Cascade, Cascade Sync, Clear Rule, Resolve, Rule Changed, Rule Switch, Tier Write, Color Management, Preset Engine |
     | **NAMING** (Names & Tokens) | Smart Renaming, Datablock Renames, Token Engine |
     | **TAGS** (Tag Library) | Move Operations, Group Processing, Tag Integration |
-    | **STORE** (Take Data & Safety Copy) | Safety Copy, Pointer Healing, Bookmarks |
+    | **STORE** (Take Data & Snapshots) | Snapshot, Pointer Healing, Bookmarks |
     | **UI** (Interface) | Tree Drawing, Tree Syncing, Panel Drawing, Popovers Logic, Inspector, Hotkeys / Keymaps, Watchlist |
     | **OPS** (Operator Trace) | Operator Runs, Groups |
-    | **SYSTEM** (Lifecycle & Background) | Init / Reloads, Addon Prefs, Undo Handlers, Process Monitor, AI Facade, Event Bus, Providers, Cache Registry, Viewport Sync |
+    | **SYSTEM** (Lifecycle & Background) | Init / Reloads, Add-on Preferences, Undo Handlers, Process Monitor, AI Facade, Event Bus, Providers, Cache Registry, Viewport Sync |
 
     | Shortcut | Action |
     |----------|--------|

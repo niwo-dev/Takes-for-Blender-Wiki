@@ -46,9 +46,9 @@ Orbit the viewport with the middle mouse button until you see the cube from a di
 
 ## 7. Create a camera for this angle
 
-Click the camera icon on the **ViewLayer** row and choose **Create New Camera**. The view snaps into the new camera — **Take_002** has no camera of its own, so it uses the layer's.
+Click the camera icon on the **ViewLayer** row and choose **New Camera**. The view snaps into the new camera — **Take_002** has no camera of its own, so it uses the layer's.
 
-<div class="tks-shot" data-shot="getting-started_first-take_new-camera">Create New Camera entry in the layer's camera menu</div>
+<div class="tks-shot" data-shot="getting-started_first-take_new-camera">New Camera entry in the layer's camera menu</div>
 
 ## 8. Flip between your takes
 

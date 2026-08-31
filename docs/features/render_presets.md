@@ -120,14 +120,14 @@ Every pending change also collects in the Navigation panel's **Preset Changes** 
 
 ## :material-folder-multiple: Storage Tiers
 
-Every preset file lives in one of four places: **Addon**, **Project**, **Shared** or **Local**.
+Every preset file lives in one of four places: **Add-on**, **Project**, **Shared** or **Local**.
 
 Choose one per preset type in *Preferences > Data > Presets*. **Lock Shared Folder** (on by default) stops the addon overwriting team presets.
 
 ??? info "Which tier to use"
     | Tier | Location | When to use |
     |------|----------|-------------|
-    | **Addon** | Bundled with the addon. | Defaults — read-only by convention. |
+    | **Add-on** | Bundled with the add-on. | Defaults — read-only by convention. |
     | **Project** | Saved next to the `.blend`. | Per-project presets that travel with the file. |
     | **Shared** | Team folder, path in *Preferences > Data > Storage*. | Studio-wide standards. |
     | **Local** | Your personal user folder. | Your own work-in-progress presets. |
@@ -136,7 +136,7 @@ Choose one per preset type in *Preferences > Data > Presets*. **Lock Shared Fold
 
 ??? tip "Opening a tier folder"
     To inspect or back up the raw files, jump straight to a folder in your file
-    explorer. **Open Addon Folder** opens the bundled read-only defaults.
+    explorer. **Open Add-on Folder** opens the bundled read-only defaults.
     **Open Project Folder** opens the folder next to the current `.blend`.
 
     **Open Project Folder** only works once the `.blend` is saved — an unsaved file

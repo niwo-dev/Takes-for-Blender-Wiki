@@ -25,8 +25,8 @@ Every tag lives in one category. Four categories drive automation rules. The oth
     | **Material** | Automation rule | Drives Material preset assignments. |
     | **Scene** | Data-scoped | Tags Scenes for organisation. |
     | **Scene Group** | Data-scoped | Tags Scene Groups. |
-    | **ViewLayer Group** | Data-scoped | Tags View Layer Groups. |
-    | **ViewLayer** | Data-scoped | Tags View Layers. |
+    | **View Layer Group** | Data-scoped | Tags View Layer Groups. |
+    | **View Layer** | Data-scoped | Tags View Layers. |
     | **Variant** | Data-scoped | Tags variant States. Feeds the `{variant_tag}` Smart Output token. |
     | **Custom** | Data-scoped | Cross-cutting labels. |
 

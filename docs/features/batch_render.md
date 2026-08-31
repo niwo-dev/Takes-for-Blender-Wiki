@@ -43,12 +43,12 @@ Every scope row runs in the selected mode. While a render runs, the button becom
     |----------|-----|-----------------|
     | **Selected Layers** | **This Scene** | Every render-toggle-enabled View Layer in the current scene. |
     | | **All Scenes** | Every render-toggle-enabled View Layer across every scene. |
-    | | **Pick Scene** | Choose a scene (with a *Search scenes…* option) and render its enabled View Layers. |
-    | | **Pick Tag** | Choose a [tag](tags.md) and render only the View Layers carrying it. Each entry shows how many layers it would render. |
+    | | **Select Scene** | Choose a scene (with a *Search scenes…* option) and render its enabled View Layers. |
+    | | **Select Tag** | Choose a [tag](tags.md) and render only the View Layers carrying it. Each entry shows how many layers it would render. |
     | **All Layers** | **This Scene** | Every View Layer in the current scene, whatever its render-toggle. |
     | | **All Scenes** | Every View Layer in every scene, whatever its render-toggle. |
-    | | **Pick Scene** | Choose a scene and force-render all of its View Layers. |
-    | | **Pick Tag** | Force-render every View Layer carrying the chosen tag. |
+    | | **Select Scene** | Choose a scene and force-render all of its View Layers. |
+    | | **Select Tag** | Force-render every View Layer carrying the chosen tag. |
     | **Other** | **Active Layer Only** | Just the active View Layer. |
     | | **Resume — Skip Done** | Enabled View Layers across all scenes, skipping ones that already finished. |
     | | **Retry Failed** | Only View Layers whose last attempt failed or was cancelled. |

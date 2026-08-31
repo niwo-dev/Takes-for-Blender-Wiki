@@ -58,7 +58,7 @@ Row heights for the add-on's lists, from 5 to 30 rows.
 
 ??? info "Lists you can override one by one"
     Objects, Actions, Slots, Scenes, View Layers, Takes Tree, Scene Groups,
-    ViewLayer Groups, Takes, Tags, VSW Products, Process Monitor, Debug Log,
+    View Layer Groups, Takes, Tags, VSW Products, Process Monitor, Debug Log,
     Profiler, Batch Queue, Preferences Setup.
 
 ## :material-table-column: Columns

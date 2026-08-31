@@ -13,7 +13,7 @@ A handful of preferences only surface as side-effects of other operations:
 | Setting | Where | Purpose |
 |---------|-------|---------|
 | **Smart Output Default Directory** | Used when a fresh render preset is created. | Default starting path (`//`). |
-| **Smart Output Default Filename** | Same. | Default filename pattern (`[view_layer]_####.[file_format]`). |
+| **Smart Output Default File Name** | Same. | Default file name pattern (`[view_layer]_####.[file_format]`). |
 | Override flags (~25) | Internal state | Track which row heights and preset storage tiers you overrode. Auto-managed. |
 | Expansion flags (~50) | Internal state | Remember which collapsibles were left open. |
 
@@ -24,16 +24,16 @@ A handful of preferences only surface as side-effects of other operations:
 
 ## :material-restore: Resetting Preferences
 
-The fastest way back to defaults: in *Preferences > Data > Addon*, switch *Save Mode* to **ADDON**, then re-enable the addon. Your custom config files in PROJECT / SHARED / LOCAL remain untouched.
+The fastest way back to defaults: in *Preferences > Data > Add-on*, switch *Save Mode* to **ADDON**, then re-enable the add-on. Your custom config files in PROJECT / SHARED / LOCAL remain untouched.
 
 ??? note "Where preferences live on disk"
     Preferences are stored as JSON in the directory chosen by *Save Mode*.
     By default that's the addon's own folder. The active save mode is shown
-    at the top of the [*Data > Addon*](data.md#addon) sub-tab.
+    at the top of the [*Data > Add-on*](data.md#add-on) sub-tab.
 
 ## :material-cached: Rebuild Cache { #rebuild-cache }
 
-Does the takes tree, a preset or the rest state look stale? **Rebuild Cache & Reload Addon** clears everything and starts fresh in one step.
+Does the takes tree, a preset or the rest state look stale? **Rebuild Cache & Reload Add-on** clears everything and starts fresh in one step.
 
 Use it after the add-on warns that a file was last touched by a different version.
 
@@ -48,8 +48,8 @@ It is always available and safe. It only touches the add-on's own caches and the
        state from scratch.
 
     This is the heavier counterpart to the developer-focused
-    [Reload Addon](index.md#support-developer). A plain reload refreshes the
-    code; **Rebuild Cache & Reload Addon** also flushes cached data and
+    [Reload Add-on](index.md#support-developer). A plain reload refreshes the
+    code; **Rebuild Cache & Reload Add-on** also flushes cached data and
     re-stamps the file.
 
 !!! warning "Reloads the add-on"

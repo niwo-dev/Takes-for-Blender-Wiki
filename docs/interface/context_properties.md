@@ -185,7 +185,7 @@ Group Scenes and View Layers under a name. Each group is its own [tier](#overrid
 
 ### :material-folder-plus: Creating Groups
 
-Select two or more rows of one type, then use **Group Selected Scenes** or **Group Selected ViewLayers**.
+Select two or more rows of one type, then use **Group Selected Scenes** or **Group Selected View Layers**.
 
 ??? info "Rules for new groups"
     - A small dialog asks you to name the group.
@@ -216,7 +216,7 @@ Select two or more rows of one type, then use **Group Selected Scenes** or **Gro
 
 ??? info "When it is available, and where members go"
     A confirmation dialog names the group being merged and lets you pick the
-    destination in the **Into Group** dropdown.
+    destination in the **To Group** dropdown.
 
     You need a non-`Ungrouped` Scene Group selected and at least two Scene Groups
     in the file.

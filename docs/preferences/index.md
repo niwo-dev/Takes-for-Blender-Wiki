@@ -8,7 +8,7 @@ Open them under *Edit > Preferences > Add-ons > Takes for Blender*.
 
 Four tabs hold every setting: **Workflow**, **Interface**, **Data** and **Developer**. Each splits into sub-tabs.
 
-Your changes save themselves as you make them. [Save Mode](data.md#addon) decides where they land.
+Your changes save themselves as you make them. [Save Mode](data.md#add-on) decides where they land.
 
 <div class="grid cards" markdown>
 
@@ -63,14 +63,14 @@ Your changes save themselves as you make them. [Save Mode](data.md#addon) decide
 
 ## :material-folder-cog: Preference Configurations
 
-Your settings live in a config file. *Save Mode* on [*Data > Addon*](data.md#addon) picks the folder.
+Your settings live in a config file. *Save Mode* on [*Data > Add-on*](data.md#add-on) picks the folder.
 
 Buttons beside the **Config File** picker on that same sub-tab manage the file and its siblings.
 
 ??? info "Every configuration button"
     | Button | What it does |
     | -------- | -------------- |
-    | **{{ op('tks.new_preference_config').bl_label }}** | Asks for a filename, then writes a fresh config full of default values into the current *Save Mode* folder (Addon, Project, Shared or Local) and switches to it. It refuses to overwrite an existing file. |
+    | **{{ op('tks.new_preference_config').bl_label }}** | Asks for a filename, then writes a fresh config full of default values into the current *Save Mode* folder (Add-on, Project, Shared or Local) and switches to it. It refuses to overwrite an existing file. |
     | **{{ op('tks.init_project_prefs').bl_label }}** | One-click project setup. It creates a **presets** folder beside your saved `.blend`, links it through the scene's World, switches *Save Mode* to Project, and writes your current settings there. Save the `.blend` first. |
     | **{{ op('tks.open_config_folder').bl_label }}** | Opens the folder holding the active config file in your system file browser. |
     | **{{ op('tks.duplicate_preference_config').bl_label }}** | Copies the active config to a new file, with an editable name pre-filled, then switches to the copy. It refuses to overwrite an existing file. |
@@ -94,7 +94,7 @@ With *Autosave Preferences* on — the default — you never touch these. Switch
 
 ### :material-map-legend: Storage Legend
 
-The **Configuration Inspector** sits below the Addon section on *Data > Addon*. It lists every preference with a small icon.
+The **Configuration Inspector** sits below the Add-on section on *Data > Add-on*. It lists every preference with a small icon.
 
 That icon tells you where the value is stored. Open the inspector's *Legend* to read them, or hover an entry for the full explanation.
 
@@ -141,7 +141,7 @@ They scan custom properties, tidy stale presets, and open the folders the add-on
 
 **Preview Sound** plays your render-completion sound so you can audition it without rendering.
 
-**Email Dev Support** opens your mail client with a support ticket ready to send. **Reload Addon** picks up code changes without restarting Blender.
+**Email Dev Support** opens your mail client with a support ticket ready to send. **Reload Add-on** picks up code changes without restarting Blender.
 
 ??? info "The fine print"
     **Preview Sound** respects the *Enable Render Sounds* switch — see
@@ -150,12 +150,12 @@ They scan custom properties, tidy stale presets, and open the folders the add-on
     **Email Dev Support** stamps the subject line with your add-on and Blender
     versions, and reminds you to attach the exported log.
 
-    **Reload Addon** clears the cached Python bytecode, then disables and
+    **Reload Add-on** clears the cached Python bytecode, then disables and
     re-enables the add-on. It is meant for development. For a deeper reset, see
-    [Rebuild Cache & Reload Addon](advanced.md#rebuild-cache).
+    [Rebuild Cache & Reload Add-on](advanced.md#rebuild-cache).
 
 ??? warning "Reload or restart?"
-    **Reload Addon** rebuilds the add-on's runtime state in place. That is enough
+    **Reload Add-on** rebuilds the add-on's runtime state in place. That is enough
     most of the time.
 
     After editing the add-on's own Python files, a full Blender restart is still

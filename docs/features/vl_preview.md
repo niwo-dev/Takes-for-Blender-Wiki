@@ -66,11 +66,11 @@ Both render buttons cover **every render-enabled View Layer in the queue**, not 
     **{{ op('tks.render_all_previews_bg').bl_label }}** still work, but nothing in the
     UI runs them. Reach them from Blender's operator search (++f3++).
 
-## :material-image-edit: Pick Preview Image
+## :material-image-edit: Select Preview Image
 
 Sometimes the render says nothing useful — a wireframe layer, for example. Then use your own image.
 
-**Pick Preview Image** opens a file browser. Choose any PNG, JPG or EXR and it becomes that View Layer's thumbnail.
+**Select Preview Image** opens a file browser. Choose any PNG, JPG or EXR and it becomes that View Layer's thumbnail.
 
 ??? info "Running it, and clearing it again"
     The command has no button yet. Run it from Blender's operator search (++f3++) and

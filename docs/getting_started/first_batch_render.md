@@ -34,9 +34,9 @@ Orbit the viewport with the middle mouse button to a view you like.
 
 ## 5. Create the layer's camera
 
-Click the camera icon on the new layer's row and choose **Create New Camera**. Each layer now looks through its own camera.
+Click the camera icon on the new layer's row and choose **New Camera**. Each layer now looks through its own camera.
 
-<div class="tks-shot" data-shot="getting-started_first-batch-render_new-camera">Create New Camera on the second layer's row</div>
+<div class="tks-shot" data-shot="getting-started_first-batch-render_new-camera">New Camera on the second layer's row</div>
 
 ## 6. Switch on Smart Output
 

@@ -237,7 +237,7 @@ Four bands, top to bottom: frame navigation, target-type rows, search and filter
     |---------|--------------|
     | **Frame-navigation bar** | Timeline controls, when enabled — jump between keyframes with Blender's own previous and next arrows, plus the **{{ op('tks.delete_all_inspector_keys').bl_label }}** trash button. |
     | **Target-type rows** | One row per animated datablock type on the active object. The left side switches the view to that target; the right side counts its keys. |
-    | **Search & filter** | A search field narrows the property list, the red ✕ clears it. A source filter limits rows to **All / Native / Addon** properties. |
+    | **Search & filter** | A search field narrows the property list, the red ✕ clears it. A source filter limits rows to **All / Native / Add-on** properties. |
     | **Property groups** | Collapsible sub-panels — Transform, Delta Transform, Visibility, Viewport Display, Light Settings, Lens & Sensor, Modifiers, General Properties — each row showing its live value. |
 
     Every property row ends in Blender's native **keyframe decorator** (the diamond), so

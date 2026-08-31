@@ -52,20 +52,20 @@ So Takes keeps a safety copy on disk, refreshed as you work. If the storage goes
 
 | Tier | Where it writes |
 |------|-----------------|
-| **Addon** | The bundled add-on folder. |
+| **Add-on** | The bundled add-on folder. |
 | **Project** | Next to the `.blend`. |
 | **Shared** | The Shared Presets Folder above. |
 | **Local** | The Local Presets Folder above. |
 
 The nine types: Render, Output, File Output, View Layer, Color Management, Camera, World, Material, Bookmark.
 
-## :material-puzzle: Addon
+## :material-puzzle: Add-on
 
 Where the add-on keeps its own settings.
 
 | Setting | What it does |
 |---------|--------------|
-| **Save Mode** | Which tier the settings file goes to: **Addon**, **Project**, **Shared** or **Local**. |
+| **Save Mode** | Which tier the settings file goes to: **Add-on**, **Project**, **Shared** or **Local**. |
 | **Config File** | Which settings file to load. One picker per tier. |
 | **Autosave Preferences** | On. Saves every change the moment you make it. |
 | **Auto-Restart Dead Processes** | On. Restarts a background render process if it crashes. |

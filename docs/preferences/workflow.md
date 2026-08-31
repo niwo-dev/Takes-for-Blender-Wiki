@@ -53,7 +53,7 @@ The chores Takes does for you. Turn off anything you would rather do by hand.
     | **Auto-create Rest Action** | bool | On | Creates the *Rest State* action when a new scene is created. |
     | **Auto-mirror Keyframes to Rest** | bool | On | Mirrors unkeyed values into the Rest Action on keyframe insert. |
     | **Auto-snap on Keyframe Clear** | bool | On | Snaps unkeyed properties back to their [Rest State](../features/rest_state.md) values when their keyframes are deleted. The snap fires once, on the witnessed deletion. When off, nothing snaps by itself — use the manual *Snap to Rest* tools. |
-    | **Auto-assign ViewLayer Actions** | bool | On | Creates and assigns View Layer actions when a View Layer is added. |
+    | **Auto-assign View Layer Actions** | bool | On | Creates and assigns View Layer actions when a View Layer is added. |
     | **Auto-rename Actions on Hierarchy Change** | bool | Off | Rebuilds action names from the naming templates when scenes or View Layers are renamed. |
     | **Auto-rename Slots on Target Rename** | bool | On | Keeps slot names in sync with their target object or data. |
     | **Auto Fake User on Actions** | bool | On | Protects actions from auto-purge. |
@@ -65,7 +65,7 @@ The chores Takes does for you. Turn off anything you would rather do by hand.
     | **{{ pref('camera_unassigned_mode').label }}** (Cameras) | enum | Adopt into Scene (Native) | What happens when you pick a camera in the Properties editor or the viewport instead of through the cascade. Adopt it onto your adopt tier, preserve it untracked, or let the addon own the slot outright. |
     | **{{ pref('camera_adopt_tier').label }}** (Cameras) | enum | Scene | Which tier an adopted camera lands on. Also the tier the [Camera needed](../features/cascade.md#needed-rows) chips write to. |
     | **{{ pref('world_unassigned_mode').label }}** (World) | enum | Adopt into Scene (Native) | What happens when you assign a World in Blender's own Properties editor. **Adopt into Scene (Native)** records it on your adopt tier, so the tree knows about it and take switches keep it — Blender behaves like Blender. **Preserve** leaves it alone without recording it, and the [drift reminder](../features/cascade.md#cascade-preset-drift) stays visible. **Auto-clear (Strict)** gives the addon full ownership: with no World assigned anywhere in the tree, the scene's World is cleared. |
-    | **{{ pref('world_adopt_tier').label }}** (World) | enum | Scene | Which tier an adopted World lands on — Global, Scene Group, Scene, VL Group, ViewLayer or Take. Scene matches native Blender. Also the tier the [World needed](../features/cascade.md#needed-rows) resolve chips write to. |
+    | **{{ pref('world_adopt_tier').label }}** (World) | enum | Scene | Which tier an adopted World lands on — Global, Scene Group, Scene, View Layer Group, View Layer or Take. Scene matches native Blender. Also the tier the [World needed](../features/cascade.md#needed-rows) resolve chips write to. |
     | **{{ pref('preload_viewlayers_mode').label }}** | enum | Off | Pre-builds view-layer dependency graphs quietly in the background, so your first switch to each take is instant. **Off**, **Automatic** (starts shortly after a file opens), or **Manual (button)** (adds a *Preload View Layers* button to the Takes tree sidebar). |
     | **{{ pref('preload_auto_open_panel').label }}** | bool | Off | With Automatic preload, opens the View-Layer Preload panel so you can watch progress. It closes itself when every layer is done. |
     | **Auto-rename Thumbnails on Name Change** | bool | On | Renames preview images alongside their source. |
@@ -139,7 +139,7 @@ Names for takes, variants and saved presets.
     | Variant Group | `{collection}_Variants` |
     | Variant Name | `{material}` |
     | Render / Output / File Output Preset | `{scene}{sep}Render` / `Output` / `FileOutput` |
-    | View Layer / Color Mgmt Preset | `{scene}{sep}ViewLayer` / `Color` |
+    | View Layer / Color Management Preset | `{scene}{sep}ViewLayer` / `Color` |
     | Camera / World / Material Preset | `{camera}` / `{world}` / `{material}` |
 
 ## :material-code-braces: Token
@@ -253,7 +253,7 @@ Turn an editor off to leave its own shortcuts alone. This section only shows whi
 What ++ctrl+n++ creates in the Takes tree.
 
 ??? info "The two choices"
-    **Add ViewLayer** and **Add Scene** each pick a default: create a new one,
+    **Add View Layer** and **Add Scene** each pick a default: create a new one,
     copy settings, or blank. Or leave them on *Ask (show menu)* to choose every
     time. Both default to *Ask*.
 
