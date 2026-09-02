@@ -134,3 +134,30 @@ Background tasks add a labelled progress bar under the pills. There is nothing t
 
     Percentages align in a right-hand column, and each row appears only while its
     task is running.
+
+## :material-help-circle-outline: Tooltips
+
+What a tooltip shows when you hover a button.
+
+| Setting | What it does |
+|---|---|
+| **Show Explanation in Tooltips** | Off hides the long text and keeps the one-line purpose |
+| **Show Shortcuts in Tooltips** | Off hides the key list under the text |
+| **Assigned Value First** | Puts what is currently assigned at the top of the tooltip |
+
+## :material-translate: Language
+
+Which technical terms stay in English while the rest of the interface is translated. The interface language itself follows Blender's own setting.
+
+| Control | What it does |
+|---|---|
+| **Keep Technical Terms in English** | The master switch for the whole list below |
+| Term list | Tick a term to print it in English, untick to print the translation |
+| **Add Term** | Adds a word of your own: the translated spelling and the English word to print instead |
+| **Remove Term** | Removes one of your own terms |
+| **Reset Terms** | Puts every shipped term back to its default for the current language |
+
+??? info "What the list can and cannot do"
+    A shipped term follows grammar (cases and compounds). A term you add is a
+    plain text swap, so pick one that reads right wherever it appears.
+

@@ -100,6 +100,21 @@ Reach for these when an object is stuck in a pose it picked up from another View
     **Snap Active to Rest** greys out in the pie when the active object has nothing
     stored in the Rest Action.
 
+### Unsaved moves
+
+Reach for these when the drift warning lists **Unsaved Moves** - values you changed on a keyed property that Blender drops on the next frame change.
+
+| Tool | What it does |
+|---|---|
+| **Keep** (row button) | Keys that one value on the object's own action |
+| **Keep All** | Keys every listed value at once |
+| **Let All Go** | Snaps every listed value back to its keyed value |
+
+??? info "Why a move can be unsaved"
+    A keyed property shows the value you dragged only until the next
+    animation update. The warning catches it before that, so you decide:
+    keep it as a keyframe, or let it go.
+
 ### Removing Rest keys
 
 Reach for these when Rest State should stop looking after a property or an object.

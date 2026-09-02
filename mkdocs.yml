@@ -118,6 +118,7 @@ nav:
     - Takes & the Review Loop: features/vl_versions.md
     - The Cascade: features/cascade.md
     - Rest State: features/rest_state.md
+    - Diff State: features/diff_state.md
     - Takes vs Other Tools: comparisons.md
 
   - Inside Takes:
