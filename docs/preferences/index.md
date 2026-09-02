@@ -28,6 +28,8 @@ Your changes save themselves as you make them. [Save Mode](data.md#add-on) decid
 
     [:octicons-arrow-right-24: Interface Tab](ui.md)
 
+    Also home to the **Tooltips** and **Language** tabs - **Add Term**, **Remove Term** and **Reset Terms** live there - and to the Diff State marks, where **Use Own Marks** and **Follow Master Default** decide each object kind.
+
 -   :material-database:{ .lg .middle } **Data**
 
     ---

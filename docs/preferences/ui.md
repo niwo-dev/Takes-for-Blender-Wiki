@@ -143,7 +143,7 @@ What a tooltip shows when you hover a button.
 |---|---|
 | **Show Explanation in Tooltips** | Off hides the long text and keeps the one-line purpose |
 | **Show Shortcuts in Tooltips** | Off hides the key list under the text |
-| **Assigned Value First** | Puts what is currently assigned at the top of the tooltip |
+| **Value Style** | **Value First** puts what is set at the top, purpose underneath; **Plain** keeps the purpose first |
 
 ## :material-translate: Language
 
