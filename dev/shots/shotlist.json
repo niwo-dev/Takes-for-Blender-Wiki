@@ -12,8 +12,22 @@
       "name": "getting-started_installation_get-extensions",
       "page": "getting_started/installation.md",
       "desc": "Preferences > Get Extensions, with Install from Disk open",
-      "recipe": [],
-      "crop": null,
+      "recipe": [
+        "open_sidebar",
+        "tab:WikiShot",
+        "sidebar:675",
+        "wait:1.0"
+      ],
+      "crop": {
+        "kind": "rect",
+        "area": "VIEW_3D",
+        "rect": [
+          1711,
+          550,
+          324,
+          308
+        ]
+      },
       "watch": [],
       "stamp": {}
     },
@@ -22,7 +36,16 @@
       "page": "getting_started/installation.md",
       "desc": "Takes for Blender enabled in the add-on list",
       "recipe": [],
-      "crop": null,
+      "crop": {
+        "kind": "rect",
+        "area": "VIEW_3D",
+        "rect": [
+          450,
+          1,
+          1181,
+          1044
+        ]
+      },
       "watch": [],
       "stamp": {}
     },
@@ -30,8 +53,22 @@
       "name": "getting-started_installation_takes-tab",
       "page": "getting_started/installation.md",
       "desc": "3D View sidebar showing the new Takes tab",
-      "recipe": [],
-      "crop": null,
+      "recipe": [
+        "open_sidebar",
+        "tab:WikiShot",
+        "sidebar:675",
+        "wait:1.0"
+      ],
+      "crop": {
+        "kind": "rect",
+        "area": "VIEW_3D",
+        "rect": [
+          1703,
+          506,
+          621,
+          38
+        ]
+      },
       "watch": [],
       "stamp": {}
     },
@@ -60,8 +97,22 @@
       "name": "getting-started_first-steps_add-viewlayer",
       "page": "getting_started/first_steps.md",
       "desc": "The + add menu with the New View Layer entry (step 2)",
-      "recipe": [],
-      "crop": null,
+      "recipe": [
+        "open_sidebar",
+        "tab:WikiShot",
+        "sidebar:675",
+        "wait:1.0"
+      ],
+      "crop": {
+        "kind": "rect",
+        "area": "VIEW_3D",
+        "rect": [
+          1999,
+          470,
+          313,
+          36
+        ]
+      },
       "watch": [],
       "stamp": {}
     },
@@ -99,7 +150,16 @@
       "recipe": [
         "frame_scene"
       ],
-      "crop": null,
+      "crop": {
+        "kind": "rect",
+        "area": "VIEW_3D",
+        "rect": [
+          265,
+          52,
+          1578,
+          1050
+        ]
+      },
       "watch": [],
       "stamp": {}
     },

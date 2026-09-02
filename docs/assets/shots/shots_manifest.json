@@ -26,7 +26,7 @@
   "getting-started_first-take_default-scene": {
     "addon_version": "0.1.0",
     "blender_version": "5.2.0 LTS",
-    "date": "2026-08-22",
+    "date": "2026-08-23",
     "recipe_hash": "e1f1c15d863e8c3e"
   },
   "getting-started_first-take_first-take-row": {
@@ -52,6 +52,24 @@
     "blender_version": "5.2.0 LTS",
     "date": "2026-08-22",
     "recipe_hash": "69559da445c6f99a"
+  },
+  "getting-started_installation_addon-enabled": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-23",
+    "recipe_hash": "b41cf3bfe1f8b89b"
+  },
+  "getting-started_installation_get-extensions": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-23",
+    "recipe_hash": "e5fb7a28f39a6200"
+  },
+  "getting-started_installation_takes-tab": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-23",
+    "recipe_hash": "39c3802f4bb6a8f5"
   },
   "workflows_switch-takes_tree": {
     "addon_version": "0.1.0",
