@@ -69,6 +69,18 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 
 ---
 
+## :material-camera: Cameras
+
+| Shortcut | Action | Notes |
+|----------|--------|-------|
+| ++shift+alt+h++ | **Isolate** | Shows this take's camera and puts the others away. Works whatever **Apply When** is set to. |
+
+*The same button sits at the foot of the Takes Tree row menu. It is greyed out
+while **Camera Visibility** is switched off. See
+[Show One Camera at a Time](../workflows/show_one_camera.md).*
+
+---
+
 ## :material-checkbox-multiple-marked-outline: Multi-Select
 
 *Turn it on with the **☐** icon in a list's stats row.*

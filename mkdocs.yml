@@ -102,6 +102,7 @@ nav:
       - Switch Between Takes: workflows/switch_takes.md
       - Keep an Object's Own Animation: workflows/keep_an_objects_own_animation.md
       - Lock a Value: workflows/lock_a_value.md
+      - Show One Camera at a Time: workflows/show_one_camera.md
     - Looks & Variants:
       - Make Material Variants: workflows/material_variants.md
       - Make Animation Variants: workflows/animation_variants.md
