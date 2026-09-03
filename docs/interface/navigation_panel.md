@@ -18,11 +18,12 @@ The bottom row is the panel switcher. Click a tab to show that panel and hide th
     | Control | Description |
     |---------|-------------|
     | **Rest Mode** (ghost) | Temporarily shows every View Layer's rest baseline — see [Rest State](../features/rest_state.md). Takes turns with Value Lock. |
-    | **Still Mode** (still camera) | Pins every take's timeline to its still frame — see [Still Mode](../features/still_mode.md). Turning it on parks Timeline Sync until you switch back. |
+    | **Still Mode** (still camera) | Pins every take's timeline to its still frame — see [Still Mode](../features/still_mode.md). Turning it on parks Frame Sync until you switch back. |
     | **Value Lock** (padlock) | Protects the scene's unkeyed values while you work — see [Value Lock](../features/value_lock.md). Mutually exclusive with Autokey. |
     | **Autokey** | Toggles Blender's auto-keying across all scenes at once. Blender 5.2 ships *Only Insert Available* enabled, which makes auto-keying silently skip channels that were never keyed — the state every fresh take starts in. Takes offers to manage that preference for you: enabling Autokey turns it off, disabling Autokey restores it. You are asked once — see [Autokey Is Being Blocked](#autokey-is-being-blocked). |
-    | **Timeline Sync** | Keeps the playhead in sync across scenes. Grayed out while Still Mode is on — the two are mutually exclusive. |
+    | **Timeline** | Chooses what the timeline drives. Click it for the three modes; ++shift++ + click it for the settings behind them. **Frame Sync** keeps every take on the same frame. **Scene Follow** lets the window move with your mouse between a sequencer and a viewport — see [Sequencer](../features/sequencer.md). **Off** does neither. Only Frame Sync is greyed out while Still Mode is on: the two pull the playhead in opposite directions. |
     | **Variant Live** (sync arrows) | Shows the [variant](../features/variant_switch.md) state you are editing live in the viewport. Switching it off restores what the take assigns. ++alt++ + click arms it *and* opens the Variants list. It sits here because it is a **mode**, beside the mode it excludes: arming Live switches Autokey off, and arming Autokey switches Live off. Greyed out when the file has no products. |
+    | **Diff State** (bounding box) | Colours objects by the state they are in — keyed, or drifted from their rest baseline. It only looks at the scene, so nothing else ever holds it off. Hide this button in Preferences if you do not want it. |
 
 ??? info "Top row — right side: badges, save, help, gear"
     | Control | Description |
@@ -127,7 +128,7 @@ This is where you control what each tree row shows.
     |---------|-------------|
     | **Refresh Tree** | Force a full rebuild of the Takes Tree. |
     | **Collection Visibility** | Copy / paste the collection-visibility set of the active View Layer. |
-    | **Camera Visibility** | Show camera state on rows, with an **Automate** toggle. |
+    | **Camera Visibility** | Switch the camera automation on or off. **Isolate** runs it now, and **Apply When** picks the moment it runs on its own. See [Show One Camera at a Time](../workflows/show_one_camera.md). |
     | **Previews** | Master toggle, viewport-snapshot button, render button, refresh, size, background colour, transparent background. See [View Layer Preview](../features/vl_preview.md). |
     | **Cascade Icon Visibility** | Per-icon show/hide toggles (Tag, Variant, Action, Compositor, World, Camera, Output Rule). |
     | **Pin** toggles | Force certain icons to always render, skipping the overflow **⋯**. |

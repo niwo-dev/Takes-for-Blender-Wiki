@@ -27,6 +27,7 @@ It names the take this frame stands for, and — when they differ — the one yo
 
 | Row | Meaning |
 |-----|---------|
+| **Timeline** | The same mode button the [navigation header](../interface/navigation_panel.md) carries, so you can reach it without leaving the sequencer. Click it to pick a mode; ++shift++ + click it for the settings behind them. |
 | **Renders** | The take the strip under the playhead represents: what this frame will render as. |
 | **Showing** | The take applied right now. It appears only when it differs from **Renders**. |
 | **Came from** | Returns you to the scene and view layer you were taken from — see [Going back](#going-back). |
@@ -44,7 +45,9 @@ It names the take this frame stands for, and — when they differ — the one yo
 
 Using a sequencer takes the window to the scene that owns the strips, because the playhead needs a timeline to follow.
 
-Which gestures do that is yours to choose in [Preferences ▸ Workflow ▸ Automations](../preferences/workflow.md).
+This is the **Scene Follow** mode on the **Timeline** button. Pick it from that button in the sequencer sidebar or in the [navigation header](../interface/navigation_panel.md).
+
+Which gestures do the switching is yours to choose. ++shift++ + click the **Timeline** button, or open [Preferences ▸ Workflow ▸ Automations](../preferences/workflow.md). Both show the same settings.
 
 ??? info "The five gestures"
     | Rung | Fires on |
@@ -68,6 +71,10 @@ Which gestures do that is yours to choose in [Preferences ▸ Workflow ▸ Autom
 The return can also happen by itself, but it is **off by default**.
 
 ??? info "Turning the automatic return on"
+    Tick **Back To The Viewport**. It sits with the other Scene Follow settings:
+    ++shift++ + click the **Timeline** button, or open
+    [Preferences ▸ Workflow ▸ Automations](../preferences/workflow.md).
+
     With both halves on, the window follows your mouse between the two editors —
     sequencer, viewport, sequencer — and every crossing runs a full cascade. On two
     monitors that may be exactly right; it is not something handed to you unasked.
