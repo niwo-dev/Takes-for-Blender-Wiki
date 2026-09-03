@@ -119,21 +119,25 @@ The **up** and **down** arrows in the column right of the tree move the highligh
 
 ## :material-tune: Tree Display Settings
 
-Click the **down-arrow** (⌄) beside the up/down move buttons, in the column right of the tree. It opens the **Icon Visibility** popover.
+Open the tree's **row menu** — ++shift+right-button++ on a row, or the dropdown button under the **+** and **−**. Two entries at the foot open a settings popover each: **{{ op('tks.icon_visibility_settings').bl_label }}** and **{{ op('tks.preview_settings').bl_label }}**.
 
-This is where you control what each tree row shows.
+**{{ op('tks.icon_visibility_settings').bl_label }}** is where you control what each tree row shows.
 
-??? info "What the popover holds"
-    | Setting | Description |
+??? info "What Tree Design holds"
+    | Section | Description |
     |---------|-------------|
-    | **Collection Visibility** | Copy / paste the collection-visibility set of the active View Layer. |
-    | **Camera Visibility** | Switch the camera automation on or off. **Isolate** runs it now, and **Apply When** picks the moment it runs on its own. See [Show One Camera at a Time](../workflows/show_one_camera.md). |
-    | **Previews** | Master toggle, viewport-snapshot button, render button, refresh, size, background colour, transparent background. See [View Layer Preview](../features/vl_preview.md). |
-    | **Cascade Icon Visibility** | Per-icon show/hide toggles (Tag, Variant, Action, Compositor, World, Camera, Output Rule). |
-    | **Pin** toggles | Force certain icons to always render, skipping the overflow **⋯**. |
+    | **Icons** | Per-icon show/hide toggles: Tag, Variant, Action, Compositor, World, Camera, Output Rule, Render. |
+    | **Pin Outside Collapse** | Force certain icons to always show, skipping the overflow **⋯**. |
     | **Collapse** | When the icons fold into **⋯**: Dynamic (with a minimum width), Always, or Never. |
-    | **Colors** | Row colours, including the active View Layer. |
+    | **Colors** | Tag Color, Tree Line and its width, the View Layer icon style, and the active View Layer colour. |
     | **{{ op('tks.sync_tree_to_prefs').bl_label }}** | Save these display choices into your preferences. |
+
+??? info "What Previews holds"
+    Master toggle, viewport-snapshot button, render button, refresh, size,
+    background colour, transparent background. See
+    [View Layer Preview](../features/vl_preview.md).
+
+**Collection Visibility** and **Camera Visibility** are not in either popover — they are things you do to a *row*, so they live in the row menu itself. See [Show One Camera at a Time](../workflows/show_one_camera.md).
 
 ## :material-alert-outline: Warnings
 
