@@ -84,7 +84,16 @@ jobs:
       - name: Mirror changelogs from addon source
         run: |
           mkdir -p docs/changelog
-          cp .addon-src/CHANGELOG.md docs/changelog/index.md
+          # Both mirrored pages open with `render_macros: false`. The changelogs
+          # are release prose, not templates: they quote Jinja-looking snippets
+          # while describing the wiki's own macros, and mkdocs-macros would try
+          # to EXECUTE those quotes (backticks do not protect them), failing the
+          # build under on_error_fail. Opting the pages out keeps any future
+          # changelog wording safe. The addon files may carry a UTF-8 BOM, which
+          # would hide the front matter from the parser -- strip it first.
+          optout=$'---\nrender_macros: false\n---\n\n'
+          printf '%s' "$optout" > docs/changelog/index.md
+          sed '1s/^\xEF\xBB\xBF//' .addon-src/CHANGELOG.md >> docs/changelog/index.md
           # Dev changelog: adapt two GitHub-only link forms so mkdocs --strict
           # (which aborts on any unresolved link) passes on the mirrored page:
           #   1. the intro's [CHANGELOG.md](CHANGELOG.md) sibling link -> the
@@ -92,10 +101,12 @@ jobs:
           #   2. any [text](path/to/source.py#L..) link -> inline `code`, since
           #      source files aren't wiki docs. The dev log uses backticks for
           #      file refs, so (2) is a belt-and-suspenders guard.
+          printf '%s' "$optout" > docs/changelog/dev.md
           sed -E \
+            -e '1s/^\xEF\xBB\xBF//' \
             -e 's#\[CHANGELOG\.md\]\(CHANGELOG\.md\)#[CHANGELOG.md](index.md)#g' \
             -e 's#\[([^][]*)\]\([^)]*\.py[^)]*\)#`\1`#g' \
-            .addon-src/CHANGELOG_DEV.md > docs/changelog/dev.md
+            .addon-src/CHANGELOG_DEV.md >> docs/changelog/dev.md
           echo "changelog pages:"; ls docs/changelog
 
       # The verifier writes its findings to a file and exits 1 on drift, so a

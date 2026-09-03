@@ -126,7 +126,6 @@ This is where you control what each tree row shows.
 ??? info "What the popover holds"
     | Setting | Description |
     |---------|-------------|
-    | **Refresh Tree** | Force a full rebuild of the Takes Tree. |
     | **Collection Visibility** | Copy / paste the collection-visibility set of the active View Layer. |
     | **Camera Visibility** | Switch the camera automation on or off. **Isolate** runs it now, and **Apply When** picks the moment it runs on its own. See [Show One Camera at a Time](../workflows/show_one_camera.md). |
     | **Previews** | Master toggle, viewport-snapshot button, render button, refresh, size, background colour, transparent background. See [View Layer Preview](../features/vl_preview.md). |

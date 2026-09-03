@@ -96,14 +96,14 @@ The sequencer caches rendered frames. A stored frame keeps the take it was rende
 
 All of these live in [Preferences ▸ Workflow ▸ Automations](../preferences/workflow.md).
 
-??? info "The six settings"
+??? info "The settings"
     | Setting | Default | What it does |
     |---------|---------|--------------|
     | **{{ pref('sequencer_follow_enabled').label }}** | On | Apply the take of the strip under the playhead while a sequencer is open. |
     | **{{ pref('sequencer_scene_autoswitch').label }}** | On | Let using a sequencer move the window to the scene that owns the strips. |
-    | **{{ pref('sequencer_autoswitch_on').label }}** | all five | Which gestures do that — the ladder above. |
+    | **{{ pref('sequencer_autoswitch_hover').label }}**, **{{ pref('sequencer_autoswitch_click').label }}**, **{{ pref('sequencer_autoswitch_scrub').label }}**, **{{ pref('sequencer_autoswitch_play').label }}**, **{{ pref('sequencer_autoswitch_arrows').label }}** | all on | Which gestures do that — the ladder above. |
     | **{{ pref('sequencer_autoswitch_back').label }}** | Off | Return to the previous scene by itself when the mouse enters a 3D viewport. |
-    | **{{ pref('sequencer_autoswitch_back_on').label }}** | Hover | Which gestures bring you back. |
+    | **{{ pref('sequencer_back_hover').label }}**, **{{ pref('sequencer_back_click').label }}** | Hover on | Which gestures bring you back. |
     | **{{ pref('sequencer_cache_off').label }}** | On | Keep the frame cache off on a timeline the follow drives. |
 
 ??? note "A scene with no strips is not an edit timeline"

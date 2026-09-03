@@ -46,10 +46,26 @@ def generate_manifest(addon_root: Path) -> int:
     return rc
 
 
+# The changelogs are release prose, not templates. They routinely quote
+# Jinja-looking snippets ("{{ op('...').bl_label }}") while describing the
+# wiki's own macros, and mkdocs-macros would try to EXECUTE those quotes --
+# backticks do not protect them. `render_macros: false` turns macro rendering off
+# for the mirrored pages, so no future changelog line can break the build.
+MACRO_OPT_OUT = "---\nrender_macros: false\n---\n\n"
+
+
+def _mirror_page(text: str, dest: Path) -> None:
+    """Write one mirrored changelog page with macro rendering disabled."""
+    dest.write_text(MACRO_OPT_OUT + text.lstrip("\ufeff"), encoding="utf-8")
+
+
 def mirror_changelogs(addon_root: Path) -> None:
     dest = WIKI_ROOT / "docs" / "changelog"
     dest.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(addon_root / "CHANGELOG.md", dest / "index.md")
+    _mirror_page(
+        (addon_root / "CHANGELOG.md").read_text(encoding="utf-8"),
+        dest / "index.md",
+    )
 
     # Same two rewrites CI applies: the sibling CHANGELOG.md link becomes the
     # mirrored user page, and links into .py source become inline code, since
@@ -57,7 +73,7 @@ def mirror_changelogs(addon_root: Path) -> None:
     text = (addon_root / "CHANGELOG_DEV.md").read_text(encoding="utf-8")
     text = text.replace("[CHANGELOG.md](CHANGELOG.md)", "[CHANGELOG.md](index.md)")
     text = re.sub(r"\[([^\[\]]*)\]\([^)]*\.py[^)]*\)", r"`\1`", text)
-    (dest / "dev.md").write_text(text, encoding="utf-8")
+    _mirror_page(text, dest / "dev.md")
     print(f"changelog pages: {[p.name for p in sorted(dest.iterdir())]}")
 
 

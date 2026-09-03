@@ -170,13 +170,12 @@ Each View Layer row has a render toggle. Higher tiers get bulk toggles.
 
 ### :material-broom: Tree Housekeeping
 
-Expand chevrons, a manual refresh, and a right-click menu per row.
+Expand chevrons and a right-click menu per row.
 
 ??? info "Housekeeping controls"
     | Action | What it does |
     | -------- | -------------- |
     | **{{ op('tks.toggle_scene_expand').bl_label }}** | The expand chevron on any hierarchical row. ++ctrl++ + click toggles the row **and all its nested children**. ++shift++ + click expands or collapses **all rows of the same type** at once, like the Outliner. ++alt+shift++ + click toggles **every row in the tree**. |
-    | **{{ op('tks.refresh_tree').bl_label }}** | Forces a full tree rebuild when a structural change hasn't shown up yet. Also in the [Tree Display Settings](navigation_panel.md#tree-display-settings) popover. |
     | **Right-click menu** | ++ctrl++ + right-click a tree row opens its context menu: a header naming the row, plus **Show Overrides…**, which opens the full cascade-icon popover for that row. |
 
 ## :material-group: Scene & View Layer Groups
