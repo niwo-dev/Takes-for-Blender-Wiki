@@ -31,7 +31,7 @@ While a scene resolves to Still, its frame range is clamped to the still frame â
 
 ## :material-swap-horizontal: Interactions
 
-- **Timeline Sync** is mutually exclusive with Still Mode, because syncing the playhead across scenes would fight the frame pin. Turning Still on parks Timeline Sync (button grayed) and remembers its state; turning Still off restores it.
+- **Frame Sync** stands down while a take resolves Still, because syncing the playhead across scenes would fight the frame pin. Only that one mode is held off â€” the [Timeline](../interface/navigation_panel.md) button stays usable, so **Scene Follow** and **Off** are still yours to pick.
 - The viewport mode pills show an active Still Mode alongside Autokey, Value Lock and Rest Mode, so you always see why the timeline will not move.
 
 ??? tip "Why frame 0?"

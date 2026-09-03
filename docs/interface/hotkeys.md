@@ -18,7 +18,7 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 | ++f12++ | **F12 Render Pie** — pick a render scope before rendering. Off by default. |
 | ++i++ | **Keyframe Pie** — replaces Blender's native insert menu. Off by default. |
 | ++alt+i++ | **Clear Pie** — a pie of keyframe-clearing actions. Off by default. |
-| ++shift+alt+q++ | **Mode Pie** — switch Still, Animation and Rest modes. Off by default. |
+| ++shift+alt+q++ | **[Mode Pie](../features/pie_menus.md#mode-pie)** — the Navigation Panel's mode toggles at your cursor. Off by default. |
 
 ??? info "Default slots, and how to change them"
     West **Tree View**, East **Watchlist**, South **Slotted Mode**, North **Rules**,
@@ -169,6 +169,7 @@ The Variant Tree takes the same [Tree Edits](#tree-edits) keys. **Delete** alway
 
 | Shortcut | Action |
 |----------|--------|
+| {{ keys('tks.render_jobs_popover') }} | **Render Jobs** — the overview of every job the batch would render. |
 | ++esc++ | Cancel the running batch render. |
 | ++alt++ + click a render scope row | Force-render every View Layer, even completed ones. |
 | ++alt++ + click the **Render** button | Force-reset a stuck render. |

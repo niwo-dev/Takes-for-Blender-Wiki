@@ -11,6 +11,23 @@ icon: material/select-compare
 - **Navigation header** - the **Diff State** button in the mode row.
 - **Viewport Overlays** - a **Diff State** section in Blender's overlay popover.
 
+## :material-menu-down: Pick What You See
+
+Click the **Diff State** button. A small menu opens with four choices.
+
+| Choice | What the viewport shows |
+|---|---|
+| **Drifted Marks** | Only objects that drifted from the Rest State |
+| **Slot Marks** | Only objects whose slot holds keyframes |
+| **All** | Both |
+| **Off** | Neither |
+
+The four are exclusive: picking one is the whole decision, and the others
+switch off. Clicking the choice you are already on changes nothing — **Off**
+is its own row, one click away from wherever you are.
+
+The Overlays section carries the same menu under its **Show States** switch.
+
 ## :material-palette: Marks
 
 Each state draws its own marks, set in **Preferences ▸ Interface ▸ Diff State**.

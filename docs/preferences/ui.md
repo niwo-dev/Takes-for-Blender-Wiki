@@ -121,7 +121,7 @@ Pick which mode pills may appear. A toggle only *allows* its pill — the pill s
 | Setting | Default | Description |
 |---------|---------|-------------|
 | **Show Mode Badges** | On | Master switch for the mode-badge row. |
-| **Autokey / Value Lock / Rest / Still / Timeline Sync** | On | Per-mode pill visibility. |
+| **Autokey / Value Lock / Rest Mode / Still Mode / Frame Sync / Scene Follow / Variant Live / Diff State** | On | Per-mode pill visibility, one switch each. |
 | **Hide Mode Badges when Takes Panel Open** | On | Hides only the badge row while the panel is open. Progress rows stay. |
 
 ### :material-progress-clock: Progress
