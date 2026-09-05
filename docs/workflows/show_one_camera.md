@@ -8,27 +8,28 @@ When a scene holds several cameras and you only want to see the one this take us
 
 1. Open the **Takes** tab in the 3D viewport sidebar (++n++).
 2. Hold ++shift++ and right-click any row in the Takes Tree.
-3. Tick **Camera Visibility** at the foot of the menu.
-4. Open **Apply When** and pick the moment it should run.
-5. Switch takes.
+3. At the foot of the menu, open **Isolate** and pick a mode.
+4. Switch takes.
 
 You now have one camera on screen and the rest out of the way.
 
-## When it runs
+## The three modes
 
-| Choice | It isolates the camera |
+The row shows the mode in force, so you can read it without opening the menu.
+
+| Mode | What you see |
 |---|---|
-| **On Still Mode** | only when the take you land on is in [Still Mode](../features/still_mode.md) |
-| **On Every Switch** | on every take switch |
-| **On Request** | never on its own |
+| **Off** | Nothing changes on its own. **Isolate Active Camera** still works. |
+| **Single Camera** | Only the camera in use. On a Multi-Cam take that is the camera under the playhead, and it follows as you scrub or play. |
+| **Multi Camera** | Every camera the take uses. On a Multi-Cam take, all of its marker cameras. |
 
-**On Still Mode** is the default. A still needs exactly one camera. An animation
-take often needs several, so it is left alone.
+**Off** is the default. The mode means the same thing on every take: whether a
+take is in [Still Mode](../features/still_mode.md) or not makes no difference.
 
 ## Do it right now
 
-Click **Isolate** in the same menu, or press ++shift+alt+h++. That works whatever
-**Apply When** says.
+Click **Isolate Active Camera** in the same menu, or press ++shift+alt+h++. That
+works even while the mode is **Off**.
 
 ??? info "Hidden cameras stay hidden"
     Takes never puts a camera back on screen by itself. What it hides stays

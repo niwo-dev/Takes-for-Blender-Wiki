@@ -64,8 +64,7 @@ The chores Takes does for you. Turn off anything you would rather do by hand.
     |---------|------|---------|-------------|
     | **{{ pref('camera_unassigned_mode').label }}** (Cameras) | enum | Adopt into Scene (Native) | What happens when you pick a camera in the Properties editor or the viewport instead of through the cascade. Adopt it onto your adopt tier, preserve it untracked, or let the addon own the slot outright. |
     | **{{ pref('camera_adopt_tier').label }}** (Cameras) | enum | Scene | Which tier an adopted camera lands on. Also the tier the [Camera needed](../features/cascade.md#needed-rows) chips write to. |
-    | **Camera Visibility Automation** (Cameras) | bool | Off | Keeps one camera on screen: this take's. Mirrored at the foot of the Takes Tree row menu. See [Show One Camera at a Time](../workflows/show_one_camera.md). |
-    | **Apply When** (Cameras) | enum | On Still Mode | When the automation runs on its own. **On Still Mode** only on a take in Still Mode, **On Every Switch** on all of them, **On Request** never by itself. |
+    | **Isolate** (Cameras) | enum | Off | Which cameras stay visible when you switch takes. **Off** changes nothing on its own, **Single Camera** shows only the camera in use and follows the playhead on a Multi-Cam take, **Multi Camera** shows every camera the take uses. Mirrored at the foot of the Takes Tree row menu. See [Show One Camera at a Time](../workflows/show_one_camera.md). |
     | **Show Assigned Camera** (Cameras) | bool | On | Reveals the camera this take uses. |
     | **Affect Containing Collection** (Cameras) | bool | On | Also reveals the collection that camera sits in, so a hidden collection cannot keep it off screen. |
     | **Hide Other Cameras** (Cameras) | bool | On | Puts every other camera in the scene away. Hidden cameras stay hidden until you say otherwise. |

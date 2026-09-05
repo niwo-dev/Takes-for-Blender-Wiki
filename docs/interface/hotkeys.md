@@ -73,10 +73,10 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 
 | Shortcut | Action | Notes |
 |----------|--------|-------|
-| ++shift+alt+h++ | **Isolate** | Shows this take's camera and puts the others away. Works whatever **Apply When** is set to. |
+| ++shift+alt+h++ | **Isolate Active Camera** | Shows this take's camera and puts the others away. Works even while **Isolate** is set to **Off**. |
 
 *The same button sits at the foot of the Takes Tree row menu. It is greyed out
-while **Camera Visibility** is switched off. See
+only while both **Show Assigned Camera** and **Hide Other Cameras** are off. See
 [Show One Camera at a Time](../workflows/show_one_camera.md).*
 
 ---

@@ -137,7 +137,7 @@ Open the tree's **row menu** — ++shift+right-button++ on a row, or the dropdow
     background colour, transparent background. See
     [View Layer Preview](../features/vl_preview.md).
 
-**Collection Visibility** and **Camera Visibility** are not in either popover — they are things you do to a *row*, so they live in the row menu itself. See [Show One Camera at a Time](../workflows/show_one_camera.md).
+**Collection Visibility** and **Isolate** are not in either popover — they are things you do to a *row*, so they live in the row menu itself. See [Show One Camera at a Time](../workflows/show_one_camera.md).
 
 ## :material-alert-outline: Warnings
 
