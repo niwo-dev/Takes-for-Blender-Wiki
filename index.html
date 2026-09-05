@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takes for Blender — Stage Management & Batch Rendering</title>
+    <meta name="description" content="The ultimate production organizer for Blender 5.1+. Takes, cascade overrides, variant switching, and batch rendering for product visualization.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    <style>
+        :root {
+            --accent: #e87d0d;
+            --accent-light: #f5a623;
+            --bg-dark: #0e0e10;
+            --bg-card: #161618;
+            --bg-card-hover: #1c1c1f;
+            --border: rgba(255,255,255,0.06);
+            --border-hover: rgba(232,125,13,0.35);
+            --text: #e0e0e0;
+            --text-dim: #7a8a9a;
+            --text-bright: #ffffff;
+            --blender-blue: #265787;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            position: relative;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 100;
+            width: 90%; max-width: 1100px;
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            background: rgba(22, 22, 24, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+        nav .nav-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.7rem 1.5rem;
+        }
+        nav .logo {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700; font-size: 1.2rem;
+            color: var(--text-bright);
+            text-decoration: none;
+        }
+        nav .logo-icon {
+            width: 28px; height: 28px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem;
+        }
+        nav .nav-actions {
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .nav-menu-toggle {
+            display: flex; align-items: center; justify-content: center;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-bright);
+            padding: 0.55rem 0.7rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .nav-menu-toggle:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--text-dim);
+        }
+        .nav-menu-toggle .material-symbols-outlined { font-size: 1.3rem; }
+        .nav-menu-toggle.open {
+            background: rgba(232,125,13,0.12);
+            border-color: rgba(232,125,13,0.35);
+            color: var(--accent);
+        }
+
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 0.6rem);
+            right: 1rem;
+            min-width: 240px;
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            background: rgba(22, 22, 24, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+            padding: 0.5rem;
+            display: flex; flex-direction: column;
+            gap: 0.15rem;
+            opacity: 0; pointer-events: none;
+            transform: translateY(-8px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 99;
+        }
+        .nav-dropdown.open {
+            opacity: 1; pointer-events: auto;
+            transform: translateY(0);
+        }
+        .nav-dropdown a {
+            display: flex; align-items: center; gap: 0.7rem;
+            padding: 0.7rem 0.9rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem; font-weight: 500;
+            border-radius: 8px;
+            border-left: 2px solid transparent;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .nav-dropdown a .material-symbols-outlined {
+            font-size: 1.2rem; color: var(--text-dim);
+            transition: color 0.2s;
+        }
+        .nav-dropdown a:hover {
+            background: rgba(255,255,255,0.04);
+            color: var(--text-bright);
+            border-left-color: var(--accent);
+        }
+        .nav-dropdown a:hover .material-symbols-outlined { color: var(--accent); }
+        .nav-dropdown-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 0.4rem 0.4rem;
+        }
+
+        /* ─── COST SAVINGS SECTION ─── */
+        .savings-section { padding: 4rem 2rem 5rem; background: var(--bg-dark); }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+        .hero::before {
+            content: ''; position: absolute;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(232,125,13,0.08) 0%, transparent 70%);
+            top: -100px; right: -200px;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(38,87,135,0.1) 0%, transparent 70%);
+            bottom: 0; left: -150px;
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 1100px; margin: 0 auto; width: 100%;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4rem; align-items: center;
+            position: relative; z-index: 1;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(232,125,13,0.12);
+            border: 1px solid rgba(232,125,13,0.25);
+            color: var(--accent);
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.06em; text-transform: uppercase;
+            padding: 0.4rem 1rem; border-radius: 100px;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-size: 3.5rem; font-weight: 800;
+            line-height: 1.08; letter-spacing: -0.03em;
+            color: var(--text-bright);
+            margin-bottom: 1.2rem;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 1.15rem; color: var(--text-dim);
+            line-height: 1.65; margin-bottom: 2rem;
+            max-width: 480px;
+        }
+        .hero-actions {
+            display: flex; gap: 1rem; flex-wrap: wrap;
+        }
+        #hero-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 2rem; border-radius: 8px;
+            font-weight: 600; font-size: 0.95rem;
+            text-decoration: none; border: none; cursor: pointer;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--bg-dark);
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1.1), box-shadow 0.3s ease;
+            position: relative; overflow: hidden;
+        }
+        .btn-primary::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        .btn-primary:hover::after { transform: translateX(100%); }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(232,125,13,0.35);
+        }
+        .btn-glow {
+            box-shadow: 0 0 18px rgba(232, 125, 13, 0.55);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 40px rgba(232, 125, 13, 0.9);
+            transform: scale(1.04) translateY(-2px);
+        }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 2rem; border-radius: 8px;
+            font-weight: 600; font-size: 0.95rem;
+            text-decoration: none; border: 1px solid var(--border);
+            color: var(--text); background: transparent;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .btn-secondary:hover {
+            border-color: var(--text-dim);
+            background: rgba(255,255,255,0.04);
+        }
+        .hero-visual {
+            position: relative;
+            display: flex; justify-content: center;
+            perspective: 1200px;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        .hero-image-wrapper {
+            animation: float 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+            width: 100%;
+        }
+        #hero-3d-img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 100px rgba(232,125,13,0.15);
+            transition: transform 0.1s ease-out;
+            display: block;
+        }
+        .hero-glow {
+            position: absolute;
+            width: 80%; height: 80%;
+            background: radial-gradient(ellipse, rgba(232,125,13,0.12), transparent);
+            top: 10%; left: 10%;
+            filter: blur(40px);
+            pointer-events: none;
+            z-index: -2;
+        }
+        .hero-bg-floating {
+            position: absolute; z-index: -1;
+            opacity: 0.5; filter: blur(5px);
+            border-radius: 8px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            pointer-events: none;
+        }
+        .hero-bg-floating img { width: 100%; height: auto; display: block; }
+        .bg-1 { width: 42%; top: 15%; left: -12%; animation: float-bg 7s ease-in-out infinite; }
+        .bg-2 { width: 38%; top: -8%; right: -5%; animation: float-bg 8s ease-in-out infinite 1.5s; }
+        .bg-3 { width: 45%; bottom: -5%; right: -12%; animation: float-bg 9s ease-in-out infinite 0.5s; }
+
+        @keyframes float-bg {
+            0% { transform: translateY(0px) translateX(0px) rotate(-1.5deg); }
+            50% { transform: translateY(-20px) translateX(5px) rotate(1.5deg); }
+            100% { transform: translateY(0px) translateX(0px) rotate(-1.5deg); }
+        }
+
+        /* ─── STATS BAR ─── */
+        .stats {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem 2rem;
+        }
+        .stats-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 2rem; text-align: center;
+        }
+        .stat-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            font-size: 0.85rem; color: var(--text-dim);
+            margin-top: 0.3rem;
+        }
+
+        /* ─── SECTION BASE ─── */
+        section { padding: 6rem 2rem; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label {
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 0.8rem;
+        }
+        .section-title {
+            font-size: 2.2rem; font-weight: 700;
+            color: var(--text-bright); margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .section-subtitle {
+            font-size: 1.05rem; color: var(--text-dim);
+            max-width: 600px; line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        /* ─── FEATURE GRID ─── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2rem;
+            transition: border-color 0.3s, background 0.3s, transform 0.3s;
+            position: relative; overflow: hidden;
+        }
+        .feature-card::after, .workflow-step::after, .benefit::after {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0; transition: opacity 0.3s;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+        }
+        .feature-card:hover::after, .workflow-step:hover::after, .benefit:hover::after { opacity: 1; }
+        .feature-card:hover, .workflow-step:hover, .benefit:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+        }
+        .feature-icon {
+            width: 48px; height: 48px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-bright);
+        }
+        .feature-card h3 {
+            font-size: 1.05rem; font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 0.5rem;
+        }
+        .feature-card p {
+            font-size: 0.88rem; color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* ─── WORKFLOW SECTION ─── */
+        .workflow {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #0a0a0c 100%);
+        }
+        .workflow-steps {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 2rem; counter-reset: step;
+        }
+        .workflow-step {
+            counter-increment: step;
+            position: relative;
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: border-color 0.3s, background 0.3s, transform 0.3s;
+        }
+        .workflow-step::before {
+            content: counter(step);
+            position: absolute; top: -14px; left: 24px;
+            width: 28px; height: 28px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 50%; color: var(--bg-dark);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700; font-size: 0.85rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .workflow-step h3 {
+            font-size: 1rem; font-weight: 600;
+            color: var(--text-bright); margin-bottom: 0.5rem;
+            margin-top: 0.2rem;
+        }
+        .workflow-step p {
+            font-size: 0.85rem; color: var(--text-dim); line-height: 1.5;
+        }
+        .workflow-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: block;
+        }
+
+        /* ─── BENEFITS SECTION ─── */
+        .benefits-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .benefit {
+            display: flex; gap: 1.2rem; align-items: flex-start;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: border-color 0.3s, background 0.3s, transform 0.3s;
+            position: relative;
+        }
+        .benefit-icon {
+            flex-shrink: 0;
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            color: var(--text-bright);
+        }
+        .benefit h4 {
+            font-size: 0.95rem; font-weight: 600;
+            color: var(--text-bright); margin-bottom: 0.3rem;
+        }
+        .benefit p {
+            font-size: 0.85rem; color: var(--text-dim); line-height: 1.5;
+        }
+
+        /* ─── COMPARISON SECTION ─── */
+        .comparison-section { padding: 4rem 2rem 5rem; background: var(--bg-dark); }
+        .comp-table-container { 
+            max-width: 900px; margin: 3rem auto 0;
+            background: rgba(22, 22, 24, 0.4); border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .comp-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .comp-table th, .comp-table td { padding: 1.2rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .comp-table th { background: rgba(0,0,0,0.3); font-family: 'Outfit', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-weight: 600; text-align: left; }
+        .comp-table th.center { text-align: center; }
+        .comp-table th.highlight { color: var(--accent-light); background: rgba(232, 125, 13, 0.08); border-left: 1px solid rgba(232, 125, 13, 0.3); border-right: 1px solid rgba(232, 125, 13, 0.3); }
+        .comp-table td { font-size: 0.95rem; color: #a0aab5; line-height: 1.4; vertical-align: middle; }
+        .comp-table td.center { text-align: center; }
+        .comp-table td.highlight { background: rgba(232, 125, 13, 0.04); color: var(--text-bright); border-left: 1px solid rgba(232, 125, 13, 0.3); border-right: 1px solid rgba(232, 125, 13, 0.3); font-weight: 500; }
+        .comp-table tr:last-child td { border-bottom: none; }
+        .td-title { font-weight: 500; color: var(--text-bright); }
+        .icon-check { color: var(--accent); font-size: 1.5rem; display: inline-block; vertical-align: middle; }
+        .icon-x { color: rgba(255,255,255,0.15); font-size: 1.5rem; display: inline-block; vertical-align: middle; }
+        .icon-gray { color: var(--text-dim); }
+        .matrix-group td { background: rgba(0,0,0,0.6); font-family: 'Outfit', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); padding: 0.8rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); border-left: none; border-right: none; font-weight: 600; }
+        .comp-table tr.matrix-group:first-child td { border-top: none; }
+
+
+        /* ─── CREATOR SECTION ─── */
+        .creator-section { padding: 4rem 2rem 6rem; background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(14,14,16,0.3) 100%); }
+        .creator-card {
+            display: flex; gap: 3rem; align-items: center; justify-content: space-between;
+            background: rgba(22, 22, 24, 0.4); border: 1px solid var(--border);
+            border-radius: 20px; padding: 4rem; max-width: 900px; margin: 0 auto;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .creator-image {
+            flex-shrink: 0; width: 220px; height: 220px;
+            border-radius: 50%; overflow: hidden;
+            border: 3px solid rgba(232, 125, 13, 0.4);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.5), 0 0 40px rgba(232,125,13,0.1);
+        }
+        .creator-image img { width: 100%; height: 100%; object-fit: cover; }
+        .creator-content { flex-grow: 1; text-align: left; }
+        .creator-content .section-label { justify-content: flex-start; margin-bottom: 0.8rem; }
+        .creator-content h2 { font-size: 2.2rem; color: var(--text-bright); margin-bottom: 1.5rem; line-height: 1.2; letter-spacing: -0.02em; }
+        .creator-content p { font-size: 1rem; color: var(--text-dim); line-height: 1.6; margin-bottom: 2rem; }
+        .creator-signature { margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; display: inline-block; }
+        .creator-signature strong { color: var(--text-bright); font-family: 'Outfit', sans-serif; font-size: 1.2rem; letter-spacing: 0.5px; }
+        .creator-signature span { color: var(--text-dim); font-size: 0.9rem; display: block; margin-top: 0.2rem; }
+
+        /* ─── FAQ SECTION ─── */
+        .faq-section { padding: 4rem 2rem 5rem; background: var(--bg-dark); }
+        .faq-container { max-width: 800px; margin: 3rem auto 0; }
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question {
+            width: 100%; text-align: left; background: none; border: none;
+            padding: 1.5rem 0; font-size: 1.15rem; font-weight: 500;
+            color: var(--text-bright); display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer; font-family: 'Outfit', sans-serif;
+            transition: color 0.2s;
+        }
+        .faq-question:hover { color: var(--accent-light); }
+        .faq-icon {
+            font-size: 1.5rem; transition: transform 0.3s ease; color: var(--text-dim);
+        }
+        .faq-item.active .faq-icon { transform: rotate(45deg); color: var(--accent); }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease;
+            color: var(--text-dim); line-height: 1.6; font-size: 0.95rem;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px; padding-bottom: 1.5rem;
+        }
+
+        /* ─── PRICING SECTION ─── */
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: stretch; margin-top: 3rem; }
+        .pricing-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+            padding: 2.5rem 2rem; display: flex; flex-direction: column; position: relative;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .pricing-card.popular {
+            border-color: var(--accent); background: linear-gradient(180deg, rgba(232,125,13,0.05), var(--bg-card) 100%);
+            transform: translateY(-8px);
+        }
+        .pricing-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+        .pricing-card.popular:hover { transform: translateY(-12px); border-color: var(--accent-light); }
+        .pricing-badge {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            background: var(--accent); color: var(--bg-dark); font-size: 0.75rem; font-weight: 700;
+            padding: 0.4rem 1rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .pricing-title { font-size: 1.3rem; font-weight: 600; color: var(--text-bright); margin-bottom: 0.5rem; }
+        .pricing-desc { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.5rem; line-height: 1.4; }
+        .price-container { margin-bottom: 2rem; }
+        .price-strike { font-size: 1.1rem; color: var(--text-dim); text-decoration: line-through; margin-right: 0.6rem; }
+        .price-current { font-size: 2.8rem; font-weight: 800; color: var(--text-bright); font-family: 'Outfit', sans-serif; letter-spacing: -1px; }
+        .pricing-features { list-style: none; margin-bottom: 2.5rem; flex-grow: 1; }
+        .pricing-features li {
+            font-size: 0.9rem; margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.6rem; color: var(--text);
+        }
+        .pricing-features li .material-symbols-outlined { font-size: 1.2rem; color: var(--accent); }
+
+        /* ─── CTA SECTION ─── */
+        .cta {
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+        }
+        .cta::before {
+            content: ''; position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(232,125,13,0.06) 0%, transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .cta-inner {
+            position: relative; z-index: 1;
+        }
+        .cta h2 {
+            font-size: 2.6rem; font-weight: 800;
+            color: var(--text-bright);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .cta p {
+            font-size: 1.1rem; color: var(--text-dim);
+            margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;
+        }
+        .cta-tag {
+            font-size: 0.8rem; color: var(--text-dim);
+            margin-top: 1rem;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+        }
+        footer .footer-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between;
+            align-items: center;
+        }
+        footer p {
+            font-size: 0.8rem; color: #4a5568;
+        }
+        footer a {
+            color: var(--text-dim); text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+        footer a:hover { color: var(--accent); }
+
+        /* ─── EARLY BIRD BANNER ─── */
+        .early-bird-banner {
+            max-width: 1100px;
+            margin: 2.5rem auto 0;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, rgba(232,125,13,0.14), rgba(245,166,35,0.05));
+            border: 1px solid rgba(232,125,13,0.4);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 2rem; flex-wrap: wrap;
+            box-shadow: 0 0 50px rgba(232,125,13,0.1);
+            position: relative; overflow: hidden;
+        }
+        .early-bird-banner::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(232,125,13,0.08), transparent 60%);
+            pointer-events: none;
+        }
+        .eb-text { flex: 1; min-width: 250px; position: relative; }
+        .eb-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem; font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 0.35rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .eb-title .material-symbols-outlined { font-size: 1.3rem; }
+        .eb-sub { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; }
+        .eb-countdown { display: flex; gap: 0.7rem; position: relative; }
+        .eb-unit {
+            background: rgba(0,0,0,0.45);
+            border: 1px solid rgba(232,125,13,0.25);
+            border-radius: 10px;
+            padding: 0.65rem 0.8rem;
+            min-width: 64px; text-align: center;
+        }
+        .eb-unit-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem; font-weight: 800;
+            color: var(--text-bright); line-height: 1;
+        }
+        .eb-unit-label {
+            font-size: 0.65rem; color: var(--text-dim);
+            text-transform: uppercase; letter-spacing: 0.08em;
+            margin-top: 0.35rem;
+        }
+
+        /* ─── FEATURE SUB-SECTIONS (Core / Automation / Production / Extras) ─── */
+        .feat-section { padding: 4rem 2rem; }
+        .feat-section + .feat-section { padding-top: 1rem; }
+
+        /* ─── IN-SECTION FEATURE SIDEBAR ─── */
+        .feature-tabs {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 0;
+            margin-top: 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .feat-tabs-nav {
+            display: flex; flex-direction: column;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+        }
+        /* Simple sidebar row (Benefits) */
+        .feat-btn {
+            display: flex; align-items: center; gap: 0.7rem;
+            padding: 0.95rem 1.1rem;
+            background: transparent; border: none;
+            border-radius: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            color: var(--text-dim);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem; font-weight: 500;
+            cursor: pointer; text-align: left; width: 100%;
+            transition: background 0.2s, color 0.2s;
+        }
+        .feat-tabs-nav .feat-btn:last-child { border-bottom: none; }
+        .feat-btn .material-symbols-outlined {
+            font-size: 1.1rem; color: var(--text-dim);
+            transition: color 0.2s;
+        }
+        .feat-btn:hover {
+            background: rgba(255,255,255,0.03);
+            color: var(--text-bright);
+        }
+        .feat-btn.active {
+            background: linear-gradient(135deg, rgba(232,125,13,0.12), rgba(245,166,35,0.03));
+            color: var(--text-bright);
+        }
+        .feat-btn.active .material-symbols-outlined { color: var(--accent); }
+        .feat-btn .feat-new {
+            display: inline-block;
+            background: var(--accent); color: var(--bg-dark);
+            font-size: 0.55rem; font-weight: 800;
+            padding: 0.1rem 0.35rem; border-radius: 6px;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            margin-left: auto;
+        }
+
+        /* Rich sidebar row: icon block + title + tag */
+        .feat-btn-rich {
+            display: flex; align-items: center; gap: 0.95rem;
+            padding: 1rem 1.1rem;
+            background: transparent; border: none;
+            border-radius: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            cursor: pointer; text-align: left; width: 100%;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dim);
+            transition: background 0.2s, color 0.2s;
+        }
+        .feat-tabs-nav .feat-btn-rich:last-child { border-bottom: none; }
+        .feat-btn-rich:hover {
+            background: rgba(255,255,255,0.03);
+            color: var(--text-bright);
+        }
+        .feat-btn-rich.active {
+            background: linear-gradient(135deg, rgba(232,125,13,0.12), rgba(245,166,35,0.03));
+            color: var(--text-bright);
+        }
+        .feat-btn-icon {
+            flex-shrink: 0;
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem; color: var(--text-bright);
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .feat-btn-rich.active .feat-btn-icon {
+            background: linear-gradient(135deg, rgba(232,125,13,0.22), rgba(245,166,35,0.05));
+            border-color: rgba(232,125,13,0.35);
+            color: var(--accent);
+        }
+        .feat-btn-text { flex: 1; min-width: 0; }
+        .feat-btn-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem; font-weight: 700;
+            color: inherit;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .feat-btn-tag {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.65rem; font-weight: 600;
+            color: var(--text-dim);
+            text-transform: uppercase; letter-spacing: 0.08em;
+            line-height: 1;
+        }
+        .feat-btn-rich.active .feat-btn-tag { color: var(--accent); }
+        .feat-btn-rich .feat-new {
+            display: inline-block;
+            background: var(--accent); color: var(--bg-dark);
+            font-size: 0.55rem; font-weight: 800;
+            padding: 0.12rem 0.4rem; border-radius: 6px;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+
+        .feat-content {
+            min-height: 400px;
+            padding: 2rem;
+            border-left: 1px solid var(--border);
+        }
+        .feat-detail { display: none; animation: fadeInUp 0.35s ease; }
+        .feat-detail.active { display: block; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .feat-detail-header {
+            display: flex; align-items: center; gap: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+        .feat-detail-icon {
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, rgba(232,125,13,0.2), rgba(245,166,35,0.05));
+            border: 1px solid rgba(232,125,13,0.3);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: var(--accent);
+            flex-shrink: 0;
+        }
+        .feat-detail-title-block { flex: 1; }
+        .feat-detail h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem; font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.01em;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .feat-detail-tag {
+            font-size: 0.75rem; color: var(--text-dim);
+            text-transform: uppercase; letter-spacing: 0.08em;
+            font-family: 'Outfit', sans-serif; font-weight: 600;
+        }
+        .feat-detail-lead {
+            font-size: 1.05rem; color: var(--text);
+            line-height: 1.65; margin: 0 0 1.3rem;
+        }
+        .feat-detail-list { list-style: none; padding: 0; }
+        .feat-detail-list li {
+            display: flex; gap: 0.7rem; align-items: flex-start;
+            padding: 0.7rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text); font-size: 0.92rem; line-height: 1.5;
+        }
+        .feat-detail-list li:first-child { border-top: none; padding-top: 0.2rem; }
+        .feat-detail-list li .material-symbols-outlined {
+            font-size: 1.1rem; color: var(--accent);
+            flex-shrink: 0; margin-top: 0.1rem;
+        }
+        .feat-new-badge {
+            display: inline-block;
+            background: var(--accent); color: var(--bg-dark);
+            font-size: 0.6rem; font-weight: 800;
+            padding: 0.2rem 0.5rem; border-radius: 6px;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            vertical-align: middle;
+        }
+
+        /* ─── COST SAVINGS ─── */
+        .savings-summary {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem; margin: 1rem 0 2.5rem;
+        }
+        .savings-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem; text-align: center;
+        }
+        .savings-card.you-pay {
+            border-color: rgba(232,125,13,0.45);
+            background: linear-gradient(180deg, rgba(232,125,13,0.08), var(--bg-card));
+            box-shadow: 0 0 30px rgba(232,125,13,0.08);
+        }
+        .sc-label {
+            font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--text-dim);
+            margin-bottom: 0.6rem;
+        }
+        .sc-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.4rem; font-weight: 800;
+            color: var(--text-bright);
+            letter-spacing: -1px; line-height: 1;
+        }
+        .savings-card.you-pay .sc-value {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .savings-card.you-save .sc-value { color: #6fd16f; }
+        .sc-strike {
+            text-decoration: line-through;
+            color: var(--text-dim);
+            font-size: 1rem; margin-right: 0.4rem;
+        }
+        .sc-tag { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.5rem; }
+        .savings-table-container {
+            background: rgba(22,22,24,0.4);
+            border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden;
+        }
+        .savings-table { width: 100%; border-collapse: collapse; }
+        .savings-table th {
+            background: rgba(0,0,0,0.3);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.78rem; letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-dim); font-weight: 600;
+            text-align: left; padding: 1rem 1.5rem;
+        }
+        .savings-table th.right { text-align: right; }
+        .savings-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.92rem; color: var(--text);
+            vertical-align: top;
+        }
+        .savings-table td.right { text-align: right; white-space: nowrap; }
+        .savings-table td .feat-icon {
+            font-size: 1.1rem; color: var(--accent);
+            vertical-align: middle; margin-right: 0.5rem;
+        }
+        .savings-table td .feat-note {
+            display: block; font-size: 0.8rem;
+            color: var(--text-dim); margin-top: 0.25rem;
+        }
+        .savings-table tr:last-child td { border-bottom: none; }
+        .savings-table tfoot td {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700; color: var(--text-bright);
+            background: rgba(232,125,13,0.05);
+            border-top: 1px solid rgba(232,125,13,0.25);
+            font-size: 1rem;
+        }
+        .savings-table tfoot td.right {
+            color: var(--accent-light); font-size: 1.15rem;
+        }
+        .savings-cta {
+            margin-top: 2rem; padding: 1.5rem;
+            text-align: center;
+            background: rgba(232,125,13,0.05);
+            border: 1px dashed rgba(232,125,13,0.3);
+            border-radius: 12px;
+            color: var(--text); font-size: 0.95rem;
+        }
+        .savings-cta strong { color: var(--accent-light); font-family: 'Outfit', sans-serif; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .creator-card { flex-direction: column; text-align: center; padding: 3rem 2rem; gap: 2.5rem; }
+            .creator-image { width: 180px; height: 180px; }
+            .creator-content .section-label { justify-content: center; }
+            .creator-content h2 { font-size: 1.8rem; }
+            .creator-signature { margin-left: auto; margin-right: auto; display: block; }
+            .comp-table-container { overflow-x: auto; }
+            .comp-table th, .comp-table td { padding: 1rem; }
+        }
+        @media (max-width: 768px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero-sub { margin-left: auto; margin-right: auto; }
+            .hero-actions { justify-content: center; }
+            .hero-visual { margin-top: 2rem; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .features-grid { grid-template-columns: 1fr; }
+            .workflow-steps { grid-template-columns: 1fr; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .pricing-card.popular { transform: none; }
+            .pricing-card.popular:hover { transform: translateY(-4px); }
+            .cta h2 { font-size: 2rem; }
+            .feature-tabs { grid-template-columns: 1fr; }
+            .feat-tabs-nav {
+                position: relative; top: auto; max-height: none;
+                padding: 0;
+            }
+            /* Mobile: details get moved into the nav next to their buttons by JS */
+            .feat-content { display: none; }
+            .feat-tabs-nav .feat-detail {
+                padding: 1.3rem 1.1rem;
+                background: rgba(0,0,0,0.18);
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+            .feat-tabs-nav .feat-detail:last-child { border-bottom: none; }
+            .feat-detail-header { gap: 0.8rem; }
+            .feat-detail-icon { width: 48px; height: 48px; font-size: 1.5rem; }
+            .feat-detail h3 { font-size: 1.3rem; }
+            .savings-summary { grid-template-columns: 1fr; }
+            .early-bird-banner { padding: 1.2rem; flex-direction: column; align-items: flex-start; }
+            .eb-countdown { width: 100%; justify-content: space-between; gap: 0.4rem; }
+            .eb-unit { min-width: 0; flex: 1; padding: 0.5rem 0.4rem; }
+            .eb-unit-value { font-size: 1.2rem; }
+            nav { width: 95%; max-width: none; top: 1rem; border-radius: 12px; }
+            nav .nav-inner { padding: 0.8rem 1.2rem; }
+            .nav-dropdown { right: 0.6rem; left: 0.6rem; min-width: 0; }
+            footer .footer-inner { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="logo">
+            <div class="logo-icon">◆</div>
+            TAKES
+        </a>
+        <div class="nav-actions">
+            <button class="nav-menu-toggle" aria-label="Open menu" aria-expanded="false">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <a href="#cta" class="btn-primary btn-glow" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">Coming Soon</a>
+        </div>
+    </div>
+    <div class="nav-dropdown" role="menu" aria-hidden="true">
+        <a href="#features" role="menuitem"><span class="material-symbols-outlined">grid_view</span>Features</a>
+        <a href="#workflow" role="menuitem"><span class="material-symbols-outlined">route</span>Workflow</a>
+        <a href="#benefits" role="menuitem"><span class="material-symbols-outlined">stars</span>Why Takes</a>
+        <a href="#comparison" role="menuitem"><span class="material-symbols-outlined">compare_arrows</span>Compare</a>
+        <a href="#savings" role="menuitem"><span class="material-symbols-outlined">savings</span>Cost Savings</a>
+        <a href="#faq" role="menuitem"><span class="material-symbols-outlined">help</span>FAQ</a>
+        <a href="#creator" role="menuitem"><span class="material-symbols-outlined">person</span>About</a>
+        <a href="#pricing" role="menuitem"><span class="material-symbols-outlined">payments</span>Pricing</a>
+        <div class="nav-dropdown-divider"></div>
+        <a href="wiki/" role="menuitem"><span class="material-symbols-outlined">menu_book</span>Documentation</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-inner">
+        <div>
+            <div class="hero-badge">✦ Built for Blender 5.1+</div>
+            <h1>Stop Managing<br>Chaos. Start<br>Managing <span>Takes.</span></h1>
+            <p class="hero-sub">
+                The production organizer that turns your multi-scene, multi-angle Blender projects into a streamlined pipeline — from first shot to final render.
+            </p>
+            <div class="hero-actions">
+                <a href="#cta" class="btn-primary btn-glow">Coming Soon</a>
+                <a href="wiki/" class="btn-secondary"><span class="material-symbols-outlined" style="font-size: 1.15rem;">menu_book</span> Read the Docs</a>
+            </div>
+        </div>
+        <div class="hero-visual" style="position: relative;">
+            <div class="hero-glow"></div>
+            
+            <div class="hero-bg-floating bg-1">
+                <img src="media/landing/hero.png" alt="">
+            </div>
+            <div class="hero-bg-floating bg-2">
+                <img src="media/landing/override.png" alt="">
+            </div>
+            <div class="hero-bg-floating bg-3">
+                <img src="media/landing/render.png" alt="">
+            </div>
+
+            <!-- Product UI Mockup with Viewport -->
+            <div class="hero-image-wrapper" style="position: relative; z-index: 1;">
+                <img src="media/landing/hero_viewport.png" alt="Takes for Blender Interface with Viewport Setup" id="hero-3d-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+    <div class="stats-inner">
+        <div>
+            <div class="stat-number">6</div>
+            <div class="stat-label">Cascade Tiers</div>
+        </div>
+        <div>
+            <div class="stat-number">16</div>
+            <div class="stat-label">Production Features</div>
+        </div>
+        <div>
+            <div class="stat-number">4</div>
+            <div class="stat-label">Preset Storage Tiers</div>
+        </div>
+        <div>
+            <div class="stat-number">∞</div>
+            <div class="stat-label">View Layer Versions</div>
+        </div>
+    </div>
+</div>
+
+<!-- EARLY BIRD BANNER -->
+<div class="early-bird-banner">
+    <div class="eb-text">
+        <div class="eb-title">
+            <span class="material-symbols-outlined">schedule</span>
+            Early Bird pricing — limited time
+        </div>
+        <p class="eb-sub">Lifetime licenses at launch-discount rates. Offer ends <strong style="color:var(--text-bright);">1 month after Blender LTS 5.2 releases</strong>. Lock in the lowest price before the timer runs out.</p>
+    </div>
+    <div id="eb-countdown" class="eb-countdown" aria-label="Time remaining">
+        <div class="eb-unit"><div class="eb-unit-value">—</div><div class="eb-unit-label">Days</div></div>
+        <div class="eb-unit"><div class="eb-unit-value">—</div><div class="eb-unit-label">Hours</div></div>
+        <div class="eb-unit"><div class="eb-unit-value">—</div><div class="eb-unit-label">Mins</div></div>
+        <div class="eb-unit"><div class="eb-unit-value">—</div><div class="eb-unit-label">Secs</div></div>
+    </div>
+</div>
+
+<!-- FEATURES — CORE -->
+<section id="features" class="feat-section">
+    <div class="section-inner">
+        <div class="section-label">Core</div>
+        <h2 class="section-title">The foundation</h2>
+        <p class="section-subtitle">The four building blocks that hold everything else together — your project tree, the cascade, version snapshots, and the global console.</p>
+
+        <div class="feature-tabs">
+            <aside class="feat-tabs-nav" role="tablist" aria-label="Core features">
+                <button class="feat-btn-rich active" data-feat="takes" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">account_tree</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Takes Tree</div>
+                        <div class="feat-btn-tag">Core · Hierarchy</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="cascade" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">south</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">6-Tier Cascade</div>
+                        <div class="feat-btn-tag">Core · Override Engine</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="vl_versions" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">history</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">VL Versions</div>
+                        <div class="feat-btn-tag">Core · Snapshots</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="globals" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">public</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Globals Panel</div>
+                        <div class="feat-btn-tag">Core · Project Console</div>
+                    </div>
+                </button>
+            </aside>
+
+            <div class="feat-content">
+                <div class="feat-detail active" data-feat="takes">
+                    <p class="feat-detail-lead">See your whole project in one place. Scenes, view layers, groups, and named versions — all in a clean, draggable tree right next to your viewport.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">drag_pan</span>Drag and drop to reorganize your scenes any time</li>
+                        <li><span class="material-symbols-outlined">palette</span>Color-tag groups so you can spot what you need at a glance</li>
+                        <li><span class="material-symbols-outlined">keyboard</span>Every action has a keyboard shortcut — never leave the keyboard</li>
+                        <li><span class="material-symbols-outlined">sync</span>Updates instantly as you create or rename scenes in Blender</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="cascade">
+                    <p class="feat-detail-lead">Set a camera, world, or render preset once at the project level — every scene below inherits it. Need a different camera for one shot? Override it just for that shot. Nothing else changes.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">layers</span>Six levels to pick from, depending on how broad or narrow you want the override</li>
+                        <li><span class="material-symbols-outlined">arrow_downward</span>Settings flow downward; what you change locally stays local</li>
+                        <li><span class="material-symbols-outlined">backspace</span>Hold Alt and click any override to clear it</li>
+                        <li><span class="material-symbols-outlined">warning</span>Visual warnings the moment something gets renamed or deleted</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="vl_versions">
+                    <p class="feat-detail-lead">Save the entire setup of a view layer — camera, world, action, lights — under a name you choose. Switch between versions with one click. Render every version automatically.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">all_inclusive</span>Make as many versions per view layer as you want</li>
+                        <li><span class="material-symbols-outlined">content_copy</span>One-click duplicate to spin up an A/B variant</li>
+                        <li><span class="material-symbols-outlined">save</span>Each version remembers its own camera, world, action, compositor, and presets</li>
+                        <li><span class="material-symbols-outlined">queue_play_next</span>The batch queue renders every version automatically</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="globals">
+                    <p class="feat-detail-lead">One panel to control your whole project — settings, presets, automation rules, tags, and product variants. Everything in one place, always one click away.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">tune</span>Switch between five modes: Settings, Presets, Rules, Tags, Variants</li>
+                        <li><span class="material-symbols-outlined">checklist</span>Bulk operations across all your scenes at once</li>
+                        <li><span class="material-symbols-outlined">radio_button_checked</span>Customize the navigation pie menu to match your workflow</li>
+                        <li><span class="material-symbols-outlined">power_settings_new</span>Master toggles for every global feature</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES — AUTOMATION -->
+<section id="automation" class="feat-section">
+    <div class="section-inner">
+        <div class="section-label">Automation</div>
+        <h2 class="section-title">Set it and forget it</h2>
+        <p class="section-subtitle">Tag your scenes, define rules once, and let Takes handle the repetitive work — so you can focus on the shots.</p>
+
+        <div class="feature-tabs">
+            <aside class="feat-tabs-nav" role="tablist" aria-label="Automation features">
+                <button class="feat-btn-rich active" data-feat="tags" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">label</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Tags</div>
+                        <div class="feat-btn-tag">Automation · Labels</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="rules" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">rule</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Rules</div>
+                        <div class="feat-btn-tag">Automation · Tag-Driven Presets</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="variant" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">swap_horiz</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Variant Switch</div>
+                        <div class="feat-btn-tag">Automation · Material & Visibility</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="smart_output" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">folder_open</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Smart Output</div>
+                        <div class="feat-btn-tag">Automation · Token Paths</div>
+                    </div>
+                </button>
+            </aside>
+
+            <div class="feat-content">
+                <div class="feat-detail active" data-feat="tags">
+                    <p class="feat-detail-lead">Stick a label on anything — an object, a scene, a view layer, a variant. Then filter, group, and automate based on those labels.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">add_circle</span>Tag any object, scene, view layer, or variant</li>
+                        <li><span class="material-symbols-outlined">filter_alt</span>Filter the tree to focus on just the tagged items</li>
+                        <li><span class="material-symbols-outlined">link</span>Tags drive the Rules system below — set up once, automate forever</li>
+                        <li><span class="material-symbols-outlined">touch_app</span>Apply or remove tags in bulk from the right-click menu</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="rules">
+                    <p class="feat-detail-lead">Bind a tag to a preset bundle once. From then on, anything with that tag gets the right camera, world, and render settings — automatically.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">link</span>One-time setup: pick a tag, pick a preset bundle</li>
+                        <li><span class="material-symbols-outlined">south</span>Rules respect the cascade — broader tiers cover broader scopes</li>
+                        <li><span class="material-symbols-outlined">warning</span>Visual alerts when a rule's preset gets deleted or renamed</li>
+                        <li><span class="material-symbols-outlined">layers</span>Stack multiple rules for compound automation</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="variant">
+                    <p class="feat-detail-lead">Swap materials, hide parts, switch full product configurations with one click. Then render every combination automatically.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">account_tree</span>Define products, parts, and material pools in one tree</li>
+                        <li><span class="material-symbols-outlined">visibility</span>Two-track structure: Parts control visibility, Materials control look</li>
+                        <li><span class="material-symbols-outlined">grid_view</span>Each scope can apply variants differently</li>
+                        <li><span class="material-symbols-outlined">queue_play_next</span>The batch queue renders every combination for you</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="smart_output">
+                    <p class="feat-detail-lead">Stop hand-typing folder paths. Use tokens like <code>[scene]/[view_layer]/[camera]_[variant]_####</code> and Takes fills them in correctly at render time. No more typos. No more "PNG.png".</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">code</span>Twenty+ tokens covering scene, view layer, camera, preset, variant, timestamp, and more</li>
+                        <li><span class="material-symbols-outlined">tune</span>Pick a specific variant slot with <code>[variant:N]</code></li>
+                        <li><span class="material-symbols-outlined">toggle_on</span>Toggle standard and compositor outputs independently</li>
+                        <li><span class="material-symbols-outlined">keyboard</span>Optionally apply to F12 / Ctrl+F12 too</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES — PRODUCTION -->
+<section id="production" class="feat-section">
+    <div class="section-inner">
+        <div class="section-label">Production</div>
+        <h2 class="section-title">Ship the work</h2>
+        <p class="section-subtitle">From per-VL settings to background batch renders — the tools that turn your project into final pixels.</p>
+
+        <div class="feature-tabs">
+            <aside class="feat-tabs-nav" role="tablist" aria-label="Production features">
+                <button class="feat-btn-rich active" data-feat="render_presets" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">palette</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Render Presets</div>
+                        <div class="feat-btn-tag">Production · 4-Tier Storage</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="batch" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">movie</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Batch Render</div>
+                        <div class="feat-btn-tag">Production · Render Queue</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="rest_state" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">anchor</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Rest State</div>
+                        <div class="feat-btn-tag">Production · Auto-Mirror</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="vl_preview" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">preview</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">VL Preview</div>
+                        <div class="feat-btn-tag">Production · Inline Thumbnails</div>
+                    </div>
+                </button>
+            </aside>
+
+            <div class="feat-content">
+                <div class="feat-detail active" data-feat="render_presets">
+                    <p class="feat-detail-lead">Save your favourite render settings — engine, samples, resolution, color space, camera, world — and reuse them anywhere. Store them on your machine, your studio's network, or right inside the .blend file.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">storage</span>Four storage choices: Default (bundled), Local (your machine), Shared (network), Project (in the .blend)</li>
+                        <li><span class="material-symbols-outlined">lock</span>Lock the Shared folder so the team can't accidentally overwrite it</li>
+                        <li><span class="material-symbols-outlined">cloud_download</span>Comes with bundled starter templates ready to use</li>
+                        <li><span class="material-symbols-outlined">edit</span>Edit the display name without renaming the file</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="batch">
+                    <p class="feat-detail-lead">Click Render. Takes works through every view layer in order, applying the right settings to each, saving to the right path, and pinging you when it's done. Foreground or fully in the background — your call.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">play_arrow</span>Foreground (modal) or fully headless background — your viewport stays free</li>
+                        <li><span class="material-symbols-outlined">schedule</span>See an estimated finish time before you commit</li>
+                        <li><span class="material-symbols-outlined">skip_next</span>Skip-completed toggle so re-runs only do what's left</li>
+                        <li><span class="material-symbols-outlined">music_note</span>Six bundled completion sounds (or use your own .wav)</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="rest_state">
+                    <p class="feat-detail-lead">A "home pose" for every object. Whenever a view layer has no animation, things snap back to where they belong. No more accidentally dragged-out cameras, no more drifting props.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">sync_alt</span>Automatically captures and mirrors keyframes as you work</li>
+                        <li><span class="material-symbols-outlined">push_pin</span>Pin individual objects to opt out</li>
+                        <li><span class="material-symbols-outlined">edit</span>Survives renames, slot changes, and material swaps</li>
+                        <li><span class="material-symbols-outlined">animation</span>Built on Blender 5's native action-slot system</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="vl_preview">
+                    <p class="feat-detail-lead">A small rendered thumbnail next to every view layer. See what each one looks like at a glance — no more guessing from cryptic names.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">refresh</span>Thumbnails update as renders complete</li>
+                        <li><span class="material-symbols-outlined">folder</span>Choose where the thumbnail files live</li>
+                        <li><span class="material-symbols-outlined">layers</span>Capture previews per cascade tier</li>
+                        <li><span class="material-symbols-outlined">south</span>Cascade-aware — thumbnails reflect the full inheritance chain</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES — EXTRAS -->
+<section id="extras" class="feat-section">
+    <div class="section-inner">
+        <div class="section-label">Extras</div>
+        <h2 class="section-title">Quality of life</h2>
+        <p class="section-subtitle">The small things that make a long day shorter — bookmarks, hotkeys, diagnostics, and safety nets.</p>
+
+        <div class="feature-tabs">
+            <aside class="feat-tabs-nav" role="tablist" aria-label="Extras">
+                <button class="feat-btn-rich active" data-feat="bookmarks" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">bookmark</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Bookmarks</div>
+                        <div class="feat-btn-tag">Extras · Property Pointers</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="pie_menus" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">radio_button_checked</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Pie Menus</div>
+                        <div class="feat-btn-tag">Extras · Custom Hotkey</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="process_monitor" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">monitoring</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Process Monitor</div>
+                        <div class="feat-btn-tag">Extras · Diagnostics</div>
+                    </div>
+                </button>
+                <button class="feat-btn-rich" data-feat="op_guards" role="tab">
+                    <div class="feat-btn-icon"><span class="material-symbols-outlined">verified_user</span></div>
+                    <div class="feat-btn-text">
+                        <div class="feat-btn-title">Op. Guards <span class="feat-new">New</span></div>
+                        <div class="feat-btn-tag">Extras · Granular Safety</div>
+                    </div>
+                </button>
+            </aside>
+
+            <div class="feat-content">
+                <div class="feat-detail active" data-feat="bookmarks">
+                    <p class="feat-detail-lead">Found that one obscure property buried five menus deep? Bookmark it. Click the bookmark next time and Takes jumps right back to it.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">touch_app</span>One click to bookmark any animatable property</li>
+                        <li><span class="material-symbols-outlined">flight_takeoff</span>Click a bookmark to jump back instantly</li>
+                        <li><span class="material-symbols-outlined">share</span>Shared across the project via the cascade</li>
+                        <li><span class="material-symbols-outlined">save</span>Save bookmarks alongside your render presets</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="pie_menus">
+                    <p class="feat-detail-lead">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> anywhere, get a circular menu with your most-used Takes operations. Customize what's in each slot to match your workflow.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">edit</span>Customizable slots — put what you use most up front</li>
+                        <li><span class="material-symbols-outlined">switch_account</span>Quick switch between Context, Inspector, and Globals views</li>
+                        <li><span class="material-symbols-outlined">splitscreen</span>Includes a Split View button for side-by-side comparison</li>
+                        <li><span class="material-symbols-outlined">restart_alt</span>Reset to factory defaults from the preferences any time</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="process_monitor">
+                    <p class="feat-detail-lead">When the viewport feels sluggish, open the Process Monitor and find the culprit. See which background tasks are running, turn them off one at a time, and your viewport speeds back up.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">account_tree</span>All background tasks grouped into six clear categories</li>
+                        <li><span class="material-symbols-outlined">toggle_off</span>Disable any task individually for surgical debugging</li>
+                        <li><span class="material-symbols-outlined">restart_alt</span>Auto-restart watchdog (Alt+click) for tasks that should keep running</li>
+                        <li><span class="material-symbols-outlined">speed</span>Built-in profiler for view layer switches</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="op_guards">
+                    <p class="feat-detail-lead">A safety net for destructive actions. Choose exactly which operations need a "Are you sure?" prompt — keep the ones you want fast and add prompts to the ones you've burned yourself on.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">category</span>Six categories: Tree, Inspector, Globals, Batch Render, System, Data Integrity</li>
+                        <li><span class="material-symbols-outlined">toggle_on</span>Master toggle to flip the whole system on or off</li>
+                        <li><span class="material-symbols-outlined">tune</span>Pick and choose which operations need confirmation</li>
+                        <li><span class="material-symbols-outlined">workspaces</span>Independent guards for scene-group vs view-layer-group deletes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WORKFLOW -->
+<section id="workflow" class="workflow">
+    <div class="section-inner">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-title">From setup to render in three steps</h2>
+        <p class="section-subtitle">Takes is designed to disappear — set it up once, then let the cascade do the thinking for you.</p>
+
+        <div class="workflow-steps">
+            <div class="workflow-step">
+                <h3>Organize</h3>
+                <p>Build your Takes Tree — group scenes and view layers into a meaningful hierarchy. Add versions for iterations. Tag for filtering and rule automation.</p>
+                <img src="media/landing/hero.png" alt="Organize setup" class="workflow-image">
+            </div>
+            <div class="workflow-step">
+                <h3>Override</h3>
+                <p>Assign cameras, worlds, actions, render presets, and variant states at any cascade tier. Globals flow down. Local overrides stay local. Zero duplication.</p>
+                <img src="media/landing/override.png" alt="Cascade overrides" class="workflow-image">
+            </div>
+            <div class="workflow-step">
+                <h3>Render</h3>
+                <p>Hit Render. The batch queue walks the tree, applies every override, renders each View Layer into its Smart Output path. You get a coffee. It just works.</p>
+                <img src="media/landing/render.png" alt="Batch rendering process" class="workflow-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits">
+    <div class="section-inner">
+        <div class="section-label">Why Takes</div>
+        <h2 class="section-title">Built for studios that ship</h2>
+        <p class="section-subtitle">Takes was designed by a product visualization artist who got tired of the same manual pain — every single project. Pick a benefit on the left to dive in.</p>
+
+        <div class="feature-tabs">
+            <aside class="feat-tabs-nav" role="tablist" aria-label="Benefits">
+                <button class="feat-btn active" data-feat="b-speed"><span class="material-symbols-outlined">bolt</span>10× Faster Setup</button>
+                <button class="feat-btn" data-feat="b-safety"><span class="material-symbols-outlined">shield</span>Zero Data Loss</button>
+                <button class="feat-btn" data-feat="b-nondestructive"><span class="material-symbols-outlined">extension</span>Non-Destructive</button>
+                <button class="feat-btn" data-feat="b-background"><span class="material-symbols-outlined">public</span>Background Rendering</button>
+                <button class="feat-btn" data-feat="b-studio"><span class="material-symbols-outlined">groups</span>Studio-Ready</button>
+                <button class="feat-btn" data-feat="b-onepanel"><span class="material-symbols-outlined">tune</span>One Panel, Full Control</button>
+            </aside>
+
+            <div class="feat-content">
+                <div class="feat-detail active" data-feat="b-speed">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">bolt</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>10× Faster Setup</h3>
+                            <div class="feat-detail-tag">Speed · Cascade Inheritance</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">What used to take 30 minutes of manual camera assignment, world overriding, and output path creation now takes 30 seconds with the cascade.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">south</span>Set cameras, worlds, and presets once at Global — every scene inherits them automatically</li>
+                        <li><span class="material-symbols-outlined">edit</span>Override only what differs at the local tier; everything else flows down</li>
+                        <li><span class="material-symbols-outlined">folder_open</span>Smart Output paths resolve from tokens — no manual folder structure</li>
+                        <li><span class="material-symbols-outlined">rule</span>Rules + Tags automate preset assignment based on object metadata</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="b-safety">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">shield</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Zero Data Loss</h3>
+                            <div class="feat-detail-tag">Safety · Multi-Layer Guards</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Operation Guards, Inspector watchlists, dangling-action warnings, and automatic pinning prevent animation data from ever silently disappearing.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">verified_user</span>Operation Guards prompt before destructive operations — six categories, granular opt-in</li>
+                        <li><span class="material-symbols-outlined">search</span>Inspector watchlist surfaces orphaned actions and broken slot bindings</li>
+                        <li><span class="material-symbols-outlined">warning</span>Dangling-action warnings catch deletions before you save</li>
+                        <li><span class="material-symbols-outlined">push_pin</span>Auto-pinning preserves animation continuity across VL switches</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="b-nondestructive">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">extension</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Non-Destructive</h3>
+                            <div class="feat-detail-tag">Architecture · Pure Blender API</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Pure Blender API. No monkey-patching, no file corruption, no vendor lock-in. Takes works with your existing scenes — install, organize, ship.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">code</span>Built on native Scene, View Layer, Action Slot, and PropertyGroup primitives</li>
+                        <li><span class="material-symbols-outlined">power_settings_new</span>Disabling the addon leaves your .blend file fully readable</li>
+                        <li><span class="material-symbols-outlined">undo</span>String-based cascade references survive undo/redo without crashes</li>
+                        <li><span class="material-symbols-outlined">share</span>Standard Blender users can open and render your projects without the addon</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="b-background">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">public</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Background Rendering</h3>
+                            <div class="feat-detail-tag">Productivity · Headless Workers</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Fire off batch renders that run in separate Blender processes. Your main session stays fully interactive. Tree thumbnails update live as results come in.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">terminal</span>Headless CLI worker spawns a dedicated Blender process per batch</li>
+                        <li><span class="material-symbols-outlined">play_arrow</span>Foreground modal mode for direct viewport feedback</li>
+                        <li><span class="material-symbols-outlined">schedule</span>Pre-render ETA estimate from average sample times</li>
+                        <li><span class="material-symbols-outlined">preview</span>VL Preview thumbnails populate as each frame completes</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="b-studio">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">groups</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>Studio-Ready</h3>
+                            <div class="feat-detail-tag">Teams · 4-Tier Storage</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Four-tier preset storage (Default / Local / Shared / Project), shared folder locks, and project-mode preferences that travel with the .blend file.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">storage</span>Default tier ships bundled templates that seed on first install</li>
+                        <li><span class="material-symbols-outlined">person</span>Local tier for per-machine artist preferences</li>
+                        <li><span class="material-symbols-outlined">cloud</span>Shared tier mounts a network drive for cross-team consistency, with a folder lock toggle</li>
+                        <li><span class="material-symbols-outlined">folder_zip</span>Project tier embeds preferences in the .blend's presets folder — configs travel with the file</li>
+                    </ul>
+                </div>
+                <div class="feat-detail" data-feat="b-onepanel">
+                    <div class="feat-detail-header">
+                        <div class="feat-detail-icon"><span class="material-symbols-outlined">tune</span></div>
+                        <div class="feat-detail-title-block">
+                            <h3>One Panel, Full Control</h3>
+                            <div class="feat-detail-tag">UX · Zero Context Switching</div>
+                        </div>
+                    </div>
+                    <p class="feat-detail-lead">Everything lives in the Properties Editor. Takes Tree, cascade overrides, batch render queue, inspector — one tab, zero context switching.</p>
+                    <ul class="feat-detail-list">
+                        <li><span class="material-symbols-outlined">dashboard</span>Single Properties Editor tab houses every Takes UI</li>
+                        <li><span class="material-symbols-outlined">radio_button_checked</span>Pie menu (Ctrl+Shift+C) for one-button switching between Context, Inspector, Globals</li>
+                        <li><span class="material-symbols-outlined">keyboard</span>All operations have keyboard shortcuts</li>
+                        <li><span class="material-symbols-outlined">monitoring</span>Process Monitor docks alongside for runtime diagnostics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMPARISON -->
+<section id="comparison" class="comparison-section">
+    <div class="section-inner">
+        <div class="section-label">The Ecosystem</div>
+        <h2 class="section-title">Stage Management vs. Context Savers</h2>
+        <p class="section-subtitle">Why traditional "scene state savers" aren't enough for high-end visualization.</p>
+
+        <div class="comp-table-container">
+            <table class="comp-table matrix-table">
+                <thead>
+                    <tr>
+                        <th width="40%">Capabilities</th>
+                        <th width="30%" class="center">Standard Context Addons<br><span style="font-size:0.75rem; color:var(--text-dim); text-transform:none;">(E.g., Renderset, Polyviews)</span></th>
+                        <th width="30%" class="highlight center">Takes for Blender<br><span style="font-size:0.75rem; color:var(--text-bright); text-transform:none;">(The Stage Standard)</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="matrix-group"><td colspan="3">Architecture & Workflow</td></tr>
+                    <tr><td class="td-title">Hierarchical State Inheritance (6-Tier Cascade)</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Non-Destructive Animation Swapping</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Store Nested Variations (Takes Tree)</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Tag-Driven Automation Rules</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Centralized Globals Console</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+
+                    <tr class="matrix-group"><td colspan="3">Data Protection</td></tr>
+                    <tr><td class="td-title">Dangling Action Warnings</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Reference State Tracking & Pinning</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Granular Operation Guards</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Crash-Safe Recovery</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+
+                    <tr class="matrix-group"><td colspan="3">Rendering & Output</td></tr>
+                    <tr><td class="td-title">Dynamic Output Naming Tokens</td><td class="center"><span class="material-symbols-outlined icon-check icon-gray">check_circle</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Built-in Batch Rendering Queue</td><td class="center"><span class="material-symbols-outlined icon-check icon-gray">check_circle</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Headless Background Processing</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Multi-Tier Preset Storage (Local / Shared / Project)</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                    <tr><td class="td-title">Inline View Layer Thumbnails</td><td class="center"><span class="material-symbols-outlined icon-x">close</span></td><td class="highlight center"><span class="material-symbols-outlined icon-check">check_circle</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- COST SAVINGS -->
+<section id="savings" class="savings-section">
+    <div class="section-inner">
+        <div class="section-label">Cost Comparison</div>
+        <h2 class="section-title">One addon. A dozen tools' worth of value.</h2>
+        <p class="section-subtitle">If you assembled this workflow from individual addons, you'd buy at least twelve separate tools — and still glue them together yourself. Takes covers all of it natively.</p>
+
+        <div class="savings-summary">
+            <div class="savings-card">
+                <div class="sc-label">À la carte</div>
+                <div class="sc-value">$374</div>
+                <div class="sc-tag">Twelve separate addons, sold individually</div>
+            </div>
+            <div class="savings-card you-pay">
+                <div class="sc-label">Takes — Early Bird</div>
+                <div class="sc-value"><span class="sc-strike">$69</span>$49</div>
+                <div class="sc-tag">Freelance lifetime license</div>
+            </div>
+            <div class="savings-card you-save">
+                <div class="sc-label">You save</div>
+                <div class="sc-value">$325</div>
+                <div class="sc-tag">≈ 87% off the à la carte total</div>
+            </div>
+        </div>
+
+        <div class="savings-table-container">
+            <table class="savings-table">
+                <thead>
+                    <tr>
+                        <th>If you bought it separately</th>
+                        <th class="right">Typical price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="material-symbols-outlined feat-icon">account_tree</span>Hierarchical project organizer (Takes Tree)<span class="feat-note">Replaces: scene-management addons</span></td><td class="right">$39</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">south</span>6-Tier cascade override system<span class="feat-note">No direct equivalent — closest are context-state addons (Renderset, etc.)</span></td><td class="right">$59</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">swap_horiz</span>Variant / material switching<span class="feat-note">Replaces: Mat-Switch, Polyviews, variant addons</span></td><td class="right">$35</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">movie</span>Batch render queue (foreground + headless)<span class="feat-note">Replaces: Render+, Renderset batch features</span></td><td class="right">$45</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">folder_open</span>Smart token-based output paths<span class="feat-note">Replaces: output-naming addons</span></td><td class="right">$19</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">palette</span>4-tier render preset library<span class="feat-note">Replaces: render-config snapshot addons</span></td><td class="right">$29</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">anchor</span>Rest-state pose system<span class="feat-note">No direct equivalent — would require custom rigging utilities</span></td><td class="right">$25</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">rule</span>Tag-driven automation rules (Tags + Rules)<span class="feat-note">No direct equivalent — typically a manual checklist</span></td><td class="right">$39</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">public</span>Project-wide globals console<span class="feat-note">Replaces: per-scene config UIs</span></td><td class="right">$25</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">bookmark</span>Property bookmarks system<span class="feat-note">No direct equivalent — manual outliner navigation</span></td><td class="right">$19</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">radio_button_checked</span>Pie menu / hotkey customization<span class="feat-note">Replaces: pie menu builder addons</span></td><td class="right">$15</td></tr>
+                    <tr><td><span class="material-symbols-outlined feat-icon">monitoring</span>Process monitor / diagnostics<span class="feat-note">No direct equivalent — typically external profilers</span></td><td class="right">$25</td></tr>
+                </tbody>
+                <tfoot>
+                    <tr><td>À la carte total</td><td class="right">$374</td></tr>
+                    <tr><td>Takes — Freelance (regular)</td><td class="right"><span class="sc-strike">$69</span></td></tr>
+                    <tr><td>Takes — Freelance (Early Bird)</td><td class="right">$49</td></tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="savings-cta">
+            Skip twelve purchases, twelve licensing terms, and twelve update cycles. <strong>Lock in $49 lifetime</strong> before the Early Bird timer ends — 1 month after Blender LTS 5.2 releases.
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq-section">
+    <div class="section-inner">
+        <div class="section-label">Questions?</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+        <div class="faq-container">
+
+<!-- FAQ ITEMS / SECTION CLOSE / CREATOR / PRICING (REPLACES OLD TAB PANELS) -->
+            <div class="faq-item">
+                <button class="faq-question">Does Takes for Blender duplicate my objects when making variations?<span class="material-symbols-outlined faq-icon">add</span></button>
+                <div class="faq-answer">
+                    <p>No. Standard addons often duplicate geometry or collections to save "states", bloating your file size. Takes uses a non-destructive Override Engine to modify properties and slots dynamically, keeping your scene incredibly lightweight and perfectly synced.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Will it break my rig animations?<span class="material-symbols-outlined faq-icon">add</span></button>
+                <div class="faq-answer">
+                    <p>Absolutely not. The Action Slot system safely stores and swaps animation data in the background. It even features a built-in Warning System so you never accidentally overwrite or delete an unassigned action when switching Views.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can I use this for final rendering directly?<span class="material-symbols-outlined faq-icon">add</span></button>
+                <div class="faq-answer">
+                    <p>Yes. The built-in Batch Render queue natively supports both foreground Modal rendering and headless CLI background processing. You configure your takes, hit Render, and it systematically works through the queue while generating dynamic file names.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Do my settings travel with the .blend file?<span class="material-symbols-outlined faq-icon">add</span></button>
+                <div class="faq-answer">
+                    <p>Yes — Project preferences mode stores addon settings in a presets folder next to your .blend file, and the addon auto-loads them on open. Combined with Shared (network) and Local tiers, your config moves with the project across machines and operating systems.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Is there a steep learning curve?<span class="material-symbols-outlined faq-icon">add</span></button>
+                <div class="faq-answer">
+                    <p>Takes operates entirely inside the standard Properties editor, so there's zero context switching. Once you understand the basic Cascade logic (top-down inheritance), it behaves exactly as you'd intuitively expect standard Blender to work.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CREATOR -->
+<section id="creator" class="creator-section">
+    <div class="creator-card">
+        <div class="creator-image">
+            <img src="media/landing/niwo.jpg" alt="Niwo - Creator of Takes for Blender">
+        </div>
+        <div class="creator-content">
+            <div class="section-label">The Architect</div>
+            <h2>Built by an artist, for studios.</h2>
+            <p>Takes for Blender was built from the ground up based on a deep understanding of what a professional studio actually needs to ship projects efficiently. After years of navigating rigid pipelines in other DCCs, I created this tool to help fellow artists finally merge into the Blender universe — without sacrificing the non-destructive workflow and data-safety required for high-end visualization production.</p>
+            <div class="creator-signature">
+                <strong>NIWO</strong>
+                <span>3D Artist & Software Developer</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing">
+    <div class="section-inner">
+        <div class="section-label">Pricing</div>
+        <h2 class="section-title">Save hours per setup. Pick your plan.</h2>
+        <p class="section-subtitle">Lock in your lifetime license during the Early Bird period — ends 1 month after Blender LTS 5.2 releases.</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-title">Hobbyist</div>
+                <div class="pricing-desc">For students and unpaid personal portfolios.</div>
+                <div class="price-container">
+                    <span class="price-strike">$29</span><span class="price-current">$19</span>
+                </div>
+                <ul class="pricing-features">
+                    <li><span class="material-symbols-outlined">check</span> Non-commercial use only</li>
+                    <li><span class="material-symbols-outlined">check</span> Full cascade & variant system</li>
+                    <li><span class="material-symbols-outlined">check</span> Community support</li>
+                </ul>
+                <a href="#cta" class="btn-secondary" style="width:100%; justify-content:center;">Coming Soon</a>
+            </div>
+
+            <div class="pricing-card popular">
+                <div class="pricing-badge">🔥 Early Bird Pick</div>
+                <div class="pricing-title">Freelance</div>
+                <div class="pricing-desc">For independent professional 3D artists.</div>
+                <div class="price-container">
+                    <span class="price-strike">$69</span><span class="price-current">$49</span>
+                </div>
+                <ul class="pricing-features">
+                    <li><span class="material-symbols-outlined">check</span> 1 Commercial Seat</li>
+                    <li><span class="material-symbols-outlined">check</span> Unlimited client projects</li>
+                    <li><span class="material-symbols-outlined">check</span> Standard email support</li>
+                    <li><span class="material-symbols-outlined">check</span> Lifetime updates</li>
+                </ul>
+                <a href="#cta" class="btn-primary btn-glow" style="width:100%; justify-content:center;">Coming Soon</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-title">Studio</div>
+                <div class="pricing-desc">For visualization agencies and teams.</div>
+                <div class="price-container">
+                    <span class="price-strike">$249</span><span class="price-current">$199</span>
+                </div>
+                <ul class="pricing-features">
+                    <li><span class="material-symbols-outlined">check</span> Up to 5 User Seats</li>
+                    <li><span class="material-symbols-outlined">check</span> Batch render farms included</li>
+                    <li><span class="material-symbols-outlined">check</span> Priority technical support</li>
+                    <li><span class="material-symbols-outlined">check</span> Feature prioritisation</li>
+                </ul>
+                <a href="#cta" class="btn-secondary" style="width:100%; justify-content:center;">Coming Soon</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- CTA -->
+<section id="cta" class="cta">
+    <div class="cta-inner">
+        <div class="section-label">Get Started</div>
+        <h2>Ready to take control<br>of your pipeline?</h2>
+        <p>Takes for Blender is launching soon. Be the first to know.</p>
+        <a href="#" class="btn-primary btn-glow" onclick="return false;">Coming Soon</a>
+        <div style="margin-top: 1rem;">
+            <a href="wiki/" class="btn-secondary" style="display:inline-flex;"><span class="material-symbols-outlined" style="font-size: 1.15rem;">menu_book</span> Explore the Documentation</a>
+        </div>
+        <p class="cta-tag">Requires Blender 5.1+ &nbsp;·&nbsp; Windows, macOS, Linux</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <p>&copy; 2026 Nikolaj Woroschilow</p>
+        <div style="display:flex;gap:2rem;">
+            <a href="wiki/">Documentation</a>
+            <a href="https://github.com/niwo-dev/Takes-for-Blender">GitHub</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let width, height;
+    let particles = [];
+    
+    // Mouse interaction state
+    let mouse = { x: -1000, y: -1000 };
+    
+    function init() {
+        resize();
+        window.addEventListener('resize', resize);
+        
+        // Track mouse movement over the hero section specifically
+        const hero = document.querySelector('.hero');
+        hero.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+        hero.addEventListener('mouseleave', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        // Create particles
+        const particleCount = Math.min(Math.floor(window.innerWidth / 15), 100);
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        requestAnimationFrame(animate);
+    }
+    
+    function resize() {
+        const hero = document.querySelector('.hero');
+        width = hero.offsetWidth;
+        height = hero.offsetHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+    
+    class Particle {
+        constructor() {
+            this.x = Math.random() * (width || window.innerWidth);
+            this.y = Math.random() * (height || window.innerHeight);
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.baseX = this.x;
+            this.baseY = this.y;
+            this.size = Math.random() * 2 + 1;
+        }
+        
+        update() {
+            // Natural drift
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            // Wrap around
+            if (this.x < 0) this.x = width;
+            if (this.x > width) this.x = 0;
+            if (this.y < 0) this.y = height;
+            if (this.y > height) this.y = 0;
+            
+            // Mouse repulsion
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            let maxDistance = 150;
+            
+            if (distance < maxDistance) {
+                let forceDirectionX = dx / distance;
+                let forceDirectionY = dy / distance;
+                let force = (maxDistance - distance) / maxDistance;
+                
+                // Push particles away from mouse
+                this.x -= forceDirectionX * force * 3;
+                this.y -= forceDirectionY * force * 3;
+            }
+        }
+        
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(232, 125, 13, 0.4)';
+            ctx.fill();
+        }
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+            
+            // Draw connecting lines
+            for (let j = i + 1; j < particles.length; j++) {
+                let dx = particles[i].x - particles[j].x;
+                let dy = particles[i].y - particles[j].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(122, 138, 154, ${0.15 * (1 - distance / 120)})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        requestAnimationFrame(animate);
+    }
+    
+    // 3D Tilt Effect for Hero Image
+    function initTiltEffect() {
+        const heroVisual = document.querySelector('.hero-visual');
+        const heroImg = document.getElementById('hero-3d-img');
+        
+        if (heroVisual && heroImg) {
+            heroVisual.addEventListener('mousemove', (e) => {
+                const rect = heroVisual.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Calculate rotation (max 10 degrees)
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; // Invert Y
+                const rotateY = ((x - centerX) / centerX) * 10;
+                
+                heroImg.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            heroVisual.addEventListener('mouseleave', () => {
+                heroImg.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                heroImg.style.transition = 'transform 0.5s ease-out'; // Slower return
+            });
+            
+            heroVisual.addEventListener('mouseenter', () => {
+                heroImg.style.transition = 'transform 0.1s ease-out'; // Fast tracking
+            });
+        }
+    }
+    
+    // Nav dropdown (hamburger)
+    const navMenuToggle = document.querySelector('.nav-menu-toggle');
+    const navDropdown = document.querySelector('.nav-dropdown');
+    const navToggleIcon = navMenuToggle ? navMenuToggle.querySelector('span') : null;
+
+    function closeNavDropdown() {
+        navDropdown.classList.remove('open');
+        navMenuToggle.classList.remove('open');
+        navMenuToggle.setAttribute('aria-expanded', 'false');
+        navDropdown.setAttribute('aria-hidden', 'true');
+        if (navToggleIcon) navToggleIcon.textContent = 'menu';
+    }
+    function openNavDropdown() {
+        navDropdown.classList.add('open');
+        navMenuToggle.classList.add('open');
+        navMenuToggle.setAttribute('aria-expanded', 'true');
+        navDropdown.setAttribute('aria-hidden', 'false');
+        if (navToggleIcon) navToggleIcon.textContent = 'close';
+    }
+
+    if (navMenuToggle && navDropdown) {
+        navMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (navDropdown.classList.contains('open')) closeNavDropdown();
+            else openNavDropdown();
+        });
+        document.addEventListener('click', (e) => {
+            if (navDropdown.classList.contains('open') &&
+                !navDropdown.contains(e.target) &&
+                !navMenuToggle.contains(e.target)) {
+                closeNavDropdown();
+            }
+        });
+        navDropdown.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeNavDropdown);
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navDropdown.classList.contains('open')) {
+                closeNavDropdown();
+            }
+        });
+    }
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const item = button.parentElement;
+            document.querySelectorAll('.faq-item').forEach(other => {
+                if(other !== item) other.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        });
+    });
+
+    // In-section feature tabs (scoped per .feature-tabs container)
+    function setActive(scope, id) {
+        scope.querySelectorAll('.feat-btn, .feat-btn-rich').forEach(b =>
+            b.classList.toggle('active', b.dataset.feat === id));
+        scope.querySelectorAll('.feat-detail').forEach(d =>
+            d.classList.toggle('active', d.dataset.feat === id));
+    }
+    document.querySelectorAll('.feature-tabs').forEach(scope => {
+        scope.querySelectorAll('.feat-btn, .feat-btn-rich').forEach(btn => {
+            btn.addEventListener('click', () => setActive(scope, btn.dataset.feat));
+        });
+    });
+
+    // Mobile: re-parent each detail next to its matching button so the
+    // sidebar reads as an accordion. Driven by a media query so it reverts
+    // cleanly on resize back to desktop.
+    const mobileMQ = window.matchMedia('(max-width: 768px)');
+    function applyMobileLayout() {
+        const isMobile = mobileMQ.matches;
+        document.querySelectorAll('.feature-tabs').forEach(scope => {
+            const nav = scope.querySelector('.feat-tabs-nav');
+            const content = scope.querySelector('.feat-content');
+            if (!nav || !content) return;
+            if (isMobile) {
+                nav.querySelectorAll('.feat-btn, .feat-btn-rich').forEach(btn => {
+                    const id = btn.dataset.feat;
+                    const detail = scope.querySelector(`.feat-detail[data-feat="${id}"]`);
+                    if (detail && detail.parentNode !== btn.parentNode) {
+                        btn.after(detail);
+                    } else if (detail) {
+                        // ensure ordering: button immediately followed by its detail
+                        btn.after(detail);
+                    }
+                });
+            } else {
+                // Move details back into content area, preserving order
+                nav.querySelectorAll('.feat-detail').forEach(d => content.appendChild(d));
+            }
+        });
+    }
+    applyMobileLayout();
+    mobileMQ.addEventListener('change', applyMobileLayout);
+
+    // Scroll-driven accordion on mobile: whichever button is in the
+    // "reading band" (~25%–50% from the top) becomes active, expanding
+    // its detail beneath it. Disabled on desktop where the sidebar
+    // tabs work normally.
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+            if (!mobileMQ.matches) return;
+            // Pick the entry closest to the trigger band (smallest top distance > 0).
+            const visible = entries.filter(e => e.isIntersecting);
+            if (visible.length === 0) return;
+            // Prefer the topmost visible button to feel natural while scrolling.
+            visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+            const btn = visible[0].target;
+            const scope = btn.closest('.feature-tabs');
+            if (scope) setActive(scope, btn.dataset.feat);
+        }, { rootMargin: '-20% 0px -55% 0px', threshold: 0 });
+        document.querySelectorAll('.feat-btn, .feat-btn-rich').forEach(b => obs.observe(b));
+    }
+
+    // Early Bird countdown
+    // RULE: Offer ends 1 month after Blender LTS 5.2 releases.
+    // UPDATE THIS DATE once the official Blender 5.2 LTS release date is announced.
+    const EARLY_BIRD_END = new Date('2026-09-01T23:59:59');
+
+    function updateCountdown() {
+        const cd = document.getElementById('eb-countdown');
+        if (!cd) return;
+        const diff = EARLY_BIRD_END - new Date();
+        if (diff <= 0) {
+            cd.innerHTML = '<div class="eb-unit"><div class="eb-unit-value">—</div><div class="eb-unit-label">Ended</div></div>';
+            return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        cd.innerHTML =
+            '<div class="eb-unit"><div class="eb-unit-value">' + d + '</div><div class="eb-unit-label">Days</div></div>' +
+            '<div class="eb-unit"><div class="eb-unit-value">' + String(h).padStart(2,'0') + '</div><div class="eb-unit-label">Hours</div></div>' +
+            '<div class="eb-unit"><div class="eb-unit-value">' + String(m).padStart(2,'0') + '</div><div class="eb-unit-label">Mins</div></div>' +
+            '<div class="eb-unit"><div class="eb-unit-value">' + String(s).padStart(2,'0') + '</div><div class="eb-unit-label">Secs</div></div>';
+    }
+
+    // Start when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+        init();
+        initTiltEffect();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    });
+</script>
+
+</body>
+</html>
