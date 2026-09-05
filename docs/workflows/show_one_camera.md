@@ -20,7 +20,7 @@ The row shows the mode in force, so you can read it without opening the menu.
 | Mode | What you see |
 |---|---|
 | **Off** | Nothing changes on its own. **Isolate Active Camera** still works. |
-| **Single Camera** | Only the camera in use. On a Multi-Cam take that is the camera under the playhead, and it follows as you scrub or play. |
+| **Single Camera** | Only the camera in use. On a [Multi-Cam](../features/multi_cam.md) take that is the camera under the playhead, and it follows as you scrub or play. |
 | **Multi Camera** | Every camera the take uses. On a Multi-Cam take, all of its marker cameras. |
 
 **Off** is the default. The mode means the same thing on every take: whether a

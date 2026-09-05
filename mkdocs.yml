@@ -149,6 +149,7 @@ nav:
         - Still Mode: features/still_mode.md
         - Value Lock: features/value_lock.md
       - Advanced:
+        - Multi-Cam: features/multi_cam.md
         - Video Sequencer: features/sequencer.md
         - Process Monitor: features/process_monitor.md
         - AI Assistant: features/ai_assistant.md
