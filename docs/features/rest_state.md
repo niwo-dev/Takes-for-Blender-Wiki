@@ -53,7 +53,7 @@ The Rest State block sits in *Globals ▸ Settings*.
 | **Rest Action** | Picks which action holds your baseline. **+** makes a fresh one. |
 | **Auto-mirror keyframes** | Copies an unkeyed value into the Rest Action as you key it. |
 | **{{ op('tks.set_rest_default').bl_label }}** | Records the property's current value as its baseline. |
-| **{{ op('tks.rest_mode_toggle').bl_label }}** | Shows the baseline on every View Layer until you click it again. |
+| **{{ op('tks.rest_mode_toggle').bl_label }}** | Shows the baseline on every View Layer until you click it again. ++shift++ + click it to open the Rest Action picker. |
 
 ??? info "The fine print on these four"
     **Auto-mirror keyframes** is also an add-on preference, *Auto-mirror Keyframes
@@ -69,6 +69,10 @@ The Rest State block sits in *Globals ▸ Settings*.
     or to adjust the baseline in place. Tree assignments and renders always use the
     real actions, and autokey pauses while the mode is on. Turning it on releases an
     active Value Lock, and the other way round.
+
+    The same button is the quickest way to the picker: ++shift++ + click opens the
+    Rest Action, **+** and **Auto-mirror keyframes** in a small popup. With no Rest
+    Action the button is dimmed and a plain click only tells you to pick one.
 
 ## :material-dock-window: The Rest State Panel
 

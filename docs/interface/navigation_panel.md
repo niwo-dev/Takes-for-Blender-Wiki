@@ -17,7 +17,7 @@ The bottom row is the panel switcher. Click a tab to show that panel and hide th
 ??? info "Top row — left side: the mode toggles"
     | Control | Description |
     |---------|-------------|
-    | **Rest Mode** (ghost) | Temporarily shows every View Layer's rest baseline — see [Rest State](../features/rest_state.md). Takes turns with Value Lock. |
+    | **Rest Mode** (ghost) | Temporarily shows every View Layer's rest baseline — see [Rest State](../features/rest_state.md). Click it to switch it on or off. ++shift++ + click opens the Rest Action picker. The ghost is a line with no Rest Action, solid with one, and red when that action is missing. The button dims until you pick one. Takes turns with Value Lock. |
     | **Still Mode** (still camera) | Pins every take's timeline to its still frame — see [Still Mode](../features/still_mode.md). Click it to switch it on or off. ++shift++ + click picks **Still** or **Animation**. Turning it on parks Frame Sync until you switch back. |
     | **Value Lock** (padlock) | Protects the scene's unkeyed values while you work — see [Value Lock](../features/value_lock.md). Mutually exclusive with Autokey. |
     | **Autokey** | Toggles Blender's auto-keying across all scenes at once. Blender 5.2 ships *Only Insert Available* enabled, which makes auto-keying silently skip channels that were never keyed — the state every fresh take starts in. Takes offers to manage that preference for you: enabling Autokey turns it off, disabling Autokey restores it. You are asked once — see [Autokey Is Being Blocked](#autokey-is-being-blocked). |
