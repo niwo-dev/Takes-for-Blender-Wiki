@@ -99,30 +99,40 @@ A status banner drawn directly in the 3D viewport. One coloured pill per active 
 
 It keeps a mode — or a busy pause — visible even when the Takes panel is closed.
 
+The tab has three topics. **Banner** holds **Placement** and **Content**. **Diff State** holds its own marks and colours, described on the [Diff State](../features/diff_state.md) page. **Mode Row** stands alone at the bottom.
+
 ### :material-map-marker: Placement
+
+Where the banner sits and how it reads. Inside **Banner**.
 
 | Setting | Default | Description |
 |---------|---------|-------------|
 | **Anchor** | Off | Which corner or edge the banner sits in. **Off** disables the overlay. |
 | **Offset X / Offset Y** | 0 | Pixel nudge from the anchor. |
-| **Hide Progress when Takes Panel Open** | On | Hides the progress rows while the Takes panel is visible. |
-
-### :material-palette: Appearance
-
-| Setting | Default | Description |
-|---------|---------|-------------|
 | **Opacity** | 0.9 | Banner transparency. |
 | **Scale** | 1.0 | Size of the banner text and pills. |
 
-### :material-toggle-switch: Modes
+### :material-toggle-switch: Content { #modes }
 
-Pick which mode pills may appear. A toggle only *allows* its pill — the pill shows only while that mode is actually active.
+What the banner shows. Inside **Banner**.
+
+A mode toggle only *allows* its pill — the pill shows only while that mode is actually active.
 
 | Setting | Default | Description |
 |---------|---------|-------------|
+| **Hide when Takes Panel Open** (Progress Bars) | On | Hides the progress rows while the Takes panel is visible. |
 | **Show Mode Badges** | On | Master switch for the mode-badge row. |
 | **Autokey / Value Lock / Rest Mode / Still Mode / Frame Sync / Scene Follow / Variant Live / Diff State** | On | Per-mode pill visibility, one switch each. |
-| **Hide Mode Badges when Takes Panel Open** | On | Hides only the badge row while the panel is open. Progress rows stay. |
+| **Hide when Takes Panel Open** (Mode Badges) | On | Hides only the badge row while the panel is open. Progress rows stay. |
+
+??? info "Which tasks get a progress row"
+    Background tasks add a labelled progress bar under the pills. There is nothing to configure per task.
+
+    The **View-Layer Preload** row shows the total run plus the layer currently
+    building. The **Batch Render** row shows the queue.
+
+    Percentages align in a right-hand column, and each row appears only while its
+    task is running.
 
 ### :material-gesture-tap-button: Mode Row
 
@@ -136,17 +146,6 @@ The seven mode buttons at the top of the Takes panel: which ones you see, and wh
 | **Diff State** (click) | Last Used | Same for Diff State: last used, or always **Drifted Marks**, **Slot Marks** or **All**. |
 
 ++shift++ + click on any of the three buttons picks the kind instead.
-
-### :material-progress-clock: Progress
-
-Background tasks add a labelled progress bar under the pills. There is nothing to configure here.
-
-??? info "Which tasks get a row"
-    The **View-Layer Preload** row shows the total run plus the layer currently
-    building. The **Batch Render** row shows the queue.
-
-    Percentages align in a right-hand column, and each row appears only while its
-    task is running.
 
 ## :material-help-circle-outline: Tooltips
 
