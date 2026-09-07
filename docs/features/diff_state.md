@@ -13,18 +13,18 @@ icon: material/select-compare
 
 ## :material-menu-down: Pick What You See
 
-Click the **Diff State** button. A small menu opens with four choices.
+Click the **Diff State** button to switch it on or off. ++shift++ + click
+opens a small menu with three choices.
 
 | Choice | What the viewport shows |
 |---|---|
 | **Drifted Marks** | Only objects that drifted from the Rest State |
 | **Slot Marks** | Only objects whose slot holds keyframes |
 | **All** | Both |
-| **Off** | Neither |
 
-The four are exclusive: picking one is the whole decision, and the others
-switch off. Clicking the choice you are already on changes nothing — **Off**
-is its own row, one click away from wherever you are.
+The three are exclusive: picking one is the whole decision, and the others
+switch off. Switched back on, the mode comes back in the choice you last had.
+Change that under *Preferences ▸ Interface ▸ Overlay ▸ Mode Row*.
 
 The Overlays section carries the same menu under its **Show States** switch.
 

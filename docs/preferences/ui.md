@@ -124,6 +124,19 @@ Pick which mode pills may appear. A toggle only *allows* its pill — the pill s
 | **Autokey / Value Lock / Rest Mode / Still Mode / Frame Sync / Scene Follow / Variant Live / Diff State** | On | Per-mode pill visibility, one switch each. |
 | **Hide Mode Badges when Takes Panel Open** | On | Hides only the badge row while the panel is open. Progress rows stay. |
 
+### :material-gesture-tap-button: Mode Row
+
+The seven mode buttons at the top of the Takes panel: which ones you see, and what a plain click does.
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| **Icons** | All on | One toggle per button, in the row's order. A hidden button stays in the [Mode Pie](../features/pie_menus.md#mode-pie). |
+| **Still Mode** (click) | Last Used | What a plain click switches on: the kind it was in when you switched it off, or always **Still** or **Animation**. |
+| **Timeline** (click) | Last Used | Same for the Timeline: last used, or always **Frame Sync** or **Scene Follow**. |
+| **Diff State** (click) | Last Used | Same for Diff State: last used, or always **Drifted Marks**, **Slot Marks** or **All**. |
+
+++shift++ + click on any of the three buttons picks the kind instead.
+
 ### :material-progress-clock: Progress
 
 Background tasks add a labelled progress bar under the pills. There is nothing to configure here.

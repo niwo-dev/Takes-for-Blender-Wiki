@@ -119,25 +119,23 @@ It ships off. Switch on **Enable Mode Pie** in *Workflow > Pie & Misc* to reveal
     | **Rest State** | [Rest State](rest_state.md) mode. |
     | **Still Mode** | Pin every take to its still frame. |
     | **Animation** | Make every take animate. |
-    | **Off (per-take)** | Let each take's own [Still](still_mode.md) setting decide. |
     | **Value Lock** | The [Value Lock](value_lock.md). |
     | **Autokey** | Automatic keyframe insertion across all scenes. |
     | **Frame Sync** | Keep every take on the same frame. |
     | **Scene Follow** | Let the window follow you between a sequencer and a viewport. |
-    | **Timeline Off** | The timeline drives nothing. |
     | **Variant Live** | [Live apply](variant_switch.md) for the edited variant state. |
     | **Diff State** | Turn the [Diff State](diff_state.md) overlay on or off. |
     | **Drifted Marks** | Show only the drifted mark. |
     | **Slot Marks** | Show only the slot mark. |
     | **Diff State: All** | Show both Diff State marks. |
-    | **Diff State: Off** | Hide both Diff State marks. |
 
-    Still's three states, the Timeline's three modes and Diff State's four
+    Still's two kinds, the Timeline's two modes and Diff State's three
     choices each get their own slice instead of one cycling button. In a pie
-    every destination should be a direction, not a number of presses.
+    every destination should be a direction, not a number of presses. There
+    is no Off slice: click the slice of the kind that is on, and it goes off.
 
     **Defaults:** North *Frame Sync*, North-East *Value Lock*, East *Variant
-    Live*, South-East *Animation*, South *Still Mode*, South-West *Off (per-take)*,
+    Live*, South-East *Animation*, South *Still Mode*, South-West *Diff State*,
     West *Autokey*, North-West *Rest State*.
 
 ??? note "Why ++shift+alt+q++"
