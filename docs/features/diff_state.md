@@ -6,6 +6,11 @@ icon: material/select-compare
 
 **Diff State** colours objects in the 3D viewport by the state they are in: **Keyed** (the object holds a slot with keyframes) or **Drifted** (its live values no longer match the Rest State). It is a view helper only - nothing is written to the scene or the file.
 
+A keyed object turns **pink** when its animation comes from a tier above it: a parent layer under
+its own keys, an action it inherits, or one it borrows. Objects with keys of their own keep the
+Keyed colour, and so do pinned objects. Change the pink under *Preferences ▸ Interface ▸ Overlay ▸
+Diff State ▸ Keyed Slot ▸ Look*.
+
 ## :material-map-marker: Where to Find It
 
 - **Navigation header** - the **Diff State** button in the mode row.
