@@ -125,8 +125,8 @@ It ships off. Switch on **Enable Mode Pie** in *Workflow > Pie & Misc* to reveal
     | **Scene Follow** | Let the window follow you between a sequencer and a viewport. |
     | **Variant Live** | [Live apply](variant_switch.md) for the edited variant state. |
     | **Diff State** | Turn the [Diff State](diff_state.md) overlay on or off. |
-    | **Drifted Marks** | Show only the drifted mark. |
-    | **Slot Marks** | Show only the slot mark. |
+    | **Drift State** | Show only the Drift State mark. |
+    | **Take State** | Show only the Take State mark. |
     | **Diff State: All** | Show both Diff State marks. |
 
     Still's two kinds, the Timeline's two modes and Diff State's three

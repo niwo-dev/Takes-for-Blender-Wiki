@@ -143,7 +143,7 @@ The seven mode buttons at the top of the Takes panel: which ones you see, and wh
 | **Icons** | All on | One toggle per button, in the row's order. A hidden button stays in the [Mode Pie](../features/pie_menus.md#mode-pie). |
 | **Still Mode** (click) | Last Used | What a plain click switches on: the kind it was in when you switched it off, or always **Still** or **Animation**. |
 | **Timeline** (click) | Last Used | Same for the Timeline: last used, or always **Frame Sync** or **Scene Follow**. |
-| **Diff State** (click) | Last Used | Same for Diff State: last used, or always **Drifted Marks**, **Slot Marks** or **All**. |
+| **Diff State** (click) | Last Used | Same for Diff State: last used, or always **Take State**, **Drift State** or **All**. |
 
 ++shift++ + click on any of the three buttons picks the kind instead.
 
