@@ -4,12 +4,27 @@ icon: material/select-compare
 
 # Diff State
 
-**Diff State** colours objects in the 3D viewport by the state they are in: **Take State** (this take keys it) or **Drift State** (its live values no longer match the Rest State). Each state is named for where the value comes from, so the colours read as the cascade itself. It is a view helper only - nothing is written to the scene or the file.
+**Diff State** colours objects in the 3D viewport by the state they are in. Each state is named
+for **where the value comes from**, so the colours read as the cascade itself. It is a view helper
+only - nothing is written to the scene or the file.
 
-A keyed object turns **pink** when its animation comes from a tier above it: a parent layer under
-its own keys, an action it inherits, or one it borrows. Objects with keys of their own keep the
-Keyed colour, and so do pinned objects. Change the pink under *Preferences ▸ Interface ▸ Overlay ▸
-Diff State ▸ Take State ▸ Look*.
+| State | An object is in it when | Colour |
+|---|---|---|
+| **Take State** | this take keys it | blue |
+| **Parent State** | a tier above keys it: a parent layer under its own keys, an action it inherits, or one it borrows | pink |
+| **Rest State** | nothing keys it anywhere, so it sits where the Rest State put it | teal |
+| **Drift State** | its live values no longer match where they should be | orange |
+
+The first three are one chain, read top down: a value comes from exactly one of them, so an object
+is in exactly one. **Drift State** is a different question and rides on whichever of the three an
+object is in.
+
+Objects you pinned, or gave an action to by hand, count as **Take State**: that is your choice,
+not something handed down.
+
+!!! note "Rest State is switched off to start with"
+    In most files it is most of the scene, so it is a filter you reach for rather than a wash you
+    leave on. Switch it on from the same menu as the others.
 
 ## :material-map-marker: Where to Find It
 
@@ -19,15 +34,17 @@ Diff State ▸ Take State ▸ Look*.
 ## :material-menu-down: Pick What You See
 
 Click the **Diff State** button to switch it on or off. ++shift++ + click
-opens a small menu with three choices.
+opens a small menu: one row per state, then **All**.
 
 | Choice | What the viewport shows |
 |---|---|
+| **Take State** | Only objects this take keys |
+| **Parent State** | Only objects a tier above keys |
+| **Rest State** | Only objects nothing keys |
 | **Drift State** | Only objects that drifted from the Rest State |
-| **Take State** | Only objects whose slot holds keyframes |
-| **All** | Both |
+| **All** | Every state that is switched on |
 
-The three are exclusive: picking one is the whole decision, and the others
+The rows are exclusive: picking one is the whole decision, and the others
 switch off. Switched back on, the mode comes back in the choice you last had.
 Change that under *Preferences ▸ Interface ▸ Overlay ▸ Mode Row*.
 
