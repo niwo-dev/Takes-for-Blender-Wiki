@@ -172,6 +172,33 @@ The **On Duplicate** preference (*Preferences > Workflow > Automations > Actions
     one object the *Independent Slot* treatment on demand. It has no button — run it from
     the operator search (++f3++).
 
+## :material-swap-horizontal: Swap List { #swap-list }
+
+The third view beside **Watchlist** and **Channels**. It swaps single material slots, with no variant setup.
+
+One row is one material slot on one object, and the material to show there instead. Each take keeps its own rows, so every take can wear its own look.
+
+1. Select the object.
+2. Click **{{ op('tks.msw_add_object').bl_label }}**. Every material slot of the object appears as a row.
+3. On a row, pick the material to swap to. The left side shows what the slot holds without the swap.
+
+Clear the swap and the slot goes back to the mesh, so a variant owns it again.
+
+??? info "The buttons"
+    | Button | What it does |
+    |---|---|
+    | **{{ op('tks.msw_add_object').bl_label }}** | Adds the active object to the list. |
+    | **{{ op('tks.msw_remove_object').bl_label }}** | Removes the object and all its rows. Every swapped slot goes back to its original material first. |
+    | **{{ op('tks.msw_remove_slot').bl_label }}** | Removes the material slot from the object. When more than one take swaps it, they are named first. |
+
+??? info "When a slot was removed elsewhere"
+    Remove a slot from Blender's own material list and the swap on it is not
+    thrown away. The warnings panel lists it and offers three answers: put the
+    slot back, move the swap to another slot, or let it go.
+
+    **{{ op('tks.msw_restore_all').bl_label }}** puts every removed slot back, each with its
+    material and its swap. **{{ op('tks.msw_accept_all').bl_label }}** lets every such swap go.
+
 ## :material-call-merge: Reconciling with the Cascade
 
 A managed object whose action differs from the cascade's gets a warning badge on its row.

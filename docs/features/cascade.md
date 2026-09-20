@@ -151,6 +151,21 @@ Three buttons keep it in sync.
     **Push to Selected** to fan it out. Handy for giving a batch of shots the same
     camera or world.
 
+## :material-account-arrow-down: Borrow a Parent's Action { #parent-borrow }
+
+A take can hold its own action while a tier above it holds another. Parent Borrow lets you reach that one from the row you are standing in.
+
+1. Open the take row's action popover.
+2. Pick a parent in its list and click **{{ op('tks.parent_borrow').bl_label }}**.
+3. Adjust and key it. The parent's action is the live one now.
+4. Click **{{ op('tks.parent_borrow_release').bl_label }}** to let it go.
+
+Nothing is saved. Switching view layer ends the borrow, and so does turning on Rest State Mode.
+
+??? info "Only or Cascade"
+    **Only** shows that parent alone. **Cascade** shows it with the tiers above
+    still applying. The row being edited shows a badge in the tree.
+
 ## :material-camera-switch: Cross-Scene Camera Linking
 
 A camera set at **Global** or **Scene Group** must exist in every scene that tier covers.

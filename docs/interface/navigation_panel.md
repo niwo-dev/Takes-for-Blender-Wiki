@@ -166,6 +166,22 @@ Click a badge to open its warning panel below the header. Each panel lists what 
     | Unlinked (cache) | The active scene was last saved by a different addon version (a MAJOR.MINOR mismatch), so cached tree data may be stale. | A cache notice with a refresh action. |
     | File-refresh | [View Layer Preload](context_properties.md#view-layer-preload) is enabled and a preload is running, or some layers are still cold ("Not Ready"). | The per-layer preload panel — readiness state for every View Layer, per-section Preload buttons, Cancel and ETA while running. It behaves like the other warning panels (opening it closes the others) and can open **automatically** when an automatic preload starts, if you opt in via the preferences. |
 
+### Animation That Came With the File { #adopted }
+
+Open a file made without the add-on and a popup says what was kept: objects with their own animation, and any compositor, world or camera the scenes already had.
+
+It asks one question. **Keep It All** leaves everything as it is. **Decide One by One** opens the card on this panel with every item on its own row.
+
+??? info "The card's buttons"
+    | Button | What it does |
+    |---|---|
+    | **{{ op('tks.adopted_keep').bl_label }}** | Leaves every adopted object in **All Takes**. Closing the card does the same. |
+    | **{{ op('tks.adopted_to_one_take').bl_label }}** | Moves every adopted object onto the take you are in. In every other take they follow the take again. |
+    | **{{ op('tks.adopted_drop').bl_label }}** | Hands every adopted object, compositor, world and camera back to the takes. It asks first and says how many. |
+    | **{{ op('tks.adopted_object_to_take').bl_label }}** | The mode picker on one object's row: **Auto**, **Active Take**, **Every Take**, or a take you choose. |
+    | **{{ op('tks.adopted_native_clear').bl_label }}** | On a compositor, world or camera row: the tier record goes and the cascade takes over. The datablock itself is untouched. |
+    | **{{ op('tks.actionless_to_auto').bl_label }}** | On an object you took charge of that wears no action: hands it back to the takes. |
+
 ### Autokey Is Being Blocked
 
 This warning has no badge. It appears on its own, right below the navigation bar.

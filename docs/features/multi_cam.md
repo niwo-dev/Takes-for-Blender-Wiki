@@ -53,6 +53,21 @@ Each cut runs until the next one starts.
     asked for, and a marker of your own already there simply moves to the
     **Select** list. Your marker is never renamed, moved or used.
 
+??? info "Every button, by the name its tooltip shows"
+    Most of these are icon buttons. Hover one and the first line of the tooltip
+    is its name.
+
+    | Button | What it does |
+    |---|---|
+    | **{{ op('tks.multicam_cut_add').bl_label }}** | The **Add** button: cuts to the scene's camera from the frame in the **Marker** row. |
+    | **{{ op('tks.multicam_orphan_add').bl_label }}** | On a row of the **Select** list: takes that marker into the cut list. It arrives without a camera. |
+    | **{{ op('tks.multicam_orphan_remove').bl_label }}** | On a row of the **Select** list: deletes a marker that holds no camera. A marker with a camera is a cut, and its own row removes it. |
+    | **{{ op('tks.multicam_clear_orphans').bl_label }}** | Deletes every marker that holds no camera. Cuts are untouched, and the count is shown first. |
+    | **{{ op('tks.multicam_unstack_marker').bl_label }}** | The **Separate** button: moves a marker that shares a frame to the next free frame. |
+    | **{{ op('tks.multicam_clear_scene_cuts').bl_label }}** | The **Clear Cuts** button: removes this timeline's camera cuts, so the take keeps its own camera. Your notes stay. |
+    | **{{ op('tks.multicam_clear_cuts').bl_label }}** | Throws a parked cut list away. The cameras themselves are untouched. |
+    | **{{ op('tks.multicam_enable_anim').bl_label }}** | The **Animate** button on a Still take: sets the take to animate and turns Multi-Cam on. |
+
 ## :material-swap-horizontal: Switching Takes
 
 The active take's cuts go onto the timeline. Leave, and they come back off.

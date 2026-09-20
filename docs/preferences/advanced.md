@@ -33,9 +33,17 @@ The fastest way back to defaults: in *Preferences > Data > Add-on*, switch *Save
 
 ## :material-cached: Rebuild Cache { #rebuild-cache }
 
-Does the takes tree, a preset or the rest state look stale? **Rebuild Cache & Reload Add-on** clears everything and starts fresh in one step.
+Does the takes tree, a preset or the rest state look stale? **{{ op('tks.rebuild_cache').bl_label }}** clears everything and starts fresh in one step.
 
 Use it after the add-on warns that a file was last touched by a different version.
+
+??? info "When the panels are held"
+    A file saved by an older version can lock the panels until you rebuild, so
+    nothing shows you state from stale caches. The lock card carries two ways
+    out: **{{ op('tks.rebuild_cache').bl_label }}**, or
+    **{{ op('tks.cache_unlock').bl_label }}**, which unlocks without rebuilding.
+    The file stays marked, so the warning returns next time you open it.
+    Nothing in your file changes either way.
 
 It is always available and safe. It only touches the add-on's own caches and the version stamp in the open file — your scene data is never rewritten.
 
@@ -49,7 +57,7 @@ It is always available and safe. It only touches the add-on's own caches and the
 
     This is the heavier counterpart to the developer-focused
     [Reload Add-on](index.md#support-developer). A plain reload refreshes the
-    code; **Rebuild Cache & Reload Add-on** also flushes cached data and
+    code; **{{ op('tks.rebuild_cache').bl_label }}** also flushes cached data and
     re-stamps the file.
 
 !!! warning "Reloads the add-on"

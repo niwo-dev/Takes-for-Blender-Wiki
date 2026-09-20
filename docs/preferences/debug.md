@@ -63,6 +63,7 @@ With logging on, a live monitor appears in the navigation panel. It reads the lo
 | -------- | -------------- |
 | **Refresh Log** | Reloads the latest entries, up to the *Show Lines* limit. ++alt++ + click starts auto-refresh, which re-reads on a timer. With logging off it only reports *"Enable debug logging first"*. |
 | **Log Files** | Picks which log file to show. ++shift++ + click opens the log folder in your file browser instead. |
+| **{{ op('tks.dm_copy').bl_label }}** | Copies the shown log lines to the clipboard, including the ones the panel is too short to show. |
 
 ## :material-undo-variant: Undo-Redo
 
@@ -78,6 +79,19 @@ Each has its own toggle. Leave them on unless you are debugging the recovery sys
     pattern as *Workflow → Naming → Templates*. Switching them off causes known
     bugs: phantom auto-merge steps on every undo, the cascade clearing actions
     mid-undo, or rest-state snaps overwriting the transforms Blender just restored.
+
+Each strategy row carries an **[i]** icon. Hover it and the tooltip, **{{ op('tks.pref_help').bl_label }}**, shows that setting's own description.
+
+??? info "Undo Monitor"
+    The Undo Monitor lists one ++ctrl+z++ press as a tape of steps, so a press can
+    be read instead of guessed at. Turn it on under **Show Undo Monitor** in the
+    navigation panel's monitor switches.
+
+    | Button | What it does |
+    |---|---|
+    | **{{ op('tks.undo_monitor_record').bl_label }}** | Starts recording. Every step goes to a tape file on disk, so a recording survives a restart. |
+    | **{{ op('tks.undo_monitor_copy').bl_label }}** | Copies the whole tape to the clipboard, including the steps the panel is too short to show. |
+    | **{{ op('tks.um_log_files').bl_label }}** | Picks which tape file to show. |
 
 ## :material-toy-brick: Utilities
 

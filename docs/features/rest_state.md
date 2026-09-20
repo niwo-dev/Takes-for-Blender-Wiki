@@ -70,6 +70,10 @@ The Rest State block sits in *Globals ▸ Settings*.
     real actions, and autokey pauses while the mode is on. Turning it on releases an
     active Value Lock, and the other way round.
 
+    While the mode is on, every tree row shows a **Rest Mode chip** in place of its
+    action picker. Clicking the chip only reminds you that the mode is on: exit it
+    to change action assignments.
+
     The same button is the quickest way to the picker: ++shift++ + click opens the
     Rest Action, **+** and **Auto-mirror keyframes** in a small popup. With no Rest
     Action the button is dimmed and a plain click only tells you to pick one.
