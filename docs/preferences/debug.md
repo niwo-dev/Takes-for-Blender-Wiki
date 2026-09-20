@@ -66,7 +66,7 @@ With logging on, a live monitor appears in the navigation panel. It reads the lo
 
 ## :material-undo-variant: Undo-Redo
 
-This sub-tab lists the strategies that keep take switching, the cascade and Rest State consistent across ++ctrl+z++.
+This sub-tab lists the strategies that keep take switching, the cascade and Rest State consistent across undo and redo.
 
 Each has its own toggle. Leave them on unless you are debugging the recovery system itself.
 

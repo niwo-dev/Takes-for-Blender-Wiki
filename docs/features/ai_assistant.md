@@ -47,7 +47,7 @@ Tiers are **named, not numbered**: `take`, `view_layer`, `vl_group`, `scene`, `s
 
 ## :material-shield-check: What keeps it safe
 
-Every change an assistant makes becomes one labelled undo step. A single ++ctrl+z++ takes it back.
+Every change an assistant makes becomes one labelled undo step. A single undo in Blender takes it back.
 
 Bad values, risky deletions and a busy engine are refused with an explanation, never stored quietly.
 
