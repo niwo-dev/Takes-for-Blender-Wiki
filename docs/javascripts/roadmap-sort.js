@@ -1,10 +1,12 @@
 /* Click-to-sort for the roadmap board tables.
  *
- * Only headers the generator marked `.sortable` react (Feature, When) — the Meta
- * column is icons, which sort into nonsense. The key is the cell's `data-sort`
- * attribute when it has one (the When column carries an ISO date there, so the
- * column sorts chronologically instead of by the "8 Jul 2026" label), otherwise
- * its text. Cards with no date sort last in both directions.
+ * Only headers the generator marked `.sortable` react (Type, Item, Progress,
+ * When) — the Meta column is icons, which sort into nonsense. The key is the
+ * cell's `data-sort` attribute when it has one, otherwise its text. Keys are
+ * compared as STRINGS, so the generator writes a key that already sorts that
+ * way: an ISO date for When ("8 Jul 2026" would sort as text), and a
+ * zero-padded per-cent for Progress ("100%" would land between "1/4" and
+ * "29%"). Cards with an empty key sort last in both directions.
  *
  * Subscribes to Material's document$ so it re-runs after instant-navigation. */
 

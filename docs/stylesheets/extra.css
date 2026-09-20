@@ -67,8 +67,8 @@ kbd {
 /* Roadmap board — keep the table within the content width (no horizontal
    clipping) and wrap long text. The summary lives in the Meta column's ⓘ
    tooltip; Theme/Area/Size follow as icons with hover tooltips; the feature
-   title is the link; When shows the milestone date, its clock tooltip the whole
-   history. Scoped via the .roadmap-board wrapper (a <details>, so each section
+   title is the link; Progress counts the card's phase checklist; When shows the
+   milestone date, its clock tooltip the whole history. Scoped via the .roadmap-board wrapper (a <details>, so each section
    folds) so other wiki tables are untouched. */
 /* Material turns bare tables into inline-block scroll wrappers; on a table
    element that display spawns an anonymous inner table that shrink-wraps its
@@ -83,7 +83,7 @@ kbd {
 }
 .roadmap-board td,
 .roadmap-board th { word-break: break-word; overflow-wrap: anywhere; }
-/* Column order: Type · Item · Meta · When. Type is a narrow chip rail. */
+/* Column order: Type · Item · Meta · Progress · When. Type is a narrow chip rail. */
 .roadmap-board th:nth-child(1),
 .roadmap-board td:nth-child(1) { width: 6.5em; white-space: nowrap; }  /* Type */
 /* Item: one line always — a long title trims to an ellipsis, and the link's
@@ -95,11 +95,12 @@ kbd {
   word-break: normal;
   overflow-wrap: normal;
 }
-/* Meta and When read as one cluster: Meta hugs its right edge, When starts right
-   after it, so the two narrow columns sit together instead of drifting apart.
+/* Meta, Progress and When read as one cluster on the right: Meta hugs its right
+   edge and the two number columns follow, so the narrow columns sit together
+   instead of drifting apart.
    `table` is in the selector to out-specify the site-wide cell padding above. */
 .roadmap-board table th:nth-child(3),
-.roadmap-board table td:nth-child(3) {                           /* Meta    */
+.roadmap-board table td:nth-child(3) {                           /* Meta     */
   width: 7em;                         /* four icons now: ⓘ + Theme/Area/Size */
   text-align: right;
   padding-right: 0.2em;
@@ -107,15 +108,29 @@ kbd {
 }
 .roadmap-board td:nth-child(3) .twemoji { margin: 0 0.08em; }
 .roadmap-board table th:nth-child(4),
-.roadmap-board table td:nth-child(4) {                           /* When    */
+.roadmap-board table td:nth-child(4) {                           /* Progress */
+  width: 7.8em;              /* header + caret, and "18/18 · 100%" on one line */
+  padding-left: 0.6em;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+/* Tabular figures keep the slash and the per-cent sign in a column, so the rows
+   read as a list of numbers rather than as ragged text. */
+.roadmap-board td:nth-child(4) {
+  font-variant-numeric: tabular-nums;
+  color: var(--md-default-fg-color--light);
+}
+.roadmap-board table th:nth-child(5),
+.roadmap-board table td:nth-child(5) {                           /* When     */
   width: 8.6em;                     /* clock icon + "27 Jul 2026" on one line */
   padding-left: 0.45em;
   white-space: nowrap;
   word-break: normal;
   overflow-wrap: normal;
 }
-.roadmap-board td:nth-child(4) { font-variant-numeric: tabular-nums; }
-.roadmap-board td:nth-child(4) .twemoji {
+.roadmap-board td:nth-child(5) { font-variant-numeric: tabular-nums; }
+.roadmap-board td:nth-child(5) .twemoji {
   opacity: 0.7;
   font-size: 0.9em;
 }
