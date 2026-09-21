@@ -10,6 +10,8 @@ Four tabs hold every setting: **Workflow**, **Interface**, **Data** and **Develo
 
 Your changes save themselves as you make them. [Save Mode](data.md#add-on) decides where they land.
 
+Wherever a setting carries a small **ⓘ** badge, **{{ op('tks.pref_help').bl_label }}** opens a one-line explanation of it.
+
 <div class="grid cards" markdown>
 
 -   :material-cog-play:{ .lg .middle } **Workflow**
@@ -137,6 +139,7 @@ They scan custom properties, tidy stale presets, and open the folders the add-on
     | **{{ op('tks.cleanup_incompatible_presets').bl_label }}** | Quarantines render presets whose format no longer matches this add-on version, so they stop cluttering your preset lists — see [Render Presets](../features/render_presets.md). |
     | **{{ op('tks.open_addon_presets_folder').bl_label }}** / **{{ op('tks.open_project_presets_folder').bl_label }}** | Open the add-on-wide or per-project render-preset folder in your file browser. These are the two tiers under *Data > Storage*. |
     | **{{ op('tks.open_snapshots_folder').bl_label }}** | Opens the folder holding the safety copies of your take data. It sits beside the read-only path under *Data > Snapshots & Recovery* — see [Snapshots & Recovery](data.md#snapshots). |
+    | **{{ op('tks.rebuild_cache').bl_label }}** | Clears the add-on's caches and restarts it. The Navigation panel offers it when the cache looks stale. |
     | **Hide these notice boxes** | The ✕ on a tip or warning box. It hides every box of that kind across the whole add-on at once. Bring them back under *Preferences > Interface > Confirmations*. |
 
 ## :material-lifebuoy: Support & Developer

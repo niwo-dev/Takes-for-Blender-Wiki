@@ -33,7 +33,7 @@ The bottom row is the panel switcher. Click a tab to show that panel and hide th
     | **Warning indicators** | Badges that appear when an issue is detected — preset dirty, missing preset, incompatible preset, rest drift, slot mismatch, pending preview rename, cascade drift, broken assignment, camera link gap, variant conflict, stale cache, view-layer preload. Each one toggles its own warning sub-panel below the header. |
     | **Save** | Appears in red when there are unsaved preference changes. Click it to save. |
     | **Help** | Opens the documentation (this wiki). |
-    | **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). Its sidebar carries **Restart Processes** plus, in Debug Console view, a refresh button and a log-files opener. |
+    | **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). Its sidebar carries **Restart Processes**, and each view adds its own: **{{ op('tks.dm_copy').bl_label }}** in the Debug Console, and **{{ op('tks.undo_monitor_record').bl_label }}**, **{{ op('tks.undo_monitor_copy').bl_label }}** and **{{ op('tks.um_log_files').bl_label }}** in the Undo Monitor. See [Debug](../preferences/debug.md). |
 
 ??? info "Bottom row — the four panel tabs"
     <!-- Tab labels are pulled from the addon's manifest so they auto-update if a

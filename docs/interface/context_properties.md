@@ -44,6 +44,8 @@ You can also apply a **World preset**, or let a **World rule** choose the world 
 
 Shows the action the cascade resolved. **Re-apply Cascade** restores it after a manual clear.
 
+While Rest Mode is on, the button becomes a bright **Rest Mode chip** instead. It is a status light, not a button: clicking it does nothing on purpose, because the mode owns the action until you switch it off.
+
 ### :material-vector-link: Compositor Popover
 
 Assign a compositor node tree to this layer.
