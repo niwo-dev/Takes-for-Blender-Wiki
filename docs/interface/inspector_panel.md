@@ -296,3 +296,21 @@ Bookmarked target types stay switchable even with no keyframes, so your favourit
 With the Inspector focused, ++f2++ renames and ++del++ deletes. ++shift++-click **Find Action** to search Scene & World datablocks, and ++alt++-click it to turn **Follow Selection** on or off.
 
 Full list: [Keyboard Shortcuts](hotkeys.md)
+
+## :material-format-list-checks: Every Inspector Switch
+
+Every switch that changes what the Inspector shows.
+
+??? info "Every Inspector switch"
+    | Setting | What it does |
+    | --- | --- |
+    | **Show Action Column** | Show the Action column in Objects list |
+    | **Show Action Name** | Show parent action name in Slots list (when standalone) |
+    | **Show Action Name Text** | Show action name text next to the icon (disable for icon-only with tooltip) |
+    | **Show Fake User** | Show fake user status in Watchlist |
+    | **Show Key Count** (Slots list) | Show keyframe count in Slots list |
+    | **Show Key Count** (Watchlist) | Show keyframe count in Watchlist |
+    | **Show Pin Column** | Show the Pin column in Objects list |
+    | **Show Slot Column** | Show the Slot column in Objects list |
+    | **Show Slot Count** | Show slot count in Watchlist |
+    | **Show Timeline Controls** | Show timeline frame navigation and filters |

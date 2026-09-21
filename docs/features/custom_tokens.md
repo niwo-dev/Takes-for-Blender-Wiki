@@ -262,3 +262,12 @@ A dimmed token is normal — it just has nothing to read right now. A red messag
     | Red message under the fields | The name or path is invalid (built-in clash, illegal characters, private segment) | Follow the message; the token isn't saved as broken |
     | Value looks like raw data (`<bpy_prop_collection…>`) | The path ends on a container instead of a single value | Add the final step, e.g. `.name` |
     | ⚠ *clashes with a built-in token* on a row | A preset from an older version loaded a name that's now built-in | Rename the custom token — the built-in wins until you do |
+
+## :material-format-list-checks: Every Token Setting
+
+Every setting this feature adds.
+
+??? info "Every token setting"
+    | Setting | What it does |
+    | --- | --- |
+    | **Favourites Only** | Show only starred tokens |

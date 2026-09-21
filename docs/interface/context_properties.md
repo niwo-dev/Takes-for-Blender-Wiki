@@ -334,3 +334,13 @@ Fix it right there, or click **Fix Formats** or **Strip Invalid**.
 Cascade icons answer to modifier-clicks — ++alt++-click clears the override at this tier.
 
 Full list: [Keyboard Shortcuts](hotkeys.md)
+
+## :material-format-list-checks: Every Switch Here
+
+Every switch on this panel.
+
+??? info "Every switch on this panel"
+    | Setting | What it does |
+    | --- | --- |
+    | **Show Groups** | Show Scene Groups and View Layer Groups lists in split view |
+    | **Show Takes** | Show Takes list in split view |

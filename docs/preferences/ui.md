@@ -173,3 +173,35 @@ Which technical terms stay in English while the rest of the interface is transla
     A shipped term follows grammar (cases and compounds). A term you add is a
     plain text swap, so pick one that reads right wherever it appears.
 
+## :material-format-list-checks: Every Interface Setting
+
+Everything on the Interface tab, in one place.
+
+??? info "Every interface setting"
+    | Setting | What it does |
+    | --- | --- |
+    | **Batch Operations** | Confirm before starting a Batch Render. Found in: Batch Render tab |
+    | **Default Folder** | Default folder pattern for Smart Output reset button |
+    | **Delete Group** | Confirm before deleting a Group from the Split View lists. Found in: Context tab (Tree) |
+    | **Diff State Click** | Which kind a plain click on the Diff State button switches on |
+    | **F12 / Ctrl+F12 (Native)** | Play sound after Blender's built-in F12 / Ctrl+F12 render finishes (any render not started by Takes operators) |
+    | **Frame Budget** | How much time Auto may spend rebuilding outlines in a single frame. One frame at 60 frames per second is about 17 milliseconds, so half of that leaves the other half for Blender's own drawing |
+    | **Mark Shared Actions** | Mark the View Layers that share the active View Layer's action |
+    | **Marker Moved to a Free Frame** | Confirm when a new camera marker has to land on a later frame because the one asked for is taken. Found in: Camera popover, Multi-Cam |
+    | **Pin Automation Rule** | Start new files with the Automation Rule column pinned open |
+    | **Pin Camera** | Start new files with the Camera column pinned open |
+    | **Pin Compositor** | Start new files with the Compositor column pinned open |
+    | **Pin Render** | Start new files with the Render column pinned open |
+    | **Pin Still** | Start new files with the Still column pinned open |
+    | **Pin Tag** | Start new files with the Tag column pinned open |
+    | **Pin World** | Start new files with the World column pinned open |
+    | **Shape Refresh** | How eagerly a marked outline follows a shape that is being deformed, by a shape key or anything else. Auto measures what each object costs and lets the cheap ones keep up while the heavy ones wait for playback to stop |
+    | **Shared Action Color** | Color of the bar marking View Layers that share the active action |
+    | **Show In Mode Row** | Show the Diff State switch in the Takes mode row |
+    | **Show In Overlays Menu** | Show the Diff State switch in Blender's own Overlays menu |
+    | **Show Tree Lines** | Draw the tree indent lines by default (tag colors have their own switch) |
+    | **Still Mode Click** | Which kind a plain click on the Still Mode button switches on |
+    | **Swap Materials List** | How many rows the Swap List shows for materials |
+    | **Tag** | Show the Tag column in the tree. On in new files |
+    | **Timeline Click** | Which kind a plain click on the Timeline button switches on |
+    | **Tree Icon Pie Menu** | Enable the Ctrl+Shift+F pie menu for opening a cascade property on the highlighted tree row. Each slice opens that property's full editor, rules and presets included, without hunting for its icon. A property the row cannot hold is left out of the pie. Off by default |

@@ -208,3 +208,35 @@ It means Autokey is on, but Blender would silently swallow your keyframes anyway
 ++ctrl+shift+c++ opens the [Navigation Pie Menu](../features/pie_menus.md). The tree takes the usual add, rename, delete and duplicate shortcuts.
 
 Full list: [Keyboard Shortcuts](hotkeys.md)
+
+## :material-format-list-checks: Every Display Switch
+
+Every switch that changes what this panel shows.
+
+??? info "Every display switch"
+    | Setting | What it does |
+    | --- | --- |
+    | **Line Limit** (Debug Console) | Maximum number of log entries to display |
+    | **Line Limit** (Undo Monitor) | Maximum number of undo steps to display |
+    | **Refresh Interval** | Seconds between auto-refresh reads |
+    | **Show Adopted Objects** | Show the objects Takes adopted when it first opened this file, and choose what to do with them |
+    | **Show Broken Assignments** | Toggle the broken cascade assignment warning detail panel |
+    | **Show Cache Version Warning** | Show details about the cache version mismatch between this file and the running add-on |
+    | **Show Category** (Process Monitor) | Show category column |
+    | **Show Category** (Debug Console) | Show category column (e.g. CORE) |
+    | **Show Detail** | Show the reason or the state behind each step |
+    | **Show Exec Time** | Show execution time column |
+    | **Show Heartbeat** | Show heartbeat age column |
+    | **Show Kind** | Show handler/timer column |
+    | **Show Lost Swaps** | Toggle the lost swap warning panel: swaps whose material slot was removed, waiting to be moved or let go |
+    | **Show Missing Presets** | Toggle the missing preset warning detail panel |
+    | **Show Multi-Cam Paused** | Toggle the Multi-Cam Paused detail panel — takes that cut between cameras while pinned to a single frame, so the cuts never play and a render of them is one frame |
+    | **Show Other Sources** | List undo tape files written by other add-on folders too |
+    | **Show Preset Warnings** | Toggle the preset change warning detail panel |
+    | **Show Preview Warnings** | Toggle the preview thumbnail rename warning panel |
+    | **Show Rest Drift Warnings** | Toggle the rest state drift warning detail panel |
+    | **Show Slot Name Warnings** | Toggle the slot name mismatch warning detail panel |
+    | **Show Time** | Show when each step happened |
+    | **Show Timestamp** | Show timestamp column |
+    | **Show Topic** | Show topic/subtopic column |
+    | **Show Waiting Objects** | Show the objects you took charge of that are not wearing an action yet, and give each one an action or hand it back to the take |

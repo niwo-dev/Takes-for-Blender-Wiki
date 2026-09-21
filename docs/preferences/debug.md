@@ -109,3 +109,29 @@ Developer helpers on their own sub-tab — right now, the Icon Sheet.
     The same sheet backs the custom-token **category icon picker**. Opened that
     way it starts on the tab of the icon the category already uses, and its
     *Current* row gets a copy button.
+
+## :material-format-list-checks: Every Developer Switch
+
+Everything on the Developer tab, in one place. These are diagnostic switches: leave them alone unless you are chasing a problem.
+
+??? info "Every developer switch"
+    | Setting | What it does |
+    | --- | --- |
+    | **ANIM (Actions & Slots)** | Actions and slots: what gets assigned, and to whom |
+    | **Cascade-Token Boundary Refire** | Re-fire the unified View Layer switch snap path when undo/redo crosses a forward cascade boundary (tracked via `scene[{scenegroup}]`). Disabling this leaves the state after an undo that crosses view layers at stale rest-cache values |
+    | **Data-block Renames** | Only the renames: which data-block was renamed, and to what |
+    | **Mutation Queue Recovery Windows** | Gate `bpy.ops.ed.undo_push('Takes Auto-Merge')` from the mutation queue during post-undo, View Layer switch, and autokey settling periods. Disabling this re-introduces phantom 'Takes Auto-Merge' undo steps — every Ctrl+Z forces 5–8 extra presses to walk past the cascade chain reactions |
+    | **NAMING (Names & Tokens)** | Smart names and the tokens they resolve from |
+    | **One Keyframe, One Ctrl+Z** | Run the take's share of a keyframe inside your own G and I, so one keyframe costs one Ctrl+Z. Off: the add-on does its part a moment later in a step of its own, and a keyframe can cost two presses. Switch off if another add-on needs G or I for itself |
+    | **OPS (Operator Trace)** | A trace line for each operator as it runs |
+    | **PRESET (Render Presets)** | Render presets: which tier answered, and what it wrote |
+    | **REST (Rest & Still)** | Rest State and Still Mode |
+    | **Rest-State Snap Suppression** | Block rest-state snap-back during the 1 s post-undo grace window. Disabling this lets the snap path overwrite Blender's restored unkeyed transforms during the cascade settling period |
+    | **Skip ACTION in Post-Undo Cascade** | Pass `skip_action=True` to `apply_overrides` in the post-undo deferred cascade. Disabling this lets the cascade read the empty cascade tier at Blender's intermediate snapshot and clear the action that was just restored — the watched object loses its action on every Ctrl+Z |
+    | **Skip Compositor Clear After Undo** | Pass `skip_compositor_clear=True` to `apply_overrides` in the post-undo deferred cascade. Without it, undoing back to a state where no compositor is assigned in the cascade tree wipes the scene's node group — even if the user had assigned it outside the tree. Independent of `compositor_unassigned_mode`, which governs normal (non-undo) cascade runs |
+    | **STORE (Take Data & Snapshots)** | Take data, snapshots and bookmarks |
+    | **SWITCH (Take & Cascade)** | Take switching and the cascade that follows it |
+    | **SYSTEM (Lifecycle & Background)** | Startup, preferences, undo handlers and background work |
+    | **TAGS (Tag Library)** | The tag library: grouping and moves |
+    | **Unlock Advanced Undo Overrides** | Unlock the four required core strategies for editing. Disabling any of them causes known bugs (phantom undo steps, cascade tier loss, snap overwriting undo). Use only for diagnosing conflicts with other add-ons or recovering from an undo-related crash |
+    | **VARIANT (Variant Switch)** | Variant switching and material swaps |

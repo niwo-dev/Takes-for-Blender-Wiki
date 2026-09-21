@@ -284,3 +284,19 @@ Master toggle **{{ pref('viewport_sync_enabled').label }}**, off by default.
     *Lock Object Mode*, and *UV Options*.
 
     The full feature is on the [Viewport Sync](../features/viewport_sync.md) page.
+
+## :material-format-list-checks: Every Workflow Setting
+
+Everything on the Workflow tab that is not covered above.
+
+??? info "Every workflow setting"
+    | Setting | What it does |
+    | --- | --- |
+    | **Alt** (Keyframe Pie) | Hold Alt as part of the keyframe pie shortcut. Off by default |
+    | **Alt** (Clear Pie) | Hold Alt as part of the second keyframe pie shortcut. On by default |
+    | **Alt+I-Pie Hotkey Key** | Key type for the Clear Pie binding |
+    | **Default Token Preset** | The token preset a new session starts with. Empty means it starts with none |
+    | **Font/Text** | Template for Text data slot names. Tokens: {object}, {sep} |
+    | **I-Pie Hotkey Key** | Key type for the Keyframe Pie binding (e.g. 'I', 'F12') |
+    | **Rebuild Cache on Open** | Rebuild the add-on's cache automatically when you open a file an older version saved. When disabled, you get a warning instead and the panels stay shut until you rebuild |
+    | **UV Settings** | Mirror UV-related edit settings across all scenes (Live Unwrap, UV Sync Selection) |

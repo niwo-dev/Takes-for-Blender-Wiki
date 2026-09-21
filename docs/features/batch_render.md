@@ -206,3 +206,13 @@ Add a **Note** to record what changed, browse past ones in **Version History**, 
 The render-toggle icon beside each View Layer takes modifier-clicks. ++esc++ cancels a running batch.
 
 Full list: [Keyboard Shortcuts](../interface/hotkeys.md)
+
+## :material-format-list-checks: Every Batch-Render Setting
+
+Every setting this feature adds.
+
+??? info "Every batch-render setting"
+    | Setting | What it does |
+    | --- | --- |
+    | **Link Outputs** | Keep Standard and Compositor outputs linked (both active together) |
+    | **Stamp Note Tokens** | Resolve Smart Syntax tokens into the render metadata Note at render time, then restore your template afterwards (the source below is never overwritten). Enable Metadata > Note to display it on the render |
