@@ -271,3 +271,4 @@ Every setting this feature adds.
     | Setting | What it does |
     | --- | --- |
     | **Favourites Only** | Show only starred tokens |
+    | **Token Search** | Filter the token grid by name as you type |

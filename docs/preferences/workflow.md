@@ -292,8 +292,8 @@ Everything on the Workflow tab that is not covered above.
 ??? info "Every workflow setting"
     | Setting | What it does |
     | --- | --- |
-    | **Alt** (Keyframe Pie) | Hold Alt as part of the keyframe pie shortcut. Off by default |
-    | **Alt** (Clear Pie) | Hold Alt as part of the second keyframe pie shortcut. On by default |
+    | **Keyframe Pie Alt** | Hold Alt as part of the keyframe pie shortcut. Off by default |
+    | **Clear Pie Alt** | Hold Alt as part of the second keyframe pie shortcut. On by default |
     | **Alt+I-Pie Hotkey Key** | Key type for the Clear Pie binding |
     | **Default Token Preset** | The token preset a new session starts with. Empty means it starts with none |
     | **Font/Text** | Template for Text data slot names. Tokens: {object}, {sep} |
