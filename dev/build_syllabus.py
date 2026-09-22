@@ -122,9 +122,15 @@ def normalise_headings(mod, write: bool) -> bool:
     return new != out
 
 
+# The words that are the same on every row: a reader wants the number.
+UNIT = re.compile(r"\b(videos?|min|h)\b")
+
+
 def pill(text: str) -> str:
-    """The same chip the lesson headings wear, in a table cell."""
-    return '<span class="tks-min">%s</span>' % text
+    """The same chip the lesson headings wear, with its unit word stepped back."""
+    marked = UNIT.sub(lambda m: '<span class="tks-min__u">%s</span>' % m.group(1),
+                      text)
+    return '<span class="tks-min">%s</span>' % marked
 
 
 def stage_block(letter: str, name: str, mods: list) -> list[str]:

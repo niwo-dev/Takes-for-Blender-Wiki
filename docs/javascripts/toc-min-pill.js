@@ -39,7 +39,17 @@
       last.nodeValue = last.nodeValue.slice(0, m.index) + " ";
       var pill = document.createElement("span");
       pill.className = "tks-min";
-      pill.textContent = m[1];
+      // Number bright, unit dimmed -- the same split the syllabus chips use.
+      var parts = /^(\d+)\s*(min)$/.exec(m[1]);
+      if (parts) {
+        pill.appendChild(document.createTextNode(parts[1] + " "));
+        var u = document.createElement("span");
+        u.className = "tks-min__u";
+        u.textContent = parts[2];
+        pill.appendChild(u);
+      } else {
+        pill.textContent = m[1];
+      }
       host.appendChild(pill);
     });
   }

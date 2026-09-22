@@ -714,6 +714,13 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--md-default-fg-color--light);
 }
 
+/* Inside a chip, the unit word steps back so the number reads first. A column
+   of chips all say "min"; the digit beside it is the only part that differs. */
+.md-typeset .tks-min__u {
+  font-weight: 400;
+  opacity: 0.55;
+}
+
 /* The minutes chip also lands in the Contents column, because Material builds
    that column from the heading's own markup. Unstyled it read as run-on text
    ("Build the bottle shot8 min"), so it gets the pill there too -- smaller,
