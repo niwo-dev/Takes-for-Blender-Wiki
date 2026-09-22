@@ -48,6 +48,4 @@ Read more: [Roadmap](../roadmap/index.md) · [What's New](../whats_new/index.md)
 
 ## Done
 
-That is Stage A. You can run a real job now.
-
-Back to the [Syllabus](index.md).
+Next: [B1 · Cameras and lighting](b1-cameras-and-lighting.md).

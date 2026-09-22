@@ -24,6 +24,14 @@ title: Home
 
     [:octicons-arrow-right-24: Install Takes](getting_started/installation.md)
 
+-   :material-school:{ .lg .middle } **The Course**
+
+    ---
+
+    80 short videos in order, from your first take to a finished render.
+
+    [:octicons-arrow-right-24: Open the syllabus](course/index.md)
+
 -   :material-play-circle:{ .lg .middle } **Guides**
 
     ---
@@ -38,7 +46,7 @@ title: Home
 
     The few ideas behind Takes — the tree, the cascade, and the review loop.
 
-    [:octicons-arrow-right-24: How It Works](features/takes.md)
+    [:octicons-arrow-right-24: The Takes System](features/takes.md)
 
 -   :material-view-dashboard:{ .lg .middle } **Inside Takes**
 
@@ -47,6 +55,30 @@ title: Home
     Look up any panel, button or preference, one short line each.
 
     [:octicons-arrow-right-24: Navigation Panel](interface/navigation_panel.md)
+
+-   :material-lifebuoy:{ .lg .middle } **Something looks wrong**
+
+    ---
+
+    Find your symptom. Each row names the one thing to check first.
+
+    [:octicons-arrow-right-24: Troubleshooting](troubleshooting.md)
+
+-   :material-comment-question:{ .lg .middle } **Quick answers**
+
+    ---
+
+    The questions people ask most, answered in a line or two.
+
+    [:octicons-arrow-right-24: FAQ](faq.md)
+
+-   :material-map:{ .lg .middle } **What's next**
+
+    ---
+
+    What just shipped, and what is being built now. Takes moves quickly.
+
+    [:octicons-arrow-right-24: Roadmap](roadmap/index.md)
 
 </div>
 
