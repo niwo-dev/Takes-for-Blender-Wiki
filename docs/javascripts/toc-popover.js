@@ -87,29 +87,6 @@
     inner.parentNode.insertBefore(nav, inner);
   }
 
-  // Sections have no page of their own since their landing pages were removed,
-  // but Material still renders their crumb as a link -- pointing at whichever
-  // child happens to come first. "Features" led to Variant Switch, which is a
-  // lie about where you are. Only crumbs that genuinely address a page stay
-  // clickable: Home, and any crumb whose target is not simply a descendant of
-  // itself. The current page is never a link to itself either.
-  function unlinkSectionCrumbs() {
-    var items = document.querySelectorAll(".md-path__item");
-    items.forEach(function (li, i) {
-      var a = li.querySelector("a.md-path__link");
-      if (!a) return;
-
-      var isHome = i === 0;
-      var isCurrent = i === items.length - 1;
-      if (isHome && !isCurrent) return;          // Home is a real page
-
-      var span = document.createElement("span");
-      span.className = a.className;
-      span.textContent = a.textContent.trim();
-      a.parentNode.replaceChild(span, a);
-    });
-  }
-
   function teardown() {
     document.querySelectorAll(".tks-toc-fab, .tks-toc-panel, .tks-toc-scrim").forEach(function (n) {
       n.remove();
@@ -119,7 +96,10 @@
   function build() {
     teardown();
     ensurePathBar();
-    unlinkSectionCrumbs();
+    // The crumbs are decided in partials/path.html now: a section links to
+    // itself when it owns an index page and is plain text when it does not.
+    // Stripping links here as well took them off the sections that DO own a
+    // page, which is what made "Course" dead text.
     syncHeaderHeight();
 
     // Material renders the page TOC here even when the column is hidden.

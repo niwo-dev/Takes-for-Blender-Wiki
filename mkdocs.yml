@@ -64,9 +64,15 @@ theme:
     # always-open headers. Without them the sidebar groups collapse, which is
     # what keeps a 17-page section from swamping the menu.
     - navigation.top
-    # No navigation.indexes: it turns a section's own page into the section
-    # link, so some menu rows navigated while others expanded. Every group
-    # now does the same thing -- expand.
+    # navigation.indexes, added back 2026-09-22. It was dropped because a
+    # section with an index page navigates while one without only expands,
+    # and that read as two kinds of row. The cost of NOT having it turned out
+    # to be worse: "Course" in the breadcrumb was dead text, so the only way
+    # back to the course page was the home page or the drawer. A row that
+    # looks clickable and is not beats an inconsistency nobody notices.
+    # Three sections own an index page and become clickable: Course,
+    # Preferences and What's New. The rest still only expand.
+    - navigation.indexes
     - navigation.footer
     - navigation.tracking
     - navigation.tooltip
@@ -98,7 +104,7 @@ nav:
     - Your First Batch Render: getting_started/first_batch_render.md
 
   - Course:
-    - Syllabus: course/index.md
+    - course/index.md
     - Stage A · Think in Takes:
       - "A1 · Why Takes exists": course/a1-why-takes.md
       - "A2 · Install and look around": course/a2-install-and-look-around.md
@@ -188,7 +194,7 @@ nav:
         - Process Monitor: features/process_monitor.md
         - AI Assistant: features/ai_assistant.md
     - Preferences:
-      - Overview: preferences/index.md
+      - preferences/index.md
       - Workflow: preferences/workflow.md
       - Interface: preferences/ui.md
       - Data: preferences/data.md
@@ -200,7 +206,7 @@ nav:
   - Troubleshooting: troubleshooting.md
 
   - What's New:
-    - Overview: whats_new/index.md
+    - whats_new/index.md
     - Changelog: changelog/index.md
     - Changelog (Dev): changelog/dev.md
     - Roadmap: roadmap/index.md
@@ -236,7 +242,7 @@ markdown_extensions:
       toc_depth: 2
 
 extra_css:
-  - stylesheets/extra.css?v=18f6993b
+  - stylesheets/extra.css?v=cf75bb91
 
 extra_javascript:
   - javascripts/nav-icons.js?v=f681236a
@@ -246,7 +252,7 @@ extra_javascript:
   - javascripts/roadmap-tooltip.js?v=41829eff
   - javascripts/changelog-toc.js?v=9b4e6d01
   - javascripts/toc-min-pill.js?v=2ec84604
-  - javascripts/toc-popover.js?v=16b0ee56
+  - javascripts/toc-popover.js?v=96e637b9
 
 # No `social:` list. It only ever held the GitHub icon, and the header already
 # carries a GitHub link with the version chip — the footer copy was the same

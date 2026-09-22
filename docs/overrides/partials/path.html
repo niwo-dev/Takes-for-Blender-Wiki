@@ -1,12 +1,43 @@
 {#-
-  Override of Material's breadcrumb partial.
-  Stock Material renders only the ancestor path (e.g. "Home › What's New")
-  and leaves the current page out of the breadcrumb. We append the current
-  page as a final, non-link crumb so the trail reads "Home › What's New ›
-  Roadmap". The page-show guard is unchanged, so this only adds the leaf to
-  breadcrumbs that already render.
+  Override of Material's breadcrumb partial. Two changes.
+
+  1. Stock Material renders only the ancestor path ("Home > What's New") and
+     leaves the current page out. We append it as a final, non-link crumb, so
+     the trail reads "Home > What's New > Roadmap".
+
+  2. A section crumb is a link ONLY when the section owns a page. Material's
+     own macro links every section to whichever child comes first, which said
+     "Features" and went to Variant Switch -- a lie about where you are. That
+     used to be undone in JavaScript, by stripping the link off every crumb
+     but Home; which then also stripped it off the sections that DO own a
+     page, so "Course" was dead text and the only way back to the course was
+     the home page or the drawer.
+
+     The template knows the answer the DOM cannot: `first.is_index` is true
+     exactly when the section's first child is its own `index.md`. So Course,
+     Preferences and What's New link to themselves, and a group with no page
+     of its own renders as plain text.
 -#}
-{% import "partials/path-item.html" as item with context %}
+{% macro crumb(nav_item) %}
+  {%- set first = (nav_item.children | first) if nav_item.children else none -%}
+  <li class="md-path__item">
+    {#- `is_page`, not `url`: the homepage's url is an empty string, which
+       Jinja reads as false, so testing the url dropped Home's link. -#}
+    {%- if nav_item.is_page -%}
+      <a href="{{ nav_item.url | url }}" class="md-path__link">
+        <span class="md-ellipsis">{{ nav_item.title }}</span>
+      </a>
+    {%- elif first and first.is_page and first.is_index -%}
+      <a href="{{ first.url | url }}" class="md-path__link">
+        <span class="md-ellipsis">{{ nav_item.title }}</span>
+      </a>
+    {%- else -%}
+      <span class="md-path__link md-path__link--plain">
+        <span class="md-ellipsis">{{ nav_item.title }}</span>
+      </span>
+    {%- endif -%}
+  </li>
+{% endmacro %}
 {% if page.meta and page.meta.hide %}
   {% set hidden = "hidden" if "path" in page.meta.hide %}
 {% endif %}
@@ -18,10 +49,10 @@
   <nav class="md-path" aria-label="{{ lang.t('nav') }}" {{ hidden }}>
     <ol class="md-path__list">
       {% if nav.homepage %}
-        {{ item.render(nav.homepage) }}
+        {{ crumb(nav.homepage) }}
       {% endif %}
       {% for nav_item in page.ancestors | reverse %}
-        {{ item.render(nav_item) }}
+        {{ crumb(nav_item) }}
       {% endfor %}
       <li class="md-path__item">
         <span class="md-ellipsis" aria-current="page">

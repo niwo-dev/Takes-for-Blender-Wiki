@@ -30,7 +30,7 @@ title: Home
 
     80 short videos in order, from your first take to a finished render.
 
-    [:octicons-arrow-right-24: Open the syllabus](course/index.md)
+    [:octicons-arrow-right-24: Open the course](course/index.md)
 
 -   :material-play-circle:{ .lg .middle } **Guides**
 

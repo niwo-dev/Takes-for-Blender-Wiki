@@ -132,6 +132,12 @@ def normalise_headings(mod, write: bool) -> bool:
 UNIT = re.compile(r"\b(videos?|min|h)\b")
 
 
+def ident(text: str) -> str:
+    """The stage letter, or a module id, as a chip. Same shape as the
+    figures wear, so a row reads as one family of small marks."""
+    return '<span class="tks-id">%s</span>' % text
+
+
 def pill(text: str) -> str:
     """The same chip the lesson headings wear, with its unit word stepped back."""
     marked = UNIT.sub(lambda m: '<span class="tks-min__u">%s</span>' % m.group(1),
@@ -153,7 +159,7 @@ def stage_block(letter: str, name: str, mods: list) -> list[str]:
         out += [
             '    <div class="tks-lessons" markdown="1">', "",
             "    | [%s · %s](%s.md) — %s | %s %s |"
-            % (mod["id"], mod["name"], mod["slug"], mod["idea"],
+            % (ident(mod["id"]), mod["name"], mod["slug"], mod["idea"],
                pill("%d videos" % len(mod["lessons"])), pill("%d min" % total)),
             "    |---|---|",
         ]
@@ -205,8 +211,8 @@ def main() -> int:
         # the module tables already use for both.
         videos = sum(len(m["lessons"]) for m in mods_)
         minutes = sum(sum(l[2] for l in m["lessons"]) for m in mods_)
-        lines.append("| **%s** | **%s** \u2014 %s | %s %s |" % (
-            letter, name, BLURB[letter],
+        lines.append("| %s | **%s** \u2014 %s | %s %s |" % (
+            ident(letter), name, BLURB[letter],
             pill("%d videos" % videos), pill(hm(minutes))))
     lines += ["", "</div>", ""]
     for letter, name in STAGES:
