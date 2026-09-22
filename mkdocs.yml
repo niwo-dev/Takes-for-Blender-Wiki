@@ -236,7 +236,7 @@ markdown_extensions:
       toc_depth: 2
 
 extra_css:
-  - stylesheets/extra.css?v=957e1547
+  - stylesheets/extra.css?v=dc7e2c2d
 
 extra_javascript:
   - javascripts/nav-icons.js?v=f681236a
@@ -245,6 +245,7 @@ extra_javascript:
   - javascripts/roadmap-sort.js?v=71afec24
   - javascripts/roadmap-tooltip.js?v=f17c88d3
   - javascripts/changelog-toc.js?v=9b4e6d01
+  - javascripts/lesson-tooltip.js?v=18266d9d
   - javascripts/toc-min-pill.js?v=1bb6008e
   - javascripts/toc-popover.js?v=16b0ee56
 

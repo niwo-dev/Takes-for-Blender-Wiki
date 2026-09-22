@@ -46,6 +46,13 @@ STAGES = [
 
 TITLE = re.compile(r"^# (?P<id>[A-D]\d+) · (?P<name>.+)$", re.M)
 IDEA = re.compile(r"the idea here is that \*\*(?P<idea>.+?)\*\*\.", re.M)
+# The recap is the paragraph between a lesson's video frame and its
+# "Read more:" line. It is what the syllabus shows on hover.
+RECAP = re.compile(
+    r'<div class="tks-video"[^>]*>.*?</div>\s*\n\n(?P<recap>.+?)\n\nRead more:',
+    re.S,
+)
+
 LESSON = re.compile(
     r'^## (?P<n>\d+)\. (?P<title>.+?)\s*'
     r'<span class="tks-min">(?P<min>\d+) min</span>'
@@ -62,6 +69,13 @@ def slug(text: str) -> str:
     return re.sub(r"[\s_]+", "-", text).strip("-")
 
 
+def plain(text: str) -> str:
+    """A recap as a link title: one line, no markup, no quote to break it."""
+    text = " ".join(text.split())
+    text = text.replace("**", "")           # only four recaps use bold
+    return text.replace('"', "'")
+
+
 def module_files() -> list[Path]:
     return sorted(p for p in COURSE.glob("*.md") if p.name != "index.md")
 
@@ -74,12 +88,18 @@ def read_module(path: Path):
     i = IDEA.search(text)
     if not i:
         raise SystemExit("%s: no 'the idea here is that **...**' line" % path.name)
+    recaps = [plain(r.group("recap")) for r in RECAP.finditer(text)]
     lessons = []
     for m in LESSON.finditer(text):
         n, title, mins = m.group("n"), m.group("title").strip(), int(m.group("min"))
         lessons.append((int(n), title, mins, "%s-%s" % (n, slug(title))))
     if not lessons:
         raise SystemExit("%s: no lesson headings" % path.name)
+    if len(recaps) != len(lessons):
+        raise SystemExit("%s: %d lessons but %d recaps -- every lesson needs "
+                         "the one-line description under its video"
+                         % (path.name, len(lessons), len(recaps)))
+    lessons = [l + (recaps[k],) for k, l in enumerate(lessons)]
     return {
         "id": t.group("id"), "name": t.group("name").strip(),
         "idea": i.group("idea"), "slug": path.stem,
@@ -125,9 +145,13 @@ def stage_block(letter: str, name: str, mods: list) -> list[str]:
                pill("%d videos · %d min" % (len(mod["lessons"]), total))),
             "    |---|---|",
         ]
-        for n, title, mins_, anchor in mod["lessons"]:
-            out.append("    | %d · [%s](%s.md#%s) | %s |"
-                       % (n, title, mod["slug"], anchor, pill("%d min" % mins_)))
+        for n, title, mins_, anchor, recap in mod["lessons"]:
+            # The third argument of a markdown link is its title attribute,
+            # and `content.tooltips` styles that into a tooltip. A phone has
+            # no hover, and the title stays an ordinary link there.
+            out.append('    | %d · [%s](%s.md#%s "%s") | %s |'
+                       % (n, title, mod["slug"], anchor, recap,
+                          pill("%d min" % mins_)))
         out += ["", "    </div>", ""]
     return out
 
