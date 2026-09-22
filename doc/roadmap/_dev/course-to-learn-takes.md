@@ -34,11 +34,13 @@ Page type per wiki-writing skill. ≤300 visible words (`dev/readability_check.p
 |---|---|---|
 | `docs/features/actions.md` | Explanation | cascade action per tier; managed vs pinned; slots per datablock (object/material/node tree/shape key); what a switch does (action on / rest snap); Autokey + *Only Insert Available* one-liner → link `interface/navigation_panel.md#autokey-is-being-blocked`. No steps. |
 | `docs/features/modes.md` | Explanation | the 7 mode-row buttons; exclusion table: Value Lock↔Autokey, Value Lock↔Rest Mode, Variant Live↔Autokey, Still↔Frame Sync; viewport pills; Mode Pie link. Source: `interface/navigation_panel.md` header table. |
-| `docs/features/which_tool.md` | Explanation | 5-column decision table (Take / View Layer / Variant / Preset / World) × (when · what changes · example); the 4 worked examples (colourway → variant; lighting → world per layer or Studio rule; quality tier → preset per group; review round → take). Absorb the "Take or new View Layer?" table from `vl_versions.md:23` by LINK, do not duplicate. |
+| `docs/features/which_tool.md` | Explanation | 5-column decision table (Take / View Layer / Variant / Preset / World) × (when · what changes · example); the 5 worked examples (colourway → variant; lighting → world per layer or Studio rule; environment geometry → one View Layer per env, collections excluded, `tks.copy_vl_settings`/`tks.paste_vl_settings` Shift+C/V to clone visibility; quality tier → preset per group; review round → take). Absorb the "Take or new View Layer?" table from `vl_versions.md:23` by LINK, do not duplicate. |
 | `docs/workflows/recover_take_organisation.md` | How-to | steps for the restore block (Restore / Dismiss), Rebuild Cache, cache_unlock; "do not reorganise before answering". Sources `preferences/data.md#snapshots`, `preferences/advanced.md#rebuild-cache`. |
 | `docs/workflows/set_up_a_project_for_a_team.md` | How-to | Init Project Prefs; Save Mode Project; Shared Presets Folder + Lock Shared; Master Default tier. Source `preferences/index.md` config table, `preferences/data.md`. |
 | `docs/troubleshooting.md` | Reference (symptom-first) | rows: keys vanish / object stuck in a pose / list is red / panel locked / render did not start / cascade icon dim / cameras missing / variant conflict. Each: symptom → instrument → fix link. Pull the FAQ Troubleshooting Q&As across; FAQ section becomes 2 lines + link. |
 | `docs/getting_started/first_steps.md` | Explanation (rewrite) | the six levels + one mermaid graph (reuse the one already on the page); NO "Your First Take" heading (that is `first_take.md`). |
+
+Also phase 1, one line not a page: `docs/interface/context_properties.md` Tree Housekeeping table gains a row for **Copy / Paste Collection Visibility** (row menu, Shift+C / Shift+V; paste hits every ticked row in multi-select). Today only `changelog/dev.md` mentions it. Use `{{ op('tks.copy_vl_settings').bl_label }}`.
 
 Nav: add `Troubleshooting: troubleshooting.md` after FAQ; add the three concept pages under *How It Works* in the order shown in the human plan. `mkdocs.yml:117-123`.
 
@@ -82,7 +84,7 @@ A1 → `comparisons.md`, `index.md` · A2 → `getting_started/installation.md`,
 - Location `doc/course/<module-slug>/<nn>-<lesson-slug>.md` (tracked, not published; `doc/` is hand-written repo docs, `docs/` is the site).
 - Script = recipe: `Setup` (file, prefs, window) · numbered `Steps` (one click per step, UI label in bold) · `Say` (≤ 60 words per step) · `Show` (what the frame holds) · `Recap` (the 5 lines that go on the page).
 - Same recipe drives WikiShot's shot for that step where a screenshot is also wanted → see `WikiShot-for-Blender/doc/roadmap/ideas/` *Shoot the Takes Wiki*.
-- Recording env: release ZIP installed in a clean Blender profile (memory: private profile launcher, never the junction/worktree); 1920×1080; Blender 5.2; factory startup + the course `.blend` per stage (Stage A: default cube; B–C: the shoe file; keep both under `doc/course/files/` — small, no textures > 2 MB, or link them from a release asset).
+- Recording env: release ZIP installed in a clean Blender profile (memory: private profile launcher, never the junction/worktree); 1920×1080; Blender 5.2; factory startup + the course `.blend` per stage (Stage A: default cube; B–C: the bottle file (body w/ inner+outer material slots, cap, label, string — each its own collection; env collections `Studio`, `Kitchen`, `Stone`); keep both under `doc/course/files/` — small, no textures > 2 MB, or link them from a release asset).
 - Vocabulary on camera: Take = review round, View Layer = shot/layer (post `take-feedback-loop`). Never "version".
 
 ## Recording schedule + channel mechanics
