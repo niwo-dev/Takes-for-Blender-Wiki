@@ -1,0 +1,54 @@
+# B6.2 · Five real jobs
+
+**Stage B · Build looks and shots** — B6 · Which tool for this job? · **6 min** · video 57 of 80
+
+The idea this module plants: **what changes decides which tool you reach for**.
+
+## On YouTube
+
+**Title**  
+Five real jobs solved the right way: a finish, lighting, environment, quality tier, review round
+
+**Description**  
+Five real jobs, and the right tool for each one.
+
+## What this video has to do
+
+_Nothing yet — add what you know._
+
+## What the viewer already knows
+
+_Nothing yet — add what you know._
+
+## What they can do afterwards
+
+_Nothing yet — add what you know._
+
+## What to show, in order
+
+_Not planned yet._
+
+## Set up before you record
+
+_Nothing yet — add what you know._
+
+## Where to be careful
+
+_Nothing yet — add what you know._
+
+## Out of scope
+
+Name it and move on. Do not explain it here.
+
+_Nothing yet — add what you know._
+
+## Source of truth
+
+The lesson links to: [Which Tool for the Job](../features/which_tool.md#five-real-jobs)
+
+Check these before recording. If the page and the add-on disagree, the
+page is wrong and gets fixed first.
+
+## Open questions
+
+_None._
