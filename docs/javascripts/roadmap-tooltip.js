@@ -81,8 +81,13 @@
   }
 
   function show(host) {
+    /* A host whose tip is missing or blank gets no bubble. `[data-tip]` matches
+       an empty value too, and an empty bubble is a box with nothing in it
+       parked over the page -- worse than no tooltip at all. */
+    const text = host.getAttribute("data-tip");
+    if (!text || !text.trim()) return;
     const t = ensureTip();
-    fill(t, host.getAttribute("data-tip"));
+    fill(t, text);
     t.classList.remove("below");
     t.classList.add("visible");
 
