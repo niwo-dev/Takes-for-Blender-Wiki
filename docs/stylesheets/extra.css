@@ -113,14 +113,24 @@ kbd {
    own text, so the minutes landed at a different place in every table -- 4 min
    at 560px, 3 min at 547, 6 min at 570. A fixed layout with the right-hand
    column pinned makes all twenty-one line up, whatever their titles say. */
+/* Two columns, so there is room for the pin further down than the stage
+   table needs -- but a 9rem chip column on a 320px screen leaves the title
+   almost nothing, so it narrows first and unpins last. */
 .tks-lessons table:not([class]) {
   table-layout: fixed;
 }
 
 .tks-lessons table:not([class]) th:last-child,
 .tks-lessons table:not([class]) td:last-child {
-  width: 9rem;
+  width: 6rem;
   text-align: right;
+}
+
+@media screen and (min-width: 45em) {
+  .tks-lessons table:not([class]) th:last-child,
+  .tks-lessons table:not([class]) td:last-child {
+    width: 9rem;
+  }
 }
 
 /* A module row is a heading for the rows under it, not another row. */
@@ -132,26 +142,34 @@ kbd {
    Takes" wrapping onto two lines in the narrowest column on the page -- so the
    letter gets a column of its own and the name gets room to stay on one line.
    The two number columns are pinned, so the eye drops straight down them. */
-.tks-stages table:not([class]) {
-  table-layout: fixed;
+/* Pinned columns need room to be pinned in. Measured at 485px: these four
+   add up to 500, which left the flexible column width 0 and set "What you
+   get" one letter per line. Below the breakpoint the browser lays the table
+   out itself, which is cramped but readable and shows every word. */
+@media screen and (min-width: 45em) {
+  .tks-stages table:not([class]) {
+    table-layout: fixed;
+  }
+
+  .tks-stages table:not([class]) th:nth-child(1),
+  .tks-stages table:not([class]) td:nth-child(1) {
+    width: 4rem;
+  }
+
+  .tks-stages table:not([class]) th:nth-child(3),
+  .tks-stages table:not([class]) td:nth-child(3) {
+    width: 9rem;
+  }
 }
 
+/* Alignment is not a luxury -- it holds at every width. */
 .tks-stages table:not([class]) th:nth-child(1),
 .tks-stages table:not([class]) td:nth-child(1) {
-  width: 4rem;
   text-align: center;
 }
 
-.tks-stages table:not([class]) th:nth-child(2),
-.tks-stages table:not([class]) td:nth-child(2) {
-  width: 10rem;
-}
-
-.tks-stages table:not([class]) th:nth-child(4),
-.tks-stages table:not([class]) td:nth-child(4),
-.tks-stages table:not([class]) th:nth-child(5),
-.tks-stages table:not([class]) td:nth-child(5) {
-  width: 5.5rem;
+.tks-stages table:not([class]) th:nth-child(3),
+.tks-stages table:not([class]) td:nth-child(3) {
   text-align: right;
 }
 
@@ -165,6 +183,18 @@ kbd {
   margin-left: 0;
 }
 
+/* Two chips in one cell: a gap between them, and leading for when they have
+   stacked onto separate lines. */
+.md-typeset .tks-stages td:last-child,
+.md-typeset .tks-lessons th:last-child {
+  line-height: 1.9;
+}
+
+.md-typeset .tks-stages td:last-child .tks-min + .tks-min,
+.md-typeset .tks-lessons th:last-child .tks-min + .tks-min {
+  margin-left: 0.3em;
+}
+
 /* The chip sits in these cells too, where it needs no left margin of its own. */
 .md-typeset .tks-lessons .tks-min {
   margin-left: 0;
@@ -173,6 +203,17 @@ kbd {
 .md-typeset .md-typeset__table {
   display: block;
   width: 100%;
+  /* A table that still will not fit -- five columns on a phone -- scrolls
+     inside its own box rather than having its last column clipped off the
+     edge of the page, which is what happened at 485px before this. */
+  overflow-x: auto;
+}
+
+/* Narrow screens: give the cells back the room the padding was taking. */
+@media screen and (max-width: 44.9375em) {
+  .md-typeset table:not([class]) :is(th, td) {
+    padding: 0.4rem 0.5rem;
+  }
 }
 
 /* Roadmap board — keep the table within the content width (no horizontal
@@ -710,6 +751,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 0.5em;
   border-radius: 1em;
   vertical-align: middle;
+  /* A chip is one thing and never breaks across lines. Where two sit together
+     they wrap as whole chips instead: side by side with room, one under the
+     other without. */
+  white-space: nowrap;
+  display: inline-block;
   background: var(--md-default-fg-color--lightest);
   color: var(--md-default-fg-color--light);
 }
@@ -723,7 +769,10 @@ h1, h2, h3, h4, h5, h6 {
 
    Writing one: `<span class="tks-min">5 <span class="tks-min__u">min</span></span>`.
    In the course pages the generator does it; anywhere else, write it out. */
-.md-typeset .tks-min__u {
+/* No `.md-typeset` prefix, on purpose. That prefix scopes a rule to the
+   article, and the chip also appears in the Contents column, which is outside
+   it -- so the unit span was there and unstyled. */
+.tks-min__u {
   font-weight: 400;
   opacity: 0.55;
 }

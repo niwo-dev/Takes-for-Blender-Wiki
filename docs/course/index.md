@@ -26,12 +26,12 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
 <div class="tks-stages" markdown="1">
 
-| Stage | Name | What you get | Videos | Time |
-|---|---|---|---|---|
-| **A** | **Think in Takes** | Everything you need for real work. | <span class="tks-min">36</span> | <span class="tks-min">2 <span class="tks-min__u">h</span> 48</span> |
-| **B** | **Build looks and shots** | Cameras, lighting, finishes, presets and tags. | <span class="tks-min">20</span> | <span class="tks-min">1 <span class="tks-min__u">h</span> 36</span> |
-| **C** | **Ship it** | Naming, batch render, a whole product. | <span class="tks-min">16</span> | <span class="tks-min">1 <span class="tks-min__u">h</span> 17</span> |
-| **D** | **Power tools** | Hotkeys and pies, the sequencer, the assistant. | <span class="tks-min">7</span> | <span class="tks-min">33 <span class="tks-min__u">min</span></span> |
+| Stage | What you get | |
+|---|---|---|
+| **A** | **Think in Takes** — Everything you need for real work. | <span class="tks-min">36 <span class="tks-min__u">videos</span></span> <span class="tks-min">2 <span class="tks-min__u">h</span> 48</span> |
+| **B** | **Build looks and shots** — Cameras, lighting, finishes, presets and tags. | <span class="tks-min">20 <span class="tks-min__u">videos</span></span> <span class="tks-min">1 <span class="tks-min__u">h</span> 36</span> |
+| **C** | **Ship it** — Naming, batch render, a whole product. | <span class="tks-min">16 <span class="tks-min__u">videos</span></span> <span class="tks-min">1 <span class="tks-min__u">h</span> 17</span> |
+| **D** | **Power tools** — Hotkeys and pies, the sequencer, the assistant. | <span class="tks-min">7 <span class="tks-min__u">videos</span></span> <span class="tks-min">33 <span class="tks-min__u">min</span></span> |
 
 </div>
 
@@ -39,7 +39,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [A1 · Why Takes exists](a1-why-takes.md) — you branch instead of duplicating | <span class="tks-min">3 <span class="tks-min__u">videos</span> · 14 <span class="tks-min__u">min</span></span> |
+    | [A1 · Why Takes exists](a1-why-takes.md) — you branch instead of duplicating | <span class="tks-min">3 <span class="tks-min__u">videos</span></span> <span class="tks-min">14 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [The problem with saved copies](a1-why-takes.md#1-the-problem-with-saved-copies "Why saving copy after copy goes wrong, and what to do instead.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
     | 2 · [What Takes is for](a1-why-takes.md#2-what-takes-is-for "What this add-on is for, and what it is not for.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
@@ -49,7 +49,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [A2 · Install and look around](a2-install-and-look-around.md) — your scene is a tree | <span class="tks-min">4 <span class="tks-min__u">videos</span> · 19 <span class="tks-min__u">min</span></span> |
+    | [A2 · Install and look around](a2-install-and-look-around.md) — your scene is a tree | <span class="tks-min">4 <span class="tks-min__u">videos</span></span> <span class="tks-min">19 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Install it](a2-install-and-look-around.md#1-install-it "How to install it and where to find it in Blender.") | <span class="tks-min">3 <span class="tks-min__u">min</span></span> |
     | 2 · [A tour of the interface](a2-install-and-look-around.md#2-a-tour-of-the-interface "A quick look at every part of the add-on, so you know where things are.") | <span class="tks-min">7 <span class="tks-min__u">min</span></span> |
@@ -60,7 +60,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [A3 · Your first take](a3-your-first-take.md) — you branch instead of duplicating | <span class="tks-min">4 <span class="tks-min__u">videos</span> · 19 <span class="tks-min__u">min</span></span> |
+    | [A3 · Your first take](a3-your-first-take.md) — you branch instead of duplicating | <span class="tks-min">4 <span class="tks-min__u">videos</span></span> <span class="tks-min">19 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Two takes, two angles](a3-your-first-take.md#1-two-takes-two-angles "Make your first two takes and click between two camera angles.") | <span class="tks-min">6 <span class="tks-min__u">min</span></span> |
     | 2 · [The review loop](a3-your-first-take.md#2-the-review-loop "How to work through feedback without losing the earlier version.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
@@ -71,7 +71,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [A4 · The Cascade](a4-the-cascade.md) — a deeper level always wins | <span class="tks-min">6 <span class="tks-min__u">videos</span> · 25 <span class="tks-min__u">min</span></span> |
+    | [A4 · The Cascade](a4-the-cascade.md) — a deeper level always wins | <span class="tks-min">6 <span class="tks-min__u">videos</span></span> <span class="tks-min">25 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Deeper wins](a4-the-cascade.md#1-deeper-wins "Set something once and let every shot use it.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
     | 2 · [The four clicks](a4-the-cascade.md#2-the-four-clicks "Four ways to click an icon, and what each one does.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
@@ -84,7 +84,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [A5 · Actions, slots, managed and pinned](a5-actions-slots-managed-pinned.md) — every layer wears an action | <span class="tks-min">5 <span class="tks-min__u">videos</span> · 22 <span class="tks-min__u">min</span></span> |
+    | [A5 · Actions, slots, managed and pinned](a5-actions-slots-managed-pinned.md) — every layer wears an action | <span class="tks-min">5 <span class="tks-min__u">videos</span></span> <span class="tks-min">22 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [What a switch does](a5-actions-slots-managed-pinned.md#1-what-a-switch-does "What happens to your animation when you switch shots.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
     | 2 · [Managed or pinned](a5-actions-slots-managed-pinned.md#2-managed-or-pinned "Why some objects follow the shot and others do not.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
@@ -96,7 +96,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [A6 · Frame 0 is home](a6-frame-0-is-home.md) — frame 0 is home, and modes take turns | <span class="tks-min">5 <span class="tks-min__u">videos</span> · 26 <span class="tks-min__u">min</span></span> |
+    | [A6 · Frame 0 is home](a6-frame-0-is-home.md) — frame 0 is home, and modes take turns | <span class="tks-min">5 <span class="tks-min__u">videos</span></span> <span class="tks-min">26 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Rest State](a6-frame-0-is-home.md#1-rest-state "Why things jump back to where they started, and why that helps you.") | <span class="tks-min">6 <span class="tks-min__u">min</span></span> |
     | 2 · [Still or Animation](a6-frame-0-is-home.md#2-still-or-animation "How to keep a still image still, and let one shot move.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
@@ -108,7 +108,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [A7 · When it looks wrong](a7-when-it-looks-wrong.md) — the panel tells you, if you read it | <span class="tks-min">4 <span class="tks-min__u">videos</span> · 21 <span class="tks-min__u">min</span></span> |
+    | [A7 · When it looks wrong](a7-when-it-looks-wrong.md) — the panel tells you, if you read it | <span class="tks-min">4 <span class="tks-min__u">videos</span></span> <span class="tks-min">21 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [The warning badges](a7-when-it-looks-wrong.md#1-the-warning-badges "What the warning icons mean, and how to clear them.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
     | 2 · [Symptom to instrument](a7-when-it-looks-wrong.md#2-symptom-to-instrument "Something looks wrong? Here is what to check first.") | <span class="tks-min">6 <span class="tks-min__u">min</span></span> |
@@ -119,7 +119,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [A8 · Getting help](a8-getting-help.md) — you can always find out why | <span class="tks-min">5 <span class="tks-min__u">videos</span> · 22 <span class="tks-min__u">min</span></span> |
+    | [A8 · Getting help](a8-getting-help.md) — you can always find out why | <span class="tks-min">5 <span class="tks-min__u">videos</span></span> <span class="tks-min">22 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [The checklist](a8-getting-help.md#1-the-checklist "The problems everyone runs into, and the quick fix for each.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
     | 2 · [Reporting a bug](a8-getting-help.md#2-reporting-a-bug "How to send a bug report that actually gets it fixed.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
@@ -133,7 +133,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [B1 · Cameras and lighting](b1-cameras-and-lighting.md) — a shot is a camera and a light, per level | <span class="tks-min">5 <span class="tks-min__u">videos</span> · 23 <span class="tks-min__u">min</span></span> |
+    | [B1 · Cameras and lighting](b1-cameras-and-lighting.md) — a shot is a camera and a light, per level | <span class="tks-min">5 <span class="tks-min__u">videos</span></span> <span class="tks-min">23 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [One camera per take](b1-cameras-and-lighting.md#1-one-camera-per-take "Give every shot its own camera.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
     | 2 · [Showing only the camera you use](b1-cameras-and-lighting.md#2-showing-only-the-camera-you-use "Hide the cameras you are not using right now.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
@@ -145,7 +145,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [B2 · Looks: swap first, then variants](b2-looks-swap-then-variants.md) — you swap materials instead of duplicating objects | <span class="tks-min">5 <span class="tks-min__u">videos</span> · 25 <span class="tks-min__u">min</span></span> |
+    | [B2 · Looks: swap first, then variants](b2-looks-swap-then-variants.md) — you swap materials instead of duplicating objects | <span class="tks-min">5 <span class="tks-min__u">videos</span></span> <span class="tks-min">25 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [The quick way: the Swap List](b2-looks-swap-then-variants.md#1-the-quick-way-the-swap-list "Swap one material for another, with no setup at all.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
     | 2 · [Product, Part, Pool, State](b2-looks-swap-then-variants.md#2-product-part-pool-state "The four words you need before you build a variant.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
@@ -157,7 +157,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [B3 · Animation variants](b3-animation-variants.md) — one motion per layer, and Rest State between them | <span class="tks-min">2 <span class="tks-min__u">videos</span> · 9 <span class="tks-min__u">min</span></span> |
+    | [B3 · Animation variants](b3-animation-variants.md) — one motion per layer, and Rest State between them | <span class="tks-min">2 <span class="tks-min__u">videos</span></span> <span class="tks-min">9 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [One animation per View Layer](b3-animation-variants.md#1-one-animation-per-view-layer "Keep several different animations of the same thing in one file.") | <span class="tks-min">6 <span class="tks-min__u">min</span></span> |
     | 2 · [Rendering the whole group](b3-animation-variants.md#2-rendering-the-whole-group "Render a whole group of shots at once.") | <span class="tks-min">3 <span class="tks-min__u">min</span></span> |
@@ -166,7 +166,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [B4 · Presets](b4-presets.md) — you save render settings once and point at them | <span class="tks-min">3 <span class="tks-min__u">videos</span> · 14 <span class="tks-min__u">min</span></span> |
+    | [B4 · Presets](b4-presets.md) — you save render settings once and point at them | <span class="tks-min">3 <span class="tks-min__u">videos</span></span> <span class="tks-min">14 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Nine kinds, one per level](b4-presets.md#1-nine-kinds-one-per-level "Save your render settings once and reuse them anywhere.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
     | 2 · [When a preset goes dirty](b4-presets.md#2-when-a-preset-goes-dirty "You changed a setting after using a preset. Here is what to do.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
@@ -176,7 +176,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [B5 · Tags and Rules](b5-tags-and-rules.md) — a label can do work for you | <span class="tks-min">3 <span class="tks-min__u">videos</span> · 13 <span class="tks-min__u">min</span></span> |
+    | [B5 · Tags and Rules](b5-tags-and-rules.md) — a label can do work for you | <span class="tks-min">3 <span class="tks-min__u">videos</span></span> <span class="tks-min">13 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Tag, filter, render](b5-tags-and-rules.md#1-tag-filter-render "Label your shots, then show or render only the ones you want.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
     | 2 · [Rules are tags that work](b5-tags-and-rules.md#2-rules-are-tags-that-work "Make one label apply a whole set of settings.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
@@ -186,7 +186,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [B6 · Which tool for this job?](b6-which-tool-for-this-job.md) — what changes decides which tool you reach for | <span class="tks-min">2 <span class="tks-min__u">videos</span> · 12 <span class="tks-min__u">min</span></span> |
+    | [B6 · Which tool for this job?](b6-which-tool-for-this-job.md) — what changes decides which tool you reach for | <span class="tks-min">2 <span class="tks-min__u">videos</span></span> <span class="tks-min">12 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Take, layer, variant, preset or world](b6-which-tool-for-this-job.md#1-take-layer-variant-preset-or-world "Five ways to make a variation. Which one do you need?") | <span class="tks-min">6 <span class="tks-min__u">min</span></span> |
     | 2 · [Five real jobs](b6-which-tool-for-this-job.md#2-five-real-jobs "Five real jobs, and the right tool for each one.") | <span class="tks-min">6 <span class="tks-min__u">min</span></span> |
@@ -197,7 +197,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [C1 · Names](c1-names.md) — your names write your folders | <span class="tks-min">5 <span class="tks-min__u">videos</span> · 23 <span class="tks-min__u">min</span></span> |
+    | [C1 · Names](c1-names.md) — your names write your folders | <span class="tks-min">5 <span class="tks-min__u">videos</span></span> <span class="tks-min">23 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Filenames that write themselves](c1-names.md#1-filenames-that-write-themselves "Let Blender name your render files for you.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
     | 2 · [Building a path by clicking](c1-names.md#2-building-a-path-by-clicking "Build a file path by clicking, instead of typing it.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
@@ -209,7 +209,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [C2 · Batch Render](c2-batch-render.md) — one click renders everything | <span class="tks-min">5 <span class="tks-min__u">videos</span> · 23 <span class="tks-min__u">min</span></span> |
+    | [C2 · Batch Render](c2-batch-render.md) — one click renders everything | <span class="tks-min">5 <span class="tks-min__u">videos</span></span> <span class="tks-min">23 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [The toggle decides, not the selection](c2-batch-render.md#1-the-toggle-decides-not-the-selection "Why a shot did not render, and the one switch that decides.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
     | 2 · [In front of you, or in the background](c2-batch-render.md#2-in-front-of-you-or-in-the-background "Render while you keep working, or watch it happen.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
@@ -221,7 +221,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [C3 · Project and team](c3-project-and-team.md) — the setup travels with the file | <span class="tks-min">3 <span class="tks-min__u">videos</span> · 12 <span class="tks-min__u">min</span></span> |
+    | [C3 · Project and team](c3-project-and-team.md) — the setup travels with the file | <span class="tks-min">3 <span class="tks-min__u">videos</span></span> <span class="tks-min">12 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Settings that travel with the .blend](c3-project-and-team.md#1-settings-that-travel-with-the-blend "Set a project up so your settings travel with the file.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
     | 2 · [Presets the whole team shares](c3-project-and-team.md#2-presets-the-whole-team-shares "Share one set of presets with your team, safely.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
@@ -231,7 +231,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [C4 · Capstone: one product, end to end](c4-capstone.md) — all seven ideas at once | <span class="tks-min">3 <span class="tks-min__u">videos</span> · 19 <span class="tks-min__u">min</span></span> |
+    | [C4 · Capstone: one product, end to end](c4-capstone.md) — all seven ideas at once | <span class="tks-min">3 <span class="tks-min__u">videos</span></span> <span class="tks-min">19 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Build the product shot](c4-capstone.md#1-build-the-product-shot "Build a complete product shot from an empty file.") | <span class="tks-min">8 <span class="tks-min__u">min</span></span> |
     | 2 · [Run a review round on it](c4-capstone.md#2-run-a-review-round-on-it "Take that shot through a round of client feedback.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
@@ -243,7 +243,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [D1 · Working fast](d1-working-fast.md) — your hands stay where they are | <span class="tks-min">4 <span class="tks-min__u">videos</span> · 18 <span class="tks-min__u">min</span></span> |
+    | [D1 · Working fast](d1-working-fast.md) — your hands stay where they are | <span class="tks-min">4 <span class="tks-min__u">videos</span></span> <span class="tks-min">18 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Hotkeys and click modifiers](d1-working-fast.md#1-hotkeys-and-click-modifiers "Work faster with the keyboard instead of the mouse.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
     | 2 · [The six pies](d1-working-fast.md#2-the-six-pies "Flick menus that open right where your cursor is.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
@@ -254,7 +254,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [D2 · Beyond the viewport](d2-beyond-the-viewport.md) — Takes follows you into other editors | <span class="tks-min">2 <span class="tks-min__u">videos</span> · 9 <span class="tks-min__u">min</span></span> |
+    | [D2 · Beyond the viewport](d2-beyond-the-viewport.md) — Takes follows you into other editors | <span class="tks-min">2 <span class="tks-min__u">videos</span></span> <span class="tks-min">9 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [The sequencer shows the right take](d2-beyond-the-viewport.md#1-the-sequencer-shows-the-right-take "Why the video editor shows the wrong shot, and how to fix it.") | <span class="tks-min">5 <span class="tks-min__u">min</span></span> |
     | 2 · [Tools that stop resetting](d2-beyond-the-viewport.md#2-tools-that-stop-resetting "Stop your snap and pivot settings changing when you switch.") | <span class="tks-min">4 <span class="tks-min__u">min</span></span> |
@@ -263,7 +263,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     <div class="tks-lessons" markdown="1">
 
-    | [D3 · The AI Assistant](d3-ai-assistant.md) — a script can drive Takes safely | <span class="tks-min">1 <span class="tks-min__u">videos</span> · 6 <span class="tks-min__u">min</span></span> |
+    | [D3 · The AI Assistant](d3-ai-assistant.md) — a script can drive Takes safely | <span class="tks-min">1 <span class="tks-min__u">videos</span></span> <span class="tks-min">6 <span class="tks-min__u">min</span></span> |
     |---|---|
     | 1 · [Driving Takes from an assistant](d3-ai-assistant.md#1-driving-takes-from-an-assistant "Let an AI assistant work in your file, safely.") | <span class="tks-min">6 <span class="tks-min__u">min</span></span> |
 

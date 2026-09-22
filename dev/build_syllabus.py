@@ -152,9 +152,9 @@ def stage_block(letter: str, name: str, mods: list) -> list[str]:
         # plain table cannot do because each sizes its own columns to its text.
         out += [
             '    <div class="tks-lessons" markdown="1">', "",
-            "    | [%s · %s](%s.md) — %s | %s |"
+            "    | [%s · %s](%s.md) — %s | %s %s |"
             % (mod["id"], mod["name"], mod["slug"], mod["idea"],
-               pill("%d videos · %d min" % (len(mod["lessons"]), total))),
+               pill("%d videos" % len(mod["lessons"])), pill("%d min" % total)),
             "    |---|---|",
         ]
         for n, title, mins_, anchor, recap in mod["lessons"]:
@@ -196,15 +196,18 @@ def main() -> int:
         "%s in all, counting the overview above. Stage A alone is enough to "
         "run a real job." % hm(grand), "",
         '<div class="tks-stages" markdown="1">', "",
-        "| Stage | Name | What you get | Videos | Time |",
-        "|---|---|---|---|---|",
+        "| Stage | What you get | |",
+        "|---|---|---|",
     ]
     for letter, name in STAGES:
         mods_ = by_stage[letter]
-        lines.append("| **%s** | **%s** | %s | %s | %s |" % (
+        # Name with its sentence, and the two figures together -- the shape
+        # the module tables already use for both.
+        videos = sum(len(m["lessons"]) for m in mods_)
+        minutes = sum(sum(l[2] for l in m["lessons"]) for m in mods_)
+        lines.append("| **%s** | **%s** \u2014 %s | %s %s |" % (
             letter, name, BLURB[letter],
-            pill("%d" % sum(len(m["lessons"]) for m in mods_)),
-            pill(hm(sum(sum(l[2] for l in m["lessons"]) for m in mods_)))))
+            pill("%d videos" % videos), pill(hm(minutes))))
     lines += ["", "</div>", ""]
     for letter, name in STAGES:
         lines += stage_block(letter, name, by_stage[letter])
