@@ -236,16 +236,15 @@ markdown_extensions:
       toc_depth: 2
 
 extra_css:
-  - stylesheets/extra.css?v=dc7e2c2d
+  - stylesheets/extra.css?v=957e1547
 
 extra_javascript:
   - javascripts/nav-icons.js?v=f681236a
   - javascripts/toc-icons.js?v=e5d33e6b
   - javascripts/footer-nav-sticky.js?v=f58c92f5
   - javascripts/roadmap-sort.js?v=71afec24
-  - javascripts/roadmap-tooltip.js?v=f17c88d3
+  - javascripts/roadmap-tooltip.js?v=3cb4f26e
   - javascripts/changelog-toc.js?v=9b4e6d01
-  - javascripts/lesson-tooltip.js?v=18266d9d
   - javascripts/toc-min-pill.js?v=1bb6008e
   - javascripts/toc-popover.js?v=16b0ee56
 
