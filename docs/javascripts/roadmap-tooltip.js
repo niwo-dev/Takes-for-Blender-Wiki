@@ -5,11 +5,11 @@
  * point at, with the arrow aimed back down at it. Copying the board rather
  * than repeating it is also what stops the two drifting apart.
  *
- * The board generator writes `data-tip` attributes instead of `title`, so
- * neither the browser nor Material renders a competing tooltip. The syllabus
- * arrives with ordinary markdown link titles -- which still work with no
- * JavaScript at all -- and `park()` moves them onto `data-tip` on load, which
- * is what takes the browser's own tooltip out of the way. This script
+ * BOTH generators write `data-tip` and neither writes `title`, so no page
+ * here ever carries the attribute a browser draws its own tooltip from. The
+ * syllabus used to arrive with markdown link titles that a runtime step
+ * moved; writing the attribute at build time instead means there is no
+ * moment in which the two could both exist. This script
  * shows one shared bubble (.rm-tip, styled in extra.css) centered ABOVE the
  * hovered element, with an arrow pointing down at it. The bubble is clamped
  * to the viewport; the arrow keeps pointing at the element even when the
@@ -24,7 +24,7 @@
   let tip = null;
 
   /* Everything that gets a bubble. The syllabus entry is its lesson links,
-     whose titles park() has already moved. */
+     which both generators write at build time. */
   const HOSTS = ".roadmap-board [data-tip], .tks-lessons a[data-tip]";
 
   /* The checklist tooltip arrives as plain text with ☑ / ☐ / • line markers
@@ -36,13 +36,6 @@
   };
   const CLASSES = { "☑": "done", "☐": "open", "•": "dot" };
 
-  /* A markdown link title becomes a bubble, and stops being a native one. */
-  function park() {
-    for (const a of document.querySelectorAll(".tks-lessons a[title]")) {
-      a.setAttribute("data-tip", a.getAttribute("title"));
-      a.removeAttribute("title");
-    }
-  }
 
   function ensureTip() {
     if (!tip || !document.body.contains(tip)) {
@@ -127,15 +120,9 @@
   }
   document.addEventListener("click", hide, true);
   window.addEventListener("scroll", hide, true);
-  function swap() {
-    hide();
-    park();
-  }
   if (typeof document$ !== "undefined" && document$.subscribe) {
-    document$.subscribe(swap);
+    document$.subscribe(hide);
   } else if (window.document$ && typeof window.document$.subscribe === "function") {
-    window.document$.subscribe(swap);
-  } else {
-    document.addEventListener("DOMContentLoaded", park);
+    window.document$.subscribe(hide);
   }
 })();

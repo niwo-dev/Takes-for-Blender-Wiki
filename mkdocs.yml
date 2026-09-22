@@ -249,7 +249,7 @@ extra_javascript:
   - javascripts/toc-icons.js?v=e5d33e6b
   - javascripts/footer-nav-sticky.js?v=f58c92f5
   - javascripts/roadmap-sort.js?v=71afec24
-  - javascripts/roadmap-tooltip.js?v=41829eff
+  - javascripts/roadmap-tooltip.js?v=cb0635a8
   - javascripts/changelog-toc.js?v=9b4e6d01
   - javascripts/toc-min-pill.js?v=2ec84604
   - javascripts/toc-popover.js?v=96e637b9

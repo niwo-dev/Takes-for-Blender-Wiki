@@ -78,6 +78,9 @@ def plain(text: str) -> str:
     """A recap as a link title: one line, no markup, no quote to break it."""
     text = " ".join(text.split())
     text = text.replace("**", "")           # only four recaps use bold
+    # A brace would close the attr_list block early; a quote would close the
+    # attribute. Neither appears today, and neither can sneak in later.
+    text = text.replace("{", "(").replace("}", ")")
     return text.replace('"', "'")
 
 
@@ -167,7 +170,13 @@ def stage_block(letter: str, name: str, mods: list) -> list[str]:
             # The third argument of a markdown link is its title attribute,
             # and `content.tooltips` styles that into a tooltip. A phone has
             # no hover, and the title stays an ordinary link there.
-            out.append('    | %d · [%s](%s.md#%s "%s") | %s |'
+            # `{ data-tip=... }`, not a markdown link title. The roadmap board
+            # writes data-tip at build time and never uses `title` at all; doing
+            # the same here means the page never carries a title for the browser
+            # to draw its own tooltip from, and no runtime step has to take one
+            # away. attr_list writes the attribute and the link stays a markdown
+            # link, so `mkdocs --strict` still checks where it points.
+            out.append('    | %d · [%s](%s.md#%s){ data-tip="%s" } | %s |'
                        % (n, title, mod["slug"], anchor, recap,
                           pill("%d min" % mins_)))
         out += ["", "    </div>", ""]
