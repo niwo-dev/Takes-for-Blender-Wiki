@@ -1,6 +1,6 @@
 # Focus Mode Navigation
 
-**Theme:** Docs · **Area:** Navigation · **Size:** 🔴
+**Type:** Feature · **Theme:** Docs · **Area:** Navigation · **Size:** 🔴
 
 One slide-in menu and one contents button, so the page is surrounded by reading room instead of menus.
 

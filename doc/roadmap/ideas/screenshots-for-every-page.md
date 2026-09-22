@@ -1,6 +1,6 @@
 # Screenshots for Every Page
 
-**Theme:** Docs · **Area:** Screenshots · **Size:** 🔴
+**Type:** Docs · **Theme:** Docs · **Area:** Screenshots · **Size:** 🔴
 
 Give every page the pictures it asks for, so a reader can see the panel instead of imagining it.
 

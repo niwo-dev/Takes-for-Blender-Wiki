@@ -1,6 +1,6 @@
 # Shorten the Long Pages
 
-**Theme:** Docs · **Area:** Readability · **Size:** 🟡
+**Type:** Refactor · **Theme:** Docs · **Area:** Readability · **Size:** 🟡
 
 Bring the 24 pages that run long back under the house limit, so no page asks for more attention than it needs.
 

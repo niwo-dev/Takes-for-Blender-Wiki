@@ -8,16 +8,16 @@ The tables below are generated from the per-feature files in [`roadmap/`](roadma
 
 ## 💡 Ideas
 
-| Feature                                                                   | Type | Theme | Area        | Size | What it does                                                                           |
-|---------------------------------------------------------------------------|------|-------|-------------|------|----------------------------------------------------------------------------------------|
-| [A Course to Learn Takes](roadmap/ideas/course-to-learn-takes.md)         | Docs | Docs  | Course      | 🔴    | Give the wiki an ordered course, so a newcomer is led from a first take to a finished… |
-| [Screenshots for Every Page](roadmap/ideas/screenshots-for-every-page.md) |      | Docs  | Screenshots | 🔴    | Give every page the pictures it asks for, so a reader can see the panel instead of…    |
-| [Shorten the Long Pages](roadmap/ideas/shorten-the-long-pages.md)         |      | Docs  | Readability | 🟡    | Bring the 24 pages that run long back under the house limit, so no page asks for more… |
+| Feature                                                                   | Type     | Theme | Area        | Size | What it does                                                                           |
+|---------------------------------------------------------------------------|----------|-------|-------------|------|----------------------------------------------------------------------------------------|
+| [A Course to Learn Takes](roadmap/ideas/course-to-learn-takes.md)         | Docs     | Docs  | Course      | 🔴    | Give the wiki an ordered course, so a newcomer is led from a first take to a finished… |
+| [Screenshots for Every Page](roadmap/ideas/screenshots-for-every-page.md) | Docs     | Docs  | Screenshots | 🔴    | Give every page the pictures it asks for, so a reader can see the panel instead of…    |
+| [Shorten the Long Pages](roadmap/ideas/shorten-the-long-pages.md)         | Refactor | Docs  | Readability | 🟡    | Bring the 24 pages that run long back under the house limit, so no page asks for more… |
 
 ## ✅ Done
 
-| Feature                                                          | Type | Theme | Area       | Size | What it does                                                                              |
-|------------------------------------------------------------------|------|-------|------------|------|-------------------------------------------------------------------------------------------|
-| [Focus Mode Navigation](roadmap/done/focus-mode-navigation.md)   |      | Docs  | Navigation | 🔴    | One slide-in menu and one contents button, so the page is surrounded by reading room…     |
-| [Page Accuracy Audit](roadmap/done/page-accuracy-audit.md)       |      | Docs  | Accuracy   | 🟡    | Check every page against what the add-on actually does, and fix what has drifted          |
-| [Plain-Language Rebuild](roadmap/done/plain-language-rebuild.md) |      | Docs  | Structure  | 🔴    | Rewrite the manual for someone who has never written a line of code, and group the pages… |
+| Feature                                                          | Type     | Theme | Area       | Size | What it does                                                                              |
+|------------------------------------------------------------------|----------|-------|------------|------|-------------------------------------------------------------------------------------------|
+| [Focus Mode Navigation](roadmap/done/focus-mode-navigation.md)   | Feature  | Docs  | Navigation | 🔴    | One slide-in menu and one contents button, so the page is surrounded by reading room…     |
+| [Page Accuracy Audit](roadmap/done/page-accuracy-audit.md)       | Fix      | Docs  | Accuracy   | 🟡    | Check every page against what the add-on actually does, and fix what has drifted          |
+| [Plain-Language Rebuild](roadmap/done/plain-language-rebuild.md) | Refactor | Docs  | Structure  | 🔴    | Rewrite the manual for someone who has never written a line of code, and group the pages… |

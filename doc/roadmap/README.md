@@ -57,7 +57,7 @@ checkboxes:
 ```markdown
 # Some Wiki Job
 
-**Theme:** Docs · **Area:** Navigation · **Size:** 🟡
+**Type:** Docs · **Theme:** Docs · **Area:** Navigation · **Size:** 🟡
 
 One plain sentence saying what a reader gets out of it.
 
@@ -65,5 +65,7 @@ One plain sentence saying what a reader gets out of it.
 
 - [ ] First step
 ```
+
+Type is optional and renders as the chip in front of the name: Feature · Fix · Perf · Docs · Refactor · Chore · Test.
 
 Size is required — it feeds a column on the board. 🟢 Small · 🟡 Medium · 🔴 Large.

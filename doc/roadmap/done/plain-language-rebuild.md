@@ -1,6 +1,6 @@
 # Plain-Language Rebuild
 
-**Theme:** Docs · **Area:** Structure · **Size:** 🔴
+**Type:** Refactor · **Theme:** Docs · **Area:** Structure · **Size:** 🔴
 
 Rewrite the manual for someone who has never written a line of code, and group the pages by what a reader wants to do.
 

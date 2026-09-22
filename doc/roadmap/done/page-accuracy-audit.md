@@ -1,6 +1,6 @@
 # Page Accuracy Audit
 
-**Theme:** Docs · **Area:** Accuracy · **Size:** 🟡
+**Type:** Fix · **Theme:** Docs · **Area:** Accuracy · **Size:** 🟡
 
 Check every page against what the add-on actually does, and fix what has drifted.
 
