@@ -45,7 +45,3 @@ Read more: [The Cascade](../features/cascade.md) · [Which Tool for the Job](../
 Preview draws a thumbnail beside each row. Preload builds the layers in the background so the first switch is instant. Different features.
 
 Read more: [View Layer Preview](../features/vl_preview.md) · [View Layer Preload](../interface/context_properties.md#view-layer-preload)
-
-## Done
-
-Next: [B2 · Looks: swap first, then variants](b2-looks-swap-then-variants.md).

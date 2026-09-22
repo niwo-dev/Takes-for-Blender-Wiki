@@ -21,7 +21,3 @@ Read more: [Video Sequencer](../features/sequencer.md)
 Blender stores snap and pivot per scene, so every switch swaps your toolbox. Sync mirrors them, so you set them once for the file.
 
 Read more: [Viewport Sync](../features/viewport_sync.md)
-
-## Done
-
-Next: [D3 · The AI Assistant](d3-ai-assistant.md).

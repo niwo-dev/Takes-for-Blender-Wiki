@@ -45,7 +45,3 @@ Read more: [Variant Switch](../features/variant_switch.md#variants-in-the-cascad
 Two materials from one pool on one object, or one object inside two Products. The badge names both before a switch bites.
 
 Read more: [Conflicts](../features/variant_switch.md#conflicts)
-
-## Done
-
-Next: [B3 · Animation variants](b3-animation-variants.md).

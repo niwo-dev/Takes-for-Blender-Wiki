@@ -37,7 +37,3 @@ Read more: [Navigation Panel](../interface/navigation_panel.md)
 Global, Scene Group, Scene, View Layer Group, View Layer, Take. A deeper level always beats a wider one.
 
 Read more: [The Six Levels](../getting_started/first_steps.md) · [The Takes System](../features/takes.md)
-
-## Done
-
-Next: [A3 · Your first take](a3-your-first-take.md).

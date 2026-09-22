@@ -45,7 +45,3 @@ Read more: [Autokey Is Being Blocked](../interface/navigation_panel.md#autokey-i
 Blender copies the action when you duplicate. Three modes decide what happens: strip it, give the copy its own slot, or stay out of it.
 
 Read more: [Inspector Panel](../interface/inspector_panel.md)
-
-## Done
-
-Next: [A6 · Frame 0 is home](a6-frame-0-is-home.md).

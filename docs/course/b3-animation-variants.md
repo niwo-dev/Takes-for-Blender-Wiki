@@ -21,7 +21,3 @@ Read more: [Make Animation Variants](../workflows/animation_variants.md) · [Res
 Turn on Multiselect, tick the layers you want, and render. Smart Output names each file after its layer.
 
 Read more: [Batch Render Your Takes](../workflows/batch_rendering.md)
-
-## Done
-
-Next: [B4 · Presets](b4-presets.md).

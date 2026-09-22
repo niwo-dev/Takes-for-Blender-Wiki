@@ -29,7 +29,3 @@ Read more: [Takes - the Review Loop](../features/vl_versions.md)
 Tokens name every file, a preset sets the quality, one click renders the lot into a versioned folder.
 
 Read more: [Batch Render](../features/batch_render.md) · [Smart Output](../features/smart_output.md)
-
-## Done
-
-Next: [D1 · Working fast](d1-working-fast.md).

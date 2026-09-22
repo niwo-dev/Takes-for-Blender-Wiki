@@ -21,7 +21,3 @@ Read more: [Which Tool for the Job](../features/which_tool.md)
 A colourway is a variant. Lighting is a world. An environment is a layer. A quality tier is a preset. A review round is a take.
 
 Read more: [Which Tool for the Job](../features/which_tool.md#five-real-jobs)
-
-## Done
-
-Next: [C1 · Names](c1-names.md).

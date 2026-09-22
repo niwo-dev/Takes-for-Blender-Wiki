@@ -29,7 +29,3 @@ Read more: [Data Tab](../preferences/data.md)
 Your settings are a file, and Save Mode picks which folder. The legend tells you which values travel and which stay on this machine.
 
 Read more: [Preferences](../preferences/index.md)
-
-## Done
-
-Next: [C4 · Capstone: one product, end to end](c4-capstone.md).

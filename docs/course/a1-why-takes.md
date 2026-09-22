@@ -29,7 +29,3 @@ Read more: [Takes vs Other Tools](../comparisons.md)
 Where the problem comes from, what I tried before building anything, and how Takes is made. Your ideas steer where it goes next.
 
 Read more: [Takes vs Other Tools](../comparisons.md) · [Roadmap](../roadmap/index.md)
-
-## Done
-
-Next: [A2 · Install and look around](a2-install-and-look-around.md).

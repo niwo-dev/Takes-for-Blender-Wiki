@@ -13,9 +13,3 @@ icon: material/school
 An assistant can read your project, switch takes and set overrides. Each call is one undo step, and risky ones refuse until you mean them.
 
 Read more: [AI Assistant](../features/ai_assistant.md)
-
-## Done
-
-That is the whole course.
-
-Back to the [Syllabus](index.md).

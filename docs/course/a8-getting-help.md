@@ -45,7 +45,3 @@ Read more: [What's New](../whats_new/index.md)
 Takes ships often, so the interface keeps improving. Send the problem you hit and it can become the next feature. This lesson also shows how to support the work.
 
 Read more: [Roadmap](../roadmap/index.md) · [What's New](../whats_new/index.md)
-
-## Done
-
-Next: [B1 · Cameras and lighting](b1-cameras-and-lighting.md).

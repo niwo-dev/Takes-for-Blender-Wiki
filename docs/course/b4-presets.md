@@ -29,7 +29,3 @@ Read more: [Dirty State](../features/render_presets.md#dirty-state)
 Four folders. Project travels with the .blend, Shared is the team standard and stays locked so nobody overwrites it.
 
 Read more: [Storage Tiers](../features/render_presets.md#storage-tiers)
-
-## Done
-
-Next: [B5 · Tags and Rules](b5-tags-and-rules.md).

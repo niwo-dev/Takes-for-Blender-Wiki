@@ -37,7 +37,3 @@ Read more: [Navigation Panel](../interface/navigation_panel.md#adopted)
 Answer the restore question before you reorganise anything, or your tidying gets replaced. A version lock wants Rebuild Cache instead.
 
 Read more: [Recover Your Take Organisation](../workflows/recover_take_organisation.md)
-
-## Done
-
-Next: [A8 · Getting help](a8-getting-help.md).

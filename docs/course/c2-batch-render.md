@@ -45,7 +45,3 @@ Read more: [Render Queue](../features/batch_render.md#render-queue)
 Versions and sub-versions feed your tokens. Detect from Disk continues past what is already there, and Lock as Final protects one.
 
 Read more: [Versions](../features/batch_render.md#versions-sub-versions-notes)
-
-## Done
-
-Next: [C3 · Project and team](c3-project-and-team.md).

@@ -37,7 +37,3 @@ Read more: [Bookmark a Property](../workflows/bookmark_a_property.md)
 Turn on Multiselect, tick the rows, and act on all of them. Push to Selected fans one value out across the lot.
 
 Read more: [Tag Library](../features/tags.md#push-tag-to-selected)
-
-## Done
-
-Next: [D2 · Beyond the viewport](d2-beyond-the-viewport.md).

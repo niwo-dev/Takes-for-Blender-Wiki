@@ -29,7 +29,3 @@ Read more: [Rules](../features/rules.md)
 A Camera rule chooses the camera preset and the camera object. A Studio rule chooses the world. You stop assigning them by hand.
 
 Read more: [Rules](../features/rules.md)
-
-## Done
-
-Next: [B6 · Which tool for this job?](b6-which-tool-for-this-job.md).

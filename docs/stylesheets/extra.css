@@ -64,6 +64,19 @@ kbd {
   padding: 0.5em 0.8em;
 }
 
+/* Tables fill the content width instead of shrink-wrapping their text.
+   Material renders a bare table as an inline-block scroll wrapper, and that
+   display spawns an anonymous inner table which shrink-wraps its content --
+   so `width: 100%` on its own stretches the wrapper and not the columns
+   (measured on the roadmap board: wrapper 796px, rows 604px). `display:
+   table` is what makes the width reach the columns. Same fix the roadmap
+   board carries below; it keeps its own copy because it also pins column
+   widths with `table-layout: fixed`, which nothing else wants. */
+.md-typeset table:not([class]) {
+  display: table;
+  width: 100%;
+}
+
 /* Roadmap board — keep the table within the content width (no horizontal
    clipping) and wrap long text. The summary lives in the Meta column's ⓘ
    tooltip; Theme/Area/Size follow as icons with hover tooltips; the feature

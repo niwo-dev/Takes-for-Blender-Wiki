@@ -37,7 +37,3 @@ Read more: [Which Tool for the Job](../features/which_tool.md)
 Rename inline, move rows with the arrows, and switch a take off to fall back to the layer. Deleting the last take gives the layer back its own settings.
 
 Read more: [Context Properties](../interface/context_properties.md)
-
-## Done
-
-Next: [A4 · The Cascade](a4-the-cascade.md).

@@ -53,7 +53,3 @@ Read more: [Workflow Preferences](../preferences/workflow.md)
 Put a value at the widest level where it is still true. Override below only where it stops being true.
 
 Read more: [The Cascade](../features/cascade.md) · [Which Tool for the Job](../features/which_tool.md)
-
-## Done
-
-Next: [A5 · Actions, slots, managed and pinned](a5-actions-slots-managed-pinned.md).

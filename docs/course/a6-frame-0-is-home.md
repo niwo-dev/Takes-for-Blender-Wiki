@@ -45,7 +45,3 @@ Read more: [Diff State](../features/diff_state.md)
 Seven modes, four pairs that cannot both be on. A greyed-out button is usually another mode holding it, not a fault.
 
 Read more: [The Modes](../features/modes.md)
-
-## Done
-
-Next: [A7 · When it looks wrong](a7-when-it-looks-wrong.md).

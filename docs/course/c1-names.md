@@ -45,7 +45,3 @@ Read more: [Syntax Preferences](../preferences/workflow.md#syntax)
 Pick a source, say what to read, give it a name. Then your token works in any path like a built-in one. No scripting.
 
 Read more: [Custom Tokens](../features/custom_tokens.md)
-
-## Done
-
-Next: [C2 · Batch Render](c2-batch-render.md).
