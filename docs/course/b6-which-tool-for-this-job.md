@@ -14,8 +14,8 @@ Ask what actually changes. Objects appearing or disappearing is a layer. Another
 Read more: [Which Tool for the Job](../features/which_tool.md)
 
 ## 2. Five real jobs <span class="tks-min">6 min</span> { #2-five-real-jobs }
-<div class="tks-video" data-video="B6.2">Five real jobs solved the right way: colourway, lighting, environment, quality tier, review round</div>
+<div class="tks-video" data-video="B6.2">Five real jobs solved the right way: a finish, lighting, environment, quality tier, review round</div>
 
-A colourway is a variant. Lighting is a world. An environment is a layer. A quality tier is a preset. A review round is a take.
+A finish is a variant. Lighting is a world. An environment is a layer. A quality tier is a preset. A review round is a take.
 
 Read more: [Which Tool for the Job](../features/which_tool.md#five-real-jobs)

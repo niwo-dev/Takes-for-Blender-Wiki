@@ -98,6 +98,14 @@ A1 → `comparisons.md`, `index.md` · A2 → `getting_started/installation.md`,
 - Channel trailer = A0.1 (overview, lives on `course/index.md`, no module page). Publish cadence = one module per release (5 videos at a time).
 - Backlink line (phase 6) carries the minutes so the page states the cost: `▶ Watch: … (4 min)`.
 
+## Titles are asset-neutral (ruling 2026-09-22)
+
+- Lesson titles, SEO titles and recaps say **product**, **scene**, **finish**, **environment** — never bottle, shoe, kitchen, or a material by name (Matte / Aluminium / Rose Gold).
+- Why: a published YouTube title cannot be edited. Swapping the demo asset would leave every title lying, permanently. Only the FOOTAGE shows the bottle, so the asset can change without touching a title.
+- "Colourway" is out too: a finish is not always a colour.
+- The wiki's own pages keep their concrete examples — the house rules ask for them and prose is cheap to change. This rule covers `docs/course/**` only.
+- Check before recording: `grep -rniE "bottle|shoe|kitchen|bicycle|stone|matte|aluminium|rose gold|colourway" docs/course/` must return nothing but the word "product".
+
 ## Gotchas
 
 - `verify_wiki.py` (CI string drift) scans all `docs/**`: a lesson recap that names a button in bold plain text is invisible to it → use `{{ op('…').bl_label }}` so a rename fails the build instead of aging on the page.

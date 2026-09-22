@@ -8,7 +8,7 @@ Start with the four-minute overview below, then 79 short lessons in order, built
 
 <div class="tks-video" data-video="A0.1">Learn Takes for Blender: the whole course in four minutes</div>
 
-What you will be able to do, the four stages, the bottle everything is built on, how to watch, and how your ideas steer where it goes next.
+What you will be able to do, the four stages, the one product everything is built on, how to watch, and how your ideas steer where it goes next.
 
 ## :material-rocket-launch: Takes is growing, on purpose
 
@@ -108,7 +108,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
     | 1 · [The quick way: the Swap List](b2-looks-swap-then-variants.md#1-the-quick-way-the-swap-list) | 4 min |
     | 2 · [Product, Part, Pool, State](b2-looks-swap-then-variants.md#2-product-part-pool-state) | 5 min |
     | 3 · [Building three finishes](b2-looks-swap-then-variants.md#3-building-three-finishes) | 7 min |
-    | 4 · [Rendering every colourway](b2-looks-swap-then-variants.md#4-rendering-every-colourway) | 5 min |
+    | 4 · [Rendering every finish](b2-looks-swap-then-variants.md#4-rendering-every-finish) | 5 min |
     | 5 · [When two looks collide](b2-looks-swap-then-variants.md#5-when-two-looks-collide) | 4 min |
 
     | [B3 · Animation variants](b3-animation-variants.md) — one motion per layer, and Rest State between them | 2 videos · 9 min |
@@ -159,7 +159,7 @@ That is not the same as rough. Takes is quick and steady, and it carries real pr
 
     | [C4 · Capstone: one product, end to end](c4-capstone.md) — all seven ideas at once | 3 videos · 19 min |
     |---|---|
-    | 1 · [Build the bottle shot](c4-capstone.md#1-build-the-bottle-shot) | 8 min |
+    | 1 · [Build the product shot](c4-capstone.md#1-build-the-product-shot) | 8 min |
     | 2 · [Run a review round on it](c4-capstone.md#2-run-a-review-round-on-it) | 5 min |
     | 3 · [Ship it](c4-capstone.md#3-ship-it) | 6 min |
 

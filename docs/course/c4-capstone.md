@@ -6,8 +6,8 @@ icon: material/school
 
 3 lessons · 19 min · the idea here is that **all seven ideas at once**.
 
-## 1. Build the bottle shot <span class="tks-min">8 min</span> { #1-build-the-bottle-shot }
-<div class="tks-video" data-video="C4.1">Build the bottle shot from scratch: 3 finishes, 2 lighting setups, 2 environments, 2 cameras, 1 turntable</div>
+## 1. Build the product shot <span class="tks-min">8 min</span> { #1-build-the-product-shot }
+<div class="tks-video" data-video="C4.1">Build a product shot from scratch: 3 finishes, 2 lighting setups, 2 environments, 2 cameras, 1 turntable</div>
 
 From an empty file to a full product setup, using every idea in the course. Nothing new is introduced.
 

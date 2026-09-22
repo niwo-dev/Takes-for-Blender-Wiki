@@ -21,14 +21,14 @@ Four words cover the whole system. A Part is linked to a collection and owns a p
 Read more: [Variant Switch](../features/variant_switch.md) · [Variant Tree](../interface/variant_tree.md)
 
 ## 3. Building three finishes <span class="tks-min">7 min</span> { #3-building-three-finishes }
-<div class="tks-video" data-video="B2.3">How to build three finishes of one product: Matte, Aluminium, Rose Gold</div>
+<div class="tks-video" data-video="B2.3">How to build three finishes of one product, start to finish</div>
 
-Build the bottle: a Part per component, a pool of materials each, then a State per finish. Live shows your picks in the viewport.
+Build the product: a Part per component, a pool of materials each, then a State per finish. Live shows your picks in the viewport.
 
 Read more: [Make Material Variants](../workflows/material_variants.md)
 
-## 4. Rendering every colourway <span class="tks-min">5 min</span> { #4-rendering-every-colourway }
-<div class="tks-video" data-video="B2.4">How to render every colourway in one go: variants in the cascade</div>
+## 4. Rendering every finish <span class="tks-min">5 min</span> { #4-rendering-every-finish }
+<div class="tks-video" data-video="B2.4">How to render every finish in one go: variants in the cascade</div>
 
 A variant is a cascade value, so any level can demand one. Give each finish a View Layer and the batch covers all of them.
 
