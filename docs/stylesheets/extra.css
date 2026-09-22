@@ -1252,3 +1252,72 @@ h1, h2, h3, h4, h5, h6 {
   .md-nav--primary .md-nav__toggle:checked~.md-nav { visibility: visible; transition: transform .25s cubic-bezier(.4,0,.2,1),opacity 125ms 125ms, visibility 0ms }
 }
 /* <<< END PORTED MOBILE DRAWER >>> */
+
+/* ── Previous / Next rides the bottom of the window ───────────────────────────
+   Floating it takes `position: fixed` -- `sticky` is clipped by `.md-footer`,
+   which is barely taller than the bar, so it would have nowhere to travel.
+   `docs/javascripts/footer-nav-sticky.js` adds and removes the float class and
+   keeps the spacer holding the bar's slot open; everything here is the look of
+   the two states.
+
+   Floating it is COMPACT: the captions go and the padding halves, so it eats as
+   little of the page as it can. Docked it is exactly what Material draws. */
+.tks-footernav-spacer {
+  height: 0;
+}
+
+.md-footer__inner.tks-footernav--float {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  margin: 0;
+  max-width: none;
+  /* The bar spans the window; the padding is what keeps its two links lined up
+     with the content column, so nothing has to wrap it in another element. */
+  padding: 0 max(0.8rem, calc((100% - 61rem) / 2));
+  background-color: var(--md-footer-bg-color);
+  box-shadow: 0 -0.1rem 0.4rem rgba(0, 0, 0, 0.25);
+}
+
+/* The captions are the first thing to go: the arrow already says which way. */
+.tks-footernav--float .md-footer__direction {
+  display: none;
+}
+
+/* The height was never the link's padding: it is the link's 20px top margin
+   plus the 40px icon button inside it. Measured floating, before this rule:
+   link 64px + 28px of margin = 92px, exactly the docked height. Both give. */
+.tks-footernav--float .md-footer__link {
+  margin: 0;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.tks-footernav--float .md-footer__button {
+  margin: 0;
+  padding: 0.1rem;
+}
+
+.tks-footernav--float .md-footer__title {
+  font-size: 0.75rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Growing back should read as one movement, not a jump. Only the box changes;
+   the caption appears at the end of it. */
+.md-footer__inner .md-footer__link,
+.md-footer__inner .md-footer__button,
+.md-footer__inner .md-footer__title {
+  transition: padding 120ms ease, margin 120ms ease, font-size 120ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-footer__inner .md-footer__link,
+  .md-footer__inner .md-footer__button,
+  .md-footer__inner .md-footer__title {
+    transition: none;
+  }
+}
