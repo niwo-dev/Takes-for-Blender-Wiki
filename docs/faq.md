@@ -90,29 +90,6 @@ icon: material/help-circle
 
 ## :material-bug: Troubleshooting
 
-??? question "The addon isn't showing up after installation."
-    Make sure you installed from the `.zip` without extracting.
-    Check Blender's console (Window > Toggle System Console) for errors.
+Every symptom, and the one thing to check first, now live on one page.
 
-??? question "I'm getting crashes during View Layer switches."
-    This usually indicates a conflict with another addon's depsgraph handler.
-    Try disabling other addons to isolate the issue. Enable debug logging
-    and share the log file when reporting.
-
-??? question "My custom keyboard shortcuts disappear after enabling the addon and restarting Blender."
-    **Fixed in the current build.** If you're on an older version, update to
-    the latest. The cause was a registration pattern that polluted Blender's
-    user keyconfig with entries flagged `is_user_defined=True`. On the next
-    Blender restart, Blender's "rebuild user keyconfig from addon keyconfig"
-    pass — which fires for any keymap the addon registers into (`Window`,
-    `3D View`) — would drop **every** `is_user_defined=True` entry in those
-    keymaps, regardless of which operator it referenced. Custom shortcuts
-    you'd added by hand to those keymaps got wiped along with the addon's
-    own internal entries.
-
-    The current build registers shortcuts only in the addon keyconfig and
-    lets Blender auto-mirror into the user keyconfig — the mirrored entries
-    aren't user-defined, so the rebuild-and-wipe doesn't trigger.
-
-    If your customs were already wiped by a previous version, you'll need to
-    set them again; Blender doesn't keep a recovery copy of `userpref.blend`.
+[:octicons-arrow-right-24: Troubleshooting](troubleshooting.md)

@@ -178,7 +178,8 @@ Expand chevrons and a right-click menu per row.
     | Action | What it does |
     | -------- | -------------- |
     | **{{ op('tks.toggle_scene_expand').bl_label }}** | The expand chevron on any hierarchical row. ++ctrl++ + click toggles the row **and all its nested children**. ++shift++ + click expands or collapses **all rows of the same type** at once, like the Outliner. ++alt+shift++ + click toggles **every row in the tree**. |
-    | **Right-click menu** | ++ctrl++ + right-click a tree row opens its context menu: a header naming the row, plus **Show Overrides…**, which opens the full cascade-icon popover for that row. |
+    | **Right-click menu** | ++ctrl++ + right-click a tree row opens its context menu, with a header naming the row. To see every override of a row instead, click its cascade icons, or the overflow **⋯** when the panel is narrow. |
+    | **{{ op('tks.copy_vl_settings').bl_label }}** / **{{ op('tks.paste_vl_settings').bl_label }}** | In the row menu, or ++shift+c++ and ++shift+v++ over the tree. Copies which collections a View Layer shows, and pastes it onto another — the quick way to give a second environment the same setup. In multi-select, paste reaches **every ticked row**. |
 
 ## :material-group: Scene & View Layer Groups
 

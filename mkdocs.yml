@@ -113,13 +113,19 @@ nav:
       - Use Render Presets: workflows/use_render_presets.md
     - Getting Around:
       - Bookmark a Property: workflows/bookmark_a_property.md
+    - Project & Recovery:
+      - Set Up a Project for a Team: workflows/set_up_a_project_for_a_team.md
+      - Recover Your Take Organisation: workflows/recover_take_organisation.md
 
   - How It Works:
     - The Takes System: features/takes.md
     - Takes & the Review Loop: features/vl_versions.md
     - The Cascade: features/cascade.md
+    - Actions, Managed and Pinned: features/actions.md
     - Rest State: features/rest_state.md
     - Diff State: features/diff_state.md
+    - The Modes: features/modes.md
+    - Which Tool for the Job: features/which_tool.md
     - Takes vs Other Tools: comparisons.md
 
   - Inside Takes:
@@ -162,6 +168,8 @@ nav:
       - Advanced: preferences/advanced.md
 
   - FAQ: faq.md
+
+  - Troubleshooting: troubleshooting.md
 
   - What's New:
     - Overview: whats_new/index.md
