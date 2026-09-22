@@ -55,8 +55,13 @@ RECAP = re.compile(
 
 LESSON = re.compile(
     r'^## (?P<n>\d+)\. (?P<title>.+?)\s*'
-    r'<span class="tks-min">(?P<min>\d+) min</span>'
-    r'(?:\s*\{[^}]*\})?\s*$',
+    # The unit may be bare or wrapped in its own dimming span, because pages
+    # written before that became the house chip are still read by this.
+    r'<span class="tks-min">(?P<min>\d+)\s*'
+    r'(?:<span class="tks-min__u">min</span>|min)</span>'
+    # `[ 	]*` and not `\s*`: \s eats the newlines after the heading too,
+    # which closed up the blank line before each video frame.
+    r'(?:[ 	]*\{[^}]*\})?[ 	]*$',
     re.M,
 )
 
@@ -113,7 +118,8 @@ def normalise_headings(mod, write: bool) -> bool:
 
     def repl(m):
         n, title, mins = m.group("n"), m.group("title").strip(), m.group("min")
-        return ('## %s. %s <span class="tks-min">%s min</span> { #%s-%s }'
+        return ('## %s. %s <span class="tks-min">%s '
+                '<span class="tks-min__u">min</span></span> { #%s-%s }'
                 % (n, title, mins, n, slug(title)))
 
     new = LESSON.sub(repl, out)

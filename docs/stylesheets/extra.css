@@ -714,8 +714,15 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--md-default-fg-color--light);
 }
 
-/* Inside a chip, the unit word steps back so the number reads first. A column
-   of chips all say "min"; the digit beside it is the only part that differs. */
+/* THE CHIP. One shape everywhere a small figure appears: a lesson heading, a
+   syllabus row, a module header, the stage summary, the Contents column.
+
+   Inside it the number is bright and the unit word steps back. A column of
+   chips all say "min"; the digit beside it is the only part that differs, so
+   it should not have to compete with a word that never changes.
+
+   Writing one: `<span class="tks-min">5 <span class="tks-min__u">min</span></span>`.
+   In the course pages the generator does it; anywhere else, write it out. */
 .md-typeset .tks-min__u {
   font-weight: 400;
   opacity: 0.55;
