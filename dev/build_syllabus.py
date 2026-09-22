@@ -31,9 +31,9 @@ WIKI = Path(__file__).resolve().parent.parent
 COURSE = WIKI / "docs" / "course"
 
 BLURB = {
-    "A": "Everything you need to work with Takes for real.",
+    "A": "Everything you need for real work.",
     "B": "Cameras, lighting, finishes, presets and tags.",
-    "C": "Names that write themselves, batch render, a whole product.",
+    "C": "Naming, batch render, a whole product.",
     "D": "Hotkeys and pies, the sequencer, the assistant.",
 }
 
@@ -102,6 +102,11 @@ def normalise_headings(mod, write: bool) -> bool:
     return new != out
 
 
+def pill(text: str) -> str:
+    """The same chip the lesson headings wear, in a table cell."""
+    return '<span class="tks-min">%s</span>' % text
+
+
 def stage_block(letter: str, name: str, mods: list) -> list[str]:
     videos = sum(len(m["lessons"]) for m in mods)
     mins = sum(sum(l[2] for l in m["lessons"]) for m in mods)
@@ -110,16 +115,20 @@ def stage_block(letter: str, name: str, mods: list) -> list[str]:
            % (head, letter, name, videos, hm(mins)), ""]
     for mod in mods:
         total = sum(l[2] for l in mod["lessons"])
+        # The wrapper is what the stylesheet hooks on to: it pins the right-hand
+        # column so every module's table lines up with every other one, which a
+        # plain table cannot do because each sizes its own columns to its text.
         out += [
-            "    | [%s · %s](%s.md) — %s | %d videos · %d min |"
+            '    <div class="tks-lessons" markdown="1">', "",
+            "    | [%s · %s](%s.md) — %s | %s |"
             % (mod["id"], mod["name"], mod["slug"], mod["idea"],
-               len(mod["lessons"]), total),
+               pill("%d videos · %d min" % (len(mod["lessons"]), total))),
             "    |---|---|",
         ]
         for n, title, mins_, anchor in mod["lessons"]:
-            out.append("    | %d · [%s](%s.md#%s) | %d min |"
-                       % (n, title, mod["slug"], anchor, mins_))
-        out.append("")
+            out.append("    | %d · [%s](%s.md#%s) | %s |"
+                       % (n, title, mod["slug"], anchor, pill("%d min" % mins_)))
+        out += ["", "    </div>", ""]
     return out
 
 
@@ -150,15 +159,17 @@ def main() -> int:
         "## :material-stairs: The four stages", "",
         "%s in all, counting the overview above. Stage A alone is enough to "
         "run a real job." % hm(grand), "",
-        "| Stage | What you get | Videos | Time |", "|---|---|---|---|",
+        '<div class="tks-stages" markdown="1">', "",
+        "| Stage | Name | What you get | Videos | Time |",
+        "|---|---|---|---|---|",
     ]
     for letter, name in STAGES:
         mods_ = by_stage[letter]
-        lines.append("| **%s \u00b7 %s** | %s | %d | %s |" % (
+        lines.append("| **%s** | **%s** | %s | %s | %s |" % (
             letter, name, BLURB[letter],
-            sum(len(m["lessons"]) for m in mods_),
-            hm(sum(sum(l[2] for l in m["lessons"]) for m in mods_))))
-    lines.append("")
+            pill("%d" % sum(len(m["lessons"]) for m in mods_)),
+            pill(hm(sum(sum(l[2] for l in m["lessons"]) for m in mods_)))))
+    lines += ["", "</div>", ""]
     for letter, name in STAGES:
         lines += stage_block(letter, name, by_stage[letter])
 

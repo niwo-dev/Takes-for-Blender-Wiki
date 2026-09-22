@@ -86,6 +86,90 @@ kbd {
    syllabus tables at 762, 508, 456, 491 and 445px inside an 820px column.
    Block gives the wrapper the width; overflow-x still scrolls a table too wide
    to fit. */
+/* Row colours. A long table is read across, and the eye loses the line with
+   nothing to hold it -- so the head sits on a stronger tint than the body, and
+   the body alternates. Both tints are neutral grey at low alpha, which reads
+   the same on the light and the dark theme without a second set of values. */
+:root {
+  --tks-row-head: rgba(127, 127, 127, 0.20);
+  --tks-row-alt: rgba(127, 127, 127, 0.07);
+  --tks-row-hover: rgba(127, 127, 127, 0.13);
+}
+
+.md-typeset table:not([class]) thead tr {
+  background-color: var(--tks-row-head);
+}
+
+.md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background-color: var(--tks-row-alt);
+}
+
+/* The row under the cursor, so a wide row keeps its line while you track it. */
+.md-typeset table:not([class]) tbody tr:hover {
+  background-color: var(--tks-row-hover);
+}
+
+/* The syllabus tables, one per module. Each one sizes its own columns to its
+   own text, so the minutes landed at a different place in every table -- 4 min
+   at 560px, 3 min at 547, 6 min at 570. A fixed layout with the right-hand
+   column pinned makes all twenty-one line up, whatever their titles say. */
+.tks-lessons table:not([class]) {
+  table-layout: fixed;
+}
+
+.tks-lessons table:not([class]) th:last-child,
+.tks-lessons table:not([class]) td:last-child {
+  width: 9rem;
+  text-align: right;
+}
+
+/* A module row is a heading for the rows under it, not another row. */
+.tks-lessons table:not([class]) thead th {
+  font-size: 0.75rem;
+}
+
+/* The four-stage summary. The stage read as one long cell -- "A · Think in
+   Takes" wrapping onto two lines in the narrowest column on the page -- so the
+   letter gets a column of its own and the name gets room to stay on one line.
+   The two number columns are pinned, so the eye drops straight down them. */
+.tks-stages table:not([class]) {
+  table-layout: fixed;
+}
+
+.tks-stages table:not([class]) th:nth-child(1),
+.tks-stages table:not([class]) td:nth-child(1) {
+  width: 4rem;
+  text-align: center;
+}
+
+.tks-stages table:not([class]) th:nth-child(2),
+.tks-stages table:not([class]) td:nth-child(2) {
+  width: 10rem;
+}
+
+.tks-stages table:not([class]) th:nth-child(4),
+.tks-stages table:not([class]) td:nth-child(4),
+.tks-stages table:not([class]) th:nth-child(5),
+.tks-stages table:not([class]) td:nth-child(5) {
+  width: 5.5rem;
+  text-align: right;
+}
+
+/* The letter is the row's label, so it carries the weight the name used to. */
+.md-typeset .tks-stages td:nth-child(1) strong {
+  font-size: 1.1rem;
+  color: var(--md-accent-fg-color);
+}
+
+.md-typeset .tks-stages .tks-min {
+  margin-left: 0;
+}
+
+/* The chip sits in these cells too, where it needs no left margin of its own. */
+.md-typeset .tks-lessons .tks-min {
+  margin-left: 0;
+}
+
 .md-typeset .md-typeset__table {
   display: block;
   width: 100%;
