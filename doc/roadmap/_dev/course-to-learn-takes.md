@@ -46,7 +46,7 @@ Nav: add `Troubleshooting: troubleshooting.md` after FAQ; add the three concept 
 
 ### Files
 - `docs/course/index.md` — syllabus: 4 stage headings, 21 module rows (`| Module | Lessons | Time |`), links.
-- `docs/course/<stage><n>-<slug>.md` × 21, slugs: `a0-why-takes`, `a1-install-and-look-around`, `a2-your-first-take`, `a3-the-cascade`, `a4-actions-slots-managed-pinned`, `a5-frame-0-is-home`, `a6-when-it-looks-wrong`, `a7-getting-help`, `b8-cameras-and-lighting`, `b9-looks-swap-then-variants`, `b10-animation-variants`, `b11-presets`, `b12-tags-and-rules`, `b13-which-tool-for-this-job`, `c14-names`, `c15-batch-render`, `c16-project-and-team`, `c17-capstone`, `d18-working-fast`, `d19-beyond-the-viewport`, `d20-ai-assistant`.
+- `docs/course/<stage><n>-<slug>.md` × 21, slugs: `a1-why-takes`, `a2-install-and-look-around`, `a3-your-first-take`, `a4-the-cascade`, `a5-actions-slots-managed-pinned`, `a6-frame-0-is-home`, `a7-when-it-looks-wrong`, `a8-getting-help`, `b1-cameras-and-lighting`, `b2-looks-swap-then-variants`, `b3-animation-variants`, `b4-presets`, `b5-tags-and-rules`, `b6-which-tool-for-this-job`, `c1-names`, `c2-batch-render`, `c3-project-and-team`, `c4-capstone`, `d1-working-fast`, `d2-beyond-the-viewport`, `d3-ai-assistant`.
 - Front matter per page: `icon: material/school` (module pages), `icon: material/book-open-variant` (syllabus).
 - Page shape = tutorial template: `# <Module>` · one line (lessons · minutes · idea) · `## 1. <Lesson>` … · `## Done` + next module link.
 
@@ -58,7 +58,7 @@ Nav: add `Troubleshooting: troubleshooting.md` after FAQ; add the three concept 
   </div>
   ```
 - Until an ID exists, use the placeholder form so the gap is VISIBLE on the page (copy the `.tks-shot` idea, `extra.css:530-553`):
-  `<div class="tks-video" data-video="a4-2">The Watchlist</div>`
+  `<div class="tks-video" data-video="a5-2">The Watchlist</div>`
 - CSS (`docs/stylesheets/extra.css`, beside `.tks-shot`): `.tks-video{position:relative;margin:1rem 0;aspect-ratio:16/9;border-radius:6px;overflow:hidden}` `.tks-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}` placeholder state: `.tks-video:not(:has(iframe)){display:flex;align-items:center;justify-content:center;border:2px dashed var(--md-default-fg-color--lighter);color:var(--md-default-fg-color--light);font-size:.72rem}` `.tks-video:not(:has(iframe))::before{content:"Video:";font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-right:.4em}`.
 - Bump the cache-buster: `mkdocs.yml:203` `extra.css?v=<new hash>`.
 - No JS needed. `navigation.instant` is on → iframes reload per page, fine.
@@ -71,11 +71,11 @@ Nav: add `Troubleshooting: troubleshooting.md` after FAQ; add the three concept 
 - `toc_depth: 2` → lesson `##` headings show in the right-hand contents. Good: a module's contents IS its lesson list.
 
 ### Backlink line (phase 6)
-- One line under the H1 of each feature page: `▶ Watch: [Course › A4.2 The Watchlist](../course/a4-actions-slots-managed-pinned.md#2-the-watchlist) (4 min)`. Anchor = mkdocs slug of the `## 2. The Watchlist` heading → `#2-the-watchlist`. `mkdocs build --strict` catches a bad one.
+- One line under the H1 of each feature page: `▶ Watch: [Course › A5.2 The Watchlist](../course/a5-actions-slots-managed-pinned.md#2-the-watchlist) (4 min)`. Anchor = mkdocs slug of the `## 2. The Watchlist` heading → `#2-the-watchlist`. `mkdocs build --strict` catches a bad one.
 
 ## Lesson → page map (recap links)
 
-A0 → `comparisons.md`, `index.md` · A1 → `getting_started/installation.md`, `interface/navigation_panel.md`, `features/takes.md`, `getting_started/first_steps.md` · A2 → `getting_started/first_take.md`, `workflows/switch_takes.md`, `features/vl_versions.md` · A3 → `features/cascade.md`, `interface/context_properties.md`, `features/globals.md`, `preferences/workflow.md` (Cameras/World unassigned mode + adopt tier) · A4 → `features/actions.md` (new), `interface/inspector_panel.md`, `workflows/keep_an_objects_own_animation.md`, `interface/navigation_panel.md#autokey-is-being-blocked` · A5 → `features/rest_state.md`, `features/still_mode.md`, `features/value_lock.md`, `features/diff_state.md`, `features/modes.md` (new), `preferences/ui.md#modes` · A6 → `interface/navigation_panel.md#warnings`, `#adopted`, `troubleshooting.md` (new), `workflows/recover_take_organisation.md` (new) · A7 → `troubleshooting.md`, `preferences/debug.md`, `features/process_monitor.md`, `interface/context_properties.md#view-layer-preload`, `whats_new/index.md`, GitHub releases/issues, community links (TBD) · B8 → `workflows/show_one_camera.md`, `features/multi_cam.md`, `features/vl_preview.md`, `features/cascade.md` (world per tier) · B9 → `interface/inspector_panel.md#swap-list`, `features/variant_switch.md`, `interface/variant_tree.md`, `workflows/material_variants.md` · B10 → `workflows/animation_variants.md` · B11 → `features/render_presets.md`, `workflows/use_render_presets.md`, `preferences/workflow.md` (Preset Changes) · B12 → `features/tags.md`, `workflows/tag_and_filter.md`, `features/rules.md` · B13 → `features/which_tool.md` (new) · C14 → `features/smart_output.md`, `workflows/name_output_files.md`, `preferences/workflow.md#syntax`, `features/custom_tokens.md` · C15 → `getting_started/first_batch_render.md`, `workflows/batch_rendering.md`, `features/batch_render.md` · C16 → `workflows/set_up_a_project_for_a_team.md` (new), `preferences/index.md`, `preferences/data.md` · C17 → none new · D18 → `interface/hotkeys.md`, `features/pie_menus.md`, `workflows/bookmark_a_property.md`, `features/tags.md#push-tag-to-selected` · D19 → `features/sequencer.md`, `features/viewport_sync.md` · D20 → `features/ai_assistant.md`.
+A1 → `comparisons.md`, `index.md` · A2 → `getting_started/installation.md`, `interface/navigation_panel.md`, `features/takes.md`, `getting_started/first_steps.md` · A3 → `getting_started/first_take.md`, `workflows/switch_takes.md`, `features/vl_versions.md` · A4 → `features/cascade.md`, `interface/context_properties.md`, `features/globals.md`, `preferences/workflow.md` (Cameras/World unassigned mode + adopt tier) · A5 → `features/actions.md` (new), `interface/inspector_panel.md`, `workflows/keep_an_objects_own_animation.md`, `interface/navigation_panel.md#autokey-is-being-blocked` · A6 → `features/rest_state.md`, `features/still_mode.md`, `features/value_lock.md`, `features/diff_state.md`, `features/modes.md` (new), `preferences/ui.md#modes` · A7 → `interface/navigation_panel.md#warnings`, `#adopted`, `troubleshooting.md` (new), `workflows/recover_take_organisation.md` (new) · A8 → `troubleshooting.md`, `preferences/debug.md`, `features/process_monitor.md`, `interface/context_properties.md#view-layer-preload`, `whats_new/index.md`, GitHub releases/issues, community links (TBD) · B1 → `workflows/show_one_camera.md`, `features/multi_cam.md`, `features/vl_preview.md`, `features/cascade.md` (world per tier) · B2 → `interface/inspector_panel.md#swap-list`, `features/variant_switch.md`, `interface/variant_tree.md`, `workflows/material_variants.md` · B3 → `workflows/animation_variants.md` · B4 → `features/render_presets.md`, `workflows/use_render_presets.md`, `preferences/workflow.md` (Preset Changes) · B5 → `features/tags.md`, `workflows/tag_and_filter.md`, `features/rules.md` · B6 → `features/which_tool.md` (new) · C1 → `features/smart_output.md`, `workflows/name_output_files.md`, `preferences/workflow.md#syntax`, `features/custom_tokens.md` · C2 → `getting_started/first_batch_render.md`, `workflows/batch_rendering.md`, `features/batch_render.md` · C3 → `workflows/set_up_a_project_for_a_team.md` (new), `preferences/index.md`, `preferences/data.md` · C4 → none new · D1 → `interface/hotkeys.md`, `features/pie_menus.md`, `workflows/bookmark_a_property.md`, `features/tags.md#push-tag-to-selected` · D2 → `features/sequencer.md`, `features/viewport_sync.md` · D3 → `features/ai_assistant.md`.
 
 ## Lesson scripts (phases 3–5)
 
@@ -84,6 +84,17 @@ A0 → `comparisons.md`, `index.md` · A1 → `getting_started/installation.md`,
 - Same recipe drives WikiShot's shot for that step where a screenshot is also wanted → see `WikiShot-for-Blender/doc/roadmap/ideas/` *Shoot the Takes Wiki*.
 - Recording env: release ZIP installed in a clean Blender profile (memory: private profile launcher, never the junction/worktree); 1920×1080; Blender 5.2; factory startup + the course `.blend` per stage (Stage A: default cube; B–C: the shoe file; keep both under `doc/course/files/` — small, no textures > 2 MB, or link them from a release asset).
 - Vocabulary on camera: Take = review round, View Layer = shot/layer (post `take-feedback-loop`). Never "version".
+
+## Recording schedule + channel mechanics
+
+- The per-video table (id, minutes, title, search phrase, page) is section 5 of the human plan — single source; do not copy it here.
+- Numbering restarts per stage: A1–A8, B1–B6, C1–C4, D1–D3; lesson = `<module>.<n>`. Slugs in "Phase 2" follow.
+- YouTube: public, `youtube-nocookie.com` embeds. One playlist per stage (4). Syllabus page links the 4 playlists; each module page links its playlist in the intro line.
+- Description template (fill from the table): line 1 = the *Solves* phrase as a sentence · line 2 = wiki page URL (`https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/<path>/`) · chapters `00:00 <step>` per recipe step · module page URL · install page URL · `#TakesForBlender #Blender` last.
+- Title ≤ 70 chars, problem first, feature name once, no clickbait punctuation beyond one `?`.
+- Thumbnail: one template, video id (e.g. `A5.2`) bottom-left, title ≤ 6 words.
+- Channel trailer = A1.1. Publish cadence = one module per release (5 videos at a time).
+- Backlink line (phase 6) carries the minutes so the page states the cost: `▶ Watch: … (4 min)`.
 
 ## Gotchas
 
