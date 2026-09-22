@@ -97,6 +97,18 @@ nav:
     - Your First Take: getting_started/first_take.md
     - Your First Batch Render: getting_started/first_batch_render.md
 
+  - Course:
+    - Syllabus: course/index.md
+    - Stage A · Think in Takes:
+      - A1 Why Takes exists: course/a1-why-takes.md
+      - A2 Install and look around: course/a2-install-and-look-around.md
+      - A3 Your first take: course/a3-your-first-take.md
+      - A4 The Cascade: course/a4-the-cascade.md
+      - A5 Actions, slots, managed and pinned: course/a5-actions-slots-managed-pinned.md
+      - A6 Frame 0 is home: course/a6-frame-0-is-home.md
+      - A7 When it looks wrong: course/a7-when-it-looks-wrong.md
+      - A8 Getting help: course/a8-getting-help.md
+
   - Guides:
     - Working with Takes:
       - Switch Between Takes: workflows/switch_takes.md
@@ -208,10 +220,10 @@ markdown_extensions:
       toc_depth: 2
 
 extra_css:
-  - stylesheets/extra.css?v=71d4a8c6
+  - stylesheets/extra.css?v=12d6ae00
 
 extra_javascript:
-  - javascripts/nav-icons.js?v=2e4c972a
+  - javascripts/nav-icons.js?v=4fdc8bf3
   - javascripts/toc-icons.js?v=e5d33e6b
   - javascripts/roadmap-sort.js?v=71afec24
   - javascripts/roadmap-tooltip.js?v=f17c88d3

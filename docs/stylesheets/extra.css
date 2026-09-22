@@ -553,6 +553,56 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
+/* Course video frames. Same idea as .tks-shot above: while a lesson has no
+   video yet the page states the gap with a dashed frame, so an unfinished
+   module reads as unfinished instead of looking done. Replace the inner text
+   with the <iframe> when the video is up -- the frame itself does not change. */
+.tks-video {
+  position: relative;
+  margin: 1rem 0;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.tks-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+/* Placeholder state: no iframe inside yet. */
+.tks-video:not(:has(iframe)) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  padding: 1rem;
+  border: 2px dashed var(--md-default-fg-color--lighter);
+  color: var(--md-default-fg-color--light);
+  font-size: 0.72rem;
+  text-align: center;
+}
+.tks-video:not(:has(iframe))::before {
+  content: "Video:";
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* The minutes chip beside a lesson heading. */
+.md-typeset .tks-min {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.1em 0.5em;
+  margin-left: 0.5em;
+  border-radius: 1em;
+  vertical-align: middle;
+  background: var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color--light);
+}
+
 /* Micro-Animations for the Homepage Feature Grid */
 .md-typeset .grid.cards > ul > li {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
