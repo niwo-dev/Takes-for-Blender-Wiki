@@ -47,7 +47,7 @@ Nav: add `Troubleshooting: troubleshooting.md` after FAQ; add the three concept 
 ## Phase 2 — course shell
 
 ### Files
-- `docs/course/index.md` — syllabus: 4 stage headings, 21 module rows (`| Module | Lessons | Time |`), links.
+- `docs/course/index.md` — syllabus: the A0.1 overview video embed at the top, then 4 stage headings, 21 module rows (`| Module | Lessons | Time |`), links.
 - `docs/course/<stage><n>-<slug>.md` × 21, slugs: `a1-why-takes`, `a2-install-and-look-around`, `a3-your-first-take`, `a4-the-cascade`, `a5-actions-slots-managed-pinned`, `a6-frame-0-is-home`, `a7-when-it-looks-wrong`, `a8-getting-help`, `b1-cameras-and-lighting`, `b2-looks-swap-then-variants`, `b3-animation-variants`, `b4-presets`, `b5-tags-and-rules`, `b6-which-tool-for-this-job`, `c1-names`, `c2-batch-render`, `c3-project-and-team`, `c4-capstone`, `d1-working-fast`, `d2-beyond-the-viewport`, `d3-ai-assistant`.
 - Front matter per page: `icon: material/school` (module pages), `icon: material/book-open-variant` (syllabus).
 - Page shape = tutorial template: `# <Module>` · one line (lessons · minutes · idea) · `## 1. <Lesson>` … · `## Done` + next module link.
@@ -95,7 +95,7 @@ A1 → `comparisons.md`, `index.md` · A2 → `getting_started/installation.md`,
 - Description template (fill from the table): line 1 = the *Solves* phrase as a sentence · line 2 = wiki page URL (`https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/<path>/`) · chapters `00:00 <step>` per recipe step · module page URL · install page URL · `#TakesForBlender #Blender` last.
 - Title ≤ 70 chars, problem first, feature name once, no clickbait punctuation beyond one `?`.
 - Thumbnail: one template, video id (e.g. `A5.2`) bottom-left, title ≤ 6 words.
-- Channel trailer = A1.1. Publish cadence = one module per release (5 videos at a time).
+- Channel trailer = A0.1 (overview, lives on `course/index.md`, no module page). Publish cadence = one module per release (5 videos at a time).
 - Backlink line (phase 6) carries the minutes so the page states the cost: `▶ Watch: … (4 min)`.
 
 ## Gotchas
