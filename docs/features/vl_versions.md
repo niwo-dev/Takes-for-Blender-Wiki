@@ -74,6 +74,27 @@ Anything you leave empty falls back to the parent View Layer.
 
 Click a take row in the tree. Its overrides resolve and the viewport updates. Only one take of a View Layer is live at a time.
 
+## :material-checkbox-blank-outline: Turning Every Take Off
+
+Click the checkbox of the live take a second time. Every take goes off.
+
+The View Layer then uses its own settings again. This is also how a View
+Layer starts out, before you make your first take.
+
+Use it to compare a take against the layer it came from. Turn the take
+off, look, turn it back on.
+
+While a take is live, its View Layer row wears a small ticked box beside
+the name. That box means "a take is speaking for me right now". The other
+icons on that row still show what the View Layer itself holds, so you can
+see both answers at once.
+
+??? info "Why the row still shows the View Layer's own settings"
+    Every row in the tree shows what that level holds, never what won.
+    That is what makes the tree readable: you can see where a setting was
+    put. The ticked box is the one thing that says the winner lives
+    somewhere deeper.
+
 ## :material-folder-cog: Smart Output
 
 Put `{take}` in your output pattern for the active take's name, or `{take_number}` for its slate number.
