@@ -6,14 +6,17 @@ icon: material/dots-circle
 
 A pie menu opens under your cursor. You flick in a direction instead of hunting for a button.
 
-Takes gives you five, each with eight slots you fill yourself.
+Takes gives you six, each with eight slots you fill yourself.
 
 Only the **Navigation Pie** is on out of the box. Switch the others on in *Preferences ▸ Workflow ▸ Pie & Misc*.
 
-??? info "What all five pies share"
+??? info "What all six pies share"
     - Eight compass directions per pie: N, NE, E, SE, S, SW, W, NW.
     - Assigning an action that already lives in another slot blanks that other slot. Every direction stays unique.
-    - All five are configured in the same place: *Workflow > Pie & Misc*.
+    - All six are configured in the same place: *Workflow > Pie & Misc*.
+
+    Five of them hold **actions**. The sixth, the [Tree Icon Pie](#tree-icon-pie),
+    holds **cascade properties** instead.
 
 ## :material-compass: Navigation Pie
 
@@ -142,6 +145,30 @@ It ships off. Switch on **Enable Mode Pie** in *Workflow > Pie & Misc* to reveal
     Not a `Ctrl+Alt` chord: on German layouts `AltGr` sends Ctrl+Alt, so such a
     binding fires while you type. Plain `Alt+Q` is Blender's own Quick Favourites.
     ++shift+alt+q++ is free in the factory keymap.
+
+## :material-file-tree: Tree Icon Pie {: #tree-icon-pie }
+
+++ctrl+shift+f++ opens a cascade property of one tree row, without hunting for its icon.
+
+Every slice opens that property's full editor — rules and presets included. It ships off. Switch on **Enable Tree Icon Pie** in *Workflow > Pie & Misc*.
+
+??? info "What the slices hold, and which row they act on"
+    The slots take **cascade properties**, not actions: *Tag*, *Variant*,
+    *Action*, *Compositor*, *World*, *Camera*, *Output Rule* and *Still Mode*.
+    A property the row cannot hold is left out of the pie.
+
+    **Defaults:** North *Variant*, North-East *Output Rule*, East *World*,
+    South-East *Still Mode*, South *Action*, South-West *Tag*, West *Camera*,
+    North-West *Compositor*.
+
+    **Acts On** decides which row. *Active View Layer* — the layer Blender is
+    showing — is the default, so the pie works with the sidebar closed.
+    *Tree Selection* uses the highlighted row instead, which reaches all six
+    tiers.
+
+??? note "Why Render has no slice"
+    Every slice here *opens* an editor. The render toggle does not open
+    anything — it flips. The tree row already offers it inline.
 
 ## :material-key: Keyframe & Clear Pies
 

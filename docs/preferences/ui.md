@@ -18,7 +18,7 @@ Every confirmation dialog can be switched off here. All default to **on**.
     | Globals | Delete Tag, Delete Tag/Variant Group, Delete Variant, Delete Bookmark, Delete Custom Token. |
     | Batch Render | Start Batch Render, Overwrite Existing Files. |
     | System | Orphan Cleanup, Override Persistence, Shortcut Override. |
-    | Data Integrity | Rest State Protection, Locked Take Protection, Pinned Object Protection, Shared Resource Safety. |
+    | Data Integrity | Rest State Protection, Pinned Object Protection, Shared Resource Safety. |
 
     *Context* through *Batch Render* confirm the delete or start they are named
     after. The last two groups are less obvious:
@@ -29,7 +29,6 @@ Every confirmation dialog can be switched off here. All default to **on**.
     | **Override Persistence** | Property-persistence rules. It also gates deleting a preference config and resetting preferences to defaults. |
     | **Shortcut Override** | Resetting the add-on's global hotkeys back to their defaults. |
     | **Rest State Protection** | Edits to properties guarded by the Rest State (frame 0). |
-    | **Locked Take Protection** | Changes to View Layers you have explicitly locked. |
     | **Pinned Object Protection** | Changes to objects pinned to a specific Rest State. |
     | **Shared Resource Safety** | Edits to shared render presets and other library resources. |
 

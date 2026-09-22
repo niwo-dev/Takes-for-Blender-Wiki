@@ -6,7 +6,7 @@ icon: material/download
 
 ## :material-check-circle-outline: Requirements
 
-- **Blender 5.1** or newer
+- **Blender 5.0** or newer
 - Windows, macOS, or Linux
 
 ## :material-download: Download

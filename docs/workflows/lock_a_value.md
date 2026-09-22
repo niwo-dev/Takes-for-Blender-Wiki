@@ -6,20 +6,20 @@ icon: material/lock-outline
 
 When you keep knocking a light's power or a material's roughness out of place.
 
-1. Select the objects whose values you want held still.
-2. Open the **Takes** tab in the 3D viewport sidebar (++n++).
-3. Click **{{ op('tks.value_lock_toggle').bl_label }}** in the Navigation header.
-4. Carry on working — a nudged value snaps straight back.
-5. Click the button again to release the lock.
+1. Open the **Takes** tab in the 3D viewport sidebar (++n++).
+2. Click **{{ op('tks.value_lock_toggle').bl_label }}** in the Navigation header.
+3. Carry on working — a nudged value snaps straight back.
+4. Click the button again to release the lock.
 
 You now have a scene whose static values cannot drift while you work.
 
 ??? info "Details and edge cases"
     The button sits between **Still Mode** and **Autokey** in the Navigation header.
 
-    The lock captures the unkeyed values of your **selected objects** at the moment
-    you switch it on. That baseline covers their materials, object data, the world
-    and anything else holding a static value.
+    The lock captures the unkeyed values of **every object in the scene** at the
+    moment you switch it on. You do not need to select anything. That baseline
+    covers their materials, object data, shape keys, the world and anything else
+    holding a static value.
 
     Keyframed and driven channels stay free. They are the animation you came to
     make, so the lock never touches them.

@@ -6,7 +6,7 @@ icon: material/movie-open-plus
 
 In this lesson you build one shot with two takes and flip between two camera angles. It takes about 10 minutes.
 
-New to the panel? Skim [First Steps](first_steps.md) first.
+New to the panel? Skim [The Six Levels](first_steps.md) first.
 
 ## 1. Open a fresh file
 

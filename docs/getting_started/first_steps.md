@@ -1,14 +1,12 @@
 ---
-icon: material/shoe-print
+icon: material/stairs
 ---
 
-# First Steps
+# The Six Levels
 
-This guide walks you through the core workflow in under 5 minutes.
+Takes sorts your file into six levels. Each one can carry its own camera, world, action and render settings.
 
-## :material-lightbulb-outline: Understanding the Basics
-
-Takes for Blender organizes your scene into a hierarchy:
+A deeper level always beats a wider one. That is the whole idea.
 
 ```mermaid
 graph TD
@@ -19,43 +17,39 @@ graph TD
     Layer --> Take[Take]
 ```
 
-Each level in this hierarchy can override properties from the level above — this is the **Cascade** system.
+## :material-format-list-bulleted: What each level is for
 
-## :material-movie-open-plus: Your First Take
+| Level | What it holds | Example |
+|---|---|---|
+| **Global** | Your project defaults | The camera every shot starts with |
+| **Scene Group** | A folder of scenes | "Interior", "Exterior" |
+| **Scene** | One Blender scene | "Kitchen" |
+| **View Layer Group** | A folder of shots | "Hero Shots" |
+| **View Layer** | One shot — this is what renders | "Front 3/4" |
+| **Take** | One saved round of that shot | "Take 2 · Night Lighting" |
 
-### 1. Open the Takes Panel
-Press ++n++ in the 3D Viewport to open the sidebar, then click the **Takes** tab.
+You set **Global** in the [Globals](../features/globals.md) panel. The other five live in the Takes Tree.
 
-The **Takes Tree** shows all your current scenes and view layers in a unified list.
+## :material-stairs: Deeper wins
 
-### 2. Add a View Layer
-1. Click the **+** button in the tree sidebar.
-2. Select **Add View Layer**.
-3. The new View Layer appears in the tree and becomes active.
+Give a scene a world, and every shot in that scene uses it.
 
-### 3. Assign a Camera
-Each View Layer can have its own camera:
+Give one shot its own world, and that shot wins. The rest still follow the scene.
 
-1. Select your new View Layer in the tree.
-2. Click the **camera icon** (:material-camera:) on the View Layer row.
-3. In the popover, choose a camera from the dropdown.
+That is the [Cascade](../features/cascade.md). A **bright** icon on a tree row means the value is set there. A **dimmed** icon means it came from above.
 
-### 4. Organize with Groups
-Group related View Layers together:
+## :material-help-circle-outline: A new shot, or another round?
 
-1. Select a View Layer in the tree.
-2. Press ++ctrl+g++ to create a View Layer Group.
-3. Drag other View Layers into the group.
+Add a **View Layer** when the shot itself changes: other objects, other passes, other motion.
 
-### 5. Batch Render
-Render all your View Layers at once:
+Add a **Take** when you are having another go at the same shot, after a review.
 
-1. Click the **Render** button (:material-image:) in the tree sidebar.
-2. The batch renderer processes each View Layer with its cascade overrides.
-3. Output files are named automatically using the Smart Output token system.
+??? info "An example"
+    "Bottle, front angle" is a View Layer.
 
-## :material-arrow-right-circle: What's Next?
+    "Take 1 · first pass" and "Take 2 · warmer light" are two takes of it. Both
+    render the same objects from the same angle. Only the lighting differs.
 
-- Learn about the [Cascade System](../features/cascade.md) to understand how overrides flow
-- Set up [Render Presets](../features/render_presets.md) for consistent output settings
-- Explore [Variant Switch](../features/variant_switch.md) for material variations
+## :material-arrow-right-circle: Next
+
+Build one: [Your First Take](first_take.md).

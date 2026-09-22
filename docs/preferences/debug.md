@@ -83,7 +83,7 @@ Each has its own toggle. Leave them on unless you are debugging the recovery sys
 Each strategy row carries an **[i]** icon. Hover it and the tooltip, **{{ op('tks.pref_help').bl_label }}**, shows that setting's own description.
 
 ??? info "Undo Monitor"
-    The Undo Monitor lists one ++ctrl+z++ press as a tape of steps, so a press can
+    The Undo Monitor lists one undo press as a tape of steps, so a press can
     be read instead of guessed at. Turn it on under **Show Undo Monitor** in the
     navigation panel's monitor switches.
 

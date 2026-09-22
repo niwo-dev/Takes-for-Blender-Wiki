@@ -45,7 +45,7 @@ collections:
         fields:
           - {label: "Icon", name: "icon", widget: "string", required: false, hint: 'Find and copy MkDocs material icons visually from https://pictogrammers.com/library/mdi/'}
           - {label: "Body", name: "body", widget: "markdown"}
-      - label: "First Steps"
+      - label: "The Six Levels"
         name: "first_steps"
         file: "docs/getting_started/first_steps.md"
         fields:
