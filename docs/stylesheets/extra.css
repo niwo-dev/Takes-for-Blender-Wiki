@@ -77,6 +77,20 @@ kbd {
   width: 100%;
 }
 
+/* ...and the scroll box Material wraps SOME tables in. Which ones get wrapped
+   is decided at runtime, so one site can hold both kinds: on Keyboard Shortcuts
+   every table sat straight in the article and the rule above was enough, while
+   every table on the course syllabus sat in a wrapper. That wrapper is an
+   inline-block, so it shrink-wraps, and `width: 100%` on the table inside then
+   resolves against a box that has already collapsed -- measured at 1500px: five
+   syllabus tables at 762, 508, 456, 491 and 445px inside an 820px column.
+   Block gives the wrapper the width; overflow-x still scrolls a table too wide
+   to fit. */
+.md-typeset .md-typeset__table {
+  display: block;
+  width: 100%;
+}
+
 /* Roadmap board — keep the table within the content width (no horizontal
    clipping) and wrap long text. The summary lives in the Meta column's ⓘ
    tooltip; Theme/Area/Size follow as icons with hover tooltips; the feature
@@ -612,6 +626,22 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 0.5em;
   border-radius: 1em;
   vertical-align: middle;
+  background: var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color--light);
+}
+
+/* The minutes chip also lands in the Contents column, because Material builds
+   that column from the heading's own markup. Unstyled it read as run-on text
+   ("Build the bottle shot8 min"), so it gets the pill there too -- smaller,
+   and pushed to the right so the titles still line up. */
+.md-nav__link .tks-min {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.05em 0.4em;
+  margin-left: 0.4em;
+  border-radius: 1em;
+  white-space: nowrap;
   background: var(--md-default-fg-color--lightest);
   color: var(--md-default-fg-color--light);
 }
@@ -1293,6 +1323,12 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
+  /* Material ships `flex: 0 1 auto`, sized for a link sitting in a 92px block
+     with a caption above it. Floating there is no caption and the bar spans
+     the window, so the link kept its old 174px and clipped its own title --
+     "Globals Panel" read "Globals P...". Measured on four pages at 1500px:
+     every title clipped before, none after, and the bar drops 42px -> 36. */
+  flex: 1 1 auto;
 }
 
 .tks-footernav--float .md-footer__button {
