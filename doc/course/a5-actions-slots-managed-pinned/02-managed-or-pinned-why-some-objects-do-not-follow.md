@@ -10,7 +10,7 @@ The idea this module plants: **Why some objects follow the shot and some do not*
 The Watchlist: managed vs pinned objects explained
 
 **Description**  
-Why some objects follow the shot and others do not.
+Managed objects take their animation from the shot, which suits almost everything. Pinned objects keep their own, like a logo that spins the same in every shot. The Watchlist shows which is which.
 
 ## What this video has to do
 

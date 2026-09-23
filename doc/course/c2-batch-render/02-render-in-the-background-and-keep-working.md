@@ -10,7 +10,7 @@ The idea this module plants: **One click renders every shot**.
 Batch render in Blender or in the background - keep working while it renders
 
 **Description**  
-Render while you keep working, or watch it happen.
+In Blender shows every frame but locks Blender until it finishes. In Background saves the file once and renders out of sight, so you keep working.
 
 ## What this video has to do
 

@@ -10,7 +10,7 @@ The idea this module plants: **Fixes, bug reports, and where to ask**.
 Takes troubleshooting checklist: render did not start, list is red, keys vanish
 
 **Description**  
-The problems everyone runs into, and the quick fix for each.
+A render that did not start, a red row in the list, keyframes that vanish. The problems people hit most, each with the one thing to check.
 
 ## What this video has to do
 

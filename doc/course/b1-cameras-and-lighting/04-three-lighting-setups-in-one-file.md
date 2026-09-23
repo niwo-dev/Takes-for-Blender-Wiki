@@ -10,7 +10,7 @@ The idea this module plants: **Each shot gets its own camera and light**.
 Three lighting setups in one file: worlds per layer and per group
 
 **Description**  
-Keep several lighting setups in one file and switch between them.
+Give each View Layer, or a whole group of them, its own world. Switch shots and the lighting and background change with them.
 
 ## What this video has to do
 

@@ -10,7 +10,7 @@ The idea this module plants: **Labels that sort, filter and set things for you**
 Rules explained: one tag that applies five presets at once
 
 **Description**  
-Make one label apply a whole set of settings.
+A rule is a tag that carries presets. Put an Output rule on a group, and its render, output, file and colour settings all apply at once.
 
 ## What this video has to do
 

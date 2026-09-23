@@ -10,7 +10,7 @@ The idea this module plants: **Each shot gets its own camera and light**.
 Too many cameras in the viewport? Isolate: Single or Multi Camera
 
 **Description**  
-Hide the cameras you are not using right now.
+Isolate shows only the camera in use (Single Camera), or every camera a take uses (Multi Camera). Find it with Shift and right-click on any tree row.
 
 ## What this video has to do
 

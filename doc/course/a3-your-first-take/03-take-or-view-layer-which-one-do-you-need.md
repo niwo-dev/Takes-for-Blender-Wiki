@@ -10,7 +10,7 @@ The idea this module plants: **Try a new idea without losing the old one**.
 Take or new View Layer? How to decide
 
 **Description**  
-When to add a take, and when you need a whole new shot.
+A take is another round of the same shot. A new View Layer is for when objects appear or disappear, or the motion changes. Two questions settle it.
 
 ## What this video has to do
 

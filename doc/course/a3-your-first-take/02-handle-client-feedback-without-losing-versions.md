@@ -10,7 +10,7 @@ The idea this module plants: **Try a new idea without losing the old one**.
 How to run a review loop in Blender: notes and New Take from Here
 
 **Description**  
-How to work through feedback without losing the earlier version.
+Write the client's note on the take, click New Take from Here, and work the change in. Take 1 stays one click away if the client changes their mind.
 
 ## What this video has to do
 

@@ -10,7 +10,7 @@ The idea this module plants: **Save render settings once, use them everywhere**.
 Where presets are stored: Add-on, Project, Shared, Local
 
 **Description**  
-Where your presets are saved, and which place to pick.
+Four places: Add-on, Project, Shared and Local. Project travels with the .blend, Shared is for a team, Local is only yours. Pick one per kind of preset.
 
 ## What this video has to do
 

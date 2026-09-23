@@ -10,7 +10,7 @@ The idea this module plants: **Your render files name and sort themselves**.
 Render versions, separators and bracket styles
 
 **Description**  
-Add version numbers and tidy separators to your file names.
+Add a version number like v002, a separator that stays tidy, and the bracket style you like. Change the style later, and one click converts old fields.
 
 ## What this video has to do
 

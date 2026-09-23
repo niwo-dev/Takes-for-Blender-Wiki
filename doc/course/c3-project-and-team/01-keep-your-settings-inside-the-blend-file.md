@@ -10,7 +10,7 @@ The idea this module plants: **Your setup travels with the file**.
 How to set up a project so settings travel with the .blend
 
 **Description**  
-Set a project up so your settings travel with the file.
+Save the file, then one button in the Data preferences makes a presets folder beside it. Anyone who opens the file gets the same setup.
 
 ## What this video has to do
 

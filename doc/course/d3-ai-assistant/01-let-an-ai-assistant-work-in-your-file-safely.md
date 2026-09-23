@@ -10,7 +10,7 @@ The idea this module plants: **Let a script or assistant drive Takes safely**.
 Drive Takes with an AI assistant, and why config must go through Takes
 
 **Description**  
-Let an AI assistant work in your file, safely.
+An assistant connected over MCP can read your project, switch takes and set overrides, each as one undo step. Why it must go through Takes, not write Blender settings directly.
 
 ## What this video has to do
 

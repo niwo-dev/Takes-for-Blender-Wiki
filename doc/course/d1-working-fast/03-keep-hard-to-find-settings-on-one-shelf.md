@@ -10,7 +10,7 @@ The idea this module plants: **Keep your hands on the keyboard**.
 Bookmark any property and edit it from one shelf
 
 **Description**  
-Put the settings you keep hunting for on one shelf.
+Right-click any property and bookmark it. It then sits on the Bookmarks shelf in the Inspector, ready to edit or keyframe.
 
 ## What this video has to do
 

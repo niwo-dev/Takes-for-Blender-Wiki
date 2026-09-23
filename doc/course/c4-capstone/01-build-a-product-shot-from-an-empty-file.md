@@ -10,7 +10,7 @@ The idea this module plants: **Everything from the course, on one product**.
 Build a product shot from scratch: 3 finishes, 2 lighting setups, 2 environments, 2 cameras, 1 turntable
 
 **Description**  
-Build a complete product shot from an empty file.
+Three finishes, two lighting setups, two environments, two cameras and a turntable, all in one file. Everything from stages A and B, used together.
 
 ## What this video has to do
 

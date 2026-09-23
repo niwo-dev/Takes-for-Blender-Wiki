@@ -10,7 +10,7 @@ The idea this module plants: **One file instead of a folder of copies**.
 Why I built Takes for Blender - a product artist's answer to variant chaos
 
 **Description**  
-Who makes Takes, why it exists, and how you can help shape it.
+A product artist's reasons for building Takes, why it is still growing, and how your bug reports and ideas decide what gets built next.
 
 ## What this video has to do
 

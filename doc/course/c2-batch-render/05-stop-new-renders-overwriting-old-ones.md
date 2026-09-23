@@ -10,7 +10,7 @@ The idea this module plants: **One click renders every shot**.
 Render versioning: v001, sub-versions, lock as final, archive old renders
 
 **Description**  
-Stop new renders overwriting the old ones.
+A version and sub-version number go into every file name. Add a note about what changed, and lock a version as final so it is never overwritten.
 
 ## What this video has to do
 

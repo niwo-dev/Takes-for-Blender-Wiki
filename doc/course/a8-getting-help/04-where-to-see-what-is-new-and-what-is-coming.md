@@ -10,7 +10,7 @@ The idea this module plants: **Fixes, bug reports, and where to ask**.
 Where to get help and follow updates: community, releases, roadmap
 
 **Description**  
-Where to see what is new, and what is coming.
+The changelog in plain words, the release downloads, the public roadmap and the community. Where each one lives, and which to check first.
 
 ## What this video has to do
 

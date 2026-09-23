@@ -10,7 +10,7 @@ The idea this module plants: **The panel tells you what is going on**.
 My scene looks wrong - which tool to check first
 
 **Description**  
-Something looks wrong? Here is what to check first.
+An object jumped, a value keeps moving, the timeline will not play. For each symptom, the one panel or setting to look at first.
 
 ## What this video has to do
 

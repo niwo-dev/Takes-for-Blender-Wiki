@@ -10,7 +10,7 @@ The idea this module plants: **Try a new idea without losing the old one**.
 How to rename, reorder, duplicate and delete takes safely
 
 **Description**  
-How to rename, reorder and delete takes without breaking anything.
+Every take shows a number and a name, like Take 3 · Night. The number is only the order and the name is what Takes goes by, so reordering never breaks anything.
 
 ## What this video has to do
 

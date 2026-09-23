@@ -10,7 +10,7 @@ The idea this module plants: **Change the look without copying objects**.
 How to render every finish in one go: variants in the cascade
 
 **Description**  
-Render every finish in one go.
+Pick a finish on any level of the tree with the variant icon, just like a camera or a world. Then one batch render makes all of them.
 
 ## What this video has to do
 

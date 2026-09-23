@@ -10,7 +10,7 @@ The idea this module plants: **Where everything is, and how to read it**.
 A tour of the Takes UI: header, tabs, tree, Inspector, Globals
 
 **Description**  
-A quick look at every part of the add-on, so you know where things are.
+The header with its mode buttons and warnings, the panel tabs, the tree, the Inspector and Globals. What each area is for, so nothing later feels hidden.
 
 ## What this video has to do
 

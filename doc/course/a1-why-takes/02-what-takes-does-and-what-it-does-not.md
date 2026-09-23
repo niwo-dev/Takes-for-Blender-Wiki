@@ -10,7 +10,7 @@ The idea this module plants: **One file instead of a folder of copies**.
 What Takes for Blender does, and when not to use it
 
 **Description**  
-What this add-on is for, and what it is not for.
+Takes runs the stage behind a shot: camera, world, materials, animation and render settings. It is not a video editor, and it does not cut a story together for you.
 
 ## What this video has to do
 

@@ -10,7 +10,7 @@ The idea this module plants: **Each shot gets its own camera and light**.
 One camera per take - how to add and switch cameras
 
 **Description**  
-Give every shot its own camera.
+Click the camera icon on a row to pick a camera, or make a new one right there. Set it on a View Layer Group, and every shot inside shares that angle.
 
 ## What this video has to do
 

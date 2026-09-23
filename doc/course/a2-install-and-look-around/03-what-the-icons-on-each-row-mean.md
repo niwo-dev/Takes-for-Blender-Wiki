@@ -10,7 +10,7 @@ The idea this module plants: **Where everything is, and how to read it**.
 How to read the Takes tree - the nine icons on every row
 
 **Description**  
-What the small icons on every row are telling you.
+Each row carries up to nine small icons: camera, world, action, presets and more. Learn which ones the row sets itself and which it takes from the level above.
 
 ## What this video has to do
 

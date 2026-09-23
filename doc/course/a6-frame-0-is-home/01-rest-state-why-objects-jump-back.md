@@ -10,7 +10,7 @@ The idea this module plants: **Stop things moving when you do not want them to**
 Rest State explained: why unkeyed values snap back at frame 0
 
 **Description**  
-Why things jump back to where they started, and why that helps you.
+Anything you have not keyed on a shot returns to its resting value when you switch. That is on purpose: every shot starts from the same clean baseline.
 
 ## What this video has to do
 

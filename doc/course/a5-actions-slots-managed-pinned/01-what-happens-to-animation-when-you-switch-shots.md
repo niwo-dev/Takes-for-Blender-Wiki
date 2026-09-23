@@ -10,7 +10,7 @@ The idea this module plants: **Why some objects follow the shot and some do not*
 What happens to my animation when I switch View Layers?
 
 **Description**  
-What happens to your animation when you switch shots.
+Every View Layer carries its own action, the container your keyframes live in. Switch, and Takes swaps the action. Anything with no keys there goes back to its Rest State.
 
 ## What this video has to do
 

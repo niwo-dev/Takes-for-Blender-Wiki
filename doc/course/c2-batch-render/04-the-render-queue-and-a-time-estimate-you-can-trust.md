@@ -10,7 +10,7 @@ The idea this module plants: **One click renders every shot**.
 Reading the render queue and getting a real time estimate
 
 **Description**  
-Read the render queue, and get a time estimate you can trust.
+Every shot shows its status, from Pending to Done or Failed. The queue also warns about shots with no camera before the long render starts.
 
 ## What this video has to do
 

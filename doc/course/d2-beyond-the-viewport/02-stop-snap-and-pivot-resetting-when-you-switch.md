@@ -10,7 +10,7 @@ The idea this module plants: **The video editor and your tools follow the shot**
 Snap settings reset when you switch scenes? Viewport Sync
 
 **Description**  
-Stop your snap and pivot settings changing when you switch.
+Blender keeps snap, pivot and similar tool settings per scene. Viewport Sync copies a change to every scene, so switching never swaps your tools.
 
 ## What this video has to do
 

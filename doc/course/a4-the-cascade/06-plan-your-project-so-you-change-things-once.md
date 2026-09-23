@@ -10,7 +10,7 @@ The idea this module plants: **Change one place, and every shot follows**.
 How to plan your tree - what belongs at Global, Scene and View Layer
 
 **Description**  
-How to set a project up so you change things in one place, not ten.
+What belongs on Global, what on a Scene, and what on a single View Layer. A short plan up front saves changing one setting in ten places later.
 
 ## What this video has to do
 

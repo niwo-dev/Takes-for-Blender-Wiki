@@ -10,7 +10,7 @@ The idea this module plants: **Your setup travels with the file**.
 Shared presets for a team, and why Lock Shared is on
 
 **Description**  
-Share one set of presets with your team, safely.
+Point the Shared folder at a place everyone can reach. Lock Shared Folder is on by default, so nobody overwrites the studio standard by accident.
 
 ## What this video has to do
 

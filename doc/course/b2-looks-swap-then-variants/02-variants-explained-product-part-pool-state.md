@@ -10,7 +10,7 @@ The idea this module plants: **Change the look without copying objects**.
 Variant Switch explained: Product, Part, Pool, State
 
 **Description**  
-The four words you need before you build a variant.
+A Product is the whole thing. Parts are its pieces, each with a pool of materials. A State is one named look that picks a material for every Part at once.
 
 ## What this video has to do
 

@@ -10,7 +10,7 @@ The idea this module plants: **Your render files name and sort themselves**.
 Your names become your folders: naming templates explained
 
 **Description**  
-How Takes names the things it makes, and how to change that.
+Takes names the actions, slots and takes it creates from templates. Edit a template to match your studio's naming. Existing links never break.
 
 ## What this video has to do
 

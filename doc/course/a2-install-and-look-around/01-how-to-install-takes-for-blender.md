@@ -10,7 +10,7 @@ The idea this module plants: **Where everything is, and how to read it**.
 How to install Takes for Blender (and which Blender version you need)
 
 **Description**  
-How to install it and where to find it in Blender.
+Takes needs Blender 5.0 or newer. Install the ZIP without unzipping it, switch it on, and open the Takes tab in the sidebar with N.
 
 ## What this video has to do
 

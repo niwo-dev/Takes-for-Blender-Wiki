@@ -10,7 +10,7 @@ The idea this module plants: **Change the look without copying objects**.
 Variant conflicts explained: collapse and shared objects
 
 **Description**  
-Why a swap sometimes changes the wrong thing, and how to spot it early.
+Two kinds of conflict: one object wearing two materials from the same pool, or one object shared by two Products. A warning badge shows either one before it bites.
 
 ## What this video has to do
 

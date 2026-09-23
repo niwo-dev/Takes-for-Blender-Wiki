@@ -10,7 +10,7 @@ The idea this module plants: **The panel tells you what is going on**.
 Takes panel locked? Snapshots, the restore question and Rebuild Cache
 
 **Description**  
-What to do if the panel locks up, or your setup disappears.
+Takes keeps a safety copy of your groups, tags and rules on disk. If the tree goes flat or the panel locks, answer the restore question before you change anything.
 
 ## What this video has to do
 

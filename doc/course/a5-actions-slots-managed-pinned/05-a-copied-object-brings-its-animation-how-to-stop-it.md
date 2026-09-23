@@ -10,7 +10,7 @@ The idea this module plants: **Why some objects follow the shot and some do not*
 Duplicated an object and the animation broke? Strip, Independent Slot, Off
 
 **Description**  
-Why a copied object brings its animation along, and how to stop it.
+A copy shares the original's animation. The On Duplicate setting chooses what happens instead: Strip it, give the copy its own slot, or leave it Off.
 
 ## What this video has to do
 

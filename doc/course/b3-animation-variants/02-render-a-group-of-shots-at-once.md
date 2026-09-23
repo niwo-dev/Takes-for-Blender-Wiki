@@ -10,7 +10,7 @@ The idea this module plants: **Different motions of the same product, side by si
 How to render a group of animations at once
 
 **Description**  
-Render a whole group of shots at once.
+Put the animation shots in one group, give the group its render settings, and render them all with one click. Each shot keeps its own camera and motion.
 
 ## What this video has to do
 

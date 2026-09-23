@@ -10,7 +10,7 @@ The idea this module plants: **Your setup travels with the file**.
 Where your settings live: config files and the storage legend
 
 **Description**  
-Where your settings are kept, and which ones follow you around.
+Which settings live in the .blend, which in the project folder, and which in your own user folder. The storage legend in the preferences shows it for each one.
 
 ## What this video has to do
 

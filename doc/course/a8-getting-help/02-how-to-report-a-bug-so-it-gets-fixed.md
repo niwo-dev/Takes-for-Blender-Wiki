@@ -10,7 +10,7 @@ The idea this module plants: **Fixes, bug reports, and where to ask**.
 How to report a bug in Takes: logging topics, export, email
 
 **Description**  
-How to send a bug report that actually gets it fixed.
+Switch on logging for the right topic, make the problem happen once, then export the log and send it. The log shows what happened, so the cause can be found.
 
 ## What this video has to do
 

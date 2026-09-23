@@ -10,7 +10,7 @@ The idea this module plants: **One click renders every shot**.
 Render this scene, all scenes, by tag, resume, or retry failed
 
 **Description**  
-Pick exactly which shots to render, including only the failed ones.
+The render menu offers this scene, all scenes, one chosen scene, or one tag. Finished shots are skipped, so a stopped run picks up where it left off.
 
 ## What this video has to do
 

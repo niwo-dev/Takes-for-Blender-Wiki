@@ -10,7 +10,7 @@ The idea this module plants: **Change the look without copying objects**.
 Swap one material per take with no setup: the Swap List
 
 **Description**  
-Swap one material for another, with no setup at all.
+Select an object, add it to the Swap List, and pick another material for any slot. Each take keeps its own swaps. Good for a quick change before you need full variants.
 
 ## What this video has to do
 

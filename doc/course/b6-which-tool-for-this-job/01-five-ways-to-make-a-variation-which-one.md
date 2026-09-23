@@ -10,7 +10,7 @@ The idea this module plants: **What you want to change decides the tool**.
 Take, View Layer, Variant, Preset or World - which one do I need?
 
 **Description**  
-Five ways to make a variation. Which one do you need?
+Take, View Layer, Variant, Preset or World. Ask one question, what actually changes, and the answer points at the right one.
 
 ## What this video has to do
 

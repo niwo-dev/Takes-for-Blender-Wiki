@@ -10,7 +10,7 @@ The idea this module plants: **The panel tells you what is going on**.
 How to open an existing project in Takes: Keep It All or Decide One by One
 
 **Description**  
-How to start using Takes on a file you already have.
+Open an older project and Takes asks one question about the animation, worlds and cameras it found. Keep It All leaves everything as it was. Decide One by One lets you sort each item.
 
 ## What this video has to do
 

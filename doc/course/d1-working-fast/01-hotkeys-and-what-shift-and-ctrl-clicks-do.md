@@ -10,7 +10,7 @@ The idea this module plants: **Keep your hands on the keyboard**.
 Takes hotkeys and the tree click modifiers
 
 **Description**  
-Work faster with the keyboard instead of the mouse.
+The keys that work in the Takes sidebar, and what Shift, Ctrl and Alt do when you click a tree row or an icon.
 
 ## What this video has to do
 

@@ -10,7 +10,7 @@ The idea this module plants: **Keep your hands on the keyboard**.
 Change twelve layers at once: Multiselect and Push to Selected
 
 **Description**  
-Change many shots at the same time, instead of one by one.
+Turn on Multiselect, pick the rows you want, and push a tag to all of them at once. Pushing an empty tag clears them in one go.
 
 ## What this video has to do
 

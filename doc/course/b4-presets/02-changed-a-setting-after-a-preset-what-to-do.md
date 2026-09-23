@@ -10,7 +10,7 @@ The idea this module plants: **Save render settings once, use them everywhere**.
 Changed a setting after applying a preset? Dirty state, Accept and Revert
 
 **Description**  
-You changed a setting after using a preset. Here is what to do.
+The preset is now marked as changed. Accept saves your change into it, Revert puts the saved value back, and Alt+click updates every scene that uses it.
 
 ## What this video has to do
 

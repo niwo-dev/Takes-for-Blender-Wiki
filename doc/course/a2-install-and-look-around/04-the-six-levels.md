@@ -10,7 +10,7 @@ The idea this module plants: **Where everything is, and how to read it**.
 Scene, View Layer, Take: the six levels explained
 
 **Description**  
-The six levels Takes is built on, in plain words.
+Global, Scene Group, Scene, View Layer Group, View Layer and Take. What each one holds, with an example, and why the deepest one always wins.
 
 ## What this video has to do
 

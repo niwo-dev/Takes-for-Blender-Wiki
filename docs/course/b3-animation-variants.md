@@ -9,13 +9,13 @@ icon: material/school
 ## 1. Several animations of one object in one file <span class="tks-min">6 <span class="tks-min__u">min</span></span> { #1-several-animations-of-one-object-in-one-file }
 <div class="tks-video" data-video="B3.1">Spin, tilt, explode: one animation per View Layer</div>
 
-Keep several different animations of the same thing in one file.
+Make one View Layer per motion, like a spin, a tilt and an exploded view. Each gets its own action, and the object returns to rest between them.
 
 Read more: [Make Animation Variants](../workflows/animation_variants.md) · [Rest State](../features/rest_state.md)
 
 ## 2. Render a group of shots at once <span class="tks-min">3 <span class="tks-min__u">min</span></span> { #2-render-a-group-of-shots-at-once }
 <div class="tks-video" data-video="B3.2">How to render a group of animations at once</div>
 
-Render a whole group of shots at once.
+Put the animation shots in one group, give the group its render settings, and render them all with one click. Each shot keeps its own camera and motion.
 
 Read more: [Batch Render Your Takes](../workflows/batch_rendering.md)

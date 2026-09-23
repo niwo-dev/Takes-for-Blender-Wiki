@@ -10,7 +10,7 @@ The idea this module plants: **Save render settings once, use them everywhere**.
 Render Presets explained: nine kinds, set once per tier
 
 **Description**  
-Save your render settings once and reuse them anywhere.
+Nine kinds of presets, from render quality to camera lens to world. Save one, attach it to any level of the tree, and every shot below it uses it.
 
 ## What this video has to do
 

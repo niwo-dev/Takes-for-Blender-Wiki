@@ -10,7 +10,7 @@ The idea this module plants: **Change one place, and every shot follows**.
 Why did my camera change? Blender's picker vs the Takes picker
 
 **Description**  
-Why your camera changed on its own, and how to stay in control.
+A camera picked in Blender's own scene settings is replaced at the next switch, because Takes owns that choice. Where to pick it so it stays.
 
 ## What this video has to do
 

@@ -10,7 +10,7 @@ The idea this module plants: **Stop things moving when you do not want them to**
 The seven mode buttons, and which ones cancel each other
 
 **Description**  
-The seven switches at the top, and why some turn each other off.
+Rest, Still, Value Lock, Autokey, Timeline, Variant Live and Diff State. What each one does while it is on, and which ones take turns so they never fight.
 
 ## What this video has to do
 

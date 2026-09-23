@@ -10,7 +10,7 @@ The idea this module plants: **One file instead of a folder of copies**.
 Stop saving scene_v7_FINAL.blend - one file, many looks
 
 **Description**  
-Why saving copy after copy goes wrong, and what to do instead.
+A folder of near-identical files, and no way to tell which one the client approved. See the same three rounds kept live in one file, one click apart.
 
 ## What this video has to do
 

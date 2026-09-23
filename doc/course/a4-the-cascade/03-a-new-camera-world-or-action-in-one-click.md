@@ -10,7 +10,7 @@ The idea this module plants: **Change one place, and every shot follows**.
 How to create a camera, world, action or compositor per tier in one click
 
 **Description**  
-Make a new camera, world or action in a single click.
+Create a camera, world, action or compositor right on the level that needs it, without leaving the Takes panel.
 
 ## What this video has to do
 

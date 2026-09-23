@@ -10,7 +10,7 @@ The idea this module plants: **Change one place, and every shot follows**.
 Bright or dim icon? The four clicks that set, open and clear an override
 
 **Description**  
-Four ways to click an icon, and what each one does.
+A bright icon means this row sets the value. A dim one means it comes from above. Which click sets it, which opens it, and which clears it again.
 
 ## What this video has to do
 

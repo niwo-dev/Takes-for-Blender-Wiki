@@ -10,7 +10,7 @@ The idea this module plants: **Change the look without copying objects**.
 How to build three finishes of one product, start to finish
 
 **Description**  
-Build three finishes of one product, start to finish.
+Make the Product, split it into Parts, fill each material pool, then save one State per finish. Every step on screen, on one product.
 
 ## What this video has to do
 

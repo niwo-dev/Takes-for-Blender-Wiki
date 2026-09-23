@@ -10,7 +10,7 @@ The idea this module plants: **Each shot gets its own camera and light**.
 Thumbnails in the tree and instant switching: Preview vs Preload
 
 **Description**  
-See a small preview of every shot, and make switching instant.
+Preview draws a small picture of every shot in the tree. Preload is a different thing: it builds shots ahead of time, so the first switch to each one is fast.
 
 ## What this video has to do
 

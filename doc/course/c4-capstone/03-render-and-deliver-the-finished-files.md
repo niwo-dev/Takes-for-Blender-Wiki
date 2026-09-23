@@ -10,7 +10,7 @@ The idea this module plants: **Everything from the course, on one product**.
 Ship it: named files, presets, one click, a versioned folder
 
 **Description**  
-Render the whole thing, and get tidy, versioned files.
+Named files, the right presets on every shot, one click to render it all, and a versioned folder you can hand over as it is.
 
 ## What this video has to do
 

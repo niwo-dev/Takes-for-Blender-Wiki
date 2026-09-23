@@ -10,7 +10,7 @@ The idea this module plants: **Your render files name and sort themselves**.
 How to make your own token: the focal length in the filename
 
 **Description**  
-Make your own name piece, like the lens length. No code needed.
+A custom token reads live scene data, like the camera's focal length, and puts it into a file name. You build it in the preferences, with no scripting.
 
 ## What this video has to do
 

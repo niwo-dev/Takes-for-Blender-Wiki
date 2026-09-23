@@ -10,7 +10,7 @@ The idea this module plants: **Everything from the course, on one product**.
 Run a review round on it: notes, new take, compare
 
 **Description**  
-Take that shot through a round of client feedback.
+The client sends notes. Write them on the take, start a new take, work them in, and click back and forth to compare before you send it back.
 
 ## What this video has to do
 

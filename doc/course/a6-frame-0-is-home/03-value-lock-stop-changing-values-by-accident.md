@@ -10,7 +10,7 @@ The idea this module plants: **Stop things moving when you do not want them to**
 How to stop changing values by accident: Value Lock
 
 **Description**  
-How to stop yourself nudging a value by accident.
+One click stores every unkeyed value in the scene, from light power to material roughness. Nudge one by accident and it snaps straight back. Keyframed values stay free.
 
 ## What this video has to do
 

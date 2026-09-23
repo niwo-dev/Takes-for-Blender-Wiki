@@ -10,7 +10,7 @@ The idea this module plants: **Stop things moving when you do not want them to**
 Still Mode vs Animation Mode - product stills that never scrub
 
 **Description**  
-How to keep a still image still, and let one shot move.
+Still Mode pins a shot to frame 0, so a product still never renders from the wrong frame. Set it once for the whole project, then let single shots switch back to Animation.
 
 ## What this video has to do
 

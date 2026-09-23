@@ -10,7 +10,7 @@ The idea this module plants: **Try a new idea without losing the old one**.
 How to make your first take - two camera angles, one click to switch
 
 **Description**  
-Make your first two takes and click between two camera angles.
+Start from Blender's default file, add a take with the + button, give each take its own camera, and flip between them. About ten minutes, start to finish.
 
 ## What this video has to do
 

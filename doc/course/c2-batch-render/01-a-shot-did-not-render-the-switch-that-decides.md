@@ -10,7 +10,7 @@ The idea this module plants: **One click renders every shot**.
 Why did my layer not render? The render toggle, not the selection
 
 **Description**  
-Why a shot did not render, and the one switch that decides.
+Batch render follows the render icon on each row, not what is selected or active. Shift+click the icon to switch a whole scene at once.
 
 ## What this video has to do
 

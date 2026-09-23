@@ -10,7 +10,7 @@ The idea this module plants: **Labels that sort, filter and set things for you**
 How to tag takes, filter the tree and render by tag
 
 **Description**  
-Label your shots, then show or render only the ones you want.
+Make coloured tags, put them on scenes and View Layers, and filter the tree to one tag. Select Tag in the render menu renders only the shots that carry it.
 
 ## What this video has to do
 

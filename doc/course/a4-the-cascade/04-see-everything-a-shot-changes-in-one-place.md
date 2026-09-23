@@ -10,7 +10,7 @@ The idea this module plants: **Change one place, and every shot follows**.
 Context Properties: every override of one layer on one page
 
 **Description**  
-See everything a shot has been given, in one place.
+The Context panel lists every override on the active View Layer: camera, world, action, compositor and presets. Set or clear any of them from there.
 
 ## What this video has to do
 

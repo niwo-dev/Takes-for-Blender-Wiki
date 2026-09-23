@@ -10,7 +10,7 @@ The idea this module plants: **Labels that sort, filter and set things for you**
 Let a tag pick the camera and world: Camera and Studio rules
 
 **Description**  
-Let a label choose the camera and the lighting for you.
+A Camera rule picks the camera and its lens preset. A Studio rule picks the world. Tag a shot, and its camera and lighting follow the tag.
 
 ## What this video has to do
 

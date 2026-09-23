@@ -10,7 +10,7 @@ The idea this module plants: **Fixes, bug reports, and where to ask**.
 Takes is in active development - how to send an idea and support the work
 
 **Description**  
-How to suggest an idea, and how to support the work.
+Takes is in active development, and user ideas shape the roadmap. How to send an idea so it can be built, and the ways to support the work.
 
 ## What this video has to do
 

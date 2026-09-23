@@ -10,7 +10,7 @@ The idea this module plants: **The video editor and your tools follow the shot**
 Video Sequencer shows the wrong take? Playhead follow explained
 
 **Description**  
-Why the video editor shows the wrong shot, and how to fix it.
+A scene strip only shows whichever take is live. With the video editor open, Takes applies the take of the strip under the playhead, so the preview matches the render.
 
 ## What this video has to do
 

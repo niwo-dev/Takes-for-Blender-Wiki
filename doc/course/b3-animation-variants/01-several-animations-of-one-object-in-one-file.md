@@ -10,7 +10,7 @@ The idea this module plants: **Different motions of the same product, side by si
 Spin, tilt, explode: one animation per View Layer
 
 **Description**  
-Keep several different animations of the same thing in one file.
+Make one View Layer per motion, like a spin, a tilt and an exploded view. Each gets its own action, and the object returns to rest between them.
 
 ## What this video has to do
 

@@ -10,7 +10,7 @@ The idea this module plants: **Change one place, and every shot follows**.
 The Cascade explained: set it once, every take inherits it
 
 **Description**  
-Set something once and let every shot use it.
+Give a scene a world, and every shot in it uses that world. Give one shot its own, and only that shot changes. This is the Cascade, the core of Takes.
 
 ## What this video has to do
 

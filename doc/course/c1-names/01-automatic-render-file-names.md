@@ -10,7 +10,7 @@ The idea this module plants: **Your render files name and sort themselves**.
 Filenames that write themselves: Smart Output tokens
 
 **Description**  
-Let Blender name your render files for you.
+Smart Output fills render paths from tokens like the scene, the take, the camera and the frame. Write the pattern once, and every shot names its own file.
 
 ## What this video has to do
 

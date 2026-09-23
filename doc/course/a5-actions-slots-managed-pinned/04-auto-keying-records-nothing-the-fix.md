@@ -10,7 +10,7 @@ The idea this module plants: **Why some objects follow the shot and some do not*
 Autokey not recording? Only Insert Available in Blender 5.2, and the fix
 
 **Description**  
-Auto-keying not recording? Here is the cause, and the fix.
+Since Blender 5.2, Only Insert Available is on by default and skips every channel that has never been keyed. Let Takes Manage switches it off while Auto Keying is on.
 
 ## What this video has to do
 

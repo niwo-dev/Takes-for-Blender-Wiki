@@ -10,7 +10,7 @@ The idea this module plants: **Keep your hands on the keyboard**.
 Pie menus in Takes: navigation, render, modes, keyframes
 
 **Description**  
-Flick menus that open right where your cursor is.
+Navigation, render, modes, keyframes and more, each opening under your cursor with eight slots you fill yourself. Only the Navigation pie is on at first.
 
 ## What this video has to do
 

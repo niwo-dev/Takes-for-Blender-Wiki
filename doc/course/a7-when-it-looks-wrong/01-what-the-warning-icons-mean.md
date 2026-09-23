@@ -10,7 +10,7 @@ The idea this module plants: **The panel tells you what is going on**.
 What the warning badges mean, and the fix button behind each
 
 **Description**  
-What the warning icons mean, and how to clear them.
+Badges only appear when something is wrong, like an unsaved preset change or a missing preset file. Click one to see the problem and the button that fixes it.
 
 ## What this video has to do
 

@@ -10,7 +10,7 @@ The idea this module plants: **What you want to change decides the tool**.
 Five real jobs solved the right way: a finish, lighting, environment, quality tier, review round
 
 **Description**  
-Five real jobs, and the right tool for each one.
+Three finishes, three lighting setups, three environments, draft and final quality, and a client note. The right tool for each, and the tempting wrong one.
 
 ## What this video has to do
 

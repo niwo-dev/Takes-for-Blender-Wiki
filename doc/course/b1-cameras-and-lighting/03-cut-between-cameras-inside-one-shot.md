@@ -10,7 +10,7 @@ The idea this module plants: **Each shot gets its own camera and light**.
 How to cut between cameras inside one take: Multi-Cam
 
 **Description**  
-Cut between several cameras inside one shot.
+Multi-Cam gives each take its own list of cuts, each a frame and a camera. Blender switches at every cut, in the viewport, in playback and in the render.
 
 ## What this video has to do
 

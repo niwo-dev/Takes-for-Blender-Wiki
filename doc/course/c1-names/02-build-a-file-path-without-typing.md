@@ -10,7 +10,7 @@ The idea this module plants: **Your render files name and sort themselves**.
 How to build an output path by clicking: Build Syntax
 
 **Description**  
-Build a file path by clicking, instead of typing it.
+Build Syntax opens a grid of tokens. Click them into order, check the live preview, and apply. A red field tells you what is wrong before you render.
 
 ## What this video has to do
 

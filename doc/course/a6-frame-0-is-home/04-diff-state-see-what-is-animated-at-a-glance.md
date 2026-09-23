@@ -10,7 +10,7 @@ The idea this module plants: **Stop things moving when you do not want them to**
 Diff State: see which objects are keyed, inherited or drifted
 
 **Description**  
-See at a glance which objects are animated, and which are not.
+Colours every object by where its values come from: blue if this take keys it, pink if a level above does, teal if nothing does, orange if it has drifted. Nothing in the file changes.
 
 ## What this video has to do
 

@@ -10,7 +10,7 @@ The idea this module plants: **Fixes, bug reports, and where to ask**.
 Blender slow when switching takes? Profiler, Process Monitor and Preload
 
 **Description**  
-What to do when Blender feels slow, and how to find out why.
+The Switch Profiler times every step of a switch. The Process Monitor shows what runs in the background. Preload builds shots ahead, so the first switch is quick.
 
 ## What this video has to do
 

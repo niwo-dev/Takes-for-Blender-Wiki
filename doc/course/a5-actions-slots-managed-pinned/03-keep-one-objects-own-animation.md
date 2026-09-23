@@ -10,7 +10,7 @@ The idea this module plants: **Why some objects follow the shot and some do not*
 How to keep one object's own animation while the rest follows the take
 
 **Description**  
-How to let one object keep its own animation.
+Click the pin icon on the object's row in the Watchlist, then assign its action by hand. Click the pin again to hand the object back to the shot.
 
 ## What this video has to do
 
