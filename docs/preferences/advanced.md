@@ -12,8 +12,8 @@ A handful of preferences only surface as side-effects of other operations:
 
 | Setting | Where | Purpose |
 |---------|-------|---------|
-| **Smart Output Default Directory** | Used when a fresh render preset is created. | Default starting path (`//`). |
-| **Smart Output Default File Name** | Same. | Default file name pattern (`[view_layer]_####.[file_format]`). |
+| **Default Folder** (Smart Output) | Used when a fresh render preset is created. | Default starting path (`//`). |
+| **Default File Name** (Smart Output) | Same. | Default file name pattern (`[view_layer]_####.[file_format]`). |
 | Override flags (~25) | Internal state | Track which row heights and preset storage tiers you overrode. Auto-managed. |
 | Expansion flags (~50) | Internal state | Remember which collapsibles were left open. |
 

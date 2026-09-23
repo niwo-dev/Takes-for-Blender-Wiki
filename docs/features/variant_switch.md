@@ -81,8 +81,6 @@ That collection is what the Part's materials are swapped on. ++alt++-click the b
     The Product's own collection must be set first — a Part's collection is chosen
     from inside it. Hover the button to see which collection is linked right now.
 
-    The picker writes through **{{ op('tks.vsw_set_part_collection').bl_label }}**.
-
 ## :material-shape: Pool-based Variant Model
 
 There is no mode selector to learn. Every Part owns its own ordered pool of materials.
@@ -133,15 +131,9 @@ Variants resolve through the [cascade](cascade.md), so a scene, a shot or a sing
 
 Click the **variant** icon on any tree row to pick a State for that tier. The same six tiers apply, and the deeper one wins.
 
-??? info "Set and clear buttons, tier by tier"
-    | Tier | Set / clear buttons |
-    |------|---------------------|
-    | **Global** | **{{ op('tks.vsw_set_global_variant').bl_label }}** / **{{ op('tks.vsw_clear_global_variant').bl_label }}** |
-    | **Scene Group** | Row pickers write the group tier; **{{ op('tks.vsw_group_clear_variant').bl_label }}** empties every member. |
-    | **Scene** | **{{ op('tks.vsw_set_scene_variant').bl_label }}** / **{{ op('tks.vsw_clear_scene_variant').bl_label }}** |
-    | **View Layer Group** | Same pattern as Scene Group, at the View Layer Group tier. |
-    | **View Layer** | **{{ op('tks.vsw_set_vl_variant').bl_label }}** / **{{ op('tks.vsw_clear_vl_variant').bl_label }}** |
-    | **Take** | **{{ op('tks.take_set_variant').bl_label }}** / **{{ op('tks.take_clear_variant').bl_label }}** — see [Take Variants](cascade.md#version-variants). |
+??? info "Set and clear, tier by tier"
+    Every tier from Global to View Layer is set and cleared from its row's variant picker.
+    A Take also has **{{ op('tks.take_set_variant').bl_label }}** / **{{ op('tks.take_clear_variant').bl_label }}** — see [Take Variants](cascade.md#version-variants).
 
 ??? info "Inside a variant popover"
     Every popover looks the same. Each assigned Product gets a row of

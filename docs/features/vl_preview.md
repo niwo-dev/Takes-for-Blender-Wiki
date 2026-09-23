@@ -61,11 +61,6 @@ Both render buttons cover **every render-enabled View Layer in the queue**, not 
     ++alt++ + click does not widen the scope. See
     [Keyboard Shortcuts](../interface/hotkeys.md) for the full list.
 
-??? info "Two older commands with no button"
-    **{{ op('tks.render_all_previews').bl_label }}** and
-    **{{ op('tks.render_all_previews_bg').bl_label }}** still work, but nothing in the
-    UI runs them. Reach them from Blender's operator search (++f3++).
-
 ## :material-image-edit: Select Preview Image
 
 Sometimes the render says nothing useful — a wireframe layer, for example. Then use your own image.

@@ -63,7 +63,7 @@ Wherever a setting carries a small **ⓘ** badge, **{{ op('tks.pref_help').bl_la
     As you type, anything that doesn't match goes dim — whole tabs and sub-tabs
     included. So you can see at a glance where a setting lives.
 
-    Empty the field (**{{ op('tks.clear_pref_search').bl_label }}**) to bring everything back.
+    Empty the field to bring everything back.
 
 ## :material-folder-cog: Preference Configurations
 

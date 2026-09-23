@@ -106,8 +106,8 @@ Rename a row inline. Click the dot at its left to make it active.
 ??? info "Rename and switch buttons"
     | Action | What it does |
     | -------- | -------------- |
-    | **{{ op('tks.rename_item').bl_label }}** | Inline rename for any tree row. Type the name, ++enter++ to confirm, ++esc++ to cancel. Works in tree and split view. Groups use their own dialog instead — see [Scene & View Layer Groups](#scene-view-layer-groups). |
-    | **{{ op('tks.switch_scene').bl_label }}** / **{{ op('tks.switch_viewlayer').bl_label }}** | The selector dot at the left of each row. Clicking it makes that Scene or View Layer active, which triggers the cascade to apply its overrides. |
+    | **{{ op('tks.rename_item').bl_label }}** | Inline rename for any tree row. Type the name, ++enter++ to confirm, ++esc++ to cancel. Works in tree and split view, and on group rows too. |
+    | **{{ op('tks.switch_viewlayer').bl_label }}** | The selector dot at the left of each row. Clicking it makes that Scene or View Layer active, which triggers the cascade to apply its overrides. |
     | **{{ op('tks.activate_take').bl_label }}** | The same dot on a Take row. Clicking it makes that Take live and applies its cascade overrides. |
 
 ### :material-arrow-all: Moving & Retargeting
@@ -118,8 +118,6 @@ The arrows reorder rows. Retarget moves one into another group.
     | Action | What it does |
     | -------- | -------------- |
     | **{{ op('tks.move_all_viewlayer_item').bl_label }}** | The up / down arrows in the tree's side column. Moves the selected Scene or View Layer among its siblings. A Scene header travels with all its child View Layers. |
-    | **{{ op('tks.move_viewlayer').bl_label }}** | The split-view equivalent. Reorders a View Layer within its group. |
-    | **{{ op('tks.move_to_group').bl_label }}** | Moves an item into a group picked from a dropdown. Scenes into Scene Groups, View Layers into View Layer Groups. |
     | **{{ op('tks.retarget_tree_item').bl_label }}** | Does the right thing for the row you selected: a Scene moves to another Scene Group, a View Layer moves to another group in the same scene, and a whole View Layer Group merges into another. |
 
 ### :material-delete-outline: Deleting
@@ -235,9 +233,7 @@ Ungroup sends rows back to *Ungrouped*. You can also rename, delete and bulk-sel
     | -------- | -------------- |
     | **{{ op('tks.group_or_ungroup').bl_label }}** | The dispatcher behind the Group / Ungroup shortcuts. Grouping wraps the selected Scenes or View Layers in a new group; ungrouping sends them back to *Ungrouped*. |
     | **{{ op('tks.ungroup_scenes').bl_label }}** / **{{ op('tks.ungroup_vls').bl_label }}** | Move the selected Scenes / View Layers back to *Ungrouped*. Works on the active row or the whole multi-selection. |
-    | **{{ op('tks.rename_group').bl_label }}** | Renames a group via a popup dialog. Groups don't use the inline row rename. |
     | **{{ op('tks.delete_group').bl_label }}** | Deletes a group and moves its members to *Ungrouped*. The default group can't be deleted. |
-    | **{{ op('tks.toggle_group_select').bl_label }}** | The group row's checkbox in multi-select mode. Checks or unchecks **every member** at once. |
 
 ## :material-layers-triple: Takes {: #view-layer-versions }
 
