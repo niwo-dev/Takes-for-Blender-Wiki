@@ -1,10 +1,11 @@
 ---
 icon: material/arrow-decision
+description: "Non-destructive scene states in Blender: set a camera, world or action once and let every shot below inherit it."
 ---
 
 # Cascade System
 
-The cascade decides which camera, world, action, compositor and presets a take uses.
+The cascade gives every shot a non-destructive scene state. It decides which camera, world, action, compositor and presets a take uses.
 
 You set a value on any level. Deeper levels win over higher ones.
 

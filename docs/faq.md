@@ -1,5 +1,6 @@
 ---
 icon: material/help-circle
+description: "Quick answers about Takes for Blender: versions, render engines, shot management and other add-ons."
 ---
 
 # FAQ
@@ -27,6 +28,15 @@ icon: material/help-circle
     Generally yes. Takes for Blender uses standard Blender API and
     does not monkey-patch core functionality. If you encounter
     conflicts, please report them.
+
+??? question "Is Takes a shot manager?"
+    Yes. Takes manages shots, scenes and View Layers in one tree. Each shot keeps
+    its own camera, world, action, materials and render preset. See
+    [The Takes System](features/takes.md).
+
+??? question "Can Takes batch render material variants?"
+    Yes. Set up your finishes with [Variant Switch](features/variant_switch.md),
+    assign one per take, then run [Batch Render](features/batch_render.md).
 
 ## :material-arrow-decision: Takes & Cascade
 

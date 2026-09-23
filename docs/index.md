@@ -4,6 +4,7 @@ hide:
   - toc
   - title
 title: Home
+description: "Takes for Blender is a scene and shot management add-on for Blender 5.0+. Organize shots in one tree, switch material variants and batch render every take."
 ---
 
 <!-- The heading below is deliberate. Material invents a heading from the front
@@ -12,7 +13,9 @@ title: Home
      that is what the browser tab, the menu row and the breadcrumb should keep
      saying; only the heading on the page itself is spelled out in full. -->
 
-# Takes for Blender — User Guide
+# Takes for Blender — Scene & Shot Management
+
+The shot manager and scene organizer for Blender 5.0+. Keep every shot, look and render setting in one tree, then batch render them all in one click.
 
 <div class="grid cards" markdown>
 
@@ -47,6 +50,14 @@ title: Home
     The few ideas behind Takes — the tree, the cascade, and the review loop.
 
     [:octicons-arrow-right-24: The Takes System](features/takes.md)
+
+-   :material-scale-balance:{ .lg .middle } **Coming from another tool?**
+
+    ---
+
+    How Takes compares with shot managers, render queues and View Layer toggling.
+
+    [:octicons-arrow-right-24: Compare Takes](comparisons.md)
 
 -   :material-view-dashboard:{ .lg .middle } **Inside Takes**
 
@@ -91,15 +102,15 @@ title: Home
 
 | | |
 |---|---|
-| :material-movie-open: **Takes Tree** | One tree for your whole project: Scene Groups → Scenes → View Layer Groups → View Layers → Takes. |
-| :material-arrow-decision: **The Cascade** | Set a camera, world, action or preset on any level. The deepest level wins, so a single take can override everything above it. |
-| :material-swap-horizontal: **Variant Switch** | Ship one product in many finishes. Takes swaps the materials for you. |
+| :material-movie-open: **Takes Tree** | Your shot and scene manager. One tree for the whole project: Scene Groups → Scenes → View Layer Groups → View Layers → Takes. |
+| :material-arrow-decision: **The Cascade** | Non-destructive scene states. Set a camera, world, action or preset on any level; the deepest level wins. |
+| :material-swap-horizontal: **Variant Switch** | Material variants without duplicate objects. Ship one product in many finishes; Takes swaps the materials. |
 | :material-tag-multiple: **Tags & Rules** | Label anything, then let a tag apply a whole bundle of presets. |
-| :material-play-box-multiple: **Batch Render** | Render every take in one go, in front of you or quietly in the background. |
-| :material-palette-swatch: **Render Presets** | Save render settings once and reuse them anywhere in the tree. |
+| :material-play-box-multiple: **Batch Render** | Batch rendering for every take, in front of you or quietly in the background. |
+| :material-palette-swatch: **Render Presets** | Save render settings once and reuse them on any shot in the tree. |
 | :material-form-textbox: **Smart Output** | Build file names from tokens, so every render lands in the right folder. |
-| :material-ghost: **Rest State** | A neutral pose your unkeyed properties fall back to, so takes never drift. |
-| :material-image-multiple: **View Layer Preview** | A live thumbnail beside every row, so you can see what you are picking. |
+| :material-ghost: **Rest State** | A neutral pose for unkeyed properties, so animation variations never drift. |
+| :material-image-multiple: **View Layer Preview** | A live thumbnail beside every row, so you can see which shot you pick. |
 | :material-earth: **Globals Panel** | One place for project-wide settings, presets, rules, tags and variants. |
 
 !!! tip "Which Blender do I need?"

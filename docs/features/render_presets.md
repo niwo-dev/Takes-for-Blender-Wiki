@@ -1,10 +1,11 @@
 ---
 icon: material/palette-swatch
+description: "Blender render presets you save once and assign to any scene, View Layer or shot."
 ---
 
 # Render Presets
 
-A **preset** is a saved snapshot of render settings.
+A **render preset** is a saved snapshot of Blender render settings.
 
 You assign it through the [cascade](cascade.md), so a whole scene or a single shot renders the way you set it up once.
 

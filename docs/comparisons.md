@@ -1,14 +1,38 @@
 ---
 icon: material/scale-balance
+description: "Takes for Blender compared with Shot Manager, Renderset, Polyviews, Render+ and View Layer toggling."
 ---
 
-# Comparing Takes for Blender
+# Takes vs. Other Blender Shot Managers
 
-Takes manages the **stage**: the camera, world, materials, action and render settings behind every shot.
+Takes is a shot manager for the **stage**: the camera, world, materials, action and render settings behind every shot.
 
 Use it when one file has to deliver many looks — colourways, lighting setups, product variants.
 
 The addons below solve neighbouring problems, and most of them sit happily next to Takes.
+
+---
+
+## :material-history: 0. The Built-in Ways
+
+Most artists start with what Blender offers out of the box. Each way works — until the shot count grows.
+
+| Traditional workflow | Where it stops scaling | What Takes does instead |
+|---|---|---|
+| **One Scene per shot** (linked copies) | Every change must be repeated in every scene. | One change at the top flows down the tree. |
+| **Toggling View Layers** and collection visibility by hand | Easy to forget a toggle before a render. | Each View Layer remembers its camera, world, action and preset. |
+| **One .blend per variant** | Five finishes means five files to keep in sync. | Material variants live in one file and switch per shot. |
+| **Duplicated objects** for each colourway | Heavy files, edits made twice. | Materials swap on the same object; nothing is duplicated. |
+| **Render one shot at a time** | You babysit the machine. | Batch rendering runs every take in one go. |
+
+??? info "Why a tree, and not a list"
+    A classic shot manager keeps a flat list of shots. Each shot is set up on
+    its own.
+
+    Takes rethinks that list as a hierarchy. A camera set on a Scene applies to
+    every shot inside it, until one shot says otherwise. That is the
+    [Cascade](features/cascade.md) — non-destructive scene states, built on
+    Blender's own Scenes, View Layers and action slots.
 
 ---
 
@@ -101,4 +125,4 @@ Choose Takes when you want:
 - **Non-destructive overrides** — swap a material or an action without duplicating geometry.
 - **The cascade** — high-level settings flow down to every variation automatically.
 - **Data safety** — a warning before animation data is lost in a transition.
-- **One panel** — scene manager, variant switcher and batch queue in a single place.
+- **One panel** — shot manager, scene organizer, variant switcher and batch renderer in a single place.

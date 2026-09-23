@@ -1,5 +1,6 @@
 ---
 icon: material/account-group
+description: "Set up a Blender project so a whole team shares one shot structure — Takes as a production pipeline tool."
 ---
 
 # Set Up a Project for a Team

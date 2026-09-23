@@ -1,10 +1,13 @@
 ---
 icon: material/palette
+description: "Step by step: render one product in several finishes. A look dev workflow for Blender."
 ---
 
 # Workflow: Material Variants
 
 When one product has to render in several finishes, using the Variant Switch system.
+
+A look dev workflow: build every finish once, then compare them shot by shot.
 
 ## :material-script-text-outline: Scenario
 

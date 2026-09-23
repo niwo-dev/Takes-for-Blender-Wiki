@@ -1,5 +1,6 @@
 ---
 icon: material/play-box-multiple
+description: "Step by step: render every View Layer with its own camera, world and preset in one click."
 ---
 
 # Workflow: Batch Rendering

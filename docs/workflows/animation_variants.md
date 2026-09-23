@@ -1,10 +1,11 @@
 ---
 icon: material/animation-play
+description: "Step by step: several animation variations in one .blend file, each with its own camera. A Blender 5.0 animation workflow."
 ---
 
 # Workflow: Animation Variants
 
-When every animation needs its own View Layer and camera. For example: a product that spins, tilts and explodes.
+Animation variations in one file: when every animation needs its own View Layer and camera. This workflow uses Blender 5.0's action slots. For example: a product that spins, tilts and explodes.
 
 ## :material-cog-outline: Setup
 

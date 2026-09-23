@@ -1,10 +1,11 @@
 ---
 icon: material/ghost
+description: "Keep a neutral pose for unkeyed properties so animation variations in Blender never drift between shots."
 ---
 
 # Rest State
 
-The **Rest Action** is your neutral baseline. Every property you have *not* keyed falls back to it.
+The **Rest Action** is your neutral baseline. Every property you have *not* keyed falls back to it. It keeps animation variations clean when you switch between shots.
 
 Those baseline values live at frame 0. Takes keeps them safe while you animate each View Layer differently.
 

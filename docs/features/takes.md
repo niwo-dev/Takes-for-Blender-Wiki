@@ -1,10 +1,11 @@
 ---
 icon: material/file-tree
+description: "How Takes organizes Blender scenes, View Layers and shots into one tree — a scene manager built on Blender's own data."
 ---
 
 # The Takes System
 
-Takes for Blender turns your scenes and View Layers into one organized tree.
+Takes for Blender is a scene manager for your whole project. It turns your Scenes and View Layers into one organized tree of shots.
 
 Every level of that tree can carry its own camera, world, action, compositor and render setup.
 

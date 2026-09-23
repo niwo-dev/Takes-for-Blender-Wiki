@@ -1,5 +1,6 @@
 ---
 icon: material/download
+description: "Install Takes for Blender, the shot and scene management add-on for Blender 5.0+."
 ---
 
 # Installation

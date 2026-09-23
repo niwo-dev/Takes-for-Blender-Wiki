@@ -1,5 +1,6 @@
 ---
 icon: material/folder-cog
+description: "Name Blender render output from tokens, so every shot and variant lands in the right folder."
 ---
 
 # Smart Output

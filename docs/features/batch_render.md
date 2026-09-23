@@ -1,10 +1,11 @@
 ---
 icon: material/play-box-multiple
+description: "Batch render every shot and variant in Blender in one go, in the foreground or in the background."
 ---
 
 # Batch Render
 
-Render many takes in one go. Each take brings its own camera, world, action, presets and variant from the [cascade](cascade.md).
+Batch rendering for Blender: render every shot and variant in one go. Each take brings its own camera, world, action, presets and variant from the [cascade](cascade.md).
 
 ## :material-shape: Render Modes
 

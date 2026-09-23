@@ -1,10 +1,11 @@
 ---
 icon: material/swap-horizontal
+description: "Material variants in Blender without duplicate objects. Set up finishes once and switch them per shot."
 ---
 
 # Variant Switch
 
-Show one product in several finishes — Gold, Silver, Matte Black — without rebuilding anything.
+Material variants for Blender: show one product in several finishes — Gold, Silver, Matte Black — without rebuilding anything.
 
 Set the looks up once. Takes swaps the materials for you, and every shot can ask for a different one.
 
