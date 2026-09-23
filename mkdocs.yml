@@ -105,31 +105,31 @@ nav:
 
   - Course:
     - course/index.md
-    - Stage A · Think in Takes:
+    - Stage A · Learn the basics:
       - "A1 · Why Takes exists": course/a1-why-takes.md
       - "A2 · Install and look around": course/a2-install-and-look-around.md
       - "A3 · Your first take": course/a3-your-first-take.md
-      - "A4 · The Cascade": course/a4-the-cascade.md
-      - "A5 · Actions, slots, managed and pinned": course/a5-actions-slots-managed-pinned.md
-      - "A6 · Frame 0 is home": course/a6-frame-0-is-home.md
-      - "A7 · When it looks wrong": course/a7-when-it-looks-wrong.md
+      - "A4 · Set it once: the Cascade": course/a4-the-cascade.md
+      - "A5 · Animation when you switch shots": course/a5-actions-slots-managed-pinned.md
+      - "A6 · Modes that keep your scene steady": course/a6-frame-0-is-home.md
+      - "A7 · When something looks wrong": course/a7-when-it-looks-wrong.md
       - "A8 · Getting help": course/a8-getting-help.md
-    - Stage B · Build looks and shots:
+    - Stage B · Set up cameras, lights and looks:
       - "B1 · Cameras and lighting": course/b1-cameras-and-lighting.md
-      - "B2 · Looks: swap first, then variants": course/b2-looks-swap-then-variants.md
-      - "B3 · Animation variants": course/b3-animation-variants.md
-      - "B4 · Presets": course/b4-presets.md
-      - "B5 · Tags and Rules": course/b5-tags-and-rules.md
+      - "B2 · Materials and finishes": course/b2-looks-swap-then-variants.md
+      - "B3 · Several animations in one file": course/b3-animation-variants.md
+      - "B4 · Render presets": course/b4-presets.md
+      - "B5 · Tags and rules": course/b5-tags-and-rules.md
       - "B6 · Which tool for this job?": course/b6-which-tool-for-this-job.md
-    - Stage C · Ship it:
-      - "C1 · Names": course/c1-names.md
-      - "C2 · Batch Render": course/c2-batch-render.md
-      - "C3 · Project and team": course/c3-project-and-team.md
-      - "C4 · Capstone: one product, end to end": course/c4-capstone.md
-    - Stage D · Power tools:
-      - "D1 · Working fast": course/d1-working-fast.md
-      - "D2 · Beyond the viewport": course/d2-beyond-the-viewport.md
-      - "D3 · The AI Assistant": course/d3-ai-assistant.md
+    - Stage C · Render and deliver:
+      - "C1 · Automatic file names": course/c1-names.md
+      - "C2 · Batch render: every shot at once": course/c2-batch-render.md
+      - "C3 · Share a project with a team": course/c3-project-and-team.md
+      - "C4 · A full project, start to finish": course/c4-capstone.md
+    - Stage D · Work faster:
+      - "D1 · Hotkeys and pie menus": course/d1-working-fast.md
+      - "D2 · Takes in other editors": course/d2-beyond-the-viewport.md
+      - "D3 · Use an AI assistant with Takes": course/d3-ai-assistant.md
 
   - Guides:
     - Working with Takes:

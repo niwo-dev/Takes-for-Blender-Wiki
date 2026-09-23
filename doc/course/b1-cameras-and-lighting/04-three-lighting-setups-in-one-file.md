@@ -1,8 +1,8 @@
 # B1.4 · Three lighting setups in one file
 
-**Stage B · Build looks and shots** — B1 · Cameras and lighting · **5 min** · video 41 of 80
+**Stage B · Set up cameras, lights and looks** — B1 · Cameras and lighting · **5 min** · video 41 of 80
 
-The idea this module plants: **a shot is a camera and a light, per level**.
+The idea this module plants: **Each shot gets its own camera and light**.
 
 ## On YouTube
 

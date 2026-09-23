@@ -1,8 +1,8 @@
 # A2.2 · A tour of the interface
 
-**Stage A · Think in Takes** — A2 · Install and look around · **7 min** · video 6 of 80
+**Stage A · Learn the basics** — A2 · Install and look around · **7 min** · video 6 of 80
 
-The idea this module plants: **your scene is a tree**.
+The idea this module plants: **Where everything is, and how to read it**.
 
 ## On YouTube
 

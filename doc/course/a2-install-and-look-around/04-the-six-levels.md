@@ -1,8 +1,8 @@
 # A2.4 · The six levels
 
-**Stage A · Think in Takes** — A2 · Install and look around · **4 min** · video 8 of 80
+**Stage A · Learn the basics** — A2 · Install and look around · **4 min** · video 8 of 80
 
-The idea this module plants: **your scene is a tree**.
+The idea this module plants: **Where everything is, and how to read it**.
 
 ## On YouTube
 

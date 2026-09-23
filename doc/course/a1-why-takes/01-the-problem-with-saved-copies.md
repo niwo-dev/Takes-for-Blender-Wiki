@@ -1,8 +1,8 @@
 # A1.1 · The problem with saved copies
 
-**Stage A · Think in Takes** — A1 · Why Takes exists · **4 min** · video 2 of 80
+**Stage A · Learn the basics** — A1 · Why Takes exists · **4 min** · video 2 of 80
 
-The idea this module plants: **you branch instead of duplicating**.
+The idea this module plants: **One file instead of a folder of copies**.
 
 ## On YouTube
 

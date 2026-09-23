@@ -31,11 +31,11 @@ OUT = WIKI / "doc" / "course"
 sys.path.insert(0, str(WIKI / "dev"))
 from context_data import CONTEXT  # noqa: E402
 
-STAGES = {"A": "Think in Takes", "B": "Build looks and shots",
-          "C": "Ship it", "D": "Power tools"}
+STAGES = {"A": "Learn the basics", "B": "Set up cameras, lights and looks",
+          "C": "Render and deliver", "D": "Work faster"}
 
 TITLE = re.compile(r"^# (?P<id>[A-D]\d+) · (?P<name>.+)$", re.M)
-IDEA = re.compile(r"the idea here is that \*\*(?P<idea>.+?)\*\*\.", re.M)
+IDEA = re.compile(r"^\d+ lessons? · [^\n]*? · \*\*(?P<idea>.+?)\*\*\.", re.M)
 LESSON = re.compile(
     r'^## (?P<n>\d+)\. (?P<title>.+?)\s*<span class="tks-min">(?P<min>\d+)'
     r'.*?$\n<div class="tks-video"[^>]*>(?P<seo>.*?)</div>\n\n'

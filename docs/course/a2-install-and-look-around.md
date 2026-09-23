@@ -4,9 +4,9 @@ icon: material/school
 
 # A2 · Install and look around
 
-4 lessons · 19 min · the idea here is that **your scene is a tree**.
+4 lessons · 19 min · **Where everything is, and how to read it**.
 
-## 1. Install it <span class="tks-min">3 <span class="tks-min__u">min</span></span> { #1-install-it }
+## 1. How to install Takes for Blender <span class="tks-min">3 <span class="tks-min__u">min</span></span> { #1-how-to-install-takes-for-blender }
 <div class="tks-video" data-video="A2.1">How to install Takes for Blender (and which Blender version you need)</div>
 
 How to install it and where to find it in Blender.
@@ -20,7 +20,7 @@ A quick look at every part of the add-on, so you know where things are.
 
 Read more: [Navigation Panel](../interface/navigation_panel.md)
 
-## 3. Reading a tree row <span class="tks-min">5 <span class="tks-min__u">min</span></span> { #3-reading-a-tree-row }
+## 3. What the icons on each row mean <span class="tks-min">5 <span class="tks-min__u">min</span></span> { #3-what-the-icons-on-each-row-mean }
 <div class="tks-video" data-video="A2.3">How to read the Takes tree - the nine icons on every row</div>
 
 What the small icons on every row are telling you.

@@ -4,23 +4,23 @@ icon: material/school
 
 # B1 · Cameras and lighting
 
-5 lessons · 23 min · the idea here is that **a shot is a camera and a light, per level**.
+5 lessons · 23 min · **Each shot gets its own camera and light**.
 
-## 1. One camera per take <span class="tks-min">4 <span class="tks-min__u">min</span></span> { #1-one-camera-per-take }
+## 1. Give every shot its own camera <span class="tks-min">4 <span class="tks-min__u">min</span></span> { #1-give-every-shot-its-own-camera }
 <div class="tks-video" data-video="B1.1">One camera per take - how to add and switch cameras</div>
 
 Give every shot its own camera.
 
 Read more: [Context Properties](../interface/context_properties.md) · [The Cascade](../features/cascade.md)
 
-## 2. Showing only the camera you use <span class="tks-min">4 <span class="tks-min__u">min</span></span> { #2-showing-only-the-camera-you-use }
+## 2. Hide the cameras you are not using <span class="tks-min">4 <span class="tks-min__u">min</span></span> { #2-hide-the-cameras-you-are-not-using }
 <div class="tks-video" data-video="B1.2">Too many cameras in the viewport? Isolate: Single or Multi Camera</div>
 
 Hide the cameras you are not using right now.
 
 Read more: [Show One Camera at a Time](../workflows/show_one_camera.md)
 
-## 3. Cutting between cameras <span class="tks-min">6 <span class="tks-min__u">min</span></span> { #3-cutting-between-cameras }
+## 3. Cut between cameras inside one shot <span class="tks-min">6 <span class="tks-min__u">min</span></span> { #3-cut-between-cameras-inside-one-shot }
 <div class="tks-video" data-video="B1.3">How to cut between cameras inside one take: Multi-Cam</div>
 
 Cut between several cameras inside one shot.
@@ -34,7 +34,7 @@ Keep several lighting setups in one file and switch between them.
 
 Read more: [The Cascade](../features/cascade.md) · [Which Tool for the Job](../features/which_tool.md)
 
-## 5. Thumbnails and instant switching <span class="tks-min">4 <span class="tks-min__u">min</span></span> { #5-thumbnails-and-instant-switching }
+## 5. Shot thumbnails and instant switching <span class="tks-min">4 <span class="tks-min__u">min</span></span> { #5-shot-thumbnails-and-instant-switching }
 <div class="tks-video" data-video="B1.5">Thumbnails in the tree and instant switching: Preview vs Preload</div>
 
 See a small preview of every shot, and make switching instant.

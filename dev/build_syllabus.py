@@ -38,14 +38,15 @@ BLURB = {
 }
 
 STAGES = [
-    ("A", "Think in Takes"),
-    ("B", "Build looks and shots"),
-    ("C", "Ship it"),
-    ("D", "Power tools"),
+    ("A", "Learn the basics"),
+    ("B", "Set up cameras, lights and looks"),
+    ("C", "Render and deliver"),
+    ("D", "Work faster"),
 ]
 
 TITLE = re.compile(r"^# (?P<id>[A-D]\d+) · (?P<name>.+)$", re.M)
-IDEA = re.compile(r"the idea here is that \*\*(?P<idea>.+?)\*\*\.", re.M)
+# The module's one-line promise: "6 lessons · 25 min · **Change one place, ...**."
+IDEA = re.compile(r"^\d+ lessons? · [^\n]*? · \*\*(?P<idea>.+?)\*\*\.", re.M)
 # The recap is the paragraph between a lesson's video frame and its
 # "Read more:" line. It is what the syllabus shows on hover.
 RECAP = re.compile(
@@ -95,7 +96,7 @@ def read_module(path: Path):
         raise SystemExit("%s: no '# A1 . Name' heading" % path.name)
     i = IDEA.search(text)
     if not i:
-        raise SystemExit("%s: no 'the idea here is that **...**' line" % path.name)
+        raise SystemExit("%s: no '6 lessons · 25 min · **...**.' line" % path.name)
     recaps = [plain(r.group("recap")) for r in RECAP.finditer(text)]
     lessons = []
     for m in LESSON.finditer(text):

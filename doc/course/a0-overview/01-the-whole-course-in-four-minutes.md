@@ -1,6 +1,6 @@
 # A0.1 · The whole course in four minutes
 
-**Stage A · Think in Takes** — A0 · The overview · **4 min** · video 1 of 80
+**Stage A · Learn the basics** — A0 · The overview · **4 min** · video 1 of 80
 
 The idea this module plants: **the whole course fits in four minutes**.
 
