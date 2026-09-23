@@ -1,7 +1,7 @@
-site_name: Takes for Blender — User Guide
+site_name: Takes for Blender — Shot & Scene Manager
 site_description: >-
-  Stage Management, Variant Switching, and Batch Rendering pipeline
-  for Product Visualization in Blender 5.1+.
+  Scene and shot management add-on for Blender 5.0+. Organize shots in one tree,
+  switch material variants, reuse render presets and batch render every take.
 site_author: Nikolaj Woroschilow
 site_url: https://niwo-dev.github.io/Takes-for-Blender-Wiki/wiki/
 
