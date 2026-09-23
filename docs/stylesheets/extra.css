@@ -178,10 +178,11 @@ kbd {
    the accent colour, because this one names the row rather than measuring it. */
 .md-typeset .tks-id {
   display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: 0.56rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  padding: 0.1em 0.5em;
+  padding: 0 0.4em;
+  line-height: 1.25;
   border-radius: 1em;
   white-space: nowrap;
   vertical-align: middle;
@@ -191,8 +192,8 @@ kbd {
 
 /* The stage letter is the row's label, so its chip carries a little more. */
 .md-typeset .tks-stages td:nth-child(1) .tks-id {
-  font-size: 0.8rem;
-  padding: 0.1em 0.6em;
+  font-size: 0.64rem;
+  padding: 0 0.45em;
 }
 
 /* Inside a link the chip keeps its own colour rather than the link's. */
@@ -214,6 +215,36 @@ kbd {
 .md-typeset .tks-stages td:last-child .tks-min + .tks-min,
 .md-typeset .tks-lessons th:last-child .tks-min + .tks-min {
   margin-left: 0.3em;
+}
+
+/* Stacked on a phone, the two chips touched: line-height alone left a 0px
+   gap once the chip got its own line-height. A vertical margin on an
+   inline-block grows the line box, so stacked chips keep a small gap and
+   chips side by side are unchanged. */
+.md-typeset .tks-stages td:last-child .tks-min,
+.md-typeset .tks-lessons th:last-child .tks-min {
+  margin-top: 0.15rem;
+  margin-bottom: 0.15rem;
+}
+
+/* The dot in front of a lesson: red while its video box is a placeholder,
+   green once the video is up. Same red and green as the roadmap's Size dot.
+   The generator decides which, from the lesson's video box. */
+.md-typeset .tks-live {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  vertical-align: 0.05em;
+  margin-right: 0.35em;
+  background: #e53935;
+}
+.md-typeset .tks-live--on {
+  background: #4caf50;
+}
+.md-typeset .tks-live-key {
+  font-size: 0.68rem;
+  color: var(--md-default-fg-color--light);
 }
 
 /* The chip sits in these cells too, where it needs no left margin of its own. */
@@ -765,10 +796,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* The minutes chip beside a lesson heading. */
 .md-typeset .tks-min {
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: 0.56rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  padding: 0.1em 0.5em;
+  padding: 0 0.4em;
+  line-height: 1.25;
   margin-left: 0.5em;
   border-radius: 1em;
   vertical-align: middle;
@@ -803,10 +835,11 @@ h1, h2, h3, h4, h5, h6 {
    ("Build the bottle shot8 min"), so it gets the pill there too -- smaller,
    and pushed to the right so the titles still line up. */
 .md-nav__link .tks-min {
-  font-size: 0.6rem;
-  font-weight: 700;
+  font-size: 0.52rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  padding: 0.05em 0.4em;
+  padding: 0 0.35em;
+  line-height: 1.25;
   margin-left: 0.4em;
   border-radius: 1em;
   white-space: nowrap;

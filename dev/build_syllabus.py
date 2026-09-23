@@ -54,6 +54,10 @@ RECAP = re.compile(
     re.S,
 )
 
+# A lesson's video box. It is a placeholder until a player (an iframe) is put
+# inside it -- the same test the stylesheet uses to draw the dashed box.
+VIDEO = re.compile(r'<div class="tks-video"[^>]*>(?P<body>.*?)</div>', re.S)
+
 LESSON = re.compile(
     r'^## (?P<n>\d+)\. (?P<title>.+?)\s*'
     # The unit may be bare or wrapped in its own dimming span, because pages
@@ -108,7 +112,11 @@ def read_module(path: Path):
         raise SystemExit("%s: %d lessons but %d recaps -- every lesson needs "
                          "the one-line description under its video"
                          % (path.name, len(lessons), len(recaps)))
-    lessons = [l + (recaps[k],) for k, l in enumerate(lessons)]
+    online = ["<iframe" in v.group("body") for v in VIDEO.finditer(text)]
+    if len(online) != len(lessons):
+        raise SystemExit("%s: %d lessons but %d video boxes"
+                         % (path.name, len(lessons), len(online)))
+    lessons = [l + (recaps[k], online[k]) for k, l in enumerate(lessons)]
     return {
         "id": t.group("id"), "name": t.group("name").strip(),
         "idea": i.group("idea"), "slug": path.stem,
@@ -134,6 +142,13 @@ def normalise_headings(mod, write: bool) -> bool:
 
 # The words that are the same on every row: a reader wants the number.
 UNIT = re.compile(r"\b(videos?|min|h)\b")
+
+
+def live(online: bool) -> str:
+    """The dot in front of a lesson: green once its video is up, red until then."""
+    state = "on" if online else "off"
+    label = "Video online" if online else "Video not online yet"
+    return '<span class="tks-live tks-live--%s" role="img" aria-label="%s"></span>' % (state, label)
 
 
 def ident(text: str) -> str:
@@ -167,7 +182,7 @@ def stage_block(letter: str, name: str, mods: list) -> list[str]:
                pill("%d videos" % len(mod["lessons"])), pill("%d min" % total)),
             "    |---|---|",
         ]
-        for n, title, mins_, anchor, recap in mod["lessons"]:
+        for n, title, mins_, anchor, recap, online in mod["lessons"]:
             # The third argument of a markdown link is its title attribute,
             # and `content.tooltips` styles that into a tooltip. A phone has
             # no hover, and the title stays an ordinary link there.
@@ -177,8 +192,8 @@ def stage_block(letter: str, name: str, mods: list) -> list[str]:
             # to draw its own tooltip from, and no runtime step has to take one
             # away. attr_list writes the attribute and the link stays a markdown
             # link, so `mkdocs --strict` still checks where it points.
-            out.append('    | %d · [%s](%s.md#%s){ data-tip="%s" } | %s |'
-                       % (n, title, mod["slug"], anchor, recap,
+            out.append('    | %s %d · [%s](%s.md#%s){ data-tip="%s" } | %s |'
+                       % (live(online), n, title, mod["slug"], anchor, recap,
                           pill("%d min" % mins_)))
         out += ["", "    </div>", ""]
     return out
@@ -211,6 +226,8 @@ def main() -> int:
         "## :material-stairs: The four stages", "",
         "%s in all, counting the overview above. Stage A alone is enough to "
         "run a real job." % hm(grand), "",
+        '<p class="tks-live-key">%s Video online &nbsp; %s Not online yet</p>'
+        % (live(True), live(False)), "",
         '<div class="tks-stages" markdown="1">', "",
         "| Stage | What you get | |",
         "|---|---|---|",
