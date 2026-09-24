@@ -63,6 +63,13 @@ Each state draws its own marks, set in **Preferences ▸ Interface ▸ Diff Stat
 
 Cameras, lights, empties, lattices and armatures are outlined with the shape Blender itself draws for them.
 
+Each state (Take, Parent, Rest, Drift) also has two settings beside its marks:
+
+| Setting | What it does |
+|---|---|
+| **Random Colour Per Object** | Gives every marked object its own colour, so two neighbours can be told apart. The state still decides which marks are drawn |
+| **Empty Size** | How large the **Empty** mark is drawn, compared with the object |
+
 ## :material-shape-outline: Per Object Kind
 
 Every object kind can follow the state's master marks or carry its own.
@@ -71,6 +78,8 @@ Every object kind can follow the state's master marks or carry its own.
 |---|---|
 | **Use Own Marks** | Gives this kind its own marks, starting from the master default |
 | **Follow Master Default** | Drops the kind's own marks and follows the master again |
+
+A kind with its own marks also has its own **Empty Size**, per state.
 
 ??? info "When drift cannot be read"
     A keyed channel's drift is only compared at frame 0, or while **Rest State
