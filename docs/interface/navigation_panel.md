@@ -10,7 +10,7 @@ This is your main control center. It holds the Takes Tree, the cascade override 
 
 ## :material-page-layout-header: Header Controls
 
-The header has two rows. The top row carries the shared mode toggles, the warning badges, and quick buttons.
+The header has two rows. The top row carries the shared mode toggles, the warning icons, and quick buttons.
 
 The bottom row is the panel switcher. Click a tab to show that panel and hide the others.
 
@@ -27,10 +27,10 @@ The bottom row is the panel switcher. Click a tab to show that panel and hide th
 
     A mode switched back on comes back in the kind you last picked. Change that, or hide any of these buttons, under *Preferences ▸ Interface ▸ Overlay ▸ Mode Row*. A hidden mode stays in the [Mode Pie](../features/pie_menus.md#mode-pie).
 
-??? info "Top row — right side: badges, save, help, gear"
+??? info "Top row — right side: warnings, save, help, gear"
     | Control | Description |
     |---------|-------------|
-    | **Warning indicators** | Badges that appear when an issue is detected — preset dirty, missing preset, incompatible preset, rest drift, slot mismatch, pending preview rename, cascade drift, broken assignment, camera link gap, variant conflict, stale cache, view-layer preload. Each one toggles its own warning sub-panel below the header. |
+    | **Warning icons** | One small red icon per warning family that has something to show: **Presets**, **Cascade**, **Cameras**, **Variants**, **Objects**, **System**. Hover one to see which warnings are inside and how many. Click it to open that family's panel below the header — see [Warnings](#warnings). The cache notice (box icon) keeps an icon of its own. |
     | **Save** | Appears in red when there are unsaved preference changes. Click it to save. |
     | **Help** | Opens the documentation (this wiki). |
     | **Settings (gear)** | Click — opens the addon's preferences. **Alt+Click** — toggles the hidden diagnostic panel ([Process Monitor / Debug Console / View Layer Switch Profiler](../features/process_monitor.md)). Its sidebar carries **Restart Processes**, and each view adds its own: **{{ op('tks.dm_copy').bl_label }}** in the Debug Console, and **{{ op('tks.undo_monitor_record').bl_label }}**, **{{ op('tks.undo_monitor_copy').bl_label }}** and **{{ op('tks.um_log_files').bl_label }}** in the Undo Monitor. See [Debug](../preferences/debug.md). |
@@ -143,28 +143,39 @@ Open the tree's **row menu** — ++shift+right-button++ on a row, or the dropdow
 
 ## :material-alert-outline: Warnings
 
-Warning badges appear in the header only when the addon finds a problem. A clean file shows none.
+Warning icons appear in the header only when the addon finds a problem. A clean file shows none.
 
-Click a badge to open its warning panel below the header. Each panel lists what is wrong and gives you the buttons to fix it.
+Warnings are sorted into six families. Each family with a problem shows one small red icon. Hover it to see what is inside.
+
+1. Click a family icon. Its panel opens below the header, with the family's name as its title.
+2. At the title's right, each warning of the family has a small button with its count. A warning with nothing to fix is greyed out.
+3. Click a warning's button. Its list and its fix buttons show below.
+
+Click the family icon again to close the panel. Opening another family closes the first one.
 
 !!! warning "Panels greyed out?"
     While Takes is waiting on a restore question, the whole panel locks — badges and mode buttons included. Answer the restore block and it unlocks. See [Snapshots & Recovery](../preferences/data.md#snapshots).
 
-??? info "Every badge and what it surfaces"
-    | Badge icon | Trigger | What it surfaces |
-    |------------|---------|------------------|
-    | Preset (gear) | One or more render-related presets are **dirty** (edited live, not saved). | Per-tier list of dirty preset types and Accept / Revert controls. |
-    | Unlinked | One or more cascade preset references point to a JSON file that no longer exists. | Missing-preset list with file paths so you can re-import or re-create. |
-    | Ghost | The Rest Action is drifting from the current values for one or more managed objects. | Rest-drift list with per-property snap controls. |
-    | Font-data | A slot rename is pending — a slot's name no longer matches its template. | Slot-mismatch list with rename actions. |
-    | Image-data | One or more View Layer preview thumbnails have a pending rename after a Scene / VL rename. | Pending-preview-rename list with apply / dismiss controls. |
-    | Orphan-data | Cascade resolution drifted — a stored cascade value no longer matches the resolver's current output. | Cascade-drift list with re-sync actions. The same panel also carries the **Camera needed** and **World needed** rows: nothing is assigned anywhere in the tree and the scene has no fallback, so each row offers a **▾** picker and a **+** create button that write straight to your adopt tier — see [Camera or World Needed](../features/cascade.md#needed-rows). |
-    | Orphan-data (broken) | A cascade assignment points at a datablock that no longer exists — deleted, or renamed outside the addon. | Broken-assignment list grouped by data type, with per-entry clear, a replace-via-picker button, and **Clear All** — see [Broken Assignments](../features/cascade.md#broken-assignments). |
-    | Camera-data | A Global- or Scene-Group-tier camera isn't linked into every scene that tier covers, so takes in those scenes are skipped. | Per-camera list of unreachable scenes with **Link** buttons and a link-into-all footer — see [Cross-Scene Camera Linking](../features/cascade.md#cross-scene-camera-linking). |
-    | Sync arrows | A [Variant Switch](../features/variant_switch.md) would collapse two materials of one pool onto a single object, or two products drive the same object. | Conflict list naming the products, pools and objects involved, plus a rescan. |
-    | Package | One or more preset JSON files on disk were written by an incompatible schema version. | Incompatible-preset list with quarantine / migrate actions — see [Render Presets](../features/render_presets.md). |
-    | Unlinked (cache) | The active scene was last saved by a different addon version (a MAJOR.MINOR mismatch), so cached tree data may be stale. | A cache notice with a refresh action. |
-    | File-refresh | [View Layer Preload](context_properties.md#view-layer-preload) is enabled and a preload is running, or some layers are still cold ("Not Ready"). | The per-layer preload panel — readiness state for every View Layer, per-section Preload buttons, Cancel and ETA while running. It behaves like the other warning panels (opening it closes the others) and can open **automatically** when an automatic preload starts, if you opt in via the preferences. |
+??? info "Every family and the warnings inside it"
+    | Family | Warning | Trigger | What it surfaces |
+    |--------|---------|---------|------------------|
+    | **Presets** | Preset Changes | One or more render-related presets are **dirty** (edited live, not saved). | Per-tier list of dirty preset types and Accept / Revert controls. |
+    | **Presets** | Missing Presets | One or more cascade preset references point to a JSON file that no longer exists. | Missing-preset list with file paths so you can re-import or re-create. |
+    | **Cascade** | Rest Drift | The Rest Action is drifting from the current values for one or more managed objects. | Rest-drift list with per-property snap controls. |
+    | **Cascade** | Slot Names | A slot rename is pending — a slot's name no longer matches its template. | Slot-mismatch list with rename actions. |
+    | **System** | Preview Renames | One or more View Layer preview thumbnails have a pending rename after a Scene / VL rename. | Pending-preview-rename list with apply / dismiss controls. |
+    | **Cascade** | Cascade Drift | Cascade resolution drifted — a stored cascade value no longer matches the resolver's current output. | Cascade-drift list with re-sync actions. The same panel also carries the **Camera needed** and **World needed** rows: nothing is assigned anywhere in the tree and the scene has no fallback, so each row offers a **▾** picker and a **+** create button that write straight to your adopt tier — see [Camera or World Needed](../features/cascade.md#needed-rows). |
+    | **Cascade** | Broken Assignments | A cascade assignment points at a datablock that no longer exists — deleted, or renamed outside the addon. | Broken-assignment list grouped by data type, with per-entry clear, a replace-via-picker button, and **Clear All** — see [Broken Assignments](../features/cascade.md#broken-assignments). |
+    | **Cameras** | Camera Links | A Global- or Scene-Group-tier camera isn't linked into every scene that tier covers, so takes in those scenes are skipped. | Per-camera list of unreachable scenes with **Link** buttons and a link-into-all footer — see [Cross-Scene Camera Linking](../features/cascade.md#cross-scene-camera-linking). |
+    | **Variants** | Variant Conflicts | A [Variant Switch](../features/variant_switch.md) would collapse two materials of one pool onto a single object, or two products drive the same object. | Conflict list naming the products, pools and objects involved, plus a rescan. |
+    | **Presets** | Incompatible Presets | One or more preset JSON files on disk were written by an incompatible schema version. | Incompatible-preset list with quarantine / migrate actions — see [Render Presets](../features/render_presets.md). |
+    | **Cameras** | Multi-Cam Paused | A take cuts between cameras while it is pinned to one frame, or two cuts sit on the same frame. | The takes involved, with the fix for each. |
+    | **Variants** | Lost Swaps | A material swap's slot was removed. | The lost swaps, to move or let go. |
+    | **Objects** | Waiting Objects | An object you set to a take wears no action yet. | The objects, each with an action picker or a way back to the take. |
+    | **Objects** | Linked Objects | A watched object comes from another file and has no library override yet, or a linked file is missing. | The linked files, with override and relocate buttons. |
+    | **Objects** | Adopted Objects | The file was made without Takes and came with its own animation. | The card described [below](#adopted). |
+    | *(own icon, box)* | Cache Version | The active scene was last saved by a different addon version (a MAJOR.MINOR mismatch), so cached tree data may be stale. | A cache notice with a refresh action. It belongs to no family, so opening a family never hides it. |
+    | **System** | View Layer Preload | [View Layer Preload](context_properties.md#view-layer-preload) is enabled and a preload is running, or some layers are still cold ("Not Ready"). | The per-layer preload panel — readiness state for every View Layer, per-section Preload buttons, Cancel and ETA while running. It can open the **System** family **automatically** when an automatic preload starts, if you opt in via the preferences. |
 
 ### Animation That Came With the File { #adopted }
 
@@ -219,8 +230,6 @@ Every switch that changes what this panel shows.
     | **Line Limit** (Debug Console) | Maximum number of log entries to display |
     | **Line Limit** (Undo Monitor) | Maximum number of undo steps to display |
     | **Refresh Interval** | Seconds between auto-refresh reads |
-    | **Show Adopted Objects** | Show the objects Takes adopted when it first opened this file, and choose what to do with them |
-    | **Show Broken Assignments** | Toggle the broken cascade assignment warning detail panel |
     | **Show Cache Version Warning** | Show details about the cache version mismatch between this file and the running add-on |
     | **Show Category** (Process Monitor) | Show category column |
     | **Show Category** (Debug Console) | Show category column (e.g. CORE) |
@@ -228,15 +237,7 @@ Every switch that changes what this panel shows.
     | **Show Exec Time** | Show execution time column |
     | **Show Heartbeat** | Show heartbeat age column |
     | **Show Kind** | Show handler/timer column |
-    | **Show Lost Swaps** | Toggle the lost swap warning panel: swaps whose material slot was removed, waiting to be moved or let go |
-    | **Show Missing Presets** | Toggle the missing preset warning detail panel |
-    | **Show Multi-Cam Paused** | Toggle the Multi-Cam Paused detail panel — takes that cut between cameras while pinned to a single frame, so the cuts never play and a render of them is one frame |
     | **Show Other Sources** | List undo tape files written by other add-on folders too |
-    | **Show Preset Warnings** | Toggle the preset change warning detail panel |
-    | **Show Preview Warnings** | Toggle the preview thumbnail rename warning panel |
-    | **Show Rest Drift Warnings** | Toggle the rest state drift warning detail panel |
-    | **Show Slot Name Warnings** | Toggle the slot name mismatch warning detail panel |
     | **Show Time** | Show when each step happened |
     | **Show Timestamp** | Show timestamp column |
     | **Show Topic** | Show topic/subtopic column |
-    | **Show Waiting Objects** | Show the objects you took charge of that are not wearing an action yet, and give each one an action or hand it back to the take |

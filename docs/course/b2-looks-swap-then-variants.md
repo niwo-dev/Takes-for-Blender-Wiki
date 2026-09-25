@@ -37,6 +37,6 @@ Read more: [Variant Switch](../features/variant_switch.md#variants-in-the-cascad
 ## 5. A swap changed the wrong thing? Here is why <span class="tks-min">4 <span class="tks-min__u">min</span></span> { #5-a-swap-changed-the-wrong-thing-here-is-why }
 <div class="tks-video" data-video="B2.5">Variant conflicts explained: collapse and shared objects</div>
 
-Two kinds of conflict: one object wearing two materials from the same pool, or one object shared by two Products. A warning badge shows either one before it bites.
+Two kinds of conflict: one object wearing two materials from the same pool, or one object shared by two Products. The **Variants** warning icon shows either one before it bites.
 
 Read more: [Conflicts](../features/variant_switch.md#conflicts)

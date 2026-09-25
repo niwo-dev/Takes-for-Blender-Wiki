@@ -145,9 +145,9 @@ Choose one per preset type in *Preferences > Data > Presets*. **Lock Shared Fold
 
 ## :material-stethoscope: Preset Health
 
-When a preset a tier points at has gone missing, a **broken-link badge** appears in the Navigation panel's warning row.
+When a preset a tier points at has gone missing, the red **Presets** warning icon appears in the Navigation panel's top row.
 
-Click the badge to list every reference that no longer resolves, with its tier and file path. The panel repairs them too.
+Click it, then pick **Missing Presets**. It lists every reference that no longer resolves, with its tier and file path. The panel repairs them too.
 
 ??? info "The repair buttons"
     - **X** on an entry runs **{{ op('tks.clear_missing_preset').bl_label }}** and
@@ -161,7 +161,7 @@ Click the badge to list every reference that no longer resolves, with its tier a
 
     Clearing only empties the stored references — no preset files are touched. The
     cascade re-syncs afterwards so child tiers inherit correct values again, and the
-    badge disappears once everything resolves.
+    warning disappears once everything resolves.
 
 ## :material-broom: Manage Orphaned Settings
 

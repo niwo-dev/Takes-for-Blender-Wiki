@@ -106,7 +106,7 @@ The copy follows [Blender's own duplicate naming](tags.md#duplicate-names), so `
 
 A switch writes real material slots, so two Products can quietly disagree about the same object.
 
-Takes warns you *before* that happens, through the [variant-conflict badge](../interface/navigation_panel.md#warnings) in the Navigation panel.
+Takes warns you *before* that happens, through the **Variants** [warning icon](../interface/navigation_panel.md#warnings) in the Navigation panel.
 
 ??? info "The two kinds of conflict"
     | Conflict | What it means |

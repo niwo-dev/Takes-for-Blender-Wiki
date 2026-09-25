@@ -25,7 +25,7 @@ Find your symptom below. Each row names the one thing to check first.
 | A cascade icon is dimmed | The value is inherited from a tier above. Bright means set here |
 | My camera changed by itself | A tier above assigned one. Open [Context Properties](interface/context_properties.md) to see which |
 | A mode button is greyed out | Another mode is holding it — see [The Modes](features/modes.md) |
-| The variant swapped the wrong material | A pool conflict. The warning badge names the object and slot |
+| The variant swapped the wrong material | A pool conflict. The **Variants** warning names the object and slot |
 
 ## :material-image-multiple: Rendering
 
@@ -42,7 +42,7 @@ Find your symptom below. Each row names the one thing to check first.
 |---|---|
 | The whole panel is locked | It is asking a question, or wants a rebuild — see [Recover Your Take Organisation](workflows/recover_take_organisation.md) |
 | My tree went flat | Same page. Your organisation has a safety copy |
-| Warning badges I do not recognise | Click one. Each opens a panel with its own fix — see [Navigation Panel](interface/navigation_panel.md#warnings) |
+| Warning icons I do not recognise | Hover one to see what is inside, then click it. Each family opens a panel with its own fixes — see [Navigation Panel](interface/navigation_panel.md#warnings) |
 | Switching layers is slow | Turn on **Preload View Layers** — see [View Layer Preload](interface/context_properties.md#view-layer-preload) |
 
 ## :material-puzzle: Installing

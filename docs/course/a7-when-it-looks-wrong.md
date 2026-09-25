@@ -9,7 +9,7 @@ icon: material/school
 ## 1. What the warning icons mean <span class="tks-min">5 <span class="tks-min__u">min</span></span> { #1-what-the-warning-icons-mean }
 <div class="tks-video" data-video="A7.1">What the warning badges mean, and the fix button behind each</div>
 
-Badges only appear when something is wrong, like an unsaved preset change or a missing preset file. Click one to see the problem and the button that fixes it.
+Warning icons only appear when something is wrong, like an unsaved preset change or a missing preset file. Each icon is one family of warnings. Click it, pick a warning at the panel's top right, and you see the problem and the button that fixes it.
 
 Read more: [Navigation Panel](../interface/navigation_panel.md#warnings)
 
