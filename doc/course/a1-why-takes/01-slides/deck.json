@@ -1,0 +1,36 @@
+{
+  "v": 4,
+  "createdOnFiles": { "v": 1, "at": "2026-09-22T20:00:00Z" },
+  "title": "A1.1 · The problem with saved copies",
+  "order": [
+    "cover",
+    "folder",
+    "which-one",
+    "opening",
+    "cost",
+    "one-file",
+    "three-rounds",
+    "not-duplicated",
+    "promise",
+    "next"
+  ],
+  "sections": {
+    "s1": { "description": "The problem: a folder of saved copies and no way to tell them apart", "start": "cover" },
+    "s2": { "description": "The turn: the same work in one file, three rounds, one click", "start": "one-file" }
+  },
+  "faces": {
+    "rubik": {
+      "family": "Rubik",
+      "href": "https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap"
+    },
+    "inter": {
+      "family": "Inter",
+      "href": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+    },
+    "jetbrains-mono": {
+      "family": "JetBrains Mono",
+      "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+    }
+  },
+  "designSystems": []
+}

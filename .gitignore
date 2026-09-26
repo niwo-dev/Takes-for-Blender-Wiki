@@ -22,3 +22,10 @@ Thumbs.db
 
 # Blender capture scratch — probe PNGs and logs, never wiki assets.
 dev/shots/_probe/
+
+# Session scratch - probes, screenshots, patch scripts, page mockups.
+dev/tmp/
+dev/probe_*.js
+dev/script_timing.py
+dev/shots/probe_*.py
+landing-redesign*.html
