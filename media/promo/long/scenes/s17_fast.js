@@ -218,7 +218,7 @@ defineScene({
 
       /* card 2 */
       const mq = prog(lt, T.rclick + .03, .22), mOut = prog(lt, T.bm + .06, .14);
-      menu.style.visibility = mq > 0 && mOut < 1 ? 'visible' : 'hidden';
+      menu.style.visibility = mq > 0 && mOut < 1 ? '' : 'hidden';
       menu.style.opacity = clamp(mq * 3) * (1 - mOut);
       menu.style.transform = `translateY(${(1 - ease.out(mq)) * -10}px) scale(${lerp(.9, 1, ease.out(mq))})`;
       const bmH = clamp((lt - (T.bm - .2)) / .1);

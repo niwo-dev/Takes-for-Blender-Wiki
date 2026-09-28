@@ -3,19 +3,20 @@
 // the materials, the animation and the render settings, each appears on the stage (Blender-style camera gizmo,
 // world dome, material sheen, motion path, render frame) with a labelled node wired to it.
 // Ends on a one-click shot switch that changes all five at once.
-import { defineScene, el, ease, prog, clamp, lerp, R3D, THREE, rgba } from '../engine.js';
+import { defineScene, el, ease, prog, clamp, lerp, R3D, THREE, rgba, hex2rgb } from '../engine.js';
 import { icon, words, revealMasks, gradify, canvas3d, Cursor, float } from '../ui.js';
 import { createWatch, paintWatch, setTime, glowPart, VARIANTS } from '../product3d.js';
 
 const BW = 660, BH = 880;                              // WebGL view size (watch + pedestal only)
-const BOX_A = [1360, 580], BOX_B = [960, 540];
-const PILL_X = 150, PILL_Y = 866;                      // shot tabs: bottom-left, a clear zone under the Animation node         // view centre: framed right under the statement, then centred
+const BOX_A = [1360, 580], BOX_B = [960, 540];         // view centre: framed right under the statement, then centred
+const PILL_X = 150, PILL_Y = 866;                      // shot tabs: bottom-left, a clear zone under the Animation node
 const TGT = new THREE.Vector3(0, 4.0, 0);              // audience camera target
 const WY = 4.75, WS = .74;                             // watch centre height / scale
 const DOME = 7.4, ORB = 3.25;                          // world dome radius, motion path radius
 const CW = 286, CH = 80;                               // node card size
 const GOLD = VARIANTS.gold, SILVER = VARIANTS.silver;
 const SHOT_CAM = [new THREE.Vector3(-5.3, 5.5, 4.6), new THREE.Vector3(-3.3, 7.0, 4.3)];   // gizmo per shot
+const mix = (a, b, k) => '#' + hex2rgb(a).map((v, i) => Math.round(lerp(v, hex2rgb(b)[i], k)).toString(16).padStart(2, '0')).join('');
 
 const NODES = [
   { ic: 'camera', name: 'Camera', x: 150, y: 318, side: 'L' },
@@ -158,7 +159,7 @@ defineScene({
     const dp = (th, ph, R = DOME) => [R * Math.cos(ph) * Math.sin(th), R * Math.sin(ph), -R * Math.cos(ph) * Math.cos(th)];   // back half of the dome
     function drawDome(k, warm) {
       if (k <= 0) return;
-      const col = warm > .5 ? '#f5a623' : '#6aa6ea', a = .5 * clamp(k * 3), thMax = lerp(-Math.PI / 2, Math.PI / 2, ease.out(k));
+      const col = mix('#6aa6ea', '#f5a623', warm), a = .5 * clamp(k * 3), thMax = lerp(-Math.PI / 2, Math.PI / 2, ease.out(k));
       bg.lineWidth = 1;
       for (const ph of [0, .26, .52, .78, 1.04, 1.3]) {
         const pts = []; for (let i = 0; i <= 48; i++) pts.push(P(...dp(lerp(-Math.PI / 2, thMax, i / 48), ph)));
@@ -216,7 +217,7 @@ defineScene({
       const worldK = ease.out(prog(lt, TN[1], 1.2));
       scene.environmentIntensity = lerp(.75, 1.15, worldK) - matK * .1;
       LI.key.intensity = 1.35 + matK * 1.5; LI.key.position.set(-4 + matK * 9, 8, 6);
-      LI.key.color.set(sw > .5 ? '#ffe0bd' : '#ffffff');
+      LI.key.color.set(mix('#ffffff', '#ffe0bd', sw));
       LI.rimW.intensity = 26 + sw * 60; LI.rimC.intensity = 42 - sw * 22;
       const stageOn = ease.out(prog(lt, ctx.line(0) - .1, .9));
       rimMat.color.set('#f5a623').multiplyScalar(.35 + stageOn * .9 + Math.sin(lt * 3) * .05);
@@ -243,9 +244,9 @@ defineScene({
       const sunW = dp(lerp(.9, 1.1, sw), lerp(.72, .54, sw)), sun = P(...sunW);
       anchors[1] = sun;
       if (domeK > 0) {
-        const sk = ease.back(prog(lt, TN[1] + .15, .6)), scol = sw > .5 ? '#f5a623' : '#fff3dc';
+        const sk = ease.back(prog(lt, TN[1] + .15, .6)), scol = mix('#fff3dc', '#f5a623', sw);
         const g = bg.createRadialGradient(sun[0], sun[1], 0, sun[0], sun[1], 90 * sk + .1);
-        g.addColorStop(0, rgba(scol, .85)); g.addColorStop(.25, rgba(sw > .5 ? '#e87d0d' : '#6aa6ea', .3)); g.addColorStop(1, rgba('#3a7bc8', 0));
+        g.addColorStop(0, rgba(scol, .85)); g.addColorStop(.25, rgba(mix('#6aa6ea', '#e87d0d', sw), .3)); g.addColorStop(1, rgba('#3a7bc8', 0));
         bg.fillStyle = g; bg.beginPath(); bg.arc(sun[0], sun[1], 90 * sk + .1, 0, Math.PI * 2); bg.fill();
         bg.beginPath(); bg.arc(sun[0], sun[1], 13 * sk + .1, 0, Math.PI * 2); bg.fillStyle = scol; bg.fill();
         bg.beginPath(); for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2 + lt * .4; seg(bg, [sun[0] + Math.cos(a) * 22 * sk, sun[1] + Math.sin(a) * 22 * sk], [sun[0] + Math.cos(a) * 31 * sk, sun[1] + Math.sin(a) * 31 * sk]); }

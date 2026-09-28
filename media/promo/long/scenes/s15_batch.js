@@ -415,7 +415,7 @@ defineScene({
       // ---- menu ----
       const ms = menuState(lt);
       menu.style.opacity = ms.o; menu.style.transform = `scale(${ms.s})`;
-      menu.style.visibility = ms.o > .002 ? 'visible' : 'hidden';
+      menu.style.visibility = ms.o > .002 ? '' : 'hidden';
       const cp = cursor.pos(lt), open = ms.o > .6;
       ITEMS.forEach(it => {
         const hov = open && inR(cp, it.rect) ? 1 : 0;

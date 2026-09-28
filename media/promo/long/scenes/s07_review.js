@@ -108,7 +108,7 @@ defineScene({
         ${icon('take', 26, '#c9d1de')}
         <div class="disp6" style="font-size:27px;white-space:nowrap">${slateNo}<span style="color:#9aa3b5"> · ${name}</span></div>
         <div class="ok" style="margin-left:auto;width:30px;height:30px;border-radius:50%;background:#2fc4b2;display:flex;align-items:center;justify-content:center;opacity:0">${icon('check', 18, '#0a0a0c', 3.4)}</div>
-        <div class="nt" style="width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;${i === 2 ? '' : ''}">${icon('note', 24, '#c9d1de')}</div></div>`);
+        <div class="nt" style="width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center">${icon('note', 24, '#c9d1de')}</div></div>`);
       list.appendChild(r);
       return { r, cb: r.querySelector('.cb'), ok: r.querySelector('.ok'), nt: r.querySelector('.nt') };
     });

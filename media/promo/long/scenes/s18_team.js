@@ -174,7 +174,7 @@ defineScene({
       g1.style.opacity = 1 - o1; g1.style.transform = `translateY(${-70 * o1}px) scale(${1 - .04 * o1})`;
       nameEl.style.opacity = ease.out(prog(lt, T.land + .08, .3)) * (1 - o1);
       nameEl.style.transform = `translate(${lerp(N0.x, N1.x, nm)}px,${lerp(N0.y, N1.y, nm) - 70 * o1}px) scale(${lerp(1, NS, nm)})`;
-      g1.style.visibility = o1 >= 1 ? 'hidden' : 'visible';
+      g1.style.visibility = o1 >= 1 ? 'hidden' : '';
 
       /* part 2 — bundle, links, teammates, checks, headline */
       slide(bundle, lt, U.bundle, .7, -90, 0);

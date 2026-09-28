@@ -105,7 +105,7 @@ export const TRANS = {
     }, cues: (b) => [[b - .45, 'swish', { gain: .7, pan: -.2 }], [b + .1, 'tick', { gain: .5 }]] },
   wipe: { d: 1.0, apply(o, i, p, fx) {
       const bars = fx.bars; const span = 1920 + 2700 + 600;
-      bars.forEach((b, k) => { const q = clamp(p * 1.15 - k * .075); b.style.left = (-2700 + ease.inOut(q) * span) + 'px'; });
+      bars.forEach((b, k) => { const q = clamp(p * 1.15 - k * .075); b.style.visibility = 'visible'; b.style.left = (-2700 + ease.inOut(q) * span) + 'px'; });
       o.style.visibility = p < .5 ? 'visible' : 'hidden'; i.style.visibility = p >= .5 ? 'visible' : 'hidden';
     }, cues: (b) => [[b - .5, 'whoosh', { gain: .9 }], [b, 'thud', { gain: .5 }]] },
   flash: { d: .5, apply(o, i, p, fx) {
@@ -115,7 +115,7 @@ export const TRANS = {
     }, cues: (b) => [[b - .03, 'hit', { gain: 1 }]] },
   slam: { d: .6, apply(o, i, p, fx) {   // into a chapter card: orange panel slams across
       const bars = fx.bars;
-      bars.forEach((b, k) => { const q = clamp(p * 1.1 - k * .05); b.style.left = (-2700 + ease.expo(q) * (2700 + 1920 + 700)) + 'px'; });
+      bars.forEach((b, k) => { const q = clamp(p * 1.1 - k * .05); b.style.visibility = 'visible'; b.style.left = (-2700 + ease.expo(q) * (2700 + 1920 + 700)) + 'px'; });
       o.style.visibility = p < .45 ? 'visible' : 'hidden'; i.style.visibility = p >= .45 ? 'visible' : 'hidden';
     }, cues: (b) => [[b - .3, 'whoosh', { gain: .8 }], [b, 'hit', { gain: 1 }]] },
 };
@@ -228,11 +228,11 @@ export function renderAt(T) {
   S.forEach((s, i) => {
     const dIn = i ? TRANS[s.trans].d : 0, dOut = S[i + 1] ? TRANS[S[i + 1].trans].d : 0;
     const from = s.entry.start - dIn / 2, to = s.entry.start + s.entry.dur + dOut / 2;
-    if (T >= from && T < to) active.push(i); else s.el.style.visibility = 'hidden';
+    if (T >= from && T < to) active.push(i); else { s.el.style.visibility = 'hidden'; s.el.style.display = 'none'; }
   });
   for (const i of active) {
     const s = S[i], lt = T - s.entry.start;
-    reset(s.el); s.el.style.visibility = 'visible';
+    reset(s.el); s.el.style.display = ''; s.el.style.visibility = 'visible';
     const cam = s.def.camera === false ? null : Object.assign({ zoom: .035, x: 0, y: 0 }, s.def.camera || {});
     if (cam) {
       const k = ease.sine(clamp(lt / s.entry.dur));
@@ -241,7 +241,7 @@ export function renderAt(T) {
     s.update(lt);
   }
   // transitions
-  fx.bars.forEach(b => b.style.left = '-2700px'); fx.flash.style.opacity = 0;
+  fx.bars.forEach(b => { b.style.left = '-3400px'; b.style.visibility = 'hidden'; }); fx.flash.style.opacity = 0;
   let mood = S[active[0]].mood;
   for (let i = 1; i < S.length; i++) {
     const s = S[i], d = TRANS[s.trans].d, b = s.entry.start;

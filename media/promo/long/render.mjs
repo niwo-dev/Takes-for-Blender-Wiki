@@ -41,7 +41,7 @@ async function worker(id) {
       '-c:v', 'libx264', '-crf', '8', '-preset', 'veryfast', '-pix_fmt', 'yuv420p', '-g', String(FPS), tmp], { stdio: ['pipe', 'inherit', 'inherit'] });
     ff.stdin.on('error', () => {});
     for (let f = j.f0; f < j.f1; f++) {
-      await p.evaluate(t => window.renderAt(t), f / FPS);
+      await p.evaluate(t => new Promise(r => { window.renderAt(t); requestAnimationFrame(() => r()); }), f / FPS);
       const buf = await p.screenshot({ type: 'jpeg', quality: 94 });
       if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
     }

@@ -123,7 +123,7 @@ defineScene({
     const segs = [0, 1, 2, 3].map(() => { const s = el(`<div class="abs" style="top:${LANE_Y}px;height:${LANE_H}px;border-radius:6px;opacity:0"></div>`); tl.appendChild(s); return s; });
     const flags = [0, 1, 2, 3].map(() => {
       // one prebuilt icon + name per camera; the visible one follows the marker's camera
-      const f = el(`<div class="abs" style="top:${FLAG_Y}px;height:40px;opacity:0">${'ABC'.split('').map(k => `<div class="abs v${k}" style="left:0;top:0;height:40px;display:flex;align-items:center;gap:8px">${icon('marker', 24, CAMS[k].c)}<span class="mono" style="font-size:18px;white-space:nowrap;color:${CAMS[k].c}">${CAMS[k].name}</span></div>`).join('')}</div>`);
+      const f = el(`<div class="abs" style="top:${FLAG_Y}px;height:40px;opacity:0">${'ABC'.split('').map(k => `<div class="abs v${k}" style="left:-4px;top:4px;height:32px;display:flex;align-items:center;gap:8px;padding:0 10px 0 4px;border-radius:6px;background:rgba(12,14,20,.92)">${icon('marker', 24, CAMS[k].c)}<span class="mono" style="font-size:18px;white-space:nowrap;color:${CAMS[k].c}">${CAMS[k].name}</span></div>`).join('')}</div>`);
       tl.appendChild(f); return { f, v: { A: f.querySelector('.vA'), B: f.querySelector('.vB'), C: f.querySelector('.vC') } };
     });
     // playhead
@@ -132,6 +132,7 @@ defineScene({
       <div class="abs mono phn" style="left:-26px;top:0;width:52px;height:24px;border-radius:5px;background:#f5a623;color:#0a0a0c;font-size:16px;display:flex;align-items:center;justify-content:center"></div></div>`);
     tl.appendChild(ph);
     const phn = ph.querySelector('.phn');
+    flags.forEach(fl => tl.appendChild(fl.f));                  // labels sit above the playhead line: it passes behind them
 
     // ---------- cursor: switch to Take 3 ----------
     const tabX = TLP.x + TAB[1].x + TAB[1].w - 10, tabY = TLP.y + 7 + 20;
@@ -198,7 +199,7 @@ defineScene({
           const r = listRows[j][i];
           const vis = j === 0 ? 1 - sw : ease.out(prog(lt, tSwitch + .15 + i * .08, .4));
           const inn = ease.out(prog(lt, tUI + .25 + i * .08, .5));
-          r.style.opacity = vis * inn; r.style.transform = `translateX(${(1 - (j === 0 ? inn : vis)) * (j === 0 ? 40 : 40)}px)`;
+          r.style.opacity = vis * inn; r.style.transform = `translateX(${(1 - (j === 0 ? inn : vis)) * 40}px)`;
           const active = ei === j && cutIdx(e.cuts, f) === i && lt >= tPlay - .01;
           const glow = active ? Math.max(0, 1 - since / .5) : 0;
           r.style.background = active ? `${CAMS[key].c}2e` : 'rgba(10,10,14,.42)';

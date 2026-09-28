@@ -126,7 +126,7 @@ defineScene({
       /* statement: read first, then shrinks to a compact title */
       revealMasks(head, lt, .3, .12, .85);
       const hk = ease.inOut(prog(lt, tMorph, .6));
-      head.style.transform = `translate(0px,${lerp(0, 150 - 356, hk)}px) scale(${lerp(1, .42, hk)})`;
+      head.style.transform = `translate(0px,${lerp(0, 156 - 356, hk)}px) scale(${lerp(1, .34, hk)})`;
 
       /* root seed: breathes, pulses on the line, then flies into the Global row */
       const sk = ease.back(prog(lt, -.5, .7)), fk = ease.inOut(prog(lt, tMorph + .05, .6));

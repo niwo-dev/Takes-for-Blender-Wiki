@@ -296,7 +296,7 @@ defineScene({
       vw.style.transform = `translate(${cx - vx - CW / 2}px,${cy - vy - CH / 2 + float(lt, 4, .9)}px) scale(${lerp(.72, 1, g)})`;
       const f = frameAt(lt), big = g > .001;
       renderWatch(f, big);
-      viewS.canvas.style.visibility = big ? 'hidden' : 'visible'; viewB.canvas.style.visibility = big ? 'visible' : 'hidden';
+      viewS.canvas.style.visibility = big ? 'hidden' : ''; viewB.canvas.style.visibility = big ? '' : 'hidden';
       const fi = Math.round(f), ftxt = `(${fi}) Watch`;
       if (vfr.textContent !== ftxt) vfr.textContent = ftxt;
       vfr.style.color = lt > tPin ? '#8fbcf0' : '#c9d1de';

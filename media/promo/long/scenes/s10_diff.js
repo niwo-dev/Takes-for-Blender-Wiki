@@ -180,6 +180,7 @@ defineScene({
     const tint = new THREE.Color(), base = new THREE.Color();
     return lt => {
       H.update(lt, -.3);
+      { const ho = ease.inOut(prog(lt, L(1) - .45, .5)); H.el.style.opacity = 1 - ho; H.el.style.transform = `translateY(${-ho * 30}px)`; }   // clears before the colour legend
       const mrk = ease.expo(prog(lt, -.2, .8)); mr.style.opacity = clamp((lt + .3) / .4); mr.style.transform = `translateY(${(1 - mrk) * -30}px)`;
       const vk = ease.expo(prog(lt, -.45, 1.0)); vp.style.opacity = clamp((lt + .45) / .3); vp.style.transform = `scale(${.94 + vk * .06})`;
 
