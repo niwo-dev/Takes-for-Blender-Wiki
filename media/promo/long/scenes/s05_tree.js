@@ -107,12 +107,10 @@ defineScene({
     /* ---------- sound ---------- */
     ctx.cue(ctx.line(0) + .7, 'chime', { gain: .35, pitch: 5 });
     ctx.cue(tMorph + .02, 'swish', { gain: .45, pan: -.2 });
-    ctx.cue(tMorph + .55, 'tick', { gain: .5, pitch: 0 });
     [1, 2, 3, 4, 8, 5, 6].forEach((i, k) => ctx.cue(appear[i] + .06, 'tick', { gain: .5, pitch: 2 + k * 2, pan: .15 }));
-    ctx.cue(tTakes - .05, 'click', { gain: .35, pan: .2 });
     tThumb.forEach((t, k) => ctx.cue(t, 'pop', { gain: .7, pitch: 4 + k * 3, pan: .5 }));
     ctx.cue(tNew + .08, 'pop', { gain: .6, pitch: 7, pan: .2 });
-    for (let i = 0; i < NAME.length; i++) ctx.cue(tType + i / CPS, 'type', { gain: .4 + (i % 2) * .1, pan: .2 });
+    for (let i = 0; i < NAME.length; i += 2) ctx.cue(tType + i / CPS, 'type', { gain: .42, pan: .2 });
     ctx.cue(tCommit, 'chime', { gain: .45, pitch: 7 });
 
     /* ---------- layout over time ---------- */

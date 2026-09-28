@@ -326,6 +326,7 @@ defineScene({
       const ws = lerp(1, HS, k) * settle * punch;   // scale about the centre while big, land top-left as the header
       word.style.transform = `translate(${lerp(cx0 - WW * ws / 2, HX, k)}px,${lerp(cy0 - WH * ws / 2, HY, k)}px) scale(${ws})`;
       wOut.style.opacity = 1 - k;
+      word.style.opacity = 1 - ease.out(prog(lt, shrink1 + 1.4, .5));   // client rule: the header clears once the render graphics take over
       const glow = Math.exp(-Math.abs(lt - fill1) * 5) * (1 - k);
       wFill.style.textShadow = glow > .02 ? `0 0 ${40 * glow}px rgba(245,166,35,${.8 * glow})` : 'none';
       kick.style.opacity = ease.out(prog(lt, .25, .35)) * (1 - ease.out(prog(lt, shrink0 - .1, .3)));   // after the zoom-in, so it never blends with the card's kicker
@@ -418,13 +419,13 @@ defineScene({
       const cp = cursor.pos(lt), open = ms.o > .6;
       ITEMS.forEach(it => {
         const hov = open && inR(cp, it.rect) ? 1 : 0;
-        const fl = Math.max(0, 1 - Math.abs(lt - clickOn[it.id] - .06) / .2);
+        const dc = lt - clickOn[it.id], fl = dc >= 0 ? Math.max(0, 1 - dc / .3) : 0;   // flash starts on the click
         it.el.style.background = fl > .01 ? `rgba(245,166,35,${.2 + fl * .3})` : hov ? 'rgba(58,123,200,.3)' : 'transparent';
       });
       const selBg = lt >= bg;
       MODES.forEach((m, n) => {
         const sel = (n === 1) === selBg, hov = open && inR(cp, m.rect);
-        const fl = n === 1 ? Math.max(0, 1 - Math.abs(lt - bg - .06) / .25) : 0;
+        const fl = n === 1 && lt >= bg ? Math.max(0, 1 - (lt - bg) / .35) : 0;
         m.el.style.borderColor = sel ? m.col : 'rgba(255,255,255,.08)';
         m.el.style.background = fl > .01 ? `rgba(245,166,35,${.12 + fl * .2})` : hov ? 'rgba(58,123,200,.2)' : sel ? 'rgba(255,255,255,.06)' : 'rgba(255,255,255,.035)';
         m.el.style.boxShadow = sel ? `0 0 26px ${n ? 'rgba(245,166,35,.35)' : 'rgba(58,123,200,.3)'}` : 'none';

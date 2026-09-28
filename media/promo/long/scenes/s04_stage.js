@@ -42,7 +42,7 @@ defineScene({
 
     /* ---------- layers (back to front) ---------- */
     const mk = () => { const c = document.createElement('canvas'); c.width = 1920; c.height = 1080; c.style.cssText = 'position:absolute;left:0;top:0;width:1920px;height:1080px'; return c; };
-    const bgC = mk(); root.appendChild(bgC);
+    const bgC = mk(); bgC.style.webkitMaskImage = 'linear-gradient(180deg,#000 86%,transparent 96%)'; root.appendChild(bgC);
     const beam = el(`<div class="abs" style="width:360px;height:440px;background:radial-gradient(ellipse 50% 60% at 50% 100%,rgba(245,166,35,.2),rgba(58,123,200,.06) 60%,transparent 75%)"></div>`);
     root.appendChild(beam);
     const view = canvas3d(root, { x: 0, y: 0, w: BW, h: BH });
@@ -132,7 +132,6 @@ defineScene({
       { t: TSW - 1.0, x: 700, y: 1110 }, { t: TSW, x: cX, y: cY, click: true }, { t: TSW + 1.15, x: 720, y: 1120 }], { hideAt: TSW + .8 });
 
     /* ---------- sound ---------- */
-    ctx.cue(.25, 'whoosh', { gain: .3, pitch: -4 });
     ctx.cue(ctx.line(0) - .02, 'shimmer', { gain: .4 });
     ctx.cue(tOut + .05, 'swish', { gain: .45 });
     TN.forEach((t, i) => {

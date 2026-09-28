@@ -49,7 +49,8 @@ defineScene({
       <div class="abs glow" style="left:-10%;top:-5%;width:120%;height:110%"></div></div>`);
     root.appendChild(pv);
     const glow = pv.querySelector('.glow');
-    const view = canvas3d(pv, { x: 0, y: 0, w: PV.w, h: PV.h });
+    const VW = 700;                                              // the product never needs more width; keeps the software render cheap
+    const view = canvas3d(pv, { x: (PV.w - VW) / 2, y: 0, w: VW, h: PV.h });
     const marks = el(`<svg class="abs" width="${PV.w}" height="${PV.h}" style="left:0;top:0" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2.5" stroke-linecap="round">
       <path d="M28 70V28H70M${PV.w - 70} 28H${PV.w - 28}V70M${PV.w - 28} ${PV.h - 70}V${PV.h - 28}H${PV.w - 70}M70 ${PV.h - 28}H28V${PV.h - 70}"/></svg>`);
     pv.appendChild(marks);
@@ -152,10 +153,10 @@ defineScene({
     ctx.cue(tOut + .05, 'swish', { gain: .55 });
     ctx.cue(tRow1, 'pop', { gain: .6, pitch: 0, pan: .4 });
     ctx.cue(tPop + .02, 'blip', { gain: .45, pan: .5 });
-    for (let i = 0; i < NOTE1.length; i += 2) ctx.cue(tType1 + i / CPS1, 'type', { gain: .38 + (i % 4) * .03, pan: .4 });
+    for (let i = 0; i < NOTE1.length; i += 3) ctx.cue(tType1 + i / CPS1, 'type', { gain: .36 + (i % 2) * .05, pan: .4 });
     ctx.cue(tNew1 + .08, 'pop', { gain: .7, pitch: 3, pan: .4 });
     ctx.cue(tWarm + .05, 'whoosh', { gain: .5, pitch: 2 });
-    for (let i = 0; i < NOTE2.length; i += 2) ctx.cue(tType2 + i / CPS2, 'type', { gain: .36, pan: .4 });
+    for (let i = 0; i < NOTE2.length; i += 3) ctx.cue(tType2 + i / CPS2, 'type', { gain: .36, pan: .4 });
     ctx.cue(tNew2 + .08, 'pop', { gain: .7, pitch: 6, pan: .4 });
     ctx.cue(tHero + .05, 'whoosh', { gain: .5, pitch: 4 });
     ctx.cue(tBack + .06, 'swish', { gain: .5, pitch: -2 });
