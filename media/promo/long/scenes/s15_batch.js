@@ -271,7 +271,7 @@ defineScene({
     // ---------------- cursor (tips rest on empty parts of controls, never on words) ----------------
     const hot = id => { const it = ITEMS.find(x => x.id === id); return [MX + MW - 150, it.rect[1] + 23]; };
     const radio = n => [MX + 14 + n * 252 + 217, MY + 246 + 29];
-    const ARC = [1300, 250];      // button → menu item: arc over the menu and down its empty right side, never across labels
+    const ARC = [1250, 170];      // button → menu item: arc over the menu and down its empty right side, never across labels
     const cursor = new Cursor(wrap, ctx, [
       { t: btn1 - .75, x: 1520, y: 950 },
       { t: btn1, x: BTN[0], y: BTN[1], click: true },
