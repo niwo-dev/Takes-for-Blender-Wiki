@@ -139,6 +139,15 @@
       ]
     },
     {
+      "id": "s09b_parent",
+      "chapter": 3,
+      "minDur": 11,
+      "lines": [
+        "With Parent State, a take can inherit its parent's keys.",
+        "What it keys is its own. The rest follows the tier above."
+      ]
+    },
+    {
       "id": "card4",
       "chapter": 4,
       "card": true,

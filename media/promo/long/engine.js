@@ -113,10 +113,11 @@ export const TRANS = {
       o.style.visibility = p < .5 ? 'visible' : 'hidden'; i.style.visibility = p >= .5 ? 'visible' : 'hidden';
       i.style.transform = `scale(${1 + (1 - clamp((p - .5) * 2)) * .05})`;
     }, cues: (b) => [[b - .03, 'hit', { gain: 1 }]] },
-  slam: { d: .6, apply(o, i, p, fx) {   // into a chapter card: orange panel slams across
+  slam: { d: .8, apply(o, i, p, fx) {   // into a chapter card: orange panel slams across
       const bars = fx.bars;
-      bars.forEach((b, k) => { const q = clamp(p * 1.1 - k * .05); b.style.visibility = 'visible'; b.style.left = (-2700 + ease.expo(q) * (2700 + 1920 + 700)) + 'px'; });
-      o.style.visibility = p < .45 ? 'visible' : 'hidden'; i.style.visibility = p >= .45 ? 'visible' : 'hidden';
+      // blue, orange, then dark bars sweep across in a visible stagger; the card is revealed behind the last one
+      bars.forEach((b, k) => { const q = clamp(p * 1.45 - k * .2); b.style.visibility = 'visible'; b.style.left = (-2700 + ease.inOut(q) * (2700 + 1920 + 700)) + 'px'; });
+      o.style.visibility = p < .5 ? 'visible' : 'hidden'; i.style.visibility = p >= .5 ? 'visible' : 'hidden';
     }, cues: (b) => [[b - .3, 'whoosh', { gain: .8 }], [b, 'hit', { gain: 1 }]] },
 };
 
