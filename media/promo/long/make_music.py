@@ -5,8 +5,8 @@ Inputs:  timeline.json (scene/chapter times), build/cues.json (SFX cues exported
 Output:  build/mix.wav (stereo 44.1 kHz), plus build/music.wav and build/sfx.wav stems.
 
 Style switches (environment):
-  MUSIC_STYLE  electro (default) | cinematic | keynote | house | synthwave
-  SFX_STYLE    clean (default) | watch | cinematic | digital
+  MUSIC_STYLE  cinematic (default, chosen for the tour) | electro | keynote | house | synthwave
+  SFX_STYLE    digital (default, chosen for the tour) | clean | watch | cinematic
   MUSIC_DB     music bed gain offset in dB (default 0)
   END          stop the mix at this many seconds (previews)
   OUT_TAG      write only build/styles/<OUT_TAG>.wav instead of the standard outputs
@@ -23,8 +23,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 B = os.path.join(HERE, 'build')
 TL = json.load(open(os.path.join(HERE, 'timeline.json')))
 CUES = json.load(open(os.path.join(B, 'cues.json'))) if os.path.exists(os.path.join(B, 'cues.json')) else []
-MUSIC_STYLE = os.environ.get('MUSIC_STYLE', 'electro')
-SFX_STYLE = os.environ.get('SFX_STYLE', 'clean')
+MUSIC_STYLE = os.environ.get('MUSIC_STYLE', 'cinematic')
+SFX_STYLE = os.environ.get('SFX_STYLE', 'digital')
 MUSIC_DB = float(os.environ.get('MUSIC_DB', '0'))
 OUT_TAG = os.environ.get('OUT_TAG', '')
 TOTAL = TL['total']
