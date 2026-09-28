@@ -21,7 +21,7 @@ const LOOKS = [   // one cached render per strip: variant, pose, camera, lights,
   { v: 'silver', rot: [.28, -.32, 0], cam: [-.4, 2.2, 11.6], at: [0, -.1, 0], key: ['#ffffff', 1.9], warm: 14, cool: 60,
     bg: 'radial-gradient(ellipse 70% 70% at 50% 35%,#34425a,#141b26 60%,#07090d)', th: ['#34425a', '#0b0f16'] },
   { v: 'black', rot: [.05, .75, .08], cam: [1.2, .3, 10.2], at: [.4, 0, 0], key: ['#fff4e0', 3.0], warm: 25, cool: 30,
-    bg: 'linear-gradient(180deg,#2f7ea3 0%,#8cc5d6 58%,#cdb98e 58.5%,#8d7650 100%)', th: ['#5aa6c4', '#a58d62'] },
+    bg: 'radial-gradient(ellipse 62% 58% at 50% 40%,rgba(47,196,178,.26),transparent 72%),radial-gradient(ellipse 85% 80% at 50% 42%,#173c46,#0b1b21 55%,#05090b)', th: ['#1d4a52', '#081216'] },
 ];
 /* ---------- layout ---------- */
 const MW = 1000, MH = 562;
