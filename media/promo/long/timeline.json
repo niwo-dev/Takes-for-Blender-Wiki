@@ -21,17 +21,17 @@
   {
    "n": 4,
    "title": "Power tools",
-   "start": 132.0
+   "start": 142.0
   },
   {
    "n": 5,
    "title": "Delivery",
-   "start": 191.5
+   "start": 201.5
   },
   {
    "n": 6,
    "title": "Workflow & team",
-   "start": 222.0
+   "start": 232.0
   }
  ],
  "scenes": [
@@ -254,17 +254,22 @@
    "id": "s09b_parent",
    "chapter": 3,
    "start": 121.0,
-   "dur": 11,
+   "dur": 21,
    "lines": [
     {
      "t": 0.8,
-     "dur": 3.084,
-     "text": "With Parent State, a take can inherit its parent's keys."
+     "dur": 4.56,
+     "text": "Parent State passes animation down the cascade, all the way to the lowest take."
     },
     {
-     "t": 4.484,
-     "dur": 2.973,
-     "text": "What it keys is its own. The rest follows the tier above."
+     "t": 5.96,
+     "dur": 5.586,
+     "text": "Each take can add its own keys on top, so simple actions combine into complex motion."
+    },
+    {
+     "t": 12.146,
+     "dur": 4.331,
+     "text": "It works for materials too. Set a look once, and every child take follows."
     }
    ]
   },
@@ -273,14 +278,14 @@
    "chapter": 4,
    "card": true,
    "title": "Power tools",
-   "start": 132.0,
+   "start": 142.0,
    "dur": 2.5,
    "lines": []
   },
   {
    "id": "s10_diff",
    "chapter": 4,
-   "start": 134.5,
+   "start": 144.5,
    "dur": 11,
    "lines": [
     {
@@ -298,7 +303,7 @@
   {
    "id": "s11_modes",
    "chapter": 4,
-   "start": 145.5,
+   "start": 155.5,
    "dur": 15,
    "lines": [
     {
@@ -326,7 +331,7 @@
   {
    "id": "s12_multicam",
    "chapter": 4,
-   "start": 160.5,
+   "start": 170.5,
    "dur": 10,
    "lines": [
     {
@@ -344,7 +349,7 @@
   {
    "id": "s13_rules",
    "chapter": 4,
-   "start": 170.5,
+   "start": 180.5,
    "dur": 12,
    "lines": [
     {
@@ -362,7 +367,7 @@
   {
    "id": "s14_sequencer",
    "chapter": 4,
-   "start": 182.5,
+   "start": 192.5,
    "dur": 9,
    "lines": [
     {
@@ -382,14 +387,14 @@
    "chapter": 5,
    "card": true,
    "title": "Delivery",
-   "start": 191.5,
+   "start": 201.5,
    "dur": 2.5,
    "lines": []
   },
   {
    "id": "s15_batch",
    "chapter": 5,
-   "start": 194.0,
+   "start": 204.0,
    "dur": 17,
    "lines": [
     {
@@ -412,7 +417,7 @@
   {
    "id": "s16_output",
    "chapter": 5,
-   "start": 211.0,
+   "start": 221.0,
    "dur": 11,
    "lines": [
     {
@@ -432,14 +437,14 @@
    "chapter": 6,
    "card": true,
    "title": "Workflow & team",
-   "start": 222.0,
+   "start": 232.0,
    "dur": 2.5,
    "lines": []
   },
   {
    "id": "s17_fast",
    "chapter": 6,
-   "start": 224.5,
+   "start": 234.5,
    "dur": 12,
    "lines": [
     {
@@ -462,7 +467,7 @@
   {
    "id": "s18_team",
    "chapter": 6,
-   "start": 236.5,
+   "start": 246.5,
    "dur": 13,
    "lines": [
     {
@@ -480,7 +485,7 @@
   {
    "id": "s19_ai",
    "chapter": 6,
-   "start": 249.5,
+   "start": 259.5,
    "dur": 8,
    "lines": [
     {
@@ -493,7 +498,7 @@
   {
    "id": "s20_outro",
    "chapter": 6,
-   "start": 257.5,
+   "start": 267.5,
    "dur": 13,
    "lines": [
     {
@@ -509,5 +514,5 @@
    ]
   }
  ],
- "total": 270.5
+ "total": 280.5
 }

@@ -53,7 +53,7 @@ function buildLockup(root, id, { cx, cy, F }) {
 // the recap wall: fewer, larger words (English only)
 const WALL = [['Takes Tree', 'take'], ['Cascade', 'layers'], ['Review Loop', 'refresh'], ['Variant Switch', 'palette'],
   ['Rest State', 'undo'], ['Diff State', 'diff'], ['Multi-Cam', 'camera'], ['Sequencer', 'strip'],
-  ['Batch Render', 'render'], ['Smart Output', 'folder'], ['Pie Menus', 'pie'], ['AI Assistant', 'robot']];
+  ['Batch Render', 'render'], ['Smart Output', 'folder'], ['Parent State', 'inherit'], ['AI Assistant', 'robot']];
 const COLS = 3, TW = 520, TH = 118, GX = 30, GY = 26;
 const LCY = 372, LF = 200;                                    // lockup centre y, size of "TAKES"
 
