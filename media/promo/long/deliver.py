@@ -31,6 +31,27 @@ with open(master, 'rb') as fh:
         k += 1; open(os.path.join(pdir, f'tour_part{k:02d}.mp4'), 'wb').write(chunk)
 print('parts', k)
 
+# small copy for sharing: 720p30, 2-pass to about 28 MB (fits the 30 MB chat limit and most messengers)
+small = os.path.join(OUT, 'takes_for_blender_feature_tour_720p.mp4')
+SMALL_BYTES = 27.8 * 1024 * 1024; a_k = 112
+v_k = int(SMALL_BYTES * 8 / TL['total'] / 1000 * .985) - a_k
+sm = ['-i', os.path.join(B, 'video.mp4'), '-i', os.path.join(B, 'mix.wav'), '-map', '0:v', '-map', '1:a',
+      '-vf', 'scale=1280:720:flags=lanczos,fps=30', '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation',
+      '-b:v', f'{v_k}k', '-maxrate', f'{int(v_k * 1.8)}k', '-bufsize', f'{v_k * 4}k', '-pix_fmt', 'yuv420p', '-profile:v', 'high']
+slog = os.path.join(B, 'small_pass')
+run(sm + ['-pass', '1', '-passlogfile', slog, '-an', '-f', 'mp4', os.devnull])
+run(sm + ['-pass', '2', '-passlogfile', slog, '-af', f'volume={TRIM_DB}dB', '-c:a', 'aac', '-b:a', f'{a_k}k', '-movflags', '+faststart', '-shortest', small])
+print('small', small, round(os.path.getsize(small) / 1048576, 1), 'MiB', f'({v_k} kbps video)')
+sdir = os.path.join(B, 'parts720'); os.makedirs(sdir, exist_ok=True)
+for f in os.listdir(sdir): os.remove(os.path.join(sdir, f))
+with open(small, 'rb') as fh:
+    k = 0
+    while True:
+        chunk = fh.read(PART)
+        if not chunk: break
+        k += 1; open(os.path.join(sdir, f'tour720_part{k:02d}.mp4'), 'wb').write(chunk)
+print('720p parts', k)
+
 # phone chapters: cut at chapter starts (the score stops there), 2-pass to a size budget
 starts = [c['start'] for c in TL['chapters']] + [TL['total']]
 os.makedirs(os.path.join(B, 'chapters'), exist_ok=True)
