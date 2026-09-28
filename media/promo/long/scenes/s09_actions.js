@@ -46,8 +46,8 @@ function createCoin() {
 
 // engraved caseback so the Hero_Spin shows a finished back
 function addCaseback(watch) {
-  const steel = new THREE.MeshStandardMaterial({ color: '#d5dbe4', metalness: 1, roughness: .13 });
-  const dark = new THREE.MeshStandardMaterial({ color: '#b4bcc9', metalness: 1, roughness: .24 });
+  const steel = new THREE.MeshStandardMaterial({ color: '#aeb7c4', metalness: .5, roughness: .42 });
+  const dark = new THREE.MeshStandardMaterial({ color: '#dfe5ee', metalness: .9, roughness: .2 });
   const back = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.56, .08, 72), steel); back.position.y = -.36; watch.add(back);
   for (const [r, w] of [[1.28, .03], [.98, .02], [.5, .025]]) {
     const t = new THREE.Mesh(new THREE.TorusGeometry(r, w, 6, 72), dark); t.rotation.x = Math.PI / 2; t.position.y = -.405; watch.add(t);
@@ -122,7 +122,7 @@ defineScene({
     root.appendChild(coinHalo);
 
     // ---------- 3D ----------
-    const scene = R3D.scene({ key: 1.5 });
+    const scene = R3D.scene({ key: 1.5, warm: 14 });
     const watch = createWatch(); watch.rotation.x = Math.PI / 2;
     const wPivot = new THREE.Group(); wPivot.add(watch); scene.add(wPivot);
     paintWatch(watch, 'silver');
@@ -149,10 +149,10 @@ defineScene({
 
     // ---------- headline: read first, then shrinks to a small title above the panel ----------
     const HY = 396;
-    const H = headline(root, { x: PX, y: HY, w: PW, kicker: 'Actions', lines: ['EVERY SHOT.', { t: 'ITS OWN MOVE.', grad: true }], size: 88 });
+    const H = headline(root, { x: PX, y: HY, w: PW, kicker: 'Actions', lines: ['EVERY SHOT.', { t: 'ITS OWN MOVE.', grad: true }], size: 90 });
     H.el.style.transformOrigin = '0 0';
     const kick = H.el.firstElementChild;
-    const HS = .45, kickH = H.lines[0].offsetTop;          // first display line sits kickH below the block top
+    const HS = .44, kickH = H.lines[0].offsetTop;          // first display line sits kickH below the block top
     const HTY = 124 - HY - kickH * HS;                     // shrunk: first line's top lands at y 124
 
     // ---------- panel: view layers + objects ----------

@@ -19,7 +19,7 @@ const CW = 323, CH = 214;                                 // thumbnail size
 const QX = 120, QY = 339, QW = 620, QH = 522;             // queue panel
 const GX = 780, GY = 381, GAP = 18;                       // render wall
 const MX = 752, MY = 347, MW = 520, MH = 394;             // render menu (opens beside the render button)
-const HX = 120, HY = 118, HSIZE = 110, BIG = 300;         // header target / intro size
+const HX = 120, HY = 120, HSIZE = 96, BIG = 300;         // header target / intro size
 const TEAL = '#2fc4b2', ORANGE = '#f5a623', RED = '#e5484d';
 
 const TINT = { gold: ['#35291a', '#0d0b09', '245,166,35'], silver: ['#1b2837', '#090b0f', '106,166,234'], black: ['#27231f', '#0b0b0c', '232,125,13'] };
@@ -120,17 +120,14 @@ defineScene({
     ctx.cue(fill1, 'hit', { gain: .95 });
     ctx.cue(shrink0, 'swish', { gain: .55 });
     ctx.cue(qIn, 'whoosh', { gain: .4, pan: -.3 });
-    [0, 1, 2].forEach(n => ctx.cue(qIn + .25 + n * .21, 'tick', { gain: .35, pitch: n * 2, pan: -.4 }));
-    ctx.cue(wIn + .35, 'pop', { gain: .35, pan: .4 });
+    [0, 1].forEach(n => ctx.cue(qIn + .3 + n * .3, 'tick', { gain: .35, pitch: n * 3, pan: -.4 }));
     [0, 1].forEach(n => ctx.cue(shotsT + n * .3, 'blip', { gain: .4, pitch: n * 3, pan: -.2 }));
     [0, 1, 2].forEach(n => ctx.cue(varsT + n * .22, 'pop', { gain: .55, pitch: 2 + n * 3, pan: .1 + n * .3 }));
-    MENUS.forEach(([a]) => ctx.cue(a + .04, 'swish', { gain: .28, pan: .2 }));
     ctx.cue(fg + .1, 'thud', { gain: .45 });
     ctx.cue(bg + .05, 'shimmer', { gain: .55, pan: .3 });
     ctx.cue(run1, 'blip', { gain: .45 });
     doneTimes.forEach((t, n) => ctx.cue(t, 'tick', { gain: .75, pitch: n * 2, pan: .2 + (n % 3) * .2 }));
-    ctx.cue(cancel + .03, 'snap', { gain: .55 });
-    ctx.cue(est0, 'shimmer', { gain: .4, pan: -.3 }); ctx.cue(estEnd, 'pop', { gain: .5, pitch: 5, pan: -.4 });
+    ctx.cue(est0, 'shimmer', { gain: .45, pan: -.3 });
     ctx.cue(R2[4][1], 'error', { gain: .85, pan: .3 });
     ctx.cue(retry1 - 1.0, 'riser', { gain: .55 });
     ctx.cue(done, 'success', { gain: .95 }); ctx.cue(done + .12, 'sparkle', { gain: .5, pan: .5 });
@@ -274,10 +271,11 @@ defineScene({
     // ---------------- cursor (tips rest on empty parts of controls, never on words) ----------------
     const hot = id => { const it = ITEMS.find(x => x.id === id); return [MX + MW - 150, it.rect[1] + 23]; };
     const radio = n => [MX + 14 + n * 252 + 217, MY + 246 + 29];
+    const ARC = [1300, 250];      // button → menu item: arc over the menu and down its empty right side, never across labels
     const cursor = new Cursor(wrap, ctx, [
       { t: btn1 - .75, x: 1520, y: 950 },
       { t: btn1, x: BTN[0], y: BTN[1], click: true },
-      { t: fg, x: radio(0)[0], y: radio(0)[1] },
+      { t: fg, x: radio(0)[0], y: radio(0)[1], c: ARC },
       { t: bg - .35, x: radio(0)[0] + 18, y: radio(0)[1] + 4 },
       { t: bg, x: radio(1)[0], y: radio(1)[1], click: true },
       { t: all, x: hot('all')[0], y: hot('all')[1], click: true },
@@ -285,14 +283,24 @@ defineScene({
       { t: cancel - .5, x: 1400, y: 880 },
       { t: cancel, x: BTN[0], y: BTN[1], click: true },
       { t: btn2, x: BTN[0] + 1, y: BTN[1] + 1, click: true },
-      { t: cal, x: hot('cal')[0], y: hot('cal')[1], click: true },
+      { t: cal, x: hot('cal')[0], y: hot('cal')[1], click: true, c: ARC },
       { t: cal + .45, x: 1420, y: 890 },
       { t: btn3, x: BTN[0], y: BTN[1], click: true },
-      { t: resume, x: hot('res')[0], y: hot('res')[1], click: true },
+      { t: resume, x: hot('res')[0], y: hot('res')[1], click: true, c: ARC },
       { t: resume + .55, x: 1560, y: 920 },
       { t: btn4, x: BTN[0], y: BTN[1], click: true },
-      { t: retry, x: hot('ret')[0], y: hot('ret')[1], click: true },
+      { t: retry, x: hot('ret')[0], y: hot('ret')[1], click: true, c: ARC },
       { t: retry + .6, x: 1330, y: 1070 }], { hideAt: retry + .35 });
+    cursor.pos = function (lt) {   // like the kit's, plus an optional quadratic control point per segment
+      const P = this.path;
+      if (lt <= P[0].t) return [P[0].x, P[0].y];
+      for (let i = 1; i < P.length; i++) if (lt <= P[i].t) {
+        const a = P[i - 1], b = P[i], k = ease.inOut(prog(lt, a.t, b.t - a.t));
+        if (!b.c) return [lerp(a.x, b.x, k), lerp(a.y, b.y, k)];
+        const u = 1 - k; return [u * u * a.x + 2 * u * k * b.c[0] + k * k * b.x, u * u * a.y + 2 * u * k * b.c[1] + k * k * b.y];
+      }
+      const Z = P[P.length - 1]; return [Z.x, Z.y];
+    };
 
     const menuState = lt => {
       for (const [a, b] of MENUS) if (lt >= a - .01 && lt <= b + .3) {
@@ -320,7 +328,7 @@ defineScene({
       wOut.style.opacity = 1 - k;
       const glow = Math.exp(-Math.abs(lt - fill1) * 5) * (1 - k);
       wFill.style.textShadow = glow > .02 ? `0 0 ${40 * glow}px rgba(245,166,35,${.8 * glow})` : 'none';
-      kick.style.opacity = 1 - ease.out(prog(lt, shrink0 - .1, .3));
+      kick.style.opacity = ease.out(prog(lt, .25, .35)) * (1 - ease.out(prog(lt, shrink0 - .1, .3)));   // after the zoom-in, so it never blends with the card's kicker
       rail.style.opacity = 1 - ease.out(prog(lt, shrink0 - .1, .3));
       railFill.style.width = (pf * 100) + '%';
       const bq = prog(lt, fill1, .7);

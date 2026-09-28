@@ -100,8 +100,9 @@ defineScene({
     const kF = keycaps(root, ['F2'], { x: 150, y: 790, t0: tF2 - .45, press: tF2, ctx, scale: 1.12 });
     const hoverX = X0 + 4 * IND + 232, hoverY = Y0 + 4 * SP + 40;
     const cursor = new Cursor(root, ctx, [
-      { t: tCtrl - 1.25, x: 1760, y: 1110 }, { t: tCtrl - .45, x: hoverX, y: hoverY }, { t: tF2, x: hoverX + 14, y: hoverY + 10 },
-      { t: tCommit + .1, x: hoverX + 8, y: hoverY + 6 }, { t: tCommit + .8, x: 1500, y: 1110 }], { hideAt: tCommit + .3 });
+      // enters and leaves along the Front 3/4 row level, so it never passes over a label
+      { t: tCtrl - 1.25, x: 1990, y: hoverY + 4 }, { t: tCtrl - .45, x: hoverX, y: hoverY }, { t: tF2, x: hoverX + 14, y: hoverY + 6 },
+      { t: tCommit + .1, x: hoverX + 8, y: hoverY + 4 }, { t: tCommit + .8, x: 1990, y: hoverY + 8 }], { hideAt: tCommit + .3 });
 
     /* ---------- sound ---------- */
     ctx.cue(ctx.line(0) + .7, 'chime', { gain: .35, pitch: 5 });

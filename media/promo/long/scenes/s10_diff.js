@@ -61,13 +61,13 @@ defineScene({
   mood: { a: '#3a7bc8', b: '#e0569a', grid: .18, part: .45, ax: .2, ay: .3, bx: .82, by: .8, glow: .9 },
   build(root, ctx) {
     const L = i => ctx.line(i);
-    const tClick = L(0) + 1.5;                                  // headline is read first, then Diff State goes on
+    const tClick = L(0) + 1.25;                                  // headline is read first, then Diff State goes on
     const tPill = ORDER.map((_, k) => L(1) + k * .7);           // legend lights as the narrator names each state
     const tDrift = tPill[3];
     const tPress = tDrift - .32, tRelease = tDrift + .28;
 
     // ---------- headline (own zone, top-left) ----------
-    const H = headline(root, { x: 120, y: 124, w: 1000, lines: ['SEE WHERE', { t: 'IT COMES FROM.', grad: true }], size: 82 });
+    const H = headline(root, { x: 120, y: 116, w: 1000, lines: ['SEE WHERE', { t: 'IT COMES FROM.', grad: true }], size: 90 });
 
     // ---------- mode row (top-right): icon buttons + the Diff State button ----------
     const mr = el(`<div class="glass abs" style="left:${MR.x}px;top:${MR.y}px;width:${MR.w}px;height:${MR.h}px;display:flex;align-items:center;gap:10px;padding:0 11px"></div>`);

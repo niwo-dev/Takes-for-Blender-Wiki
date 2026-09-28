@@ -122,8 +122,9 @@ defineScene({
     const LANE_Y = RY + 100, LANE_H = 40, FLAG_Y = RY + 52;
     const segs = [0, 1, 2, 3].map(() => { const s = el(`<div class="abs" style="top:${LANE_Y}px;height:${LANE_H}px;border-radius:6px;opacity:0"></div>`); tl.appendChild(s); return s; });
     const flags = [0, 1, 2, 3].map(() => {
-      const f = el(`<div class="abs" style="top:${FLAG_Y}px;height:40px;display:flex;align-items:center;gap:8px;opacity:0"><span class="fi"></span><span class="mono fn" style="font-size:18px;white-space:nowrap"></span></div>`);
-      tl.appendChild(f); return { f, fi: f.querySelector('.fi'), fn: f.querySelector('.fn'), key: '' };
+      // one prebuilt icon + name per camera; the visible one follows the marker's camera
+      const f = el(`<div class="abs" style="top:${FLAG_Y}px;height:40px;opacity:0">${'ABC'.split('').map(k => `<div class="abs v${k}" style="left:0;top:0;height:40px;display:flex;align-items:center;gap:8px">${icon('marker', 24, CAMS[k].c)}<span class="mono" style="font-size:18px;white-space:nowrap;color:${CAMS[k].c}">${CAMS[k].name}</span></div>`).join('')}</div>`);
+      tl.appendChild(f); return { f, v: { A: f.querySelector('.vA'), B: f.querySelector('.vB'), C: f.querySelector('.vC') } };
     });
     // playhead
     const ph = el(`<div class="abs" style="top:${RY - 2}px;width:0;height:${TLP.h - RY - 14}px">
@@ -172,6 +173,7 @@ defineScene({
       // ---- preview ----
       const t = lt;
       SHOT[k](t); cam.aspect = PV.w / PV.h; cam.updateProjectionMatrix();
+      watch.userData.M.glass.visible = k !== 'B';   // the crystal is invisible full-frame but costly in software rendering
       pivot.rotation.set(0, -.32 + Math.sin(lt * .35) * .08, 0);
       setTime(watch, lt * 5 + 50);
       view.draw(scene, cam);
@@ -219,7 +221,7 @@ defineScene({
       ms.forEach((m, i) => {
         const fl = flags[i];
         if (!m) { fl.f.style.opacity = 0; return; }
-        if (fl.key !== m.k) { fl.key = m.k; fl.fi.innerHTML = icon('marker', 24, CAMS[m.k].c); fl.fn.textContent = CAMS[m.k].name; fl.fn.style.color = CAMS[m.k].c; }
+        for (const key of 'ABC') fl.v[key].style.display = key === m.k ? 'flex' : 'none';
         const popIn = i < 3 ? ease.back(prog(lt, tMk + .12 + i * .14, .4)) : m.a;
         fl.f.style.left = (fx(m.f) - 5) + 'px';
         fl.f.style.opacity = clamp(popIn * 3) * (m.q > .35 && m.q < .65 ? .35 : 1);

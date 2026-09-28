@@ -7,7 +7,7 @@ import { defineScene, el, ease, prog, clamp, lerp, R3D, THREE, rgba } from '../e
 import { icon, words, revealMasks, gradify, canvas3d, Cursor, float } from '../ui.js';
 import { createWatch, paintWatch, setTime, glowPart, VARIANTS } from '../product3d.js';
 
-const BW = 900, BH = 880;                              // WebGL view size (watch + pedestal only)
+const BW = 660, BH = 880;                              // WebGL view size (watch + pedestal only)
 const BOX_A = [1360, 580], BOX_B = [960, 540];
 const PILL_X = 150, PILL_Y = 866;                      // shot tabs: bottom-left, a clear zone under the Animation node         // view centre: framed right under the statement, then centred
 const TGT = new THREE.Vector3(0, 4.0, 0);              // audience camera target

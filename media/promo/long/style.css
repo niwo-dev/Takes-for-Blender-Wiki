@@ -11,7 +11,7 @@ html,body{background:#000;width:100%;height:100%;overflow:hidden}
   font-family:var(--body);color:var(--txt);transform-origin:0 0;-webkit-font-smoothing:antialiased}
 .abs{position:absolute}
 .layer{position:absolute;inset:0}
-.scene{position:absolute;inset:0;visibility:hidden;will-change:transform,opacity}
+.scene{position:absolute;inset:0;visibility:hidden}
 .cam{position:absolute;inset:0;transform-origin:50% 50%}
 
 /* type */
@@ -23,7 +23,7 @@ html,body{background:#000;width:100%;height:100%;overflow:hidden}
 .kicker{font-family:var(--mono);font-weight:500;color:var(--o2);font-size:24px;letter-spacing:.22em;text-transform:uppercase}
 .lede{font-size:34px;line-height:1.38;color:var(--mut);font-weight:400}
 .mask{display:inline-block;overflow:hidden;vertical-align:top;padding:.08em .02em .14em;margin:-.08em -.02em -.14em}
-.mask>span{display:inline-block;will-change:transform}
+.mask>span{display:inline-block}
 .outline{color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.12)}
 
 /* surfaces */

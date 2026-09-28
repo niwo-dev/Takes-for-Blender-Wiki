@@ -17,7 +17,7 @@ const NOTE1 = 'Warmer light, please.', NOTE2 = 'Hero angle.';
 const LOOKS = [
   { key: '#dde7ff', ki: 1.3, rw: 0, rc: 52, env: 1.0, cam: [.5, .5, 13.4], at: [0, 0, 0], yaw: -.32, pitch: 0, glow: [58, 123, 200, .34] },
   { key: '#ffbf78', ki: 2.3, rw: 115, rc: 0, env: .7, cam: [.5, .5, 13.4], at: [0, 0, 0], yaw: -.32, pitch: 0, glow: [232, 125, 13, .42] },
-  { key: '#ffe0bc', ki: 1.8, rw: 72, rc: 40, env: .95, cam: [3.4, -1.9, 9.9], at: [0, .5, 0], yaw: -.18, pitch: .12, glow: [245, 166, 35, .32] },
+  { key: '#ffe0bc', ki: 1.8, rw: 72, rc: 40, env: .95, cam: [3.6, -2.0, 10.9], at: [0, .45, 0], yaw: -.18, pitch: .12, glow: [245, 166, 35, .32] },
 ];
 
 defineScene({
@@ -63,9 +63,9 @@ defineScene({
     const cA = new THREE.Color(), cB = new THREE.Color();
 
     /* ---------- approved stamp ---------- */
-    const stamp = el(`<div class="abs" style="left:${PV.x + PV.w / 2 - 170}px;top:${PV.y + PV.h - 176}px;width:400px;height:118px;border:5px solid #2fc4b2;border-radius:14px;
-      display:flex;align-items:center;justify-content:center;gap:16px;background:rgba(10,12,14,.72);box-shadow:0 0 50px rgba(47,196,178,.35);opacity:0">
-      ${icon('check', 52, '#2fc4b2', 3.4)}<span class="disp" style="font-size:66px;color:#2fc4b2;letter-spacing:.01em">APPROVED</span></div>`);
+    const stamp = el(`<div class="abs" style="left:${PV.x + PV.w / 2 - 250}px;top:${PV.y + PV.h - 162}px;width:500px;height:112px;border:5px solid #2fc4b2;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;gap:14px;background:rgba(10,12,14,.78);box-shadow:0 0 50px rgba(47,196,178,.35);opacity:0">
+      ${icon('check', 46, '#2fc4b2', 3.4)}<span class="disp" style="font-size:60px;color:#2fc4b2;letter-spacing:.01em;white-space:nowrap">APPROVED</span></div>`);
     root.appendChild(stamp);
 
     /* ---------- slate (clapperboard) ---------- */
@@ -88,6 +88,13 @@ defineScene({
       <div class="disp gl" style="font-size:104px;white-space:nowrap;display:inline-block;position:relative">${words('ONE ROUND.')}</div></div>`);
     root.appendChild(head);
     gradify(head.querySelector('.gl'));
+    // the same statement lands again once everything has settled (bookend under the list)
+    const tEnd = tApp + .75;
+    const endH = el(`<div class="abs" style="left:${LX + 20}px;top:640px">
+      <div class="disp" style="font-size:86px;white-space:nowrap;margin-bottom:6px">${words('EVERY TAKE.')}</div>
+      <div class="disp gl" style="font-size:86px;white-space:nowrap;display:inline-block;position:relative">${words('ONE ROUND.')}</div></div>`);
+    root.appendChild(endH);
+    gradify(endH.querySelector('.gl'));
 
     /* ---------- take list ---------- */
     const list = el(`<div class="glass abs" style="left:${LX}px;top:${LY}px;width:${LW}px;height:${HEAD + 14 + 3 * RSP + 6}px">
@@ -167,7 +174,7 @@ defineScene({
       glow.style.background = `radial-gradient(closest-side at 50% 52%,rgba(${g[0] | 0},${g[1] | 0},${g[2] | 0},${g[3]}),transparent)`;
       paintWatch(watch, 'gold'); setTime(watch, 40 + lt * 8);
       pivot.rotation.set(m(A.pitch, B.pitch), m(A.yaw, B.yaw) + Math.sin(lt * .5) * .12, 0);
-      cam.position.set(m(A.cam[0], B.cam[0]), m(A.cam[1], B.cam[1]), m(A.cam[2], B.cam[2]) - ease.sine(clamp(lt / ctx.dur)) * .6);
+      cam.position.set(m(A.cam[0], B.cam[0]), m(A.cam[1], B.cam[1]), m(A.cam[2], B.cam[2]) - ease.sine(clamp(lt / ctx.dur)) * .35);
       cam.lookAt(m(A.at[0], B.at[0]), m(A.at[1], B.at[1]), m(A.at[2], B.at[2]));
       view.draw(scene, cam);
       const pk = ease.out(prog(lt, -.5, .6));
@@ -233,6 +240,8 @@ defineScene({
         const q = ease.expo(prog(lt, (j === 0 ? tNew1 : tNew2) + .12, .5));
         t.style.opacity = q; t.style.transform = `translateX(${(1 - q) * 30}px)`;
       });
+
+      revealMasks(endH, lt, tEnd, .1, .85);
 
       /* ---- approved ---- */
       const sk = prog(lt, tApp, .35), sb = ease.back(sk);

@@ -62,7 +62,7 @@ defineScene({
     const p1a = L(0) + .35, p1b = Math.max(p1a + 1.2, at(0, .64));
     const n1 = SEQ.filter(p => !p.ph).reduce((a, p) => a + typed(p).length, 0);
     const cps1 = n1 / (p1b - p1a - .45), cps2 = 22;
-    const tCard = Math.max(p1b + .05, at(0, .66)), tShift = tCard - .1;
+    const tCard = Math.max(p1b + .05, at(0, .66)), tShift = tCard - .6;   // the panel clears the space before the card slides in
     const tNow = Math.max(tCard + .35, at(0, .80));
     const p2a = tNow + .22;
     let t = p1a, prevF = 'dir';
@@ -89,7 +89,7 @@ defineScene({
     ctx.cue(tCard, 'swish', { gain: .5, pan: .5 });
     ctx.cue(tNow, 'tick', { gain: .6, pitch: 7, pan: .5 });
     ctx.cue(tLink + .05, 'sparkle', { gain: .45, pan: .2 });
-    [0, 1, 2].forEach(k => ctx.cue(tTree + k * .18, 'tick', { gain: .4, pitch: k * 2, pan: -.5 + k * .2 }));
+    ctx.cue(tTree, 'tick', { gain: .45, pan: -.5 });
     ctx.cue(tSpawn[0], 'whoosh', { gain: .45, pan: .6 });
     tF.forEach((x, k) => ctx.cue(x, 'thud', { gain: .5, pan: .2 + k * .1 }));
     ctx.cue(tLens85 + .05, 'blip', { gain: .45, pitch: 5, pan: .5 });
@@ -229,12 +229,12 @@ defineScene({
       const n0 = clamp(Math.floor((lt - SEQ[0].t0) * SEQ[0].cps), 0, 10);
       const V = {
         root: SEQ[0].s.slice(0, n0), scene: lt >= S('scene').tc ? 'Kitchen' : '', sl1: lt >= SEQ[2].t1 ? '/' : '',
-        lens: lt >= lensP.tc ? cur[1] : '', mm: lt >= mmP.t1 ? 'mm/' : '',
+        lens: lt >= mmP.t1 ? cur[1] : '', mm: lt >= mmP.t1 ? 'mm/' : '',          // '50mm/' lands as one piece
         take: lt >= S('take').tc ? cur[0] : '', u1: lt >= SEQ[4].t1 ? '_' : '', variant: lt >= S('variant').tc ? VNAME[cur[2]] : '',
         frame: lt >= SEQ[6].t1 ? '_0001.png' : '',
       };
       for (const k in V) if (segs[k].textContent !== V[k]) segs[k].textContent = V[k];
-      const CH = { scene: [S('scene').tc], lens: [lensP.tc, tSpawn[2]], take: [S('take').tc, tSpawn[2]], variant: [S('variant').tc, tSpawn[1], tSpawn[2], tSpawn[3]], frame: [SEQ[6].t1] };
+      const CH = { scene: [S('scene').tc], lens: [mmP.t1, tSpawn[2]], mm: [mmP.t1], take: [S('take').tc, tSpawn[2]], variant: [S('variant').tc, tSpawn[1], tSpawn[2], tSpawn[3]], frame: [SEQ[6].t1] };
       for (const k in CH) {
         const b = Math.max(0, ...CH[k].map(x => 1 - Math.abs(lt - x - .08) / .22));
         segs[k].style.transform = b > .01 ? `translateY(${-b * 6}px) scale(${1 + b * .12})` : 'none';
