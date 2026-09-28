@@ -119,7 +119,7 @@ defineScene({
     const pulse = add(c3, '<div class="abs" style="left:26px;top:0;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 0 18px 8px rgba(47,196,178,.85);opacity:0"></div>');
     const tgl = (inner, set) => `<div style="width:50px;height:46px;border-radius:8px;display:flex;align-items:center;justify-content:center;
       border:1px solid ${set ? 'rgba(58,123,200,.7)' : 'rgba(255,255,255,.12)'};background:${set ? 'rgba(58,123,200,.2)' : 'rgba(255,255,255,.05)'};color:${set ? '#9cc3f0' : '#8790a3'}">${inner}</div>`;
-    const rows3 = ['Kitchen', 'Studio', 'Outdoor'].map((name, k) => {
+    const rows3 = ['Studio', 'Lifestyle', 'Outdoor'].map((name, k) => {
       const r = add(c3, `<div class="abs" style="left:70px;top:${RY3(k)}px;width:446px;height:120px;border-radius:10px;background:rgba(8,8,12,.55);border:1px solid rgba(255,255,255,.08)">
         <div class="abs" style="left:20px;top:22px;display:flex;align-items:center;gap:10px">${icon('cube', 24, '#c9d1de')}<span class="disp6" style="font-size:26px">${name}</span></div>
         ${k === 0 ? '<div class="abs mono" style="left:20px;top:70px;font-size:17px;letter-spacing:.14em;color:#f5a623;padding:3px 9px;border:1px solid rgba(245,166,35,.5);border-radius:4px">ACTIVE</div>'

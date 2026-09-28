@@ -74,7 +74,7 @@ defineScene({
 
     // the file that drops in, and its name that becomes the window title
     const docEl = add(root, `<div class="abs" style="left:${DOC.x - DOC.w / 2}px;top:${DOC.y - DOC.h / 2}px;width:${DOC.w}px;height:${DOC.h}px;transform-origin:50% 100%;filter:drop-shadow(0 26px 40px rgba(0,0,0,.6))">${doc(DOC.w, DOC.h)}</div>`);
-    const nameEl = add(root, '<div class="abs mono" style="left:0;top:0;font-size:28px;color:#eef1f6;white-space:nowrap;transform-origin:0 50%">old_campaign.blend</div>');
+    const nameEl = add(root, '<div class="abs mono" style="left:0;top:0;font-size:28px;color:#eef1f6;white-space:nowrap;transform-origin:0 50%">watch_v12_really_final.blend</div>');
     const NW = nameEl.offsetWidth, NH = nameEl.offsetHeight, N0 = { x: 960 - NW / 2, y: 612 - NH / 2 }, N1 = { x: WX + 62, y: WY + BODY / 2 - NH * .72 / 2 }, NS = .72;
 
     /* ---------------- part 2: project presets travel with the file ---------------- */

@@ -14,7 +14,7 @@ const SLOT = 318, SLOT0 = 232;                      // chip slot x inside a row 
 const CW = 330, CH = 620, CX = [780, 1135, 1490], CY = 250;
 
 const ROWS = [
-  { name: 'Kitchen', ic: 'cube', d: 0 }, { name: 'Hero Shots', ic: 'layer', d: 1 },
+  { name: 'Studio', ic: 'cube', d: 0 }, { name: 'Front 3/4', ic: 'layer', d: 1 },
   { name: 'Take 1', ic: 'take', d: 2 }, { name: 'Take 2', ic: 'take', d: 2 }, { name: 'Take 3', ic: 'take', d: 2 }];
 
 defineScene({
@@ -24,7 +24,7 @@ defineScene({
   mood: { a: '#3a7bc8', b: PINK, grid: .28, ax: .2, ay: .3, bx: .82, by: .72, glow: 1.1 },
   build(root, ctx) {
     const L = i => ctx.line(i);
-    const tAct = L(0) + 1.0, tPass = L(0) + 1.7;                       // Turntable on Kitchen, then Pass Down
+    const tAct = L(0) + 1.0, tPass = L(0) + 1.7;                       // Turntable on Studio, then Pass Down
     const arrive = [tPass + .25, tPass + .5, tPass + .7, tPass + .9];  // rows 1..4 receive the parent's action
     const tFloat = L(1) + .7, tTilt = L(1) + 1.7;
     const tMat = L(2) + 1.2, matArrive = [tMat + .35, tMat + .55, tMat + .75];

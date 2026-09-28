@@ -5,9 +5,9 @@ import { icon, headline, panel, Cursor, pop, slide, canvas3d } from '../ui.js';
 import { createWatch, paintWatch, setTime } from '../product3d.js';
 
 const CAMS = {
-  A: { c: '#3a7bc8', name: 'CAM_A' },
-  B: { c: '#f5a623', name: 'CAM_B' },
-  C: { c: '#2fc4b2', name: 'CAM_C' },
+  A: { c: '#3a7bc8', name: 'Cam_Wide' },     // far, whole watch
+  B: { c: '#f5a623', name: 'Cam_Macro' },    // tight on the dial
+  C: { c: '#2fc4b2', name: 'Cam_Hero' },     // low three-quarter angle
 };
 const EDITS = [
   { take: 'Take 2', cuts: [[0, 'A'], [48, 'B'], [96, 'C']] },

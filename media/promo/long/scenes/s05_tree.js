@@ -13,8 +13,8 @@ const SEED = [1060, 540];                                 // the root before it 
 
 const ROWS = [
   { d: 0, ic: 'globe', label: 'Global', parent: -1, chev: 1 },
-  { d: 1, ic: 'folder', label: 'Interior', parent: 0, chev: 1 },
-  { d: 2, ic: 'cube', label: 'Kitchen', parent: 1, chev: 1 },
+  { d: 1, ic: 'folder', label: 'Watch Launch', parent: 0, chev: 1 },
+  { d: 2, ic: 'cube', label: 'Studio', parent: 1, chev: 1 },
   { d: 3, ic: 'layers', label: 'Hero Shots', parent: 2, chev: 1 },
   { d: 4, ic: 'layer', label: 'Front 3/4', parent: 3, chev: 1, thumb: 0 },
   { d: 5, ic: 'take', label: 'Take 1', name: 'Blockout', parent: 4, take: 1 },

@@ -114,10 +114,10 @@ defineScene({
       tree.appendChild(e); return e;
     };
     const rowC = r => ROWY[r] + TH / 2, midY = (rowC(0) + rowC(1)) / 2;
-    const nRenders = node(120, midY - 29, 'renders'), nKitchen = node(388, midY - 29, 'Kitchen');
+    const nRenders = node(120, midY - 29, 'renders'), nScene = node(388, midY - 29, 'Studio');
     const nLens = [node(664, rowC(0) - 29, '50mm', 1), node(664, rowC(1) - 29, '85mm', 1)];
     const badges = nLens.map(n => { const b = el('<div class="abs mono" style="right:-13px;top:-13px;width:30px;height:30px;border-radius:50%;background:#2fc4b2;color:#05201c;font-size:17px;display:flex;align-items:center;justify-content:center;opacity:0">0</div>'); n.appendChild(b); return b; });
-    const W0 = nRenders.offsetWidth, W1 = nKitchen.offsetWidth, WL = nLens[0].offsetWidth;
+    const W0 = nRenders.offsetWidth, W1 = nScene.offsetWidth, WL = nLens[0].offsetWidth;
     const svg = el(`<svg class="abs" width="1920" height="1080" style="left:0;top:0;overflow:visible">
       <path class="c0" d="M${120 + W0} ${midY} H388" fill="none" stroke="rgba(255,255,255,.24)" stroke-width="3" stroke-linecap="round"/>
       ${[0, 1].map(r => `<path class="c1" d="M${388 + W1} ${midY} C${388 + W1 + 50} ${midY} ${664 - 50} ${rowC(r)} 664 ${rowC(r)}" fill="none" stroke="rgba(255,255,255,.24)" stroke-width="3" stroke-linecap="round"/>`).join('')}
@@ -228,7 +228,7 @@ defineScene({
       const cur = fi >= 0 ? FILES[fi] : FILES[0];
       const n0 = clamp(Math.floor((lt - SEQ[0].t0) * SEQ[0].cps), 0, 10);
       const V = {
-        root: SEQ[0].s.slice(0, n0), scene: lt >= S('scene').tc ? 'Kitchen' : '', sl1: lt >= SEQ[2].t1 ? '/' : '',
+        root: SEQ[0].s.slice(0, n0), scene: lt >= S('scene').tc ? 'Studio' : '', sl1: lt >= SEQ[2].t1 ? '/' : '',
         lens: lt >= mmP.t1 ? cur[1] : '', mm: lt >= mmP.t1 ? 'mm/' : '',          // '50mm/' lands as one piece
         take: lt >= S('take').tc ? cur[0] : '', u1: lt >= SEQ[4].t1 ? '_' : '', variant: lt >= S('variant').tc ? VNAME[cur[2]] : '',
         frame: lt >= SEQ[6].t1 ? '_0001.png' : '',
@@ -264,7 +264,7 @@ defineScene({
       } else { linkP.setAttribute('opacity', 0); linkDot.setAttribute('opacity', 0); }
 
       // ---- folder tree ----
-      [nRenders, nKitchen].forEach((n, k) => pop(n, lt, tTree + k * .18, .45, .7));
+      [nRenders, nScene].forEach((n, k) => pop(n, lt, tTree + k * .18, .45, .7));
       nLens.forEach((n, k) => pop(n, lt, tTree + .36 + k * .08, .45, .7));
       drawOn(c0, lt, tTree + .1, .3); c1.forEach((c, k) => drawOn(c, lt, tTree + .25 + k * .08, .35));
       c2.forEach((c, k) => { c.style.opacity = ease.out(prog(lt, tTree + .5 + k * .08, .3)) * .9; c.style.strokeDashoffset = -lt * 24; });

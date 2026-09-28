@@ -4,7 +4,7 @@ import { defineScene, el, ease, prog, clamp, lerp } from '../engine.js';
 import { icon, headline, panel, chip, Cursor, pop, slide, fade } from '../ui.js';
 
 const TIERS = [
-  ['GLOBAL', 'globe', 'Project defaults'], ['SCENE GROUP', 'folder', 'Interior'], ['SCENE', 'cube', 'Kitchen'],
+  ['GLOBAL', 'globe', 'Project defaults'], ['SCENE GROUP', 'folder', 'Watch Launch'], ['SCENE', 'cube', 'Studio'],
   ['VIEW LAYER GROUP', 'layers', 'Hero Shots'], ['VIEW LAYER', 'layer', 'Front 3/4'], ['TAKE', 'take', 'Take 3'],
 ];
 const PX = 500, PY = 130, PW = 920, PH = 800, BODY = 54;   // panel geometry (stage px)

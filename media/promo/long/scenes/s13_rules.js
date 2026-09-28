@@ -19,10 +19,10 @@ const RY = i => 22 + i * 84, RH = 70;                        // row top inside t
 const rowMid = i => PY + HEAD + RY(i) + RH / 2;              // stage y of a row centre
 const TAGX = PX + 18 + 330;                                  // stage x of the tag column
 const ROWS = [
-  { label: 'Kitchen', ic: 'cube', d: 0 },
+  { label: 'Studio', ic: 'cube', d: 0 },
   { label: 'Hero Shots', ic: 'layers', d: 1, target: true },
   { label: 'Front 3/4', ic: 'layer', d: 2, vl: true },
-  { label: 'Top', ic: 'layer', d: 2, vl: true },
+  { label: 'Top Down', ic: 'layer', d: 2, vl: true },
   { label: 'Detail', ic: 'layer', d: 2, vl: true },
 ];
 const TAGS = [                                                // in flight order

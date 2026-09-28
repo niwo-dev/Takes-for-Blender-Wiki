@@ -122,7 +122,7 @@ defineScene({
     /* ---------- shot switch (two view layer tabs) ---------- */
     const tab = name => `<div class="sg disp6" style="position:relative;font-size:23px;padding:0 22px 0 18px;height:46px;line-height:46px;white-space:nowrap">${icon('layer', 20, '#c9d1de').replace('display:block', 'display:inline-block;vertical-align:-3px;margin-right:10px')}${name}</div>`;
     const pill = el(`<div class="abs glass" style="left:0;top:${PILL_Y}px;height:58px;border-radius:29px;transform-origin:0 50%;display:flex;align-items:center;gap:4px;padding:0 6px">
-      <div class="thumb abs" style="top:6px;height:46px;border-radius:23px;background:rgba(58,123,200,.55);box-shadow:inset 0 0 0 1px rgba(140,185,240,.45)"></div>${tab('Front 3/4')}${tab('Close-up')}</div>`);
+      <div class="thumb abs" style="top:6px;height:46px;border-radius:23px;background:rgba(58,123,200,.55);box-shadow:inset 0 0 0 1px rgba(140,185,240,.45)"></div>${tab('Front 3/4')}${tab('Detail')}</div>`);
     root.appendChild(pill);
     const pX = PILL_X; pill.style.left = pX + 'px';
     const segs = [...pill.querySelectorAll('.sg')], thumb = pill.querySelector('.thumb');

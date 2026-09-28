@@ -11,7 +11,7 @@ const bump = (lt, t, w) => Math.max(0, 1 - Math.abs(lt - t) / w);
 
 /* ---------- edit: three scene strips, each rendering its own take ---------- */
 const STRIPS = [
-  { scene: 'Kitchen', take: 'Take 2', c: '#e87d0d', f0: 0, f1: 100 },
+  { scene: 'Lifestyle', take: 'Take 2', c: '#e87d0d', f0: 0, f1: 100 },
   { scene: 'Studio', take: 'Take 1', c: '#3a7bc8', f0: 100, f1: 220 },
   { scene: 'Outdoor', take: 'Take 3', c: '#2fc4b2', f0: 220, f1: 330 },
 ];
@@ -40,7 +40,7 @@ defineScene({
   build(root, ctx) {
     const L = i => ctx.line(i);
     /* ---------- timing ---------- */
-    const tCross1 = L(0) + .85;                 // playing: Kitchen -> Studio
+    const tCross1 = L(0) + .85;                 // playing: Lifestyle -> Studio
     const tGrab = L(0) + 1.5;                   // cursor grabs the playhead
     const tOut = tGrab + .55, tHold = tGrab + .85, tBack = tGrab + 1.35;   // scrub to Outdoor, hold, back to Studio
     const tMove = ctx.lineEnd(0) - .05;         // scrub has settled: monitor slides aside

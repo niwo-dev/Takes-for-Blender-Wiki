@@ -12,7 +12,7 @@ const UX = 1440, UW = 360;                                       // Undo History
 const HEAD = 54;
 // syntax-coloured calls: [text, colour] runs
 const CALLS = [
-  [['api', '#6aa6ea'], ['.create_take(', '#eef1f6'], ['"Take_004"', '#2fc4b2'], [')', '#eef1f6']],
+  [['api', '#6aa6ea'], ['.create_take(', '#eef1f6'], ['"Take 4"', '#2fc4b2'], [')', '#eef1f6']],
   [['api', '#6aa6ea'], ['.switch_variant(', '#eef1f6'], ['"Watch"', '#2fc4b2'], [', ', '#eef1f6'], ['"Silver"', '#2fc4b2'], [')', '#eef1f6']],
 ];
 
@@ -67,8 +67,8 @@ defineScene({
         ${icon('take', 24, '#9aa3b5')}<span class="disp6" style="font-size:23px">Takes</span></div></div>`);
     const takeRow = (i, name) => add(kp, `<div class="abs" style="left:16px;right:16px;top:${HEAD + 14 + i * 50}px;height:44px;border-radius:7px;display:flex;align-items:center;gap:12px;padding:0 14px">
       ${icon('take', 22, '#c9d1de')}<span class="disp6" style="font-size:22px;white-space:nowrap">${name}</span></div>`);
-    const oldTakes = ['Take_001', 'Take_002', 'Take_003'].map((n, i) => takeRow(i, n));
-    const newTake = takeRow(3, 'Take_004');
+    const oldTakes = ['Take 1', 'Take 2', 'Take 3'].map((n, i) => takeRow(i, n));
+    const newTake = takeRow(3, 'Take 4');
     newTake.style.opacity = 0;
     const stage3 = add(kp, `<div class="abs" style="left:16px;right:16px;top:${HEAD + 226}px;height:${PH - HEAD - 226 - 16}px;border-radius:10px;
       background:radial-gradient(ellipse at 50% 60%,rgba(58,123,200,.16),rgba(8,8,12,.6) 70%);border:1px solid rgba(255,255,255,.07)"></div>`);
