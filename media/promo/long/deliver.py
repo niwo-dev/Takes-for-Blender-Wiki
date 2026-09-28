@@ -8,6 +8,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); B = os.path.join(HERE, 'build
 TL = json.load(open(os.path.join(HERE, 'timeline.json')))
 OUT = os.path.join(HERE, '..')
 MAX_BYTES = 19.3 * 1024 * 1024
+TRIM_DB = -0.8                                            # mix peaks at -0.4 dBTP; keep AAC below -1 dBTP
 
 def run(args): subprocess.run([FF, '-y', '-loglevel', 'error'] + args, check=True)
 
@@ -15,8 +16,20 @@ def run(args): subprocess.run([FF, '-y', '-loglevel', 'error'] + args, check=Tru
 master = os.path.join(OUT, 'takes_for_blender_feature_tour.mp4')
 run(['-i', os.path.join(B, 'video.mp4'), '-i', os.path.join(B, 'mix.wav'), '-map', '0:v', '-map', '1:a',
      '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-tune', 'animation', '-pix_fmt', 'yuv420p', '-profile:v', 'high',
-     '-c:a', 'aac', '-b:a', '256k', '-movflags', '+faststart', '-shortest', master])
+     '-af', f'volume={TRIM_DB}dB', '-c:a', 'aac', '-b:a', '256k', '-movflags', '+faststart', '-shortest', master])
 print('master', master, os.path.getsize(master) // 1024 // 1024, 'MB')
+
+# the master as byte-exact parts under the page's per-file limit; the page joins them back into one download
+PART = int(19.5 * 1024 * 1024)
+pdir = os.path.join(B, 'parts'); os.makedirs(pdir, exist_ok=True)
+for f in os.listdir(pdir): os.remove(os.path.join(pdir, f))
+with open(master, 'rb') as fh:
+    k = 0
+    while True:
+        chunk = fh.read(PART)
+        if not chunk: break
+        k += 1; open(os.path.join(pdir, f'tour_part{k:02d}.mp4'), 'wb').write(chunk)
+print('parts', k)
 
 # phone chapters: cut at chapter starts (the score stops there), 2-pass to a size budget
 starts = [c['start'] for c in TL['chapters']] + [TL['total']]
@@ -29,5 +42,6 @@ for i in range(len(starts) - 1):
               '-map', '0:v', '-map', '1:a', '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-b:v', f'{kbps}k', '-maxrate', f'{int(kbps * 1.6)}k', '-bufsize', f'{kbps * 3}k', '-pix_fmt', 'yuv420p']
     log = os.path.join(B, 'chapters', f'p{i}')
     run(common + ['-pass', '1', '-passlogfile', log, '-an', '-f', 'mp4', os.devnull])
-    run(common + ['-pass', '2', '-passlogfile', log, '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', out])
+    fades = f'volume={TRIM_DB}dB,afade=t=in:d=0.005,afade=t=out:st={dur - .005:.3f}:d=0.005'   # no clicks at chapter joins
+    run(common + ['-pass', '2', '-passlogfile', log, '-af', fades, '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', out])
     print(f'chapter {i + 1}: {a:.1f}-{b:.1f}s {kbps}kbps -> {os.path.getsize(out) / 1048576:.1f} MB')
