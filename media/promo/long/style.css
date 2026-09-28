@@ -1,0 +1,64 @@
+/* Takes for Blender — long promo. 1920x1080 stage, Takes CI palette. */
+:root{
+  --void:#0a0a0c; --surf:#121215; --float:#1e1e24; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --o:#e87d0d; --o2:#f5a623; --b:#265787; --b2:#3a7bc8; --teal:#2fc4b2; --pink:#e0569a; --red:#e5484d; --green:#3fcf8e;
+  --txt:#eef1f6; --mut:#9aa3b5; --dim:#6b7385;
+  --display:'Outfit',sans-serif; --body:'Inter',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;width:100%;height:100%;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;background:var(--void);overflow:hidden;
+  font-family:var(--body);color:var(--txt);transform-origin:0 0;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.layer{position:absolute;inset:0}
+.scene{position:absolute;inset:0;visibility:hidden;will-change:transform,opacity}
+.cam{position:absolute;inset:0;transform-origin:50% 50%}
+
+/* type */
+.disp{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:.95}
+.disp6{font-family:var(--display);font-weight:600;letter-spacing:-.01em}
+.mono{font-family:var(--mono);font-weight:500}
+.grad{background:linear-gradient(90deg,var(--b2),var(--o2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.gradO{background:linear-gradient(90deg,var(--o),var(--o2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.kicker{font-family:var(--mono);font-weight:500;color:var(--o2);font-size:24px;letter-spacing:.22em;text-transform:uppercase}
+.lede{font-size:34px;line-height:1.38;color:var(--mut);font-weight:400}
+.mask{display:inline-block;overflow:hidden;vertical-align:top;padding:.08em .02em .14em;margin:-.08em -.02em -.14em}
+.mask>span{display:inline-block;will-change:transform}
+.outline{color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.12)}
+
+/* surfaces */
+.glass{background:linear-gradient(180deg,rgba(38,87,135,.26),rgba(18,18,24,.55));border:1px solid var(--line);border-top-color:rgba(255,255,255,.14);
+  border-radius:10px;backdrop-filter:blur(16px);box-shadow:0 40px 90px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06)}
+.panelHead{display:flex;align-items:center;gap:12px;height:54px;padding:0 20px;border-bottom:1px solid var(--line);font-family:var(--display);font-weight:600;font-size:22px;color:var(--txt)}
+.panelHead .dots{margin-left:auto;display:flex;gap:7px}.panelHead .dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.14)}
+.pill{font-family:var(--mono);font-size:18px;letter-spacing:.12em;padding:6px 12px;border-radius:4px;border:1px solid var(--line2);color:var(--mut);white-space:nowrap;text-transform:uppercase}
+.chip{font-family:var(--mono);font-size:22px;padding:7px 16px;border-radius:6px;border:2px solid var(--line2);white-space:nowrap;display:inline-flex;align-items:center;gap:10px}
+.key{display:inline-flex;align-items:center;justify-content:center;min-width:64px;height:64px;padding:0 18px;border-radius:10px;font-family:var(--mono);font-size:26px;color:var(--txt);
+  background:linear-gradient(180deg,#2a2d36,#1a1c22);border:1px solid rgba(255,255,255,.16);box-shadow:0 6px 0 #0c0d10,0 10px 24px rgba(0,0,0,.5)}
+.keys{display:flex;gap:12px;align-items:center}.keys .plus{font-family:var(--mono);color:var(--dim);font-size:26px}
+
+/* tree rows (Takes-tree look) */
+.row{position:absolute;left:18px;right:18px;height:58px;display:flex;align-items:center;gap:14px;border-radius:7px;padding-right:16px}
+.row .ico{width:30px;height:30px;flex:none;display:flex;align-items:center;justify-content:center}
+.row .lbl{font-family:var(--display);font-weight:600;font-size:27px;white-space:nowrap}
+.row .sub{font-family:var(--body);font-size:19px;color:var(--mut);white-space:nowrap}
+.row .right{margin-left:auto;display:flex;gap:10px;align-items:center}
+.row.sel{background:rgba(58,123,200,.42);box-shadow:inset 0 0 0 1px rgba(120,170,230,.35)}
+.guide{position:absolute;width:2px;background:rgba(255,255,255,.1)}
+
+/* cursor */
+.cursor{position:absolute;left:0;top:0;width:44px;height:44px;z-index:50;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+.ripple{position:absolute;border-radius:50%;border:3px solid var(--o2);pointer-events:none}
+
+/* HUD */
+#hud{position:absolute;inset:0;pointer-events:none;z-index:40}
+#chapTag{position:absolute;left:120px;top:58px;font-family:var(--mono);font-size:20px;letter-spacing:.22em;color:var(--mut);white-space:nowrap}
+#chapTag b{color:var(--o2);font-weight:500}
+#rail{position:absolute;left:120px;right:120px;bottom:44px;height:4px;display:flex;gap:10px}
+#rail>div{flex:1;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;position:relative}
+#rail>div>i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--b2),var(--o2))}
+#rail>div>span{display:none;position:absolute;left:0;top:-30px;font-family:var(--mono);font-size:15px;letter-spacing:.16em;color:var(--dim);white-space:nowrap;text-transform:uppercase}
+#fx{position:absolute;inset:0;pointer-events:none;z-index:60}
+#fx .bar{position:absolute;top:-20px;height:1120px;width:2600px;left:-2700px;transform:skewX(-14deg)}
+#fx .flash{position:absolute;inset:0;opacity:0;background:radial-gradient(circle at 50% 50%,rgba(255,240,220,.95),rgba(245,166,35,.55) 45%,rgba(232,125,13,0) 75%)}
+#vignette{position:absolute;inset:0;pointer-events:none;z-index:30;background:radial-gradient(ellipse 75% 70% at 50% 50%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%)}

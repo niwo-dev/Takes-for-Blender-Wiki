@@ -1,0 +1,264 @@
+{
+  "voice": "af_heart",
+  "speed": 1.0,
+  "bpm": 120,
+  "fps": 60,
+  "defaults": {
+    "lead": 0.8,
+    "gap": 0.6,
+    "tail": 1.6
+  },
+  "chapters": [
+    {
+      "n": 1,
+      "title": "One file"
+    },
+    {
+      "n": 2,
+      "title": "The foundation"
+    },
+    {
+      "n": 3,
+      "title": "Looks & motion"
+    },
+    {
+      "n": 4,
+      "title": "Power tools"
+    },
+    {
+      "n": 5,
+      "title": "Delivery"
+    },
+    {
+      "n": 6,
+      "title": "Workflow & team"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s01_folder",
+      "chapter": 1,
+      "minDur": 10.5,
+      "lead": 1.2,
+      "lines": [
+        "Every product artist knows this folder.",
+        "Final. Final, really.",
+        "And no one remembers which one the client approved."
+      ]
+    },
+    {
+      "id": "s02_collapse",
+      "chapter": 1,
+      "minDur": 7,
+      "lead": 0.6,
+      "lines": [
+        "What if every look lived in one file?"
+      ]
+    },
+    {
+      "id": "s03_title",
+      "chapter": 1,
+      "minDur": 9.5,
+      "lead": 1.0,
+      "lines": [
+        "Takes for Blender.",
+        "Stage management for product visualization."
+      ]
+    },
+    {
+      "id": "card2",
+      "chapter": 2,
+      "card": true,
+      "dur": 2.5
+    },
+    {
+      "id": "s04_stage",
+      "chapter": 2,
+      "minDur": 12,
+      "lines": [
+        "Takes runs the stage behind every shot.",
+        "The camera, the world, the materials, the animation, and the render settings."
+      ]
+    },
+    {
+      "id": "s05_tree",
+      "chapter": 2,
+      "minDur": 13,
+      "lines": [
+        "It starts with one tree.",
+        "Scene groups, scenes, view layer groups, view layers, and takes.",
+        "With a live preview beside every shot."
+      ]
+    },
+    {
+      "id": "s06_cascade",
+      "chapter": 2,
+      "minDur": 17,
+      "lines": [
+        "Then, the cascade.",
+        "Set a camera, a world, or a preset on any level, and everything below inherits it.",
+        "Until a deeper level says otherwise.",
+        "And every preset slot resolves on its own."
+      ]
+    },
+    {
+      "id": "s07_review",
+      "chapter": 2,
+      "minDur": 14,
+      "lines": [
+        "Every take is one round of review.",
+        "Write down the client's note, click New Take from Here, and work it in.",
+        "Earlier rounds stay one click away."
+      ]
+    },
+    {
+      "id": "card3",
+      "chapter": 3,
+      "card": true,
+      "dur": 2.5
+    },
+    {
+      "id": "s08_variants",
+      "chapter": 3,
+      "minDur": 15,
+      "lines": [
+        "Variant Switch shows one product in every finish.",
+        "Build the parts once, and save each look as a state.",
+        "Every shot picks its own, and nothing is ever duplicated."
+      ]
+    },
+    {
+      "id": "s09_actions",
+      "chapter": 3,
+      "minDur": 18,
+      "lines": [
+        "Each view layer wears its own animation.",
+        "Switch shots, and every object picks up the right action.",
+        "Anything you haven't keyed goes home to its rest pose.",
+        "Pin the exceptions, like a logo that spins the same in every shot."
+      ]
+    },
+    {
+      "id": "card4",
+      "chapter": 4,
+      "card": true,
+      "dur": 2.5
+    },
+    {
+      "id": "s10_diff",
+      "chapter": 4,
+      "minDur": 11,
+      "lines": [
+        "Diff State colours the viewport by where each value comes from.",
+        "This take, a parent tier, the rest pose, or drift."
+      ]
+    },
+    {
+      "id": "s11_modes",
+      "chapter": 4,
+      "minDur": 15,
+      "lines": [
+        "Modes change how the file behaves.",
+        "Still Mode pins stills to frame zero.",
+        "Value Lock snaps accidental nudges back.",
+        "And every active mode shows as a pill in the viewport."
+      ]
+    },
+    {
+      "id": "s12_multicam",
+      "chapter": 4,
+      "minDur": 10,
+      "lines": [
+        "Multi-Cam cuts one take between several cameras.",
+        "And every take keeps its own edit."
+      ]
+    },
+    {
+      "id": "s13_rules",
+      "chapter": 4,
+      "minDur": 12,
+      "lines": [
+        "Tags label anything, in colour.",
+        "Rules bundle a whole render setup, and apply it on any tier in one click."
+      ]
+    },
+    {
+      "id": "s14_sequencer",
+      "chapter": 4,
+      "minDur": 9,
+      "lines": [
+        "In the sequencer, every strip plays with the take it will render.",
+        "The preview is the edit."
+      ]
+    },
+    {
+      "id": "card5",
+      "chapter": 5,
+      "card": true,
+      "dur": 2.5
+    },
+    {
+      "id": "s15_batch",
+      "chapter": 5,
+      "minDur": 17,
+      "lines": [
+        "Then, deliver.",
+        "Batch render every shot and every variant, in the foreground, or in the background while you keep working.",
+        "Estimate times up front, resume where you stopped, and retry only what failed."
+      ]
+    },
+    {
+      "id": "s16_output",
+      "chapter": 5,
+      "minDur": 11,
+      "lines": [
+        "Smart Output names every file from tokens, even your own.",
+        "So each render lands in the right folder."
+      ]
+    },
+    {
+      "id": "card6",
+      "chapter": 6,
+      "card": true,
+      "dur": 2.5
+    },
+    {
+      "id": "s17_fast",
+      "chapter": 6,
+      "minDur": 12,
+      "lines": [
+        "Work fast, with six pie menus,",
+        "bookmarks for any animatable property,",
+        "and tool settings that stay in sync across every scene."
+      ]
+    },
+    {
+      "id": "s18_team",
+      "chapter": 6,
+      "minDur": 13,
+      "lines": [
+        "Open files made without Takes, and keep the animation, cameras and worlds they had.",
+        "Project presets travel with the file, so everyone who opens it gets the same setup."
+      ]
+    },
+    {
+      "id": "s19_ai",
+      "chapter": 6,
+      "minDur": 8,
+      "lines": [
+        "An AI assistant can drive Takes too, every change a single undo step."
+      ]
+    },
+    {
+      "id": "s20_outro",
+      "chapter": 6,
+      "minDur": 13,
+      "lead": 1.4,
+      "tail": 4.0,
+      "lines": [
+        "Takes for Blender.",
+        "One file. Every look. Every render."
+      ]
+    }
+  ]
+}
