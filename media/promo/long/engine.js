@@ -92,14 +92,16 @@ export const TRANS = {
       i.style.transform = `translateY(${(1 - e) * 1080}px)`; i.style.filter = `blur(${Math.sin(p * Math.PI) * 5}px)`; i.style.zIndex = 2;
     }, cues: (b) => [[b - .4, 'swish', { gain: .9 }]] },
   iris: { d: .9, apply(o, i, p) {
-      const e = ease.inOut(p);
-      o.style.transform = `scale(${1 - e * .06})`; o.style.filter = `brightness(${1 - e * .5})`;
-      i.style.clipPath = `circle(${e * 1150}px at 50% 50%)`; i.style.zIndex = 2;
+      // complementary masks: the incoming scene inside the circle, the outgoing scene only outside it
+      const e = ease.inOut(p), R = e * 1150, sc = 1 - e * .06;
+      o.style.transform = `scale(${sc})`; o.style.filter = `brightness(${1 - e * .5})`;
+      o.style.webkitMaskImage = `radial-gradient(circle at 50% 50%, transparent ${R / sc}px, #000 ${R / sc + 1.5}px)`;
+      i.style.webkitMaskImage = `radial-gradient(circle at 50% 50%, #000 ${R}px, transparent ${R + 1.5}px)`; i.style.zIndex = 2;
     }, cues: (b) => [[b - .5, 'whoosh', { gain: .7 }]] },
   blinds: { d: .9, apply(o, i, p) {
-      const e = ease.inOut(p), w = e * 121;
+      const e = ease.inOut(p), w = Math.min(120, e * 121);
       i.style.webkitMaskImage = `repeating-linear-gradient(100deg,#000 0px,#000 ${w}px,transparent ${w}px,transparent 120px)`; i.style.zIndex = 2;
-      o.style.transform = `translateX(${-e * 60}px)`;
+      o.style.webkitMaskImage = p >= .999 ? 'linear-gradient(transparent,transparent)' : `repeating-linear-gradient(100deg,transparent 0px,transparent ${w}px,#000 ${w}px,#000 120px)`;
     }, cues: (b) => [[b - .45, 'swish', { gain: .7, pan: -.2 }], [b + .1, 'tick', { gain: .5 }]] },
   wipe: { d: 1.0, apply(o, i, p, fx) {
       const bars = fx.bars; const span = 1920 + 2700 + 600;

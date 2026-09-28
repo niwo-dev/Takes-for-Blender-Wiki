@@ -57,7 +57,7 @@ defineScene({
     const tRew = tStill + .08, dRew = .62;    // playhead slides home to frame 0
     const tPin = tRew + dRew;                 // pinned: STILL · F0
     const tLock = L(2) - .08;                 // click Value Lock (Autokey pauses)
-    const tGrab = tLock + .85, tRel = tGrab + .85;   // drag Power to 1800 W, release -> snaps back
+    const tGrab = tLock + 1.0, tRel = tGrab + .8;    // drag Power to 1800 W, release -> snaps back
     const tClose = L(3) - .6;                 // sidebar closes, viewport takes the stage
     const tPill = [L(3) + .12, L(3) + .42];   // pills pop in the viewport corner
     const tKeys = L(3) + 1.3, tPress = tKeys + .35, tPie = tPress + .08;
@@ -93,7 +93,9 @@ defineScene({
     vw.appendChild(el(`<div class="abs" style="left:${CW / 2 - 260}px;top:${CH / 2 + 250}px;width:520px;height:70px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.6),transparent)"></div>`));
     const warm = el(`<div class="abs" style="left:${GZ[0] - 300}px;top:${GZ[1] - 260}px;width:600px;height:600px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,214,150,.55),rgba(245,166,35,.12) 55%,transparent);opacity:0"></div>`);
     vw.appendChild(warm);
-    const view = canvas3d(vw, { x: 0, y: 0, w: CW, h: CH });
+    // live phase renders at the on-screen size (72%); the full-size canvas is rendered once, when the viewport grows
+    const viewS = canvas3d(vw, { x: 0, y: 0, w: Math.round(CW * .72), h: Math.round(CH * .72), style: `width:${CW}px;height:${CH}px` });
+    const viewB = canvas3d(vw, { x: 0, y: 0, w: CW, h: CH });
     const giz = el(`<svg class="abs" width="160" height="160" viewBox="-80 -80 160 160" style="left:${GZ[0] - 80}px;top:${GZ[1] - 80}px;overflow:visible">
       <circle r="11" fill="rgba(255,236,200,.9)"/><circle r="19" fill="none" stroke="rgba(255,236,200,.7)" stroke-width="2.5" stroke-dasharray="4 5"/>
       ${Array.from({ length: 8 }, (_, k) => `<line class="ray" x1="${Math.cos(k * Math.PI / 4) * 26}" y1="${Math.sin(k * Math.PI / 4) * 26}" x2="${Math.cos(k * Math.PI / 4) * 40}" y2="${Math.sin(k * Math.PI / 4) * 40}" stroke="rgba(255,236,200,.75)" stroke-width="3" stroke-linecap="round"/>`).join('')}
@@ -116,19 +118,19 @@ defineScene({
     const pivot = new THREE.Group(); pivot.add(watch); scene3.add(pivot);
     paintWatch(watch, 'gold');
     const cam = R3D.camera(28);
-    let vKey = '';
+    const vKey = { s: '', b: '' };
     const fAtRew = 112;
     const frameAt = lt => lt < tRew ? (((fAtRew - (tRew - lt) * 24) % 120) + 120) % 120 : lerp(fAtRew, 0, ease.inOut(prog(lt, tRew, dRew)));
-    const renderWatch = f => {
-      const key = f.toFixed(2);
-      if (key === vKey) return;
-      vKey = key;
+    const renderWatch = (f, big) => {
+      const key = f.toFixed(2), slot = big ? 'b' : 's';
+      if (key === vKey[slot]) return;
+      vKey[slot] = key;
       const a = f / 120 * Math.PI * 2;
       pivot.rotation.set(.1 + .08 * Math.sin(a + 1), -.45 + .5 * Math.sin(a), 0);
       pivot.position.set(0, .12 * Math.sin(a * 2), 0);
       setTime(watch, 40 + f / 24 * 6);
       cam.position.set(0, .5, 13.2); cam.lookAt(0, .05, 0);
-      view.draw(scene3, cam);
+      (big ? viewB : viewS).draw(scene3, cam);
     };
 
     /* ---------- mode bar (hero) ---------- */
@@ -233,13 +235,16 @@ defineScene({
     const keysUp = keycaps(root, ['Shift', 'Alt', 'Q'], { x: PIE[0] - 190, y: PIE[1] + 292, t0: tKeys, press: tPress, ctx, scale: .9 });
 
     /* ---------- cursor (tips rest on icons / tracks, never on a word) ---------- */
-    const iconY = BTN_T + 34;
+    const iconY = BTN_T + 26;                                    // tip on the icon; the arrow ends above the label
+    const laneX = btnX(MI('lock')) + 67;                          // right margin of the Value Lock button / card edges: no text
     const cursor = new Cursor(root, ctx, [
-      { t: tStill - .9, x: 1010, y: 300 },
+      { t: tStill - .9, x: 900, y: 92 },
       { t: tStill, x: btnX(MI('still')) + 4, y: iconY, click: true },
-      { t: tStill + .7, x: 860, y: 300 },
-      { t: tLock - .8, x: 862, y: 302 },
+      { t: tStill + .5, x: 700, y: 128 },                         // rests in the empty header strip
+      { t: tLock - .45, x: 702, y: 129 },
       { t: tLock, x: btnX(MI('lock')) + 4, y: iconY, click: true },
+      { t: tLock + .15, x: laneX, y: iconY + 4 },
+      { t: tLock + .6, x: laneX, y: grab[1] },
       { t: tGrab, x: grab[0], y: grab[1], click: true },
       { t: tRel - .06, x: drop[0], y: drop[1] },
       { t: tRel + .6, x: drop[0] + 36, y: drop[1] + 64 },
@@ -253,8 +258,8 @@ defineScene({
       /* phase 1: headline in, then cleared before the work starts */
       H.update(lt, .25);
       if (lt > tSwap) {
-        hSpans.forEach((s, i) => { const p = ease.in(prog(lt, tSwap + i * .04, .36)); s.style.transform = `translateY(${-p * 115}%)`; });
-        H.el.firstChild.style.opacity = 1 - prog(lt, tSwap, .3);
+        hSpans.forEach((s, i) => { const p = ease.in(prog(lt, tSwap + i * .03, .28)); s.style.transform = `translateY(${-p * 115}%)`; });
+        H.el.firstChild.style.opacity = 1 - prog(lt, tSwap, .25);
       }
 
       /* bar + switches */
@@ -289,19 +294,21 @@ defineScene({
       const x3 = lerp(930, 600, ease.inOut(prog(lt, tKeys - .45, .8)));      // pans left to make room for the pie
       const cx = lerp(V2.x + V2.w / 2, x3, g), cy = lerp(V2.y + VHEAD + (V2.h - VHEAD) / 2 + 6, 548, g);
       vw.style.transform = `translate(${cx - vx - CW / 2}px,${cy - vy - CH / 2 + float(lt, 4, .9)}px) scale(${lerp(.72, 1, g)})`;
-      const f = frameAt(lt);
-      renderWatch(f);
+      const f = frameAt(lt), big = g > .001;
+      renderWatch(f, big);
+      viewS.canvas.style.visibility = big ? 'hidden' : 'visible'; viewB.canvas.style.visibility = big ? 'visible' : 'hidden';
       const fi = Math.round(f), ftxt = `(${fi}) Watch`;
       if (vfr.textContent !== ftxt) vfr.textContent = ftxt;
       vfr.style.color = lt > tPin ? '#8fbcf0' : '#c9d1de';
       const P = powerAt(lt), pk = clamp((P - 1000) / 800, -.4, 1.2);
-      view.canvas.style.filter = Math.abs(pk) > .005 ? `brightness(${1 + .55 * pk}) saturate(${1 + .15 * pk})` : 'none';
+      const flt = Math.abs(pk) > .005 ? `brightness(${1 + .55 * pk}) saturate(${1 + .15 * pk})` : 'none';
+      viewS.canvas.style.filter = flt; viewB.canvas.style.filter = flt;
       warm.style.opacity = clamp(pk) * .9;
       rays.forEach((r, k) => { const a = k * Math.PI / 4, R2 = 40 + 26 * pk; r.setAttribute('x2', (Math.cos(a) * R2).toFixed(1)); r.setAttribute('y2', (Math.sin(a) * R2).toFixed(1)); });
 
       /* work cards */
       [TC.el, LC.el].forEach((c, k) => {
-        const t0 = tSwap + .3 + k * .12, a = ease.expo(prog(lt, t0, .7)), o = ease.in(prog(lt, tClose + k * .07, .45));
+        const t0 = tSwap + .4 + k * .1, a = ease.expo(prog(lt, t0, .7)), o = ease.in(prog(lt, tClose + k * .07, .45));
         c.style.opacity = clamp(prog(lt, t0, .7) * 2.5) * (1 - o) * (k === 1 ? lerp(.5, 1, ease.out(prog(lt, tLock - .3, .4))) : 1);
         c.style.transform = `translateX(${(1 - a) * -90 - o * 160}px)`;
       });

@@ -138,13 +138,16 @@ defineScene({
     const [pcx, pcy] = P(0, PC.x, PC.y), [pwx, pwy] = P(1, 452, 176), [bmx, bmy] = P(1, 446, 290);
     const [snx, sny] = P(2, 70 + 446 - 18 - 150 - 16 + 25, RC3(0) + 4), [prx, pry] = P(2, 70 + 446 - 18 - 25, RC3(0) + 4);
     const hvx = pcx + 34;
-    const cursor = new Cursor(rail, ctx, [
-      { t: T.bloom + .45, x: pcx + 4, y: pcy + 2 }, { t: L(0) + .86, x: pcx + 4, y: pcy + 2 }, { t: T.hover - .02, x: hvx, y: pcy - 2 },
-      { t: T.pan1 + .1, x: hvx, y: pcy - 2 }, { t: T.rclick - .06, x: pwx, y: pwy }, { t: T.rclick, x: pwx, y: pwy, click: true },
+    // one cursor per card: each fades in where it works and out before the camera moves on
+    const curA = new Cursor(rail, ctx, [
+      { t: T.bloom + .45, x: pcx + 4, y: pcy + 2 }, { t: L(0) + .86, x: pcx + 4, y: pcy + 2 }, { t: T.hover - .02, x: hvx, y: pcy - 2 }], { hideAt: T.pan1 - .35 });
+    const curB = new Cursor(rail, ctx, [
+      { t: T.rclick - .3, x: pwx + 34, y: pwy + 58 }, { t: T.rclick - .06, x: pwx, y: pwy }, { t: T.rclick, x: pwx, y: pwy, click: true },
       { t: T.rclick + .3, x: pwx, y: pwy }, { t: T.bm - .14, x: bmx, y: bmy }, { t: T.bm, x: bmx, y: bmy, click: true },
-      { t: T.bm + .35, x: CX(1) + 130, y: CY + 300 }, { t: T.pan2 + .15, x: CX(1) + 130, y: CY + 300 },
-      { t: T.snap - .06, x: snx, y: sny }, { t: T.snap, x: snx, y: sny, click: true }, { t: T.snap + .45, x: snx, y: sny },
-      { t: T.prop - .06, x: prx, y: pry }, { t: T.prop, x: prx, y: pry, click: true }, { t: T.prop + 1.1, x: prx + 60, y: pry + 520 }], { hideAt: T.prop + .6 });
+      { t: T.bm + .35, x: CX(1) + 130, y: CY + 300 }], { hideAt: T.bm + .55 });
+    const curC = new Cursor(rail, ctx, [
+      { t: T.snap - .42, x: snx + 26, y: sny + 40 }, { t: T.snap - .06, x: snx, y: sny }, { t: T.snap, x: snx, y: sny, click: true }, { t: T.snap + .45, x: snx, y: sny },
+      { t: T.prop - .06, x: prx, y: pry }, { t: T.prop, x: prx, y: pry, click: true }, { t: T.prop + .9, x: prx + 30, y: pry + 60 }], { hideAt: T.prop + .55 });
 
     /* ---------- sound ---------- */
     ctx.cue(T.bloom - .04, 'whoosh', { gain: .75 });
@@ -195,7 +198,7 @@ defineScene({
       hub.style.transform = `scale(${ease.back(prog(lt, T.bloom, .45))})`;
       ring.style.opacity = ease.out(prog(lt, T.bloom + .1, .5));
       ring.style.transform = `scale(${lerp(.55, 1, ease.expo(prog(lt, T.bloom, .9)))})`;
-      const hW = clamp((lt - T.hover) / .12) * (1 - clamp((lt - T.pan1 - .05) / .3));
+      const hW = clamp((lt - T.hover) / .12) * (1 - clamp((lt - T.pan1 + .35) / .3));
       btns.forEach(({ b, dx, dy }, i) => {
         const q = prog(lt, T.bloom + .05 + i * .035, .5), k = ease.back(q), h = i === 2 ? hW : 0;
         b.style.opacity = clamp(q * 4);
@@ -207,9 +210,9 @@ defineScene({
           b.style.color = h > .5 ? '#ffffff' : '#aeb6c6';
         }
       });
-      const [cx, cy] = cursor.pos(lt), ddx = cx - pcx, ddy = cy - pcy;
+      const [cx, cy] = curA.pos(lt), ddx = cx - pcx, ddy = cy - pcy;
       dir.setAttribute('transform', `rotate(${Math.atan2(ddy, ddx) * 180 / Math.PI} ${PC.x} ${PC.y})`);
-      dir.style.opacity = clamp((Math.hypot(ddx, ddy) - 8) / 20) * (1 - clamp((lt - T.pan1) / .3)) * clamp(prog(lt, T.bloom, .3));
+      dir.style.opacity = clamp((Math.hypot(ddx, ddy) - 8) / 20) * (1 - clamp((lt - T.pan1 + .35) / .3)) * clamp(prog(lt, T.bloom, .3));
       pop(tagWrap, lt, T.tag, .5, .7, 14);
       minis.forEach((m, j) => pop(m, lt, T.tag + .12 + j * .06, .4, .2));
 
@@ -253,7 +256,7 @@ defineScene({
       revealMasks(head, lt, T.head, .09, .8);
       head.style.opacity = lt >= T.head ? 1 : 0;
 
-      cursor.update(lt);
+      curA.update(lt); curB.update(lt); curC.update(lt);
     };
   },
 });

@@ -12,10 +12,10 @@ const ST = {
   drift: { c: '#f5a623', name: 'Drift State' },
 };
 const ORDER = ['take', 'parent', 'rest', 'drift'];
-const VP = { x: 120, y: 346, w: 1680, h: 556, head: 46 };     // viewport panel (stage px)
+const VP = { x: 120, y: 348, w: 1680, h: 548, head: 46 };     // viewport panel (stage px)
 const CW = VP.w - 2, CH = VP.h - VP.head - 2;                  // 3D canvas inside it
 const MR = { x: 1296, y: 212, w: 504, h: 78 };                 // mode row strip
-const DRIFT_DX = .95;                                          // how far the cone is nudged (world units)
+const DRIFT_DX = 1.25;                                          // how far the cone is nudged (world units)
 
 // faint floor grid that fades with distance (additive vertex colours, so black = invisible)
 function makeGrid(half = 22, fadeR = 14) {
@@ -67,7 +67,7 @@ defineScene({
     const tPress = tDrift - .32, tRelease = tDrift + .28;
 
     // ---------- headline (own zone, top-left) ----------
-    const H = headline(root, { x: 120, y: 104, w: 1000, lines: ['SEE WHERE', { t: 'IT COMES FROM.', grad: true }], size: 84 });
+    const H = headline(root, { x: 120, y: 124, w: 1000, lines: ['SEE WHERE', { t: 'IT COMES FROM.', grad: true }], size: 82 });
 
     // ---------- mode row (top-right): icon buttons + the Diff State button ----------
     const mr = el(`<div class="glass abs" style="left:${MR.x}px;top:${MR.y}px;width:${MR.w}px;height:${MR.h}px;display:flex;align-items:center;gap:10px;padding:0 11px"></div>`);
@@ -99,20 +99,20 @@ defineScene({
 
     const objs = [];
     const add = (mesh, state, mats) => { scene.add(mesh); objs.push({ mesh, state, mats }); return mesh; };
-    // pedestal + watch lying on it, straps draped over the edge
+    // pedestal with the watch standing above it (the product is what this take keys)
     const pedMat = clay('#7e8594');
-    const ped = add(new THREE.Mesh(new THREE.CylinderGeometry(1.12, 1.2, 1.4, 64), pedMat), 'rest', [pedMat]); ped.position.set(-1.1, .7, -.2);
-    const watch = createWatch(); paintWatch(watch, 'gold'); watch.scale.setScalar(.36);
-    const wg = new THREE.Group(); wg.add(watch); wg.position.set(-1.1, 1.52, -.2); wg.rotation.y = .6;
+    const ped = add(new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.08, .56, 64), pedMat), 'rest', [pedMat]); ped.position.set(-.9, .28, -.3);
+    const watch = createWatch(); paintWatch(watch, 'gold'); watch.scale.setScalar(.265); watch.rotation.x = Math.PI / 2;
+    const wg = new THREE.Group(); wg.add(watch); wg.position.set(-.9, 2.2, -.3); wg.rotation.y = .5;
     const WM = watch.userData.M; add(wg, 'take', [WM.case, WM.strap, WM.dial]);
     // props
     const sphMat = clay('#8b92a1'), boxMat = clay('#858c9b'), coneMat = clay('#8e95a3');
-    const sph = add(new THREE.Mesh(new THREE.SphereGeometry(.92, 48, 32), sphMat), 'parent', [sphMat]); sph.position.set(-4.7, .92, .7);
-    const box = add(new THREE.Mesh(new RoundedBoxGeometry(1.45, 1.45, 1.45, 4, .1), boxMat), 'take', [boxMat]); box.position.set(2.1, .725, .55); box.rotation.y = .55;
-    const cone = add(new THREE.Mesh(new THREE.ConeGeometry(.78, 1.85, 48), coneMat), 'rest', [coneMat]); cone.position.set(5.0, .925, -.35);
+    const sph = add(new THREE.Mesh(new THREE.SphereGeometry(.95, 48, 32), sphMat), 'parent', [sphMat]); sph.position.set(-4.3, .95, .6);
+    const box = add(new THREE.Mesh(new RoundedBoxGeometry(1.5, 1.5, 1.5, 4, .1), boxMat), 'parent', [boxMat]); box.position.set(2.1, .75, .5); box.rotation.y = .55;
+    const cone = add(new THREE.Mesh(new THREE.ConeGeometry(.8, 1.9, 48), coneMat), 'rest', [coneMat]); cone.position.set(4.7, .95, -.3);
     const CONE_X = cone.position.x;
-    shadow(-1.1, -.2, 1.9); shadow(-4.7, .7, 1.4); shadow(2.1, .55, 1.6);
-    const coneShadow = shadow(CONE_X, -.35, 1.3);
+    shadow(-.9, -.3, 1.7); shadow(-4.3, .6, 1.45); shadow(2.1, .5, 1.65);
+    const coneShadow = shadow(CONE_X, -.3, 1.35);
 
     // Box marks from each object's bounds (computed once; objects are static except the nudged cone)
     const tmp = new THREE.Box3(), cen = new THREE.Vector3(), size = new THREE.Vector3();
@@ -132,18 +132,18 @@ defineScene({
 
     const cam = R3D.camera(24);
     const camAt = t => {
-      const a = -.24 + t * .034, r = 13.4;
-      cam.position.set(.55 + Math.sin(a) * r, 4.9, Math.cos(a) * r);
-      cam.lookAt(.55, .95, 0);
+      const a = -.26 + t * .04, r = 11.6 - t * .06;
+      cam.position.set(.6 + Math.sin(a) * r, 4.2, Math.cos(a) * r);
+      cam.lookAt(.6, 1.42, 0);
       cam.aspect = CW / CH; cam.updateProjectionMatrix(); cam.updateMatrixWorld();
     };
     const v3 = new THREE.Vector3();
     const toStage = (p, t) => { camAt(t); v3.copy(p).project(cam); return [VP.x + 1 + (v3.x + 1) / 2 * CW, VP.y + VP.head + 1 + (1 - v3.y) / 2 * CH]; };
-    const coneTop = x => new THREE.Vector3(x, 1.25, -.35);
+    const coneTop = x => new THREE.Vector3(x, 1.2, -.3);
     const dragX = t => CONE_X + DRIFT_DX * ease.inOut(prog(t, tPress + .02, tRelease - tPress - .02));
 
     // ---------- legend row ----------
-    const LG_W = 240, LG_G = 26, LG_X = 960 - (4 * LG_W + 3 * LG_G) / 2, LG_Y = 928;
+    const LG_W = 240, LG_G = 26, LG_X = 960 - (4 * LG_W + 3 * LG_G) / 2, LG_Y = 916;
     const pills = ORDER.map((k, i) => {
       const c = ST[k].c;
       const p = el(`<div class="abs" style="left:${LG_X + i * (LG_W + LG_G)}px;top:${LG_Y}px;width:${LG_W}px;height:56px;border-radius:10px;border:2px solid ${c};background:rgba(10,10,14,.72);display:flex;align-items:center;justify-content:center;gap:12px;opacity:0">
@@ -171,7 +171,12 @@ defineScene({
     tPill.forEach((t, k) => ctx.cue(t, k < 3 ? 'tick' : 'blip', { gain: k < 3 ? .6 : .85, pitch: k * 2, pan: -.45 + k * .3 }));
     ctx.cue(tPress + .05, 'swish', { gain: .45, pan: .6 });
 
-    const markIn = o => tClick + .12 + objs.indexOf(o) * .11;
+    // a scan beam sweeps the viewport; each mark lands as the beam passes its object
+    const tScan = tClick + .08, SCAN = .75;
+    const scan = el(`<div class="abs" style="left:0;top:0;width:8px;height:${CH}px;background:linear-gradient(180deg,rgba(58,123,200,0),#6aa6ea 30%,#f5a623 70%,rgba(245,166,35,0));box-shadow:0 0 28px 8px rgba(106,166,234,.45);opacity:0"></div>`);
+    vb.appendChild(scan);
+    objs.forEach(o => { const [sx] = toStage(o.center, tScan + SCAN / 2); o.tIn = tScan + clamp((sx - VP.x) / CW) * SCAN; });
+    const markIn = o => o.tIn;
     const tint = new THREE.Color(), base = new THREE.Color();
     return lt => {
       H.update(lt, -.3);
@@ -186,6 +191,9 @@ defineScene({
       dBtn.style.boxShadow = on ? `0 0 ${14 + flash * 30}px rgba(58,123,200,${.45 + flash * .4})` : 'none';
       dLbl.style.color = on ? '#ffffff' : '#c9d1de'; dIco.style.stroke = on ? '#ffffff' : '#c9d1de';
 
+      const sq = prog(lt, tScan, SCAN);
+      scan.style.opacity = sq > 0 && sq < 1 ? Math.min(1, Math.sin(sq * Math.PI) * 2.2) : 0;
+      scan.style.transform = `translateX(${sq * CW}px)`;
       // cone nudge (Drift)
       const cx = dragX(lt);
       cone.position.x = cx; coneShadow.position.x = cx;
@@ -207,7 +215,7 @@ defineScene({
       dMark.g.position.set(cx, coneO.center.y, coneO.center.z);
       dMark.g.scale.setScalar(1 + Math.max(0, 1 - Math.abs(lt - tDrift - .2) / .35) * .06);
       trailMat.opacity = dm * .7;
-      trail.scale.x = Math.max(.001, cx - CONE_X); trail.position.set((cx + CONE_X) / 2, .03, -.35);
+      trail.scale.x = Math.max(.001, cx - CONE_X); trail.position.set((cx + CONE_X) / 2, .03, -.3);
 
       setTime(watch, lt * 4 + 20);
       camAt(lt);

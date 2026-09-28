@@ -46,8 +46,8 @@ function createCoin() {
 
 // engraved caseback so the Hero_Spin shows a finished back
 function addCaseback(watch) {
-  const steel = new THREE.MeshStandardMaterial({ color: '#cfd6e0', metalness: 1, roughness: .3 });
-  const dark = new THREE.MeshStandardMaterial({ color: '#aab3c2', metalness: 1, roughness: .22 });
+  const steel = new THREE.MeshStandardMaterial({ color: '#d5dbe4', metalness: 1, roughness: .13 });
+  const dark = new THREE.MeshStandardMaterial({ color: '#b4bcc9', metalness: 1, roughness: .24 });
   const back = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.56, .08, 72), steel); back.position.y = -.36; watch.add(back);
   for (const [r, w] of [[1.28, .03], [.98, .02], [.5, .025]]) {
     const t = new THREE.Mesh(new THREE.TorusGeometry(r, w, 6, 72), dark); t.rotation.x = Math.PI / 2; t.position.y = -.405; watch.add(t);

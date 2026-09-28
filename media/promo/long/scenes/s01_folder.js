@@ -58,6 +58,14 @@ defineScene({
     const R = rng(101);
     const sizes = FILES.map(() => 121 + Math.round(R() * 46));
 
+    // camera: close on the folder, pull back to the whole folder, lean in on the FINAL rows (world → stage)
+    const finFocus = lt => clamp(prog(lt, T_FIN[0] - .12, .3)) * (1 - clamp(prog(lt, L(1) + d1 * .92, .35)));
+    const camAt = lt => {
+      const pb = ease.inOut(prog(lt, 0, L(0) + 1.7)), fk = ease.inOut(finFocus(lt)), bk = ease.inOut(prog(lt, T_BREAK, .35));
+      return { s: lerp(1.7, 1, pb) * (1 + .1 * fk - .03 * bk), fx: lerp(790, 960, pb) - 110 * fk, fy: lerp(350, 515, pb) - 10 * fk };
+    };
+    const toStage = (x, y, lt) => { const c = camAt(lt); return [960 + (x - c.fx) * c.s, 540 + (y - c.fy) * c.s]; };
+
     const bgDim = el('<div class="layer" style="background:#050507;opacity:0"></div>'); root.appendChild(bgDim);
     // the "world" (drifting copies + window) carries the camera: close on the folder, pull back, push on "Final"
     const world = el('<div class="layer" style="transform-origin:0 0"></div>'); root.appendChild(world);
@@ -97,10 +105,15 @@ defineScene({
       <div class="abs mono res" style="right:12px;top:11px;font-size:16px;letter-spacing:.08em;color:#e5484d;opacity:0">5 RESULTS</div></div>`);
     body.appendChild(search);
     const sPh = search.querySelector('.ph'), sTyped = search.querySelector('.typed'), sRes = search.querySelector('.res');
-    const typing = typer(sTyped, 'approved', { t0: T_TYPE, cps: 22, ctx });
+    const typing = typer(sTyped, 'approved', { t0: T_TYPE, cps: 22 });   // typing sound: two cues below, not one per key pair
     body.appendChild(el(`<div class="abs mono" style="left:0;right:0;top:${TOOL}px;height:${COLH}px;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.08);font-size:15px;letter-spacing:.16em;color:#6b7385">
       <span class="abs" style="left:70px;top:11px">NAME</span><span class="abs" style="left:${MODX}px;top:11px">MODIFIED</span><span class="abs" style="right:44px;top:11px">SIZE</span></div>`));
     const list = el(`<div class="abs" style="left:0;right:0;top:${LTOP}px;height:${LH}px;overflow:hidden"></div>`); body.appendChild(list);
+    // storage bar under the list: fills up as the copies pile up (a graphic, no text)
+    const disk = el(`<div class="abs" style="left:24px;right:24px;top:${LTOP + LH + 26}px;height:10px;border-radius:5px;background:rgba(255,255,255,.07);overflow:hidden">
+      <div class="abs" style="left:0;top:0;bottom:0;width:100%;border-radius:5px;transform-origin:0 50%;background:linear-gradient(90deg,#e87d0d,#f5a623 55%,#e5484d)"></div></div>`);
+    body.appendChild(disk);
+    const diskFill = disk.firstElementChild;
     const rows = FILES.map(([name, mod], i) => {
       const r = el(`<div class="abs" style="left:0;top:0;width:${WW}px;height:${RH}px;opacity:0;transform-origin:30% 50%">
         <div class="abs rbg" style="left:10px;right:10px;top:2px;bottom:2px;border-radius:6px"></div>
@@ -155,15 +168,17 @@ defineScene({
       root.appendChild(c); return { c, x: CX0 + k * (CW + CGAP), rot: [-7, 4, -3, 6, -5][k] };
     });
 
+    const [clx, cly] = toStage(WX + 846 + 250, WY + HEAD + 34, T_CLICK);   // empty part of the search field
     const cursor = new Cursor(root, ctx, [
-      { t: T_CLICK - .7, x: 1880, y: 330 }, { t: T_CLICK, x: WX + 846 + 150, y: WY + HEAD + 34, click: true }, { t: T_CLICK + .9, x: WX + 1080, y: WY + 300 }], { hideAt: T_CLICK + .6 });
+      { t: T_CLICK - .7, x: 1880, y: 330 }, { t: T_CLICK, x: clx, y: cly, click: true }, { t: T_CLICK + .9, x: clx + 300, y: cly - 170 }], { hideAt: T_CLICK + .45 });
 
     /* ---- sound ---- */
     for (let i = 10; i < 16; i += 2) ctx.cue(addT[i], 'pop', { gain: .5 + (i - 10) * .03, pitch: (i - 10) * 1.5, pan: .25 });
     ctx.cue(L(0) + .05, 'whoosh', { gain: .3 });
     T_FIN.forEach((t, k) => ctx.cue(t, 'blip', { gain: .75, pitch: [0, 3, 5, 8][k], pan: -.3 + k * .15 }));
     ctx.cue(addT[16], 'riser', { gain: .35 });
-    ctx.cue(addT[20], 'pop', { gain: .55, pitch: 8, pan: .3 }); ctx.cue(addT[25], 'pop', { gain: .6, pitch: 11, pan: .3 });
+    ctx.cue(addT[20], 'pop', { gain: .55, pitch: 8, pan: .3 });
+    ctx.cue(T_TYPE, 'type', { gain: .5, pan: .2 }); ctx.cue(T_TYPE + .2, 'type', { gain: .45, pan: .2 });
     ctx.cue(T_FILTER, 'tick', { gain: .5 });
     ctx.cue(T_ERR, 'error', { gain: .8 });
     ctx.cue(T_GLITCH, 'glitch', { gain: .9 });
@@ -176,15 +191,12 @@ defineScene({
     return lt => {
       const nSaved = addT.filter(t => lt >= t).length;
       const fk = ease.inOut(prog(lt, T_FILTER, .5));                           // search filter
-      const finK = clamp(prog(lt, T_FIN[0] - .12, .3)) * (1 - clamp(prog(lt, L(1) + d1 * .92, .35)));   // FINAL focus
+      const finK = finFocus(lt);                                                // FINAL focus
       const g = glitchAt(lt), gTick = Math.floor(lt * 30);
       const brk = ease.inOut(prog(lt, T_BREAK, .35));                          // the folder falls apart
       const endK = ease.inOut(prog(lt, T_GLITCH, .8));
 
-      // camera: close on the folder, pull back to the whole folder, lean in on the FINAL rows
-      const pb = ease.inOut(prog(lt, 0, L(0) + 1.7));
-      const s = lerp(1.7, 1, pb) * (1 + .1 * ease.inOut(finK) - .03 * brk);
-      const fx = lerp(790, 960, pb) - 110 * ease.inOut(finK), fy = lerp(350, 515, pb) - 10 * ease.inOut(finK);
+      const { s, fx, fy } = camAt(lt);
       world.style.transform = `translate(${960 - fx * s}px,${540 - fy * s}px) scale(${s})`;
 
       const sx = g * (hash(1, gTick) - .5) * 26, sy = g * (hash(2, gTick) - .5) * 12;
@@ -243,6 +255,8 @@ defineScene({
       // counter
       const gb = sizes.slice(0, nSaved).reduce((a, b) => a + b, 0) / 1000;
       cN.textContent = nSaved; cG.textContent = gb.toFixed(1);
+      let gbS = 0; addT.forEach((t, i) => { gbS += sizes[i] * ease.out(prog(lt, t, .3)); });
+      diskFill.style.transform = `scaleX(${clamp(gbS / 4400)})`;
       const lastT = addT[nSaved - 1], bump = lt - lastT < .25 && lastT > 0 ? Math.exp(-(lt - lastT) * 12) : 0;
       counter.style.transform = `translate(0,${brk * 30}px) scale(${1 + bump * .06})`;
       cN.style.color = bump > .1 ? '#f5a623' : '#eef1f6';

@@ -61,14 +61,14 @@ defineScene({
     const tHead = Math.max(ctx.lineEnd(1) + .05, tBadge + .45);
 
     /* ---------- sound ---------- */
-    ctx.cue(-.05, 'shimmer', { gain: .35, pan: .5 });
+    ctx.cue(.42, 'shimmer', { gain: .35, pan: .5 });
     tTag.forEach((t, i) => ctx.cue(t + FLY * .8, 'pop', { gain: .75, pitch: i * 2, pan: -.2 }));
     ctx.cue(tCard, 'whoosh', { gain: .45, pan: .5 });
     [0, 2, 4].forEach((k, j) => ctx.cue(tSlot[k] + .1, 'tick', { gain: .6, pitch: j * 3, pan: .5 }));
     ctx.cue(tDone, 'shimmer', { gain: .5, pan: .5 });
     ctx.cue(tLift, 'swish', { gain: .55, pan: .1 });
-    ctx.cue(tDrop, 'thud', { gain: .75, pan: -.3 }); ctx.cue(tDrop + .02, 'click', { gain: .5, pan: -.3 });
-    tVL.forEach((t, j) => ctx.cue(t, 'tick', { gain: .55, pitch: 4 + j * 3, pan: -.35 }));
+    ctx.cue(tDrop, 'thud', { gain: .8, pan: -.3 });
+    [0, 2].forEach(j => ctx.cue(tVL[j], 'tick', { gain: .6, pitch: 4 + j * 3, pan: -.35 }));
     ctx.cue(tBadge, 'success', { gain: .6, pan: -.3 });
     ctx.cue(tHead, 'swish', { gain: .35, pan: .4 });
 
@@ -159,10 +159,10 @@ defineScene({
       /* tags */
       tagEls.forEach((o, i) => {
         const t0 = tTag[i], q = prog(lt, t0, FLY), e = ease.out4(q);
-        const inP = ease.back(prog(lt, -.3 + i * .08, .5));
+        const tIn = Math.min(.4 + i * .06, t0 - .3), inP = ease.back(prog(lt, tIn, .45));
         const x = lerp(o.px, o.sx, e), s = lerp(PAL, 1, e) + .1 * bump(lt, t0 + FLY + .05, .22);
         const fl = q <= 0 ? float(lt, 5, 1.4, i * 1.3) : 0;
-        o.e.style.opacity = clamp((lt + .3 - i * .08) / .25);
+        o.e.style.opacity = clamp((lt - tIn) / .2);
         o.e.style.transform = `translate(${x}px,${o.y + fl}px) scale(${q <= 0 ? PAL * lerp(.6, 1, inP) : s})`;
         o.e.style.boxShadow = `0 0 ${16 + 26 * bump(lt, t0 + FLY, .4)}px ${rgba(o.g.c, .28 + .4 * bump(lt, t0 + FLY, .4))}`;
       });

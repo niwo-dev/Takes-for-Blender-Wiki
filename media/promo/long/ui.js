@@ -96,9 +96,10 @@ export function letters(text, cls = '') {
 }
 // one continuous gradient across a line that is split into masked words/letters
 export function gradify(line, from = '#3a7bc8', to = '#f5a623') {
-  const W = line.getBoundingClientRect().width || line.offsetWidth;
+  // measure against the line's own box, so it works for positioned and flow/flex lines alike
+  const box = line.getBoundingClientRect(), W = box.width || line.offsetWidth;
   line.querySelectorAll('.mask>span').forEach(s => {
-    const x = s.parentElement.offsetLeft;
+    const x = s.parentElement.getBoundingClientRect().left - box.left;
     s.style.backgroundImage = `linear-gradient(90deg,${from},${to})`; s.style.backgroundSize = `${W}px 100%`;
     s.style.backgroundPosition = `${-x}px 0`; s.style.webkitBackgroundClip = 'text'; s.style.backgroundClip = 'text'; s.style.color = 'transparent';
   });
@@ -154,7 +155,7 @@ export function treeRow(parent, { y, depth = 0, icon: ic, iconColor, label, sub,
 export class Cursor {
   // path: [{t, x, y, click?}] in scene-local seconds and stage pixels
   constructor(root, ctx, path, o = {}) {
-    this.path = path; this.hideAt = o.hideAt ?? Infinity;
+    this.path = path; this.hideAt = o.hideAt ?? Infinity; this.rippleSize = o.ripple ?? 70;
     this.el = el(`<div class="cursor"><svg viewBox="0 0 24 24" width="44" height="44"><path d="M5 2.5l14 8.2-6.2 1.6L9.6 18.5z" fill="#ffffff" stroke="#0a0a0c" stroke-width="1.3" stroke-linejoin="round"/></svg></div>`);
     root.appendChild(this.el);
     this.clicks = path.filter(p => p.click).map(p => { const r = el('<div class="ripple"></div>'); root.appendChild(r); ctx && ctx.cue(p.t, 'click', { gain: .9, pan: (p.x / 960 - 1) * .6 }); return { p, r }; });
@@ -177,7 +178,7 @@ export class Cursor {
     for (const c of this.clicks) {
       const q = prog(lt, c.p.t, .55);
       c.r.style.opacity = q > 0 && q < 1 ? (1 - q) * vis : 0;
-      const s = 10 + ease.out(q) * 70;
+      const s = 10 + ease.out(q) * this.rippleSize;
       c.r.style.left = (c.p.x - s / 2) + 'px'; c.r.style.top = (c.p.y - s / 2) + 'px'; c.r.style.width = c.r.style.height = s + 'px';
     }
   }
@@ -203,12 +204,16 @@ export function keycaps(root, keysArr, { x, y, t0, press, ctx, scale = 1 }) {
 }
 
 /* ---------------- typing ---------------- */
-export function typer(target, text, { t0, cps = 20, ctx, caret = true, cls = '' }) {
-  const n = text.length;
-  if (ctx) for (let i = 0; i < n; i += 2) ctx.cue(t0 + i / cps, 'type', { gain: .35 + ((i * 7) % 5) * .05, pan: .2 });
+export function typer(target, text, { t0, cps = 20, ctx, caret = true, cls = '', cueEvery = .12 }) {
+  // cue a soft key sound about every cueEvery seconds while typing; touch the DOM only when the visible state changes
+  const n = text.length, dur = n / cps;
+  if (ctx) for (let t = 0, k = 0; t < dur; t += cueEvery, k++) ctx.cue(t0 + t, 'type', { gain: .35 + (k % 3) * .06, pan: .2 });
+  let last = '';
   return lt => {
     const k = clamp(Math.floor((lt - t0) * cps), 0, n);
     const on = caret && lt >= t0 - .3 && (k < n || Math.floor(lt * 2.2) % 2 === 0);
+    const key = k + (on ? '|' : '');
+    if (key === last) return; last = key;
     target.innerHTML = `<span class="${cls}">${text.slice(0, k).replace(/</g, '&lt;')}</span>${on ? '<span style="display:inline-block;width:.55em;height:1em;vertical-align:-.12em;background:#f5a623;margin-left:2px"></span>' : ''}`;
   };
 }

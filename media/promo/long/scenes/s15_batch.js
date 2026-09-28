@@ -17,7 +17,7 @@ const EST = ['0:42', '0:44', '0:47', '0:31', '0:33', '0:36'], TOTAL = '3:53';
 const FAIL = 4, PF = .62;                                 // Top Down · Silver fails at 62 %
 const CW = 323, CH = 214;                                 // thumbnail size
 const QX = 120, QY = 339, QW = 620, QH = 522;             // queue panel
-const GX = 790, GY = 381, GAP = 20;                       // render wall
+const GX = 780, GY = 381, GAP = 18;                       // render wall
 const MX = 752, MY = 347, MW = 520, MH = 394;             // render menu (opens beside the render button)
 const HX = 120, HY = 118, HSIZE = 110, BIG = 300;         // header target / intro size
 const TEAL = '#2fc4b2', ORANGE = '#f5a623', RED = '#e5484d';
@@ -275,7 +275,7 @@ defineScene({
     const hot = id => { const it = ITEMS.find(x => x.id === id); return [MX + MW - 150, it.rect[1] + 23]; };
     const radio = n => [MX + 14 + n * 252 + 217, MY + 246 + 29];
     const cursor = new Cursor(wrap, ctx, [
-      { t: btn1 - .75, x: 1180, y: 1010 },
+      { t: btn1 - .75, x: 1520, y: 950 },
       { t: btn1, x: BTN[0], y: BTN[1], click: true },
       { t: fg, x: radio(0)[0], y: radio(0)[1] },
       { t: bg - .35, x: radio(0)[0] + 18, y: radio(0)[1] + 4 },
@@ -358,8 +358,8 @@ defineScene({
           sb > .01 ? `rgba(58,123,200,${sb * .3})` : `rgba(47,196,178,${dp * .22 + skip * .2})`;
         r.el.style.background = tint;
         r.ic.forEach(d => { if (d.style.display === 'block') d.style.transform = `scale(${1 + dp * .35 + skip * .25})`; });
-        r.sw.style.transform = `scale(${1 + vb * .75})`;
-        r.sw.style.boxShadow = `0 0 0 2px rgba(255,255,255,.2)${vb > .01 ? `,0 0 ${18 * vb}px rgba(${VGLOW[v]},${vb})` : ''}`;
+        r.sw.style.transform = `scale(${1 + vb * .5})`;
+        r.sw.style.boxShadow = `0 0 0 2px rgba(255,255,255,.2)${vb > .01 ? `,0 0 ${10 * vb}px rgba(${VGLOW[v]},${vb * .9})` : ''}`;
         // estimates stream in (Calibrate Render Times)
         const te = est0 + i * estStep, q = prog(lt, te, .35);
         const ek = lt >= te ? 'v' : '-';

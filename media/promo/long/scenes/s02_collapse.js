@@ -10,7 +10,6 @@ const CARD_W = 250, CARD_H = 300;
 const LOOKS = [['gold', 560, 742], ['silver', 960, 772], ['black', 1360, 742]];   // variant, centre x, centre y
 const LR = 124;                                            // look radius
 
-const hash = (a, b) => { let h = (Math.imul(a + 11, 374761393) + Math.imul(b + 7, 668265263)) | 0; h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
 const DOC = (w = 22, ring = '#e87d0d', stroke = '#8a93a6', fill = '#1b1e25', sw = 1.4) => `<svg width="${w}" height="${Math.round(w * 26 / 22)}" viewBox="0 0 22 26" style="display:block;flex:none;overflow:visible">
   <path d="M3 1h10l6 6v17a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" fill="${fill}" stroke="${stroke}" stroke-width="${sw}" stroke-linejoin="round"/>
   <path d="M13 1v6h6" fill="none" stroke="${stroke}" stroke-width="${sw}" stroke-linejoin="round"/><circle cx="10.5" cy="16.5" r="3.8" fill="none" stroke="${ring}" stroke-width="2"/></svg>`;
