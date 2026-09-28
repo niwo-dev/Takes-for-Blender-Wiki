@@ -90,7 +90,7 @@ defineScene({
     root.appendChild(head);
     gradify(head.querySelector('.gl'));
     // the same statement lands again once everything has settled (bookend under the list)
-    const tEnd = tApp + .75;
+    const tEnd = tApp + .4;
     const endH = el(`<div class="abs" style="left:${LX + 20}px;top:640px">
       <div class="disp" style="font-size:86px;white-space:nowrap;margin-bottom:6px">${words('EVERY TAKE.')}</div>
       <div class="disp gl" style="font-size:86px;white-space:nowrap;display:inline-block;position:relative">${words('ONE ROUND.')}</div></div>`);
@@ -242,7 +242,7 @@ defineScene({
         t.style.opacity = q; t.style.transform = `translateX(${(1 - q) * 30}px)`;
       });
 
-      revealMasks(endH, lt, tEnd, .1, .85);
+      revealMasks(endH, lt, tEnd, .07, .8);
 
       /* ---- approved ---- */
       const sk = prog(lt, tApp, .35), sb = ease.back(sk);
