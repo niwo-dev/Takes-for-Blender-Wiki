@@ -7,9 +7,10 @@ import { defineScene, el, ease, prog, clamp, lerp, R3D, THREE, rgba } from '../e
 import { icon, words, revealMasks, gradify, canvas3d, Cursor, float } from '../ui.js';
 import { createWatch, paintWatch, setTime, glowPart, VARIANTS } from '../product3d.js';
 
-const BW = 900, BH = 780;                              // WebGL view size (watch + pedestal only)
-const BOX_A = [1360, 590], BOX_B = [960, 552];         // view centre: framed right under the statement, then centred
-const TGT = new THREE.Vector3(0, 3.3, 0);              // audience camera target
+const BW = 900, BH = 880;                              // WebGL view size (watch + pedestal only)
+const BOX_A = [1360, 580], BOX_B = [960, 540];
+const PILL_X = 150, PILL_Y = 866;                      // shot tabs: bottom-left, a clear zone under the Animation node         // view centre: framed right under the statement, then centred
+const TGT = new THREE.Vector3(0, 4.0, 0);              // audience camera target
 const WY = 4.75, WS = .74;                             // watch centre height / scale
 const DOME = 7.4, ORB = 3.25;                          // world dome radius, motion path radius
 const CW = 286, CH = 80;                               // node card size
@@ -119,16 +120,16 @@ defineScene({
 
     /* ---------- shot switch (two view layer tabs) ---------- */
     const tab = name => `<div class="sg disp6" style="position:relative;font-size:23px;padding:0 22px 0 18px;height:46px;line-height:46px;white-space:nowrap">${icon('layer', 20, '#c9d1de').replace('display:block', 'display:inline-block;vertical-align:-3px;margin-right:10px')}${name}</div>`;
-    const pill = el(`<div class="abs glass" style="left:0;top:904px;height:58px;border-radius:29px;display:flex;align-items:center;gap:4px;padding:0 6px">
+    const pill = el(`<div class="abs glass" style="left:0;top:${PILL_Y}px;height:58px;border-radius:29px;transform-origin:0 50%;display:flex;align-items:center;gap:4px;padding:0 6px">
       <div class="thumb abs" style="top:6px;height:46px;border-radius:23px;background:rgba(58,123,200,.55);box-shadow:inset 0 0 0 1px rgba(140,185,240,.45)"></div>${tab('Front 3/4')}${tab('Close-up')}</div>`);
     root.appendChild(pill);
-    const pw = pill.offsetWidth, pX = 960 - pw / 2; pill.style.left = pX + 'px';
+    const pX = PILL_X; pill.style.left = pX + 'px';
     const segs = [...pill.querySelectorAll('.sg')], thumb = pill.querySelector('.thumb');
     const segX = segs.map(s => [s.offsetLeft, s.offsetWidth]);
     // click on the tab's icon, low, so the pointer never sits on the label
-    const cX = pX + segX[1][0] + 26, cY = 904 + 40;
+    const cX = pX + segX[1][0] + 22, cY = PILL_Y + 44;
     const cursor = new Cursor(root, ctx, [
-      { t: TSW - 1.0, x: 1330, y: 1100 }, { t: TSW, x: cX, y: cY, click: true }, { t: TSW + 1.15, x: 1330, y: 1110 }], { hideAt: TSW + .85 });
+      { t: TSW - 1.0, x: 700, y: 1110 }, { t: TSW, x: cX, y: cY, click: true }, { t: TSW + 1.15, x: 720, y: 1120 }], { hideAt: TSW + .8 });
 
     /* ---------- sound ---------- */
     ctx.cue(.25, 'whoosh', { gain: .3, pitch: -4 });
@@ -199,7 +200,7 @@ defineScene({
       /* ---- framing: right under the statement, then centred ---- */
       bx = lerp(BOX_A[0], BOX_B[0], fk) - BW / 2; by = lerp(BOX_A[1], BOX_B[1], fk) - BH / 2;
       view.canvas.style.left = bx + 'px'; view.canvas.style.top = by + 'px';
-      const az = lerp(-.34, -.2, fk) + ease.sine(clamp(lt / ctx.dur)) * .3, elv = .37, D = lerp(29, 23.6, fk);
+      const az = lerp(-.34, -.2, fk) + ease.sine(clamp(lt / ctx.dur)) * .3, elv = .37, D = lerp(29.5, 25, fk);
       cam.position.set(TGT.x + D * Math.cos(elv) * Math.sin(az), TGT.y + D * Math.sin(elv), TGT.z + D * Math.cos(elv) * Math.cos(az));
       cam.aspect = BW / BH; cam.updateProjectionMatrix(); cam.lookAt(TGT); cam.updateMatrixWorld();
 
@@ -240,7 +241,7 @@ defineScene({
       // world: dome + sun (sun sinks and warms for the second shot)
       const domeK = prog(lt, TN[1] - .02, 1.1);
       drawDome(domeK, sw);
-      const sunW = dp(lerp(.9, 1.12, sw), lerp(.72, .44, sw)), sun = P(...sunW);
+      const sunW = dp(lerp(.9, 1.1, sw), lerp(.72, .54, sw)), sun = P(...sunW);
       anchors[1] = sun;
       if (domeK > 0) {
         const sk = ease.back(prog(lt, TN[1] + .15, .6)), scol = sw > .5 ? '#f5a623' : '#fff3dc';
@@ -332,7 +333,7 @@ defineScene({
 
       /* ---- shot switch + cursor ---- */
       const pk = ease.back(prog(lt, TSW - 1.3, .55));
-      pill.style.opacity = clamp(prog(lt, TSW - 1.3, .55) * 3); pill.style.transform = `translateY(${(1 - pk) * 30}px) scale(${lerp(.85, 1, pk)})`;
+      pill.style.opacity = clamp(prog(lt, TSW - 1.3, .55) * 3); pill.style.transform = `translateY(${(1 - pk) * 24}px) scale(${lerp(.85, 1, pk)})`;
       thumb.style.left = lerp(segX[0][0], segX[1][0], sw) + 'px'; thumb.style.width = lerp(segX[0][1], segX[1][1], sw) + 'px';
       cursor.update(lt);
     };

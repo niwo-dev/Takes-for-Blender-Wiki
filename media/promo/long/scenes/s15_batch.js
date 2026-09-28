@@ -23,6 +23,7 @@ const HX = 120, HY = 118, HSIZE = 110, BIG = 300;         // header target / int
 const TEAL = '#2fc4b2', ORANGE = '#f5a623', RED = '#e5484d';
 
 const TINT = { gold: ['#35291a', '#0d0b09', '245,166,35'], silver: ['#1b2837', '#090b0f', '106,166,234'], black: ['#27231f', '#0b0b0c', '232,125,13'] };
+const VGLOW = { gold: '217,165,78', silver: '200,212,228', black: '150,156,170' };   // swatch glow per variant
 
 // status icons (26 px) — prebuilt, toggled per frame
 const SIC = {
@@ -81,15 +82,16 @@ defineScene({
     const fill0 = L(0) + .05, fill1 = Math.max(fill0 + .45, Math.min(E(0) - .15, L(0) + .72));
     const shrink0 = Math.max(fill1 + .45, L(1) - .45), shrink1 = shrink0 + .62;
     const qIn = shrink0 + .3, wIn = qIn + .15;
-    const btn1 = Math.max(qIn + 1.6, at(1, .42)), fg = Math.max(btn1 + .5, at(1, .52)), bg = Math.max(fg + .9, at(1, .745)), all = bg + .5;
+    const shotsT = Math.max(wIn + .75, at(1, .13)), varsT = Math.max(shotsT + .55, at(1, .30));   // "every shot", "every variant"
+    const btn1 = Math.max(varsT + .75, at(1, .42)), fg = Math.max(btn1 + .5, at(1, .52)), bg = Math.max(fg + .9, at(1, .745)), all = bg + .5;
     const run1 = all + .25, cancel = Math.max(run1 + 1.2, L(2) - .15), d1 = (cancel - run1) / 3.35;
     const cal = Math.max(cancel + .8, at(2, .14)), btn2 = cal - .4, est0 = cal + .15, estStep = .12, estEnd = est0 + 6 * estStep + .1;
     const resume = Math.max(estEnd - .05, at(2, .37)), btn3 = resume - .4;
     const run2 = resume + .12, d2 = .3;
     const R2 = { 3: [run2, run2 + d2], 4: [run2 + d2, run2 + 1.75 * d2], 5: [run2 + 1.85 * d2, run2 + 2.85 * d2] };
     const retry = Math.max(R2[5][1] + .7, at(2, .70)), btn4 = retry - .4;
-    const retry0 = retry + .1, retry1 = Math.max(retry0 + .7, E(2) - .25);
-    const done = retry1 + .08;
+    const retry0 = retry + .1, retry1 = Math.max(retry0 + .7, E(2) - .05);
+    const done = Math.max(retry1 + .08, E(2) + .05);      // the chime lands after the last word
     const MENUS = [[btn1, all], [btn2, cal], [btn3, resume], [btn4, retry]];
 
     function rowAt(k, lt) {
@@ -119,7 +121,9 @@ defineScene({
     ctx.cue(shrink0, 'swish', { gain: .55 });
     ctx.cue(qIn, 'whoosh', { gain: .4, pan: -.3 });
     [0, 1, 2].forEach(n => ctx.cue(qIn + .25 + n * .21, 'tick', { gain: .35, pitch: n * 2, pan: -.4 }));
-    ctx.cue(wIn + .3, 'pop', { gain: .45, pan: .4 }); ctx.cue(wIn + .55, 'pop', { gain: .4, pitch: 4, pan: .5 });
+    ctx.cue(wIn + .35, 'pop', { gain: .35, pan: .4 });
+    [0, 1].forEach(n => ctx.cue(shotsT + n * .3, 'blip', { gain: .4, pitch: n * 3, pan: -.2 }));
+    [0, 1, 2].forEach(n => ctx.cue(varsT + n * .22, 'pop', { gain: .55, pitch: 2 + n * 3, pan: .1 + n * .3 }));
     MENUS.forEach(([a]) => ctx.cue(a + .04, 'swish', { gain: .28, pan: .2 }));
     ctx.cue(fg + .1, 'thud', { gain: .45 });
     ctx.cue(bg + .05, 'shimmer', { gain: .55, pan: .3 });
@@ -167,7 +171,7 @@ defineScene({
         <div class="abs" style="left:80px;top:42px;width:390px;height:5px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden"><div class="pf" style="height:100%;width:0;border-radius:3px"></div></div>
         <div class="abs mono est" style="right:14px;top:16px;font-size:21px;color:#6b7385;transform-origin:100% 50%">—</div></div>`);
       Q.body.appendChild(e);
-      return { el: e, ic: [...e.querySelectorAll('.sic>div')], pf: e.querySelector('.pf'), est: e.querySelector('.est'), key: '' };
+      return { el: e, ic: [...e.querySelectorAll('.sic>div')], sw: e.querySelector('i'), pf: e.querySelector('.pf'), est: e.querySelector('.est'), key: '' };
     });
     const foot = el(`<div class="abs" style="left:14px;right:14px;top:${14 + 6 * 64 + 8}px;height:52px;border-top:1px solid rgba(255,255,255,.08)">
       <div class="abs" style="left:12px;top:24px;width:360px;height:6px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden"><div class="tot" style="height:100%;width:0;background:linear-gradient(90deg,#3a7bc8,#2fc4b2)"></div></div>
@@ -192,12 +196,13 @@ defineScene({
         <canvas class="abs main" width="${CW}" height="${CH}" style="left:0;top:0"></canvas>
         <canvas class="abs probe" width="${CW}" height="${CH}" style="left:0;top:0;opacity:0"></canvas>
         <div class="abs fl" style="left:0;top:0;right:0;bottom:0;background:#fff;opacity:0"></div>
+        <div class="abs sw" style="top:-30%;height:160%;width:90px;left:-140px;transform:skewX(-18deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.34),rgba(255,255,255,0));opacity:0"></div>
         <div class="abs pb" style="left:0;bottom:0;height:4px;width:0;background:linear-gradient(90deg,#e87d0d,#f5a623)"></div>
         <div class="abs bd" style="right:12px;top:12px;width:30px;height:30px">${STATES.map(s => `<div class="abs" data-s="${s}" style="left:0;top:0;display:none;transform:scale(1.154);transform-origin:0 0">${SIC[s]}</div>`).join('')}</div></div>`);
       wall.appendChild(e);
       const main = e.querySelector('.main');
       e.querySelector('.probe').getContext('2d').drawImage(MOS[k][0], 0, 0);
-      return { el: e, g: main.getContext('2d'), ph: e.querySelector('.ph'), probe: e.querySelector('.probe'), fl: e.querySelector('.fl'), pb: e.querySelector('.pb'), bd: [...e.querySelectorAll('.bd>div')], key: '', bkey: '' };
+      return { el: e, g: main.getContext('2d'), ph: e.querySelector('.ph'), probe: e.querySelector('.probe'), fl: e.querySelector('.fl'), sw: e.querySelector('.sw'), pb: e.querySelector('.pb'), bd: [...e.querySelectorAll('.bd>div')], key: '', bkey: '' };
     });
     function paintCell(k, c, st, lt) {
       let key;
@@ -346,9 +351,15 @@ defineScene({
         r.pf.style.width = (st.p * 100) + '%'; r.pf.style.background = col;
         const dp = st.s === 'done' ? Math.exp(-(lt - st.t) * 5) : 0;
         const skip = i < 3 ? Math.max(0, 1 - Math.abs(lt - resume - .15 - i * .08) / .25) : 0;
-        const tint = st.s === 'render' ? `rgba(245,166,35,.11)` : st.s === 'failed' ? `rgba(229,72,77,${.14 + .1 * Math.exp(-(lt - st.t) * 4)})` : `rgba(47,196,178,${dp * .22 + skip * .2})`;
+        const { i: si, j: sj, v } = ROWS[i];
+        const sb = Math.max(0, 1 - Math.abs(lt - shotsT - si * .3 - .12) / .4);     // "every shot": rows pulse per shot
+        const vb = Math.max(0, 1 - Math.abs(lt - varsT - sj * .22 - .12) / .4);     // "every variant": columns light up
+        const tint = st.s === 'render' ? `rgba(245,166,35,.11)` : st.s === 'failed' ? `rgba(229,72,77,${.14 + .1 * Math.exp(-(lt - st.t) * 4)})` :
+          sb > .01 ? `rgba(58,123,200,${sb * .3})` : `rgba(47,196,178,${dp * .22 + skip * .2})`;
         r.el.style.background = tint;
         r.ic.forEach(d => { if (d.style.display === 'block') d.style.transform = `scale(${1 + dp * .35 + skip * .25})`; });
+        r.sw.style.transform = `scale(${1 + vb * .75})`;
+        r.sw.style.boxShadow = `0 0 0 2px rgba(255,255,255,.2)${vb > .01 ? `,0 0 ${18 * vb}px rgba(${VGLOW[v]},${vb})` : ''}`;
         // estimates stream in (Calibrate Render Times)
         const te = est0 + i * estStep, q = prog(lt, te, .35);
         const ek = lt >= te ? 'v' : '-';
@@ -361,18 +372,27 @@ defineScene({
         if (c.bkey !== bkey) { c.bkey = bkey; c.bd.forEach(d => d.style.display = d.dataset.s === bkey ? 'block' : 'none'); }
         if (st.s === 'render') c.bd[1].firstChild.style.transform = `rotate(${lt * 540}deg)`;
         const bpop = st.t != null ? ease.back(prog(lt, st.t, .35)) : 1;
-        c.bd.forEach(d => { if (d.style.display === 'block') d.style.transform = `scale(${1.154 * (st.t != null ? lerp(.3, 1, bpop) : 1)})`; });
+        const fin = done + .12 + sj * .1 + si * .06;                                  // finishing wave across the wall
+        const bp = Math.max(0, 1 - Math.abs(lt - fin - .12) / .22);
+        c.bd.forEach(d => { if (d.style.display === 'block') d.style.transform = `scale(${1.154 * (st.t != null ? lerp(.3, 1, bpop) : 1) * (1 + bp * .35)})`; });
         c.fl.style.opacity = st.s === 'done' ? .7 * Math.exp(-(lt - st.t) * 7) : 0;
+        const sq = prog(lt, fin, .6);
+        c.sw.style.opacity = sq > 0 && sq < 1 ? 1 : 0; c.sw.style.left = lerp(-140, CW + 50, ease.inOut(sq)) + 'px';
         c.pb.style.width = st.s === 'render' ? (st.p * 100) + '%' : '0';
         const pr = prog(lt, te, .45); c.probe.style.opacity = pr > 0 && pr < 1 ? .8 * (1 - pr) : 0;
+        const tg = Math.min(1, dp + skip + bp * .8);
         const b = st.s === 'render' ? `0 0 0 2px rgba(245,166,35,.75),0 0 30px rgba(245,166,35,.45)` :
           st.s === 'failed' ? `0 0 0 2px rgba(229,72,77,.85),0 0 30px rgba(229,72,77,.35)` :
-          (dp + skip) > .03 ? `0 0 0 2px rgba(47,196,178,${Math.min(1, dp + skip) * .9}),0 0 ${30 * Math.min(1, dp + skip)}px rgba(47,196,178,.45)` : '';
+          tg > .03 ? `0 0 0 2px rgba(47,196,178,${tg * .9}),0 0 ${30 * tg}px rgba(47,196,178,.45)` :
+          vb > .01 ? `0 0 0 2px rgba(${VGLOW[v]},${vb * .9}),0 0 ${34 * vb}px rgba(${VGLOW[v]},${vb * .5})` : '';
         c.el.style.boxShadow = (b ? b + ',' : '') + '0 24px 50px rgba(0,0,0,.5)';
-        // the retried frame steps forward
+        c.ph.style.borderColor = vb > .01 ? `rgba(${VGLOW[v]},${.08 + vb * .6})` : 'rgba(255,255,255,.08)';
+        // the retried frame steps forward; after the finish every frame breathes gently
         const lift = i === FAIL ? Math.sin(Math.PI * clamp(prog(lt, retry0 - .1, retry1 - retry0 + .5))) : 0;
+        const breathe = lt > done ? ease.inOut(prog(lt, done + .4, 1)) * Math.sin((lt - done) * 2.4 - (si + sj) * .8) * 7 : 0;
+        const z = lift * 60 + breathe + sb * 16;
         c.el.style.zIndex = lift > .01 ? 2 : 0;
-        if (lift > .01) c.el.style.transform = `${c.el.style.transform} translateZ(${lift * 60}px)`;
+        if (Math.abs(z) > .05) c.el.style.transform = `${c.el.style.transform} translateZ(${z}px)`;
       });
       totBar.style.width = (doneCount / 6 * 100) + '%';
       const tk = lt >= estEnd ? 'v' : '-';
