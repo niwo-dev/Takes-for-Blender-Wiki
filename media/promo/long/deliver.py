@@ -52,17 +52,20 @@ with open(small, 'rb') as fh:
         k += 1; open(os.path.join(sdir, f'tour720_part{k:02d}.mp4'), 'wb').write(chunk)
 print('720p parts', k)
 
-# phone chapters: cut at chapter starts (the score stops there), 2-pass to a size budget
+# phone chapters: cut at chapter starts (the score stops there); quality-based encode capped so each file
+# stays under the page's per-file limit (maxrate x duration + buffer < budget)
 starts = [c['start'] for c in TL['chapters']] + [TL['total']]
 os.makedirs(os.path.join(B, 'chapters'), exist_ok=True)
 for i in range(len(starts) - 1):
     a, b = starts[i], starts[i + 1]; dur = b - a
-    kbps = int(MAX_BYTES * 8 / dur / 1000) - 160          # leave room for 128k audio + container
+    # worst case: (cap + audio) * dur + a full 2*cap buffer must fit the budget, with 3 % for the container
+    cap = min(6000, int((MAX_BYTES * 8 / 1000 * .97 - 128 * dur) / (dur + 2)))
     out = os.path.join(B, 'chapters', f'ch{i + 1}.mp4')
-    common = ['-ss', f'{a:.3f}', '-t', f'{dur:.3f}', '-i', os.path.join(B, 'video.mp4'), '-ss', f'{a:.3f}', '-t', f'{dur:.3f}', '-i', os.path.join(B, 'mix.wav'),
-              '-map', '0:v', '-map', '1:a', '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-b:v', f'{kbps}k', '-maxrate', f'{int(kbps * 1.6)}k', '-bufsize', f'{kbps * 3}k', '-pix_fmt', 'yuv420p']
-    log = os.path.join(B, 'chapters', f'p{i}')
-    run(common + ['-pass', '1', '-passlogfile', log, '-an', '-f', 'mp4', os.devnull])
     fades = f'volume={TRIM_DB}dB,afade=t=in:d=0.005,afade=t=out:st={dur - .005:.3f}:d=0.005'   # no clicks at chapter joins
-    run(common + ['-pass', '2', '-passlogfile', log, '-af', fades, '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', out])
-    print(f'chapter {i + 1}: {a:.1f}-{b:.1f}s {kbps}kbps -> {os.path.getsize(out) / 1048576:.1f} MB')
+    run(['-ss', f'{a:.3f}', '-t', f'{dur:.3f}', '-i', os.path.join(B, 'video.mp4'), '-ss', f'{a:.3f}', '-t', f'{dur:.3f}', '-i', os.path.join(B, 'mix.wav'),
+         '-map', '0:v', '-map', '1:a', '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '19',
+         '-maxrate', f'{cap}k', '-bufsize', f'{cap * 2}k', '-pix_fmt', 'yuv420p', '-profile:v', 'high',
+         '-af', fades, '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', out])
+    size = os.path.getsize(out)
+    assert size <= 20 * 1024 * 1024, f'chapter {i + 1} too large: {size}'
+    print(f'chapter {i + 1}: {a:.1f}-{b:.1f}s cap {cap}kbps -> {size / 1048576:.1f} MiB')
