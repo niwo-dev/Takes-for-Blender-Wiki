@@ -1,6 +1,6 @@
 # Takes for Blender — feature tour: scene-building guide
 
-A 4:23, 1920×1080, 60 fps motion-graphics film. Everything is drawn in code (HTML/CSS/SVG/Canvas/three.js).
+A 1920×1080, 60 fps motion-graphics film. Everything is drawn in code (HTML/CSS/SVG/Canvas/three.js).
 **No images, no screenshots, no external assets, no emojis.** Stylised product UI only.
 The look must be *energizing and professional*: premium dark UI, confident type, constant but purposeful motion.
 
