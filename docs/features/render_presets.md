@@ -73,10 +73,10 @@ Click the field to search and assign. The **X** clears it. The **pencil** rename
     | **Apply once, no assignment** | **{{ op('tks.apply_render_preset').bl_label }}** stamps a preset's stored values onto the current scene, View Layer, camera or world one time, without assigning anything. It has no panel button — run it from Blender's operator search. |
 
 ??? tip "The same row inside Blender's Properties editor"
-    Three collapsed standalone panels put the preset row right where the settings
-    live: **TKS Output Presets** and **TKS File Output Presets** on the Output tab,
-    **TKS View Layer Presets** on the View Layer tab. Handy while you are already
-    tweaking the underlying settings.
+    The preset row also sits at the top of the Blender panel that holds its
+    settings: **Output** presets on the **Format** panel and **File Output** presets
+    on the **Output** panel (both on the Output tab), **View Layer** presets on the
+    **View Layer** panel. Handy while you are already tweaking the underlying settings.
 
 ## :material-pencil-circle: Dirty State
 
