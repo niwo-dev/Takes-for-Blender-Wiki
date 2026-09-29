@@ -1,0 +1,6 @@
+build/
+node_modules/
+models/
+out/
+__pycache__/
+previews/

@@ -1,12 +1,15 @@
 """Final encodes: the full master (H.264 + AAC) and phone chapters that each fit the 20 MB page limit.
-Usage: FFMPEG=<ffmpeg> python3 deliver.py
+Usage: python deliver.py   (writes to ./out; ffmpeg is found by tools/paths.py)
 Reads build/video.mp4 (from render.mjs) and build/mix.wav (from make_music.py).
 """
 import json, os, subprocess
-FF = os.environ.get('FFMPEG', 'ffmpeg')
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tools'))
+from paths import ffmpeg  # noqa: E402
+FF = ffmpeg()
 HERE = os.path.dirname(os.path.abspath(__file__)); B = os.path.join(HERE, 'build')
 TL = json.load(open(os.path.join(HERE, 'timeline.json')))
-OUT = os.path.join(HERE, '..')
+OUT = os.path.join(HERE, 'out'); os.makedirs(OUT, exist_ok=True)
 MAX_BYTES = 19.3 * 1024 * 1024
 TRIM_DB = -0.8                                            # mix peaks at -0.4 dBTP; keep AAC below -1 dBTP
 

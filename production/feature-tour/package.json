@@ -1,0 +1,24 @@
+{
+  "name": "takes-feature-tour",
+  "private": true,
+  "type": "module",
+  "description": "Motion-graphics feature tour for Takes for Blender: scenes, voice, music and render pipeline.",
+  "scripts": {
+    "setup": "playwright install chromium && node tools/setup-python.mjs",
+    "all": "node pipeline.mjs",
+    "voice": "node pipeline.mjs voice",
+    "cues": "node pipeline.mjs cues",
+    "music": "node pipeline.mjs music",
+    "render": "node pipeline.mjs render",
+    "deliver": "node pipeline.mjs deliver",
+    "preview": "node preview.mjs",
+    "styleboard": "node styleboard.mjs",
+    "live": "node tools/live.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.56.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

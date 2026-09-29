@@ -1,5 +1,5 @@
 node_modules
 
 # Full 1080p60 feature tour (about 108 MB) is over GitHub's 100 MB file limit.
-# It is delivered through the videos page; regenerate it with long/deliver.py.
+# Regenerate it with production/feature-tour (npm run deliver writes it to out/).
 takes_for_blender_feature_tour.mp4

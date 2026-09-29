@@ -5,14 +5,14 @@ lays the lines out scene by scene and writes:
   timeline.json / timeline.js  - scene starts, durations, VO line times (the HTML and the music read these)
   build/voice.wav              - the processed narration track (mono, 44.1 kHz)
 
-Setup: pip install kokoro-onnx soundfile scipy ; apt-get install espeak-ng
-       KOKORO_DIR must hold kokoro-v1.0.onnx and voices-v1.0.bin
-       (https://github.com/thewh1teagle/kokoro-onnx/releases/tag/model-files-v1.0)
+Setup: pip install -r requirements.txt, then python tools/fetch_models.py (voice model into ./models,
+       or point KOKORO_DIR at a folder holding kokoro-v1.0.onnx and voices-v1.0.bin)
 """
 import hashlib
 import json
 import math
 import os
+import sys
 import wave
 
 import numpy as np
@@ -30,6 +30,9 @@ BAR = 4 * 60 / S['bpm']
 BEAT = 60 / S['bpm']
 D = S['defaults']
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tools'))
+from paths import kokoro_dir  # noqa: E402
+
 _kokoro = None
 
 
@@ -37,7 +40,7 @@ def kokoro():
     global _kokoro
     if _kokoro is None:
         from kokoro_onnx import Kokoro
-        kd = os.environ.get('KOKORO_DIR', '.')
+        kd = kokoro_dir()
         _kokoro = Kokoro(os.path.join(kd, 'kokoro-v1.0.onnx'), os.path.join(kd, 'voices-v1.0.bin'))
     return _kokoro
 

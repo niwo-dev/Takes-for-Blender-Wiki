@@ -101,7 +101,7 @@ Rendering is software (SwiftShader): a 1100×1000 view costs ~0.15 s/frame. Keep
 
 ## Checking your work
 ```
-cd media/promo/long
+cd production/feature-tour
 node preview.mjs /tmp/…/pv s05_tree:0.3,1.5,3,5,7.5,10,12.5 --sheet=s05.png      # tiled 640x360 stills
 node preview.mjs /tmp/…/pv s05_tree:7.5                                          # one full-size still
 ```

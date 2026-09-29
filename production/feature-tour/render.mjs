@@ -1,16 +1,18 @@
 // Parallel, chunked, deterministic renderer.
-//   FFMPEG=<full ffmpeg> node render.mjs [--fps=60] [--workers=3] [--chunk=10] [--from=0] [--to=<end>] [--force] [--redo=12,13]
+//   node render.mjs [--fps=60] [--workers=N] [--chunk=10] [--from=0] [--to=<end>] [--force] [--redo=12,13]
 // Renders the timeline in fixed chunks (build/seg/c_<index>.mp4, near-lossless H.264), skipping chunks that exist
 // unless --force or listed in --redo (chunk indices), then concatenates them into build/video.mp4.
 import { chromium } from 'playwright';
 import { spawn, execFileSync } from 'node:child_process';
-import fs from 'node:fs'; import path from 'node:path';
+import fs from 'node:fs'; import path from 'node:path'; import os from 'node:os';
 import { serve } from './serve.mjs';
+import { ffmpeg } from './tools/ffmpeg.mjs';
 
 const arg = (k, d) => { const a = process.argv.find(x => x.startsWith('--' + k + '=')); return a ? a.split('=')[1] : d; };
 const has = k => process.argv.includes('--' + k);
-const FPS = +arg('fps', 60), WORKERS = +arg('workers', 3), CHUNK = +arg('chunk', 10);
-const FF = process.env.FFMPEG || 'ffmpeg';
+// default workers: half the CPU threads (each worker is a browser), 1-6
+const FPS = +arg('fps', 60), WORKERS = +arg('workers', Math.max(1, Math.min(6, Math.floor(os.cpus().length / 2)))), CHUNK = +arg('chunk', 10);
+const FF = ffmpeg();
 const TL = JSON.parse(fs.readFileSync('timeline.json', 'utf8'));
 const total = TL.total, nFrames = Math.floor(total * FPS);
 const from = +arg('from', 0), to = +arg('to', total);
