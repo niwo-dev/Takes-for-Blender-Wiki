@@ -90,12 +90,12 @@ The Action, World, Camera and Compositor popovers each have a **+** button.
 
 It makes a new datablock, names it from your [Smart Output](smart_output.md) template, protects it from cleanup, and assigns it here — in one click.
 
+For an Action, the **+** first opens a list of names. See [Pick the Action's Name](#pick-the-actions-name).
+
 ??? info "Which tiers offer a + button"
     | Button | Creates and assigns to |
     | -------- | ------------------------ |
-    | **{{ op('tks.global_action_new').bl_label }}** | A new Action on the **Global** tier. |
-    | **New Action** | A new Action on the **Scene** tier. |
-    | **New Action** | A new Action on the **View Layer** tier. |
+    | **New Action** | A new Action on the **Global**, **Scene Group**, **View Layer Group**, **Scene**, **View Layer** or **Take** tier. |
     | **New World** | A new World on the **Scene** tier. |
     | **New World** | A new World on the **View Layer** tier. |
     | **{{ op('tks.global_camera_new').bl_label }}** | A new Camera on the **Global** tier. |
@@ -110,6 +110,36 @@ It makes a new datablock, names it from your [Smart Output](smart_output.md) tem
     **New Rest Action** sits on the Rest State popover, not on a cascade tier. The
     Rest Action is what *unkeyed* properties fall back to. Creating one here gives
     you an empty action to pose into as your neutral baseline.
+
+### :material-form-textbox: Pick the Action's Name
+
+**New Action** opens a list of names for the new action. Click a name to create the action and assign it to the row.
+
+You find the list in two places:
+
+- Click a row's action icon in the Takes tree, then point at **New Action**.
+- ++shift++ + click the action icon, then click the **+** in the popover.
+
+The action is named after the row you clicked, not after the active View Layer.
+
+???+ info "The lines in the list"
+    | Line | What it does |
+    | --- | --- |
+    | Your standard (filled dot) | Always first. Pick it in [Action Name Patterns](../preferences/workflow.md#action-name-patterns). |
+    | The tier's template | The tier's own [Action Template](../preferences/workflow.md#action-templates). |
+    | Your name patterns | One line per pattern you keep in Preferences. |
+    | **Custom Name…** | Opens a small box with a name field, already filled in. Type a name, then click **Create** or **Cancel**. |
+    | **Edit Name Patterns…** | Opens the add-on preferences. |
+
+??? info "Greyed lines"
+    A greyed line cannot name this row. The reason stands next to it. Example:
+    a pattern with `{take}` on a View Layer row.
+
+    If your standard cannot name the row, the tier's template moves to the top
+    and gets the filled dot instead.
+
+    While **{{ pref('auto_rename_actions').label }}** is on, only the tier's
+    template works. Your patterns and **Custom Name…** are greyed.
 
 ### :material-pencil: Renaming Without Breaking Anything
 

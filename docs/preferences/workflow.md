@@ -54,7 +54,7 @@ The chores Takes does for you. Turn off anything you would rather do by hand.
     | **Auto-mirror Keyframes to Rest** | bool | On | Mirrors unkeyed values into the Rest Action on keyframe insert. |
     | **Auto-snap on Keyframe Clear** | bool | On | Snaps unkeyed properties back to their [Rest State](../features/rest_state.md) values when their keyframes are deleted. The snap fires once, on the witnessed deletion. When off, nothing snaps by itself — use the manual *Snap to Rest* tools. |
     | **Auto-assign View Layer Actions** | bool | On | Creates and assigns View Layer actions when a View Layer is added. |
-    | **Auto-rename Actions on Hierarchy Change** | bool | Off | Rebuilds action names from the naming templates when scenes or View Layers are renamed. |
+    | **Auto-rename Actions on Hierarchy Change** | bool | Off | Rebuilds action names from the naming templates when scenes or View Layers are renamed. While on, new actions can only take the tier's template. |
     | **Auto-rename Slots on Target Rename** | bool | On | Keeps slot names in sync with their target object or data. |
     | **Auto Fake User on Actions** | bool | On | Protects actions from auto-purge. |
     | **{{ pref('auto_duplicate_action_mode').label }}** | enum | Strip Animation | What a duplicated object's animation does. **Strip Animation**: the copy arrives with no action, like a fresh object. **Independent Slot**: the copy keeps the action but gets its own slot with its own copy of the keyframes. **Off (Blender Default)**: no interference. |
@@ -100,6 +100,36 @@ Takes uses these when it creates an action for you, so shot names stay consisten
     | Take | `{scenegroup}{sep}{scene}{sep}{vlgroup}{sep}{viewlayer}{sep}{take}` |
     | Scene Group | `{scenegroup}` |
     | View Layer Group | `{scenegroup}{sep}{scene}{sep}{vlgroup}` |
+
+### :material-format-list-bulleted: Action Name Patterns
+
+Up to 20 names of your own for new actions. [New Action](../features/cascade.md#pick-the-actions-name) lists them next to the tier's template.
+
+The filled radio button marks your standard: the first line of that list. Click it again to make the tier's template the standard.
+
+??? info "Settings and buttons"
+    | Setting | Default | Description |
+    |---------|---------|-------------|
+    | **Show Names As** | Resolved Name | What each line of the list shows: **Resolved Name** (the name it makes) or **Tokens**. |
+    | **Pattern 1** … **Pattern 20** | — | A text field, a **▾** menu and a radio button. The menu holds **Build Syntax**, **Insert Token**, **Reset to Default**, **Clear Last Token**, **Clear All** and **Remove Pattern**. |
+    | **Add Pattern** | — | Adds an empty field. It is greyed while an empty field waits. |
+    | **Reset to Add-on Patterns** | — | Asks first, then puts back the six starting patterns. |
+
+    The token menus offer only tokens an action name can use.
+
+??? info "The six starting patterns"
+    | Pattern |
+    |---------|
+    | `{take}` |
+    | `{viewlayer}{sep}{take}` |
+    | `{viewlayer}` |
+    | `{vlgroup}{sep}{viewlayer}` |
+    | `{scene}{sep}{vlgroup}{sep}{viewlayer}` |
+    | `{scenegroup}{sep}{scene}{sep}{vlgroup}{sep}{viewlayer}` |
+
+    A group token with no group drops out of the name, as in the tier
+    templates. While **Auto-rename Actions on Hierarchy Change** is on, only the
+    tier's template can name a new action.
 
 ### :material-camera: Camera & Compositor Templates
 

@@ -42,6 +42,8 @@ Tiers are **named, not numbered**: `take`, `view_layer`, `vl_group`, `scene`, `s
     | `api.delete_take(..., confirm=True)` | Remove one. Refuses without the confirmation. |
     | `api.set_override(...)` / `api.clear_override(...)` | Write or remove a cascade override at a named tier. |
     | `api.switch_variant(...)` | Point a product at one of its variants. |
+    | `api.create_action(...)` | Make a new action for a tier — by your standard name, one of your name patterns, or a name of its own. |
+    | `api.action_name_patterns()` / `api.set_action_name_patterns(...)` | Read or set your action name patterns, your standard, and how the list shows names. |
     | `api.restore_takes()` / `api.keep_current_takes()` | The two ways out of a lost-take-data state. |
     | `api.reset()` | Free a lock a previous assistant call left behind. |
 
