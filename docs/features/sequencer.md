@@ -41,6 +41,22 @@ It names the take this frame stands for, and — when they differ — the one yo
     ordinary shot scene. Which is precisely when you want a way over to the edit
     timeline.
 
+## :material-movie-open-star: A Strip's Own Take {: #strips-own-take }
+
+A scene strip can pick one take of its view layer. Two looks of one view layer can then be cut back to back.
+
+1. Select a scene strip and open the **Takes** tab.
+2. In the **Strip** box, fill the **Take** field.
+
+Leave **Take** empty and the strip uses the view layer's active take. The playhead applies the strip's take without making it active, so the take list does not change and scrubbing makes no undo steps.
+
+??? info "More on the Strip box"
+    - **View Layer** is Blender's own strip field, shown here too. Pick it to cut in a view layer that has no takes.
+    - If the strip's take does not exist on the picked view layer, the strip keeps the name and shows it in red: *"Take not found - the active take applies"*.
+    - Tick **Overlay** on a strip laid over the shots, like a vignette or a frame. The playhead skips it and applies the strip under it. Without it, the topmost scene strip wins.
+    - Renaming a take keeps every strip that picked it.
+    - A camera or world you set by hand while a strip's own take is on screen is stored in that take, when your adopt tier is **Take**.
+
 ## :material-cursor-default-click: Getting to the Timeline
 
 Using a sequencer takes the window to the scene that owns the strips, because the playhead needs a timeline to follow.
@@ -63,6 +79,18 @@ Which gestures do the switching is yours to choose. ++shift++ + click the **Time
     clicking to be the trigger, turn Hover off.
 
 **{{ op('tks.sequencer_focus_switch').bl_label }}** makes the same trip by hand, for when every automatic rung is off.
+
+## :material-monitor-play: Viewport Preview {: #viewport-preview }
+
+**Viewport Preview** is the third mode on the **Timeline** button. The sequencer keeps the edit and plays its sound. The largest 3D viewport shows the shot under the playhead, in camera view, with its scene, view layer and take.
+
+The viewport runs at the shot's own frame and cuts on the edit's frames. Pick the mode with ++shift++ + click on the **Timeline** button, in the **Mode** pie, or through the mode-button click setting.
+
+While it runs, the sequencer's own preview and the 3D viewport's overlays are off. Stopping the mode puts the window, the sequencer and the 3D view back.
+
+??? info "What it needs and what it cannot do"
+    - An edit with scene strips, and a 3D viewport in the window. Without them the mode refuses and changes nothing.
+    - A strip with speed changes (retiming) is not moved by the preview.
 
 ## :material-keyboard-return: Going back {: #going-back }
 

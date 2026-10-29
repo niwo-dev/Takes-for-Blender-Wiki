@@ -16,7 +16,7 @@ They are not settings you set once. You switch one on, work in it, and switch it
 | **Still Mode** | Takes are pinned to frame 0, so a product still cannot scrub — see [Still Mode](still_mode.md) |
 | **Value Lock** | Unkeyed values snap back if you nudge them — see [Value Lock](value_lock.md) |
 | **Autokey** | Blender keys what you move, across every scene |
-| **Timeline** | *Frame Sync* keeps every take on the same frame; *Scene Follow* moves the window with your mouse |
+| **Timeline** | *Frame Sync* keeps every take on the same frame; *Scene Follow* moves the window with your mouse; *Viewport Preview* plays the shot under the sequencer playhead in a 3D viewport |
 | **Variant Live** | The viewport follows the finish you are editing — see [Variant Switch](variant_switch.md) |
 | **Diff State** | Objects are coloured by where their values come from — see [Diff State](diff_state.md) |
 
