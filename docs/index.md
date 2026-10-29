@@ -106,7 +106,7 @@ The shot manager and scene organizer for Blender 5.0+. Keep every shot, look and
 | :material-arrow-decision: **The Cascade** | Non-destructive scene states. Set a camera, world, action or preset on any level; the deepest level wins. |
 | :material-swap-horizontal: **Variant Switch** | Material variants without duplicate objects. Ship one product in many finishes; Takes swaps the materials. |
 | :material-tag-multiple: **Tags & Rules** | Label anything, then let a tag apply a whole bundle of presets. |
-| :material-play-box-multiple: **Batch Render** | Batch rendering for every take, in front of you or quietly in the background. |
+| :material-play-box-multiple: **Batch Render** | Batch rendering for every view layer, in front of you or quietly in the background. |
 | :material-palette-swatch: **Render Presets** | Save render settings once and reuse them on any shot in the tree. |
 | :material-form-textbox: **Smart Output** | Build file names from tokens, so every render lands in the right folder. |
 | :material-ghost: **Rest State** | A neutral pose for unkeyed properties, so animation variations never drift. |

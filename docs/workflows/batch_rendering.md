@@ -64,10 +64,10 @@ Blender stays interactive while the renders run. Tree thumbnails update as each 
 
 The render queue sidebar shows a progress bar per View Layer. Each row carries a status: Pending, Rendering, Saving, Done, Failed or Cancelled. Hover a failed item for the reason.
 
-Time estimates self-correct while a batch runs. Once the first take finishes, the remaining time reflects how this run is really performing.
+Time estimates self-correct while a batch runs. Once the first view layer finishes, the remaining time reflects how this run is really performing.
 
 ??? tip "Better estimates before you start"
-    **{{ op('tks.calibrate_render_times').bl_label }}** learns per-take render
+    **{{ op('tks.calibrate_render_times').bl_label }}** learns per-layer render
     times ahead of a run, so the first estimate is close from the start.
 
 ## :material-file-tree: Output Structure

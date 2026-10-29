@@ -23,7 +23,7 @@ You now have your organisation back, and the panel unlocks.
     cleanup, a script, a purge that takes the last one — and the organisation
     goes with it.
 
-    Your takes themselves are View Layers, so they survive. It is the grouping
+    Your view layers survive. It is the grouping
     you are recovering.
 
     Takes keeps a safety copy on disk as you work and usually puts it back on

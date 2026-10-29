@@ -33,7 +33,7 @@ Find your symptom below. Each row names the one thing to check first.
 |---|---|
 | A layer did not render | Its **render toggle** is off. Selection does not decide — see [Batch Render](features/batch_render.md) |
 | Nothing rendered at all | Save the `.blend` first. Background mode needs a saved file |
-| A take was skipped | It has no camera. The queue says so before it starts |
+| A view layer was skipped | It has no camera. The queue says so before it starts |
 | I cannot find my renders | The pattern is in *Properties ▸ Output* — see [Smart Output](features/smart_output.md) |
 
 ## :material-alert-outline: The panel itself

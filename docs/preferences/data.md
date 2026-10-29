@@ -29,7 +29,7 @@ So Takes keeps a safety copy on disk, refreshed as you work. If the storage goes
 
 !!! warning "Keep at least one World in the file"
     A script that clears `bpy.data.worlds`, or a purge that removes the last
-    World, takes your take organisation with it. Your takes are View Layers and
+    World, takes your take organisation with it. Your view layers
     survive — it is the grouping you must recover.
 
 ??? info "When Takes asks you first"

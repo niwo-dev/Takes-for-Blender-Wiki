@@ -23,7 +23,7 @@ Most artists start with what Blender offers out of the box. Each way works — u
 | **Toggling View Layers** and collection visibility by hand | Easy to forget a toggle before a render. | Each View Layer remembers its camera, world, action and preset. |
 | **One .blend per variant** | Five finishes means five files to keep in sync. | Material variants live in one file and switch per shot. |
 | **Duplicated objects** for each colourway | Heavy files, edits made twice. | Materials swap on the same object; nothing is duplicated. |
-| **Render one shot at a time** | You babysit the machine. | Batch rendering runs every take in one go. |
+| **Render one shot at a time** | You babysit the machine. | Batch rendering runs every view layer in one go. |
 
 ??? info "Why a tree, and not a list"
     A classic shot manager keeps a flat list of shots. Each shot is set up on

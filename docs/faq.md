@@ -77,7 +77,7 @@ description: "Quick answers about Takes for Blender: versions, render engines, s
 
 ??? question "Can I render only specific View Layers?"
     Yes. The batch queue is built from each View Layer's **render-toggle icon**
-    (the camera icon at the right of its tree row) — enable it on the takes you
+    (the camera icon at the right of its tree row) — enable it on the view layers you
     want, then pick a *Selected Layers* scope in the render menu. Tree
     multi-select drives delete / group / preview operations and has no effect
     on the render queue.

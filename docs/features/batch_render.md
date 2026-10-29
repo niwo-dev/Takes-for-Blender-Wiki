@@ -5,7 +5,7 @@ description: "Batch render every shot and variant in Blender in one go, in the f
 
 # Batch Render
 
-Batch rendering for Blender: render every shot and variant in one go. Each take brings its own camera, world, action, presets and variant from the [cascade](cascade.md).
+Batch rendering for Blender: render every shot and variant in one go. Each view layer brings its own camera, world, action, presets and variant from the [cascade](cascade.md).
 
 ## :material-shape: Render Modes
 
@@ -21,7 +21,7 @@ Pick **Render Mode** at the bottom of the [render menu](#the-render-menu).
 
     **In Background.** The .blend is saved once, one queue file is written, and a
     single headless Blender works through every queued View Layer. There is no
-    per-take startup cost, so large queues finish quicker. The
+    per-layer startup cost, so large queues finish quicker. The
     [F12 Render Pie](pie_menus.md#f12-render-pie) background scopes route the same way.
 
     - The tree updates as each View Layer completes.
@@ -62,7 +62,7 @@ Every scope row runs in the selected mode. While a render runs, the button becom
 
 The queue lists every View Layer with a status: **Pending**, **Rendering**, **Post**, **Saving**, **Done**, **Failed** or **Cancelled**.
 
-Above the list it reports how many takes it will **skip for a missing camera**. Fix those from the [Camera needed](cascade.md#needed-rows) row first.
+Above the list it reports how many view layers it will **skip for a missing camera**. Fix those from the [Camera needed](cascade.md#needed-rows) row first.
 
 ??? info "What each status means"
     | Status | Meaning |
@@ -75,7 +75,7 @@ Above the list it reports how many takes it will **skip for a missing camera**. 
     | **Failed** | Something went wrong — hover for details. |
     | **Cancelled** | Skipped because the batch was cancelled. |
 
-    A take with no camera anywhere in its cascade cannot render. Finding that out
+    A view layer with no camera anywhere in its cascade cannot render. Finding that out
     after a long queue has run is the failure the skip warning heads off.
 
 ### :material-view-column: Queue Columns
@@ -104,7 +104,7 @@ The **Render Jobs** popover tracks render jobs on disk. It opens at your mouse p
 
 ## :material-timer-cog: Calibrate Render Times
 
-Open the render menu and click **Calibrate Render Times** under **Other**. It estimates how long each take needs, before you commit to a real batch.
+Open the render menu and click **Calibrate Render Times** under **Other**. It estimates how long each view layer needs, before you commit to a real batch.
 
 It probe-renders in the background, so you keep working. Re-run it whenever the scene changes. Click it again to cancel.
 
@@ -118,16 +118,16 @@ It probe-renders in the background, so you keep working. Re-run it whenever the 
        sample cap is reached, which adaptive sampling rarely does.
     4. Estimates stream back row by row. Each **Estimated Render Time** column
        updates as its probe finishes. View Layers sharing a scene's render settings
-       share one probe, so calibration is quicker on multi-take scenes.
+       share one probe, so calibration is quicker on multi-layer scenes.
 
     Re-run it after geometry rebuilds, an engine swap, a samples bump, and so on.
 
 ??? note "Why probe instead of measure?"
     A probe takes seconds per View Layer instead of minutes, so the first estimate
     is approximate — but it does not stay that way. The remaining time corrects
-    itself once the first take finishes and shows how this run really performs.
+    itself once the first view layer finishes and shows how this run really performs.
     Background renders also show the render engine's own remaining-time prediction
-    for the take in flight. And the queue remembers each take's recent render
+    for the view layer in flight. And the queue remembers each view layer's recent render
     times along with the settings they were measured at, rescaling them when
     resolution or samples change.
 
@@ -148,7 +148,7 @@ Click the render icon next to a View Layer row to toggle it.
 
 ## :material-export: Output
 
-Output paths come from the [Smart Output](smart_output.md) token system, so every take names its own file.
+Output paths come from the [Smart Output](smart_output.md) token system, so every view layer names its own file.
 
 The **Directory** and **File Name** rows carry the same ▾ dropdown as the Properties Output panel: **Build Syntax**, an **Insert Token** quick-pick, and **{{ op('tks.field_clear').bl_label }}** for the last token or the whole field.
 
