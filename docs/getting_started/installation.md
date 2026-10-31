@@ -35,7 +35,7 @@ You should see:
 
 !!! tip "First Launch"
     On first launch with default settings, the addon automatically enables
-    **Auto-Assign** and **Auto-Rename** for cascade actions.
+    **Auto-Assign** for cascade actions.
     This means animation data is managed per-View Layer out of the box.
 
 ## :material-update: Updating

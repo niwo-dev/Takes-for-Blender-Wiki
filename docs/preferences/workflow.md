@@ -54,7 +54,6 @@ The chores Takes does for you. Turn off anything you would rather do by hand.
     | **Auto-mirror Keyframes to Rest** | bool | On | Mirrors unkeyed values into the Rest Action on keyframe insert. |
     | **Auto-snap on Keyframe Clear** | bool | On | Snaps unkeyed properties back to their [Rest State](../features/rest_state.md) values when their keyframes are deleted. The snap fires once, on the witnessed deletion. When off, nothing snaps by itself — use the manual *Snap to Rest* tools. |
     | **Auto-assign View Layer Actions** | bool | On | Creates and assigns View Layer actions when a View Layer is added. |
-    | **Auto-rename Actions on Hierarchy Change** | bool | Off | Rebuilds action names from the naming templates when scenes or View Layers are renamed. While on, new actions can only take the tier's template. |
     | **Auto-rename Slots on Target Rename** | bool | On | Keeps slot names in sync with their target object or data. |
     | **Auto Fake User on Actions** | bool | On | Protects actions from auto-purge. |
     | **{{ pref('auto_duplicate_action_mode').label }}** | enum | Strip Animation | What a duplicated object's animation does. **Strip Animation**: the copy arrives with no action, like a fresh object. **Independent Slot**: the copy keeps the action but gets its own slot with its own copy of the keyframes. **Off (Blender Default)**: no interference. |
@@ -128,8 +127,7 @@ The filled radio button marks your standard: the first line of that list. Click 
     | `{scenegroup}{sep}{scene}{sep}{vlgroup}{sep}{viewlayer}` |
 
     A group token with no group drops out of the name, as in the tier
-    templates. While **Auto-rename Actions on Hierarchy Change** is on, only the
-    tier's template can name a new action.
+    templates.
 
 ### :material-camera: Camera & Compositor Templates
 

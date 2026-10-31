@@ -14,7 +14,7 @@ Every confirmation dialog can be switched off here. All default to **on**.
     | Group | Settings |
     |----------|----------|
     | Context | Delete Tree Item, Delete Scene, Delete View Layer, Delete Scene Group, Delete View Layer Group, Delete Take. |
-    | Inspector | Rename Action, Remove from Watchlist, Delete Action, Delete Slot, Clean Empty Slots/Actions, Delete Keyframe. |
+    | Inspector | Remove from Watchlist, Delete Action, Delete Slot, Clean Empty Slots/Actions, Delete Keyframe. |
     | Globals | Delete Tag, Delete Tag/Variant Group, Delete Variant, Delete Bookmark, Delete Custom Token. |
     | Batch Render | Start Batch Render, Overwrite Existing Files. |
     | System | Orphan Cleanup, Override Persistence, Shortcut Override. |

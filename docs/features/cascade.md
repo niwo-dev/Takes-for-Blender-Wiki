@@ -138,9 +138,6 @@ The action is named after the row you clicked, not after the active View Layer.
     If your standard cannot name the row, the tier's template moves to the top
     and gets the filled dot instead.
 
-    While **{{ pref('auto_rename_actions').label }}** is on, only the tier's
-    template works. Your patterns and **Custom Name…** are greyed.
-
 ### :material-pencil: Renaming Without Breaking Anything
 
 Assignments are stored by name. Renaming in Blender's own UI would orphan them.
