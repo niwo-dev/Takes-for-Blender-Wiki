@@ -26,7 +26,7 @@ Pick **Render Mode** at the bottom of the [render menu](#the-render-menu).
 
     - The tree updates as each View Layer completes.
     - A sound plays when all tasks finish.
-    - The sidebar button becomes an **X** so you can cancel without leaving the sidebar.
+    - The sidebar button becomes an **X** (**{{ op('tks.batch_render_bg_cancel').bl_label }}**) so you can cancel without leaving the sidebar. ++alt++-click it to force a reset when a run died and left the panel locked.
     - ++alt++-click force-renders every View Layer, even completed ones.
 
     **Active Layer Only.** Good for a quick spot-check. Reached from the render
