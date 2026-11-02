@@ -41,3 +41,40 @@ Everything keyframed or driven stays fully editable.
   they take turns: engaging one releases the other.
 - **Take switching** keeps working while locked, on any View Layer, with or
   without an action.
+
+## :material-lock-open-variant: Soft mode { #soft-mode }
+
+Soft mode lets an unkeyed change on a locked value stay, so you can look at it first. Choose it with **Value Lock Mode** in the add-on preferences, next to the **Autokey** settings. **Hard** is the default and puts every change straight back.
+
+In Soft mode, the change counts as a *temporary change*. It applies to the selected objects, the same as in Hard mode. It snaps back to the original when you:
+
+- switch the view layer or the take,
+- switch to **Hard**,
+- turn the lock off,
+- or unload the add-on.
+
+**Make Global** (right-click the lock) turns the current values into the new originals.
+
+??? info "Renders and saving"
+
+    - Saving writes the originals into the file. Your temporary changes stay live in the session.
+    - Every render uses the originals and gives your temporary changes back afterwards. This covers **F12**, **Ctrl+F12**, **Render Active View Layer**, the Ctrl+Click layer render and the batch render.
+    - A Ctrl+Click render of another view layer brings you back to your own layer.
+    - Known limit: **Render > Render Image** in the top menu and **Alt+F12** still render the temporary changes.
+
+## :material-alert-outline: Temporary changes { #temporary-changes }
+
+While temporary changes exist, a **Temporary Changes** warning shows how many. Each one also gets a Temporary mark around its object in the viewport.
+
+Handle a change from the warning:
+
+1. Press **Keep** to add a key in the current view layer. The Rest State keeps the original value.
+2. Press **Let Go** to put the original back now.
+3. Press **Make Global** to make the current value the new original.
+
+??? info "Settings"
+
+    | Setting | Default | Description |
+    |---------|---------|-------------|
+    | **Value Lock Mode** | Hard | **Hard** restores a change at once. **Soft** keeps it as a temporary change. |
+    | **Temporary Mark Colour** | Light purple | Colour of the mark in the viewport. Find it in the overlay settings under **Rules**. |
