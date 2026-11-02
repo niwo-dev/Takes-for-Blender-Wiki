@@ -64,7 +64,7 @@ In Soft mode, the change counts as a *temporary change*. It applies to the selec
 
 ## :material-alert-outline: Temporary changes { #temporary-changes }
 
-While temporary changes exist, a **Temporary Changes** warning shows how many. Each one also gets a Temporary mark around its object in the viewport.
+While temporary changes exist, a **Temporary Changes** warning shows how many. Each row shows the original value and the current value. The object also gets a purple outline and fill in the viewport, drawn like the Diff State marks.
 
 Handle a change from the warning:
 
@@ -77,4 +77,4 @@ Handle a change from the warning:
     | Setting | Default | Description |
     |---------|---------|-------------|
     | **Mode** (Value Lock section) | Hard | **Hard** restores a change at once. **Soft** keeps it as a temporary change. |
-    | **Temporary Mark Colour** | Light purple | Colour of the mark in the viewport. Find it in the overlay settings under **Rules**. |
+    | **Temporary Mark Colour** | Purple | Colour of the mark in the viewport. Find it beside the **Colour** of each Diff State, behind the pencil button. |
