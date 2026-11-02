@@ -55,6 +55,8 @@ Row heights for the add-on's lists, from 5 to 30 rows.
 
 **Default List Rows** is the master. It applies to every list you have not given its own height.
 
+Each list can follow the global row height or carry its own: **{{ op('tks.toggle_list_override').bl_label }}** switches that on, **{{ op('tks.reset_list_field').bl_label }}** returns one list to the global value and **{{ op('tks.reset_all_list_fields').bl_label }}** all of them.
+
 ??? info "Lists you can override one by one"
     Objects, Actions, Slots, Scenes, View Layers, Takes Tree, Scene Groups,
     View Layer Groups, Takes, Tags, VSW Products, Process Monitor, Debug Log,

@@ -44,6 +44,8 @@ That resolves to something like `Front_3-4_CamHero_0001.png`.
 
 Blender's own `####` frame padding keeps working. The preview shows the real frame number.
 
+The pencil button beside a pattern opens the **{{ op('tks.syntax_cheat_sheet_popover').bl_label }}**, a quick reference for the token syntax.
+
 !!! note "Why this wiki writes `{take}` and your fields show `[take]`"
 
     The rest of the wiki writes tokens with curly braces, because that is what the
@@ -280,6 +282,10 @@ Select the node in the Compositor to edit its fields in the node editor's **Smar
 
 ??? info "What the dropdown holds here"
     **Build Syntax**, **Make Absolute** / **Make Relative** (directory only), the **Insert Token** quick-picks, **Reset to Default**, and **Clear Last Token** / **Clear All** — plus the same writable-root validation and absolute/relative badge on the directory field. Multi-slot nodes get a Build Syntax launcher per output slot.
+
+## :material-rename-box: Rename Timeline Markers { #rename-timeline-markers }
+
+**{{ op('tks.rename_markers').bl_label }}** sits at the foot of the Marker menu in the animation editors. It renames the markers with a Smart Output pattern, so shot markers carry the same tokens as your files.
 
 ## :material-minus: Separators
 

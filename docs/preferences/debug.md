@@ -80,6 +80,12 @@ Each has its own toggle. Leave them on unless you are debugging the recovery sys
     bugs: phantom auto-merge steps on every undo, the cascade clearing actions
     mid-undo, or rest-state snaps overwriting the transforms Blender just restored.
 
+**One Keyframe, One Ctrl+Z** runs the take's share of a keyframe inside Blender's own move, rotate, scale and keying keys. So one keyframe costs one undo.
+
+??? info "The keymap entries"
+    In the Keymap editor they appear as **{{ op('tks.key_move').bl_label }}**, **{{ op('tks.key_rotate').bl_label }}**, **{{ op('tks.key_scale').bl_label }}**, **{{ op('tks.key_insert').bl_label }}**, **{{ op('tks.key_insert_button').bl_label }}**, **{{ op('tks.key_insert_dopesheet').bl_label }}**, **{{ op('tks.key_insert_graph').bl_label }}**, **{{ op('tks.key_delete').bl_label }}**, **{{ op('tks.key_delete_button').bl_label }}**, **{{ op('tks.key_delete_dopesheet').bl_label }}**, **{{ op('tks.key_delete_graph').bl_label }}**, **{{ op('tks.key_clear_button').bl_label }}**, **{{ op('tks.catch_rest').bl_label }}**, **{{ op('tks.settle_gesture').bl_label }}**.
+    Switch the switch off and Blender's own keys take over again.
+
 Each strategy row carries an **[i]** icon. Hover it and the tooltip, **{{ op('tks.pref_help').bl_label }}**, shows that setting's own description.
 
 ??? info "Undo Monitor"

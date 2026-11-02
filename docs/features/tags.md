@@ -40,6 +40,7 @@ Use **+** and **−** to add or remove a tag, and **↑ / ↓** to reorder one. 
     - **Multiselect** (☐) turns on bulk editing, so one action hits every picked tag.
     - **{{ op('tks.tag_retarget_group').bl_label }}** (track icon) moves a tag into
       another group. Same as ++ctrl+t++.
+    - **{{ op('tks.rename_tag_item').bl_label }}** (++f2++), **{{ op('tks.delete_tag_item').bl_label }}** (++del++ or ++x++) and **{{ op('tks.move_tag').bl_label }}** (↑ / ↓) act on the active tag or group. Renaming opens a small dialog, **{{ op('tks.tag_rename_popup').bl_label }}**.
     - The **stats row** counts tags per category, like `3/5 Output | 2/2 Camera`.
     - Every category header carries a **chevron** that runs **Toggle Expand**. It
       folds or unfolds that category.

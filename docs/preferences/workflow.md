@@ -104,7 +104,7 @@ Takes uses these when it creates an action for you, so shot names stay consisten
 
 Up to 20 names of your own for new actions. [New Action](../features/cascade.md#pick-the-actions-name) lists them next to the tier's template.
 
-The filled radio button marks your standard: the first line of that list. Click it again to make the tier's template the standard.
+The filled radio button marks your standard: the first line of that list. Click it again to make the tier's template the standard. The radio button beside a line runs **{{ op('tks.action_name_pattern_set_standard').bl_label }}**.
 
 ??? info "Settings and buttons"
     | Setting | Default | Description |
@@ -203,6 +203,8 @@ The token registry. Your [Custom Tokens](../features/custom_tokens.md) live here
 ## :material-keyboard: Hotkeys
 
 A read-only summary of the addon's keymaps. The full list is on [Keyboard Shortcuts](../interface/hotkeys.md).
+
+**{{ op('tks.reset_hotkeys').bl_label }}** puts the add-on's global shortcuts back to their defaults.
 
 To change a binding, open *Edit > Preferences > Keymap* and search for the operator id (`tks.global_*` or `wm.call_menu_pie`).
 

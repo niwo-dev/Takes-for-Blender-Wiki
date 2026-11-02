@@ -268,6 +268,8 @@ It happens when you change a world or compositor in Blender's own UI, or edit se
 
 Each mismatch gets a ✓ / ↩ pair. **✓** keeps your change and writes it into the cascade. **↩** throws it away and re-applies the cascade value.
 
+Changed the camera or world in Blender's own UI? The drift row then also offers **{{ op('tks.apply_scene_camera_to_cascade').bl_label }}** and **{{ op('tks.apply_scene_world_to_cascade').bl_label }}**. Each asks which tier should keep the value.
+
 ??? tip "Which one to click"
     **✓** when the change was deliberate and should stick to this shot.
     **↩** when it was an accidental edit in the wrong panel.

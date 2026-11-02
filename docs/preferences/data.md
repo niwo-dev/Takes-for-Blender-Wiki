@@ -59,6 +59,9 @@ So Takes keeps a safety copy on disk, refreshed as you work. If the storage goes
 
 The nine types: Render, Output, File Output, View Layer, Color Management, Camera, World, Material, Bookmark.
 
+??? info "The storage buttons"
+    **{{ op('tks.toggle_preset_override').bl_label }}** gives one preset type its own tier. **{{ op('tks.reset_preset_field').bl_label }}** sends it back to the Master Default, **{{ op('tks.reset_all_preset_fields').bl_label }}** does that for all nine. **{{ op('tks.apply_preset_storage_defaults').bl_label }}** applies the storage defaults to every open scene.
+
 ## :material-puzzle: Add-on
 
 Where the add-on keeps its own settings.

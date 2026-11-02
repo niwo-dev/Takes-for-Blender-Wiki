@@ -58,6 +58,8 @@ Click a name to select it in the viewport. Click a sub-data icon to manage that 
     **Unpinned filter** only managed ones. A filter icon is greyed out when its count
     is zero.
 
+    The stats row above the Watchlist, Actions and Slots lists carries a filter button, **{{ op('tks.clear_watchlist_filters').bl_label }}**, that switches every filter of that list off.
+
 ### :material-arrow-collapse: Compact Mode
 
 Compact mode shrinks the sub-data into small icons beside each object.
@@ -139,6 +141,7 @@ The slot controls sit inline on each slot field and in the **Slots** list below.
     | Control | What it does |
     | --------- | -------------- |
     | **Remove** (−) | Permanently deletes the selected slot, or every checkbox-selected slot in multi-select mode, from its Action. A confirmation appears first, toggleable in *Preferences > Interface > Confirmations*. |
+    | **{{ op('tks.slot_users_popup').bl_label }}** | Lists every object that uses the selected slot. |
     | **{{ op('tks.retarget_slot').bl_label }}** | In the settings menu. Moves a slot **and its keyframes** to another Action. A dialog asks for the target Action and, if a slot of that name is already there, whether to **Move** (keep both, renamed) or **Replace** it. |
     | **{{ op('tks.copy_slot_keys').bl_label }}** | In the settings menu. Copies all keyframes from the selected slot to an internal clipboard. |
     | **{{ op('tks.paste_slot_keys').bl_label }}** | In the settings menu. Pastes those keyframes into the selected slot, **replacing** whatever it held. With Copy, this moves animation between slots without touching the Actions. |
@@ -249,6 +252,8 @@ When such objects exist, **Linked Objects Info** appears. It only reports — it
     *Object > Library Override > Make*. The entry stays hidden while every linked object
     is already overridden.
 
+    **{{ op('tks.copy_linked_names').bl_label }}** copies the names of the linked objects, one per line.
+
 ## :material-rhombus-outline: Channels Mode
 
 Flip the header toggle (see [Watchlist vs. Channels](#watchlist-vs-channels)) and the Inspector becomes a keyframing surface. It lists every animatable **property** of the active target.
@@ -262,7 +267,7 @@ Four bands, top to bottom: frame navigation, target-type rows, search and filter
 ??? info "Each band in detail"
     | Element | What it does |
     |---------|--------------|
-    | **Frame-navigation bar** | Timeline controls, when enabled — jump between keyframes with Blender's own previous and next arrows, plus the **{{ op('tks.delete_all_inspector_keys').bl_label }}** trash button. |
+    | **Frame-navigation bar** | Timeline controls, when enabled — jump between keyframes with Blender's own previous and next arrows, plus the **{{ op('tks.delete_all_inspector_keys').bl_label }}** trash button and **{{ op('tks.toggle_channel_view_mode').bl_label }}**, which switches the view between all frames and per-keyframe rows. |
     | **Target-type rows** | One row per animated datablock type on the active object. The left side switches the view to that target; the right side counts its keys. |
     | **Search & filter** | A search field narrows the property list, the red ✕ clears it. A source filter limits rows to **All / Native / Add-on** properties. |
     | **Property groups** | Collapsible sub-panels — Transform, Delta Transform, Visibility, Viewport Display, Light Settings, Lens & Sensor, Modifiers, General Properties — each row showing its live value. |

@@ -109,6 +109,8 @@ Click it to open **{{ op('tks.tag_filter_popover').bl_label }}**, then pick a ta
     **-- Show All --** row that clears the filter. The funnel stays highlighted
     while any filter is active, so you can see why rows are missing.
 
+    A filter button in the tree's stats row, **{{ op('tks.clear_tree_filters').bl_label }}**, switches every tree filter off at once. The same button clears a list's own search.
+
     Filtering the *tree* is generous: a parent survives when a child matches.
     Filtering a *render* by tag is strict — the render menu's **Select Tag** scope
     matches a View Layer's own tag only. See [Tag & Filter Takes](../workflows/tag_and_filter.md).
@@ -172,7 +174,7 @@ Click the family icon again to close the panel. Opening another family closes th
     | **Cameras** | Multi-Cam Paused | A take cuts between cameras while it is pinned to one frame, or two cuts sit on the same frame. | The takes involved, with the fix for each. |
     | **Variants** | Lost Swaps | A material swap's slot was removed. | The lost swaps, to move or let go. |
     | **Objects** | Waiting Objects | An object you set to a take wears no action yet. | The objects, each with an action picker or a way back to the take. |
-    | **Objects** | Linked Objects | A watched object comes from another file and has no library override yet, or a linked file is missing. | The linked files, with override and relocate buttons. |
+    | **Objects** | Linked Objects | A watched object comes from another file and has no library override yet, or a linked file is missing. | The linked files, each with **{{ op('tks.make_linked_override').bl_label }}**, **{{ op('tks.show_linked_in_outliner').bl_label }}**, **{{ op('tks.show_linked_file').bl_label }}** and **{{ op('tks.reload_linked_file').bl_label }}** (loads that file again from disk). |
     | **Objects** | Adopted Objects | The file was made without Takes and came with its own animation. | The card described [below](#adopted). |
     | *(own icon, box)* | Cache Version | The active scene was last saved by a different addon version (a MAJOR.MINOR mismatch), so cached tree data may be stale. | A cache notice with a refresh action. It belongs to no family, so opening a family never hides it. |
     | **System** | View Layer Preload | [View Layer Preload](context_properties.md#view-layer-preload) is enabled and a preload is running, or some layers are still cold ("Not Ready"). | The per-layer preload panel — readiness state for every View Layer, per-section Preload buttons, Cancel and ETA while running. It can open the **System** family **automatically** when an automatic preload starts, if you opt in via the preferences. |

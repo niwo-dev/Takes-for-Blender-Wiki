@@ -75,6 +75,8 @@ Click a single row for one process, a group's master switch for the whole bucket
 
     Full list on [Keyboard Shortcuts](../interface/hotkeys.md).
 
+**{{ op('tks.clear_monitor_filters').bl_label }}** switches a monitor's bucket filter and search off. The sidebar next to the list has a trash button, **{{ op('tks.clear_pycache').bl_label }}**, that deletes the add-on's cached bytecode folders.
+
 ??? tip "Bisecting viewport lag"
     Switch groups off one at a time, scrub the timeline after each, and watch the
     heartbeat and exec-time columns. When the stutter disappears, the group you just

@@ -136,6 +136,11 @@ They scan custom properties, tidy stale presets, and open the folders the add-on
     | Button | What it does |
     | -------- | -------------- |
     | **Scan Properties** | Scans your `.blend` for every custom-property key on objects, bones, scenes and the rest. It tags each as Blender-native or added by the add-on, then fills the cleanup list with counts and sample values. Run it before clearing anything. |
+    | **{{ op('tks.select_all_patterns').bl_label }}** | Ticks the keys in the cleanup list. ++shift++ ticks all, ++alt++ inverts, ++ctrl++ clears the ticks. |
+    | **{{ op('tks.clear_selected_patterns').bl_label }}** | Removes the ticked keys from the file. |
+    | **{{ op('tks.clear_custom_properties_by_pattern').bl_label }}** | Removes every key that matches a pattern you type. |
+    | **{{ op('tks.clear_all_custom_properties').bl_label }}** | Removes every custom property from the whole file. |
+    | **{{ op('tks.clear_addon_data').bl_label }}** | Removes all data this add-on stored in the file. Use it before uninstalling. |
     | **{{ op('tks.cleanup_incompatible_presets').bl_label }}** | Quarantines render presets whose format no longer matches this add-on version, so they stop cluttering your preset lists — see [Render Presets](../features/render_presets.md). |
     | **{{ op('tks.open_addon_presets_folder').bl_label }}** / **{{ op('tks.open_project_presets_folder').bl_label }}** | Open the add-on-wide or per-project render-preset folder in your file browser. These are the two tiers under *Data > Storage*. |
     | **{{ op('tks.open_snapshots_folder').bl_label }}** | Opens the folder holding the safety copies of your take data. It sits beside the read-only path under *Data > Snapshots & Recovery* — see [Snapshots & Recovery](data.md#snapshots). |
