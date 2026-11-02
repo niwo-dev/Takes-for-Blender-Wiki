@@ -21,7 +21,7 @@ Everything keyframed or driven stays fully editable.
 
 | Control | Location | Description |
 |---------|----------|-------------|
-| **{{ op('tks.value_lock_toggle').bl_label }}** | Navigation header, between the **Still Mode** and **Autokey** buttons. | Engages the lock and captures the unkeyed values of **every object in the scene** as the baseline. That includes their materials, object data, shape keys, the world, and anything else holding a static value. You do not need to select anything. Click again to release. |
+| **{{ op('tks.value_lock_toggle').bl_label }}** | Navigation header, between the **Still Mode** and **Autokey** buttons. | Engages the lock and captures the unkeyed values of **every object in the scene** as the baseline. That includes their materials, object data, shape keys, the world, and anything else holding a static value. You do not need to select anything. Click again to release. Shift+Click to choose **Hard** or **Soft**. |
 
 ## :material-shield-check: What's locked — and what isn't
 
@@ -44,7 +44,7 @@ Everything keyframed or driven stays fully editable.
 
 ## :material-lock-open-variant: Soft mode { #soft-mode }
 
-Soft mode lets an unkeyed change on a locked value stay, so you can look at it first. Choose it with **Value Lock Mode** in the add-on preferences, next to the **Autokey** settings. **Hard** is the default and puts every change straight back.
+Soft mode lets an unkeyed change on a locked value stay, so you can look at it first. Shift+Click the lock button and choose **Soft**, or set **Mode** in the **Value Lock** section of the add-on preferences. **Hard** is the default and puts every change straight back.
 
 In Soft mode, the change counts as a *temporary change*. It applies to the selected objects, the same as in Hard mode. It snaps back to the original when you:
 
@@ -76,5 +76,5 @@ Handle a change from the warning:
 
     | Setting | Default | Description |
     |---------|---------|-------------|
-    | **Value Lock Mode** | Hard | **Hard** restores a change at once. **Soft** keeps it as a temporary change. |
+    | **Mode** (Value Lock section) | Hard | **Hard** restores a change at once. **Soft** keeps it as a temporary change. |
     | **Temporary Mark Colour** | Light purple | Colour of the mark in the viewport. Find it in the overlay settings under **Rules**. |
