@@ -42,7 +42,7 @@ generators, CI. Page wording and content edits are not logged in either file.
    table. An earlier check that counted the word "Progress" was worthless — it
    matched the "In Progress" section headings.
 
-2. 🔴 **A section reached by an anchor link gets a fading color band.**
+2. 🟢 **A section reached by an anchor link gets a fading color band.**
    `docs/javascripts/manual-target-mark.js` (registered in `mkdocs.yml`) runs on
    `document$` and `hashchange`, finds the `:target` heading and lays an
    absolutely positioned overlay over it and its section, up to the next
