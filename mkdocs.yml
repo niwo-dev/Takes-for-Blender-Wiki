@@ -253,6 +253,7 @@ extra_javascript:
   - javascripts/changelog-toc.js?v=9b4e6d01
   - javascripts/toc-min-pill.js?v=2ec84604
   - javascripts/toc-popover.js?v=96e637b9
+  - javascripts/manual-target-mark.js?v=02308a9e
 
 # No `social:` list. It only ever held the GitHub icon, and the header already
 # carries a GitHub link with the version chip — the footer copy was the same

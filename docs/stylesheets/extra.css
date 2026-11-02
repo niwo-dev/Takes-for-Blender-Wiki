@@ -1306,6 +1306,30 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Where an Online Manual link landed. manual-target-mark.js lays this band over
+   the target section; it is an overlay (no margin, padding or border of the
+   content changes), so the page does not shift. Full mark, then a 1 s fade. */
+.tks-target-mark {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--md-accent-fg-color) 12%, transparent);
+  box-shadow: inset 3px 0 0 var(--md-accent-fg-color);
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+.tks-target-mark.is-fading { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .tks-target-mark { transition: none; }
+}
+
+/* The browser's own mark for a text-fragment link (`#anchor:~:text=...`), in the
+   wiki's accent instead of the default yellow. Text colour stays as it is. */
+::target-text {
+  background-color: color-mix(in srgb, var(--md-accent-fg-color) 30%, transparent);
+  color: inherit;
+}
+
 
 
 /* The ported base rule sets the scrim to opacity 0, and it lands after
