@@ -41,3 +41,15 @@ generators, CI. Page wording and content edits are not logged in either file.
    `data-sort="NNN-NNN"` cells and four sortable Progress headers, one per
    table. An earlier check that counted the word "Progress" was worthless — it
    matched the "In Progress" section headings.
+
+2. 🔴 **A section reached by an anchor link gets a fading color band.**
+   `docs/javascripts/manual-target-mark.js` (registered in `mkdocs.yml`) runs on
+   `document$` and `hashchange`, finds the `:target` heading and lays an
+   absolutely positioned overlay over it and its section, up to the next
+   heading of the same or higher level. A 12 % accent band with a 3 px accent
+   bar; it holds 4 s, fades over 1 s, ends at once on a click, and drops the
+   fade under `prefers-reduced-motion`. `docs/stylesheets/extra.css` also
+   styles `::target-text` at 30 % accent, the mark a browser draws for the
+   add-on's `:~:text=` links. Measured in headless Chrome: heading top and
+   page height are identical with and without the band, so nothing moves.
+   Commit `4b4b746` (before rebase).

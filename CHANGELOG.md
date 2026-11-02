@@ -20,3 +20,4 @@ Started 2026-09-20. Earlier work is in the git history, not here.
 ### Added
 
 1. 🟢 The roadmap board has a Progress column: how many of an item's steps are done, out of how many, and the share. Click the header to sort by it.
+2. 🔴 A page opened from the add-on's Online Manual marks the section it lands on with a soft color band that fades after a few seconds.
