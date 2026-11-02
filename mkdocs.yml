@@ -193,6 +193,7 @@ nav:
         - Video Sequencer: features/sequencer.md
         - Process Monitor: features/process_monitor.md
         - AI Assistant: features/ai_assistant.md
+        - Prompts: features/prompts.md
     - Preferences:
       - preferences/index.md
       - Workflow: preferences/workflow.md

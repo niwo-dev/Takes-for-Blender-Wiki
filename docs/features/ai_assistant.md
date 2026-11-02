@@ -28,6 +28,8 @@ It can describe your project, create and switch takes, set cascade overrides, an
 
 Tiers are **named, not numbered**: `take`, `view_layer`, `vl_group`, `scene`, `scene_group`, `global`.
 
+You can also give it standing instructions. See [Prompts](prompts.md).
+
 ??? info "The full verb list"
     | Verb | What it does |
     |------|--------------|

@@ -20,6 +20,7 @@ The header has a row of mode buttons. Each switches the panel body to a differen
 | **Variants** | UV-sync | The [Variant Switch](variant_switch.md) tree. |
 | **Rules** | gear (system) | Automation [rules](rules.md). |
 | **Tags** | colour mod | The full [tag](tags.md) library. |
+| **Prompts** | text | The assistant's saved [prompts](prompts.md). |
 
 ??? question "Looking for the Rest Action?"
     It is not in this panel. The **Rest Action** picker sits in the header of the
