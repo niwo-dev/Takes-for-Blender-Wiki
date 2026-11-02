@@ -4,7 +4,8 @@
  * itself is exact, but on a long section the eye still has to find where the
  * section ends. This lays a soft accent band over the target heading and
  * everything under it up to the next heading of the same or higher level, then
- * fades it out. A click anywhere ends it at once.
+ * fades it out by itself. Clicks leave it alone, so the reader can click
+ * around the page and still see where they landed.
  *
  * The band is an absolutely positioned overlay in document coordinates, never a
  * style on the content itself, so nothing in the page moves: same heading
@@ -30,8 +31,7 @@
     timers = [];
     if (mark && mark.parentNode) mark.parentNode.removeChild(mark);
     mark = null;
-    document.removeEventListener("click", clear, true);
-    window.removeEventListener("resize", clear);
+    window.removeEventListener("resize", place);
   }
 
   function targetHeading() {
@@ -60,21 +60,28 @@
     return { top: top, bottom: bottom, left: left, right: right };
   }
 
-  function show() {
-    clear();
-    var head = targetHeading();
+  // Measures the section again, so a resize moves the band with the text.
+  function place() {
+    var head = mark && document.getElementById(mark.getAttribute("data-target"));
     if (!head) return;
     var box = sectionBox(head);
-    mark = document.createElement("div");
-    mark.className = "tks-target-mark";
-    mark.setAttribute("data-target", head.id);
-    mark.setAttribute("aria-hidden", "true");
     // The band reaches a little past the text so the bar never touches a glyph.
     mark.style.top = (box.top + window.pageYOffset - PAD_Y) + "px";
     mark.style.left = (box.left + window.pageXOffset - PAD_X) + "px";
     mark.style.width = (box.right - box.left + 2 * PAD_X) + "px";
     mark.style.height = (box.bottom - box.top + 2 * PAD_Y) + "px";
+  }
+
+  function show() {
+    clear();
+    var head = targetHeading();
+    if (!head) return;
+    mark = document.createElement("div");
+    mark.className = "tks-target-mark";
+    mark.setAttribute("data-target", head.id);
+    mark.setAttribute("aria-hidden", "true");
     document.body.appendChild(mark);
+    place();
 
     var reduced = window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -84,8 +91,7 @@
       mark.classList.add("is-fading");
       timers.push(setTimeout(clear, FADE_MS));
     }, SHOW_MS));
-    document.addEventListener("click", clear, true);
-    window.addEventListener("resize", clear);
+    window.addEventListener("resize", place);
   }
 
   // Wait a moment so the browser's own jump to the anchor has happened and the

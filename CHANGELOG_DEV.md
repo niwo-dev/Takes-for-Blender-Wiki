@@ -47,7 +47,7 @@ generators, CI. Page wording and content edits are not logged in either file.
    `document$` and `hashchange`, finds the `:target` heading and lays an
    absolutely positioned overlay over it and its section, up to the next
    heading of the same or higher level. A 12 % accent band with a 3 px accent
-   bar; it holds 4 s, fades over 1 s, ends at once on a click, and drops the
+   bar; it holds 4 s, fades over 1 s, ignores clicks, moves with a resize, and drops the
    fade under `prefers-reduced-motion`. `docs/stylesheets/extra.css` also
    styles `::target-text` at 30 % accent, the mark a browser draws for the
    add-on's `:~:text=` links. Measured in headless Chrome: heading top and
