@@ -158,8 +158,8 @@ Every slice opens that property's full editor — rules and presets included. It
 
 ??? info "What the slices hold, and which row they act on"
     The slots take **cascade properties**, not actions: *Tag*, *Variant*,
-    *Action*, *Compositor*, *World*, *Camera*, *Output Rule* and *Still Mode*.
-    A property the row cannot hold is left out of the pie.
+    *Action*, *Compositor*, *World*, *Camera*, *Output Rule*, *Still Mode* and
+    *Prompts*. A slice for a property the row cannot hold stays empty.
 
     **Defaults:** North *Variant*, North-East *Output Rule*, East *World*,
     South-East *Still Mode*, South *Action*, South-West *Tag*, West *Camera*,
