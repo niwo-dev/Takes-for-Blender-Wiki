@@ -5,9 +5,11 @@ the report / `python -m http.server <port> -d <built site>`):
 
     python dev/check_section_focus.py shots  <base-url> <out-dir>
     python dev/check_section_focus.py probe  <base-url> [--only NAME]
+    python dev/check_section_focus.py markshots <base-url> <out-dir>
 
 `shots` takes the before/after pairs (landing, heading click, after close) at
-1440x900 and 390x844 into <out-dir>. `probe` runs every measured look rule and
+1440x900 and 390x844 into <out-dir>. `markshots` takes only the pop-up of a text-directive link (words marked inside)
+at both sizes. `probe` runs every measured look rule and
 behaviour point and prints one JSON line per check; the in-page measuring code
 lives in dev/probe_section_focus.js.
 
@@ -38,6 +40,10 @@ LONG = "tutorial-your-first-custom-token"     # long, has details + code
 SHORT = "token-presets"
 LAST = "every-token-setting"                    # ends at the page end
 MID = "managing-your-tokens"
+MARK_PAGE = "preferences/workflow/"
+MARK_ID = "action-name-patterns"
+MARK_TEXT = "Add Pattern"                       # the words of the directive
+MARK_HASH = "#" + MARK_ID + ":~:text=Add%20Pattern"
 SIZES = {"1440": (1440, 900, False), "390": (390, 844, True)}
 
 
@@ -201,6 +207,20 @@ def run_shots(base, out):
         errs = sorted({e.splitlines()[0] for e in c.errors if e})
         if errs:
             print("JS errors", tag, errs)
+
+
+def run_mark_shots(base, out):
+    """The text-directive link just after load, pop-up open, at both sizes."""
+    out = Path(out)
+    for tag, (w, h, mobile) in SIZES.items():
+        c = Chrome(w, h, mobile)
+        try:
+            c.goto(base.rstrip("/") + "/" + MARK_PAGE + MARK_HASH)
+            wait_for(c, "!!document.querySelector('.tks-focus')", 3)
+            time.sleep(0.8)
+            c.shot(out / f"text_mark_{tag}.png")
+        finally:
+            c.close()
 
 
 # ---- probe -----------------------------------------------------------------
@@ -465,6 +485,113 @@ def probe_desktop(base):
         c.close()
 
 
+def open_popup(c, url, hash_, settle=0.5):
+    c.goto(url + hash_)
+    ok = wait_for(c, "!!document.querySelector('.tks-focus')", 3)
+    time.sleep(settle)
+    return ok
+
+
+def probe_marks(base):
+    """Text-directive marks inside the pop-up (Chrome keeps the directive in the
+    navigation timing entry; the other engines run in dev/temp/pw)."""
+    c = Chrome(1440, 900, False)
+    url = base.rstrip("/") + "/" + MARK_PAGE
+    plain = "#" + MARK_ID
+    try:
+        open_popup(c, url, MARK_HASH)
+        info = c.js("sf.markInfo()")
+        report("mark-in-popup", info["count"] >= 1 and info["joined"].lower() == MARK_TEXT.lower(), **info)
+        report("mark-one-per-item", info["count"] == 1, count=info["count"])
+        look = c.js("sf.markLook()")
+
+        # no layout change: same pop-up heights with the marks taken out again
+        h = c.js("sf.heightsWithoutMarks()")
+        report("mark-no-reflow", all(abs(h["withMark"][k] - h["without"][k]) <= 0 for k in h["withMark"]), **h)
+        open_popup(c, url, plain)
+        report("no-mark-without-directive", c.js("sf.markInfo()")["count"] == 0)
+
+        # look: colour equals the browser mark's declaration in both schemes; no box
+        same = all(v["mark"] == v["ref"] for v in look["schemes"].values())
+        report("mark-colour-both-schemes", same and "var(--tks-text-mark-bg)" in (look["targetTextRule"] or ""),
+               rule=look["targetTextRule"], **look["schemes"])
+        report("mark-box-zero", all(v in ("0px", "normal") for v in look["box"]), box=look["box"])
+        report("mark-text-colour-inherits", all(v["color"] == v["hostColor"] for v in look["schemes"].values()))
+
+        # one match per text= item, case-insensitive, textStart,textEnd, spans inline elements
+        open_popup(c, url, plain + ":~:text=Pattern&text=Add%20Pattern")
+        two = c.js("sf.markInfo()")
+        report("mark-two-items", two["texts"] == ["Pattern", "Add Pattern"], **two)
+        open_popup(c, url, plain + ":~:text=add%20pattern")
+        report("mark-case-insensitive", c.js("sf.markInfo()")["joined"] == "Add Pattern")
+        open_popup(c, url, plain + ":~:text=Edit,menu")
+        rng = c.js("sf.markInfo()")
+        report("mark-text-range", rng["joined"] == "Edit Name Patterns… in the New Action menu", **rng)
+        open_popup(c, url, plain + ":~:text=Name%20Patterns%E2%80%A6%20in%20the")
+        span = c.js("sf.markInfo()")
+        report("mark-spans-inline-elements", span["count"] >= 2 and
+               span["joined"] == "Name Patterns… in the", **span)
+
+        # words that are not on the page: pop-up as before, no mark, no error
+        c.errors.clear()
+        opened = open_popup(c, url, plain + ":~:text=zzzqqq%20nothere")
+        errs = [e for e in c.errors if e and "nav-icons.js" not in e]
+        report("mark-missing-words", opened and c.js("sf.markInfo()")["count"] == 0 and not errs, errors=errs)
+        # a malformed directive must not break either
+        opened = open_popup(c, url, plain + ":~:text=%E0%A4%A")
+        errs = [e for e in c.errors if e and "nav-icons.js" not in e]
+        report("mark-malformed-directive", opened and not errs, errors=errs)
+
+        # parse and heading lookup on a string, the way an engine that keeps the
+        # directive in location.hash would hand it over
+        parsed = c.js("tksTargetMark.parseDirective('#a:~:text=pre-,Add%20Pattern,-suf&text=x,y&text=,')")
+        report("parse-directive", parsed == [{"start": "Add Pattern", "end": ""},
+                                             {"start": "x", "end": "y"}], parsed=parsed)
+        head = c.js("(tksTargetMark.targetHeading('#action-name-patterns:~:text=Add%20Pattern')||{}).id")
+        report("heading-from-hash-with-directive", head == MARK_ID, id=head)
+
+        # a page left alone where the browser marks it itself
+        open_popup(c, url, MARK_HASH)
+        c.click(5, 5)
+        wait_for(c, "!!document.querySelector('.tks-target-mark')", 1)
+        report("page-left-alone-when-supported", c.js("sf.markInfo('page')")["count"] == 0)
+
+        # first mark inside the visible scroll area: long section, short window
+        c.resize(1440, 300)
+        long_url = base.rstrip("/") + "/" + PAGE
+        c.goto(long_url)
+        words = c.js(f"sf.lastWords({json.dumps(LONG)})")
+        open_popup(c, long_url, "#" + LONG + ":~:text=" + words.replace(" ", "%20"))
+        far = c.js("sf.markInfo()")
+        report("mark-first-visible-in-scroll-area", far["count"] >= 1 and far["inScroll"] and
+               far["scrollable"] and far["bodyScrollTop"] > 0, words=words, **far)
+        c.resize(1440, 900)
+    finally:
+        c.close()
+
+
+def probe_marks_unsupported(base):
+    """A browser without text fragments: the page gets the mark after close."""
+    c = Chrome(1440, 900, False)
+    url = base.rstrip("/") + "/" + MARK_PAGE
+    try:
+        c.call("Page.addScriptToEvaluateOnNewDocument", {
+            "source": "delete Document.prototype.fragmentDirective;"})
+        ok = open_popup(c, url, MARK_HASH, 0.4)
+        report("nofrag-engine-simulated", c.js("!('fragmentDirective' in document)"))
+        report("nofrag-popup-marked", ok and c.js("sf.markInfo().joined") == MARK_TEXT)
+        report("nofrag-page-unmarked-while-open", c.js("sf.markInfo('page').count") == 0)
+        doc_h = c.js("document.documentElement.scrollHeight")
+        c.click(5, 5)
+        wait_for(c, "!document.querySelector('.tks-focus')", 1)
+        time.sleep(0.3)
+        page = c.js("sf.markInfo('page')")
+        report("nofrag-page-marked-after-close", page["joined"] == MARK_TEXT and page["count"] == 1, **page)
+        report("nofrag-no-page-reflow", c.js("document.documentElement.scrollHeight") == doc_h)
+    finally:
+        c.close()
+
+
 def probe_mobile(base):
     c = Chrome(390, 844, True)
     url = base.rstrip("/") + "/" + PAGE
@@ -497,9 +624,14 @@ def main():
     if mode == "shots":
         run_shots(base, sys.argv[3])
         return 0
+    if mode == "markshots":
+        run_mark_shots(base, sys.argv[3])
+        return 0
     if mode == "probe":
         probe_desktop(base)
         probe_mobile(base)
+        probe_marks(base)
+        probe_marks_unsupported(base)
         bad = [n for n, ok in RESULTS if not ok]
         print(json.dumps({"summary": f"{len(RESULTS) - len(bad)}/{len(RESULTS)} pass", "failed": bad}))
         return 1 if bad else 0

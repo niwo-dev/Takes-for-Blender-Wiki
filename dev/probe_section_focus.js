@@ -301,6 +301,87 @@
       const r = imgs.map((i) => i.complete && i.naturalWidth > 0 && i.getBoundingClientRect().width > 0);
       return { ok: imgs.length > 0 && r.every(Boolean), count: imgs.length };
     },
+    // The marked words in the pop-up (or on the page when `where` is "page").
+    markInfo(where) {
+      const root = where === "page" ? $(".md-content__inner") : $(".tks-focus__body");
+      const marks = $$("mark.tks-text-mark", root);
+      const body = $(".tks-focus__body");
+      const first = marks[0];
+      let inScroll = null;
+      if (first && where !== "page" && body) {
+        const b = body.getBoundingClientRect(), r = first.getBoundingClientRect();
+        inScroll = r.top >= b.top - 0.5 && r.bottom <= b.bottom + 0.5;
+      }
+      return {
+        count: marks.length, texts: marks.map((m) => m.textContent),
+        joined: marks.map((m) => m.textContent).join(""),
+        inScroll, bodyScrollTop: body ? body.scrollTop : null,
+        pageScrollY: window.pageYOffset,
+        scrollable: body ? body.scrollHeight > body.clientHeight + 1 : null,
+      };
+    },
+    popupHeights() {
+      const b = $(".tks-focus"), body = $(".tks-focus__body");
+      return { boxH: b.getBoundingClientRect().height, bodyClientH: body.clientHeight,
+               bodyScrollH: body.scrollHeight };
+    },
+    // Three plain words from the section's last paragraph that occur nowhere
+    // earlier in it: a directive aimed at the section's end.
+    lastWords(id) {
+      const head = document.getElementById(id);
+      const all = [];
+      let last = null;
+      for (let n = head.nextElementSibling; n; n = n.nextElementSibling) {
+        if (/^H([1-6])$/.test(n.tagName) && +n.tagName[1] <= +head.tagName[1]) break;
+        all.push(n);
+        if (n.tagName === "P" && /^[A-Za-z ]{20,}/.test(n.textContent.trim())) last = n;
+      }
+      const words = last.textContent.trim().replace(/\s+/g, " ").split(" ");
+      const hay = all.map((n) => n.textContent.replace(/\s+/g, " ").toLowerCase()).join("|");
+      for (let i = 0; i + 3 <= words.length; i++) {
+        const w = words.slice(i, i + 3).join(" ");
+        if (/^[A-Za-z ]+$/.test(w) && hay.split(w.toLowerCase()).length === 2) return w;
+      }
+      return null;
+    },
+    // Pop-up heights with the marks, then the same pop-up with the marks taken
+    // out again (details the mark opened stay open: that is not the mark's doing).
+    heightsWithoutMarks() {
+      const before = sf.popupHeights();
+      $$("mark.tks-text-mark", $(".tks-focus__body")).forEach((m) => m.replaceWith(...m.childNodes));
+      $(".tks-focus__body").normalize();
+      return { withMark: before, without: sf.popupHeights() };
+    },
+    // Colour and box of the mark in both schemes, against the declaration `::target-text` uses.
+    markLook() {
+      const host = $(".tks-focus__body p") || $(".tks-focus__body");
+      const m = document.createElement("mark");
+      m.className = "tks-text-mark"; m.textContent = "x";
+      host.appendChild(m);
+      const ref = document.createElement("span");
+      ref.style.backgroundColor = "var(--tks-text-mark-bg)";
+      host.appendChild(ref);
+      const out = { schemes: {} };
+      for (const [key, scheme] of [["dark", "slate"], ["light", "default"]]) {
+        const prev = document.body.getAttribute("data-md-color-scheme");
+        document.body.setAttribute("data-md-color-scheme", scheme);
+        const cs = getComputedStyle(m);
+        out.schemes[key] = { mark: cs.backgroundColor, ref: getComputedStyle(ref).backgroundColor,
+                             color: cs.color, hostColor: getComputedStyle(host).color };
+        document.body.setAttribute("data-md-color-scheme", prev);
+      }
+      const cs = getComputedStyle(m);
+      out.box = ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "marginTop", "marginRight",
+                 "marginBottom", "marginLeft", "borderTopWidth", "borderRadius"].map((k) => cs[k]);
+      let rule = null;
+      for (const sheet of document.styleSheets) {
+        let rules; try { rules = sheet.cssRules; } catch (e) { continue; }
+        for (const r of rules) if (r.selectorText === "::target-text") rule = r.style.getPropertyValue("background-color");
+      }
+      out.targetTextRule = rule;
+      m.remove(); ref.remove();
+      return out;
+    },
     // Close the open pop-up and time the band that follows, from the close.
     async bandTiming(how) {
       const t0 = performance.now();
