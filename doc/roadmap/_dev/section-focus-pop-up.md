@@ -43,6 +43,19 @@ Changeable design:
 4. Wrong-way import, or core logic touching the outside tool? — no
 5. Hard to undo? — no: front-end behaviour only, no saved format, no public name
 
+## Marked words inside the pop-up
+
+Add-on links often end in `:~:text=<words>`. The pop-up shows a clone, so the browser's own mark never reaches it; the script reads the words itself and wraps them in `mark.tks-text-mark`. The colour lives once, in `--tks-text-mark-bg`, read by both `::target-text` and `.tks-text-mark`.
+
+Where each engine leaves the words for scripts (measured 2026-11-03):
+
+| Engine | Source |
+|---|---|
+| Chromium (Chrome, Edge) | navigation timing entry `name` |
+| Firefox | `navigation.currentEntry.url` |
+| WebKit (Safari) | nowhere — hidden from every script source |
+
 ## Open questions
 
-None.
+- Safari shows no marked words inside the pop-up; after close Safari marks the page itself. The fix would be a second, script-readable copy of the words in the add-on's links (e.g. `?mark=`), a new public link format.
+  → Answer (owner, 2026-11-03): accept the Safari limit; no second copy in the links.
