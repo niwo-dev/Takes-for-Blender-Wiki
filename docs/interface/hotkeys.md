@@ -4,7 +4,7 @@ icon: material/keyboard
 
 # Keyboard Shortcuts
 
-Every Takes shortcut works inside the **3D Viewport sidebar** only. Press ++n++ to open it.
+Takes shortcuts work inside the **3D Viewport sidebar**. Press ++n++ to open it. The pies open over the 3D Viewport itself.
 
 Keys shared by several lists are focus-aware: only the active list reacts.
 
@@ -19,13 +19,18 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 | ++i++ | **Keyframe Pie** — replaces Blender's native insert menu. Off by default. |
 | ++alt+i++ | **Clear Pie** — a pie of keyframe-clearing actions. Off by default. |
 | ++shift+alt+q++ | **[Mode Pie](../features/pie_menus.md#mode-pie)** — the Navigation Panel's mode toggles at your cursor. Off by default. |
+| ++ctrl+shift+f++ | **Tree Icon Pie** — the cascade properties of one row. Off by default. |
 
 ??? info "Default slots, and how to change them"
     West **Tree View**, East **Watchlist**, South **Slotted Mode**, North **Rules**,
     NW **Variants**, NE **Tags**, SW **Batch Render**, SE **Channels**.
 
-    Reassign any slot in *Preferences > Workflow > Pie & Misc*. The four
-    optional pies have their master toggles there too.
+    Reassign any slot in *Preferences > Workflow > Pie & Misc*. The optional pies
+    have their master toggles there too.
+
+    **Acts On** (Tree Icon Pie) picks the row the pie works on: the **Active View
+    Layer** Blender shows, or the **Tree Selection**, the highlighted row in the
+    Takes tree.
 
 ---
 
@@ -48,6 +53,7 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 | {{ keys('tks.global_ungroup') }} | **Ungroup** | Takes the selection out of its group. |
 | {{ keys('tks.global_retarget') }} | **Retarget** | Moves the selected item to another parent. |
 | {{ keys('tks.global_duplicate') }} | **Duplicate** | Two bindings: full copy and linked copy. |
+| ++shift++ + right-click | **Row menu** | Opens the right-click menu of the highlighted Takes row. Not on empty tree space. |
 
 *The expand chevron on Scene, Group and View Layer rows answers to modifiers. Take rows are the end of a branch, so they carry no chevron.*
 
@@ -103,6 +109,8 @@ only while both **Show Assigned Camera** and **Hide Other Cameras** are off. See
 | ++f2++ | **Rename** the selected action or slot. |
 | ++del++ / ++x++ | **Delete** an action, slot or watchlist entry. Asks first. |
 | ++ctrl+i++ | **Invert** the multi-selection. |
+| ++shift+d++ | **Duplicate** the selected action. Always a full copy. |
+| ++ctrl+t++ | **Retarget** the selected slot to another action. |
 
 *The trash button in the Channels frame-navigation bar widens with modifiers.*
 
