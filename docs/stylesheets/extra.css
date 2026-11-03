@@ -1403,8 +1403,26 @@ html.tks-focus-lock {
 /* The browser's own mark for a text-fragment link (`#anchor:~:text=...`), in the
    wiki's accent instead of the default yellow. Text colour stays as it is. */
 ::target-text {
-  background-color: color-mix(in srgb, var(--md-accent-fg-color) 30%, transparent);
+  background-color: var(--tks-text-mark-bg);
   color: inherit;
+}
+/* The same words inside the focus pop-up, and on the page in a browser that
+   cannot mark text fragments. A rule of its own: an engine that does not know
+   `::target-text` drops the whole rule it appears in. The colour lives once, on
+   body, where the accent is resolved; Material's own `mark` padding, radius and
+   word break are cancelled so the line never reflows. */
+body {
+  --tks-text-mark-bg: color-mix(in srgb, var(--md-accent-fg-color) 30%, transparent);
+}
+.md-typeset mark.tks-text-mark,
+mark.tks-text-mark {
+  background-color: var(--tks-text-mark-bg);
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  word-break: inherit;
 }
 
 

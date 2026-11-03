@@ -16,6 +16,16 @@
  *    Clicks leave it alone, so the reader can click around the page and still
  *    see where they landed.
  *
+ * Links from the add-on can also carry a text directive
+ * (`page/#anchor:~:text=words`). The browser marks those words on the page, but
+ * the pop-up shows a copy, so the same words are marked inside it
+ * (`<mark class="tks-text-mark">`), and the pop-up scrolls to the first one. A
+ * browser that cannot mark text fragments gets the same mark on the page after
+ * the pop-up closes. Browsers differ in where a script can still read the
+ * directive: Chrome keeps it in the navigation timing entry, Firefox in the
+ * navigation API's current entry, an engine without support in `location.hash`.
+ * All three are asked, first load only.
+ *
  * The band is an absolutely positioned overlay in document coordinates, never a
  * style on the content itself, so nothing in the page moves: same heading
  * position, same page height with and without it.
@@ -42,6 +52,12 @@
   var timers = [];
   var pop = null;                   // the open pop-up, or null
   var firstLoad = true;
+  var DIRECTIVE = ":~:";
+  var TEXT_MARK = "tks-text-mark";
+  var BLOCK = "p, li, div, h1, h2, h3, h4, h5, h6, pre, td, th, tr, ul, ol, " +
+    "table, details, summary, blockquote, dd, dt, dl, figure, figcaption, " +
+    "section, article, aside, header, footer";
+  var WORD = /[\p{L}\p{N}]/u;
 
   function clear() {
     timers.forEach(clearTimeout);
@@ -51,12 +67,157 @@
     window.removeEventListener("resize", place);
   }
 
-  function targetHeading() {
-    var id = decodeURIComponent(location.hash.replace(/^#/, ""));
+  function targetHeading(hash) {
+    var id = decodeURIComponent(stripDirective(hash || location.hash).replace(/^#/, ""));
     if (!id) return null;
     var el = document.getElementById(id);
     if (!el || !HEADING.test(el.tagName)) return null;
     return el.closest(".md-typeset") ? el : null;
+  }
+
+  // `#anchor:~:text=x` names the heading `anchor`; an engine that does not take
+  // the directive off leaves it in the hash.
+  function stripDirective(str) {
+    var i = str.indexOf(DIRECTIVE);
+    return i < 0 ? str : str.slice(0, i);
+  }
+
+  // The text items of a directive: [{ start, end }], `end` empty when absent.
+  // Several `text=` joined by `&`; each `[prefix-,]start[,end][,-suffix]`. The
+  // add-on never sends a prefix or suffix, so they parse and are then ignored.
+  function parseDirective(str) {
+    var i = str.indexOf(DIRECTIVE);
+    if (i < 0) return [];
+    var items = [];
+    str.slice(i + DIRECTIVE.length).split("&").forEach(function (part) {
+      if (part.indexOf("text=") !== 0) return;
+      var terms = part.slice(5).split(",").map(function (t) {
+        try { return decodeURIComponent(t); } catch (e) { return t; }
+      });
+      if (terms.length > 1 && /-$/.test(terms[0])) terms.shift();
+      if (terms.length > 1 && /^-/.test(terms[terms.length - 1])) terms.pop();
+      if (terms[0]) items.push({ start: terms[0], end: terms[1] || "" });
+    });
+    return items;
+  }
+
+  // Where a script can still read the directive of the address the visit began
+  // with. The browser takes it out of `location`; what it leaves behind differs.
+  function readDirective() {
+    var found = "";
+    if (location.href.indexOf(DIRECTIVE) >= 0) {
+      found = location.href;
+    } else {
+      try {
+        var nav = performance.getEntriesByType("navigation")[0];
+        if (nav && nav.name.indexOf(DIRECTIVE) >= 0) found = nav.name;
+      } catch (e) { /* no navigation timing */ }
+      try {
+        var cur = window.navigation && window.navigation.currentEntry;
+        if (!found && cur && cur.url && cur.url.indexOf(DIRECTIVE) >= 0) found = cur.url;
+      } catch (e) { /* no navigation API */ }
+    }
+    return parseDirective(found);
+  }
+
+  // The visible text of some nodes as one lower-case string with whitespace
+  // collapsed, and for each character the text node and offset it came from. A
+  // change of block ends a run of text (a match never spans two paragraphs).
+  function textIndex(roots) {
+    var text = "", map = [], lastBlock = null;
+    roots.forEach(function (root) {
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      for (var n = walker.nextNode(); n; n = walker.nextNode()) {
+        var el = n.parentElement;
+        if (!el || el.closest("script, style, noscript, .headerlink")) continue;
+        var block = el.closest(BLOCK);
+        if (block !== lastBlock && text) { text += "\n"; map.push(null); }
+        lastBlock = block;
+        var raw = n.nodeValue;
+        for (var k = 0; k < raw.length; k++) {
+          var ch = raw.charAt(k);
+          if (/\s/.test(ch)) {
+            var tail = text.charAt(text.length - 1);
+            if (text && tail !== " " && tail !== "\n") {
+              text += " "; map.push({ node: n, at: k });
+            }
+          } else {
+            var low = ch.toLowerCase();
+            for (var j = 0; j < low.length; j++) {
+              text += low.charAt(j); map.push({ node: n, at: k });
+            }
+          }
+        }
+      }
+    });
+    return { text: text, map: map };
+  }
+
+  function normal(str) {
+    return str.replace(/\s+/g, " ").trim().toLowerCase();
+  }
+
+  // First hit of `needle` at or after `from` that starts and ends on a word
+  // edge, the way the browser's own text matching does.
+  function findWord(hay, needle, from) {
+    for (var i = hay.indexOf(needle, from); i >= 0; i = hay.indexOf(needle, i + 1)) {
+      var before = i ? hay.charAt(i - 1) : "";
+      var after = hay.charAt(i + needle.length);
+      if (WORD.test(needle.charAt(0)) && before && WORD.test(before)) continue;
+      if (WORD.test(needle.charAt(needle.length - 1)) && after && WORD.test(after)) continue;
+      return i;
+    }
+    return -1;
+  }
+
+  function findItem(hay, item) {
+    var a = normal(item.start);
+    if (!a) return null;
+    for (var s = findWord(hay, a, 0); s >= 0; s = findWord(hay, a, s + 1)) {
+      if (!item.end) return [s, s + a.length];
+      var b = normal(item.end);
+      var e = b ? findWord(hay, b, s + a.length) : -1;
+      if (e >= 0 && hay.slice(s, e).indexOf("\n") < 0) return [s, e + b.length];
+    }
+    return null;
+  }
+
+  // One `<mark>` per text node a match touches; nothing else in the DOM moves.
+  function wrapRange(index, from, to) {
+    var spans = [];
+    for (var i = from; i < to; i++) {
+      var m = index.map[i];
+      if (!m) continue;
+      var last = spans[spans.length - 1];
+      if (last && last.node === m.node) last.to = m.at + 1;
+      else spans.push({ node: m.node, from: m.at, to: m.at + 1 });
+    }
+    return spans.map(function (sp) {
+      var part = sp.node.splitText(sp.from);
+      part.splitText(sp.to - sp.from);
+      var wrap = document.createElement("mark");
+      wrap.className = TEXT_MARK;
+      part.parentNode.insertBefore(wrap, part);
+      wrap.appendChild(part);
+      return wrap;
+    });
+  }
+
+  // Marks the first match of every text item inside `roots`. Returns the marks
+  // in the order they were made.
+  function markText(roots, items) {
+    var marks = [];
+    items.forEach(function (item) {
+      var index = textIndex(roots);
+      var hit = findItem(index.text, item);
+      if (hit) marks = marks.concat(wrapRange(index, hit[0], hit[1]));
+    });
+    // Like the browser's own reveal: words inside a closed block are shown.
+    marks.forEach(function (m) {
+      for (var d = m.closest("details:not([open])"); d; d = d.parentElement &&
+           d.parentElement.closest("details:not([open])")) d.open = true;
+    });
+    return marks;
   }
 
   // Heading plus following siblings until a heading of the same or higher level.
@@ -158,6 +319,11 @@
           return ids[id] ? "#" + id + SUFFIX : m;
         }));
     });
+    // Words the page already marks are not marked again in the copy.
+    holder.querySelectorAll("mark." + TEXT_MARK).forEach(function (el) {
+      el.replaceWith.apply(el, el.childNodes);
+    });
+    holder.normalize();
     // A permalink inside the copy would point at the page, not at the copy.
     holder.querySelectorAll(".headerlink").forEach(function (el) { el.remove(); });
     return holder;
@@ -227,7 +393,15 @@
     }
   }
 
-  function openFocus(head) {
+  // The pop-up scrolls inside itself so the first marked word shows; the page
+  // underneath stays where it is.
+  function scrollToMark(body, mark) {
+    var box = body.getBoundingClientRect(), r = mark.getBoundingClientRect();
+    if (r.top >= box.top && r.bottom <= box.bottom) return;
+    body.scrollTop += r.top - box.top - (box.height - r.height) / 2;
+  }
+
+  function openFocus(head, items) {
     clear();
     closeFocus(false);
     var root = document.documentElement;
@@ -259,7 +433,7 @@
     box.appendChild(body);
 
     pop = {
-      head: head, scrim: scrim, box: box,
+      head: head, scrim: scrim, box: box, items: items || [],
       x: window.pageXOffset, y: window.pageYOffset
     };
     // Taking the scrollbar away would widen the page and move the text, so the
@@ -278,6 +452,17 @@
     box.addEventListener("click", onBoxClick);
     document.addEventListener("keydown", onKey, true);
     box.focus({ preventScroll: true });
+    if (pop.items.length) {
+      var marks = markText(Array.prototype.slice.call(body.children), pop.items);
+      if (marks.length) scrollToMark(body, marks[0]);
+    }
+  }
+
+  // A browser that marks text fragments does it on the page itself; for one
+  // that does not, the page gets the same mark once the pop-up is gone.
+  function markPage(head, items) {
+    if (!items.length || "fragmentDirective" in document) return;
+    markText(sectionNodes(head), items);
   }
 
   function closeFocus(withBand) {
@@ -294,6 +479,7 @@
       window.scrollTo({ left: p.x, top: p.y, behavior: "instant" });
     }
     if (p.head.isConnected) {
+      markPage(p.head, p.items);
       if (!p.head.hasAttribute("tabindex")) {
         p.head.tabIndex = -1;
         p.head.addEventListener("blur", function () {
@@ -329,14 +515,20 @@
   // measured box is the final one. Only the very first page of a visit
   // (`landing`) can open the pop-up from its address; a jump or an instant
   // navigation keeps the band's old rule.
-  function later(landing) {
+  function later(landing, items) {
     requestAnimationFrame(function () {
       setTimeout(function () {
         var head = targetHeading();
+        // An engine that left the directive in the hash did not jump to the
+        // anchor, so the heading is brought to where the page lands.
+        if (landing === true && head && location.hash.indexOf(DIRECTIVE) >= 0) {
+          head.scrollIntoView();
+        }
         if (landing === true && head && FOCUS_HEADING.test(head.tagName)) {
-          openFocus(head);
+          openFocus(head, items);
         } else {
           show();
+          if (landing === true && head) markPage(head, items);
         }
       }, 50);
     });
@@ -346,7 +538,7 @@
     var landing = firstLoad;
     firstLoad = false;
     closeFocus(false);              // instant loading swaps the page under it
-    later(landing);
+    later(landing, landing ? readDirective() : []);
   }
 
   if (window.document$ && window.document$.subscribe) {
@@ -359,4 +551,6 @@
     later();
   });
   document.addEventListener("click", onTitleClick);
+  // The two lookups the address goes through, for dev/check_section_focus.py.
+  window.tksTargetMark = { parseDirective: parseDirective, targetHeading: targetHeading };
 })();
