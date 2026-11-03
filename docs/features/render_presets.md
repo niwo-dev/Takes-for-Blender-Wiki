@@ -56,6 +56,13 @@ A deeper tier always beats a wider one.
 
     Full explanation on [Cascade System](cascade.md#override-tiers).
 
+## :material-star-outline: Default Presets
+
+A default preset is the one a file starts with when it has not picked one of its own. Set one per kind in **Preferences → Data → Presets → Default Presets**.
+
+??? info "How a default applies"
+    The seven cascade kinds, from **Render** to **World**, apply when you switch to a View Layer that has no preset set anywhere. The file's own choice always wins. A default whose preset has gone missing shows in red and applies nothing. The **X** beside a row clears it.
+
 ## :material-magnify: Managing Presets
 
 Everything day-to-day happens on the preset row itself.
@@ -76,7 +83,10 @@ Click the field to search and assign. The **X** clears it. The **pencil** rename
     The preset row also sits at the top of the Blender panel that holds its
     settings: **Output** presets on the **Format** panel and **File Output** presets
     on the **Output** panel (both on the Output tab), **View Layer** presets on the
-    **View Layer** panel. Handy while you are already tweaking the underlying settings.
+    **View Layer** panel, **Color Management** presets on the **Color Management**
+    panel, and **Camera** presets on the camera's lens panel. Each row exists once;
+    there are no separate preset panels on the Output tab. Handy while you are
+    already tweaking the underlying settings.
 
 ## :material-pencil-circle: Dirty State
 
@@ -199,6 +209,6 @@ A preset saved by a much older or newer version can stop loading, because its la
 
 ## :material-keyboard: Hotkeys
 
-++alt++-click a preset icon to clear the assignment at that tier.
+++alt++-click a preset icon to clear the assignment at that tier. On a **Camera** or **World** tier icon, Alt also clears that tier's rule and preset. ++shift++ + ++alt++ + click does the same on every tier below it, takes included.
 
 Full list: [Keyboard Shortcuts](../interface/hotkeys.md)
