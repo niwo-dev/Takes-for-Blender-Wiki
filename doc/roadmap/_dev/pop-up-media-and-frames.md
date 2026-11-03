@@ -23,6 +23,18 @@ Changeable design:
 4. Wrong-way import, or core logic touching the outside tool? — no
 5. Hard to undo? — no
 
+## Results per engine (2026-11-03)
+
+- Chromium 149: `moveBefore` exists and is used. Media, canvas, frames, `object` and `embed` keep their state.
+- Firefox 155: `moveBefore` exists and is used. Media, canvas and frames keep their state; `object` and `embed` reload.
+- WebKit 26.6: no `moveBefore`, the `insertBefore` fallback runs. Frames, `object` and `embed` reload. Media playback could not be tested in the local WebKit build; shown, back in slot and layout pass.
+- The fallback move is synchronous, so media and canvas keep their state on it too (forced fallback in Chromium and Firefox).
+- Focus inside a frame is lost on open; value, scroll and page state stay.
+
+## Decisions
+
+- 2026-11-03, owner: accept the reloads in WebKit (frames, `object`, `embed`) and in Firefox (`object`, `embed`). No overlay or positioning trick that leaves the element in place. No wiki page holds these elements today. Undo: build such a trick later if a page needs one.
+
 ## Open questions
 
 None.
