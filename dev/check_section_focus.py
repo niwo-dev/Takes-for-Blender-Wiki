@@ -8,6 +8,14 @@ the report / `python -m http.server <port> -d <built site>`):
     python dev/check_section_focus.py markshots <base-url> <out-dir>
     python dev/check_section_focus.py diagshots <base-url> <out-dir>
     python dev/check_section_focus.py sweep  <base-url> [--only PATH-PART]
+    python dev/check_section_focus.py media  <base-url> [--site DIR] [--engine NAME]
+
+`media` writes the test-only media page (dev/make_media_fixture.py) into the
+built site folder the base URL serves (`--site`, default dev/temp/site) and runs
+dev/check_media_engines.mjs in Chromium, Firefox and WebKit: videos, sound,
+frames, canvases and embedded files must show in the pop-up, keep their state
+and go back on every way of closing. It needs Playwright in dev/temp/pw (see
+the top of that script).
 
 `sweep` opens every h2-h6 section of every page by a title click and
 compares each block of the page with its block in the pop-up. `shots` takes the before/after pairs (landing, heading click, after close) at
@@ -892,6 +900,18 @@ def probe_width(base):
         c.close()
 
 
+def run_media(base, argv):
+    """Builds the media fixture into the served site and runs the engine checks."""
+    site = argv[argv.index("--site") + 1] if "--site" in argv else str(HERE / "temp" / "site")
+    made = subprocess.run([sys.executable, str(HERE / "make_media_fixture.py"), site])
+    if made.returncode:
+        return made.returncode
+    cmd = ["node", str(HERE / "check_media_engines.mjs"), base]
+    if "--engine" in argv:
+        cmd += ["--engine", argv[argv.index("--engine") + 1]]
+    return subprocess.run(cmd).returncode
+
+
 def main():
     if len(sys.argv) < 3:
         print(__doc__)
@@ -907,6 +927,8 @@ def main():
     if mode == "diagshots":
         run_diag_shots(base, sys.argv[3])
         return 0
+    if mode == "media":
+        return run_media(base, sys.argv)
     if mode == "sweep":
         only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
         return sweep(base, only)
