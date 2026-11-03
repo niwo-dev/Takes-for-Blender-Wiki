@@ -14,42 +14,49 @@ The panel is hidden by default. ++alt++-click the **gear** icon in the Navigatio
 
 A plain click on the gear opens addon preferences instead. ++alt++-click it again to hide the panel.
 
-Its header carries a 3-way switcher for choosing which view you see.
+Its header carries a four-button switcher for choosing which view you see.
 
-??? info "The three views"
+??? info "The four views"
     | View | Icon | Shows |
     |------|------|-------|
     | **Process Monitor** | F-curve | The live process tree — this page. |
     | **Debug Console** | Console | Recent log lines, filtered by *Preferences > Developer > Topics*. |
     | **View Layer Switch Profiler** | Time | Per-step timing for the most recent View Layer switch. |
+    | **Undo Monitor** | Recover | Every step the add-on takes around a Ctrl+Z, in order. See [Undo-Redo](../preferences/debug.md#undo-redo). |
 
     The gear shows the **Process Monitor** and **Debug Console** — they are the same
-    panel in two modes. The **View Layer Switch Profiler** is a separate panel, reached
-    from the switcher. The switcher is mirrored in the Profiler header, so you can hop
-    between all three once any one of them is open.
+    panel in two modes. The **View Layer Switch Profiler** and the **Undo Monitor** are
+    separate panels, reached from the switcher. The switcher is mirrored in their
+    headers, so you can hop between all four once any one of them is open.
 
     **Which one you want.** Viewport stuttering during scrub: the Process Monitor.
     A slow View Layer switch: the Profiler. A log for a bug report: turn on
-    *Preferences > Developer > Enable Logging*, reproduce the problem, then copy lines
+    *Preferences > Developer > Enable Debug Logging*, reproduce the problem, then copy lines
     from the Debug Console.
 
 ## :material-file-tree: Process Tree Hierarchy
 
-Processes sit in six feature groups. Each group has a master toggle and a chevron to expand it.
+Processes sit in twelve feature groups. Each group has a master toggle and a chevron to expand it.
 
-The row colour tells you the state: red after an error, amber on a warning, green when idle.
+The status dot tells you the state: green alive, amber slow, red overheating, grey dead, blue idle. A switched-off process is dimmed.
 
 Click a row to switch that one process off. Disabled rows stop firing until you switch them back on.
 
 ??? info "What each group tracks"
     | Group | Tracks |
     |-------|--------|
-    | **Core** | View Layer Switch, cascade overrides, Lock System, slot processing. |
+    | **Core** | View Layer switch, load, undo and redo handlers, cache checks, viewport tool sync. |
     | **UI Sync** | Tree drawing, list syncing, panel redraws. |
-    | **Rest State** | Auto-mirror, snap-back, rest cache. |
-    | **Variant Switch** | Material swap, pool resolution. |
+    | **Rest State** | View Layer switch hook, autokey mirror, action restore, rest cache. |
+    | **Still Mode** | The Still frame lock. |
+    | **Cameras** | Camera playhead follow and reset. |
+    | **Diff State** | Geometry watch, frame watch, load reset. |
+    | **Variant Switch** | Variant defaults, View Layer switch hook. |
+    | **Value Lock** | The Value Lock process. |
     | **Batch Render** | Foreground and background render monitoring. |
     | **Render Presets** | Cascade resolution, dirty-state checks, sync. |
+    | **Sequencer** | Sequencer frame follow. |
+    | **Parent Borrow** | Forgetting borrowed parent state on file load. |
 
 ## :material-toggle-switch: Master Toggles
 
@@ -86,6 +93,6 @@ Click a single row for one process, a group's master switch for the whole bucket
 
 If a row that should be ticking shows no heartbeat, click **Restart Processes**.
 
-It brings every dead process back in one pass and tells you how many it revived.
+It brings every dead process back in one pass and tells you how many it revived. While some are dead, a red **Restart N Dead** button also appears under the list.
 
 ++alt++-click the same button to toggle the **Auto-Restart Watchdog**. While it is on, dead processes come back on their own and a plain click does nothing. Click again for manual restarts.
