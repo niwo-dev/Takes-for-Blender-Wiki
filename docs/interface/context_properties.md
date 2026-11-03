@@ -44,11 +44,29 @@ You can also apply a **World preset**, or let a **World rule** choose the world 
 
 Shows the action the cascade resolved. **Re-apply Cascade Action** restores it after a manual clear.
 
-On the tiers where it applies, the action's row also carries two small icon buttons: **Inherit Parent Keys** (a menu: Auto, On, Off) and **Pass Down to Children** (a toggle). They show only when there is a choice to make, and they decide whether a tier builds on the keys of the tier above.
+On the tiers where it applies, the action's row also carries two small icon buttons: **Inherit Parent Keys** and **Pass Down to Children**. See [Parent Keys](#parent-keys).
 
 The **+** opens a list of names for a new action. See [Pick the Action's Name](../features/cascade.md#pick-the-actions-name).
 
 While Rest Mode is on, the button becomes a bright **Rest Mode chip** instead. It is a status light, not a button: clicking it does nothing on purpose, because the mode owns the action until you switch it off.
+
+### :material-key: Parent Keys { #parent-keys }
+
+Two small icon buttons on the action's row decide whether a tier builds on the keys of the tier above it.
+
+**Inherit Parent Keys** is a menu with three choices. Its icon shows the choice you made. **Pass Down to Children** is a toggle that offers this tier's keys to every tier under it.
+
+They show only when there is a choice to make. A tier with an action of its own always shows them. A tier without one shows them when more than one tier above it holds an action.
+
+??? info "The three choices and the toggle"
+    | Control | What it does |
+    |---|---|
+    | **Auto** | Does what the tiers above say: it inherits when one of them passes its keys down. |
+    | **On** | Always builds on the parent's keys. Values this tier does not key follow the parent. |
+    | **Off** | Uses its own keys and Rest State only. It also cuts the chain for every tier below. |
+    | **Pass Down to Children** | Every tier under this one inherits this tier's keys, unless it says Off. On Global, every tier in the project does. |
+
+    Global has no parent, so it has no **Inherit Parent Keys**. A Take has no children, so it has no **Pass Down to Children**.
 
 ### :material-vector-link: Compositor Popover
 
