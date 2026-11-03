@@ -14,7 +14,7 @@ Keys shared by several lists are focus-aware: only the active list reacts.
 
 | Shortcut | Action |
 |----------|--------|
-| {{ keys('wm.call_menu_pie') }} | **Open Navigation Pie Menu** — eight slots, all reassignable. |
+| {{ keys('wm.call_menu_pie') }} | **Navigation Pie Menu** — eight slots, all reassignable. |
 | ++f12++ | **F12 Render Pie** — pick a render scope before rendering. Off by default. |
 | ++i++ | **Keyframe Pie** — replaces Blender's native insert menu. Off by default. |
 | ++alt+i++ | **Clear Pie** — a pie of keyframe-clearing actions. Off by default. |
