@@ -7,6 +7,8 @@
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   const num = (v) => parseFloat(v);
+  // a diagram on the page: drawn host, source block, or the hollow that stands for it while moved
+  const DIAG = "div.mermaid, pre.mermaid, .tks-focus-hold";
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
   function lum(rgb) {
@@ -103,7 +105,8 @@
         padT: num(cs.paddingTop), padB: num(cs.paddingBottom),
         closeTop: cr.top - r.top, closeRight: r.right - cr.right,
         closeW: cr.width, closeH: cr.height,
-        textW: r.width - num(cs.borderLeftWidth) - num(cs.borderRightWidth) - num(cs.paddingLeft) - num(cs.paddingRight),
+        // the text column: the box minus its frame and the scrollbar the body carries
+        textW: body.clientWidth,
         pageTextW: inner.clientWidth - num(ics.paddingLeft) - num(ics.paddingRight),
         bodyScrollH: body.scrollHeight, bodyClientH: body.clientHeight,
       };
@@ -380,6 +383,124 @@
       }
       out.targetTextRule = rule;
       m.remove(); ref.remove();
+      return out;
+    },
+    // Index, among the section's top-level nodes, of the node holding a diagram
+    // (rendered host or the source block); -1 when there is none.
+    diagramIndex(id) {
+      const head = document.getElementById(id);
+      const nodes = [head];
+      for (let n = head.nextElementSibling; n; n = n.nextElementSibling) {
+        if (/^H([1-6])$/.test(n.tagName) && +n.tagName[1] <= +head.tagName[1]) break;
+        nodes.push(n);
+      }
+      return nodes.findIndex((n) => n.matches(DIAG) || n.querySelector(DIAG));
+    },
+    // Scroll the pop-up so its block number `idx` sits at the top of the body.
+    scrollPopupToBlock(idx) {
+      const body = $(".tks-focus__body"), el = body.children[idx];
+      body.scrollTop = el.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop - 8;
+    },
+    // Every box in the page's text column plus the document height: the whole
+    // layout, for "nothing on the page moved" comparisons.
+    layout() {
+      const inner = $(".md-content__inner");
+      return {
+        docH: document.documentElement.scrollHeight, scrollY: window.pageYOffset,
+        blocks: Array.from(inner.children).map((e) => {
+          const r = e.getBoundingClientRect();
+          return [e.tagName, r.top, r.left, r.width, r.height];
+        }),
+      };
+    },
+    // Remember the drawn diagram on the page and its neighbours.
+    tagHost() {
+      const h = $(".md-content__inner div.mermaid");
+      if (!h) return null;
+      window.__sfHost = h; window.__sfPrev = h.previousElementSibling; window.__sfNext = h.nextElementSibling;
+      const r = h.getBoundingClientRect();
+      return { w: r.width, h: r.height };
+    },
+    // Where the remembered host is now, and what is left over.
+    hostState() {
+      const h = window.__sfHost, r = h.getBoundingClientRect();
+      return {
+        inPopup: !!h.closest(".tks-focus"), inPage: !!h.closest(".md-content__inner") && !h.closest(".tks-focus"),
+        inSlot: h.previousElementSibling === window.__sfPrev && h.nextElementSibling === window.__sfNext,
+        holds: $$(".tks-focus-hold").length,
+        strayPre: $$(".md-content__inner pre.mermaid").length, hosts: $$("div.mermaid").length,
+        w: r.width, h: r.height,
+      };
+    },
+    // The diagram of whichever kind sits in the pop-up now.
+    popupDiagram() {
+      const d = $(".tks-focus__body div.mermaid"), p = $(".tks-focus__body pre.mermaid");
+      const el = d || p;
+      if (!el) return null;
+      const r = el.getBoundingClientRect();
+      return { kind: d ? "host" : "pre", w: r.width, h: r.height };
+    },
+    // Open every h2-h6 section of this page by a title click, compare each block
+    // of the page with its block in the pop-up, close again and check the page.
+    sweepPage() {
+      const COUNT = ["img", "svg", "table", "pre", "details", "iframe", "video", "div.mermaid"];
+      const heads = $$(".md-content__inner h2[id], .md-content__inner h3[id], .md-content__inner h4[id], " +
+                       ".md-content__inner h5[id], .md-content__inner h6[id]");
+      const level = (n) => +n.tagName[1];
+      const walk = (head) => {
+        const nodes = [head];
+        for (let n = head.nextElementSibling; n; n = n.nextElementSibling) {
+          if (/^H([1-6])$/.test(n.tagName) && +n.tagName[1] <= level(head)) break;
+          nodes.push(n);
+        }
+        return nodes;
+      };
+      const measure = (n) => {
+        const r = n.getBoundingClientRect(), cs = getComputedStyle(n);
+        const cls = n.className && typeof n.className === "string" ? "." + n.className.trim().split(/\s+/).join(".") : "";
+        const o = { vis: r.width > 0 && r.height > 0 && cs.visibility !== "hidden" && cs.display !== "none",
+                    h: r.height, w: r.width, tag: n.tagName.toLowerCase() + cls };
+        COUNT.forEach((sel) => { o[sel] = n.querySelectorAll(sel).length + (n.matches(sel) ? 1 : 0); });
+        return o;
+      };
+      const out = { sections: 0, blocks: 0, mismatches: [], notOpened: [], layoutMoved: [], notRestored: [] };
+      for (const head of heads) {
+        if (head.closest(".tks-focus")) continue;
+        out.sections++;
+        const nodes = walk(head);
+        head.scrollIntoView({ block: "center", behavior: "instant" });
+        const before = sf.layout();
+        const page = nodes.map(measure);
+        const range = document.createRange();
+        range.selectNodeContents(head);
+        const q = Array.from(range.getClientRects()).sort((x, y) => y.width - x.width)[0];
+        head.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, button: 0,
+          clientX: q.left + Math.min(q.width / 2, 40), clientY: q.top + q.height / 2 }));
+        const body = $(".tks-focus__body");
+        if (!body) { out.notOpened.push(head.id); continue; }
+        const during = sf.layout();
+        if (JSON.stringify(before) !== JSON.stringify(during)) out.layoutMoved.push(head.id);
+        const pop = Array.from(body.children).map(measure);
+        const id = head.id;
+        if (pop.length !== page.length) out.mismatches.push({ section: id, block: "count", page: page.length, popup: pop.length });
+        page.forEach((a, i) => {
+          out.blocks++;
+          const b = pop[i];
+          if (!b) return;
+          const why = [];
+          if (a.vis !== b.vis) why.push("visible " + a.vis + " vs " + b.vis);
+          if (Math.abs(a.h - b.h) > 1) why.push("height " + a.h.toFixed(1) + " vs " + b.h.toFixed(1));
+          if (a.vis && Math.abs(a.w - b.w) > 1 && i > 0) why.push("width " + a.w.toFixed(1) + " vs " + b.w.toFixed(1));
+          COUNT.forEach((sel) => { if (a[sel] !== b[sel]) why.push(sel + " " + a[sel] + " vs " + b[sel]); });
+          if (why.length) out.mismatches.push({ section: id, block: i, tag: a.tag, why: why.join("; ") });
+        });
+        document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true, cancelable: true }));
+        if ($(".tks-focus") || $$(".tks-focus-hold").length) out.notRestored.push(id + " (still open or hollow left)");
+        else {
+          const after = sf.layout();
+          if (JSON.stringify(before.blocks) !== JSON.stringify(after.blocks) || before.docH !== after.docH) out.notRestored.push(id + " layout");
+        }
+      }
       return out;
     },
     // Close the open pop-up and time the band that follows, from the close.

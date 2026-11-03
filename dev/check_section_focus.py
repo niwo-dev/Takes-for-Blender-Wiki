@@ -6,8 +6,11 @@ the report / `python -m http.server <port> -d <built site>`):
     python dev/check_section_focus.py shots  <base-url> <out-dir>
     python dev/check_section_focus.py probe  <base-url> [--only NAME]
     python dev/check_section_focus.py markshots <base-url> <out-dir>
+    python dev/check_section_focus.py diagshots <base-url> <out-dir>
+    python dev/check_section_focus.py sweep  <base-url> [--only PATH-PART]
 
-`shots` takes the before/after pairs (landing, heading click, after close) at
+`sweep` opens every h2-h6 section of every page by a title click and
+compares each block of the page with its block in the pop-up. `shots` takes the before/after pairs (landing, heading click, after close) at
 1440x900 and 390x844 into <out-dir>. `markshots` takes only the pop-up of a text-directive link (words marked inside)
 at both sizes. `probe` runs every measured look rule and
 behaviour point and prints one JSON line per check; the in-page measuring code
@@ -21,6 +24,7 @@ from __future__ import annotations
 
 import base64
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -219,6 +223,30 @@ def run_mark_shots(base, out):
             wait_for(c, "!!document.querySelector('.tks-focus')", 3)
             time.sleep(0.8)
             c.shot(out / f"text_mark_{tag}.png")
+        finally:
+            c.close()
+
+
+DIAG_PAGE = "features/rest_state/"
+DIAG_ID = "how-it-works"
+
+
+def run_diag_shots(base, out):
+    """The diagram section just after load, pop-up open, scrolled to the diagram."""
+    out = Path(out)
+    for tag, (w, h, mobile) in SIZES.items():
+        c = Chrome(w, h, mobile)
+        try:
+            c.goto(base.rstrip("/") + "/" + DIAG_PAGE + "#" + DIAG_ID)
+            wait_for(c, "!!document.querySelector('.tks-focus')", 3)
+            # Material draws the diagram from a script it fetches; wait for it
+            wait_for(c, "!!document.querySelector('.md-content__inner div.mermaid, "
+                        ".tks-focus div.mermaid')", 8)
+            time.sleep(0.8)
+            idx = c.js(f"sf.diagramIndex({json.dumps(DIAG_ID)})")
+            c.js(f"sf.scrollPopupToBlock({idx})")
+            time.sleep(0.4)
+            c.shot(out / f"diagram_{tag}.png")
         finally:
             c.close()
 
@@ -592,6 +620,202 @@ def probe_marks_unsupported(base):
         c.close()
 
 
+# Stands in for the diagram script Material fetches, so a test decides when the
+# diagram is drawn: the pop-up can open with the source block still undrawn.
+FAKE_MERMAID = (
+    "window.mermaid = {initialize(){}, render(id, src){ return new Promise((r) => {"
+    "window.__release = () => r({svg: '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"600\" "
+    "height=\"300\" viewBox=\"0 0 600 300\"><rect width=\"600\" height=\"300\" fill=\"#456\"/></svg>', "
+    "fn: null}); }); }};")
+
+
+def same_layout(a, b):
+    return a["docH"] == b["docH"] and a["scrollY"] == b["scrollY"] and a["blocks"] == b["blocks"]
+
+
+def probe_diagram(base):
+    """The diagram moves into the pop-up and back: same node, same box, the page
+    does not shift, nothing is left behind."""
+    url = base.rstrip("/") + "/" + DIAG_PAGE
+    c = Chrome(1440, 900, False)
+    try:
+        # ---- title click on a drawn diagram: identity, boxes, layout ----
+        c.goto(url)
+        drawn = wait_for(c, "!!document.querySelector('.md-content__inner div.mermaid')", 10)
+        report("diagram-drawn-on-page", drawn)
+        time.sleep(0.5)
+        c.js(f"sf.scrollHeadingTo({json.dumps(DIAG_ID)}, 140)")
+        time.sleep(0.3)
+        page_box = c.js("sf.tagHost()")
+        lay = c.js("sf.layout()")
+        x, y = title_point(c, DIAG_ID)
+        c.click(x, y)
+        wait_for(c, "!!document.querySelector('.tks-focus')", 2)
+        time.sleep(0.4)
+        st = c.js("sf.hostState()")
+        report("diagram-click-same-node-in-popup", st["inPopup"] and st["holds"] == 1, **st)
+        report("diagram-click-box-matches-page", abs(st["w"] - page_box["w"]) <= 1 and
+               abs(st["h"] - page_box["h"]) <= 1, page=page_box, popup={"w": st["w"], "h": st["h"]})
+        during = c.js("sf.layout()")
+        report("diagram-click-page-layout-unmoved", same_layout(lay, during),
+               before=lay["docH"], during=during["docH"])
+        report("diagram-click-copy-has-no-twin",
+               c.js("document.querySelectorAll('.tks-focus__body div.mermaid').length") == 1)
+        # scheme toggle while open
+        c.js("document.body.setAttribute('data-md-color-scheme', 'default')")
+        time.sleep(0.2)
+        c.key("Escape", "Escape", 27)
+        wait_for(c, "!document.querySelector('.tks-focus')", 1)
+        st2 = c.js("sf.hostState()")
+        report("diagram-scheme-toggle-while-open", st2["inPage"] and st2["inSlot"] and st2["holds"] == 0 and
+               st2["w"] > 0 and st2["h"] > 0, **st2)
+        c.js("document.body.setAttribute('data-md-color-scheme', 'slate')")
+        report("diagram-click-back-in-slot", st2["inSlot"] and st2["strayPre"] == 0 and st2["hosts"] == 1, **st2)
+        report("diagram-click-layout-after-close", same_layout(lay, c.js("sf.layout()")))
+        # every other way of closing
+        for how in ("button", "scrim"):
+            c.js(f"sf.scrollHeadingTo({json.dumps(DIAG_ID)}, 140)")
+            time.sleep(0.2)
+            x, y = title_point(c, DIAG_ID)
+            c.click(x, y)
+            wait_for(c, "!!document.querySelector('.tks-focus')", 2)
+            if how == "button":
+                bx, by = c.js("sf.closePoint()")
+                c.click(bx, by)
+            else:
+                c.click(5, 5)
+            wait_for(c, "!document.querySelector('.tks-focus')", 1)
+            s3 = c.js("sf.hostState()")
+            report(f"diagram-close-{how}-restores", s3["inPage"] and s3["inSlot"] and s3["holds"] == 0, **s3)
+        # a same-page link inside the pop-up
+        c.js(f"sf.injectLink('#controls', 'jump', {json.dumps(DIAG_ID)})")
+        c.js(f"sf.scrollHeadingTo({json.dumps(DIAG_ID)}, 140)")
+        x, y = title_point(c, DIAG_ID)
+        c.click(x, y)
+        wait_for(c, "!!document.querySelector('.tks-focus')", 2)
+        lx, ly = c.js("sf.pointOf('[data-sf=jump]')")
+        c.click(lx, ly)
+        time.sleep(0.6)
+        # Material draws the page again on an in-page link (with or without the
+        # pop-up), so the node is a new one: what counts is one drawn diagram, no leftovers.
+        c.js("sf.tagHost()")
+        s4 = c.js("sf.hostState()")
+        report("diagram-close-link-restores", s4["inPage"] and s4["holds"] == 0 and s4["hosts"] == 1 and
+               s4["strayPre"] == 0 and s4["h"] > 0 and
+               c.js("!document.querySelector('.tks-focus')"), **s4)
+        # instant navigation away while open: nothing is left over
+        c.goto(url)
+        wait_for(c, "!!document.querySelector('.md-content__inner div.mermaid')", 10)
+        c.js(f"sf.scrollHeadingTo({json.dumps(DIAG_ID)}, 140)")
+        c.js("sf.injectLink('../smart_output/', 'nav', " + json.dumps(DIAG_ID) + ")")
+        x, y = title_point(c, DIAG_ID)
+        c.click(x, y)
+        wait_for(c, "!!document.querySelector('.tks-focus')", 2)
+        c.js("window.__instant = 1")
+        lx, ly = c.js("sf.pointOf('[data-sf=nav]')")
+        c.click(lx, ly)
+        time.sleep(1.5)
+        report("diagram-instant-nav-clean", c.js("location.pathname.includes('smart_output')") and
+               c.js("window.__instant === 1") and c.js("!document.querySelector('.tks-focus')") and
+               c.js("document.querySelectorAll('.tks-focus-hold').length") == 0)
+
+        # ---- landing on the real site (network diagram script) ----
+        c.goto(url + "#" + DIAG_ID)
+        opened = wait_for(c, "!!document.querySelector('.tks-focus')", 3)
+        wait_for(c, "!!document.querySelector('.tks-focus__body div.mermaid')", 10)
+        time.sleep(0.5)
+        pd = c.js("sf.popupDiagram()")
+        report("diagram-landing-in-popup", opened and pd and pd["kind"] == "host", popup=pd)
+        c.click(5, 5)
+        wait_for(c, "!document.querySelector('.tks-focus')", 1)
+        time.sleep(0.4)
+        c.js("sf.tagHost()")
+        s5 = c.js("sf.hostState()")
+        report("diagram-landing-back-on-page", s5["inPage"] and s5["holds"] == 0 and s5["strayPre"] == 0 and
+               s5["hosts"] == 1 and s5["w"] > 0 and s5["h"] > 0, **s5)
+    finally:
+        c.close()
+
+    # ---- the race: the pop-up opens before the diagram is drawn ----
+    c = Chrome(1440, 900, False)
+    try:
+        c.call("Page.addScriptToEvaluateOnNewDocument", {"source": FAKE_MERMAID})
+        c.goto(url + "#" + DIAG_ID)
+        opened = wait_for(c, "!!document.querySelector('.tks-focus')", 3)
+        time.sleep(0.4)
+        pd = c.js("sf.popupDiagram()")
+        report("race-opens-with-source-block", opened and pd and pd["kind"] == "pre", popup=pd)
+        holds = c.js("document.querySelectorAll('.tks-focus-hold').length")
+        report("race-hollow-for-source-block", holds == 1, holds=holds)
+        c.js("window.__release()")                       # Material draws it while the pop-up is open
+        time.sleep(0.6)
+        pd2 = c.js("sf.popupDiagram()")
+        report("race-drawn-inside-popup", pd2 and pd2["kind"] == "host" and
+               c.js("document.querySelectorAll('.md-content__inner div.mermaid').length") == 0, popup=pd2)
+        c.click(5, 5)
+        wait_for(c, "!document.querySelector('.tks-focus')", 1)
+        time.sleep(0.3)
+        c.js("sf.tagHost()")
+        s6 = c.js("sf.hostState()")
+        report("race-host-lands-in-slot", s6["inPage"] and s6["holds"] == 0 and s6["strayPre"] == 0 and
+               s6["hosts"] == 1 and s6["w"] > 0 and s6["h"] > 0, **s6)
+        # the node swapped by a script while open, not only by Material
+        c.goto(url)
+        wait_for(c, "!!window.__release", 5)
+        c.js("window.__release()")
+        wait_for(c, "!!document.querySelector('.md-content__inner div.mermaid')", 3)
+        c.js("sf.tagHost()")
+        c.js(f"sf.scrollHeadingTo({json.dumps(DIAG_ID)}, 140)")
+        x, y = title_point(c, DIAG_ID)
+        c.click(x, y)
+        wait_for(c, "!!document.querySelector('.tks-focus')", 2)
+        c.js("(() => { const n = document.createElement('div'); n.className = 'mermaid'; n.id = 'sf-swap';"
+             "window.__sfHost.replaceWith(n); window.__sfHost = n; })()")
+        c.key("Escape", "Escape", 27)
+        wait_for(c, "!document.querySelector('.tks-focus')", 1)
+        report("race-replaced-node-goes-home", c.js("!!document.querySelector('.md-content__inner #sf-swap')") and
+               c.js("document.querySelectorAll('.tks-focus-hold').length") == 0)
+        errs = sorted({e.splitlines()[0] for e in c.errors if e and "nav-icons.js" not in e})
+        report("diagram-no-js-errors", not errs, errors=errs)
+    finally:
+        c.close()
+
+
+def sweep(base, only=None):
+    """Every page, every h2-h6 section: page block against pop-up block."""
+    sm = urllib.request.urlopen(base.rstrip("/") + "/sitemap.xml", timeout=20).read().decode("utf8")
+    pages = re.findall(r"<loc>([^<]+)</loc>", sm)
+    root = base.rstrip("/") + "/"
+    c = Chrome(1440, 900, False)
+    totals = {"pages": 0, "sections": 0, "blocks": 0}
+    problems = 0
+    try:
+        for u in pages:
+            if not u.startswith(root) or (only and only not in u):
+                continue
+            c.goto(u)
+            # a diagram page: let Material draw before measuring
+            wait_for(c, "!document.querySelector('.md-content__inner pre.mermaid')", 10)
+            time.sleep(0.3)
+            r = c.js("sf.sweepPage()")
+            totals["pages"] += 1
+            totals["sections"] += r["sections"]
+            totals["blocks"] += r["blocks"]
+            bad = r["mismatches"] or r["notOpened"] or r["layoutMoved"] or r["notRestored"]
+            problems += len(r["mismatches"]) + len(r["notOpened"]) + len(r["layoutMoved"]) + len(r["notRestored"])
+            print(json.dumps({"page": u[len(root):], "sections": r["sections"], "blocks": r["blocks"],
+                              "ok": not bad}), flush=True)
+            for m in r["mismatches"]:
+                print("  MISMATCH", u[len(root):], json.dumps(m), flush=True)
+            for k in ("notOpened", "layoutMoved", "notRestored"):
+                for m in r[k]:
+                    print("  ", k.upper(), u[len(root):], m, flush=True)
+    finally:
+        c.close()
+    print(json.dumps({"sweep": totals, "problems": problems}))
+    return 1 if problems else 0
+
+
 def probe_mobile(base):
     c = Chrome(390, 844, True)
     url = base.rstrip("/") + "/" + PAGE
@@ -627,11 +851,18 @@ def main():
     if mode == "markshots":
         run_mark_shots(base, sys.argv[3])
         return 0
+    if mode == "diagshots":
+        run_diag_shots(base, sys.argv[3])
+        return 0
+    if mode == "sweep":
+        only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
+        return sweep(base, only)
     if mode == "probe":
         probe_desktop(base)
         probe_mobile(base)
         probe_marks(base)
         probe_marks_unsupported(base)
+        probe_diagram(base)
         bad = [n for n, ok in RESULTS if not ok]
         print(json.dumps({"summary": f"{len(RESULTS) - len(bad)}/{len(RESULTS)} pass", "failed": bad}))
         return 1 if bad else 0
