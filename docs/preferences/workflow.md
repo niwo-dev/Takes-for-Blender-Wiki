@@ -104,6 +104,8 @@ Takes uses these when it creates an action for you, so shot names stay consisten
 
 Up to 20 names of your own for new actions. [New Action](../features/cascade.md#pick-the-actions-name) lists them next to the tier's template.
 
+**Edit Name Patterns…** in the New Action menu opens this section.
+
 The filled radio button marks your standard: the first line of that list. Click it again to make the tier's template the standard. The radio button beside a line runs **{{ op('tks.action_name_pattern_set_standard').bl_label }}**.
 
 ??? info "Settings and buttons"
@@ -210,7 +212,7 @@ To change a binding, open *Edit > Preferences > Keymap* and search for the opera
 
 ## :material-dots-circle: Pie & Misc
 
-Five pie menus, plus the Editor Scope, Add Context and Tokens settings.
+Six pie menus, plus the Editor Scope, Add Context and Tokens settings.
 
 ??? info "How every pie works"
     Each pie uses a compass grid (NW / N / NE / W / E / SW / S / SE) and has its
@@ -234,7 +236,7 @@ Master toggle **Enable Navigation Pie**, on by default.
 
 Pick a render scope instead of rendering straight away.
 
-Master toggle **{{ pref('f12_pie_menu_enabled').label }}**, off by default.
+Master toggle **Enable F12 Render Pie**, off by default.
 
 ??? info "What the toggle and slots do"
     Turning it on registers a ++f12++ keymap entry that replaces Blender's native
@@ -251,19 +253,25 @@ Master toggle **{{ pref('f12_pie_menu_enabled').label }}**, off by default.
 
 Puts the mode switches — Still, Animation, Rest — on ++shift+alt+q++. Eight slots.
 
-Master toggle **{{ pref('mode_pie_enabled').label }}**, off by default. Layout on the [Pie Menus](../features/pie_menus.md#mode-pie) page.
+Master toggle **Enable Mode Pie**, off by default. Layout on the [Pie Menus](../features/pie_menus.md#mode-pie) page.
+
+### :material-file-tree: Tree Icon Pie
+
+Opens one cascade property of a tree row from ++ctrl+shift+f++.
+
+Master toggle **Enable Tree Icon Pie**, off by default. Its **Acts On** setting picks the row: **Active View Layer** (the default) or **Tree Selection** (the highlighted row). Slots and layout on the [Pie Menus](../features/pie_menus.md#tree-icon-pie) page.
 
 ### :material-key-plus: Keyframe Pie
 
 Replaces Blender's native ++i++ menu with a pie of keyframing actions. Eight slots.
 
-Master toggle **{{ pref('keyframe_pie_enabled').label }}**, off by default.
+Master toggle **Enable Keyframe Pie**, off by default.
 
 ### :material-key-minus: Clear Pie
 
 Puts a pie of keyframe-clearing actions on ++alt+i++. Eight slots.
 
-Master toggle **{{ pref('keyframe_alt_pie_enabled').label }}**, off by default.
+Master toggle **Enable Clear Pie**, off by default.
 
 ??? info "Still and Anim sub-pies"
     The Clear Pie can also show opt-in *Still* and *Anim* mode sub-pies. Each one
