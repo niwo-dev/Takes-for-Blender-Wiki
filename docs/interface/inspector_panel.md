@@ -36,9 +36,13 @@ A **pinned** object keeps its own action instead. Click the **pin icon** on a ro
     - **Pin Selected** pins every selected object on the **current** View Layer. Pinned
       objects are skipped by cascade action and slot assignment and by auto-rename, so
       you manage their actions by hand. Already-pinned objects are left alone.
-    - **{{ op('tks.remove_from_watchlist').bl_label }}** does the reverse: it unpins the
-      selected objects and hands them back to the cascade. A confirmation guards it,
-      toggleable under *Preferences > Interface > Confirmations*.
+    - **{{ op('tks.remove_from_watchlist').bl_label }}** does the reverse: it takes the
+      selected objects off the watchlist, deletes their slots from the actions and unpins
+      them. A confirmation guards it, toggleable under *Preferences > Interface > Confirmations*.
+      ++shift++ + click the minus button for a panel with a reach picker (**This Take**,
+      **All Takes**, **And Rest**; **And Rest** is the default) and the switches
+      **Keep the Pose**, **Park the Keys** and **Forget the Mode Memory**, then one red
+      **Remove** button.
 
 ## :material-eye-outline: Watchlist
 
@@ -142,7 +146,7 @@ The slot controls sit inline on each slot field and in the **Slots** list below.
     | --------- | -------------- |
     | **Remove** (−) | Permanently deletes the selected slot, or every checkbox-selected slot in multi-select mode, from its Action. A confirmation appears first, toggleable in *Preferences > Interface > Confirmations*. |
     | **{{ op('tks.slot_users_popup').bl_label }}** | Lists every object that uses the selected slot. |
-    | **{{ op('tks.retarget_slot').bl_label }}** | In the settings menu. Moves a slot **and its keyframes** to another Action. A dialog asks for the target Action and, if a slot of that name is already there, whether to **Move** (keep both, renamed) or **Replace** it. |
+    | **{{ op('tks.retarget_slot').bl_label }}** | In the settings menu. Moves a slot **and its keyframes** to another Action. A dialog asks for the target Action. If a slot of that name is already there, it asks the same question as **Merge Actions**: **Combine both**, **Keep the one already there** or **Let the moved one win**. |
     | **{{ op('tks.copy_slot_keys').bl_label }}** | In the settings menu. Copies all keyframes from the selected slot to an internal clipboard. |
     | **{{ op('tks.paste_slot_keys').bl_label }}** | In the settings menu. Pastes those keyframes into the selected slot, **replacing** whatever it held. With Copy, this moves animation between slots without touching the Actions. |
 
@@ -240,19 +244,21 @@ Sessions leave behind slots and actions that hold no animation. Three buttons pr
     No cleanup button touches a slot that is still assigned to a datablock, or an Action
     that is fake-user protected or used by a cascade. Only orphaned data goes.
 
-## :material-link-variant-off: Linked Objects Info
+## :material-link-variant-off: Linked Files
 
 Objects linked from another file need a library override before you can edit their actions.
 
-When such objects exist, **Linked Objects Info** appears. It only reports — it changes nothing.
+When watched objects come from another file, the **Linked Files** card appears in the [Navigation Panel](navigation_panel.md#warnings), under the **Objects** warning family.
 
-??? info "What the popup tells you"
-    It is read-only. It counts how many objects linked from another `.blend` file need an
-    override, groups them by source library file, and points you to
-    *Object > Library Override > Make*. The entry stays hidden while every linked object
-    is already overridden.
+??? info "What the card shows"
+    The card lists one row per library file. Under each name it counts how many objects
+    are waiting for an override and how many already have one. A missing file shows in red
+    with **Relocate**.
 
-    **{{ op('tks.copy_linked_names').bl_label }}** copies the names of the linked objects, one per line.
+    Each row has buttons to show that file's objects in the watchlist, reload the file, and
+    make the override. The **Library Override** menu in the card title overrides every
+    waiting object of every file at once. **{{ op('tks.copy_linked_names').bl_label }}**, beside it,
+    copies the names of the waiting objects, one per line.
 
 ## :material-rhombus-outline: Channels Mode
 
@@ -267,7 +273,7 @@ Four bands, top to bottom: frame navigation, target-type rows, search and filter
 ??? info "Each band in detail"
     | Element | What it does |
     |---------|--------------|
-    | **Frame-navigation bar** | Timeline controls, when enabled — jump between keyframes with Blender's own previous and next arrows, plus the **{{ op('tks.delete_all_inspector_keys').bl_label }}** trash button and **{{ op('tks.toggle_channel_view_mode').bl_label }}**, which switches the view between all frames and per-keyframe rows. |
+    | **Frame-navigation bar** | Timeline controls, when enabled — jump between keyframes with Blender's own previous and next arrows, plus the **{{ op('tks.delete_all_inspector_keys').bl_label }}** trash button and **{{ op('tks.toggle_channel_view_mode').bl_label }}**, one button that switches the view between all frames (pressed, the default) and only the channels keyed on the frame you are on. |
     | **Target-type rows** | One row per animated datablock type on the active object. The left side switches the view to that target; the right side counts its keys. |
     | **Search & filter** | A search field narrows the property list, the red ✕ clears it. A source filter limits rows to **All / Native / Add-on** properties. |
     | **Property groups** | Collapsible sub-panels — Transform, Delta Transform, Visibility, Viewport Display, Light Settings, Lens & Sensor, Modifiers, General Properties — each row showing its live value. |
