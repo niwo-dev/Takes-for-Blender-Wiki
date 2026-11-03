@@ -61,12 +61,12 @@ The buttons beside the tree edit whatever row you have selected.
 
 | Button | What it does |
 |--------|--------------|
-| **+** | Adds the right item for the selected row — a State on a Product, a Part on a State, and so on. Hold it open for the full **Add Variant Item** menu. |
+| **+** | Adds the same kind as the selected row: a State on a State, a Part on a Part, Materials on Materials or a Material. On a Product, or with nothing selected, it opens the **Add Variant Item** menu. |
 | **−** | Deletes the selected row. |
 | **▲ / ▼** | Moves the selected row up or down among its siblings. |
 | **chevron** | Folds a row open or shut. |
 
-The **Add Variant Item** menu names each choice outright: **Add Product**, **Add State**, **Add Part**, **Add Materials**, and **Add Slot** for a Part's pool.
+The **Add Variant Item** menu names each choice outright: **Add Product**, **Add State**, **Add Part**, and **Add Materials**.
 
 ??? info "Switching which product a row drives"
     A tree row can be pointed at a different Product without rebuilding it.
