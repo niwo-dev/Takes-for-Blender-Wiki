@@ -13,7 +13,7 @@ Those baseline values live at frame 0. Takes keeps them safe while you animate e
 
 Key a property, and its old unkeyed value is copied into the Rest Action first.
 
-Switch View Layers, and anything with no animation there snaps back to that baseline.
+Switch View Layers, and anything with no animation there snaps back to that baseline. An object the take does not key first follows the parent layers that key it; only values no layer keys snap to the baseline.
 
 ```mermaid
 graph LR
@@ -62,7 +62,10 @@ The Rest State block sits in *Globals ▸ Settings*.
 
     **{{ op('tks.set_rest_default').bl_label }}** sits in the right-click menu of any
     property, and in Blender's *Insert Keyframe* menu as **Keyframe to Rest**. It
-    writes a keyframe at frame 0 in the Rest Action.
+    writes a keyframe at frame 0 in the Rest Action. It offers *Active*, *Selected*
+    and *All*. A press that changes many objects asks first (**Rest State
+    Protection**, under *Preferences ▸ Interface ▸ Confirmations*). A dropdown
+    value cannot be recorded, and the button says so.
 
     **{{ op('tks.rest_mode_toggle').bl_label }}** is the leftmost of the three mode
     toggles in the Navigation header, before **Still Mode** and
@@ -137,7 +140,8 @@ Reach for these when Rest State should stop looking after a property or an objec
 
 ??? info "Details and safety net"
     **{{ op('tks.unset_rest_key_channel').bl_label }}** targets the property you hover,
-    or the active object's transforms when you run it from the pie. The rest of that
+    or the active object's transforms when you run it from the pie. It removes the
+    channel only from the object or datablock you chose, and the rest of that
     object's rest slot stays.
 
     An object with no rest slot left falls back to the defaults it gets from the
