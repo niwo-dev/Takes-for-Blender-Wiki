@@ -209,6 +209,6 @@ A preset saved by a much older or newer version can stop loading, because its la
 
 ## :material-keyboard: Hotkeys
 
-++alt++-click a preset icon to clear the assignment at that tier. On a **Camera** or **World** tier icon, Alt also clears that tier's rule and preset. ++shift++ + ++alt++ + click does the same on every tier below it, takes included.
+++alt++-click a preset icon to clear the assignment at that tier. Alt also clears that tier's rule and preset. ++shift++ + ++alt++ + click does the same on every tier below it, takes included.
 
 Full list: [Keyboard Shortcuts](../interface/hotkeys.md)
