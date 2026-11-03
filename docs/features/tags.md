@@ -52,7 +52,7 @@ Use **+** and **−** to add or remove a tag, and **↑ / ↓** to reorder one. 
 
 1. Pick a category in the tree.
 2. Click **+**, then **Tag**.
-3. Give it a name and a colour — five presets, or your own.
+3. Give it a name and a colour. A new tag starts grey; pick its colour on the swatch beside the tag.
 
 The colour paints a strip on the tree row. In the Tree section of *Preferences > Interface*, **Tag Color** switches it off and **Strip Width** sets its width.
 
