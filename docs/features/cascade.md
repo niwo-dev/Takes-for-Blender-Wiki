@@ -188,11 +188,17 @@ A take can hold its own action while a tier above it holds another. Parent Borro
 3. Adjust and key it. The parent's action is the live one now.
 4. Click **{{ op('tks.parent_borrow_release').bl_label }}** to let it go.
 
-Nothing is saved. Switching view layer ends the borrow, and so does turning on Rest State Mode.
+Switching view layer ends the borrow, and so does turning on Rest State Mode. A file you open always starts with nothing borrowed.
 
-??? info "Only or Cascade"
-    **Only** shows that parent alone. **Cascade** shows it with the tiers above
-    still applying. The row being edited shows a badge in the tree.
+??? info "Solo or Cascade"
+    While a parent is borrowed, a **View** row appears in the popover. **Solo** shows that parent alone. **Cascade** shows it with the tiers above it still applying.
+    The borrowing row wears a chain-link icon on its action button in the tree.
+
+??? info "What to know before you borrow"
+    - Each parent row lists the action of one tier above this row. A tier that holds no action has no row.
+    - You can borrow only on the take you are standing in. From another take the button is greyed out, and a click there asks you to switch to that take first.
+    - The row's own action is silenced and its assignment is locked until you release the parent or switch take.
+    - Only one parent is borrowed at a time. The other rows dim while one is borrowed.
 
 ## :material-camera-switch: Cross-Scene Camera Linking
 
