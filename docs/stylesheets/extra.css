@@ -1384,6 +1384,9 @@ html.tks-focus-lock {
 /* A title opens its section; inside the pop-up there is nothing more to open. */
 .md-typeset :is(h2, h3, h4, h5, h6)[id] { cursor: pointer; }
 .tks-focus .md-typeset :is(h2, h3, h4, h5, h6)[id] { cursor: default; }
+/* Closing hands focus back to the title only so the keyboard resumes there;
+   the accent band already marks it, so no focus ring on top. */
+.md-typeset :is(h2, h3, h4, h5, h6)[tabindex="-1"]:focus { outline: none; }
 @media (prefers-reduced-motion: no-preference) {
   .tks-focus-scrim { animation: tks-focus-fade 0.15s ease-out; }
   .tks-focus { animation: tks-focus-rise 0.15s ease-out; }

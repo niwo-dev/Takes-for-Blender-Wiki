@@ -243,7 +243,7 @@ markdown_extensions:
       toc_depth: 2
 
 extra_css:
-  - stylesheets/extra.css?v=81c1dab0
+  - stylesheets/extra.css?v=bfa6d5b5
 
 extra_javascript:
   - javascripts/nav-icons.js?v=f681236a
