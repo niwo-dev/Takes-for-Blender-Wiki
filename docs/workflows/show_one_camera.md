@@ -8,7 +8,7 @@ When a scene holds several cameras and you only want to see the one this take us
 
 1. Open the **Takes** tab in the 3D viewport sidebar (++n++).
 2. Hold ++shift++ and right-click any row in the Takes Tree.
-3. At the foot of the menu, open **Isolate** and pick a mode.
+3. In the camera block of the menu, open the **Isolate** row and pick a mode.
 4. Switch takes.
 
 You now have one camera on screen and the rest out of the way.
@@ -36,8 +36,9 @@ works even while the mode is **Off**.
     hidden until you say otherwise, because it cannot tell its own work from a
     camera you hid on purpose.
 
-    To get them all back, use **Reset Camera Visibility** in
-    *Preferences > Workflow > Automations > Cameras*.
+    To get them all back, set **Isolate** to **Off** in
+    *Preferences > Workflow > Automations > Cameras*. That shows every camera
+    in the scene, ones you hid yourself too.
 
     Unhide a camera by hand and it stays visible. The next switch or the next
     **Isolate** puts it away again.
@@ -45,10 +46,9 @@ works even while the mode is **Off**.
 ??? info "What Isolate touches"
     Two switches under *Preferences > Workflow > Automations > Cameras* decide
     the halves: **Show Assigned Camera** reveals this take's camera, and **Hide
-    Other Cameras** puts the rest away. Both are on to start with.
-
-    Switch **Hide Other Cameras** off and **Isolate** only reveals the take's own
-    camera. It hides nothing.
+    Other Cameras** puts the rest away. **Show Assigned Camera** is on to start
+    with. **Hide Other Cameras** is off, so **Isolate** leaves cameras you set up
+    by hand alone until you switch it on.
 
     **Affect Containing Collection** also reveals the collection the camera sits
     in, so a hidden collection cannot keep it off screen.
