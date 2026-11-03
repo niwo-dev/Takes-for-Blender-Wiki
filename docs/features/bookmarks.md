@@ -47,7 +47,7 @@ Click the bookmark icon in the Channels header to show the preset row, then save
 Three housekeeping operators move bookmark sets between files. None is drawn in a panel — reach them through Blender's operator search (++f3++).
 
 - **{{ op('tks.export_bookmarks').bl_label }}** — writes the scene's bookmarks to a JSON file for sharing.
-- **{{ op('tks.import_bookmarks').bl_label }}** — reads such a file back in. Already-bookmarked properties are skipped, not duplicated.
+- **{{ op('tks.import_bookmarks').bl_label }}** — reads such a file back in. Already-bookmarked properties are skipped, not duplicated. A file that is not a bookmarks file is refused with a message.
 - **{{ op('tks.clear_bookmarks').bl_label }}** — removes every bookmark from the scene, behind a confirmation dialog (toggleable in *Preferences > Interface > Confirmations*).
 
 ## :material-keyboard: Hotkeys
