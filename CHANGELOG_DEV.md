@@ -53,3 +53,36 @@ generators, CI. Page wording and content edits are not logged in either file.
    add-on's `:~:text=` links. Measured in headless Chrome: heading top and
    page height are identical with and without the band, so nothing moves.
    Commit `4b4b746` (before rebase).
+
+3. 🔴 **A focus pop-up shows only the linked section, with its words marked.**
+   `docs/javascripts/manual-target-mark.js` stays the one home of the section
+   walk (`sectionNodes`; `sectionBox` reuses it). On the FIRST `document$`
+   emission with a hash that names an h2–h6, and on a click on a heading's
+   title text, it clones the section into a `role="dialog"` box over a
+   `.tks-focus-scrim`; the scrim joins the shared `.md-overlay, .tks-toc-scrim`
+   blur rule in `extra.css`, so the menu, the contents panel and the pop-up
+   share one backdrop. In-page jumps, `hashchange`, instant navigation and the
+   `¶` permalink open nothing. Cloned ids are stripped or suffixed so tabs,
+   `<details>` and code copy work inside. Scroll is locked with the scrollbar
+   gap filled; page scroll, heading position and document height measure
+   identical before open and after close. Closing (scrim, Esc, ×) hands focus
+   back to the heading (no focus ring: the band marks it) and starts the
+   existing 4 s band; no band runs while the pop-up is open.
+
+   The add-on's `:~:text=` words are marked inside the clone as
+   `mark.tks-text-mark`. Browsers hide the directive from `location`, so the
+   words are read from wherever the engine leaves them, first load only:
+   Chromium keeps them in the navigation timing entry's `name`, Firefox in
+   `navigation.currentEntry.url`; an engine that keeps them in the hash gets
+   the hash stripped from `:~:` on. WebKit hides them from every script
+   source, so Safari shows the pop-up without marked words and marks the page
+   itself after close; the owner accepted that limit on 2026-11-03 rather
+   than add a second copy of the words to the add-on's links. The mark colour
+   lives once, in `--tks-text-mark-bg`, read by `::target-text` and
+   `.tks-text-mark` in separate rules (a shared selector list would be dropped
+   whole by an engine without `::target-text`).
+
+   Probe: `dev/check_section_focus.py` + `dev/probe_section_focus.js`, 79/79
+   in Chromium; Playwright pass in Chromium and Firefox, WebKit without
+   pop-up marks as above. Commits `257fdb3e`, `16008476`, `3b0a6804` (before
+   rebase).
