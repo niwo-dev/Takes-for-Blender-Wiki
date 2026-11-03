@@ -1,7 +1,6 @@
 # Section Focus Pop-Up
 
 **Type:** Feature · **Theme:** Docs · **Area:** Navigation · **Size:** 🟡
-**Status:** awaiting verify
 
 When the add-on opens a page at a section, or when you click a section title, a pop-up shows only that section. The page behind it is dimmed and blurred, the same way as behind the menu.
 

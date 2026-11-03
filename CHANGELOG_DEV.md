@@ -54,7 +54,7 @@ generators, CI. Page wording and content edits are not logged in either file.
    page height are identical with and without the band, so nothing moves.
    Commit `4b4b746` (before rebase).
 
-3. 🔴 **A focus pop-up shows only the linked section, with its words marked.**
+3. 🟢 **A focus pop-up shows only the linked section, with its words marked.**
    `docs/javascripts/manual-target-mark.js` stays the one home of the section
    walk (`sectionNodes`; `sectionBox` reuses it). On the FIRST `document$`
    emission with a hash that names an h2–h6, and on a click on a heading's
