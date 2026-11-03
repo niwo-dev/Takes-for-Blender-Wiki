@@ -220,7 +220,7 @@ These few cover most jobs:
 
 **Build Syntax** assembles a pattern by clicking instead of typing. Open it from the ▾ dropdown beside any token field.
 
-The pattern appears twice: as an editable field on top, and as movable chips below. A searchable token grid fills the rest.
+The pattern appears twice: as an editable field on top, and as movable chips below. A searchable token table fills the rest: token groups on the left, and each token with its result and description.
 
 Your edits stay in a draft. Nothing reaches the real field until you click the red **Apply** flag.
 
@@ -231,13 +231,18 @@ Your edits stay in a draft. Nothing reaches the real field until you click the r
 
     **The movable chips below.** One chip per token or literal, each showing its current resolved value underneath. Click a chip to select it (click again to deselect), then step it left or right with ◀ / ▶, send it to the start or end with the far arrows, or delete it with ✕. A leading `//` root is pinned to the far left — it can't be moved, and no chip can slide in front of it.
 
-    **The token grid.** Clicking any token appends it to the end of the pattern in your configured bracket style. Hovering a token shows what it is *and* what it resolves to right now. Searching dims non-matching tokens in place (the grid never reflows while you type), and tokens with nothing to resolve in the current context are dimmed as a hint.
+    **The token table.** The list on the left holds the token groups, each with its token count. Click a group to see its tokens as rows: the token, what it resolves to right now (**Result**), and a **Description**. Clicking a token appends it to the end of the pattern in your configured bracket style. Tokens with nothing to resolve in the current context are dimmed as a hint.
 
-??? info "The three header toggles"
+    **Search.** Type three letters or more. The group list then shows only the groups with a match, each with its number of matches, and the table lists the matching tokens.
+
+    **Favourites Only.** With the star on and no token starred, a boxed note says to star a token in Preferences. With tokens starred, the table lists only those: Blender's own tokens and separators too.
+
+??? info "The header toggles"
     | Toggle | What it does |
     |--------|--------------|
-    | **Values** (eye icon) | Swaps every token's label in the grid for its live resolved value. |
     | **Blender tokens** (Blender logo) | Render-path fields only — marks the tokens Blender resolves natively. |
+    | **Favourites Only** (star) | Render-path fields only — lists only the tokens you starred. |
+    | **Source** (dropdown) | Render-path fields only — shows **All** tokens, only the **Built-in** ones, or only your **Custom** ones. |
     | **Chips** | Hides the movable chip row for a compact, field-only layout. |
 
 ??? note "Move and Remove need a selection"
@@ -265,7 +270,11 @@ Your edits stay in a draft. Nothing reaches the real field until you click the r
 
 Patterns are checked as you type. A bad field turns red and the preview line names the reason.
 
-A render directory must start with `//` (blend-relative) or an absolute path.
+A render directory must start with `//` (blend-relative) or an absolute path. An empty Folder or File Name turns red as well.
+
+No render starts while a field is red: Batch Render names each take, field and reason in a prompt, and a render of a single take refuses too. Blender's own ++f12++ cannot be stopped, so it warns and you press ++esc++. A token that does not exist, or brackets that do not match, also turn the field red.
+
+When Takes can repair the field, a red wrench button appears beside it. It fills an empty field with its default, puts `//` in front of a folder with no root, and closes brackets that were left open. Hover it to see what it will write.
 
 ??? info "The three checks"
     - **Writable root** — a render directory must start with `//` or an absolute path (`C:/`, a POSIX `/` root, a UNC share). Anything else, including an empty directory, would render to an unpredictable location.
