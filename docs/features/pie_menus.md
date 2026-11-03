@@ -55,7 +55,7 @@ Every slot can hold any one of nine actions.
 
 Pick **what** to render — this layer, this scene, every scene, only the failed ones — and the pie starts that batch.
 
-It takes over ++f12++, so it ships off. Switch on **F12 Render Pie Menu** in *Workflow > Pie & Misc*.
+It takes over ++f12++, so it ships off. Switch on **Enable F12 Render Pie** in *Workflow > Pie & Misc*.
 
 The same scopes also sit in the render menu behind the queue sidebar's render button — see [Batch Render](batch_render.md#the-render-menu).
 
@@ -174,7 +174,7 @@ Every slice opens that property's full editor — rules and presets included. It
 
 These two replace ++i++ and ++alt+i++ in the editors you choose. They put the [Rest State](rest_state.md) actions on the keying gesture you already use.
 
-Both ship off. Switch on **Enable Keyframe Pie** and **Enable Clear Pie (Alt+I)** in *Workflow > Pie & Misc*.
+Both ship off. Switch on **Enable Keyframe Pie** and **Enable Clear Pie** in *Workflow > Pie & Misc*.
 
 ### :material-format-list-bulleted: Keyframe Pie (I) — Slot Actions
 
