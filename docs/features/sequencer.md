@@ -80,7 +80,7 @@ Which gestures do the switching is yours to choose. ++alt++ + click the **Timeli
 
 **{{ op('tks.sequencer_focus_switch').bl_label }}** makes the same trip by hand, for when every automatic rung is off.
 
-## :material-monitor-play: Viewport Preview {: #viewport-preview }
+## :material-television-play: Viewport Preview {: #viewport-preview }
 
 **Viewport Preview** is the third mode on the **Timeline** button. The sequencer keeps the edit and plays its sound. The largest 3D viewport shows the shot under the playhead, in camera view, with its scene, view layer and take.
 
