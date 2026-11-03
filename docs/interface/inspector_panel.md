@@ -269,7 +269,7 @@ When watched objects come from another file, the **Objects** warning icon appear
 ??? info "The chain-link filter"
     While some watched object waits for an override, the stats row above the watchlist
     shows a chain-link filter with their count. Click it to list only those objects.
-    It switches the **Pinned filter** and **Unpinned filter** off, and the other way round.
+    It switches the pinned and unpinned filters off, and the other way round.
 
 ### :material-layers-plus: Overrides { #overrides }
 
