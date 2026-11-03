@@ -16,32 +16,38 @@ You have a water bottle that ships in three finishes: Matte Black, Brushed Alumi
 ## :material-cog-outline: Setup
 
 ### 1. Create the Product
-1. Open the **Variant Switch** panel.
-2. Click **+** and name the new Product "Bottle".
-3. A default Part called "base" appears with it.
+1. Open the **Globals** panel and switch it to the **Variants** mode.
+2. Click **+** and choose **Add Product**. The new Product comes with one Part, one Materials row and one State.
+3. Double-click the Product name, or press ++f2++, and type "Bottle".
+4. Click the collection button on the Product row and pick the collection that holds the bottle. The pickers further down then offer only collections inside it.
 
-### 2. Define Parts
-Split the product into components:
+### 2. Add the Materials
+Each Materials row owns one pool of materials and one target collection. The swap happens on the objects in that collection.
 
-1. Add a Part called "Body" and assign the body collection.
-2. Add a Part called "Cap" and assign the cap collection.
-3. Add a Part called "Label" and assign the label collection.
+1. Rename the starter Materials row "Body" and click its collection button to pick the body collection.
+2. Select that row and click **+** to add a second Materials row. Name it "Cap" and give it the cap collection.
+3. Add a third one called "Label" with the label collection.
 
-### 3. Add Materials to Pools
-1. Expand "Body" to see its material pool.
-2. Assign the matte black material to slot 1.
-3. Assign the aluminum material to slot 2. The slot is created for you.
-4. Assign the rose gold material to slot 3.
-5. Repeat for Cap and Label with their own materials.
+### 3. Fill the Pools
+1. Expand "Body" to see its pool. The number in front of each slot is its pool index, counted from 0.
+2. Drop the matte black material into slot 0. A new empty slot appears below it.
+3. Drop the aluminum material into slot 1, then the rose gold material into slot 2.
+4. Repeat for Cap and Label with their own materials.
 
 ### 4. Create States
-1. Add a State "Matte Black" and set pool index 1 on every part.
-2. Add "Aluminum" with pool index 2.
-3. Add "Rose Gold" with pool index 3.
+1. Rename the starter State "default" to "Matte Black".
+2. Select the State row and click **+** to add a State. Name it "Aluminum", then add "Rose Gold" the same way.
+3. Click the icon at the start of the "Matte Black" State to edit it. On each Materials row, set the pool index field to 0.
+4. Pick "Aluminum" the same way and set every pool index to 1, then "Rose Gold" with 2.
+
+??? info "What the Parts are for"
+    The **Parts** group is not needed for a pure material change. A Part holds a
+    collection whose visibility each State can set, with toggles for select, viewport,
+    render, holdout and indirect-only. The starter Part is named "base part".
 
 ## :material-eye: Previewing
 
-Click the **diamond icon** on any State to see that variant in the viewport.
+Switch **Live** on in the Navigation panel header. Then click the icon at the start of any State to see that variant in the viewport.
 
 ## :material-image-multiple: Rendering All Variants
 
