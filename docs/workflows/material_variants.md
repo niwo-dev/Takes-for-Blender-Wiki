@@ -56,8 +56,10 @@ Click the **diamond icon** on any State to see that variant in the viewport.
 4. Batch Render all View Layers in one go.
 
 ??? info "Finding the variant cascade icon"
-    It is the same UV-sync icon as the **Variants** mode button in the Globals
+    It is the same UV-sync icon as the **Variant** mode button in the Globals
     header, sitting with the other cascade icons on the tree row.
+    ++alt++-click it to clear that tier's variant. ++shift+alt++ also clears
+    every tier below.
 
 ### :material-alpha-c-circle: Option C: Combined with Camera Angles
 
