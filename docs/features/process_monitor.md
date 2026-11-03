@@ -96,3 +96,34 @@ If a row that should be ticking shows no heartbeat, click **Restart Processes**.
 It brings every dead process back in one pass and tells you how many it revived. While some are dead, a red **Restart N Dead** button also appears under the list.
 
 ++alt++-click the same button to toggle the **Auto-Restart Watchdog**. While it is on, dead processes come back on their own and a plain click does nothing. Click again for manual restarts.
+
+## :material-restore: Undo Monitor
+
+The **Undo Monitor** writes down everything the add-on does around one Ctrl+Z, in order, so you can read a press instead of guessing at it.
+
+Open it with the last button of the monitor switcher, press **{{ op('tks.undo_monitor_record').bl_label }}**, then do the undo you want to look at. The header counts the steps on the tape.
+
+??? info "The step kinds"
+    Each row has an icon for its kind. Click the icon, or a button in the bar above the list, to show only that kind. Click it again to show everything.
+
+    | Kind | What the row says |
+    |------|-------------------|
+    | **Press** | Your keypress reached the add-on. |
+    | **Step** | An undo or redo really went out. |
+    | **Handler** | A Blender event fired. |
+    | **Write** | The add-on changed data. |
+    | **Seal** | The add-on closed, or refused to close, an undo step. A refused one is drawn in red. |
+    | **Orphan** | A change that never made it into an undo step, so no Ctrl+Z can take it back. Drawn in red. |
+    | **State** | A snapshot of what you can see. |
+
+    Writes that still wait for their step are counted in a note beside the bar. The **Detail** column holds the reason behind a step: hover its info icon.
+
+??? info "Buttons beside the list"
+    | Button | What it does |
+    |--------|--------------|
+    | **Undo Monitor Settings** | Sets how many steps to show (25, 50, 75, 100 or all) and whether the Timestamp and Detail columns appear. |
+    | **{{ op('tks.undo_monitor_record').bl_label }}** | Starts or stops recording. ++alt++ + click forgets the steps held in memory; the tape file keeps them. |
+    | **{{ op('tks.undo_monitor_copy').bl_label }}** | Copies the steps of the open tape to the clipboard, ready for a bug report. |
+    | **{{ op('tks.um_log_files').bl_label }}** | Picks the tape file and the session. ++shift++ + click opens the folder. |
+
+    Every step goes into a tape file on disk, so a recording survives a restart. A new recording is added below the last one.
