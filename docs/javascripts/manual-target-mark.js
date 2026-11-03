@@ -367,12 +367,25 @@
     return { holder: holder, pairs: pairs };
   }
 
-  // The real element goes where its copy stands. A hollow of the same outer box
-  // takes its place on the page, so nothing around it moves. Two comment nodes
-  // fence the spot inside the pop-up: Material may swap the element for its
-  // drawn diagram while it sits there, so what is between them at close is what
-  // goes home, not the node that left.
-  function moveIn(real, stand) {
+  // The one way an element changes place, in both directions. `moveBefore` moves
+  // a node without taking it out of the document, so a frame keeps its page and
+  // a video keeps playing. An engine without it, or a move it refuses (a parent
+  // that is not in the document), gets a plain `insertBefore`; that reloads a
+  // frame, which no script can prevent. Media is moved in one task, and one that
+  // was playing is started again if the engine paused it on the way.
+  function relocate(node, parent, before) {
+    var wasPlaying = node.matches && node.matches("video, audio") && !node.paused;
+    var done = false;
+    if (parent.moveBefore) {
+      try { parent.moveBefore(node, before); done = true; } catch (e) { /* fall back */ }
+    }
+    if (!done) parent.insertBefore(node, before);
+    if (wasPlaying && node.paused) node.play().catch(function () { /* blocked: stays paused */ });
+  }
+
+  // The hollow that keeps the real element's place on the page: the same outer
+  // box, measured before anything moves.
+  function makeHold(real) {
     var r = real.getBoundingClientRect(), cs = getComputedStyle(real);
     var hold = document.createElement("div");
     hold.className = HOLD;
@@ -390,9 +403,22 @@
     });
     st.verticalAlign = cs.verticalAlign;
     st.cssFloat = cs.cssFloat;
+    return hold;
+  }
+
+  // The real element goes where its copy stands, the hollow takes its place. Two
+  // comment nodes fence the spot inside the pop-up: Material may swap the element
+  // for its drawn diagram while it sits there, so what is between them at close
+  // is what goes home, not the node that left. The pop-up has to be in the
+  // document by now, or `moveBefore` would refuse the move.
+  function moveIn(real, stand, hold) {
     var from = document.createComment("tks-focus-slot"), to = document.createComment("/tks-focus-slot");
-    real.replaceWith(hold);
-    stand.replaceWith(from, real, to);
+    real.parentNode.insertBefore(hold, real);
+    var seat = stand.parentNode;
+    seat.insertBefore(from, stand);
+    relocate(real, seat, stand);
+    seat.insertBefore(to, stand);
+    stand.remove();
     return { hold: hold, from: from, to: to, real: real };
   }
 
@@ -400,7 +426,11 @@
     var nodes = [];
     for (var n = slot.from.nextSibling; n && n !== slot.to; n = n.nextSibling) nodes.push(n);
     if (!nodes.length) nodes.push(slot.real);
-    if (slot.hold.parentNode) slot.hold.replaceWith.apply(slot.hold, nodes);
+    var seat = slot.hold.parentNode;
+    if (seat) {
+      nodes.forEach(function (n) { relocate(n, seat, slot.hold); });
+      slot.hold.remove();
+    }
     slot.from.remove();
     slot.to.remove();
   }
@@ -524,7 +554,7 @@
     var copy = made.holder;
     while (copy.firstChild) body.appendChild(copy.firstChild);
     // Measured before anything moves; every box on the page stays where it is.
-    var moved = made.pairs.map(function (p) { return moveIn(p[0], p[1]); });
+    var holds = made.pairs.map(function (p) { return makeHold(p[0]); });
     body.firstElementChild.id = "tks-focus-title";
     var close = document.createElement("button");
     close.type = "button";
@@ -535,7 +565,7 @@
     box.appendChild(body);
 
     pop = {
-      head: head, scrim: scrim, box: box, items: items || [], moved: moved,
+      head: head, scrim: scrim, box: box, items: items || [], moved: [],
       x: window.pageXOffset, y: window.pageYOffset
     };
     // Taking the scrollbar away would widen the page and move the text, so the
@@ -544,6 +574,7 @@
     root.classList.add("tks-focus-lock");
     document.body.appendChild(scrim);
     document.body.appendChild(box);
+    pop.moved = made.pairs.map(function (p, i) { return moveIn(p[0], p[1], holds[i]); });
     // Wide screens: no wider than the page's own text column. The width is
     // kept live: a window resize or a diagram that draws late changes both the
     // column and whether the body needs a scrollbar.
@@ -663,6 +694,9 @@
     later();
   });
   document.addEventListener("click", onTitleClick);
-  // The two lookups the address goes through, for dev/check_section_focus.py.
-  window.tksTargetMark = { parseDirective: parseDirective, targetHeading: targetHeading };
+  // The two lookups the address goes through and the list of movable kinds, for
+  // dev/check_section_focus.py and dev/check_media_engines.mjs.
+  window.tksTargetMark = {
+    parseDirective: parseDirective, targetHeading: targetHeading, movable: MOVE
+  };
 })();
