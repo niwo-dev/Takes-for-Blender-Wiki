@@ -10,8 +10,8 @@ It is a cascade state like any other override: set it once at the top, then let 
 
 ## :material-map-marker: Where to Find It
 
-- **Navigation header** — the **{{ op('tks.still_global_toggle').bl_label }}** button (still-camera icon). Click it to lock the whole project to one kind. While the lock is on, every tree row shows as locked, Global included. ++shift++ + click picks **Still** or **Animation**. Off means each take decides for itself, and the tree's **Global row** is only the default the tiers below inherit. Switched back on, it comes back in the kind you last used.
-- **Tree rows** — every cascade level carries a Still popover: pick **Still**, **Animate**, or **Clear (Inherit)** to fall back to the parent tier. Each choice runs **{{ op('tks.still_set').bl_label }}** on that tier. The timeline icon sits right after the tag column.
+- **Navigation header** — the **{{ op('tks.still_global_toggle').bl_label }}** button (still-camera icon). Click it to lock the whole project to one kind. While the lock is on, every tree row shows as locked, Global included. ++shift++ + click picks **Still** or **Animation**. Off means each take decides for itself, and the tree's **Global row** is only the default the tiers below inherit. Switched back on, it comes back in the kind you last used, unless you fixed one in the **Still Mode Click** preference.
+- **Tree rows** — every cascade level carries a Still popover: pick **Still** or **Animate**, or **(Clear)** to fall back to the parent tier. Each choice runs **{{ op('tks.still_set').bl_label }}** on that tier. The timeline icon sits right after the tag column.
 
 ??? info "Setting it per tier"
     Every level takes a value: Global, Scene Group, Scene, View Layer Group,
@@ -31,7 +31,7 @@ While a scene resolves to Still, its frame range is clamped to the still frame �
 
 ## :material-swap-horizontal: Interactions
 
-- **Frame Sync** stands down while a take resolves Still, because syncing the playhead across scenes would fight the frame pin. Only that one mode is held off — the [Timeline](../interface/navigation_panel.md) button stays usable, so **Scene Follow** and **Off** are still yours to pick.
+- **Frame Sync** stands down while a take resolves Still, because syncing the playhead across scenes would fight the frame pin. Only that one mode is held off. The [Timeline](../interface/navigation_panel.md) button greys out on a Still take, but stays clickable while **Scene Follow** or **Viewport Preview** is on, so you can switch them off.
 - The viewport mode pills show an active Still Mode alongside Autokey, Value Lock and Rest Mode, so you always see why the timeline will not move.
 
 ??? tip "Why frame 0?"
