@@ -17,7 +17,9 @@ You now have one saved look on that tier. Every row below inherits it, unless it
 ??? info "Details and edge cases"
     Presets ride the cascade, so set one at any tier from **Global** down to
     **Take**. A deeper tier always beats a wider one. The **X** beside the field
-    clears the assignment; the preset file stays on disk.
+    clears the assignment; the preset file stays on disk. ++alt++-click a tier's
+    icon to clear its value, rule and preset in one go. ++shift+alt++ also clears
+    every tier below it, takes included.
 
     Nine kinds of settings save this way — **Render**, **Output**, **Camera**,
     **World** and more — and each one cascades on its own.
