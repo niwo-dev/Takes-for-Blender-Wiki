@@ -99,3 +99,34 @@ generators, CI. Page wording and content edits are not logged in either file.
    Chromium, Firefox and WebKit, except WebKit's pop-up marks as above.
    Commits `257fdb3e`, `16008476`, `3b0a6804`, `0b6d89fe`, `be080762`
    (before rebase).
+
+### Fixed
+
+1. 🔴 **The section pop-up shows no sideways scroll bar, and its close button sits clear of the scroll bar.**
+   Root cause: Material's `.md-typeset__scrollwrap` (tables) reaches 0.8rem
+   past the text column on both sides; the page's margin absorbs that, the
+   pop-up body had none, so every section with a table overflowed by 16 px.
+   Same at device scale 1–1.75 and widths 800–1920, so not a rounding fault.
+   `.tks-focus__body` now takes 0.8rem horizontal padding with a matching
+   negative margin, so the text column keeps its width; no `overflow-x`
+   guard. The × gets its own row above the scrolling body, which starts 4 px
+   below it; the inset, size and gap are CSS variables in `extra.css`.
+   Sweep (`dev/check_section_focus.py sweep --dpr --width`, 83 pages, 495
+   sections): sideways 76 → 0, block overhang 76 → 0, × under 4 px from the
+   bar 495 → 0, at scale 1/1.25/1.5/1.75. Probe 109/109. Known and older:
+   at ≤1000 px the pop-up column is 35 px narrower than the page column
+   (the box's own side insets). Commits `2f002a8e`, `a8201487` (before rebase).
+2. 🔴 **Videos, sound, embedded frames and drawings keep playing and keep their state when the section pop-up opens and closes.**
+   One `relocate()` helper in `docs/javascripts/manual-target-mark.js` moves
+   the `MOVE` kinds both ways: `Element.prototype.moveBefore` where it
+   exists, `insertBefore` as fallback (also when `moveBefore` throws).
+   Chromium had reloaded frames because the pop-up was not yet attached and
+   `moveBefore` refuses a disconnected target; the pop-up is now attached
+   before the move, with the hollow measured first. `MOVE` is exposed as
+   `window.tksTargetMark.movable`; the fixture and engine script read it.
+   Results: Chromium keeps every state; Firefox reloads `object`/`embed`;
+   WebKit (no `moveBefore`) reloads frames, `object` and `embed`. The owner
+   accepted those reloads on 2026-11-03, no overlay trick. Checks:
+   `dev/make_media_fixture.py`, `dev/check_media_engines.mjs`,
+   `dev/check_section_focus.py media`. Commits `530fcd84`, `8e0ade70`
+   (before rebase).
