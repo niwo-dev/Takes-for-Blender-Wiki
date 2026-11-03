@@ -66,7 +66,7 @@ Each cut runs until the next one starts.
     | **{{ op('tks.multicam_unstack_marker').bl_label }}** | The **Separate** button: moves a marker that shares a frame to the next free frame. |
     | **{{ op('tks.multicam_clear_scene_cuts').bl_label }}** | The **Clear Cuts** button: removes this timeline's camera cuts, so the take keeps its own camera. Your notes stay. |
     | **{{ op('tks.multicam_clear_cuts').bl_label }}** | Throws a parked cut list away. The cameras themselves are untouched. |
-    | **{{ op('tks.multicam_enable_anim').bl_label }}** | The **Animate** button on a Still take: sets the take to animate and turns Multi-Cam on. |
+    | **{{ op('tks.multicam_enable_anim').bl_label }}** | The **Switch to Animate** button on a Still take (**Turn Global Still Off** when Still is global): sets the take to animate and turns Multi-Cam on. |
 
 ## :material-swap-horizontal: Switching Takes
 
@@ -80,7 +80,7 @@ A take left holding fewer than two cuts is not cutting, so Multi-Cam switches it
 
 The list stays. It is drawn greyed so you can still read it, and one click brings it back.
 
-If you are finished with it, **Discard List** throws it away after saying how many cuts go. Your cameras are untouched.
+If you are finished with it, **Clear List** throws it away after saying how many cuts go. Your cameras are untouched.
 
 ## :material-image-filter-frames: Still Takes
 
@@ -115,6 +115,8 @@ The [Isolate](../workflows/show_one_camera.md) modes know about cuts:
 
 - **Single Camera** shows only the camera under the playhead and follows as you scrub or play. It hides the others from the *viewport* only, never from the render.
 - **Multi Camera** keeps every cut camera on screen.
+
+Isolate starts **Off**, and **Hide Other Cameras** starts off too, so cameras you set up by hand stay alone until you turn them on. **Isolate Active Camera** still works while Isolate is Off.
 
 ## :material-movie-open: Rendering
 
