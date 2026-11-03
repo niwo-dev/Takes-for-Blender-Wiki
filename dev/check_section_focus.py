@@ -839,6 +839,59 @@ def probe_mobile(base):
         c.close()
 
 
+def probe_width(base):
+    """The box width follows the window and late content, not just the moment of
+    opening: a resize to phone width fits the gutters, and a diagram that draws
+    after a landing still gets the scrollbar compensation."""
+    sizes = ("({box: document.querySelector('.tks-focus').getBoundingClientRect().width,"
+             " inline: document.querySelector('.tks-focus').style.width,"
+             " doc: document.documentElement.scrollWidth,"
+             " body: document.querySelector('.tks-focus__body').clientWidth})")
+    c = Chrome(1440, 900, False)
+    try:
+        c.goto(base.rstrip("/") + "/features/rest_state/")
+        wait_for(c, "!!document.querySelector('.md-content__inner')", 5)
+        time.sleep(0.5)
+        c.js("sf.scrollHeadingTo('how-it-works', 140)")
+        time.sleep(0.3)
+        x, y = title_point(c, "how-it-works")
+        c.click(x, y)
+        report("width-resize-opens", wait_for(c, "!!document.querySelector('.tks-focus')", 2))
+        time.sleep(0.4)
+        c.resize(390, 844, True)
+        time.sleep(0.6)
+        r = c.js(sizes)
+        report("width-resize-390-fits-gutters", abs(r["box"] - 358) <= 1, **r)
+        report("width-resize-390-no-hscroll", r["doc"] <= 390, **r)
+        c.resize(1440, 900, False)
+        time.sleep(0.6)
+        r = c.js(sizes)
+        report("width-resize-back-wide", r["box"] > 700 and r["doc"] <= 1440, **r)
+    finally:
+        c.close()
+    url = base.rstrip("/") + "/interface/variant_tree/"
+    c = Chrome(1440, 900, False)
+    try:
+        c.goto(url + "#hierarchy")
+        wait_for(c, "!!document.querySelector('.tks-focus')", 3)
+        time.sleep(0.3)
+        landed = c.js(sizes)
+        time.sleep(1.0)
+        later = c.js(sizes)
+        report("width-landing-text-column-820", later["body"] == 820, landed=landed, later=later)
+        c.js("document.querySelector('.tks-focus__close').click()")
+        time.sleep(0.4)
+        x, y = title_point(c, "hierarchy")
+        c.click(x, y)
+        wait_for(c, "!!document.querySelector('.tks-focus')", 2)
+        time.sleep(0.8)
+        clicked = c.js(sizes)
+        report("width-landing-equals-title-click", later["inline"] == clicked["inline"],
+               landing=later, click=clicked)
+    finally:
+        c.close()
+
+
 def main():
     if len(sys.argv) < 3:
         print(__doc__)
@@ -863,6 +916,7 @@ def main():
         probe_marks(base)
         probe_marks_unsupported(base)
         probe_diagram(base)
+        probe_width(base)
         bad = [n for n, ok in RESULTS if not ok]
         print(json.dumps({"summary": f"{len(RESULTS) - len(bad)}/{len(RESULTS)} pass", "failed": bad}))
         return 1 if bad else 0
