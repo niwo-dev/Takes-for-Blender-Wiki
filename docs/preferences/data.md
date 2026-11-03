@@ -62,6 +62,17 @@ The nine types: Render, Output, File Output, View Layer, Color Management, Camer
 ??? info "The storage buttons"
     **{{ op('tks.toggle_preset_override').bl_label }}** gives one preset type its own tier. **{{ op('tks.reset_preset_field').bl_label }}** sends it back to the Master Default, **{{ op('tks.reset_all_preset_fields').bl_label }}** does that for all nine. **{{ op('tks.apply_preset_storage_defaults').bl_label }}** applies the storage defaults to every open scene.
 
+## :material-star-outline: Default Presets
+
+A default preset is the one a file starts with when it has not picked one of its own. Under **Presets**, the **Default Presets** section has a **Tokens** row and one row for each of the seven cascade kinds, from **Render** to **World**. See [Render Presets](../features/render_presets.md#default-presets).
+
+??? info "How a default applies"
+    The file's own choice always wins. The seven kinds apply when you switch to a View Layer that has no preset set anywhere. **Tokens** applies when a file opens. A default whose preset has gone missing shows in red and applies nothing. The **X** beside a row clears it.
+
+## :material-broom: Tools
+
+The **Tools** sub-tab cleans a file of the add-on's data. **Clear Add-on Data (tks_*)** removes every Takes property from the file, so use it before you uninstall. **Clear All Custom Properties** and **Clear by Pattern...** do the same for custom properties. The **Property Scanner** lists the patterns it finds, and **Clear** removes the ones you select. All of these reach every kind of data in the file.
+
 ## :material-puzzle: Add-on
 
 Where the add-on keeps its own settings.
