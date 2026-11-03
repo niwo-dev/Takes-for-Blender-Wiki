@@ -17,7 +17,8 @@ Pick **Render Mode** at the bottom of the [render menu](#the-render-menu).
     **In Blender (Foreground).** You see the render window and live progress, but
     Blender is locked. Every scope row runs
     **{{ op('tks.batch_render').bl_label }}**. Progress shows per View Layer with
-    status indicators. Press ++esc++ to cancel.
+    status indicators. Press ++esc++ to cancel. Diff State switches off while it
+    runs, and the states that were on come back afterwards.
 
     **In Background.** The .blend is saved once, one queue file is written, and a
     single headless Blender works through every queued View Layer. There is no
@@ -92,7 +93,12 @@ Click the **gear icon** in the queue header to choose which info columns show be
 
 ### :material-briefcase-outline: Render Jobs
 
-The **Render Jobs** popover tracks render jobs on disk. It opens at your mouse pointer, so it appears where you clicked. **Rescan Disk** re-checks for frames that arrived from elsewhere — a render farm, another machine, a resumed batch.
+The **Render Jobs** popover tracks render jobs on disk. Press {{ keys('tks.render_jobs_popover') }} to open it. It opens at your mouse pointer, so it appears where you clicked. **Rescan Disk** re-checks for frames that arrived from elsewhere — a render farm, another machine, a resumed batch.
+
+Beside the total bar it always shows the time spent and the time left. Each job's type is an icon; hover it to read the type. When no view layer is enabled for rendering, a boxed note says so.
+
+??? info "Group by Scene"
+    The **Group by Scene** button in the header switches the list. On, the scenes sit on the left and the jobs of the chosen scene on the right. Off, every job of every scene is in one list. **Start View** in Preferences → Workflow → **Render Jobs Popover** picks how the popover opens: **Per Scene** or **All Scenes**.
 
 ??? tip "Resizing the popover"
     Blender popups cannot resize while open. So drag the **corner grip** at the
@@ -149,6 +155,8 @@ Click the render icon next to a View Layer row to toggle it.
 ## :material-export: Output
 
 Output paths come from the [Smart Output](smart_output.md) token system, so every view layer names its own file.
+
+A batch will not start while an output field is red. A prompt names each take, field and reason.
 
 The **Directory** and **File Name** rows carry the same ▾ dropdown as the Properties Output panel: **Build Syntax**, an **Insert Token** quick-pick, and **{{ op('tks.field_clear').bl_label }}** for the last token or the whole field.
 
