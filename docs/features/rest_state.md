@@ -64,8 +64,8 @@ The Rest State block sits in *Globals ▸ Settings*.
     property, and in Blender's *Insert Keyframe* menu as **Keyframe to Rest**. It
     writes a keyframe at frame 0 in the Rest Action. It offers *Active*, *Selected*
     and *All*. A press that changes many objects asks first (**Rest State
-    Protection**, under *Preferences ▸ Interface ▸ Confirmations*). A dropdown
-    value cannot be recorded, and the button says so.
+    Protection**, under *Preferences ▸ Interface ▸ Confirmations ▸ Data Integrity*). A dropdown
+    value cannot be recorded, and Takes warns you instead.
 
     **{{ op('tks.rest_mode_toggle').bl_label }}** is the leftmost of the three mode
     toggles in the Navigation header, before **Still Mode** and

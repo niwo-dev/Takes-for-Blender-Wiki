@@ -44,7 +44,7 @@ You can also apply a **World preset**, or let a **World rule** choose the world 
 
 Shows the action the cascade resolved. **Re-apply Cascade Action** restores it after a manual clear.
 
-On the tiers where it applies, the action's row also carries **Inherit Parent Keys** (a small menu: Auto, On, Off) and a **Pass Down to Children** toggle. They decide whether a tier builds on the keys of the tier above.
+On the tiers where it applies, the action's row also carries two small icon buttons: **Inherit Parent Keys** (a menu: Auto, On, Off) and **Pass Down to Children** (a toggle). They show only when there is a choice to make, and they decide whether a tier builds on the keys of the tier above.
 
 The **+** opens a list of names for a new action. See [Pick the Action's Name](../features/cascade.md#pick-the-actions-name).
 
