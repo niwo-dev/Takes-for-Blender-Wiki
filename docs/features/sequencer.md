@@ -89,8 +89,11 @@ The viewport runs at the shot's own frame and cuts on the edit's frames. Pick th
 While it runs, the sequencer's own preview and the 3D viewport's overlays are off. Stopping the mode puts the window, the sequencer and the 3D view back.
 
 ??? info "What it needs and what it cannot do"
-    - An edit with scene strips, and a 3D viewport in the window. Without them the mode refuses and changes nothing.
+    - An edit with scene strips, and a 3D viewport in the window. Without them the mode refuses and changes nothing. The message asks you to show the scene with the Scene strips first, or says it needs a 3D viewport in this window.
     - A strip with speed changes (retiming) is not moved by the preview.
+    - A gap between strips holds the last shot.
+    - It leaves the sequencer's timeline in place and takes away only the picture above it.
+    - A plain click on the **Timeline** button stops the mode.
 
 ## :material-keyboard-return: Going back {: #going-back }
 
