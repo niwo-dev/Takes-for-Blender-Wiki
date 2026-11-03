@@ -24,7 +24,7 @@ It is not a chat window inside the add-on. It is the surface an assistant drives
 
 ## :material-hammer-wrench: What it can do
 
-It can describe your project, create and switch takes, set cascade overrides, and switch product variants.
+It can describe your project, create and switch takes, set cascade overrides, and switch product variants. It can also make scenes, view layers and groups, assign saved presets and prompts, set a scene's output folder and file name, and render one take.
 
 Tiers are **named, not numbered**: `take`, `view_layer`, `vl_group`, `scene`, `scene_group`, `global`.
 
@@ -46,6 +46,13 @@ You can also give it standing instructions. See [Prompts](prompts.md).
     | `api.switch_variant(...)` | Point a product at one of its variants. |
     | `api.create_action(...)` | Make a new action for a tier — by your standard name, one of your name patterns, or a name of its own. |
     | `api.action_name_patterns()` / `api.set_action_name_patterns(...)` | Read or set your action name patterns, your standard, and how the list shows names. |
+    | `api.create_scene(...)` / `api.create_view_layer(...)` | Make a new scene or view layer, empty or as a copy of another. |
+    | `api.create_group(...)` / `api.assign_to_group(...)` | Make a Scene or View Layer Group and move scenes or view layers into it. |
+    | `api.create_world(...)` / `api.create_camera(...)` | Make a new World or camera for a level. |
+    | `api.list_presets(...)` / `api.assign_preset(...)` / `api.apply_preset(...)` | List saved presets, put one on a take, view layer, group, scene or Global (or clear it), or apply one once. Saving and deleting have their own verbs. |
+    | `api.get_prompt(...)` / `api.set_prompt(...)` / `api.prompts_in_force(...)` | Ask which saved prompt is in force for a take, and assign one to any level of the tree. |
+    | `api.set_output(...)` / `api.resolve_path(...)` | Set a scene's render output folder and file name, and check what a path turns into, including every token that will not be filled in. |
+    | `api.render_view_layer(..., confirm=True)` / `api.render_status()` / `api.cancel_render()` | Render one take, follow the job, and stop a background render. Status also says how the last job ended. |
     | `api.restore_takes()` / `api.keep_current_takes()` | The two ways out of a lost-take-data state. |
     | `api.reset()` | Free a lock a previous assistant call left behind. |
 
@@ -90,12 +97,12 @@ The assistant is expected to ask you, then call `api.restore_takes()` or `api.ke
 Popovers, dialogs and pie menus are human affordances. An assistant cannot use them, and is told so honestly rather than handed a verb that opens a window nobody is looking at.
 
 ??? info "Two gaps, recorded rather than papered over"
-    **Batch rendering** has no verb yet: a long job wants start / status / cancel
-    rather than one blocking call. **Group hierarchy** — moving scenes and layers
-    between groups — has none either.
+    **Starting a whole batch** has no verb: a long job wants start / status / cancel
+    rather than one blocking call. An assistant can render one take and follow it
+    with `api.render_status()`, but the batch itself stays a click.
 
     Where a capability *does* have a scripted route, the refusal names it.
 
 ??? tip "`api.help()` is the authority"
-    It lists the verbs the *installed* build actually has, read from the live module.
+    It lists the verbs the *installed* build actually has, read from the live module, and labels each one: read-only, destructive, safe to repeat, needs a confirm, runs long. `api.help(verb=...)` gives one verb in full, with its inputs and errors.
     If this page and `help()` ever disagree, believe `help()`.
