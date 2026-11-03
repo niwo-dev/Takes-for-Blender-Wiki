@@ -20,7 +20,7 @@ Everything here starts off. Turn on **Enable Debug Logging** first — the group
 | Setting | What it does |
 |---------|--------------|
 | **Enable Debug Logging** | The master switch. |
-| *File* → **Log Folder**, **Log File Name** | Where the log goes. Leave both empty and the panel prints the default path. |
+| *File* → **Folder**, **File Name** | Where the log goes. Leave both empty and the panel prints the default path. A day's log stops at 20 MB per file and goes on in a numbered part; the five newest parts stay. |
 | *Console* → **Print to Console** | Echo the same lines into Blender's System Console. |
 | *Console* → **Levels** | Which severities reach the log: **Debug**, **Info**, **Warning**, **Error**. |
 | *Tools* → **Export Debug Log**, **Email Dev Support** | Save a copy to send on, or open a support mail. |
@@ -39,7 +39,7 @@ Expand a topic's chevron to reach its subtopics. **All Topics** and **All Subtop
     | **SWITCH** (Take & Cascade) | Take Switch, Cascade Overrides, Group Processing, List Sync, Preload |
     | **ANIM** (Actions & Slots) | Slot Processing, Action Assignment |
     | **REST** (Rest & Still) | Rest State, Still / Animation Mode |
-    | **VARIANT** (Variant Switch) | Variant Switch |
+    | **VARIANT** (Variant Switch) | Variant Switch, Material Swap |
     | **RENDER** (Batch Render) | Background Process, Path Logic, Write Logic, Progress & ETA, Render Versions |
     | **PRESET** (Render Presets) | Cascade, Cascade Sync, Clear Rule, Resolve, Rule Changed, Rule Switch, Tier Write, Color Management, Preset Engine |
     | **NAMING** (Names & Tokens) | Smart Renaming, Datablock Renames, Token Engine |
@@ -57,7 +57,7 @@ Expand a topic's chevron to reach its subtopics. **All Topics** and **All Subtop
 
 ## :material-text-box-search: Debug-Log Monitor
 
-With logging on, a live monitor appears in the navigation panel. It reads the log into a scrollable list, so you can watch events without leaving Blender.
+The **Debug Console** button in the navigation panel's monitor switcher ([Process Monitor](../features/process_monitor.md)) shows a live monitor. It reads the log into a scrollable list, so you can watch events without leaving Blender.
 
 | Button | What it does |
 | -------- | -------------- |
@@ -71,11 +71,11 @@ This sub-tab lists the strategies that keep take switching, the cascade and Rest
 
 Each has its own toggle. Leave them on unless you are debugging the recovery system itself.
 
-??? warning "What they do, and why four are locked"
+??? warning "What they do, and why seven are locked"
     One example: they suppress phantom *Takes Auto-Merge* steps, so one gesture
     costs one undo.
 
-    The four **Required** core strategies sit behind an unlock toggle, the same
+    The seven **Required** core strategies sit behind an unlock toggle, the same
     pattern as *Workflow → Naming → Templates*. Switching them off causes known
     bugs: phantom auto-merge steps on every undo, the cascade clearing actions
     mid-undo, or rest-state snaps overwriting the transforms Blender just restored.
@@ -90,14 +90,14 @@ Each strategy row carries an **[i]** icon. Hover it and the tooltip, **{{ op('tk
 
 ??? info "Undo Monitor"
     The Undo Monitor lists one undo press as a tape of steps, so a press can
-    be read instead of guessed at. Turn it on under **Show Undo Monitor** in the
-    navigation panel's monitor switches.
+    be read instead of guessed at. Open it with the last button of the navigation
+    panel's monitor switcher ([Process Monitor](../features/process_monitor.md)).
 
     | Button | What it does |
     |---|---|
-    | **{{ op('tks.undo_monitor_record').bl_label }}** | Starts recording. Every step goes to a tape file on disk, so a recording survives a restart. |
+    | **{{ op('tks.undo_monitor_record').bl_label }}** | Starts and stops recording. Every step goes to a tape file on disk, so a recording survives a restart. ++alt++ + click clears the steps in the list; the tape file keeps them. |
     | **{{ op('tks.undo_monitor_copy').bl_label }}** | Copies the whole tape to the clipboard, including the steps the panel is too short to show. |
-    | **{{ op('tks.um_log_files').bl_label }}** | Picks which tape file to show. |
+    | **{{ op('tks.um_log_files').bl_label }}** | Picks which tape file and which session to show. ++shift++ + click opens the folder in your file browser. |
 
 ## :material-toy-brick: Utilities
 
@@ -108,9 +108,8 @@ Developer helpers on their own sub-tab — right now, the Icon Sheet.
 **Open Icon Sheet** shows every built-in Blender icon. Browse by category, or type in the **search** field and matches highlight in place. Click an icon to copy its name. A **Recent** tab keeps your last picks.
 
 ??? tip "Binding a shortcut, and the second way in"
-    The Icon Sheet ships with **no hotkey assigned**, so it can never collide with
-    your keymap out of the box. Bind your own with the rebind widget next to the
-    button on this sub-tab.
+    The Icon Sheet opens on ++ctrl+shift+alt+i++ out of the box. Rebind it with the
+    rebind widget next to the button on this sub-tab.
 
     The same sheet backs the custom-token **category icon picker**. Opened that
     way it starts on the tab of the icon the category already uses, and its
@@ -134,10 +133,12 @@ Everything on the Developer tab, in one place. These are diagnostic switches: le
     | **REST (Rest & Still)** | Rest State and Still Mode |
     | **Rest-State Snap Suppression** | Block rest-state snap-back during the 1 s post-undo grace window. Disabling this lets the snap path overwrite Blender's restored unkeyed transforms during the cascade settling period |
     | **Skip ACTION in Post-Undo Cascade** | Pass `skip_action=True` to `apply_overrides` in the post-undo deferred cascade. Disabling this lets the cascade read the empty cascade tier at Blender's intermediate snapshot and clear the action that was just restored — the watched object loses its action on every Ctrl+Z |
+    | **Skip Camera-Clear in Post-Undo Cascade** | After an undo, keep the scene's camera even if the tree has none assigned, including one you picked yourself outside the tree |
     | **Skip Compositor Clear After Undo** | Pass `skip_compositor_clear=True` to `apply_overrides` in the post-undo deferred cascade. Without it, undoing back to a state where no compositor is assigned in the cascade tree wipes the scene's node group — even if the user had assigned it outside the tree. Independent of `compositor_unassigned_mode`, which governs normal (non-undo) cascade runs |
+    | **Skip World-Clear in Post-Undo Cascade** | After an undo, keep the scene's World even if the tree has none assigned, including one you assigned yourself outside the tree |
     | **STORE (Take Data & Snapshots)** | Take data, snapshots and bookmarks |
     | **SWITCH (Take & Cascade)** | Take switching and the cascade that follows it |
     | **SYSTEM (Lifecycle & Background)** | Startup, preferences, undo handlers and background work |
     | **TAGS (Tag Library)** | The tag library: grouping and moves |
-    | **Unlock Advanced Undo Overrides** | Unlock the four required core strategies for editing. Disabling any of them causes known bugs (phantom undo steps, cascade tier loss, snap overwriting undo). Use only for diagnosing conflicts with other add-ons or recovering from an undo-related crash |
+    | **Unlock Advanced Undo Overrides** | Unlock the seven required core strategies for editing. Disabling any of them causes known bugs (phantom undo steps, cascade tier loss, snap overwriting undo). Use only for diagnosing conflicts with other add-ons or recovering from an undo-related crash |
     | **VARIANT (Variant Switch)** | Variant switching and material swaps |
