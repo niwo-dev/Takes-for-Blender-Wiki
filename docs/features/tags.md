@@ -14,15 +14,16 @@ Open the **Globals** tab in the Takes side panel. Click the **Tags** mode icon a
 
 ## :material-tag-multiple: Categories
 
-Every tag lives in one category. Four categories drive automation rules. The other six are plain labels.
+Every tag lives in one category. Five categories drive automation rules. The other six are plain labels.
 
-??? info "All ten categories"
+??? info "All eleven categories"
     | Category | Type | Purpose |
     |----------|------|---------|
     | **Output** | Automation rule | Drives Render / Output / File Output / View Layer / Color Management presets. |
     | **Camera** | Automation rule | Drives the Camera preset and the camera object choice. |
     | **World** | Automation rule | Drives World and environment presets. |
     | **Material** | Automation rule | Drives Material preset assignments. |
+    | **Prompts** | Automation rule | Holds the assistant's [prompts](prompts.md). |
     | **Scene** | Data-scoped | Tags Scenes for organisation. |
     | **Scene Group** | Data-scoped | Tags Scene Groups. |
     | **View Layer Group** | Data-scoped | Tags View Layer Groups. |
@@ -41,7 +42,7 @@ Use **+** and **−** to add or remove a tag, and **↑ / ↓** to reorder one. 
     - **{{ op('tks.tag_retarget_group').bl_label }}** (track icon) moves a tag into
       another group. Same as ++ctrl+t++.
     - **{{ op('tks.rename_tag_item').bl_label }}** (++f2++), **{{ op('tks.delete_tag_item').bl_label }}** (++del++ or ++x++) and **{{ op('tks.move_tag').bl_label }}** (↑ / ↓) act on the active tag or group. Renaming opens a small dialog, **{{ op('tks.tag_rename_popup').bl_label }}**.
-    - The **stats row** counts tags per category, like `3/5 Output | 2/2 Camera`.
+    - The **stats row** counts tags per category, like `3/5 Output | 2/2 Camera`. It lists only the categories that hold tags.
     - Every category header carries a **chevron** that runs **Toggle Expand**. It
       folds or unfolds that category.
     - ++shift++-click a chevron to fold or unfold **every** category at once. Handy
@@ -52,6 +53,8 @@ Use **+** and **−** to add or remove a tag, and **↑ / ↓** to reorder one. 
 1. Pick a category in the tree.
 2. Click **+**, then **Tag**.
 3. Give it a name and a colour — five presets, or your own.
+
+The colour paints a strip on the tree row. In the Tree section of *Preferences > Interface*, **Tag Color** switches it off and **Strip Width** sets its width.
 
 To file it away, tick the tags you want, then press **+** → **Group**. The group is built from what you picked. To move a tag later, select it and use **Retarget**.
 
