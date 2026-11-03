@@ -16,7 +16,7 @@ You have a water bottle that ships in three finishes: Matte Black, Brushed Alumi
 ## :material-cog-outline: Setup
 
 ### 1. Create the Product
-1. Open the **Globals** panel and switch it to the **Variants** mode.
+1. Open the **Globals** panel and switch it to the **Variant** mode with the mode buttons in the Variants header.
 2. Click **+** and choose **Add Product**. The new Product comes with one Part, one Materials row and one State.
 3. Double-click the Product name, or press ++f2++, and type "Bottle".
 4. Click the collection button on the Product row and pick the collection that holds the bottle. The pickers further down then offer only collections inside it.
@@ -37,7 +37,7 @@ Each Materials row owns one pool of materials and one target collection. The swa
 ### 4. Create States
 1. Rename the starter State "default" to "Matte Black".
 2. Select the State row and click **+** to add a State. Name it "Aluminum", then add "Rose Gold" the same way.
-3. Click the icon at the start of the "Matte Black" State to edit it. On each Materials row, set the pool index field to 0.
+3. Click the diamond icon at the start of the "Matte Black" State to edit it. On each Materials row, set the pool index field to 0.
 4. Pick "Aluminum" the same way and set every pool index to 1, then "Rose Gold" with 2.
 
 ??? info "What the Parts are for"
@@ -47,7 +47,7 @@ Each Materials row owns one pool of materials and one target collection. The swa
 
 ## :material-eye: Previewing
 
-Switch **Live** on in the Navigation panel header. Then click the icon at the start of any State to see that variant in the viewport.
+Switch on **Variant Live** in the Navigation panel header. Then click the diamond icon at the start of any State to see that variant in the viewport.
 
 ## :material-image-multiple: Rendering All Variants
 
