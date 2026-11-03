@@ -129,7 +129,7 @@ The action is named after the row you clicked, not after the active View Layer.
     | The tier's template | The tier's own [Action Template](../preferences/workflow.md#action-templates). |
     | Your name patterns | One line per pattern you keep in Preferences. |
     | **Custom Name…** | Opens a small box with a name field, already filled in. Type a name, then click **Create** or **Cancel**. |
-    | **Edit Name Patterns…** | Opens the add-on preferences. |
+    | **Edit Name Patterns…** | Opens *Preferences ▸ Workflow ▸ Syntax* with **Action Name Patterns** open. |
 
 ??? info "Greyed lines"
     A greyed line cannot name this row. The reason stands next to it. Example:
@@ -165,9 +165,9 @@ Three buttons keep it in sync.
 
 | Button | What it does |
 | -------- | -------------- |
-| **Re-apply Cascade Action** | Puts the resolved action back on every watched object. Use it after hand-editing an object's animation. |
+| **Re-apply Cascade Action** | Puts the resolved action back on every watched object. Use it after hand-editing an object's animation. The Action Mismatches warning carries it in its title row. |
 | **Pin Action** | Remembers the object's current action as its own. Takes uses it when the cascade finds nothing to give. It is a fallback, not a block — to keep the cascade off an object for good, pin the object in the [Inspector](../interface/inspector_panel.md). |
-| **Push to Selected** | Copies one value from the active row to every selected View Layer. Appears only during a multi-selection. |
+| **Push to Selected** | Copies the value of the tier you press it on to every selected View Layer. Every cascade popover has it, group and Take popovers too. Appears only during a multi-selection. |
 
 ??? info "Two more, from operator search only"
     | Action | What it does |
@@ -253,8 +253,8 @@ The Navigation panel says so and gives you two chips to fix it on the spot.
 **+** — *New Camera* / *New World* — creates one, assigns it, and, for a camera, aligns it to your current view.
 
 ??? info "Which tier the chips write to"
-    Not fixed. It follows your *Camera handling* and *World handling* preferences
-    (see [Globals](globals.md)). A studio that manages everything on the Scene tier
+    Not fixed. It follows the **Adopt To** setting for cameras and worlds under
+    *Preferences ▸ Workflow ▸ Automations* (see [Globals](globals.md)). A studio that manages everything on the Scene tier
     and one that works per View Layer both get a button that lands in the right place.
 
     When the row appears because a camera was *removed* rather than never assigned,
