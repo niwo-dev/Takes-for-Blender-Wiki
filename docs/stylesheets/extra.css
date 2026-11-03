@@ -1319,6 +1319,80 @@ h1, h2, h3, h4, h5, h6 {
   transition: opacity 1s ease-out;
 }
 .tks-target-mark.is-fading { opacity: 0; }
+/* Section focus pop-up (manual-target-mark.js). The scrim shares the drawer's
+   and the contents panel's backdrop rules above; both layers sit over the
+   header and the drawer so the whole page is dimmed and blurred. */
+.tks-focus-scrim { z-index: 9; }
+.tks-focus {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 24px;
+  height: fit-content;
+  max-width: calc(100% - 32px);
+  max-height: 85vh;
+  background: var(--md-default-bg-color);
+  border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 8%, transparent);
+  border-radius: 0.35rem;
+  box-shadow: 0 4px 1rem rgba(0, 0, 0, 0.25);
+  outline: none;
+}
+.tks-focus__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.tks-focus__body > :first-child {
+  margin-top: 0;
+  margin-right: 28px;               /* clear of the close button */
+}
+.tks-focus__body > :last-child { margin-bottom: 0; }
+.tks-focus__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 0.35rem;
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  cursor: pointer;
+}
+.tks-focus__close:hover {
+  background: var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color);
+}
+.tks-focus__close:focus-visible {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: -2px;
+}
+/* Taking the page scrollbar away must not move the text: the gap is filled. */
+html.tks-focus-lock {
+  overflow: hidden;
+  padding-right: var(--tks-focus-sbw, 0px);
+}
+/* A title opens its section; inside the pop-up there is nothing more to open. */
+.md-typeset :is(h2, h3, h4, h5, h6)[id] { cursor: pointer; }
+.tks-focus .md-typeset :is(h2, h3, h4, h5, h6)[id] { cursor: default; }
+@media (prefers-reduced-motion: no-preference) {
+  .tks-focus-scrim { animation: tks-focus-fade 0.15s ease-out; }
+  .tks-focus { animation: tks-focus-rise 0.15s ease-out; }
+}
+@keyframes tks-focus-fade { from { opacity: 0; } }
+@keyframes tks-focus-rise {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tks-target-mark { transition: none; }
 }
@@ -1388,19 +1462,23 @@ h1, h2, h3, h4, h5, h6 {
 /* Both overlays dim AND blur, so whatever is behind stops competing for the
    eye rather than merely going darker. */
 .md-overlay,
-.tks-toc-scrim {
+.tks-toc-scrim,
+.tks-focus-scrim {
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
 }
 
 /* The contents panel's own scrim -- same treatment as the drawer's, one layer
    below the panel so the panel stays crisp. */
-.tks-toc-scrim {
+.tks-toc-scrim,
+.tks-focus-scrim {
   position: fixed;
   inset: 0;
+  background-color: rgba(0, 0, 0, 0.54);
+}
+.tks-toc-scrim {
   z-index: 4;
   display: none;
-  background-color: rgba(0, 0, 0, 0.54);
 }
 .tks-toc-scrim[data-open="true"] {
   display: block;

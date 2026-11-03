@@ -1,11 +1,20 @@
-/* Marks where an Online Manual link landed.
+/* Marks where an Online Manual link landed, and shows that section alone.
  *
  * The add-on's right-click "Online Manual" opens `page/#anchor`. The jump
  * itself is exact, but on a long section the eye still has to find where the
- * section ends. This lays a soft accent band over the target heading and
- * everything under it up to the next heading of the same or higher level, then
- * fades it out by itself. Clicks leave it alone, so the reader can click
- * around the page and still see where they landed.
+ * section ends. Two things answer that, both built on one walk (`sectionNodes`:
+ * the heading plus its siblings up to the next heading of the same or higher
+ * level):
+ *
+ *  - A focus pop-up. The first page load that carries a hash naming a heading
+ *    opens that section in a pop-up over the dimmed, blurred page, and so does
+ *    a click on the title text of any h2-h6. It shows a copy of the section;
+ *    the real nodes never move. Esc, a click outside or the close button end
+ *    it. In-page jumps and instant navigation to another page never open it.
+ *  - A soft accent band over the section, then faded out by itself. It starts
+ *    the moment the pop-up closes (or at once for a jump, which has no pop-up).
+ *    Clicks leave it alone, so the reader can click around the page and still
+ *    see where they landed.
  *
  * The band is an absolutely positioned overlay in document coordinates, never a
  * style on the content itself, so nothing in the page moves: same heading
@@ -23,8 +32,16 @@
   var PAD_X = 12;          // px the band extends past the text, each side
   var PAD_Y = 6;
   var HEADING = /^H([1-6])$/;
+  var FOCUS_HEADING = /^H[2-6]$/;   // h1 is the whole page, not a section
+  var SUFFIX = "-in-focus";         // keeps ids unique in the copied section
+  var CLOSE_ICON =
+    '<svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">' +
+    '<path fill="currentColor" d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 ' +
+    '10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
   var mark = null;
   var timers = [];
+  var pop = null;                   // the open pop-up, or null
+  var firstLoad = true;
 
   function clear() {
     timers.forEach(clearTimeout);
@@ -43,20 +60,28 @@
   }
 
   // Heading plus following siblings until a heading of the same or higher level.
-  function sectionBox(head) {
+  function sectionNodes(head) {
     var level = +HEADING.exec(head.tagName)[1];
-    var first = head.getBoundingClientRect();
-    var top = first.top, bottom = first.bottom;
-    var left = first.left, right = first.right;
+    var nodes = [head];
     for (var n = head.nextElementSibling; n; n = n.nextElementSibling) {
       var m = HEADING.exec(n.tagName);
       if (m && +m[1] <= level) break;
+      nodes.push(n);
+    }
+    return nodes;
+  }
+
+  function sectionBox(head) {
+    var first = head.getBoundingClientRect();
+    var top = first.top, bottom = first.bottom;
+    var left = first.left, right = first.right;
+    sectionNodes(head).slice(1).forEach(function (n) {
       var r = n.getBoundingClientRect();
-      if (r.height === 0) continue;
+      if (r.height === 0) return;
       bottom = Math.max(bottom, r.bottom);
       left = Math.min(left, r.left);
       right = Math.max(right, r.right);
-    }
+    });
     return { top: top, bottom: bottom, left: left, right: right };
   }
 
@@ -72,9 +97,10 @@
     mark.style.height = (box.bottom - box.top + 2 * PAD_Y) + "px";
   }
 
-  function show() {
+  function show(head) {
     clear();
-    var head = targetHeading();
+    if (pop) return;                // the band starts when the pop-up closes
+    head = head || targetHeading();
     if (!head) return;
     mark = document.createElement("div");
     mark.className = "tks-target-mark";
@@ -94,14 +120,243 @@
     window.addEventListener("resize", place);
   }
 
+  // A copy of the section's nodes. Ids get a suffix so none exists twice, and
+  // so do the names and references that tie tab radios, labels, details and
+  // copy buttons together -- otherwise a copied tab set would switch the real
+  // one underneath.
+  function copySection(head) {
+    var holder = document.createElement("div");
+    sectionNodes(head).forEach(function (n) {
+      var copy = n.cloneNode(true);
+      var from = n.querySelectorAll("input"), to = copy.querySelectorAll("input");
+      for (var i = 0; i < from.length; i++) to[i].checked = from[i].checked;
+      holder.appendChild(copy);
+    });
+    var ids = {};
+    holder.querySelectorAll("[id]").forEach(function (el) {
+      ids[el.id] = true;
+      el.id += SUFFIX;
+    });
+    holder.querySelectorAll("input[name], a[name]").forEach(function (el) {
+      el.name += SUFFIX;
+    });
+    // Links to a spot inside the copy (code line numbers) stay inside it.
+    holder.querySelectorAll('a[href^="#"]').forEach(function (el) {
+      var id = decodeURIComponent(el.getAttribute("href").slice(1));
+      if (ids[id]) el.setAttribute("href", "#" + id + SUFFIX);
+    });
+    ["for", "aria-labelledby", "aria-controls", "aria-describedby"].forEach(function (a) {
+      holder.querySelectorAll("[" + a + "]").forEach(function (el) {
+        el.setAttribute(a, el.getAttribute(a).split(/\s+/).map(function (id) {
+          return ids[id] ? id + SUFFIX : id;
+        }).join(" "));
+      });
+    });
+    holder.querySelectorAll("[data-clipboard-target]").forEach(function (el) {
+      el.setAttribute("data-clipboard-target",
+        el.getAttribute("data-clipboard-target").replace(/^#([^\s>]+)/, function (m, id) {
+          return ids[id] ? "#" + id + SUFFIX : m;
+        }));
+    });
+    // A permalink inside the copy would point at the page, not at the copy.
+    holder.querySelectorAll(".headerlink").forEach(function (el) { el.remove(); });
+    return holder;
+  }
+
+  function focusables(box) {
+    return Array.prototype.filter.call(box.querySelectorAll(
+      "a[href], button, input, summary, select, textarea, [tabindex]"
+    ), function (el) {
+      return !el.disabled && el.tabIndex >= 0 && el.getClientRects().length > 0;
+    });
+  }
+
+  function onKey(e) {
+    if (!pop) return;
+    if (e.key === "Escape") {
+      e.preventDefault();
+      e.stopPropagation();
+      closeFocus(true);
+    } else if (e.key === "Tab") {
+      var list = focusables(pop.box);
+      if (!list.length) { e.preventDefault(); return; }
+      var first = list[0], last = list[list.length - 1];
+      var at = document.activeElement;
+      if (!pop.box.contains(at) || at === pop.box) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      } else if (e.shiftKey && at === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && at === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  }
+
+  // A link in the copy to an anchor on this page: leave the pop-up, then jump,
+  // which the band treats like any other jump.
+  function jumpTo(hash) {
+    closeFocus(false);
+    if (location.hash === hash) {
+      var el = document.getElementById(decodeURIComponent(hash.replace(/^#/, "")));
+      if (el) el.scrollIntoView();
+      later();
+    } else {
+      location.hash = hash;         // fires hashchange, which shows the band
+    }
+  }
+
+  function onBoxClick(e) {
+    var a = e.target.closest("a[href]");
+    if (!a || !pop || !pop.box.contains(a)) return;
+    var inside = a.hash && pop.box.querySelector(
+      '[id="' + decodeURIComponent(a.hash.slice(1)).replace(/"/g, '\\"') + '"]');
+    if (inside) {
+      e.preventDefault();
+      inside.scrollIntoView({ block: "nearest" });
+      return;
+    }
+    var u = new URL(a.href, location.href);
+    var samePage = u.origin + u.pathname + u.search ===
+      location.origin + location.pathname + location.search;
+    if (u.hash && samePage) {
+      e.preventDefault();
+      jumpTo(u.hash);
+    }
+  }
+
+  function openFocus(head) {
+    clear();
+    closeFocus(false);
+    var root = document.documentElement;
+    var inner = document.querySelector(".md-content__inner");
+    var cs = inner && getComputedStyle(inner);
+    var textW = inner
+      ? inner.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)
+      : 0;
+
+    var scrim = document.createElement("div");
+    scrim.className = "tks-focus-scrim";
+    var box = document.createElement("div");
+    box.className = "tks-focus";
+    box.tabIndex = -1;
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.setAttribute("aria-labelledby", "tks-focus-title");
+    var body = document.createElement("div");
+    body.className = "tks-focus__body md-typeset";
+    var copy = copySection(head);
+    while (copy.firstChild) body.appendChild(copy.firstChild);
+    body.firstElementChild.id = "tks-focus-title";
+    var close = document.createElement("button");
+    close.type = "button";
+    close.className = "tks-focus__close";
+    close.setAttribute("aria-label", "Close");
+    close.innerHTML = CLOSE_ICON;
+    box.appendChild(close);
+    box.appendChild(body);
+
+    pop = {
+      head: head, scrim: scrim, box: box,
+      x: window.pageXOffset, y: window.pageYOffset
+    };
+    // Taking the scrollbar away would widen the page and move the text, so the
+    // gap it leaves is filled and the page stays exactly where it was.
+    root.style.setProperty("--tks-focus-sbw", (window.innerWidth - root.clientWidth) + "px");
+    root.classList.add("tks-focus-lock");
+    document.body.appendChild(scrim);
+    document.body.appendChild(box);
+    // Wide screens: no wider than the page's own text column.
+    var bs = getComputedStyle(box);
+    var edge = parseFloat(bs.paddingLeft) + parseFloat(bs.borderLeftWidth);
+    if (textW) box.style.width = (textW + 2 * edge) + "px";
+
+    scrim.addEventListener("click", function () { closeFocus(true); });
+    close.addEventListener("click", function () { closeFocus(true); });
+    box.addEventListener("click", onBoxClick);
+    document.addEventListener("keydown", onKey, true);
+    box.focus({ preventScroll: true });
+  }
+
+  function closeFocus(withBand) {
+    if (!pop) return;
+    var p = pop;
+    pop = null;
+    document.removeEventListener("keydown", onKey, true);
+    p.scrim.remove();
+    p.box.remove();
+    var root = document.documentElement;
+    root.classList.remove("tks-focus-lock");
+    root.style.removeProperty("--tks-focus-sbw");
+    if (window.pageXOffset !== p.x || window.pageYOffset !== p.y) {
+      window.scrollTo({ left: p.x, top: p.y, behavior: "instant" });
+    }
+    if (p.head.isConnected) {
+      if (!p.head.hasAttribute("tabindex")) {
+        p.head.tabIndex = -1;
+        p.head.addEventListener("blur", function () {
+          p.head.removeAttribute("tabindex");
+        }, { once: true });
+      }
+      p.head.focus({ preventScroll: true });
+    }
+    if (withBand) show(p.head);
+  }
+
+  // A click on the title text itself (not the blank space beside it, not the
+  // permalink, not a drag to select) opens that section.
+  function onTitleClick(e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey ||
+        e.shiftKey || e.altKey || pop) return;
+    var head = e.target.closest && e.target.closest("h2, h3, h4, h5, h6");
+    if (!head || !head.id || !FOCUS_HEADING.test(head.tagName)) return;
+    if (!head.closest(".md-typeset") || head.closest(".tks-focus")) return;
+    var a = e.target.closest("a");
+    if (a && head.contains(a)) return;
+    if (String(window.getSelection())) return;
+    var range = document.createRange();
+    range.selectNodeContents(head);
+    var hit = Array.prototype.some.call(range.getClientRects(), function (r) {
+      return e.clientX >= r.left && e.clientX <= r.right &&
+             e.clientY >= r.top && e.clientY <= r.bottom;
+    });
+    if (hit) openFocus(head);
+  }
+
   // Wait a moment so the browser's own jump to the anchor has happened and the
-  // measured box is the final one.
-  function later() { requestAnimationFrame(function () { setTimeout(show, 50); }); }
+  // measured box is the final one. Only the very first page of a visit
+  // (`landing`) can open the pop-up from its address; a jump or an instant
+  // navigation keeps the band's old rule.
+  function later(landing) {
+    requestAnimationFrame(function () {
+      setTimeout(function () {
+        var head = targetHeading();
+        if (landing === true && head && FOCUS_HEADING.test(head.tagName)) {
+          openFocus(head);
+        } else {
+          show();
+        }
+      }, 50);
+    });
+  }
+
+  function onDocument() {
+    var landing = firstLoad;
+    firstLoad = false;
+    closeFocus(false);              // instant loading swaps the page under it
+    later(landing);
+  }
 
   if (window.document$ && window.document$.subscribe) {
-    window.document$.subscribe(later);
+    window.document$.subscribe(onDocument);
   } else {
-    document.addEventListener("DOMContentLoaded", later);
+    document.addEventListener("DOMContentLoaded", onDocument);
   }
-  window.addEventListener("hashchange", later);
+  window.addEventListener("hashchange", function () {
+    closeFocus(false);
+    later();
+  });
+  document.addEventListener("click", onTitleClick);
 })();
