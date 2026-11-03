@@ -6,7 +6,7 @@ When the add-on opens a page at a section, or when you click a section title, a 
 
 ## Phases
 
-- [ ] Open the pop-up when the add-on's Online Manual link lands on a section
-- [ ] Open the pop-up when the reader clicks a section title
-- [ ] Close it by clicking outside, with Esc or with the close button; the section then gets the accent band on the page, which fades after 4 seconds
+- [x] Open the pop-up when the add-on's Online Manual link lands on a section
+- [x] Open the pop-up when the reader clicks a section title
+- [x] Close it by clicking outside, with Esc or with the close button; the section then gets the accent band on the page, which fades after 4 seconds
 - [ ] Before/after review, publish, changelog
