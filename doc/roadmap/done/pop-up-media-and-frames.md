@@ -2,8 +2,6 @@
 
 **Type:** Test · **Theme:** Quality · **Area:** Navigation · **Size:** 🟢
 
-**Status:** awaiting verify
-
 Videos, sound, embedded frames and drawings show in the section pop-up and keep playing or keep their state when it opens and closes.
 
 ## Phases

@@ -102,7 +102,7 @@ generators, CI. Page wording and content edits are not logged in either file.
 
 ### Fixed
 
-1. 🔴 **The section pop-up shows no sideways scroll bar, and its close button sits clear of the scroll bar.**
+1. 🟢 **The section pop-up shows no sideways scroll bar, and its close button sits clear of the scroll bar.**
    Root cause: Material's `.md-typeset__scrollwrap` (tables) reaches 0.8rem
    past the text column on both sides; the page's margin absorbs that, the
    pop-up body had none, so every section with a table overflowed by 16 px.
@@ -116,7 +116,10 @@ generators, CI. Page wording and content edits are not logged in either file.
    bar 495 → 0, at scale 1/1.25/1.5/1.75. Probe 109/109. Known and older:
    at ≤1000 px the pop-up column is 35 px narrower than the page column
    (the box's own side insets). Commits `2f002a8e`, `a8201487` (before rebase).
-2. 🔴 **Videos, sound, embedded frames and drawings keep playing and keep their state when the section pop-up opens and closes.**
+   Live proof 2026-11-03 (deploy `580637dc`): probe 109/109; sweep of the live
+   site 0 sideways, 0 overhang, 0 × under 4 px; `features/rest_state/` 0/0/0
+   at scale 1, 1.25, 1.5 and widths 840/1440.
+2. 🟢 **Videos, sound, embedded frames and drawings keep playing and keep their state when the section pop-up opens and closes.**
    One `relocate()` helper in `docs/javascripts/manual-target-mark.js` moves
    the `MOVE` kinds both ways: `Element.prototype.moveBefore` where it
    exists, `insertBefore` as fallback (also when `moveBefore` throws).
@@ -130,3 +133,6 @@ generators, CI. Page wording and content edits are not logged in either file.
    `dev/make_media_fixture.py`, `dev/check_media_engines.mjs`,
    `dev/check_section_focus.py media`. Commits `530fcd84`, `8e0ade70`
    (before rebase).
+   Live proof 2026-11-03: the live page loads `manual-target-mark.js?v=0821fc5e`,
+   the same file the engine checks passed on; probe 109/109 on the live site.
+   No live page holds media yet, so the engine checks stay the behaviour proof.

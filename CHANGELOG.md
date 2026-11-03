@@ -25,5 +25,5 @@ Started 2026-09-20. Earlier work is in the git history, not here.
 
 ### Fixed
 
-1. 🔴 The section pop-up shows no sideways scroll bar, and its close button sits clear of the scroll bar.
-2. 🔴 Videos, sound, embedded frames and drawings keep playing and keep their state when the section pop-up opens and closes.
+1. 🟢 The section pop-up shows no sideways scroll bar, and its close button sits clear of the scroll bar.
+2. 🟢 Videos, sound, embedded frames and drawings keep playing and keep their state when the section pop-up opens and closes.
