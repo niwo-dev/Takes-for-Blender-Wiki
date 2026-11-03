@@ -39,7 +39,7 @@ A State remembers one pool entry per Part. Picking a State applies all of them a
 3. Expand the new Part and drop a material into its empty pool slot.
 4. Add a State for each finish you need, such as "Gold".
 
-The tree's **+**, **−** and **▲ / ▼** buttons add, delete and reorder rows. The **Add Variant Item** menu holds **Add Product**, **Add State**, **Add Part**, **Add Materials** and **Add Slot** — see [Variant Tree](../interface/variant_tree.md#row-controls).
+The tree's **+**, **−** and **▲ / ▼** buttons add, delete and reorder rows. The **Add Variant Item** menu holds **Add Product**, **Add State**, **Add Part** and **Add Materials** — see [Variant Tree](../interface/variant_tree.md#row-controls).
 
 ??? info "What you get, and what happens as you fill the pool"
     A new Product arrives ready to use: one Part named **base part**, one starter
@@ -133,6 +133,7 @@ Click the **variant** icon on any tree row to pick a State for that tier. The sa
 
 ??? info "Set and clear, tier by tier"
     Every tier from Global to View Layer is set and cleared from its row's variant picker.
+    ++alt++-click a variant icon to clear that tier's variant; ++shift+alt++-click also clears the tiers below it.
     A Take also has **{{ op('tks.take_set_variant').bl_label }}** / **{{ op('tks.take_clear_variant').bl_label }}** — see [Take Variants](cascade.md#version-variants).
 
 ??? info "Inside a variant popover"
