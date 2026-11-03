@@ -208,4 +208,3 @@ Everything on the Interface tab, in one place.
     | **Swap Materials List** | How many rows the Swap List shows for materials |
     | **Tag** | Show the Tag column in the tree. On in new files |
     | **Timeline Click** | Which kind a plain click on the Timeline button switches on |
-    | **Tree Icon Pie Menu** | Enable the Ctrl+Shift+F pie menu for opening a cascade property on the highlighted tree row. Each slice opens that property's full editor, rules and presets included, without hunting for its icon. A property the row cannot hold is left out of the pie. Off by default |
