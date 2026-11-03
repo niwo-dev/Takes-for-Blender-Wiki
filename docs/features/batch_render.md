@@ -156,9 +156,9 @@ Click the render icon next to a View Layer row to toggle it.
 
 Output paths come from the [Smart Output](smart_output.md) token system, so every view layer names its own file.
 
-A batch will not start while an output field is red. A prompt names each take, field and reason.
+A batch will not start while an output field is red. A prompt names each take, field and reason. If several takes would write to the same file, the batch warns you with an example path and still starts.
 
-The **Directory** and **File Name** rows carry the same ▾ dropdown as the Properties Output panel: **Build Syntax**, an **Insert Token** quick-pick, and **{{ op('tks.field_clear').bl_label }}** for the last token or the whole field.
+The **Folder** and **File Name** rows carry the same ▾ dropdown as the Properties Output panel: **Build Syntax**, an **Insert Token** quick-pick, and **{{ op('tks.field_clear').bl_label }}** for the last token or the whole field.
 
 ### :material-file-refresh: Detect Version From Disk
 
