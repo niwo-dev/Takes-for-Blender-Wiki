@@ -246,19 +246,52 @@ Sessions leave behind slots and actions that hold no animation. Three buttons pr
 
 ## :material-link-variant-off: Linked Files
 
-Objects linked from another file need a library override before you can edit their actions.
+An object linked from another file is read-only. Takes cannot animate it until it has a **library override**, which is a local, editable stand-in for the linked object.
 
-When watched objects come from another file, the **Linked Files** card appears in the [Navigation Panel](navigation_panel.md#warnings), under the **Objects** warning family.
+When watched objects come from another file, the **Objects** warning icon appears in the [Navigation Panel](navigation_panel.md#warnings). Open its **Linked Objects** warning to get the **Linked Files** card. The card makes the overrides for you; see [Overrides](#overrides).
 
 ??? info "What the card shows"
     The card lists one row per library file. Under each name it counts how many objects
     are waiting for an override and how many already have one. A missing file shows in red
     with **Relocate**.
 
-    Each row has buttons to show that file's objects in the watchlist, reload the file, and
-    make the override. The **Library Override** menu in the card title overrides every
-    waiting object of every file at once. **{{ op('tks.copy_linked_names').bl_label }}**, beside it,
+    Each row has three buttons:
+
+    | Button | What it does |
+    |--------|--------------|
+    | **{{ op('tks.show_linked_file').bl_label }}** (eye) | Opens the watchlist with only that file's waiting objects. |
+    | **{{ op('tks.reload_linked_file').bl_label }}** | Loads that file again from disk, to get its latest changes. |
+    | **Library Override** (menu) | Makes the overrides for that file's waiting objects. Greyed out when none are waiting. |
+
+    The **Library Override** menu in the card title overrides every waiting object of every file at once. **{{ op('tks.copy_linked_names').bl_label }}**, beside it,
     copies the names of the waiting objects, one per line.
+
+??? info "The chain-link filter"
+    While some watched object waits for an override, the stats row above the watchlist
+    shows a chain-link filter with their count. Click it to list only those objects.
+    It switches the **Pinned filter** and **Unpinned filter** off, and the other way round.
+
+### :material-layers-plus: Overrides { #overrides }
+
+Open the **Library Override** menu and pick what becomes editable. The choices are the ones in Blender's own *Library Override > Make* menu.
+
+| Choice | What becomes editable |
+|--------|-----------------------|
+| **Selected** | The object itself. The rest of its hierarchy comes along, but stays locked. |
+| **Content** | The objects under it. The object itself stays locked. |
+| **Selected & Content** | The object and the objects under it. |
+
+Each override takes the place of its linked object in your collections, and the linked copy leaves the scene. The whole job is one undo step.
+
+??? info "Where else the menu lives"
+    - **Watchlist row menu.** The menu beside the watchlist offers **Library Override** for the highlighted row, or the ticked rows in multi-select, and **Library Override All** for every linked object in the watchlist. It shows only while some watched object waits.
+    - **{{ op('tks.show_linked_in_outliner').bl_label }}.** In the same menu, when the active object waits: selects it and shows it in every Outliner.
+
+??? note "Locked overrides still wait"
+    Blender refuses to edit a locked override. So an object that is only locked still counts as waiting, until you make it editable with one of the choices above.
+
+??? warning "When an override fails"
+    A warning says how many objects could not be overridden. The Info editor lists their names.
 
 ## :material-rhombus-outline: Channels Mode
 
