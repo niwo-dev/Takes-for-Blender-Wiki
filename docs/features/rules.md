@@ -12,21 +12,22 @@ If [Tags](tags.md) are the labels, Rules are the *programmable* ones — each ca
 
 | Type | Drives |
 |------|--------|
-| **OUTPUT Rule** | The Render, Output, File Output, View Layer and Color Management presets. |
-| **CAMERA Rule** | Camera preset + Camera object pick. |
-| **STUDIO Rule** | World preset. |
-| **MATERIAL Rule** | Material preset (used by Variant Switch). |
+| **Output** | The Render, Output, File Output, View Layer and Color Management presets. |
+| **Camera** | Camera preset + Camera object pick. |
+| **World** | World preset. |
+| **Material** | Material preset (used by Variant Switch). |
+| **Prompts** | No presets: the assistant's [prompts](prompts.md). |
 
 ## :material-plus-circle: Creating a Rule
 
 1. Open *Globals > **Rules** mode*.
-2. Pick a category (OUTPUT / CAMERA / STUDIO / MATERIAL).
+2. Pick a category (**Output**, **Camera**, **World**, **Material**).
 3. Click **+** → **Tag** and name the rule, e.g. *FullHD_Cycles*.
 4. Select the new tag — the *Preset Rules for: <name>* panel appears on the right.
 5. Fill in any combination of preset slots.
 
 ??? info "Which slots each category offers"
-    | Slot (OUTPUT) | What it drives |
+    | Slot (Output) | What it drives |
     |---------------|----------------|
     | **Render** | Engine, samples, resolution. |
     | **Output** | Container & dimensions. |
@@ -34,14 +35,16 @@ If [Tags](tags.md) are the labels, Rules are the *programmable* ones — each ca
     | **View Layer** | Active passes, light groups. |
     | **Color Management** | View transform, look, exposure. |
 
-    | Slot (CAMERA) | What it drives |
+    | Slot (Camera) | What it drives |
     |---------------|----------------|
     | **Camera Preset** | Lens, sensor, DOF. |
     | **Camera Object** | Which camera in the scene. |
 
+    The **World** category has one **World Preset** slot, and **Material** has one **Material Preset** slot.
+
 ## :material-link-variant: Assigning a Rule
 
-In the Context panel every tier shows a **rule icon** (system gear). Click it and pick a rule from the tag library — every preset in that rule is applied to the cascade at that tier.
+In the Context panel every tier shows a **rule icon** (system gear). Click it and pick a rule from the tag library — every preset in that rule is applied to the cascade at that tier. A tier without a rule of its own shows the rule it inherits, greyed inside the field.
 
 Resolution follows the standard cascade: the most specific tier with a value wins, the rest fall back to the parent.
 
@@ -61,6 +64,12 @@ Your change reaches every tier using that rule on the next sync.
 
 ## :material-keyboard: Hotkeys
 
-Cascade icons that select a rule accept ++alt++-click to clear the assignment at that tier.
+Cascade icons that select a rule accept these clicks:
+
+| Click | Result |
+|-------|--------|
+| ++alt++ | Clears that tier's value, rule and preset. |
+| ++shift+alt++ | Does the same on every tier below, takes included. |
+| ++ctrl+shift+alt++ | On an Automation Rule icon, removes the rule's tag from the Tag Library, after a confirm dialog. |
 
 Full list: [Keyboard Shortcuts](../interface/hotkeys.md)
