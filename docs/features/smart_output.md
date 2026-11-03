@@ -13,7 +13,7 @@ You write the pattern once. Every render fills in the current scene, take, camer
 
 1. Open the **Output** panel in Blender's Properties editor.
 2. Switch on the **Smart Output** toggle.
-3. Write your **Directory** and **File Name** patterns using tokens.
+3. Write your **Folder** and **File Name** patterns using tokens.
 
 Smart Output replaces the standard output path in that panel.
 
@@ -225,7 +225,7 @@ The pattern appears twice: as an editable field on top, and as movable chips bel
 Your edits stay in a draft. Nothing reaches the real field until you click the red **Apply** flag.
 
 ??? info "Working in the popover"
-    Every token-capable field carries it — the Smart Output **Directory** / **File Name** rows, the naming-template fields in Preferences, and File Output node fields (a File Output node's per-slot rows use an inline pencil ✏️ launcher instead).
+    Every token-capable field carries it — the Smart Output **Folder** / **File Name** rows, the naming-template fields in Preferences, and File Output node fields (a File Output node's per-slot rows use an inline pencil ✏️ launcher instead).
 
     **The editable field on top.** Type into it directly. The red **Apply** flag appears beside the pattern field as soon as the draft differs from the field's live value; only clicking that flag writes the pattern back. For a directory pattern the field carries the same absolute/relative badge and browse-folder button as the Output panel row. Beside it, a ▾ dropdown holds **Copy**, **Make Absolute** / **Make Relative** (directory patterns only), **Reset to Default**, **Clear Last Token** and **Clear All**. Below the field, the resolved result is previewed live — or a red *Invalid Syntax* message with the reason (see [Path Validation](#path-validation)).
 

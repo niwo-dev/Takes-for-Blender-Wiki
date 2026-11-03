@@ -46,9 +46,9 @@ Open the **Output** panel in Blender's Properties editor and turn on the **Smart
 
 ## 7. Name the output
 
-Set **Directory** to `//renders/` and **File Name** to `{scene}{sep}{viewlayer}{sep}{take}{sep}####.{file_format}`. Each field previews the real name it will write.
+Set **Folder** to `//renders/` and **File Name** to `{scene}{sep}{viewlayer}{sep}{take}{sep}####.{file_format}`. Each field previews the real name it will write.
 
-<div class="tks-shot" data-shot="getting-started_first-batch-render_name-preview">Directory and File Name fields with live preview</div>
+<div class="tks-shot" data-shot="getting-started_first-batch-render_name-preview">Folder and File Name fields with live preview</div>
 
 ## 8. Render the batch
 
