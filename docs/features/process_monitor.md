@@ -54,7 +54,7 @@ Click a row to switch that one process off. Disabled rows stop firing until you 
     | **Variant Switch** | Variant defaults, View Layer switch hook. |
     | **Value Lock** | The Value Lock process. |
     | **Batch Render** | Foreground and background render monitoring. |
-    | **Render Presets** | Cascade resolution, dirty-state checks, sync. |
+    | **Render Presets** | Nothing yet: no process runs in this group. |
     | **Sequencer** | Sequencer frame follow. |
     | **Parent Borrow** | Forgetting borrowed parent state on file load. |
 

@@ -74,7 +74,7 @@ Which gestures do the switching is yours to choose. ++alt++ + click the **Timeli
     | **Playhead** | Clicking or dragging the playhead itself. |
     | **Arrows** | Stepping the frame with the arrow keys over a sequencer. |
 
-    **They are a ladder, not four separate doors.** Hover fires before any press,
+    **They are a ladder, not five separate doors.** Hover fires before any press,
     so the rungs below it only get a turn when it is switched off. If you want
     clicking to be the trigger, turn Hover off.
 
@@ -84,7 +84,7 @@ Which gestures do the switching is yours to choose. ++alt++ + click the **Timeli
 
 **Viewport Preview** is the third mode on the **Timeline** button. The sequencer keeps the edit and plays its sound. The largest 3D viewport shows the shot under the playhead, in camera view, with its scene, view layer and take.
 
-The viewport runs at the shot's own frame and cuts on the edit's frames. Pick the mode with ++shift++ + click on the **Timeline** button, in the **Mode** pie, or fix it as the plain click with **Timeline Click** in the Overlay preferences.
+The viewport runs at the shot's own frame and cuts on the edit's frames. Pick the mode with ++shift++ + click on the **Timeline** button, in the **Mode** pie, or fix it as the plain click with **Timeline** under **Click Turns On** in *Preferences ▸ Interface ▸ Viewport Overlay ▸ Mode Row*.
 
 While it runs, the sequencer's own preview and the 3D viewport's overlays are off. Stopping the mode puts the window, the sequencer and the 3D view back.
 
