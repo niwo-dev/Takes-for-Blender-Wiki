@@ -10,18 +10,20 @@ icon: material/view-dashboard
 
 Every confirmation dialog can be switched off here. All default to **on**.
 
+A few dialogs, such as Remove from Watchlist, Add Cut on a taken frame and New Project Preferences, also carry **Don't remind me for this Blender session**. It lasts until you close Blender and is not saved.
+
 ??? info "Every confirmation, by group"
     | Group | Settings |
     |----------|----------|
-    | Context | Delete Tree Item, Delete Scene, Delete View Layer, Delete Scene Group, Delete View Layer Group, Delete Take. |
+    | Context | Delete Selected Item (Tree), Delete Scene, Delete View Layer, Delete Scene Group, Delete View Layer Group, Delete Take, Marker Moved to a Free Frame. |
     | Inspector | Remove from Watchlist, Delete Action, Delete Slot, Clean Empty Slots/Actions, Delete Keyframe. |
-    | Globals | Delete Tag, Delete Tag/Variant Group, Delete Variant, Delete Bookmark, Delete Custom Token. |
+    | Globals | Delete Tag, Delete Tag / Variant Group, Delete Variant, Delete Bookmark, Delete Custom Token. |
     | Batch Render | Start Batch Render, Overwrite Existing Files. |
     | System | Orphan Cleanup, Override Persistence, Shortcut Override. |
-    | Data Integrity | Rest State Protection, Pinned Object Protection, Shared Resource Safety. |
+    | Data Integrity | Rest State Protection. |
 
     *Context* through *Batch Render* confirm the delete or start they are named
-    after. The last two groups are less obvious:
+    after. The last groups are less obvious:
 
     | Confirmation | What it guards |
     |--------------|----------------|
@@ -29,8 +31,6 @@ Every confirmation dialog can be switched off here. All default to **on**.
     | **Override Persistence** | Property-persistence rules. It also gates deleting a preference config and resetting preferences to defaults. |
     | **Shortcut Override** | Resetting the add-on's global hotkeys back to their defaults. |
     | **Rest State Protection** | Edits to properties guarded by the Rest State (frame 0). |
-    | **Pinned Object Protection** | Changes to objects pinned to a specific Rest State. |
-    | **Shared Resource Safety** | Edits to shared render presets and other library resources. |
 
 ### :material-information-outline: Info Boxes
 
@@ -53,14 +53,14 @@ Every box also carries a **✕** that hides its whole category everywhere at onc
 
 Row heights for the add-on's lists, from 5 to 30 rows.
 
-**Default List Rows** is the master. It applies to every list you have not given its own height.
+**Default Rows** is the master. It applies to every list you have not given its own height.
 
 Each list can follow the global row height or carry its own: **{{ op('tks.toggle_list_override').bl_label }}** switches that on, **{{ op('tks.reset_list_field').bl_label }}** returns one list to the global value and **{{ op('tks.reset_all_list_fields').bl_label }}** all of them.
 
 ??? info "Lists you can override one by one"
-    Objects, Actions, Slots, Scenes, View Layers, Takes Tree, Scene Groups,
-    View Layer Groups, Takes, Tags, VSW Products, Process Monitor, Debug Log,
-    Profiler, Batch Queue, Preferences Setup.
+    Scenes, View Layers, Takes Tree, Scene Groups, View Layer Groups, Takes,
+    Objects, Actions, Slots, Swap List, Swap Materials, Tags, Variants, Prompts,
+    Batch Queue, Process Monitor, Debug Log, Profiler, Preferences Setup.
 
 ## :material-table-column: Columns
 
@@ -78,21 +78,22 @@ How the Takes tree looks, and which icons its rows show.
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| **Icons** | On | Per-icon visibility for the nine cascade icons. Each toggle carries the icon's own name — Tag, Variant, Action, Compositor and so on. |
+| **Icons** | On | Per-icon visibility for the ten tree icons. Each toggle carries the icon's own name — Tag, Variant, Action, Compositor and so on. |
 | **Collapse Mode** | Dynamic | When the overflow `⋯` replaces the icons: Dynamic (by panel width), Always, or Never. |
-| **Show Tag Color** | On | Tints the tree connection lines by tag colour. |
+| **Tag Color** | On | Tints the tree connection lines by tag colour. |
 
 ??? info "The rest of the tree settings"
     | Setting | Default | Description |
     |---------|---------|-------------|
-    | **Pin Outside Collapse** | Off | Which icons stay visible when the overflow `⋯` takes over, for eight of the same icons. |
-    | **Collapse Width** | 600 | Panel width in pixels at which Dynamic collapses. Range 200–800. |
-    | **Tree Line Width** | Medium | Thin, Medium or Wide connection lines. |
-    | **Tree Line Color** | grey | Colour of the connection lines. |
-    | **Active View Layer Color** | gold | Highlight colour for the active View Layer. |
+    | **Pin Outside Collapse** | Still and Render | Which icons stay visible when the overflow `⋯` takes over, one toggle per icon. |
+    | **Min Width** | 600 | Panel width in pixels at which Dynamic collapses. Range 200–800. Shown only in Dynamic. |
+    | **Tree Line** | On | Draws the connection lines. **Color** sets their colour (dark grey). |
+    | **Strip Width** | Medium | Thin, Medium or Wide lines for the tag colour and the shared-action mark. |
+    | **View Layer Icon** | Box | **Box** or **Socket** for the active View Layer. **Color** (gold) tints the Socket only. |
+    | **Mark Shared Actions** | Button | **Off**, **Button** or **Tree Line**: how View Layers that share an action are marked. **Color** (blue) applies to Tree Line only. |
 
-    The nine icons are Rest State, Tag, Render, Variant, Action, Compositor,
-    World, Camera and Automation Rule.
+    The ten icons are Tag, Still, Variant, Action, Compositor, World, Camera,
+    Automation Rule, Prompts and Render.
 
 ## :material-monitor-dashboard: Viewport Overlay
 
@@ -108,9 +109,9 @@ Where the banner sits and how it reads. Inside **Banner**.
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| **Anchor** | Off | Which corner or edge the banner sits in. **Off** disables the overlay. |
+| **Anchor** | Top Center | Which corner or edge the banner sits in. **Off** disables the overlay. |
 | **Offset X / Offset Y** | 0 | Pixel nudge from the anchor. |
-| **Opacity** | 0.9 | Banner transparency. |
+| **Opacity** | 1.0 | Banner transparency. |
 | **Scale** | 1.0 | Size of the banner text and pills. |
 
 ### :material-toggle-switch: Content { #modes }
@@ -121,10 +122,12 @@ A mode toggle only *allows* its pill — the pill shows only while that mode is 
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| **Hide when Takes Panel Open** (Progress Bars) | On | Hides the progress rows while the Takes panel is visible. |
+| **Hide when Takes Panel Open** (Progress Bars) | Off | Hides the progress rows while the Takes panel is visible. |
 | **Show Mode Badges** | On | Master switch for the mode-badge row. |
 | **Autokey / Value Lock / Rest Mode / Still Mode / Frame Sync / Scene Follow / Variant Live / Diff State** | On | Per-mode pill visibility, one switch each. |
-| **Hide when Takes Panel Open** (Mode Badges) | On | Hides only the badge row while the panel is open. Progress rows stay. |
+| **Brightness** | Medium | How bright the badge backgrounds are: Dark, Medium, Light or Bright. |
+| **Show Badge Icon / Show Badge Text** | On | Hide the icon or the text of a badge. One of the two always stays. |
+| **Hide when Takes Panel Open** (Mode Badges) | Off | Hides only the badge row while the panel is open. Progress rows stay. |
 
 ??? info "Which tasks get a progress row"
     Background tasks add a labelled progress bar under the pills. There is nothing to configure per task.
@@ -143,8 +146,8 @@ The seven mode buttons at the top of the Takes panel: which ones you see, and wh
 |---------|---------|-------------|
 | **Icons** | All on | One toggle per button, in the row's order. A hidden button stays in the [Mode Pie](../features/pie_menus.md#mode-pie). |
 | **Still Mode** (click) | Last Used | What a plain click switches on: the kind it was in when you switched it off, or always **Still** or **Animation**. |
-| **Timeline** (click) | Last Used | Same for the Timeline: last used, or always **Frame Sync** or **Scene Follow**. |
-| **Diff State** (click) | Last Used | Same for Diff State: last used, or always **Take State**, **Drift State** or **All**. |
+| **Timeline** (click) | Last Used | Same for the Timeline: last used, or always **Frame Sync**, **Scene Follow** or **Viewport Preview**. |
+| **Diff State** (click) | Last Used | Same for Diff State: last used, or always **Drift State**, **Take State**, **Parent State**, **Rest State** or **All**. |
 
 ++shift++ + click on any of the three buttons picks the kind instead.
 
