@@ -82,7 +82,20 @@ generators, CI. Page wording and content edits are not logged in either file.
    `.tks-text-mark` in separate rules (a shared selector list would be dropped
    whole by an engine without `::target-text`).
 
-   Probe: `dev/check_section_focus.py` + `dev/probe_section_focus.js`, 79/79
-   in Chromium; Playwright pass in Chromium and Firefox, WebKit without
-   pop-up marks as above. Commits `257fdb3e`, `16008476`, `3b0a6804` (before
-   rebase).
+   Diagrams: Material draws each `mermaid` block into a host with a CLOSED
+   shadow root, which `cloneNode` never copies, so the first build showed an
+   empty box where the flowchart sits. Elements a clone cannot carry (the
+   `MOVE` constant: diagram hosts, the undrawn source `pre`, `iframe`,
+   `video`, `audio`, `canvas`, `object`, `embed`, open shadow roots) are now
+   MOVED into the pop-up while it is open, with a same-size hollow left on
+   the page, and moved back on every way of closing. The slot is tracked, not
+   the node, so a diagram Material draws while it sits in the pop-up still
+   goes home. The box width (`fitWidth`) follows resizes and late scrollbars
+   through a `ResizeObserver`, so the pop-up text column stays the page's.
+
+   Probe: `dev/check_section_focus.py` + `dev/probe_section_focus.js`, 105/105
+   in Chromium; a sweep of 83 pages, 495 sections and 2252 blocks compares
+   every page block with its pop-up twin, 0 mismatches. Playwright pass in
+   Chromium, Firefox and WebKit, except WebKit's pop-up marks as above.
+   Commits `257fdb3e`, `16008476`, `3b0a6804`, `0b6d89fe`, `be080762`
+   (before rebase).
