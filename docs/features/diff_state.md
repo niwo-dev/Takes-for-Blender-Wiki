@@ -40,7 +40,7 @@ opens a small menu: one row per state, then a line, then **Show All States**.
 |---|---|
 | **Take State** | Only objects this take keys |
 | **Parent State** | Only objects a tier above keys |
-| **Rest State** | Only objects nothing keys |
+| **Rest State** | Only objects with keys in the Rest action |
 | **Drift State** | Only objects that drifted from the Rest State |
 | **Show All States** | All four states at once, Rest State included |
 
