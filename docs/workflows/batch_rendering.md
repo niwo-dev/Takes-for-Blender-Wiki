@@ -18,7 +18,7 @@ When you want one click to render every View Layer, each with its own camera, wo
 ### 1. Define Output Pattern
 1. Go to **Properties > Output**.
 2. Enable **Smart Output**.
-3. Set the Directory:
+3. Set the Folder:
 
     ```
     //renders/[scene]/[view_layer]/
@@ -43,7 +43,7 @@ When you want one click to render every View Layer, each with its own camera, wo
 3. Set **Render Mode** to *In Blender — you wait*.
 4. Pick a scope row, for example *Selected Layers → This Scene*.
 
-Blender works through the queue in tree order and saves each result to its Smart Output path.
+Blender works through the queue in tree order and saves each result to its Smart Output path. Diff State switches off while it runs, and the states that were on come back afterwards.
 
 ??? info "What the queue does for each View Layer"
     - Switches the scene and View Layer context
@@ -63,6 +63,8 @@ Blender stays interactive while the renders run. Tree thumbnails update as each 
 ## :material-progress-clock: Monitoring Progress
 
 The render queue sidebar shows a progress bar per View Layer. Each row carries a status: Pending, Rendering, Saving, Done, Failed or Cancelled. Hover a failed item for the reason.
+
+Press {{ keys('tks.render_jobs_popover') }} to open [Render Jobs](../features/batch_render.md#render-jobs), the list of what rendering would produce. Beside its total bar sit the time spent and the time left, each named on hover. A job's type shows as an icon, also named on hover. With no View Layer enabled for rendering, a boxed note says so.
 
 Time estimates self-correct while a batch runs. Once the first view layer finishes, the remaining time reflects how this run is really performing.
 
