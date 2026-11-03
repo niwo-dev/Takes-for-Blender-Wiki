@@ -165,7 +165,7 @@ Three buttons keep it in sync.
 
 | Button | What it does |
 | -------- | -------------- |
-| **Re-apply Cascade Action** | Puts the resolved action back on every watched object. Use it after hand-editing an object's animation. The Action Mismatches warning has it in its title row, as **Re-apply Cascade**. |
+| **Re-apply Cascade Action** | Puts the resolved action back on every watched object. Use it after hand-editing an object's animation. The Action Mismatches warning has it in its title row, as **Use Expected Actions**. |
 | **Pin Action** | Remembers the object's current action as its own. Takes uses it when the cascade finds nothing to give. It is a fallback, not a block — to keep the cascade off an object for good, pin the object in the [Inspector](../interface/inspector_panel.md). |
 | **Push to Selected** | Copies the value of the tier you press it on to every selected View Layer. Every cascade popover below Global has it, group and Take popovers too. Appears only during a multi-selection. |
 
