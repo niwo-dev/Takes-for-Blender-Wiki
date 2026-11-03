@@ -21,11 +21,11 @@ The same popover applies a **Camera preset**, and creates or renames a camera wi
 ??? info "The rest of the popover"
     The dropdown lists only cameras linked to the current scene.
 
-    **Camera preset** applies a saved preset (focal length, sensor size). **New**
-    and **Rename** create a camera or rename the assigned one.
+    **Camera preset** applies a saved preset (focal length, sensor size). The **+**
+    creates a camera and the pencil renames the assigned one.
 
     The preset controls stay disabled while the selected object is not the camera
-    the cascade resolved. An info line tells you: "Assign a camera in the cascade."
+    the cascade resolved. An info line tells you: "Assign a camera in the cascade to use presets".
 
 ### :material-earth: World Popover
 
@@ -36,13 +36,15 @@ You can also apply a **World preset**, or let a **World rule** choose the world 
 ??? info "The three World controls"
     | Control | What it does |
     |---|---|
-    | **World selector** | Choose any world in the file. |
+    | **World selector** | Choose any world in the file. The **+** makes a new World on this tier, a Take included. |
     | **World preset** | Apply a saved world preset. |
     | **World rule** | Pick the world automatically from tags. See [Rules](../features/rules.md). |
 
 ### :material-play-box-multiple: Action Popover
 
-Shows the action the cascade resolved. **Re-apply Cascade** restores it after a manual clear.
+Shows the action the cascade resolved. **Re-apply Cascade Action** restores it after a manual clear.
+
+On the tiers where it applies, the action's row also carries **Inherit Parent Keys** (a small menu: Auto, On, Off) and a **Pass Down to Children** toggle. They decide whether a tier builds on the keys of the tier above.
 
 The **+** opens a list of names for a new action. See [Pick the Action's Name](../features/cascade.md#pick-the-actions-name).
 
