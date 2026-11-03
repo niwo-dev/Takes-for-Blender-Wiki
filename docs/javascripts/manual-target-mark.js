@@ -45,6 +45,7 @@
   var FADE_MS = 1000;      // then this long to nothing (matches the CSS)
   var PAD_X = 12;          // px the band extends past the text, each side
   var PAD_Y = 6;
+  var GUTTER = 16;         // px kept free beside the pop-up, each side
   var HEADING = /^H([1-6])$/;
   var FOCUS_HEADING = /^H[2-6]$/;   // h1 is the whole page, not a section
   var SUFFIX = "-in-focus";         // keeps ids unique in the copied section
@@ -380,6 +381,9 @@
     st.display = cs.display === "inline" ? "inline-block" : cs.display;
     st.boxSizing = "border-box";
     st.width = r.width + "px";
+    // A window made narrower while the pop-up is open must not leave the hollow
+    // wider than its column, or the page would scroll sideways behind the pop-up.
+    st.maxWidth = "100%";
     st.height = r.height + "px";
     ["Top", "Right", "Bottom", "Left"].forEach(function (side) {
       st["margin" + side] = cs["margin" + side];
@@ -473,15 +477,38 @@
     body.scrollTop += r.top - box.top - (box.height - r.height) / 2;
   }
 
+  // Sets the box width: the page's text column, plus the scrollbar's width while
+  // the body shows one (unless the extra room makes it unnecessary), and never
+  // more than the viewport less a gutter each side. It writes only when the value
+  // changes, and the scrollbar check settles within one extra pass, so an
+  // observer that fires after the write does not start a loop.
+  function fitWidth(box, body) {
+    var inner = document.querySelector(".md-content__inner");
+    if (!inner) return;
+    var ics = getComputedStyle(inner);
+    var textW = inner.clientWidth - parseFloat(ics.paddingLeft) - parseFloat(ics.paddingRight);
+    if (!(textW > 0)) return;
+    var bs = getComputedStyle(box);
+    var edge = parseFloat(bs.paddingLeft) + parseFloat(bs.borderLeftWidth);
+    var room = document.documentElement.clientWidth - 2 * GUTTER;
+    var set = function (w) {
+      w = Math.min(w, room) + "px";
+      if (box.style.width !== w) box.style.width = w;
+    };
+    set(textW + 2 * edge);
+    // A scrollbar that takes room from the text would wrap lines differently
+    // from the page, so the box grows by its width.
+    var bar = body.offsetWidth - body.clientWidth;
+    if (bar > 0) {
+      set(textW + 2 * edge + bar);
+      if (body.offsetWidth === body.clientWidth) set(textW + 2 * edge);
+    }
+  }
+
   function openFocus(head, items) {
     clear();
     closeFocus(false);
     var root = document.documentElement;
-    var inner = document.querySelector(".md-content__inner");
-    var cs = inner && getComputedStyle(inner);
-    var textW = inner
-      ? inner.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)
-      : 0;
 
     var scrim = document.createElement("div");
     scrim.className = "tks-focus-scrim";
@@ -517,19 +544,16 @@
     root.classList.add("tks-focus-lock");
     document.body.appendChild(scrim);
     document.body.appendChild(box);
-    // Wide screens: no wider than the page's own text column.
-    var bs = getComputedStyle(box);
-    var edge = parseFloat(bs.paddingLeft) + parseFloat(bs.borderLeftWidth);
-    if (textW) {
-      box.style.width = (textW + 2 * edge) + "px";
-      // A scrollbar that takes room from the text would wrap lines differently
-      // from the page, so the box grows by its width (unless the extra room
-      // makes the scrollbar unnecessary).
-      var bar = body.offsetWidth - body.clientWidth;
-      if (bar > 0) {
-        box.style.width = (textW + 2 * edge + bar) + "px";
-        if (body.offsetWidth === body.clientWidth) box.style.width = (textW + 2 * edge) + "px";
-      }
+    // Wide screens: no wider than the page's own text column. The width is
+    // kept live: a window resize or a diagram that draws late changes both the
+    // column and whether the body needs a scrollbar.
+    pop.fit = function () { fitWidth(box, body); };
+    pop.fit();
+    window.addEventListener("resize", pop.fit);
+    if (window.ResizeObserver) {
+      pop.watch = new ResizeObserver(pop.fit);
+      pop.watch.observe(body);
+      Array.prototype.forEach.call(body.children, function (c) { pop.watch.observe(c); });
     }
 
     scrim.addEventListener("click", function () { closeFocus(true); });
@@ -555,6 +579,8 @@
     var p = pop;
     pop = null;
     document.removeEventListener("keydown", onKey, true);
+    window.removeEventListener("resize", p.fit);
+    if (p.watch) p.watch.disconnect();
     p.moved.forEach(moveOut);
     p.scrim.remove();
     p.box.remove();
