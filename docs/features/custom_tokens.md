@@ -37,7 +37,7 @@ The loop is always the same: category → token → source, reads, format → ch
 
     renders to `//renders/ShotA/50mm/MyProject_Red_0001.png`.
 
-    Custom categories appear after the built-ins in the **Build Syntax** grid.
+    Your categories sit in the group list on the left of **Build Syntax**, next to the built-in groups. The list runs from the group with the fewest tokens to the one with the most.
 
 ??? info "How the *Reads* path works"
     The path is a chain of names separated by dots, starting **from the source**.
@@ -105,8 +105,8 @@ Categories are only labels. Click a category title to rename the group, or its i
       ({{ op('tks.custom_token_set_category_icon').bl_label }}).
     - **★ / 👁** — star favourites
       ({{ op('tks.custom_token_toggle_favorite').bl_label }}) and hide tokens
-      ({{ op('tks.custom_token_toggle_hidden').bl_label }}). The **Build Syntax**
-      grid can filter to favourites, and to built-in or custom views.
+      ({{ op('tks.custom_token_toggle_hidden').bl_label }}). **Build Syntax**
+      can list only the starred tokens, and only the built-in or only the custom ones.
     - **Deleting** — the row's **✕**
       ({{ op('tks.custom_token_remove').bl_label }}) asks for confirmation, like
       every other delete in the addon. The toggle lives in Preferences →
@@ -271,4 +271,4 @@ Every setting this feature adds.
     | Setting | What it does |
     | --- | --- |
     | **Favourites Only** | Show only starred tokens |
-    | **Search** | Filter the token grid by name as you type |
+    | **Search** | Filter the token table by name as you type (three letters or more) |
