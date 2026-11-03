@@ -30,7 +30,9 @@ Tiers are **named, not numbered**: `take`, `view_layer`, `vl_group`, `scene`, `s
 
 You can also give it standing instructions. See [Prompts](prompts.md).
 
-??? info "The full verb list"
+??? info "The main verbs"
+    These are the main verbs. `api.help()` lists every verb the installed build has.
+
     | Verb | What it does |
     |------|--------------|
     | `api.status()` | What the engine is doing right now — switching, preloading, or rendering. |
