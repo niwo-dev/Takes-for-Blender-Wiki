@@ -17,7 +17,7 @@ The header has a row of mode buttons. Each switches the panel body to a differen
 | Mode | Icon | Shows |
 |------|------|-------|
 | **Presets** | preset | Overview of 8 preset categories. |
-| **Variants** | UV-sync | The [Variant Switch](variant_switch.md) tree. |
+| **Variant** | UV-sync | The [Variant Switch](variant_switch.md) tree. |
 | **Rules** | gear (system) | Automation [rules](rules.md). |
 | **Tags** | colour mod | The full [tag](tags.md) library. |
 | **Prompts** | text | The assistant's saved [prompts](prompts.md). |
