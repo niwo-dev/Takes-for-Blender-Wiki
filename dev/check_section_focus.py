@@ -7,7 +7,7 @@ the report / `python -m http.server <port> -d <built site>`):
     python dev/check_section_focus.py probe  <base-url> [--only NAME]
     python dev/check_section_focus.py markshots <base-url> <out-dir>
     python dev/check_section_focus.py diagshots <base-url> <out-dir>
-    python dev/check_section_focus.py sweep  <base-url> [--only PATH-PART]
+    python dev/check_section_focus.py sweep  <base-url> [--only PATH-PART] [--dpr 1,1.25,1.5] [--width 840,1440]
     python dev/check_section_focus.py media  <base-url> [--site DIR] [--engine NAME]
 
 `media` writes the test-only media page (dev/make_media_fixture.py) into the
@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import base64
 import json
+import os
 import re
 import subprocess
 import sys
@@ -43,7 +44,8 @@ from pathlib import Path
 import websocket  # websocket-client
 
 CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-PORT = 9341
+# Another run may hold the default port; SF_CDP_PORT picks a free one.
+PORT = int(os.environ.get("SF_CDP_PORT", "9341"))
 HERE = Path(__file__).resolve().parent
 PROBE_JS = HERE / "probe_section_focus.js"
 
@@ -60,7 +62,8 @@ SIZES = {"1440": (1440, 900, False), "390": (390, 844, True)}
 
 
 class Chrome:
-    def __init__(self, width, height, mobile=False):
+    def __init__(self, width, height, mobile=False, dpr=1):
+        self.dpr = dpr
         self.profile = tempfile.mkdtemp(prefix="sf-profile-", dir=str(HERE / "temp"))
         self.proc = subprocess.Popen(
             [CHROME, "--headless=new", "--disable-gpu", "--force-device-scale-factor=1",
@@ -105,7 +108,7 @@ class Chrome:
 
     def resize(self, width, height, mobile=False):
         self.call("Emulation.setDeviceMetricsOverride", {
-            "width": width, "height": height, "deviceScaleFactor": 1, "mobile": mobile})
+            "width": width, "height": height, "deviceScaleFactor": self.dpr, "mobile": mobile})
         self.width, self.height = width, height
 
     def js(self, expr):
@@ -303,9 +306,15 @@ def probe_desktop(base):
         geo = c.js("sf.geometry()")
         report("AL-centred", abs(geo["gapL"] - geo["gapR"]) <= 1, gapL=geo["gapL"], gapR=geo["gapR"],
                gapT=geo["gapT"], gapB=geo["gapB"])
+        # the top row belongs to the close button, so the scrollbar starts 4 px below it
         report("SP3-padding", abs(geo["padL"] - geo["padR"]) <= 0.5 and
-               abs(geo["padT"] - geo["padB"]) <= 0.5,
-               padL=geo["padL"], padR=geo["padR"], padT=geo["padT"], padB=geo["padB"])
+               abs(geo["padB"] - geo["padL"]) <= 0.5 and
+               abs(geo["padT"] - (geo["closeBottom"] + 4)) <= 0.5,
+               padL=geo["padL"], padR=geo["padR"], padT=geo["padT"], padB=geo["padB"],
+               closeBottom=geo["closeBottom"])
+        si = c.js("sf.scrollInfo()")
+        report("no-sideways-scroll", si["sideways"] == 0 and si["out"] <= 1, **si)
+        report("close-clear-of-scrollbar", si["clear"] >= 4, **si)
         report("close-inset-hit", abs(geo["closeTop"] - geo["closeRight"]) <= 1 and
                geo["closeW"] >= 32 and geo["closeH"] >= 32,
                top=geo["closeTop"], right=geo["closeRight"], w=geo["closeW"], h=geo["closeH"])
@@ -789,38 +798,49 @@ def probe_diagram(base):
         c.close()
 
 
-def sweep(base, only=None):
-    """Every page, every h2-h6 section: page block against pop-up block."""
+def sweep(base, only=None, dprs=(1,), widths=(1440,)):
+    """Every page, every h2-h6 section: page block against pop-up block, and the
+    pop-up's sideways room (no sideways scroll, no block past the body's client
+    box by more than 1 px, the x at least 4 px clear of the scrollbar), at every
+    device scale and width given."""
     sm = urllib.request.urlopen(base.rstrip("/") + "/sitemap.xml", timeout=20).read().decode("utf8")
     pages = re.findall(r"<loc>([^<]+)</loc>", sm)
     root = base.rstrip("/") + "/"
-    c = Chrome(1440, 900, False)
-    totals = {"pages": 0, "sections": 0, "blocks": 0}
     problems = 0
-    try:
-        for u in pages:
-            if not u.startswith(root) or (only and only not in u):
-                continue
-            c.goto(u)
-            # a diagram page: let Material draw before measuring
-            wait_for(c, "!document.querySelector('.md-content__inner pre.mermaid')", 10)
-            time.sleep(0.3)
-            r = c.js("sf.sweepPage()")
-            totals["pages"] += 1
-            totals["sections"] += r["sections"]
-            totals["blocks"] += r["blocks"]
-            bad = r["mismatches"] or r["notOpened"] or r["layoutMoved"] or r["notRestored"]
-            problems += len(r["mismatches"]) + len(r["notOpened"]) + len(r["layoutMoved"]) + len(r["notRestored"])
-            print(json.dumps({"page": u[len(root):], "sections": r["sections"], "blocks": r["blocks"],
-                              "ok": not bad}), flush=True)
-            for m in r["mismatches"]:
-                print("  MISMATCH", u[len(root):], json.dumps(m), flush=True)
-            for k in ("notOpened", "layoutMoved", "notRestored"):
-                for m in r[k]:
-                    print("  ", k.upper(), u[len(root):], m, flush=True)
-    finally:
-        c.close()
-    print(json.dumps({"sweep": totals, "problems": problems}))
+    for dpr in dprs:
+        for width in widths:
+            c = Chrome(width, 900, False, dpr=dpr)
+            totals = {"dpr": dpr, "width": width, "pages": 0, "sections": 0, "blocks": 0,
+                      "sideways": 0, "sticksOut": 0, "closeNear": 0}
+            try:
+                for u in pages:
+                    if not u.startswith(root) or (only and only not in u):
+                        continue
+                    c.goto(u)
+                    # a diagram page: let Material draw before measuring
+                    wait_for(c, "!document.querySelector('.md-content__inner pre.mermaid')", 10)
+                    time.sleep(0.3)
+                    r = c.js("sf.sweepPage()")
+                    totals["pages"] += 1
+                    totals["sections"] += r["sections"]
+                    totals["blocks"] += r["blocks"]
+                    keys = ("mismatches", "notOpened", "layoutMoved", "notRestored",
+                            "sideways", "sticksOut", "closeNear")
+                    bad = any(r[k] for k in keys)
+                    problems += sum(len(r[k]) for k in keys)
+                    for k in ("sideways", "sticksOut", "closeNear"):
+                        totals[k] += len(r[k])
+                    print(json.dumps({"page": u[len(root):], "sections": r["sections"], "blocks": r["blocks"],
+                                      "ok": not bad}), flush=True)
+                    for m in r["mismatches"]:
+                        print("  MISMATCH", u[len(root):], json.dumps(m), flush=True)
+                    for k in keys[1:]:
+                        for m in r[k]:
+                            print("  ", k.upper(), u[len(root):], m, flush=True)
+            finally:
+                c.close()
+            print(json.dumps({"sweep": totals}), flush=True)
+    print(json.dumps({"problems": problems}))
     return 1 if problems else 0
 
 
@@ -836,7 +856,11 @@ def probe_mobile(base):
         report("m390-gutter", g["gapL"] >= 16 and g["gapR"] >= 16 and abs(g["gapL"] - g["gapR"]) <= 1,
                gapL=g["gapL"], gapR=g["gapR"], boxW=g["boxW"], vw=g["vw"])
         report("m390-AL", abs(g["gapL"] - g["gapR"]) <= 1)
-        report("m390-SP3", abs(g["padL"] - g["padR"]) <= 0.5 and abs(g["padT"] - g["padB"]) <= 0.5)
+        report("m390-SP3", abs(g["padL"] - g["padR"]) <= 0.5 and abs(g["padB"] - g["padL"]) <= 0.5 and
+               abs(g["padT"] - (g["closeBottom"] + 4)) <= 0.5)
+        si = c.js("sf.scrollInfo()")
+        report("m390-no-sideways-scroll", si["sideways"] == 0 and si["out"] <= 1, **si)
+        report("m390-close-clear-of-scrollbar", si["clear"] >= 4, **si)
         report("m390-close", abs(g["closeTop"] - g["closeRight"]) <= 1 and g["closeW"] >= 32
                and g["closeH"] >= 32, top=g["closeTop"], right=g["closeRight"])
         report("m390-height", g["boxH"] <= 0.85 * g["vh"] + 0.5, boxH=g["boxH"], vh=g["vh"])
@@ -854,7 +878,8 @@ def probe_width(base):
     sizes = ("({box: document.querySelector('.tks-focus').getBoundingClientRect().width,"
              " inline: document.querySelector('.tks-focus').style.width,"
              " doc: document.documentElement.scrollWidth,"
-             " body: document.querySelector('.tks-focus__body').clientWidth})")
+             " body: (b => b.clientWidth - 2 * parseFloat(getComputedStyle(b).paddingLeft))"
+             "(document.querySelector('.tks-focus__body'))})")
     c = Chrome(1440, 900, False)
     try:
         c.goto(base.rstrip("/") + "/features/rest_state/")
@@ -931,7 +956,12 @@ def main():
         return run_media(base, sys.argv)
     if mode == "sweep":
         only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
-        return sweep(base, only)
+        def listed(flag, default):
+            if flag not in sys.argv:
+                return default
+            return tuple(float(v) if "." in v else int(v)
+                         for v in sys.argv[sys.argv.index(flag) + 1].split(","))
+        return sweep(base, only, listed("--dpr", (1,)), listed("--width", (1440,)))
     if mode == "probe":
         probe_desktop(base)
         probe_mobile(base)

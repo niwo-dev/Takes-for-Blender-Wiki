@@ -104,9 +104,10 @@
         padL: num(cs.paddingLeft), padR: num(cs.paddingRight),
         padT: num(cs.paddingTop), padB: num(cs.paddingBottom),
         closeTop: cr.top - r.top, closeRight: r.right - cr.right,
-        closeW: cr.width, closeH: cr.height,
-        // the text column: the box minus its frame and the scrollbar the body carries
-        textW: body.clientWidth,
+        closeW: cr.width, closeH: cr.height, closeBottom: cr.bottom - r.top - num(cs.borderTopWidth),
+        // the text column: the box minus its frame and the scrollbar the body carries,
+        // less the room the body keeps for the table wrappers' reach past the text
+        textW: body.clientWidth - num(getComputedStyle(body).paddingLeft) - num(getComputedStyle(body).paddingRight),
         pageTextW: inner.clientWidth - num(ics.paddingLeft) - num(ics.paddingRight),
         bodyScrollH: body.scrollHeight, bodyClientH: body.clientHeight,
       };
@@ -442,7 +443,43 @@
     },
     // Open every h2-h6 section of this page by a title click, compare each block
     // of the page with its block in the pop-up, close again and check the page.
-    sweepPage() {
+    // Sideways room of the pop-up's scrolling body, and how far the × stands
+    // from the body's vertical scrollbar. `sideways` is what the browser would
+    // scroll; `out` is the furthest right edge of any block that is not clipped by
+    // a scroller of its own, past the body's client box, so a guard that hides a
+    // sub-pixel overflow cannot hide real overflow.
+    scrollInfo() {
+      const body = $(".tks-focus__body"), x = $(".tks-focus__close");
+      if (!body || !x) return null;
+      const br = body.getBoundingClientRect();
+      const clientRight = br.left + body.clientLeft + body.clientWidth;
+      const bar = body.offsetWidth - body.clientWidth - 2 * body.clientLeft;
+      let out = -1e9, who = "";
+      for (const el of $$("*", body)) {
+        const r = el.getBoundingClientRect();
+        if (!r.width || !r.height) continue;
+        let clipped = false;
+        for (let a = el.parentElement; a && a !== body; a = a.parentElement) {
+          if (getComputedStyle(a).overflowX !== "visible") { clipped = true; break; }
+        }
+        if (clipped || getComputedStyle(el).position === "absolute") continue;
+        if (r.right - clientRight > out) {
+          out = r.right - clientRight;
+          who = el.tagName.toLowerCase() + (typeof el.className === "string" && el.className ? "." + el.className.trim().split(/\s+/).join(".") : "");
+        }
+      }
+      const xr = x.getBoundingClientRect();
+      // With no scrollbar shown, the strip a scrollbar would take stands in for it.
+      const w = bar > 0 ? bar : 15;
+      const sb = { left: br.right - body.clientLeft - w, right: br.right, top: br.top, bottom: br.bottom };
+      const dx = Math.max(sb.left - xr.right, xr.left - sb.right);
+      const dy = Math.max(sb.top - xr.bottom, xr.top - sb.bottom);
+      const clear = Math.max(dx, dy);
+      return { sideways: body.scrollWidth - body.clientWidth, bar, out: +out.toFixed(2), who,
+               clear: +clear.toFixed(2), dpr: window.devicePixelRatio,
+               boxW: $(".tks-focus").getBoundingClientRect().width };
+    },
+    async sweepPage() {
       const COUNT = ["img", "svg", "table", "pre", "details", "iframe", "video", "div.mermaid"];
       const heads = $$(".md-content__inner h2[id], .md-content__inner h3[id], .md-content__inner h4[id], " +
                        ".md-content__inner h5[id], .md-content__inner h6[id]");
@@ -463,7 +500,8 @@
         COUNT.forEach((sel) => { o[sel] = n.querySelectorAll(sel).length + (n.matches(sel) ? 1 : 0); });
         return o;
       };
-      const out = { sections: 0, blocks: 0, mismatches: [], notOpened: [], layoutMoved: [], notRestored: [] };
+      const out = { sections: 0, blocks: 0, mismatches: [], notOpened: [], layoutMoved: [], notRestored: [],
+                    sideways: [], sticksOut: [], closeNear: [] };
       for (const head of heads) {
         if (head.closest(".tks-focus")) continue;
         out.sections++;
@@ -494,6 +532,12 @@
           COUNT.forEach((sel) => { if (a[sel] !== b[sel]) why.push(sel + " " + a[sel] + " vs " + b[sel]); });
           if (why.length) out.mismatches.push({ section: id, block: i, tag: a.tag, why: why.join("; ") });
         });
+        // Late sizing (the observer, a diagram) settles before the sideways room is read.
+        await sleep(60);
+        const si = sf.scrollInfo();
+        if (si.sideways > 0) out.sideways.push(id + " " + si.sideways + "px (" + si.who + ")");
+        if (si.out > 1) out.sticksOut.push(id + " " + si.out + "px (" + si.who + ")");
+        if (si.clear < 4) out.closeNear.push(id + " " + si.clear + "px");
         document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true, cancelable: true }));
         if ($(".tks-focus") || $$(".tks-focus-hold").length) out.notRestored.push(id + " (still open or hollow left)");
         else {
