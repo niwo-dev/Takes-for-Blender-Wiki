@@ -9,8 +9,12 @@
  *  - A focus pop-up. The first page load that carries a hash naming a heading
  *    opens that section in a pop-up over the dimmed, blurred page, and so does
  *    a click on the title text of any h2-h6. It shows a copy of the section;
- *    the real nodes never move. Esc, a click outside or the close button end
- *    it. In-page jumps and instant navigation to another page never open it.
+ *    the copy cannot carry some things (a diagram lives in a closed shadow
+ *    root, a frame or video does not survive cloning), so those real elements
+ *    move into the pop-up for as long as it is open and a same-sized
+ *    placeholder keeps their place on the page. Everything else stays put. Esc,
+ *    a click outside or the close button end it, and the elements go home.
+ *    In-page jumps and instant navigation to another page never open it.
  *  - A soft accent band over the section, then faded out by itself. It starts
  *    the moment the pop-up closes (or at once for a jump, which has no pop-up).
  *    Clicks leave it alone, so the reader can click around the page and still
@@ -44,6 +48,19 @@
   var HEADING = /^H([1-6])$/;
   var FOCUS_HEADING = /^H[2-6]$/;   // h1 is the whole page, not a section
   var SUFFIX = "-in-focus";         // keeps ids unique in the copied section
+  // Elements a copy cannot carry, so the real one moves into the pop-up while it
+  // is open. An element with an open shadow root counts too (see `isMovable`).
+  var MOVE =
+    "div.mermaid, " +   // Material's diagram host: a closed shadow root, never cloned
+    "pre.mermaid, " +   // the diagram's source block, before Material has drawn it
+    // Material takes the `mermaid` class off the source block while it waits for
+    // its diagram script, so in that gap the only sign is a `pre` that is not
+    // inside a code block (those are always wrapped in `.highlight`).
+    "pre:not(.highlight pre), " +
+    "iframe, video, audio, " +   // loaded content: a copy would reload or lose its state
+    "canvas, " +                 // drawn pixels are not part of the markup
+    "object, embed";             // plug-in content, same as a frame
+  var HOLD = "tks-focus-hold";      // the placeholder that keeps a moved element's place
   var CLOSE_ICON =
     '<svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">' +
     '<path fill="currentColor" d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 ' +
@@ -123,6 +140,15 @@
   // The visible text of some nodes as one lower-case string with whitespace
   // collapsed, and for each character the text node and offset it came from. A
   // change of block ends a run of text (a match never spans two paragraphs).
+  function isMovable(el) {
+    return !!el.shadowRoot || el.matches(MOVE);
+  }
+
+  function inMovable(el) {
+    for (var a = el; a; a = a.parentElement) if (isMovable(a)) return true;
+    return false;
+  }
+
   function textIndex(roots) {
     var text = "", map = [], lastBlock = null;
     roots.forEach(function (root) {
@@ -130,6 +156,7 @@
       for (var n = walker.nextNode(); n; n = walker.nextNode()) {
         var el = n.parentElement;
         if (!el || el.closest("script, style, noscript, .headerlink")) continue;
+        if (inMovable(el)) continue;     // a moved element is the page's own
         var block = el.closest(BLOCK);
         if (block !== lastBlock && text) { text += "\n"; map.push(null); }
         lastBlock = block;
@@ -287,10 +314,20 @@
   // one underneath.
   function copySection(head) {
     var holder = document.createElement("div");
+    var pairs = [];                 // [real, its stand-in in the copy]
     sectionNodes(head).forEach(function (n) {
       var copy = n.cloneNode(true);
       var from = n.querySelectorAll("input"), to = copy.querySelectorAll("input");
       for (var i = 0; i < from.length; i++) to[i].checked = from[i].checked;
+      // The copy has the same shape, so the two lists line up one to one. Only
+      // the outermost movable of a nest is taken: it carries the rest with it.
+      var a = [n].concat(Array.prototype.slice.call(n.querySelectorAll("*")));
+      var b = [copy].concat(Array.prototype.slice.call(copy.querySelectorAll("*")));
+      for (var k = 0; k < a.length; k++) {
+        if (isMovable(a[k]) && !pairs.some(function (p) { return p[0].contains(a[k]); })) {
+          pairs.push([a[k], b[k]]);
+        }
+      }
       holder.appendChild(copy);
     });
     var ids = {};
@@ -326,7 +363,42 @@
     holder.normalize();
     // A permalink inside the copy would point at the page, not at the copy.
     holder.querySelectorAll(".headerlink").forEach(function (el) { el.remove(); });
-    return holder;
+    return { holder: holder, pairs: pairs };
+  }
+
+  // The real element goes where its copy stands. A hollow of the same outer box
+  // takes its place on the page, so nothing around it moves. Two comment nodes
+  // fence the spot inside the pop-up: Material may swap the element for its
+  // drawn diagram while it sits there, so what is between them at close is what
+  // goes home, not the node that left.
+  function moveIn(real, stand) {
+    var r = real.getBoundingClientRect(), cs = getComputedStyle(real);
+    var hold = document.createElement("div");
+    hold.className = HOLD;
+    hold.setAttribute("aria-hidden", "true");
+    var st = hold.style;
+    st.display = cs.display === "inline" ? "inline-block" : cs.display;
+    st.boxSizing = "border-box";
+    st.width = r.width + "px";
+    st.height = r.height + "px";
+    ["Top", "Right", "Bottom", "Left"].forEach(function (side) {
+      st["margin" + side] = cs["margin" + side];
+    });
+    st.verticalAlign = cs.verticalAlign;
+    st.cssFloat = cs.cssFloat;
+    var from = document.createComment("tks-focus-slot"), to = document.createComment("/tks-focus-slot");
+    real.replaceWith(hold);
+    stand.replaceWith(from, real, to);
+    return { hold: hold, from: from, to: to, real: real };
+  }
+
+  function moveOut(slot) {
+    var nodes = [];
+    for (var n = slot.from.nextSibling; n && n !== slot.to; n = n.nextSibling) nodes.push(n);
+    if (!nodes.length) nodes.push(slot.real);
+    if (slot.hold.parentNode) slot.hold.replaceWith.apply(slot.hold, nodes);
+    slot.from.remove();
+    slot.to.remove();
   }
 
   function focusables(box) {
@@ -421,8 +493,11 @@
     box.setAttribute("aria-labelledby", "tks-focus-title");
     var body = document.createElement("div");
     body.className = "tks-focus__body md-typeset";
-    var copy = copySection(head);
+    var made = copySection(head);
+    var copy = made.holder;
     while (copy.firstChild) body.appendChild(copy.firstChild);
+    // Measured before anything moves; every box on the page stays where it is.
+    var moved = made.pairs.map(function (p) { return moveIn(p[0], p[1]); });
     body.firstElementChild.id = "tks-focus-title";
     var close = document.createElement("button");
     close.type = "button";
@@ -433,7 +508,7 @@
     box.appendChild(body);
 
     pop = {
-      head: head, scrim: scrim, box: box, items: items || [],
+      head: head, scrim: scrim, box: box, items: items || [], moved: moved,
       x: window.pageXOffset, y: window.pageYOffset
     };
     // Taking the scrollbar away would widen the page and move the text, so the
@@ -445,7 +520,17 @@
     // Wide screens: no wider than the page's own text column.
     var bs = getComputedStyle(box);
     var edge = parseFloat(bs.paddingLeft) + parseFloat(bs.borderLeftWidth);
-    if (textW) box.style.width = (textW + 2 * edge) + "px";
+    if (textW) {
+      box.style.width = (textW + 2 * edge) + "px";
+      // A scrollbar that takes room from the text would wrap lines differently
+      // from the page, so the box grows by its width (unless the extra room
+      // makes the scrollbar unnecessary).
+      var bar = body.offsetWidth - body.clientWidth;
+      if (bar > 0) {
+        box.style.width = (textW + 2 * edge + bar) + "px";
+        if (body.offsetWidth === body.clientWidth) box.style.width = (textW + 2 * edge) + "px";
+      }
+    }
 
     scrim.addEventListener("click", function () { closeFocus(true); });
     close.addEventListener("click", function () { closeFocus(true); });
@@ -470,6 +555,7 @@
     var p = pop;
     pop = null;
     document.removeEventListener("keydown", onKey, true);
+    p.moved.forEach(moveOut);
     p.scrim.remove();
     p.box.remove();
     var root = document.documentElement;
