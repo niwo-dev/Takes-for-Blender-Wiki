@@ -195,6 +195,9 @@ It asks one question. **Keep It All** leaves everything as it is. **Decide One b
     | **{{ op('tks.adopted_native_clear').bl_label }}** | On a compositor, world or camera row: the tier record goes and the cascade takes over. The datablock itself is untouched. |
     | **{{ op('tks.actionless_to_auto').bl_label }}** | On an object you took charge of that wears no action: hands it back to the takes. |
 
+??? info "An object that waits for an action"
+    A hand-set object can have no action. That is fine: the take let its own action go because it was never yours, and Takes makes an action for the object the moment you animate it. Give it one now, or hand it back to the take.
+
 ### Autokey Is Being Blocked
 
 This warning has no badge. It appears on its own, right below the navigation bar.

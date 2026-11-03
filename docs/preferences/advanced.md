@@ -45,6 +45,11 @@ Use it after the add-on warns that a file was last touched by a different versio
     The file stays marked, so the warning returns next time you open it.
     Nothing in your file changes either way.
 
+    A file from a *newer* version is different: rebuilding does not help, so
+    update Takes instead. **{{ op('tks.cache_unlock').bl_label }}** is its only
+    way out, because the panels are held while what they show may not match
+    what the file holds.
+
 It is always available and safe. It only touches the add-on's own caches and the version stamp in the open file — your scene data is never rewritten.
 
 ??? info "What it does, step by step"
