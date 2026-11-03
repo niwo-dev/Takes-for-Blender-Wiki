@@ -137,9 +137,9 @@ It ships off. Switch on **Enable Mode Pie** in *Workflow > Pie & Misc* to reveal
     every destination should be a direction, not a number of presses. There
     is no Off slice: click the slice of the kind that is on, and it goes off.
 
-    While a cache lock holds the panels shut, the pie leaves every slot empty,
-    as the navigation header does. A mode you hide from the header's mode row
-    stays in the pie.
+    While a cache lock holds the panels shut, the pie leaves its mode slots
+    empty, as the navigation header does. The four Diff State slots stay. A mode
+    you hide from the header's mode row stays in the pie.
 
     **Defaults:** North *Frame Sync*, North-East *Value Lock*, East *Variant
     Live*, South-East *Animation*, South *Still Mode*, South-West *Diff State*,
