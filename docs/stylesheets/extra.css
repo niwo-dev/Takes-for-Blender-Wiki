@@ -1331,7 +1331,12 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   margin: auto;
-  padding: 24px;
+  /* The close button sits in a row of its own above the text, so the scrollbar,
+     which starts where the body does, never runs under it: the row is the
+     button's inset, its height and 4px of air. */
+  --tks-focus-x: 36px;
+  --tks-focus-x-inset: 8px;
+  padding: calc(var(--tks-focus-x-inset) + var(--tks-focus-x) + 4px) 24px 24px;
   height: fit-content;
   max-width: calc(100% - 32px);
   max-height: 85vh;
@@ -1341,26 +1346,29 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 1rem rgba(0, 0, 0, 0.25);
   outline: none;
 }
+/* Tables sit in a scroll wrapper that reaches .8rem past the text on both sides
+   (the page's own margin takes it up). The body takes the same room as padding,
+   so the text column stays the page's and nothing reaches past the body, which
+   would otherwise scroll sideways. */
 .tks-focus__body {
   flex: 1 1 auto;
   min-height: 0;
+  margin: 0 -0.8rem;
+  padding: 0 0.8rem;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
-.tks-focus__body > :first-child {
-  margin-top: 0;
-  margin-right: 28px;               /* clear of the close button */
-}
+.tks-focus__body > :first-child { margin-top: 0; }
 .tks-focus__body > :last-child { margin-bottom: 0; }
 .tks-focus__close {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: var(--tks-focus-x-inset);
+  right: var(--tks-focus-x-inset);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: var(--tks-focus-x);
+  height: var(--tks-focus-x);
   padding: 0;
   border: 0;
   border-radius: 0.35rem;
