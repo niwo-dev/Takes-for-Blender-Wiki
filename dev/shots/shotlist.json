@@ -163,16 +163,7 @@
       "recipe": [
         "frame_scene"
       ],
-      "crop": {
-        "kind": "rect",
-        "area": "VIEW_3D",
-        "rect": [
-          265,
-          52,
-          1578,
-          1050
-        ]
-      },
+      "crop": null,
       "watch": [],
       "stamp": {}
     },
