@@ -2,7 +2,7 @@
   "project": "takes_for_blender",
   "output": "docs/assets/shots",
   "window": [
-    1920,
+    1600,
     1080
   ],
   "ui_scale": 0.65,

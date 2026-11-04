@@ -2,11 +2,15 @@
 
 Run through Blender, never on its own:
 
-    "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe" \\
-        --factory-startup --enable-event-simulate -p 0 0 1600 900 \\
+    python C:/Users/NIWO/Documents/GitHub/_tools/screen-setup/blender_windowed.py ^
         --python dev/shots/capture.py -- --only first_take_02
 
-Three flags, all load-bearing:
+The shared launcher is the only supported way to start this: it opens the
+window directly on the side monitor at 1600 wide, adds the flags below and
+keeps the taskbar and mouse pointer free. Never start Blender by hand with
+-p 0 0 or -W for these shots.
+
+Flags the launcher sets, all load-bearing:
 
   --factory-startup       Without it Blender opens the author's real session --
                           a client scene, shot strips in the sequencer, every
@@ -16,7 +20,7 @@ Three flags, all load-bearing:
   --enable-event-simulate Lets the script click. Some UI state has no property
                           to set: sidebar tabs are read-only in 5.2, and menus
                           only exist while open.
-  -p 0 0 1600 900         A fixed window, so every shot is the same size.
+  -p (side monitor)       A fixed 1600-wide window, so every shot is the same size.
 
 WHY A STEP QUEUE, not one function per shot: Blender builds UI state during
 draw, not when you ask for it. A sidebar opened in the same callback that reads
