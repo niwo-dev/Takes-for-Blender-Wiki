@@ -6,7 +6,20 @@
     1267
   ],
   "ui_scale": 0.65,
-  "addon_module": "bl_ext.user_default.takes_for_blender",
+  "session": {
+    "addons": [
+      "bl_ext.user_default.takes_for_blender",
+      "bl_ext.user_default.wikishot_for_blender"
+    ],
+    "addon_prefs": {
+      "bl_ext.user_default.takes_for_blender": {
+        "first_open_file_answer": "KEEP"
+      }
+    },
+    "env": {
+      "TKS_TEST_CONFIG_DIR": "{run_temp}"
+    }
+  },
   "shots": [
     {
       "name": "getting-started_installation_get-extensions",
