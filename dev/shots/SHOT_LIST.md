@@ -25,11 +25,10 @@ rig (and later the Shot Studio) works through.
 
 ### getting_started/installation.md
 
-| # | File | Shows |
-|---|------|-------|
-| 1 | `getting-started_installation_get-extensions.png` | Preferences > Get Extensions, with Install from Disk open |
-| 2 | `getting-started_installation_addon-enabled.png` | Takes for Blender enabled in the add-on list |
-| 3 | `getting-started_installation_takes-tab.png` | 3D View sidebar showing the new Takes tab |
+No shots for now: the page uses none, and these pictures need a recipe step
+that opens the Preferences window, which the shot runner does not have yet.
+Planned when that step exists: Get Extensions with Install from Disk open,
+the add-on enabled in the add-on list, the new Takes tab in the sidebar.
 
 ### getting_started/first_steps.md
 
