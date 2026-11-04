@@ -213,6 +213,12 @@ def pump():
 
 
 def start():
+    # The launcher sets this and loads the rest script that keeps the taskbar
+    # and pointer free. Without it the window opens on the wrong monitor.
+    if not os.environ.get("BLENDER_WINDOWED_RECT"):
+        log("FATAL: not started through blender_windowed.py -- quitting")
+        bpy.ops.wm.quit_blender()
+        return None
     try:
         # use_factory_startup is NOT optional: a bare read_homefile() reads the
         # user's SAVED startup file and quietly undoes --factory-startup.
