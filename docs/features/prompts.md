@@ -23,7 +23,7 @@ The row holds the storage menu, storage icon, name, **+**, pencil, Text Editor b
 
 ??? info "Rename, move, switch and delete"
     - Click the name (**{{ op('tks.prompt_pick').bl_label }}**) to look at another prompt of the same kind.
-    - The pencil renames; the storage menu moves the file. Both wait until you apply or cancel an open edit.
+    - The pencil renames; the storage menu moves the file. While the text is open, the pencil becomes the cancel arrow and a move is refused: apply or cancel first.
     - **X** deletes after a confirmation and drops an open edit.
 
 ??? info "Storage places"
