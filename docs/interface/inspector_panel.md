@@ -244,12 +244,6 @@ Sessions leave behind slots and actions that hold no animation. Three buttons pr
     No cleanup button touches a slot that is still assigned to a datablock, or an Action
     that is fake-user protected or used by a cascade. Only orphaned data goes.
 
-<!-- Alias: the add-on's Copy Names help link still lands on
-     interface/inspector_panel/#linked-objects-info, a heading that no longer
-     exists. The alias makes that link land on Linked Files. Remove it once
-     utils/manual_map.py points at #linked-files. -->
-<a id="linked-objects-info"></a>
-
 ## :material-link-variant-off: Linked Files
 
 An object linked from another file is read-only. Takes cannot animate it until it has a **library override**, which is a local, editable stand-in for the linked object.
