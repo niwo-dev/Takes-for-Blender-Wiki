@@ -165,7 +165,7 @@ The Variant Tree takes the same [Tree Edits](#tree-edits) keys. **Delete** alway
 | Shortcut | Action |
 |----------|--------|
 | Click | Turn this View Layer on or off in the queue. |
-| ++alt++ + click | **Preview Render** — open its newest rendered image in the Render Result. Needs a finished render. |
+| ++alt++ + click | **{{ op('tks.show_rendered_image').bl_label }}** — open the image already rendered and saved for this View Layer, in the Render Result. Needs a finished render. |
 | ++ctrl++ + click | **Render & save** it through the queue. |
 | ++shift++ + click | Toggle every View Layer in this scene. |
 | Click **Render All Previews** | Preview the selected View Layers. |
