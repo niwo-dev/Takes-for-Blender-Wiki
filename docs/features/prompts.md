@@ -35,12 +35,12 @@ These buttons sit in the Prompts list of the Globals tab, and in the prompt fiel
 
 | Button | Where | What it does |
 |--------|-------|--------------|
-| Chevron (down or right arrow) | Kind header in the list | Opens or closes that kind. ++shift++, ++ctrl++ or ++alt++ + click does every kind. |
+| **{{ op('tks.prompt_toggle_expand').bl_label }}** (chevron, down or right arrow) | Kind header in the list | Opens or closes that kind. ++shift++, ++ctrl++ or ++alt++ + click does every kind. |
 | **{{ op('tks.prompt_edit_text').bl_label }}** (Text Editor icon) | Row box, list row, right-click menu | Opens the prompt text in a Text Editor window. |
 | **X** (**{{ op('tks.prompt_delete').bl_label }}**) | Row box | Deletes the selected prompt after a confirmation. |
 | **-** (minus) | Sidebar next to the list | Same as **X**, for the selected prompt. |
-| **Move to** | Right-click menu of a prompt row | Lists **Addon**, **Project**, **Shared** and **Local**. Click one to move the file there. A place you have not set up is greyed out. |
-| Prompt name, or **-** when empty | Prompt fields of a level's popover | Click it to search the saved prompts of that kind and pick one. |
+| **Move to** (**{{ op('tks.prompt_move').bl_label }}**) | Right-click menu of a prompt row | Lists **Addon**, **Project**, **Shared** and **Local**. Click one to move the file there. A place you have not set up is greyed out. |
+| Prompt name, or **-** when empty (**{{ op('tks.prompt_search').bl_label }}**) | Prompt fields of a level's popover | Click it to search the saved prompts of that kind and pick one. |
 
 ## :material-source-branch: Give a prompt to a level
 

@@ -104,6 +104,8 @@ The **funnel** icon in the tree's side column filters the tree by tag.
 
 Click it to open **{{ op('tks.tag_filter_popover').bl_label }}**, then pick a tag. Only rows carrying it stay — and a Scene stays visible when any of its View Layers matches.
 
+At the top of the popover, under **Action**, the **Same as Active View Layer** toggle keeps only the rows that share the active View Layer's action.
+
 ??? info "Details"
     The popover lists only tags that are actually assigned somewhere, plus a
     **-- Show All --** row that clears the filter. The funnel stays highlighted
@@ -195,7 +197,7 @@ Click the family icon again to close the panel. Opening another family closes th
 
 ### :material-folder-alert-outline: Output Path Faults { #output-path-faults }
 
-This **System** warning lists every Output path that would go to the wrong place or be refused. Each row has a **Fix** button, and **Fix All** repairs a scene or the whole file.
+This **System** warning lists every Output path that would go to the wrong place or be refused. Each row has a **{{ op('tks.fix_output_fault').bl_label }}** button. **{{ op('tks.fix_output_faults').bl_label }}** repairs a scene or the whole file.
 
 **{{ op('tks.show_output_settings').bl_label }}** takes you to the scene with the fault. It opens the **Output** tab of the Properties editor, where the red fields are.
 
