@@ -89,6 +89,14 @@ Click a single row for one process, a group's master switch for the whole bucket
     heartbeat and exec-time columns. When the stutter disappears, the group you just
     switched off is the culprit. Then click single rows to find the exact process.
 
+## :material-cog: Process Monitor Settings { #process-monitor-settings }
+
+Click the small arrow button in the sidebar next to the list. A popup opens with the display options.
+
+**Show Columns** has four checkboxes: **Category**, **Kind**, **Heartbeat** and **Exec Time**. Tick one to show that column.
+
+Select a timer row and the popup adds its name and an **Interval (s)** field. It sets how often the process should tick, from 0 to 60 seconds. The Heartbeat column judges the row's last beat against it. Select a group row and the popup shows the group's name and process count.
+
 ## :material-restart: Restart Processes
 
 If a row that should be ticking shows no heartbeat, click **Restart Processes**.

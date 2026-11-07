@@ -104,6 +104,10 @@ Select the tags you want and press ++ctrl+g++. A new group appears with them ins
     | **{{ op('tks.tag_group_dissolve').bl_label }}** (++alt+g++) | The group shell disappears. Its tags survive and drop back to the category's ungrouped level. |
     | **{{ op('tks.tag_group_delete').bl_label }}** | The group **and every tag inside it** are deleted. It asks you first, and you can turn that confirmation off in Preferences. |
 
+### :material-checkbox-marked-outline: Selected checkbox { #tag-selected }
+
+With **Multiselect** on, a group header or tag row shows a checkbox (**Selected**). Tick it to include that row in bulk actions such as ++ctrl+g++ (group) and **{{ op('tks.tag_retarget_group').bl_label }}**. Untick it to leave the row out.
+
 ## :material-link-variant: Assigning Tags
 
 Pick a tag from the tag selector on the row you want to label.

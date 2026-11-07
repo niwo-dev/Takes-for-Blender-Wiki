@@ -73,6 +73,15 @@ A default preset is the one a file starts with when it has not picked one of its
 
 The **Tools** sub-tab cleans a file of the add-on's data. **Clear Add-on Data (tks_*)** removes every Takes property from the file, so use it before you uninstall. **Clear All Custom Properties** and **Clear by Pattern...** do the same for custom properties. The **Property Scanner** lists the patterns it finds, and **Clear** removes the ones you select. All of these reach every kind of data in the file.
 
+### :material-filter: Filter the Pattern List { #pattern-filter }
+
+Two controls in the filter row of the **Property Scanner** list narrow the patterns it shows. Use them to find a pattern before you clear it.
+
+| Control | What it does |
+|---------|--------------|
+| **Filter** | The search field. Type part of a pattern name to show only the matches. |
+| **Source Filter** | Pick **All**, **Blender** or **Add-ons**. The last two show only Blender's own or only add-on properties. |
+
 ## :material-puzzle: Add-on
 
 Where the add-on keeps its own settings.

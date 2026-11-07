@@ -56,6 +56,7 @@ Click a name to select it in the viewport. Click a sub-data icon to manage that 
     | **Pin** | Toggle managed or pinned state. |
     | **Name** | Object name — click to select it in the viewport. |
     | **Sub-data icons** | One compact icon per animated datablock (material, node tree, shape key). |
+    | **Selected** checkbox | Shown left of the name while multi-select is on for objects. It marks the row for the bulk action. |
 
 ??? tip "Filters"
     Two header buttons narrow the list: **Pinned filter** shows only pinned objects,
@@ -198,6 +199,14 @@ Clear the swap and the slot goes back to the mesh, so a variant owns it again.
     | **{{ op('tks.msw_remove_object').bl_label }}** | Removes the object and all its rows. Every swapped slot goes back to its original material first. |
     | **{{ op('tks.msw_remove_slot').bl_label }}** | Removes the material slot from the object. When more than one take swaps it, they are named first. |
 
+### :material-help-rhombus: Settle Lost Swap & Settle Lost Slot { #settle-lost-swap }
+
+Both dialogs open when you answer **Move To Slot** on a swap whose material slot was removed. **{{ op('tks.msw_settle_orphan').bl_label }}** moves one Take's swap. **{{ op('tks.msw_settle_slot').bl_label }}** moves the swap for every Take that used the slot.
+
+Each dialog shows the material, or the Take count, and one field, **Slot**. Enter the number of the slot that takes the swap. The other two answers, putting the slot back and letting the swap go, need no dialog. See [the fold below](#swap-list-removed-elsewhere).
+
+<a id="swap-list-removed-elsewhere"></a>
+
 ??? info "When a slot was removed elsewhere"
     Remove a slot from Blender's own material list and the swap on it is not
     thrown away. The warnings panel lists it and offers three answers: put the
@@ -310,6 +319,8 @@ Four bands, top to bottom: frame navigation, target-type rows, search and filter
     | **Target-type rows** | One row per animated datablock type on the active object. The left side switches the view to that target; the right side counts its keys. |
     | **Search & filter** | A search field narrows the property list, the red ✕ clears it. A source filter limits rows to **All / Native / Add-on** properties. |
     | **Property groups** | Collapsible sub-panels — Transform, Delta Transform, Visibility, Viewport Display, Light Settings, Lens & Sensor, Modifiers, General Properties — each row showing its live value. |
+
+    A property row that carries no label of its own shows Blender's name for that property.
 
     Every property row ends in Blender's native **keyframe decorator** (the diamond), so
     keying works exactly as in the Properties editor. Values driven by a driver or the

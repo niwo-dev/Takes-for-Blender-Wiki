@@ -146,6 +146,8 @@ The arrows reorder rows. Retarget moves one into another group.
 
 The minus button removes the highlighted row. Multi-select removes everything checked.
 
+When a multi-select delete leaves a View Layer with no Take, and the deleted Takes held swaps, the dialog adds one row per View Layer. Its **Swap List** menu decides which swap list stays: **Drop**, or one of the deleted Takes, shown with its swap count. The active Take is picked first when it is among them.
+
 ??? info "Every delete button"
     Deleting asks for confirmation by default.
 

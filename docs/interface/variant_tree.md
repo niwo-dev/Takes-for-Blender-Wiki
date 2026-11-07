@@ -68,6 +68,12 @@ The buttons beside the tree edit whatever row you have selected.
 
 The **Add Variant Item** menu names each choice outright: **Add Product**, **Add State**, **Add Part**, and **Add Materials**.
 
+### :material-eye: Disable in Viewports { #part-viewport }
+
+In the Parts list, the **eye** icon on a Part row is **Disable in Viewports**. It hides that Part's objects in the viewport for the active variant only.
+
+Each variant keeps its own choice, so one variant can hide a Part that another shows.
+
 ??? info "Switching which product a row drives"
     A tree row can be pointed at a different Product without rebuilding it.
     Open the row's product menu and pick another one; the menu lists every

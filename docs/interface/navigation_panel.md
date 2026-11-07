@@ -121,6 +121,20 @@ The **up** and **down** arrows in the column right of the tree move the highligh
 
 ++shift++ + click an arrow to move **every ticked row** at once. The highlight leads the move, then settles back on the ticked rows, so your selection stays with them.
 
+### :material-checkbox-marked-outline: Ticked Rows { #row-ticks }
+
+The tick box at the left of a row marks it for bulk actions. It is not the highlighted row, which is the one you are working in.
+
+Turn the ticks on with the **☐** icon in a list's stats row. Scene, View Layer, Group and Take rows then show a tick. Variant tree rows do too: see [Variant Tree](variant_tree.md).
+
+Ticked rows are what these actions work on, instead of the highlighted row alone:
+
+- **{{ op('tks.delete_selected_context_items').bl_label }}** with the **−** button.
+- ++shift++ + click an up or down arrow, as above.
+- Group, ungroup, and paste of View Layer settings.
+
+Click a stat icon to filter by type. Only rows of that type then show a tick and count. See [Multi-Select](hotkeys.md#multi-select).
+
 ## :material-tune: Tree Display Settings
 
 Open the tree's **row menu** — ++shift+right-button++ on a row, or the dropdown button under the **+** and **−**. Two entries at the foot open a settings popover each: **{{ op('tks.icon_visibility_settings').bl_label }}** and **{{ op('tks.preview_settings').bl_label }}**.
@@ -178,6 +192,12 @@ Click the family icon again to close the panel. Opening another family closes th
     | **Objects** | Adopted Objects | The file was made without Takes and came with its own animation. | The card described [below](#adopted). |
     | *(own icon, box)* | Cache Version | The active scene was last saved by a different addon version (a MAJOR.MINOR mismatch), so cached tree data may be stale. | A cache notice with a refresh action. It belongs to no family, so opening a family never hides it. |
     | **System** | View Layer Preload | [View Layer Preload](context_properties.md#view-layer-preload) is enabled and a preload is running, or some layers are still cold ("Not Ready"). | The per-layer preload panel — readiness state for every View Layer, per-section Preload buttons, Cancel and ETA while running. It can open the **System** family **automatically** when an automatic preload starts, if you opt in via the preferences. |
+
+### :material-folder-alert-outline: Output Path Faults { #output-path-faults }
+
+This **System** warning lists every Output path that would go to the wrong place or be refused. Each row has a **Fix** button, and **Fix All** repairs a scene or the whole file.
+
+**{{ op('tks.show_output_settings').bl_label }}** takes you to the scene with the fault. It opens the **Output** tab of the Properties editor, where the red fields are.
 
 ### Animation That Came With the File { #adopted }
 

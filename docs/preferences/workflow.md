@@ -10,6 +10,7 @@ Seven sub-tabs: **Render**, **Automations**, **Syntax**, **Token**, **Hotkeys**,
     A search field sits above the Preferences tabs and filters all of them.
     Settings that don't match your query dim in place while matches stay
     highlighted. Tabs and sub-tabs with no match gray out.
+    See [Search](index.md#search).
 
 ## :material-image-multiple: Render
 

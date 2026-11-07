@@ -58,12 +58,23 @@ Wherever a setting carries a small **ⓘ** badge, **{{ op('tks.pref_help').bl_la
 
 </div>
 
-??? tip "Can't find a setting? Search for it."
-    The header row has a **Search** field, next to the solo-accordion toggle.
-    As you type, anything that doesn't match goes dim — whole tabs and sub-tabs
-    included. So you can see at a glance where a setting lives.
+## :material-magnify: Search { #search }
 
-    Empty the field to bring everything back.
+The **{{ pref('prefs_search').label }}** field in the header row filters every setting as you type. Settings that don't match go dim and matches stay highlighted.
+
+Tabs and sub-tabs with no match go dim too, so you see at a glance where a setting lives. Empty the field to bring everything back.
+
+??? info "More detail"
+    The field is not saved. It starts empty each time you open Preferences.
+
+## :material-unfold-less-horizontal: Solo Accordions { #solo-accordions }
+
+The **{{ pref('accordion_solo_mode').label }}** toggle sits right of the **Search** field in the header row. It decides how sections open and close.
+
+Off (the default), each section opens and closes on its own. On, opening a section closes the others in its menu.
+
+??? info "Overrule solo mode"
+    Hold ++shift++ while you click a section arrow to open or close every section in that menu. This works in either mode.
 
 ## :material-folder-cog: Preference Configurations
 

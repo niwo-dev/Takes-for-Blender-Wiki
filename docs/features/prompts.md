@@ -29,6 +29,19 @@ The row holds the storage menu, storage icon, name, **+**, pencil, Text Editor b
 ??? info "Storage places"
     A prompt lives in one of the four places presets use: **Addon**, **Project**, **Shared** or **Local**. See [Storage Tiers](render_presets.md#storage-tiers). A place you have not set up in the preferences is greyed out.
 
+## :material-gesture-tap: Prompt Library buttons { #prompt-library-buttons }
+
+These buttons sit in the Prompts list of the Globals tab, and in the prompt fields of a level's popover.
+
+| Button | Where | What it does |
+|--------|-------|--------------|
+| Chevron (down or right arrow) | Kind header in the list | Opens or closes that kind. ++shift++, ++ctrl++ or ++alt++ + click does every kind. |
+| **{{ op('tks.prompt_edit_text').bl_label }}** (Text Editor icon) | Row box, list row, right-click menu | Opens the prompt text in a Text Editor window. |
+| **X** (**{{ op('tks.prompt_delete').bl_label }}**) | Row box | Deletes the selected prompt after a confirmation. |
+| **-** (minus) | Sidebar next to the list | Same as **X**, for the selected prompt. |
+| **Move to** | Right-click menu of a prompt row | Lists **Addon**, **Project**, **Shared** and **Local**. Click one to move the file there. A place you have not set up is greyed out. |
+| Prompt name, or **-** when empty | Prompt fields of a level's popover | Click it to search the saved prompts of that kind and pick one. |
+
 ## :material-source-branch: Give a prompt to a level
 
 Every row of the Takes tree has a **Prompts** icon. Use it to say which prompts the assistant follows at that level.
