@@ -27,6 +27,11 @@ Still follows the same inherit-down rules as the rest of the [cascade](cascade.m
 
 A typical setup: Global on Still for a product-shot project, with one "turntable" View Layer on Animate.
 
+??? tip "Start every new file in Still"
+    Set the **Global row** to **Still** in an empty file. Then choose **File › Defaults › Save Startup File**.
+    Every new file now starts with Global on Still, its timeline pinned to frame 0.
+    Files you saved before keep their own setting.
+
 While a scene resolves to Still, its frame range is clamped to the still frame — start, end and playhead all pinned to frame 0. Switching back to Animate restores the range and playhead it had before.
 
 ## :material-swap-horizontal: Interactions

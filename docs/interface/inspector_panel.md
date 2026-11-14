@@ -306,7 +306,7 @@ Each override takes the place of its linked object in your collections, and the 
 
 Flip the header toggle (see [Watchlist vs. Channels](#watchlist-vs-channels)) and the Inspector becomes a keyframing surface. It lists every animatable **property** of the active target.
 
-**{{ op('tks.toggle_channel_mode').bl_label }}** switches between the **Slotted** and **Channels** sub-modes.
+The [navigation pie](../features/pie_menus.md#navigation-pie-slot-actions) slots **Slotted Mode** and **Channels** switch between the two sub-modes.
 
 ### :material-format-list-text: What the view is made of
 
