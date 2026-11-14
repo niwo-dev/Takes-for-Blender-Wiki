@@ -1,0 +1,80 @@
+{
+  "first_take_01_default_scene": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "18948ba06f6bf275"
+  },
+  "getting-started_first-batch-render_second-layer": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "bf15413a3f97e5dc"
+  },
+  "getting-started_first-batch-render_third-angle": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "b5bc1f61e5ad69f9"
+  },
+  "getting-started_first-steps_open-panel": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "c48056ea79e09715"
+  },
+  "getting-started_first-take_default-scene": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-23",
+    "recipe_hash": "e1f1c15d863e8c3e"
+  },
+  "getting-started_first-take_first-take-row": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "ba9e5141c565d4c5"
+  },
+  "getting-started_first-take_new-angle": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "7a8057e751b58699"
+  },
+  "getting-started_first-take_takes-panel": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "c8ad02a513c06bff"
+  },
+  "getting-started_first-take_two-takes": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "69559da445c6f99a"
+  },
+  "getting-started_installation_addon-enabled": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-23",
+    "recipe_hash": "b41cf3bfe1f8b89b"
+  },
+  "getting-started_installation_get-extensions": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-23",
+    "recipe_hash": "e5fb7a28f39a6200"
+  },
+  "getting-started_installation_takes-tab": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-23",
+    "recipe_hash": "39c3802f4bb6a8f5"
+  },
+  "workflows_switch-takes_tree": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-22",
+    "recipe_hash": "f11e75fc63b59d45"
+  }
+}
