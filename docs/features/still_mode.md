@@ -34,6 +34,19 @@ A typical setup: Global on Still for a product-shot project, with one "turntable
 
 While a scene resolves to Still, its frame range is clamped to the still frame — start, end and playhead all pinned to frame 0. Switching back to Animate restores the range and playhead it had before.
 
+## :material-key-chain-variant: Scattered Keys { #scattered-keys }
+
+A Still take only shows frame 0, so keys on other frames no longer count and can make the viewport show the wrong state. When a take turns Still and still holds such keys, the **Objects** warning family opens its **Scattered Keys** warning. It lists every object with keys off frame 0.
+
+- **Object rows** — click the arrow to open an object and see its properties. The count reads like "5 keys · 3 frames".
+- **{{ op('tks.still_gather_all').bl_label }}** — moves every listed key of this take onto frame 0 after one confirm. The latest key of each property stays; the other keys are removed.
+- **Gather** (the arrow icon at the right of a row) — does the same for that one object or property, with no question.
+
+Each gather is one undo step. If the take shares its animation with an Animation take, or Rest State Mode is on, the buttons grey out and the tooltip says why.
+
+??? info "Keep an older key: {{ op('tks.still_scatter_pick').bl_label }}"
+    By default the latest key wins. To keep another value, click the frame text on a property row. The menu lists the frames that hold a key, newest first. Choose one with **{{ op('tks.still_scatter_pick').bl_label }}**, then press **Gather** on that row (or **{{ op('tks.still_gather_all').bl_label }}**). The picked frame's value lands on frame 0.
+
 ## :material-swap-horizontal: Interactions
 
 - **Frame Sync** stands down while a take resolves Still, because syncing the playhead across scenes would fight the frame pin. Only that one mode is held off. The [Timeline](../interface/navigation_panel.md) button greys out on a Still take, but stays clickable while **Scene Follow** or **Viewport Preview** is on, so you can switch them off.
