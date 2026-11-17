@@ -155,7 +155,7 @@ nav:
     - The Takes System: features/takes.md
     - Takes & the Review Loop: features/vl_versions.md
     - The Cascade: features/cascade.md
-    - The Value Order: features/value_order.md
+    - The Ladder: features/value_order.md
     - Actions, Managed and Pinned: features/actions.md
     - Rest State: features/rest_state.md
     - Diff State: features/diff_state.md
