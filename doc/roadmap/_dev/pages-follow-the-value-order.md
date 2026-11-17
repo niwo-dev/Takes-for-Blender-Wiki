@@ -32,6 +32,6 @@ Also `docs/features/rules.md:55` ("evaluated on every View Layer switch, batch r
 
 ## Timing
 
-Items 4-9 change again when the add-on's Value Order card ships its camera and rules phases. Word them for today's behaviour now; the add-on card's wiki phase updates them then.
+Owner, 2026-11-17: all of this waits until the add-on's Value Order engine is built and confirmed in the app. Then the pages are corrected once, for the final behaviour; items 4-9 are re-checked against the code of that day first. The Planned notes on the Value Order page are removed in the same pass.
 
 Changeable design: skipped - wording fixes on existing pages; no list, key or format is added.
