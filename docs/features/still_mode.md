@@ -36,16 +36,38 @@ While a scene resolves to Still, its frame range is clamped to the still frame �
 
 ## :material-key-chain-variant: Scattered Keys { #scattered-keys }
 
-A Still take only shows frame 0, so keys on other frames no longer count and can make the viewport show the wrong state. When a take turns Still and still holds such keys, the **Objects** warning family opens its **Scattered Keys** warning. It lists every object with keys off frame 0.
+A Still take only shows frame 0, so keys on other frames no longer count and can make the viewport show the wrong state. When a take turns Still and still holds such keys, the **Objects** warning family opens its **Scattered Keys** warning. The warning's button in the family row shows how many objects have scattered keys.
 
-- **Object rows** — click the arrow to open an object and see its properties. The count reads like "5 keys · 3 frames".
-- **{{ op('tks.still_gather_all').bl_label }}** — moves every listed key of this take onto frame 0 after one confirm. The latest key of each property stays; the other keys are removed.
-- **Gather** (the arrow icon at the right of a row) — does the same for that one object or property, with no question.
+- **{{ op('tks.still_gather_all').bl_label }}** — asks first, then moves every scattered key of this take onto frame 0. The latest key of each property stays; the other keys are removed.
+- **Gather** (the icon at the right of a row) — does the same for that one object or property, with no question.
 
-Each gather is one undo step. If the take shares its animation with an Animation take, or Rest State Mode is on, the buttons grey out and the tooltip says why.
+Each gather is one undo step, and redo works too.
 
-??? info "Keep an older key: {{ op('tks.still_scatter_pick').bl_label }}"
-    By default the latest key wins. To keep another value, click the frame text on a property row. The menu lists the frames that hold a key, newest first. Choose one with **{{ op('tks.still_scatter_pick').bl_label }}**, then press **Gather** on that row (or **{{ op('tks.still_gather_all').bl_label }}**). The picked frame's value lands on frame 0.
+??? info "What the warning shows"
+    Top to bottom:
+
+    1. An info box that says why the keys matter.
+    2. The **{{ op('tks.still_gather_all').bl_label }}** button.
+    3. A list of every object with keys off frame 0. Click the arrow on an object row to open it. Each property then shows on its own row.
+
+    Object rows count like "5 keys · 3 frames". Property rows show the frame whose value wins, for example "40 (latest)".
+
+    The list covers objects, mesh data, shape keys, materials, lights, cameras and the world.
+
+??? info "When the buttons grey out"
+    The gather buttons grey out, and the tooltip says why:
+
+    - Rest State Mode is on. The tooltip says "Leave Rest State Mode first". The warning and its list still show.
+    - The take shares its animation with an Animation take. The tooltip names that take.
+
+??? info "Keep an older key: {{ menu('TKS_MT_ScatterPick').bl_label }}"
+    By default the latest key wins. To keep another value:
+
+    1. Click the frame text on a property row. The **{{ menu('TKS_MT_ScatterPick').bl_label }}** menu opens.
+    2. Choose a frame. The list shows the frames that hold a key, newest first; the first is marked "(latest)".
+    3. Press **Gather** on that row, or **{{ op('tks.still_gather_all').bl_label }}**.
+
+    The chosen frame's value lands on frame 0.
 
 ## :material-swap-horizontal: Interactions
 
