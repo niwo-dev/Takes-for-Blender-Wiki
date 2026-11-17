@@ -32,6 +32,19 @@ Also `docs/features/rules.md:55` ("evaluated on every View Layer switch, batch r
 
 ## Timing
 
-Owner, 2026-11-17: all of this waits until the add-on's Value Order engine is built and confirmed in the app. Then the pages are corrected once, for the final behaviour; items 4-9 are re-checked against the code of that day first. The Planned notes on the Value Order page are removed in the same pass.
+Owner, 2026-11-17: all of this waits until the last phase of the add-on's Value Order card is confirmed in the app. Then the pages are corrected once, for the final behaviour; items 4-9 are re-checked against the code of that day first. The Planned notes on the Value Order page are removed in the same pass.
 
 Changeable design: skipped - wording fixes on existing pages; no list, key or format is added.
+
+## The Value Order page itself (review of 2026-11-17)
+
+The page is live and states the target order. Until the add-on's phases land it is ahead of the add-on in these places; correct or mark them in the same pass:
+
+- Step 4 says an object set by hand keeps its action. From the add-on's fourth phase a mode button also rules such an object.
+- Step 5: Value Lock against the Rest snap, and Still against an output preset with Revert & Re-apply, do not hold on every path yet.
+- Step 5 lists some mode buttons; complete the list or point to The Modes.
+- Step 6 says animation wins; the Rest snap does not yet skip values held by a driver.
+- Batch render is not named among the things that are not steps, and it does not follow the order fully yet.
+- The source mark, the tooltip lines and the held key are not on the page; add them when they ship.
+- The silent places listed above are part of this card's second phase.
+- `cascade.md:162,168-169`: describe the behaviour of that day, not today's.
