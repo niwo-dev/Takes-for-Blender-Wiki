@@ -40,6 +40,7 @@ A Still take only shows frame 0, so keys on other frames no longer count and can
 
 - **{{ op('tks.still_gather_all').bl_label }}** — asks first, then moves every scattered key of this take onto frame 0. The latest key of each property stays; the other keys are removed.
 - **Gather** (the icon at the right of a row) — does the same for that one object or property, with no question.
+- **{{ op('tks.still_scatter_pick').bl_label }}** — click the frame count of a property row to open a menu of its keyed frames; the one you pick is the value the gather keeps, instead of the latest.
 
 Each gather is one undo step, and redo works too.
 
