@@ -3,9 +3,9 @@ icon: material/sort-variant
 description: "Which value wins when Blender, the cascade, a mode and animation all want to set the same thing."
 ---
 
-# The Ladder
+# The Value Order
 
-Many things can set one value. Takes asks them in a fixed order, the Ladder. Each step is a rung, and the higher rung wins, field by field.
+Many things can set one value. Takes asks them in a fixed order, and the stronger step wins, field by field.
 
 | Step | What sets the value |
 |---|---|
