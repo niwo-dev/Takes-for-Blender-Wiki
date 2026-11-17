@@ -1,4 +1,4 @@
-# Pages Follow the Ladder - technical note
+# Pages Follow the Value Order - technical note
 
 Review of 2026-11-17 against `docs/features/value_order.md`. Line numbers are of that day; confirm before editing. Keep every linked anchor.
 
@@ -26,12 +26,12 @@ Also `docs/features/rules.md:55` ("evaluated on every View Layer switch, batch r
 - `render_presets.md:64` - the Default preset applies when no level holds a preset.
 - `modes.md` - does not say that a mode sits above the levels while it is on.
 
-## Pages that need a link to the Ladder page
+## Pages that need a link to the Value Order page
 
 `cascade.md`, `rules.md`, `modes.md`, `render_presets.md`, `actions.md`, `takes.md`, `value_lock.md`, `still_mode.md`, `rest_state.md`, `variant_switch.md`, `multi_cam.md`, `diff_state.md`, `globals.md`, `batch_render.md`; also `getting_started/first_steps.md` and `course/a4-the-cascade.md`.
 
 ## Timing
 
-Owner, 2026-11-17: all of this waits until the add-on's Ladder engine is built and confirmed in the app. Then the pages are corrected once, for the final behaviour; items 4-9 are re-checked against the code of that day first. The Planned notes on the Ladder page are removed in the same pass.
+Owner, 2026-11-17: all of this waits until the add-on's Value Order engine is built and confirmed in the app. Then the pages are corrected once, for the final behaviour; items 4-9 are re-checked against the code of that day first. The Planned notes on the Value Order page are removed in the same pass.
 
 Changeable design: skipped - wording fixes on existing pages; no list, key or format is added.

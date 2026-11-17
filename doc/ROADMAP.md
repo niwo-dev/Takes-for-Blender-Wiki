@@ -12,7 +12,7 @@ The tables below are generated from the per-feature files in [`roadmap/`](roadma
 |---------------------------------------------------------------------------------|----------|-------|-------------|------|-------------------------------------------------------------------------------------------|
 | [A Course to Learn Takes](roadmap/ideas/course-to-learn-takes.md)               | Docs     | Docs  | Course      | 🔴    | Give the wiki an ordered course, so a newcomer is led from a first take to a finished…    |
 | [Blender Icons Across the Wiki](roadmap/ideas/blender-icons-across-the-wiki.md) | Docs     | Docs  | Icons       | 🟡    | Every icon in the wiki's text shows the same icon the reader sees in Blender, taken from… |
-| [Pages Follow the Ladder](roadmap/ideas/pages-follow-the-value-order.md)        | Docs     | Docs  | Accuracy    | 🟢    | The pages on the cascade, rules and render presets say the same as the Ladder page: a…    |
+| [Pages Follow the Value Order](roadmap/ideas/pages-follow-the-value-order.md)   | Docs     | Docs  | Accuracy    | 🟢    | The pages on the cascade, rules and render presets say the same as the Value Order page:… |
 | [Screenshots for Every Page](roadmap/ideas/screenshots-for-every-page.md)       | Docs     | Docs  | Screenshots | 🔴    | Give every page the pictures it asks for, so a reader can see the panel instead of…       |
 | [Shorten the Long Pages](roadmap/ideas/shorten-the-long-pages.md)               | Refactor | Docs  | Readability | 🟡    | Bring the 24 pages that run long back under the house limit, so no page asks for more…    |
 
