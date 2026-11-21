@@ -1,0 +1,20 @@
+{
+  "getting-started_first-steps_add-viewlayer": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-23",
+    "recipe_hash": "67753522e080288b"
+  },
+  "getting-started_first-take_default-scene": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-26",
+    "recipe_hash": "ab88ea11ee0a2fee"
+  },
+  "getting-started_installation_get-extensions": {
+    "addon_version": "0.1.0",
+    "blender_version": "5.2.0 LTS",
+    "date": "2026-08-23",
+    "recipe_hash": "10b451e8329bd8e4"
+  }
+}
