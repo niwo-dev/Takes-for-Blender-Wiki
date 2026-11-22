@@ -79,7 +79,7 @@ How the Takes tree looks, and which icons its rows show.
 | Setting | Default | Description |
 |---------|---------|-------------|
 | **Icons** | On | Per-icon visibility for the ten tree icons. Each toggle carries the icon's own name — Tag, Variant, Action, Compositor and so on. |
-| **Collapse Mode** | Dynamic | When the overflow `⋯` replaces the icons: Dynamic (by panel width), Always, or Never. |
+| **Collapse Mode** | Dynamic | When the overflow `⋯` replaces the icons: Dynamic (by panel width), Always, Never, or Used (only pinned icons and icons some row uses stay inline, at any width). |
 | **Tag Color** | On | Tints the tree connection lines by tag colour. |
 
 ??? info "The rest of the tree settings"

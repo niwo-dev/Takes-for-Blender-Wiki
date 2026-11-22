@@ -81,7 +81,9 @@ Every View Layer row carries a strip of cascade override icons. They show at a g
 
 ??? tip "Narrow panels: the overflow ⋯ button"
     When the panel is narrow, the cascade icons collapse into one **⋯** button.
-    Click it to open a popover showing all icons in full.
+    Click it to open a popover showing all icons in full. The popover also lists the icons you switched off under **Icons**.
+
+    On a take, the popover has a **Note** place in the Tag slot, so you can write a note while the Tag icon is folded. ++alt++ + click on the note keeps it; clear it in its editor.
 
 ??? tip "Expand or collapse in bulk"
     The expand chevron on Scene, Group and View Layer rows responds to modifiers.
@@ -148,7 +150,7 @@ Open the tree's **row menu** — ++shift+right-button++ on a row, or the dropdow
     |---------|-------------|
     | **Icons** | Per-icon show/hide toggles: Tag, Variant, Action, Compositor, World, Camera, Output Rule, Render. |
     | **Pin Outside Collapse** | Force certain icons to always show, skipping the overflow **⋯**. |
-    | **Collapse** | When the icons fold into **⋯**: Dynamic (with a minimum width), Always, or Never. |
+    | **Collapse** | When the icons fold into **⋯**: Dynamic (with a minimum width), Always, Never, or Used. Used keeps an icon inline when it is pinned or any row in the whole tree uses it, and folds the rest into **⋯**. |
     | **Colors** | Tag Color, Tree Line and its width, the View Layer icon style, and the active View Layer colour. |
     | **{{ op('tks.sync_tree_to_prefs').bl_label }}** | Save these display choices into your preferences. |
 
