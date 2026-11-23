@@ -4,7 +4,7 @@ hide:
   - toc
   - title
 title: Home
-description: "Takes for Blender is a scene and shot management add-on for Blender 5.0+. Organize shots in one tree, switch material variants and batch render every take."
+description: "Takes for Blender is a scene and shot management add-on for Blender 5.2 LTS or newer. Organize shots in one tree, switch material variants and batch render every take."
 ---
 
 <!-- The heading below is deliberate. Material invents a heading from the front
@@ -15,7 +15,7 @@ description: "Takes for Blender is a scene and shot management add-on for Blende
 
 # Takes for Blender — Scene & Shot Management
 
-The shot manager and scene organizer for Blender 5.0+. Keep every shot, look and render setting in one tree, then batch render them all in one click.
+The shot manager and scene organizer for Blender 5.2 LTS or newer. Keep every shot, look and render setting in one tree, then batch render them all in one click.
 
 <div class="grid cards" markdown>
 
@@ -114,7 +114,7 @@ The shot manager and scene organizer for Blender 5.0+. Keep every shot, look and
 | :material-earth: **Globals Panel** | One place for project-wide settings, presets, rules, tags and variants. |
 
 !!! tip "Which Blender do I need?"
-    Takes needs **Blender 5.0** or newer. A few newer conveniences need 5.1+.
+    Takes needs **Blender 5.2 LTS** or newer. On Blender 5.0 or 5.1, stay on the last Takes release that supports your version.
 
 ??? info "Need another language?"
     **The add-on interface** follows Blender's own language setting (_Preferences → Interface → Translation_) — **German** is the first shipped language, covering labels, tooltips, menus, warnings and status messages, with more possible as translation word lists are added. That is separate from **this wiki**, which is published in English.

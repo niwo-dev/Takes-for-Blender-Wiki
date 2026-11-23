@@ -9,7 +9,7 @@ icon: material/school
 ## 1. How to install Takes for Blender <span class="tks-min">3 <span class="tks-min__u">min</span></span> { #1-how-to-install-takes-for-blender }
 <div class="tks-video" data-video="A2.1">How to install Takes for Blender (and which Blender version you need)</div>
 
-Takes needs Blender 5.0 or newer. Install the ZIP without unzipping it, switch it on, and open the Takes tab in the sidebar with N.
+Takes needs Blender 5.2 LTS or newer. Install the ZIP without unzipping it, switch it on, and open the Takes tab in the sidebar with N.
 
 Read more: [Install Takes](../getting_started/installation.md)
 

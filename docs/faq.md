@@ -17,8 +17,9 @@ description: "Quick answers about Takes for Blender: versions, render engines, s
     Browser translation is private (processed locally where supported) and covers 100+ languages.
 
 ??? question "What Blender version do I need?"
-    Takes for Blender requires **Blender 5.0** or newer — it relies on
-    Blender's Slotted Action system. A few newer conveniences need 5.1+.
+    Takes for Blender requires **Blender 5.2 LTS** or newer — it relies on
+    Blender's Slotted Action system. On Blender 5.0 or 5.1, stay on the last
+    Takes release that supports your version.
 
 ??? question "Does it work with EEVEE and Cycles?"
     Yes. The cascade and batch render systems are engine-agnostic.

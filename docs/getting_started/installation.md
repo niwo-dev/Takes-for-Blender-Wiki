@@ -1,13 +1,13 @@
 ---
 icon: material/download
-description: "Install Takes for Blender, the shot and scene management add-on for Blender 5.0+."
+description: "Install Takes for Blender, the shot and scene management add-on for Blender 5.2 LTS or newer."
 ---
 
 # Installation
 
 ## :material-check-circle-outline: Requirements
 
-- **Blender 5.0** or newer
+- **Blender 5.2 LTS** or newer. On Blender 5.0 or 5.1, stay on the last Takes release that supports your version.
 - Windows, macOS, or Linux
 
 ## :material-download: Download
