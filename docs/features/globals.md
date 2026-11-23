@@ -50,7 +50,7 @@ Dedicated panels for the [Rules](rules.md) and [Tags](tags.md) features.
 
 ## :material-alert-outline: Version Warning
 
-Blender 5.0 is the minimum for slotted actions. On an older build a banner links you to the upgrade guide, and clears once you upgrade.
+Takes needs Blender 5.2 LTS or newer, which is the minimum for slotted actions.
 
 ## :material-keyboard: Hotkeys
 

@@ -18,6 +18,8 @@ Pick the camera this View Layer renders with.
 
 The same popover applies a **Camera preset**, and creates or renames a camera without leaving the panel.
 
+A take also has its own **Camera rule**, in a Rule row above the **Camera preset** row. The rule is only stored for now and does not change the take's camera. Duplicate Take and New Take From Here keep it, and Alt+Click on the camera overflow icon clears it along with the camera and the preset.
+
 ??? info "The rest of the popover"
     The dropdown lists only cameras linked to the current scene.
 
