@@ -79,14 +79,14 @@ How the Takes tree looks, and which icons its rows show.
 | Setting | Default | Description |
 |---------|---------|-------------|
 | **Icons** | On | Per-icon visibility for the ten tree icons. Each toggle carries the icon's own name — Tag, Variant, Action, Compositor and so on. |
-| **Collapse Mode** | Dynamic | When the overflow `⋯` replaces the icons: Dynamic (by panel width), Always, Never, or Used (each row shows only its pinned icons and the icons that hold a value on that row, at any width). |
+| **Collapse Mode** | Auto | When the overflow `⋯` replaces the icons: Auto (by panel width), Pinned, Show All, or Compact (each row shows only its pinned icons and the icons that hold a value on that row, at any width). |
 | **Tag Color** | On | Tints the tree connection lines by tag colour. |
 
 ??? info "The rest of the tree settings"
     | Setting | Default | Description |
     |---------|---------|-------------|
     | **Pin Outside Collapse** | Still and Render | Which icons stay visible when the overflow `⋯` takes over, one toggle per icon. |
-    | **Min Width** | 600 | Panel width in pixels at which Dynamic collapses. Range 200–800. Shown only in Dynamic. |
+    | **Min Width** | 600 | Panel width in pixels at which Auto collapses. Range 200–800. Shown only in Auto. |
     | **Tree Line** | On | Draws the connection lines. **Color** sets their colour (dark grey). |
     | **Strip Width** | Medium | Thin, Medium or Wide lines for the tag colour and the shared-action mark. |
     | **View Layer Icon** | Box | **Box** or **Socket** for the active View Layer. **Color** (gold) tints the Socket only. |

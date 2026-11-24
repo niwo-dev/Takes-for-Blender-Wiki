@@ -150,7 +150,7 @@ Open the tree's **row menu** — ++shift+right-button++ on a row, or the dropdow
     |---------|-------------|
     | **Icons** | Per-icon show/hide toggles: Tag, Variant, Action, Compositor, World, Camera, Output Rule, Render. |
     | **Pin Outside Collapse** | Force certain icons to always show, skipping the overflow **⋯**. |
-    | **Collapse** | When the icons fold into **⋯**: Dynamic (with a minimum width), Always, Never, or Used. Used shows on each row only the icons that hold a value there, side by side; pinned icons keep a fixed place, and **⋯** lists the rest. |
+    | **Collapse** | When the icons fold into **⋯**: Auto (folds when the panel is narrow, with a minimum width), Pinned (only pinned icons show), Show All (nothing folds), or Compact. Compact shows on each row only the icons that hold a value there, side by side; pinned icons keep a fixed place, and **⋯** lists the rest. |
     | **Colors** | Tag Color, Tree Line and its width, the View Layer icon style, and the active View Layer colour. |
     | **{{ op('tks.sync_tree_to_prefs').bl_label }}** | Save these display choices into your preferences. |
 
