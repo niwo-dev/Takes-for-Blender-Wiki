@@ -26,6 +26,8 @@ It is not a chat window inside the add-on. It is the surface an assistant drives
 
 It can describe your project, create and switch takes, set cascade overrides, and switch product variants. It can also make scenes, view layers and groups, assign saved presets and prompts, set a scene's output folder and file name, and render one take.
 
+The scripting session can also set and clear a Camera rule and a World rule on all six levels, duplicate a take, empty everything a level holds for a camera, World, action or output rule (like Alt+Click on the overflow icon), and create a new tag. A new tag is refused if the name is taken, and a duplicated take is named with the suffix .001 and not made active.
+
 Tiers are **named, not numbered**: `take`, `view_layer`, `vl_group`, `scene`, `scene_group`, `global`.
 
 You can also give it standing instructions. See [Prompts](prompts.md).
